@@ -18,7 +18,7 @@ OUTPUT_PDF="生命论（明本论）合订本_出版级排版.pdf"
 # 质量检查函数
 quality_check() {
     echo "[质检] 运行质量检查..."
-    python3 - "$OUTPUT_MD" << 'PYEOF'
+    python3 - "$OUTPUT_MD" "$MODDIR" << 'PYEOF'
 import sys, re
 
 with open(sys.argv[1], 'rb') as f:
@@ -85,10 +85,7 @@ for typo in typos:
 
 # 5. manifest完整性检查
 import os
-# build.sh在moddir中运行，输出到上一级；moddir就是build.sh所在目录
-moddir = os.path.join(os.path.dirname(os.path.abspath(sys.argv[1])), '生命论_模块化')
-if not os.path.isdir(moddir):
-    moddir = '生命论_模块化'
+moddir = sys.argv[2] if len(sys.argv) > 2 else '生命论_模块化'
 manifest_path = os.path.join(moddir, 'manifest.txt')
 if os.path.exists(manifest_path):
     with open(manifest_path, 'r') as mf:
@@ -189,7 +186,7 @@ if [ "$1" != "--pdf-only" ]; then
 <p class="title">生命论</p>
 <p class="subtitle">（明本论）</p>
 <p class="cover-desc">——从操作出发的存在论革命<br>与旧哲学总清算</p>
-<p class="version">全本·九卷 + 附录六种<br>2026年8月</p>
+<p class="version">全本·九卷 + 附录八种<br>2026年8月</p>
 </div>
 
 ---
@@ -219,7 +216,7 @@ if [ "$1" != "--html-only" ]; then
 {\sffamily\fontsize{18pt}{24pt}\selectfont ——从操作出发的存在论革命\par}
 {\sffamily\fontsize{18pt}{24pt}\selectfont 与旧哲学总清算\par}
 \vspace{3cm}
-{\sffamily\fontsize{16pt}{22pt}\selectfont 全本·九卷 + 附录六种\par}
+{\sffamily\fontsize{16pt}{22pt}\selectfont 全本·九卷 + 附录八种\par}
 \vspace{1cm}
 {\sffamily\fontsize{14pt}{20pt}\selectfont 2026年8月\par}
 \vfill

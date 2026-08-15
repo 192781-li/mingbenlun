@@ -102,3 +102,4 @@ __pycache__/
 *.webp
 tmp_*.png
 tmp_*.webp
+.git_bloated_backup/

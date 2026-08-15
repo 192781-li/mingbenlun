@@ -21,7 +21,7 @@ cat > /tmp/cover.html.md << 'COVER'
 <p class="title">生命论</p>
 <p class="subtitle">（明本论）</p>
 <p class="cover-desc">——从操作出发的存在论革命<br>与旧哲学总清算</p>
-<p class="version">完美版·全九卷 + 附录六种<br>2026年8月</p>
+<p class="version">全本·九卷 + 附录八种<br>2026年8月</p>
 </div>
 
 ---
@@ -39,7 +39,7 @@ cat > /tmp/cover.tex.md << 'COVER'
 {\sffamily\fontsize{18pt}{24pt}\selectfont ——从操作出发的存在论革命\par}
 {\sffamily\fontsize{18pt}{24pt}\selectfont 与旧哲学总清算\par}
 \vspace{3cm}
-{\sffamily\fontsize{16pt}{22pt}\selectfont 完美版·全九卷 + 附录六种\par}
+{\sffamily\fontsize{16pt}{22pt}\selectfont 全本·九卷 + 附录八种\par}
 \vspace{1cm}
 {\sffamily\fontsize{14pt}{20pt}\selectfont 2026年8月\par}
 \vfill

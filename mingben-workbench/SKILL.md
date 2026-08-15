@@ -27,7 +27,7 @@ S=f(S)。这个技能本身也是一个自指系统：认识世界→生产内�
 动手之前先认识。读 `references/epistemology.md`。小本质递归法：抓具体小本质→找反面→拼小整体→上下递归→动态看变化。五个根本纲：反者道之动、冲气以为和、大道至简、道生一二三、一分为二。
 
 ### ②内容结构化
-把输入解析为：标题层级、核心论点、概念关系、定理证明链、待加固点。生命论项目用模块化系统（`生命论_模块化/`），69个md文件按卷组织，manifest.txt控制合并顺序。
+把输入解析为：标题层级、核心论点、概念关系、定理证明链、待加固点。生命论项目用模块化系统（`生命论_模块化/`），90个md文件按卷组织，manifest.txt控制合并顺序。
 
 ### ③生产/写作
 读 `references/writing.md`。长文档用模块系统，新章节用 `python3 生命论_模块化/auto_merge.py <文件>` 自动合并编号。写作铁律：零丢失、边批判边推进、有血有肉不喊口号、所有结论推导出来。去AI味读 `references/writing.md` 的人感检查。
@@ -71,6 +71,7 @@ S=f(S)。这个技能本身也是一个自指系统：认识世界→生产内�
 | 网页应用 | app.md | app_builder_agent |
 | 监控状态 | monitor.md | monitor.py |
 | 备份/版本管理 | output.md | git + backup.sh |
+| 同步到GitHub | output.md | sync.sh（构建验证+提交+推送） |
 | 反思错误 | growth.md | 复盘四步 |
 | 去AI味 | writing.md | 人感检查清单 |
 
@@ -78,8 +79,12 @@ S=f(S)。这个技能本身也是一个自指系统：认识世界→生产内�
 
 - 模块目录：`生命论_模块化/`
 - 合并输出：`生命论合订本_最新.md`
-- 构建脚本：`生命论_模块化/build.sh`、`build_all.sh`、`auto_merge.py`
-- 样式文件：`publish_style.tex`、`html_style.css`、`html_header.html`
-- 输出目录：`生命论_输出/`
+- 构建脚本：`生命论_模块化/build.sh`（MD+HTML秒级）、`生命论_模块化/build_all.sh`（全格式）
+- 自动合并：`python3 生命论_模块化/auto_merge.py <新文件.md>`
+- 质量检查：`python3 mingben-workbench/scripts/quality_gate.py <文件>`
+- 同步GitHub：`bash sync.sh ["提交信息"]`
+- 本地备份：`bash backup.sh`；飞书发布：`bash publish.sh`
+- 样式文件：`publish_style.tex`、`html_header.html`
+- GitHub远程：`https://github.com/192781-li/mingbenlun`
 - 核心概念速查：`references/concepts.md`
-- 全本213章，九卷+附录六种
+- 全本252章，九卷+附录八种

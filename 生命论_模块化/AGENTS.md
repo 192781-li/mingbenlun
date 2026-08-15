@@ -43,7 +43,7 @@ lark-cli drive +upload --file "生命论（明本论）合订本.html" \
 
 ### 2. 章号必须连续
 
-全书章号从第1章连续编号到最后一章（当前247章）。新增章节时：
+全书章号从第1章连续编号到最后一章（当前252章）。新增章节时：
 - 先确认插入位置前后章号：`grep -rn "^### 第" 生命论_模块化/`
 - 如果在中间插入，后续所有章号必须顺延（用脚本批量改，不要手改）
 - 章号用中文数字（第一百一十二章，不是第112章）
@@ -59,14 +59,14 @@ lark-cli drive +upload --file "生命论（明本论）合订本.html" \
 
 ### 5. Git 提交与远程仓库
 
-每次修改后 `git add -A && git commit -m "描述"`。
+每次修改后推荐 `bash sync.sh "提交信息"`（自动构建验证+提交+推送），或手动 `git add -A && git commit -m "描述" && git push`。
 
 **远程仓库（永久记录）：**
 - 远程名：origin
-- 地址：https://github.com/192781-li/-.git
+- 地址：https://github.com/192781-li/mingbenlun.git
 - 推送命令：`git push -u origin main`（首次）/ `git push`（后续）
 - 注意：本地git无远程配置时，必须先 `git remote add origin https://github.com/192781-li/-.git`
-- 仓库名暂为 `-`，如用户改名需同步更新此文件和项目同步卡
+- 仓库名：mingbenlun（原名`-`，已改名）
 
 ## 质检内容
 

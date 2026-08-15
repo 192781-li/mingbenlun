@@ -25,15 +25,13 @@ def monitor_workspace(ws):
         print(f"{flag} 磁盘: {human_size(free)}B / {human_size(total)}B 可用 ({pct:.0f}%已用)")
     except: pass
 
-    # git状态
-    git_dir = Path(ws) / "生命论_模块化"
-    if git_dir.exists():
-        try:
-            r = subprocess.run(['git','status','--porcelain'], cwd=git_dir, capture_output=True, text=True, timeout=10)
-            n = len([l for l in r.stdout.strip().split('\n') if l])
-            flag = "✅" if n == 0 else "⚠️"
-            print(f"{flag} Git: {n}个未提交变更")
-        except: pass
+    # git状态（git仓库在workspace根目录）
+    try:
+        r = subprocess.run(['git','status','--porcelain'], cwd=ws, capture_output=True, text=True, timeout=10)
+        n = len([l for l in r.stdout.strip().split('\n') if l])
+        flag = "✅" if n == 0 else "⚠️"
+        print(f"{flag} Git: {n}个未提交变更")
+    except: pass
 
     # 最近修改
     print()
@@ -58,11 +56,12 @@ def monitor_workspace(ws):
     # 生命论项目专项
     print()
     print("📚 生命论项目:")
-    manifest = git_dir / "manifest.txt"
+    mod_dir = Path(ws) / "生命论_模块化"
+    manifest = mod_dir / "manifest.txt"
     if manifest.exists():
         with open(manifest) as f:
             modules = [l.strip() for l in f if l.strip() and not l.startswith('#')]
-        missing = [m for m in modules if not (git_dir / m).exists()]
+        missing = [m for m in modules if not (mod_dir / m).exists()]
         if missing:
             print(f"  ❌ manifest中{len(missing)}个模块缺失: {missing[:5]}")
         else:
