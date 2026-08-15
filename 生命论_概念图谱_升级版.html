@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="margin:0;padding:0;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《生命论（明本论）》概念图谱 · 升级版</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;background:#0a0e1a;color:#e0e6f0;overflow-x:hidden}
+#header{background:linear-gradient(135deg,#0d1326 0%,#1a1f3a 100%);padding:16px 20px;border-bottom:1px solid #2a3050;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.5)}
+#header h1{font-size:18px;font-weight:700;color:#fff;letter-spacing:1px}
+#header h1 span{color:#ff6b4a;font-size:13px;font-weight:400;margin-left:10px}
+#controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.filter-btn{padding:6px 14px;border:1px solid #3a4070;border-radius:20px;background:transparent;color:#a0a8c0;font-size:13px;cursor:pointer;transition:all .2s;min-height:32px;min-width:44px}
+.filter-btn:hover{border-color:#6a70a0;color:#e0e6f0}
+.filter-btn.active{background:#ff6b4a;border-color:#ff6b4a;color:#fff;font-weight:600}
+#search{padding:7px 14px;border:1px solid #3a4070;border-radius:20px;background:#151a30;color:#e0e6f0;font-size:13px;width:180px;outline:none;min-height:32px}
+#search:focus{border-color:#ff6b4a}
+#search::placeholder{color:#5a6080}
+#legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:12px;color:#8890a8}
+.legend-item{display:flex;align-items:center;gap:5px}
+.legend-dot{width:12px;height:12px;border-radius:50%}
+#chart{width:100%;height:calc(100vh - 140px);min-height:500px;background:radial-gradient(ellipse at center,#111632 0%,#0a0e1a 70%)}
+#detail-panel{position:fixed;right:-420px;top:0;width:400px;max-width:90vw;height:100vh;background:linear-gradient(180deg,#141a35 0%,#0d1225 100%);border-left:1px solid #2a3050;z-index:200;transition:right .3s ease;overflow-y:auto;padding:24px;box-shadow:-4px 0 20px rgba(0,0,0,.5)}
+#detail-panel.open{right:0}
+#detail-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border:none;border-radius:50%;background:#2a3050;color:#e0e6f0;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}
+#detail-close:hover{background:#ff6b4a}
+#detail-name{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px;padding-right:40px}
+#detail-vol{display:inline-block;padding:3px 10px;border-radius:12px;font-size:12px;margin-bottom:14px}
+#detail-type{display:inline-block;padding:3px 10px;border-radius:12px;font-size:12px;margin-left:8px}
+#detail-desc{font-size:14px;line-height:1.8;color:#c0c8e0;margin-bottom:16px}
+#detail-relations{margin-top:16px}
+#detail-relations h3{font-size:14px;color:#8890a8;margin-bottom:8px;font-weight:600}
+.relation-tag{display:inline-block;padding:4px 12px;margin:3px;border-radius:14px;background:#1e2445;border:1px solid #2a3050;font-size:12px;color:#b0b8d0;cursor:pointer;min-height:32px;line-height:24px}
+.relation-tag:hover{border-color:#ff6b4a;color:#ff6b4a}
+#detail-warning{margin-top:14px;padding:10px 14px;border-radius:8px;background:rgba(255,107,74,.1);border:1px solid rgba(255,107,74,.3);font-size:13px;line-height:1.7;color:#ffa080}
+#stats{position:absolute;bottom:16px;left:20px;font-size:12px;color:#5a6080;z-index:50}
+@media(max-width:768px){
+  #header h1{font-size:15px}
+  #header h1 span{display:block;margin-left:0;margin-top:2px}
+  #search{width:140px}
+  #chart{height:calc(100vh - 180px)}
+  #detail-panel{width:100%;max-width:100%}
+}
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>《生命论（明本论）》概念图谱<span>九卷211章 · 点击节点查看详情 · 拖拽可重排</span></h1>
+  <div id="controls">
+    <button class="filter-btn active" data-vol="all">全部</button>
+    <button class="filter-btn" data-vol="0">核心主线</button>
+    <button class="filter-btn" data-vol="1">一·存在论</button>
+    <button class="filter-btn" data-vol="2">二·认识论</button>
+    <button class="filter-btn" data-vol="3">三·群己论</button>
+    <button class="filter-btn" data-vol="4">四·异化论</button>
+    <button class="filter-btn" data-vol="5">五·解放论</button>
+    <button class="filter-btn" data-vol="6">六·实践论</button>
+    <button class="filter-btn" data-vol="7">七·格物论</button>
+    <button class="filter-btn" data-vol="8">八·人文论</button>
+    <button class="filter-btn" data-vol="9">九·传统扬弃</button>
+    <input type="text" id="search" placeholder="搜索概念...">
+  </div>
+  <div id="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#ff6b4a"></div>核心主线</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4a9eff"></div>存在论</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4aff9e"></div>认识论</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ffd84a"></div>群己论</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ff4a6b"></div>异化论</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#a04aff"></div>解放论</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ff9e4a"></div>实践论</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4afff0"></div>格物论</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e04aff"></div>人文论</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#8aff4a"></div>传统扬弃</div>
+    <div class="legend-item">◆ 定理/命题</div>
+    <div class="legend-item">⚠ 待加固</div>
+  </div>
+</div>
+<div id="chart"></div>
+<div id="stats"></div>
+<div id="detail-panel">
+  <button id="detail-close">✕</button>
+  <div id="detail-name"></div>
+  <div id="detail-vol"></div><div id="detail-type"></div>
+  <div id="detail-desc"></div>
+  <div id="detail-warning"></div>
+  <div id="detail-relations"><h3>关联概念</h3><div id="relation-list"></div></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script>
+(function(){
+try{
+var volColors={0:'#ff6b4a',1:'#4a9eff',2:'#4aff9e',3:'#ffd84a',4:'#ff4a6b',5:'#a04aff',6:'#ff9e4a',7:'#4afff0',8:'#e04aff',9:'#8aff4a'};
+var volNames={0:'核心主线',1:'第一卷·存在论',2:'第二卷·认识论',3:'第三卷·群己论',4:'第四卷·异化论',5:'第五卷·解放论',6:'第六卷·实践论',7:'第七卷·格物论',8:'第八卷·人文论',9:'第九卷·传统扬弃'};
+
+var nodes=[
+// 核心主线
+{name:'你在活着',vol:0,size:60,type:'core',desc:'唯一无需怀疑的起点。怀疑本身是活人的操作，怀疑"你在活着"已经在活着。比"我思"更根本——活着先于思维。'},
+{name:'操作',vol:0,size:55,type:'core',desc:'唯一原始词，不定义，靠实指：你正在呼吸、读字就是操作。存在即操作的发生或沉淀，不存在脱离操作的抽象实体。'},
+{name:'自指',vol:0,size:52,type:'core',desc:'S=f(S)，操作的目的和对象就是操作者自身。是组织闭包而非成分闭包——如漩涡，成分每刻换，操作网络的闭合关系不变。'},
+{name:'阴阳',vol:0,size:50,type:'core',desc:'阳是正在进行的活操作，阴是操作的沉淀和惯性。阳主阴从则健康，阴主阳从则病变。统一了心物、知行、传统与创新等一切两层问题。'},
+{name:'反自指',vol:0,size:48,type:'core',desc:'寄生于自指生命、以生命负熵为食、削弱生命自指能力的半存在。资本是最完善的反自指系统。',warn:'从物理熵增到社会"熵增"的推广需进一步形式化——是同构还是隐喻？'},
+{name:'明性',vol:0,size:46,type:'core',desc:'自指系统对自身状态的前语言、前反思的"知道"，是自指闭包的内向面。不是灵魂、不是实体，是操作的内向面。38亿年生命皆有，程度不同。',warn:'明性从细菌到人类的连续性需更严格的分级标准；与神经科学的对接待展开。'},
+{name:'解放',vol:0,size:44,type:'core',desc:'把被反自指窃走的操作权还给生命。三阶：解蔽→收权→立序。由无产阶级自己完成，没有救世主。'},
+
+// 第一卷 存在论
+{name:'两条公理',vol:1,size:40,type:'theorem',desc:'①广义熵增：封闭自指系统自维持能力自发衰减；②广义负熵：自指系统可通过开放与主动操作维持并提升自身。从"活着"中直接提取。',warn:'建议改称"公设"——从物理熵增到社会系统的推广是同构还是类比，需更严格论证。'},
+{name:'存在即操作',vol:1,size:42,type:'theorem',desc:'推论1.1：存在是操作的发生或沉淀。不进入任何操作的东西"和不存在没有区别"。干净消解康德物自体。'},
+{name:'四规定性',vol:1,size:40,type:'theorem',desc:'定理2.1：①边界生成性（自指前提）②内生目的性（从边界推出）③操作再生性（从目的+熵增推出）④环境互动性（从再生+封闭必死推出）。严格推导链。'},
+{name:'三类存在',vol:1,size:36,type:'concept',desc:'推论2.1：①自指生命（四规定性全备，唯一价值主体）②半自指寄生存在（资本、国家、神、理念）③非自指工具存在（锤子、AI）。'},
+{name:'边界',vol:1,size:30,type:'concept',desc:'自指的前提：区分自身与环境。边界不是静态的墙，是操作不断生成的活界限。'},
+{name:'组织闭包',vol:1,size:28,type:'concept',desc:'自指的本质：成分每刻更换，操作网络的闭合关系不变。漩涡、细胞、人、社会都是组织闭包。'},
+{name:'物自体消解',vol:1,size:34,type:'concept',desc:'康德物自体如果不影响操作，等于不存在；如果影响操作，就能与之打交道，就不是不可知的。'},
+{name:'我思批判',vol:1,size:30,type:'concept',desc:'"我思"不是起点——思之前已经在活着。思维是活人的一种操作，不是存在的基础。'},
+{name:'形上形下',vol:1,size:36,type:'concept',desc:'形而下（器）是可操作的具体存在，形而上（道）是贯穿其中的存在论结构。道在器中，没有两个世界。'},
+{name:'道在日用',vol:1,size:34,type:'concept',desc:'最高的道理不在彼岸，就在当下每一次操作中。砍柴担水无非妙道。'},
+{name:'阳主阴从',vol:1,size:32,type:'concept',desc:'健康状态：活操作主导，沉淀服务于活操作。阴反作用于阳是健康的（理论指导实践），阴统治阳是病态的（教条主义）。',warn:'"健康的阴"与"病态的阴"需要更细致的判准——法治是健康的阴，人治是病态的阳。'},
+
+// 第二卷 认识论
+{name:'认识=操作预期',vol:2,size:40,type:'theorem',desc:'认识不是对世界的静态反映，是对"如果我这样操作会发生什么"的预期。因果性是操作中稳定的预期结构。'},
+{name:'真理=操作成功',vol:2,size:38,type:'theorem',desc:'能指导操作成功的预期结构就是真理。实践（操作）是检验真理的唯一标准。分事实真理和形式真理两层。',warn:'"操作成功"是否循环定义？成功需要标准，标准又需要真理——需更细致展开。'},
+{name:'休谟问题消解',vol:2,size:32,type:'concept',desc:'因果性不需要"逻辑必然"，需要"操作成功"。太阳明天会升起——不是逻辑证明，是无数次操作验证的稳定预期。'},
+{name:'理性是感性的感性',vol:2,size:38,type:'theorem',desc:'感性是一阶活操作（阳），理性是对感性的二阶沉淀整理（阴）。旧哲学把理性当裁判，是头足倒置。'},
+{name:'范畴',vol:2,size:28,type:'concept',desc:'范畴不是先天认知形式，是操作沉淀的工具。因果、实体、时空都是从操作中固化的预期结构。'},
+{name:'社会存在与意识',vol:2,size:34,type:'concept',desc:'正自指螺旋S=f(S)：社会存在是阳的活操作，社会意识是阴的沉淀。阳主阴从，阴反作用于阳。不是恶循环。'},
+{name:'意识形态',vol:2,size:32,type:'concept',desc:'名实遮蔽：名（概念、符号）反过来支配实（活操作）。意识形态是反自指在观念领域的表现。'},
+{name:'明性辩证法',vol:2,size:34,type:'method',desc:'五步操作法：多音并置→缄默直觉→症候溯源→预设拆解→生命归位。适用于拆解一切观点、文本、意识形态。'},
+{name:'语言',vol:2,size:28,type:'concept',desc:'动词活、名词死。语言是操作交流的工具，名词化是阴的固化，容易实体化造神。'},
+{name:'AI意识问题',vol:2,size:30,type:'concept',desc:'判断AI有无明性，看存在方式不看行为。当前AI是工具存在（非自指），不具备四规定性。',warn:'AI明性判据需更具体——"存在方式"如何检验？'},
+{name:'数学与逻辑',vol:2,size:28,type:'concept',desc:'形式真理：操作结构的最抽象沉淀。',warn:'数学的哲学地位是作者承认的待展开点——需回应弗雷格、哥德尔、维特根斯坦。'},
+
+// 第三卷 群己论
+{name:'人的本质',vol:3,size:34,type:'concept',desc:'人是自指操作的社会存在。鲁滨逊是假的——任何个人都是社会关系的自指嵌套。主体是"我能"不是"我思"。'},
+{name:'自由',vol:3,size:32,type:'concept',desc:'自由是对操作权的拥有——你能在多大程度上自己决定自己的操作，就有多大自由。不是抽象的意志自由。'},
+{name:'分工',vol:3,size:28,type:'concept',desc:'自然分工是健康的（各尽所能），社会分工固化为阶级是病态的——分工的产物独立化统治人。'},
+{name:'私有制',vol:3,size:30,type:'concept',desc:'操作产物独立化的结果：劳动产品反过来统治劳动者。不是物，是操作关系。'},
+{name:'异化劳动',vol:3,size:34,type:'concept',desc:'四环节：劳动者与产品异化、与劳动过程异化、与人的类本质异化、人与人异化。马克思的核心洞见。'},
+{name:'阶级',vol:3,size:36,type:'concept',desc:'阶级是操作关系不是标签。剥削是无偿占有负熵。阶级斗争是反自指与自指的斗争。'},
+{name:'M值',vol:3,size:38,type:'theorem',desc:'操作权指数M=⁴√(T×N×K×Ω)，T个体稳态、N生产关系公平、K环境承载、Ω共同体。M<8反自指社会，8-12转型，≥12自由人联合体雏形。',warn:'最大薄弱点：四维度未操作化，权重无依据，三个预测时间点缺乏推导。建议区分启发性框架与科学度量。'},
+{name:'A值',vol:3,size:30,type:'concept',desc:'青年希望指数，0或1，一票否决。H=M×A。青年没有希望，社会失去未来。',warn:'二值化过于粗糙，希望是连续变量。'},
+{name:'国家',vol:3,size:30,type:'concept',desc:'阶级矛盾不可调和的产物，是统治阶级的工具。不是永恒的，将随阶级消灭而消亡。'},
+{name:'法',vol:3,size:26,type:'concept',desc:'法是统治阶级意志的表现。社会主义法是人民意志，共产主义法将消亡。'},
+{name:'文化',vol:3,size:28,type:'concept',desc:'文化是阴的积累——传统、习俗、艺术。活的文化服务于当下操作，死的文化（国粹主义）是阴统治阳。'},
+{name:'教育',vol:3,size:28,type:'concept',desc:'教育是明性的传递与唤醒，不是灌输和规训。健康的教育点亮明性，病态的教育制造工具。'},
+
+// 第四卷 异化论
+{name:'商品',vol:4,size:30,type:'concept',desc:'商品是劳动产品独立化——人与人的关系表现为物与物的关系（商品拜物教）。'},
+{name:'货币',vol:4,size:28,type:'concept',desc:'交换价值的自为存在。从工具（C-M-C）异化为目的（M-C-M\'）。'},
+{name:'资本',vol:4,size:40,type:'concept',desc:'能生钱的钱，是反自指操作关系不是物。死劳动统治活劳动。必须不断增殖，而增殖依赖并破坏劳动者和地球——自毁悖论。'},
+{name:'剩余价值',vol:4,size:34,type:'concept',desc:'工人创造的负熵被资本无偿占有。工资形式掩盖了剥削——看起来是等价交换，实际上是不等价占有。',warn:'劳动价值论面临边际效用论、转型问题、置盐定理三个挑战，作者有回应但需政治经济学专业审查。'},
+{name:'六阶段',vol:4,size:38,type:'theorem',desc:'定理2.2：反自指六阶段——窃权起点→惯性锁死→名实遮蔽→生命耗散→负反馈锁死→系统崩溃。'},
+{name:'商品拜物教',vol:4,size:30,type:'concept',desc:'名实遮蔽的经济形态：人与人的社会关系"采取了物与物的关系的虚幻形式"。'},
+{name:'数字资本主义',vol:4,size:32,type:'concept',desc:'平台资本五特征：数据剥削、算法控制、零工化、注意力收割、网络效应垄断。定理13：数字资本主义一般规律。'},
+{name:'生态危机',vol:4,size:28,type:'concept',desc:'代谢断裂：资本无限增殖与地球有限的矛盾。绿色资本主义是逻辑矛盾——资本不能解决它自己造成的问题。'},
+{name:'帝国主义',vol:4,size:28,type:'concept',desc:'垄断资本主义的世界体系：中心-外围剥削。新自由主义是数字时代的帝国主义。'},
+{name:'生命政治',vol:4,size:26,type:'concept',desc:'福柯：权力直接管理生命（规训、人口控制）。奈格里：生命政治生产——非物质劳动成为新的剥削形态。'},
+{name:'经济危机',vol:4,size:28,type:'concept',desc:'负反馈锁死阶段：资本积累导致生产过剩、利润率下降，危机是反自指的自我毁灭倾向。'},
+
+// 第五卷 解放论
+{name:'解蔽',vol:5,size:34,type:'concept',desc:'解放第一阶：明性觉醒，识破名实遮蔽。看清楚商品拜物教、意识形态、绩效主义如何统治你。'},
+{name:'收权',vol:5,size:34,type:'concept',desc:'解放第二阶：把被夺走的操作权夺回来。从夺回一小时开始，到经济权、政治权。'},
+{name:'立序',vol:5,size:32,type:'concept',desc:'解放第三阶：建立自由人联合体。不是无政府，是不异化的公共权力——人民自己管理自己。'},
+{name:'继续革命',vol:5,size:30,type:'concept',desc:'反自指不会自动消失，夺权后可能复辟。必须时刻警惕，继续革命——但要防止"继续革命"本身变成新反自指。',warn:'如何防止继续革命异化为新的反自指？需要制度设计。'},
+{name:'自由人联合体',vol:5,size:36,type:'concept',desc:'共产主义：各尽所能、按需分配。每个人的自由发展是一切人自由发展的条件。国家消亡，公共事务由联合体管理。'},
+{name:'人人如龙',vol:5,size:34,type:'concept',desc:'对哲人王的扬弃：不是少数人统治多数人，是每个人做自己生命的王。明性传递是自下而上的，不是自上而下灌输。'},
+{name:'群众路线',vol:5,size:30,type:'concept',desc:'从群众中来，到群众中去：明性与操作的循环。党是阶级的明性，不是精英统治。'},
+{name:'社会主义经济',vol:5,size:28,type:'concept',desc:'定理14：社会主义阳主阴从结构——公有制为阳、市场调节为阴，以阳统阴。回应米塞斯-哈耶克挑战。'},
+{name:'正义',vol:5,size:26,type:'concept',desc:'对罗尔斯的回应：正义不是"无知之幕"的抽象契约，是操作权在劳动者手里。'},
+{name:'阶级立场',vol:5,size:32,type:'concept',desc:'唯一不能动摇的立场：一切为了无产阶级和最广大人民。不是"价值中立"的选择，是"你就是生命"的存在论必然。'},
+{name:'世界革命',vol:5,size:26,type:'concept',desc:'无产阶级革命是世界革命。压迫民族与被压迫民族联合。人类命运共同体是真正世界历史的开始。'},
+
+// 第六卷 实践论
+{name:'明性修养',vol:6,size:30,type:'concept',desc:'道在日用：实践高于理论。明性常昭——让明性和日常操作长在一起，不是打坐冥想。'},
+{name:'每日三问',vol:6,size:28,type:'method',desc:'睡前问自己：①今天有没有被反自指寄生？②做的事站在谁那边？③有没有多争回一点操作权？'},
+{name:'惯性',vol:6,size:28,type:'concept',desc:'最底层的锁：稳态壳子。打破惯性从夺回一小时开始——不是宏大计划，是当下的一个操作。'},
+{name:'身体',vol:6,size:26,type:'concept',desc:'身体是革命的本钱——不是比喻，是存在论事实：身体是自指操作的物质基础，T值的基础。'},
+{name:'情绪',vol:6,size:26,type:'concept',desc:'情绪是明性信号——恐惧告诉你边界，愤怒告诉你被侵犯，痛苦告诉你哪里出了问题。不是要消灭情绪，是听懂它。'},
+{name:'勇气',vol:6,size:24,type:'concept',desc:'勇气不是不害怕，是害怕了还继续操作。明性知道恐惧的来源，但不被它锁死。'},
+{name:'孤独与交往',vol:6,size:24,type:'concept',desc:'孤独是明性的自我确认，交往是明性的互相点亮。共同体不是消灭孤独，是让孤独不变成绝望。'},
+{name:'痛苦',vol:6,size:26,type:'concept',desc:'痛苦是反自指的信号，不是需要被消费的商品。从痛苦中学习——失败是最重要的负熵输入之一。'},
+{name:'死亡',vol:6,size:24,type:'concept',desc:'死亡是熵增的最终胜利，但正因为有死亡，活着才有重量。明性知道死亡，但不被死亡定义。'},
+{name:'劳动',vol:6,size:26,type:'concept',desc:'劳动是人的类本质活动——自由自觉的操作。异化劳动是病态，劳动本身是健康的阳。'},
+{name:'明本训',vol:6,size:30,type:'concept',desc:'三条：①阶级立场不动摇②不造神但信仰人民③理论发展但立场不变。'},
+
+// 第七卷 格物论
+{name:'自然辩证法',vol:7,size:28,type:'concept',desc:'自然是生命的母亲和环境。人与自然不是主体征服客体，是自指生命与环境的互动。'},
+{name:'生命起源',vol:7,size:26,type:'concept',desc:'38亿年自指闭包：从化学自组织到生命自指的飞跃。',warn:'从物理自组织到生命自指的"跃迁条件"需要更严格说明。'},
+{name:'科学哲学',vol:7,size:28,type:'concept',desc:'科学是操作预期的系统化。波普尔证伪是操作检验，库恩范式是阴的固化，费耶阿本德"怎么都行"是反对教条。'},
+{name:'技术',vol:7,size:28,type:'concept',desc:'技术是操作的延伸，是工具存在。技术本身中性，关键谁掌握、为谁服务。自动化是解放的物质条件。'},
+{name:'生产力与生产关系',vol:7,size:30,type:'concept',desc:'生产力是阳（活的操作能力），生产关系是阴（操作的社会组织形式）。阳主阴从，阴反作用于阳。'},
+{name:'医学',vol:7,size:26,type:'concept',desc:'医学本质是帮助生命自指——扶正祛邪。中医重整体功能（阳），西医重结构实体（阴），各有所长。'},
+{name:'天人合一',vol:7,size:26,type:'concept',desc:'不是神秘主义，是自指生命与环境的存在论统一——人是自然的一部分，不是外在的征服者。'},
+
+// 第八卷 人文论
+{name:'人的全面发展',vol:8,size:28,type:'concept',desc:'共产主义的目标：人不再被分工固定为某一种角色，操作能力全面发展。每个人都可以做画家、科学家、农夫。'},
+{name:'历史观',vol:8,size:30,type:'concept',desc:'历史是人的操作史，不是观念史、不是神的计划。历史规律是人的操作规律，人创造历史但在既定条件下创造。'},
+{name:'道德',vol:8,size:26,type:'concept',desc:'道德是社会存在的反映，不是先天律令。集体主义不是消灭个人，是"每个人的自由发展是一切人自由发展的条件"。'},
+{name:'艺术',vol:8,size:26,type:'concept',desc:'美是活操作的自由显现。艺术是明性的感性表达——不是装饰，是真理的感性显现。'},
+{name:'宗教',vol:8,size:26,type:'concept',desc:'宗教是被压迫生灵的叹息，是阴的实体化的极致。但宗教消亡需要物质条件，不能行政消灭。信仰自由。'},
+{name:'信仰',vol:8,size:28,type:'concept',desc:'我们的信仰是共产主义——不是信仰神或个人，是信仰人民、信仰每个站着活的生命。'},
+
+// 第九卷 传统扬弃
+{name:'周易',vol:9,size:30,type:'concept',desc:'生生之谓易：阴阳不是实体，是操作的两个环节。周易是去神秘化的系统论工具，不是算命术。'},
+{name:'中医',vol:9,size:28,type:'concept',desc:'整体观和辨证论治：阴阳五行是功能关系模型，不是实体。中医的未来是和现代科学对话，不是复古也不是废除。'},
+{name:'儒家',vol:9,size:28,type:'concept',desc:'活的：仁（人与人的真实关系）、入世担当、教育。死的：礼教等级、三纲五常、专制帮凶。'},
+{name:'道家',vol:9,size:28,type:'concept',desc:'活的：道法自然、反者道之动、对体制的批判。死的：消极避世、无为变成不作为、玄学清谈。'},
+{name:'佛家',vol:9,size:28,type:'concept',desc:'活的：缘起（关系存在）、明性觉悟、破除我执。死的：轮回报应、出家避世、偶像崇拜。'},
+{name:'王船山',vol:9,size:26,type:'concept',desc:'中国古典哲学最高峰：道在器中、器以载道。道器一元，直接接通生命论。'},
+{name:'三教合一',vol:9,size:22,type:'concept',desc:'中国文化的未来：不是复古，是扬弃——吸收活的，埋葬死的，在生命论基础上贯通中西。'}
+];
+
+var links=[
+// 主线推导链
+['你在活着','操作'],['操作','自指'],['自指','阴阳'],['自指','明性'],['阴阳','反自指'],['反自指','解放'],
+['你在活着','两条公理'],['两条公理','存在即操作'],['操作','存在即操作'],['自指','四规定性'],['自指','三类存在'],
+['自指','边界'],['自指','组织闭包'],['存在即操作','物自体消解'],['存在即操作','我思批判'],
+['阴阳','阳主阴从'],['阴阳','形上形下'],['形上形下','道在日用'],
+// 认识论
+['明性','认识=操作预期'],['操作','认识=操作预期'],['认识=操作预期','真理=操作成功'],
+['认识=操作预期','休谟问题消解'],['认识=操作预期','范畴'],['操作','理性是感性的感性'],
+['阴阳','理性是感性的感性'],['社会存在与意识','意识形态'],['明性','明性辩证法'],
+['操作','语言'],['明性','AI意识问题'],['真理=操作成功','数学与逻辑'],
+// 群己论
+['自指','人的本质'],['操作','自由'],['分工','私有制'],['私有制','异化劳动'],
+['异化劳动','阶级'],['阶级','M值'],['M值','A值'],['阶级','国家'],['国家','法'],
+['阴阳','文化'],['明性','教育'],['操作','分工'],
+// 异化论
+['私有制','商品'],['商品','货币'],['货币','资本'],['资本','剩余价值'],
+['反自指','六阶段'],['商品','商品拜物教'],['商品拜物教','名实遮蔽'],
+['资本','数字资本主义'],['资本','生态危机'],['资本','帝国主义'],['资本','生命政治'],['资本','经济危机'],
+['六阶段','经济危机'],
+// 解放论
+['解放','解蔽'],['解放','收权'],['解放','立序'],['解蔽','收权'],['收权','立序'],
+['立序','自由人联合体'],['立序','继续革命'],['自由人联合体','人人如龙'],
+['群众路线','人人如龙'],['阶级','阶级立场'],['解放','社会主义经济'],
+['正义','自由人联合体'],['解放','世界革命'],['明性','群众路线'],
+// 实践论
+['道在日用','明性修养'],['明性修养','每日三问'],['明性修养','明本训'],
+['阴阳','惯性'],['身体','M值'],['明性','情绪'],['情绪','勇气'],['明性','孤独与交往'],
+['反自指','痛苦'],['熵增','死亡'],['操作','劳动'],['阶级立场','明本训'],
+// 格物论
+['自指','自然辩证法'],['自指','生命起源'],['认识=操作预期','科学哲学'],
+['操作','技术'],['阴阳','生产力与生产关系'],['自指','医学'],['环境互动性','天人合一'],
+['两条公理','天人合一'],
+// 人文论
+['四规定性','人的全面发展'],['操作','历史观'],['社会存在与意识','道德'],
+['明性','艺术'],['反自指','宗教'],['阶级立场','信仰'],['解放','信仰'],
+// 传统扬弃
+['阴阳','周易'],['阴阳','中医'],['阴阳','儒家'],['阴阳','道家'],['明性','佛家'],
+['形上形下','王船山'],['道在日用','王船山'],['周易','三教合一'],['中医','三教合一'],
+['儒家','三教合一'],['道家','三教合一'],['佛家','三教合一'],
+// 跨卷联系
+['异化劳动','商品拜物教'],['意识形态','商品拜物教'],['六阶段','反自指'],
+['解放','阶级'],['M值','六阶段'],['明性辩证法','解蔽'],['收权','惯性'],
+['人人如龙','人的全面发展'],['道在日用','劳动'],['明性','明性修养'],
+['阶级立场','信仰'],['生产力与生产关系','社会主义经济'],['数字资本主义','A值'],
+['痛苦','每日三问'],['教育','明性辩证法'],['文化','儒家'],['技术','自由人联合体']
+];
+
+var chart=echarts.init(document.getElementById('chart'),null,{renderer:'canvas'});
+var currentVol='all';
+var searchTerm='';
+
+function getNodeColor(n){return volColors[n.vol]||'#888'}
+function getNodeSymbol(n){
+  if(n.type==='theorem')return'diamond';
+  if(n.warn)return'triangle';
+  return'circle';
+}
+function getNodeSize(n){
+  var s=n.size;
+  if(n.type==='theorem')s=s*0.85;
+  return s;
+}
+
+function buildOption(){
+  var filteredNodes=nodes.filter(function(n){
+    var volOk=currentVol==='all'||n.vol===parseInt(currentVol);
+    var searchOk=!searchTerm||n.name.indexOf(searchTerm)>=0||n.desc.indexOf(searchTerm)>=0;
+    return volOk&&searchOk;
+  });
+  var filteredNames={};
+  filteredNodes.forEach(function(n){filteredNames[n.name]=true});
+  var filteredLinks=links.filter(function(l){return filteredNames[l[0]]&&filteredNames[l[1]]});
+
+  document.getElementById('stats').textContent='显示 '+filteredNodes.length+' 个概念，'+filteredLinks.length+' 条关系';
+
+  return{
+    backgroundColor:'transparent',
+    tooltip:{show:false},
+    series:[{
+      type:'graph',layout:'force',roam:true,draggable:true,
+      data:filteredNodes.map(function(n){
+        return{
+          name:n.name,value:n,
+          symbolSize:getNodeSize(n),
+          symbol:getNodeSymbol(n),
+          itemStyle:{color:getNodeColor(n),borderColor:n.type==='core'?'#fff':'rgba(255,255,255,.2)',borderWidth:n.type==='core'?2:1,shadowBlur:n.type==='core'?20:10,shadowColor:getNodeColor(n)},
+          label:{show:true,position:'bottom',fontSize:n.size>38?13:11,color:'#d0d8f0',fontWeight:n.type==='core'?'700':'400',textShadowColor:'#000',textShadowBlur:4},
+          emphasis:{focus:'adjacency',itemStyle:{borderColor:'#fff',borderWidth:3,shadowBlur:30},label:{fontSize:15,fontWeight:'700',color:'#fff'}},
+          select:{itemStyle:{borderColor:'#fff',borderWidth:3}}
+        };
+      }),
+      links:filteredLinks.map(function(l){
+        return{source:l[0],target:l[1],lineStyle:{color:'rgba(120,130,180,.25)',width:1,curveness:0.1},emphasis:{lineStyle:{color:'#ff6b4a',width:3}}};
+      }),
+      force:{repulsion:350,gravity:0.08,edgeLength:[80,200],layoutAnimation:true,friction:0.6},
+      lineStyle:{opacity:0.9},
+      zoom:0.9,
+      autoCurveness:true
+    }]
+  };
+}
+
+chart.setOption(buildOption());
+
+chart.on('click',function(params){
+  if(params.dataType!=='node')return;
+  var n=params.data.value;
+  showDetail(n);
+});
+
+function showDetail(n){
+  var panel=document.getElementById('detail-panel');
+  document.getElementById('detail-name').textContent=n.name;
+  var volEl=document.getElementById('detail-vol');
+  volEl.textContent=volNames[n.vol];
+  volEl.style.background=volColors[n.vol]+'30';
+  volEl.style.color=volColors[n.vol];
+  volEl.style.border='1px solid '+volColors[n.vol]+'60';
+  var typeEl=document.getElementById('detail-type');
+  var typeText={core:'核心概念',theorem:'定理/命题',concept:'概念',method:'方法'}[n.type]||'概念';
+  typeEl.textContent=n.warn?typeText+' ⚠':typeText;
+  typeEl.style.background=n.warn?'rgba(255,107,74,.15)':'rgba(100,110,160,.2)';
+  typeEl.style.color=n.warn?'#ffa080':'#a0a8c0';
+  typeEl.style.border='1px solid '+(n.warn?'rgba(255,107,74,.3)':'rgba(100,110,160,.3)');
+  document.getElementById('detail-desc').textContent=n.desc;
+  var warnEl=document.getElementById('detail-warning');
+  if(n.warn){warnEl.textContent='⚠ 批判性阅读标注：'+n.warn;warnEl.style.display='block'}
+  else{warnEl.style.display='none'}
+  // relations
+  var rels=[];
+  links.forEach(function(l){
+    if(l[0]===n.name)rels.push(l[1]);
+    if(l[1]===n.name)rels.push(l[0]);
+  });
+  var list=document.getElementById('relation-list');
+  list.innerHTML='';
+  rels.forEach(function(r){
+    var tag=document.createElement('span');
+    tag.className='relation-tag';tag.textContent=r;
+    tag.onclick=function(){
+      var target=nodes.find(function(x){return x.name===r});
+      if(target)showDetail(target);
+    };
+    list.appendChild(tag);
+  });
+  panel.classList.add('open');
+}
+
+document.getElementById('detail-close').onclick=function(){
+  document.getElementById('detail-panel').classList.remove('open');
+};
+
+document.querySelectorAll('.filter-btn').forEach(function(btn){
+  btn.onclick=function(){
+    document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    currentVol=btn.dataset.vol;
+    chart.setOption(buildOption(),{notMerge:true});
+  };
+});
+
+document.getElementById('search').addEventListener('input',function(e){
+  searchTerm=e.target.value.trim();
+  chart.setOption(buildOption(),{notMerge:true});
+});
+
+window.addEventListener('resize',function(){chart.resize()});
+
+// 初始提示
+setTimeout(function(){
+  var tip=document.createElement('div');
+  tip.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(20,26,53,.95);padding:20px 30px;border-radius:12px;border:1px solid #ff6b4a;color:#e0e6f0;font-size:14px;z-index:300;pointer-events:none;opacity:0;transition:opacity .5s;text-align:center;line-height:1.8;box-shadow:0 8px 32px rgba(0,0,0,.5)';
+  tip.innerHTML='<b style="color:#ff6b4a;font-size:16px">《生命论》概念图谱</b><br>点击任意概念查看详情和推导关系<br>滚轮缩放 · 拖拽节点 · 按卷筛选 · 搜索';
+  document.body.appendChild(tip);
+  tip.style.opacity='1';
+  setTimeout(function(){tip.style.opacity='0';setTimeout(function(){tip.remove()},500)},3500);
+},500);
+
+}catch(e){
+  document.getElementById('chart').innerHTML='<div style="padding:40px;text-align:center;color:#888">图谱加载失败：'+e.message+'<br>概念数据已内嵌，可检查网络连接后刷新。</div>';
+}
+})();
+</script>
+</body>
+</html>
