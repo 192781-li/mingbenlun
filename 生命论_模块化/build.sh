@@ -257,4 +257,12 @@ fi
 # 清理临时文件
 rm -f /tmp/html_cover.md /tmp/html_full.md /tmp/pdf_cover.md /tmp/pdf_full.md
 
+# 元监督自筛（不阻断构建，但有问题必须喊出来）
+echo "[元监督] 自筛检查..."
+python3 "$WORKSPACE/mingben-workbench/scripts/self_audit.py" --quiet || {
+    echo ""
+    echo "⚠️  自筛发现问题！用 'python3 mingben-workbench/scripts/self_audit.py' 查看详情"
+    echo ""
+}
+
 echo "[4/4] 构建完成。"

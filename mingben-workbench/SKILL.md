@@ -34,6 +34,7 @@ S=f(S)。这个技能本身也是一个自指系统：认识世界→生产内�
 
 ### ④质量门控
 读 `references/quality.md`。三关：自指关（逻辑自洽、编号连续、无矛盾）、事实关（引用真实、数据准确）、人感关（无AI腔、有生存体验）。脚本：`python3 scripts/quality_gate.py <文件>`。
+**元监督自筛**：`python3 scripts/self_audit.py`（12项自动检查：章数/附录数一致性、文件引用有效性、交叉引用越界、空目录、技能完整性、参数防护、过时关键词、human_size单元测试、git仓库健康等）。每次build自动运行，sync.sh推送前硬门控——自筛不过不许推。新增问题类型时在self_audit.py加check函数。
 
 ### ⑤多格式输出
 读 `references/output.md`。生命论项目：`bash 生命论_模块化/build.sh --html-only` 秒出HTML，`bash 生命论_模块化/build_all.sh` 出全格式（PDF/HTML/EPUB/DOCX/TXT/MD）。其他内容按需走飞书文档、可视化、画板等。
@@ -68,6 +69,7 @@ S=f(S)。这个技能本身也是一个自指系统：认识世界→生产内�
 | 写新章节/新内容 | writing.md | auto_merge.py |
 | 编辑已有章节 | writing.md | 直接改模块文件+build |
 | 质量检查 | quality.md | quality_gate.py |
+| 元监督自筛 | quality.md | self_audit.py（12项自动检查） |
 | 出PDF/HTML/EPUB | output.md | build.sh / build_all.sh |
 | 可视化/概念图 | output.md | ECharts/HTML |
 | 飞书文档/妙记 | feishu.md | lark-cli |
@@ -86,6 +88,7 @@ S=f(S)。这个技能本身也是一个自指系统：认识世界→生产内�
 - 构建脚本：`生命论_模块化/build.sh`（MD+HTML秒级）、`生命论_模块化/build_all.sh`（全格式）
 - 自动合并：`python3 生命论_模块化/auto_merge.py <新文件.md>`
 - 质量检查：`python3 mingben-workbench/scripts/quality_gate.py <文件>`
+- 元监督自筛：`python3 mingben-workbench/scripts/self_audit.py`（12项自动检查，build自动跑，sync硬门控）
 - 同步GitHub：`bash sync.sh ["提交信息"]`
 - 本地备份：`bash backup.sh`；飞书发布：`bash publish.sh`
 - 样式文件：`publish_style.tex`、`html_header.html`
