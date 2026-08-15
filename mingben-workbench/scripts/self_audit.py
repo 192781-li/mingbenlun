@@ -380,6 +380,30 @@ def check_infrastructure_reflexivity():
 
 # ========== 主入口 ==========
 
+def check_test_suite():
+    """[功能测试] 在沙箱中实际执行所有脚本路径，验证不变量"""
+    if os.environ.get('MINGBEN_SKIP_TESTS') == '1':
+        warn("功能测试套件：沙箱环境跳过")
+        return
+    test_script = SCRIPT_DIR / "test_system.py"
+    if not test_script.exists():
+        fail("test_system.py 不存在")
+        return
+    import subprocess
+    r = subprocess.run([sys.executable, str(test_script)],
+                       capture_output=True, text=True, timeout=120)
+    if r.returncode == 0:
+        # 从输出中提取通过数
+        m = re.search(r'✅(\d+)通过', r.stdout)
+        count = m.group(1) if m else "?"
+        ok(f"功能测试套件：{count}项全部通过")
+    else:
+        # 提取失败项
+        fails = [l.strip() for l in r.stdout.splitlines() if '❌' in l and '失败' not in l]
+        fail(f"功能测试套件有失败（{len(fails)}项）:")
+        for f in fails[:5]:
+            print(f"    {f}")
+
 CHECKS = [
     ("章数一致性", check_chapter_count_consistency),
     ("附录数一致性", check_appendix_count_consistency),
@@ -394,6 +418,7 @@ CHECKS = [
     ("human_size单元测试", check_human_size_unit),
     ("git仓库健康", check_git_size),
     ("基础设施自反性", check_infrastructure_reflexivity),
+    ("功能测试套件", check_test_suite),
 ]
 
 def main():

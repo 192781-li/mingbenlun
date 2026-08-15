@@ -137,8 +137,9 @@ def find_pian_module(juan_dir, pian_title_keyword):
 def merge_new_chapter(new_ch, dry_run=False):
     """
     合并一个新章节。
-    - 如果章节号已存在：替换内容
-    - 如果章节号不存在：插入到正确位置，后续章节顺延+1
+    - 章节号已存在且标题相同：替换内容（修订）
+    - 章节号已存在但标题不同：插入新章节，该位置及后续顺延+1
+    - 章节号不存在：插入到正确位置，后续章节顺延+1
     返回变更描述
     """
     num = new_ch['num']
@@ -148,17 +149,24 @@ def merge_new_chapter(new_ch, dry_run=False):
     existing_rel, existing_chs = find_module_for_chapter(num)
     
     if existing_rel:
-        # 替换已有章节
+        # 检查是替换还是插入：标题相同→替换，标题不同→插入
         old_title = None
-        text = read_module(existing_rel)
         for ch in existing_chs:
             if ch['num'] == num:
                 old_title = ch['title']
-                text = text[:ch['start']] + new_ch['content'].rstrip() + '\n' + text[ch['end']:]
                 break
-        if not dry_run:
-            write_module(existing_rel, text)
-        return f"替换：第{int2cn(num)}章 「{old_title}」→「{title}」（模块：{existing_rel}）"
+        
+        if old_title == title:
+            # 替换已有章节（同标题=修订）
+            text = read_module(existing_rel)
+            for ch in existing_chs:
+                if ch['num'] == num:
+                    text = text[:ch['start']] + new_ch['content'].rstrip() + '\n' + text[ch['end']:]
+                    break
+            if not dry_run:
+                write_module(existing_rel, text)
+            return f"替换：第{int2cn(num)}章 「{old_title}」（模块：{existing_rel}）"
+        # 标题不同→插入新章节，旧章节顺延（继续往下走插入逻辑）
     
     # 新章节：找到该插入哪个模块
     # 找第一个编号 > num 的章节所在模块
