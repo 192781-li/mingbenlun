@@ -36,7 +36,7 @@ bash 生命论_模块化/replace.sh <关键词> <新文件>
 ## 样式文件
 
 - `publish_style.tex`：LaTeX样式（Noto Serif CJK SC、1.5倍行距、首行缩进、页眉页脚）
-- `html_style.css` + `html_header.html`：HTML样式（衬线字体、可点击目录、手机适配、封面）
+- `html_header.html`：HTML样式（衬线字体、可点击目录、手机适配、封面，内含CSS）
 
 ## 其他内容输出
 
@@ -54,13 +54,9 @@ Mermaid图 → lark-whiteboard技能。
 
 ## 备份与版本管理
 
-- 本地git：`生命论_模块化/`已有仓库
-- 远程备份：推GitHub/Gitee私有仓库（读下方）
-- 全量打包：`zip -r 生命论_备份_$(date +%Y%m%d).zip 生命论_模块化/ .user_skills/ 生命论合订本_最新.md`
-
-### 远程推送（需先配置SSH key）
-```bash
-cd 生命论_模块化
-git remote add origin git@github.com:<用户名>/shengminglun.git
-git push -u origin main
-```
+- 本地git：仓库在workspace根目录
+- 一键同步GitHub：`bash sync.sh "提交信息"`（构建验证+提交+推送）
+- 本地全量备份：`bash backup.sh`（技能自愈+git提交+tarball）
+- 飞书发布：`bash publish.sh`（构建+上传飞书云盘）
+- GitHub远程：https://github.com/192781-li/mingbenlun
+- 全量打包：`tar czf 备份/生命论_$(date +%Y%m%d).tar.gz 生命论_模块化/ mingben-workbench/ 生命论合订本_最新.md`

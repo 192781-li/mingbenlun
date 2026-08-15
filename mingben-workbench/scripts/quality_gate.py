@@ -103,12 +103,13 @@ def check(path):
         if '道在日常' in line and '道在日常操作之外' not in line and '道在日常生活' not in line:
             warnings.append(f"术语变体 行{i}: '道在日常' 建议用 '道在日用': {line.strip()[:60]}")
 
-    # 8. 核心概念覆盖
-    core_concepts = ['自指', '操作', '明性', '反自指', '解放', '阶级', '异化', '自由人联合体', '道在日用', '阳主阴从', '四规定性', '负熵',
-                     '己化', '感', '应', '践演坐实', '视角涌现', '经文劫持', 'f³', '耗散结构', '自创生']
-    missing = [c for c in core_concepts if c not in text]
-    if missing:
-        warnings.append(f"核心概念缺失: {', '.join(missing)}")
+    # 8. 核心概念覆盖（仅对全本检查，单篇模块不要求覆盖所有概念）
+    if len(chapters) >= 50:
+        core_concepts = ['自指', '操作', '明性', '反自指', '解放', '阶级', '异化', '自由人联合体', '道在日用', '阳主阴从', '四规定性', '负熵',
+                         '己化', '感', '应', '践演坐实', '视角涌现', '经文劫持', 'f³', '耗散结构', '自创生']
+        missing = [c for c in core_concepts if c not in text]
+        if missing:
+            warnings.append(f"核心概念缺失: {', '.join(missing)}")
 
     # 9. 乱码
     garbled = re.findall(r'[\ufffd\u0000-\u0008\u000b\u000c\u000e-\u001f]', text)

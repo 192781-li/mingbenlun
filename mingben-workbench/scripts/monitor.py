@@ -5,10 +5,10 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 def human_size(n):
-    for unit in ['K','M','G','T']:
+    for unit in ['B','K','M','G','T','P','E']:
         if n < 1024: return f"{n:.0f}{unit}"
         n /= 1024
-    return f"{n:.0f}P"
+    return f"{n:.0f}Z"
 
 def monitor_workspace(ws):
     print(f"=== 工作区监控: {ws} ===")
