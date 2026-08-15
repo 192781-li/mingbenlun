@@ -40,9 +40,21 @@ if [ "$1" = "--add" ]; then
     # 复制新文件到目标目录
     BASENAME=$(basename "$NEWFILE")
     cp "$NEWFILE" "$TARGET_DIR/$BASENAME"
-    # 添加到manifest（在该卷最后一个文件后插入）
-    echo "$2/$BASENAME" >> "$MODDIR/manifest.txt"
-    echo "已添加：$2/$BASENAME"
+    # 添加到manifest（在该卷最后一个文件后插入，而非追加到文件末尾）
+    ENTRY="$2/$BASENAME"
+    MANIFEST="$MODDIR/manifest.txt"
+    if grep -qF "$ENTRY" "$MANIFEST"; then
+        echo "已存在于manifest: $ENTRY"
+    else
+        # 找到该卷最后一行的行号，在其后插入
+        LAST_LINE=$(grep -n "^$2/" "$MANIFEST" | tail -1 | cut -d: -f1)
+        if [ -n "$LAST_LINE" ]; then
+            sed -i "${LAST_LINE}a\\${ENTRY}" "$MANIFEST"
+        else
+            echo "$ENTRY" >> "$MANIFEST"
+        fi
+        echo "已添加：$ENTRY（插入到$2末尾）"
+    fi
     echo "重新构建..."
     bash "$MODDIR/build.sh" --html-only
     exit 0

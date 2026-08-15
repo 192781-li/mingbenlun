@@ -73,12 +73,11 @@ __pycache__/
 # === 白名单：核心文件必须跟踪 ===
 !生命论_模块化/**
 !mingben-workbench/**
+!mingben-output/**
 !publish_style.tex
-!html_style.css
 !html_header.html
 !backup.sh
-!新文件_144809
-!新文件2_最新
+!sync.sh
 !生命论_极简贯通.md
 !生命论_概念图谱_升级版.html
 !批判性阅读地图_生命论全本.md
@@ -92,7 +91,6 @@ __pycache__/
 !xinyuedufa.txt
 !yinyang_tiyong.txt
 !xuesheng.md
-!原始论文_20份/**
 
 # === 视频审读目录（大文件，不进git）===
 赵皓阳视频审读/

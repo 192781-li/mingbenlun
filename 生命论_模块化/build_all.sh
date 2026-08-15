@@ -70,7 +70,7 @@ if want html; then
   echo "[2/6] HTML..."
   cat /tmp/cover.html.md "$FULL_MD" > /tmp/full_html.md
   pandoc /tmp/full_html.md -f markdown-yaml_metadata_block -t html5 -s \
-    --toc --toc-depth=2 --include-in-header=html_header.html \
+    --toc --toc-depth=3 --include-in-header=html_header.html \
     --metadata title="生命论（明本论）" \
     -o "$OUTDIR/生命论（明本论）.html"
   echo "  -> HTML"
@@ -81,7 +81,7 @@ if want epub; then
   echo "[3/6] EPUB..."
   cat /tmp/cover.html.md "$FULL_MD" > /tmp/full_epub.md
   pandoc /tmp/full_epub.md -f markdown-yaml_metadata_block -t epub3 \
-    --toc --toc-depth=2 --metadata title="生命论（明本论）" \
+    --toc --toc-depth=3 --metadata title="生命论（明本论）" \
     --metadata author="明本论" --metadata lang="zh-CN" \
     -o "$OUTDIR/生命论（明本论）.epub" 2>&1
   echo "  -> EPUB"
@@ -91,7 +91,7 @@ fi
 if want docx; then
   echo "[4/6] DOCX..."
   pandoc "$FULL_MD" -f markdown-yaml_metadata_block -t docx \
-    --toc --toc-depth=2 --metadata title="生命论（明本论）" \
+    --toc --toc-depth=3 --metadata title="生命论（明本论）" \
     -o "$OUTDIR/生命论（明本论）.docx" 2>&1
   echo "  -> DOCX"
 fi

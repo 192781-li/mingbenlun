@@ -206,7 +206,7 @@ COVER
     cat /tmp/html_cover.md "$OUTPUT_MD" > /tmp/html_full.md
     pandoc /tmp/html_full.md \
         -f markdown-yaml_metadata_block -t html5 -s \
-        --toc --toc-depth=2 \
+        --toc --toc-depth=3 \
         --include-in-header=html_header.html \
         --metadata title="生命论（明本论）" \
         -o "$OUTPUT_HTML"
@@ -233,7 +233,7 @@ if [ "$1" != "--html-only" ]; then
 \vfill
 \end{titlepage}
 
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 \pagenumbering{roman}
 \tableofcontents
 

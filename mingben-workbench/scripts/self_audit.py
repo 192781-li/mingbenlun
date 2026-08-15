@@ -334,6 +334,39 @@ def check_manifest_completeness():
     if not bad:
         ok(f"manifest完整性：{len(entries)}个条目全部对应，无遗漏")
 
+def check_infrastructure_reflexivity():
+    """[元监督自反性] 构建系统必须集成自筛，TOC必须包含章级导航"""
+    bad = []
+
+    # build.sh必须调用self_audit
+    build_sh = MODDIR / "build.sh"
+    if build_sh.exists():
+        text = build_sh.read_text(encoding='utf-8', errors='replace')
+        if 'self_audit' not in text:
+            bad.append("build.sh未集成self_audit（构建后不会自动自筛）")
+        if '--toc-depth=3' not in text:
+            bad.append("build.sh HTML目录深度<3（章级导航缺失）")
+
+    # sync.sh必须有自筛门控
+    sync_sh = WORKSPACE / "sync.sh"
+    if sync_sh.exists():
+        text = sync_sh.read_text(encoding='utf-8', errors='replace')
+        if 'self_audit' not in text:
+            bad.append("sync.sh未集成self_audit（推送前无硬门控）")
+
+    # build_all.sh也应有正确的TOC深度
+    build_all = MODDIR / "build_all.sh"
+    if build_all.exists():
+        text = build_all.read_text(encoding='utf-8', errors='replace')
+        if '--toc-depth=2' in text:
+            bad.append("build_all.sh仍使用toc-depth=2（章级导航缺失）")
+
+    if bad:
+        for b in bad:
+            fail(f"自反性: {b}")
+    else:
+        ok("基础设施自反性：自筛已集成到build/sync，TOC深度正确")
+
 # ========== 主入口 ==========
 
 CHECKS = [
@@ -349,6 +382,7 @@ CHECKS = [
     ("过时关键词扫描", check_outdated_keywords),
     ("human_size单元测试", check_human_size_unit),
     ("git仓库健康", check_git_size),
+    ("基础设施自反性", check_infrastructure_reflexivity),
 ]
 
 def main():
