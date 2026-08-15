@@ -135,6 +135,17 @@ if [ "$1" = "--check" ]; then
     exit 0
 fi
 
+# 参数校验：防止拼写错误触发完整PDF构建（5-10分钟）
+if [ -n "$1" ] && [ "$1" != "--html-only" ] && [ "$1" != "--pdf-only" ]; then
+    echo "错误：未知参数 '$1'"
+    echo "用法：bash build.sh [--html-only|--pdf-only|--check]"
+    echo "  无参数=构建MD+HTML+PDF（PDF需5-10分钟）"
+    echo "  --html-only=只构建MD+HTML（秒级）"
+    echo "  --pdf-only=只构建PDF"
+    echo "  --check=只跑质检"
+    exit 1
+fi
+
 echo "=== 生命论构建系统 ==="
 
 # 0. 删除旧输出文件（防止稀疏文件null字节问题）
