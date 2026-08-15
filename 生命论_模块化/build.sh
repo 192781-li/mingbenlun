@@ -158,6 +158,10 @@ python3 - "$MODDIR" "$OUTPUT_MD" << 'PYEOF'
 import sys, os
 moddir, output = sys.argv[1], sys.argv[2]
 with open(output, 'w', encoding='utf-8') as out:
+    # 体系总纲（最新规范性奠基）
+    with open(os.path.join(moddir, '00_体系总纲.md'), 'r', encoding='utf-8') as f:
+        out.write(f.read())
+    out.write('\n\n---\n\n')
     # 修订记与体系总纲
     with open(os.path.join(moddir, '00_修订记与体系总纲.md'), 'r', encoding='utf-8') as f:
         out.write(f.read())

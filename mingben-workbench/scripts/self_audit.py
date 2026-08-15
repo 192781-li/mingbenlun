@@ -321,7 +321,7 @@ def check_manifest_completeness():
                if l.strip() and not l.startswith('#')]
     missing = [e for e in entries if not (MODDIR / e).exists()]
     # 检查是否有md文件遗漏（排除00_固定文件和AGENTS/README）
-    fixed = {'00_修订记与体系总纲.md', '00_总序与导论.md', '00_推导链总览.md'}
+    fixed = {'00_体系总纲.md', '00_修订记与体系总纲.md', '00_总序与导论.md', '00_推导链总览.md'}
     all_md = set()
     for f in MODDIR.rglob("*.md"):
         rel = str(f.relative_to(MODDIR))
