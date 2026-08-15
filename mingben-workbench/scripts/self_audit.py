@@ -134,19 +134,30 @@ def check_file_references():
     """[引用有效性] 技能文档中引用的脚本/样式文件必须存在"""
     ref_pattern = re.compile(r'`([^`]+\.(?:py|sh|css|tex|html))`')
     bad = []
-    for f in SKILL_DIR.rglob("*.md"):
-        text = f.read_text(encoding='utf-8', errors='replace')
-        for m in ref_pattern.finditer(text):
-            ref = m.group(1)
-            # 跳过命令行调用和URL
-            if ref.startswith('http') or ref.startswith('python3 ') or ref.startswith('bash '):
-                continue
-            # 解析路径
-            candidate = WORKSPACE / ref
-            if not candidate.exists():
-                # 也可能相对于技能目录
-                candidate2 = SKILL_DIR / ref
-                if not candidate2.exists():
+    # 扫描所有技能目录
+    scan_dirs = [SKILL_DIR]
+    output_dir = WORKSPACE / "mingben-output"
+    if output_dir.exists():
+        scan_dirs.append(output_dir)
+    for scan_dir in scan_dirs:
+        for f in scan_dir.rglob("*.md"):
+            text = f.read_text(encoding='utf-8', errors='replace')
+            for m in ref_pattern.finditer(text):
+                ref = m.group(1)
+                if ref.startswith('http'):
+                    continue
+                # 从命令行调用中提取文件路径（python3/bash 后面的第一个token）
+                if ref.startswith('python3 ') or ref.startswith('bash '):
+                    parts = ref.split()
+                    if len(parts) >= 2:
+                        ref = parts[1]
+                    else:
+                        continue
+                # 去掉参数（--flag 或 <参数>）
+                ref = ref.split()[0] if not ref.startswith('/') else ref
+                # 解析路径：先试workspace根，再试技能目录
+                candidates = [WORKSPACE / ref, scan_dir / ref]
+                if not any(c.exists() for c in candidates):
                     bad.append(f"{f.relative_to(WORKSPACE)} → {ref}")
     if bad:
         for b in bad:

@@ -20,6 +20,14 @@ if [ ! -f "生命论合订本_最新.md" ]; then
     exit 1
 fi
 
+# 元监督自筛（硬门控：有问题不许发布）
+echo "[1.5/3] 元监督自筛..."
+if ! python3 mingben-workbench/scripts/self_audit.py --quiet; then
+    echo "✗ 自筛未通过，终止发布。用 'python3 mingben-workbench/scripts/self_audit.py' 查看详情"
+    exit 1
+fi
+echo "  ✓ 自筛通过"
+
 if [ "$1" = "--build-only" ]; then
     echo "✓ 构建完成（跳过上传）"
     exit 0

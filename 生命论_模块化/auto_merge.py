@@ -187,38 +187,51 @@ def merge_new_chapter(new_ch, dry_run=False):
     if not insert_rel:
         return f"错误：找不到第{int2cn(num)}章的插入位置"
     
-    # 1. 先把所有 >= num 的章节编号+1
-    renumbered = []
+    # 1. 先把所有 >= num 的章节编号+1（降序处理，防止标题碰撞）
+    # 先收集所有模块中需要顺延的章节号
+    all_ch_nums = set()
+    ch_locations = {}  # num -> rel (该章节标题所在模块)
     for rel in load_manifest():
         text = read_module(rel)
-        chs = parse_chapters(text)
-        modified = False
-        for ch in chs:
+        for ch in parse_chapters(text):
             if ch['num'] >= num:
-                old_num_cn = int2cn(ch['num'])
-                new_num_cn = int2cn(ch['num'] + 1)
-                # 替换章节标题中的编号
-                old_header = f"### 第{old_num_cn}章"
-                new_header = f"### 第{new_num_cn}章"
-                text = text.replace(old_header, new_header, 1)
-                # 替换正文中的交叉引用（第X章）
-                text = text.replace(f"第{old_num_cn}章", f"第{new_num_cn}章")
-                # 注意：替换自身标题时也会影响，但顺序处理OK
+                all_ch_nums.add(ch['num'])
+                ch_locations[ch['num']] = rel
+
+    renumbered = []
+    # 降序处理：先改大的号，避免"第X章"和"第X+1章"碰撞
+    for n in sorted(all_ch_nums, reverse=True):
+        old_cn = int2cn(n)
+        new_cn = int2cn(n + 1)
+        old_header = f"### 第{old_cn}章"
+        new_header = f"### 第{new_cn}章"
+        # 在所有模块中替换（标题+交叉引用）
+        for rel in load_manifest():
+            text = read_module(rel)
+            modified = False
+            # 如果这个模块包含该章节的标题，精确替换标题一次
+            if ch_locations.get(n) == rel:
+                if old_header in text:
+                    text = text.replace(old_header, new_header, 1)
+                    modified = True
+            # 替换所有交叉引用（标题已改，不会重复替换）
+            old_ref = f"第{old_cn}章"
+            new_ref = f"第{new_cn}章"
+            if old_ref in text:
+                text = text.replace(old_ref, new_ref)
                 modified = True
-                renumbered.append(f"第{old_num_cn}章→第{new_num_cn}章")
-        if modified and not dry_run:
-            write_module(rel, text)
-    
-    # 2. 在目标模块中插入新章节
+            if modified and not dry_run:
+                write_module(rel, text)
+        renumbered.append(f"第{old_cn}章→第{new_cn}章")
+
+    # 2. 在目标模块中插入新章节（重新读取文件，不用旧坐标）
     text = read_module(insert_rel)
-    chs = parse_chapters(text)
-    inserted = False
-    for ch in chs:
-        if ch['num'] == num + 1:  # 已经被+1了
-            text = text[:ch['start']] + new_ch['content'].rstrip() + '\n\n' + text[ch['start']:]
-            inserted = True
-            break
-    if not inserted:
+    target_header = f"### 第{int2cn(num + 1)}章"
+    idx = text.find(target_header)
+    if idx >= 0:
+        text = text[:idx] + new_ch['content'].rstrip() + '\n\n' + text[idx:]
+        inserted = True
+    else:
         # 追加到模块末尾
         text = text.rstrip() + '\n\n' + new_ch['content'].rstrip() + '\n'
     if not dry_run:

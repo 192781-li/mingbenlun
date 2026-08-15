@@ -64,9 +64,10 @@ tar czf "备份/生命论_全量_${DATE}.tar.gz" \
     --exclude='*.zip' \
     生命论_模块化/ \
     mingben-workbench/ \
+    mingben-output/ \
     .user_skills/ \
     publish_style.tex html_header.html \
-    backup.sh \
+    backup.sh sync.sh \
     生命论合订本_最新.md \
     2>/dev/null || true
 
