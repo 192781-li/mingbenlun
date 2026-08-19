@@ -371,7 +371,7 @@ def test_self_audit_detection():
             (skill_dir / ref).write_text(f"# {ref}\n", encoding='utf-8')
 
         # backup.sh
-        (Path(tmpdir) / "backup.sh").write_text("#!/bin/bash\nfor skill in mingben-workbench; do echo $skill; done\n", encoding='utf-8')
+        (Path(tmpdir) / "backup.sh").write_text("#!/bin/bash\nfor skill in mingben-workbench; do echo $skill; done\n闪光点.md 创作日志.md 生命论合订本_最新.md\n", encoding='utf-8')
 
         # 修改self_audit.py的路径锚定指向临时目录
         audit_src = (SCRIPTS / "self_audit.py").read_text(encoding='utf-8')

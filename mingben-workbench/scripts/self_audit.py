@@ -141,6 +141,9 @@ def check_file_references():
         scan_dirs.append(output_dir)
     for scan_dir in scan_dirs:
         for f in scan_dir.rglob("*.md"):
+            # 跳过挖掘日志等数据文件（其中的路径是历史记录，不是依赖声明）
+            if f.name in ('spark_candidates.md',):
+                continue
             text = f.read_text(encoding='utf-8', errors='replace')
             for m in ref_pattern.finditer(text):
                 ref = m.group(1)
@@ -378,6 +381,62 @@ def check_infrastructure_reflexivity():
     else:
         ok("基础设施自反性：自筛已集成到build/sync，TOC深度正确")
 
+def check_pending_integration():
+    """[内容新鲜度] 闪光点中标注'待入全本'的条目必须被追踪，防止'全本'幻觉"""
+    spark = WORKSPACE / "闪光点.md"
+    if not spark.exists():
+        warn("闪光点.md不存在，跳过")
+        return
+    text = spark.read_text(encoding='utf-8', errors='replace')
+    pending = []
+    for m in re.finditer(r'###\s*(\d+)\.\s*(.+?)(?:\n|$)', text):
+        num = int(m.group(1))
+        title = m.group(2).strip()
+        block_end = text.find('\n### ', m.end())
+        if block_end == -1: block_end = len(text)
+        block = text[m.start():block_end]
+        if '待入全本' in block:
+            pending.append((num, title))
+    if pending:
+        warn(f"有{len(pending)}条闪光点标注'待入全本'（最新思想未进入九卷正文）：")
+        for num, title in pending[-8:]:
+            print(f"    #{num}: {title[:40]}")
+        if len(pending) > 8:
+            print(f"    ...等共{len(pending)}条")
+    else:
+        ok("内容新鲜度：闪光点无'待入全本'条目")
+
+def check_backup_completeness():
+    """[备份完整性] backup.sh的tar命令必须包含闪光点、创作日志等关键根文件"""
+    backup_sh = WORKSPACE / "backup.sh"
+    if not backup_sh.exists():
+        warn("backup.sh不存在，跳过")
+        return
+    text = backup_sh.read_text(encoding='utf-8')
+    required = ['闪光点.md', '创作日志.md', '生命论合订本_最新.md']
+    missing = [f for f in required if f not in text]
+    if missing:
+        for m in missing:
+            fail(f"backup.sh未备份关键文件: {m}")
+    else:
+        ok("备份完整性：闪光点、创作日志、合订本均在备份列表中")
+
+def check_concept_graph_freshness():
+    """[概念图新鲜度] concept_graph.json不应比闪光点.md旧超过3天"""
+    import time
+    graph = SKILL_DIR / "references" / "concept_graph.json"
+    spark = WORKSPACE / "闪光点.md"
+    if not graph.exists() or not spark.exists():
+        warn("概念图或闪光点不存在，跳过新鲜度检查")
+        return
+    graph_age = time.time() - graph.stat().st_mtime
+    spark_age = time.time() - spark.stat().st_mtime
+    if graph_age > spark_age + 86400 * 3:
+        warn(f"concept_graph.json比闪光点旧（图{graph_age/86400:.0f}天，闪光点{spark_age/86400:.0f}天），新概念可能未入图")
+    else:
+        ok(f"概念图新鲜度：concept_graph.json ({graph_age/86400:.1f}天) 与闪光点同步")
+
+
 # ========== 主入口 ==========
 
 def check_test_suite():
@@ -418,6 +477,9 @@ CHECKS = [
     ("human_size单元测试", check_human_size_unit),
     ("git仓库健康", check_git_size),
     ("基础设施自反性", check_infrastructure_reflexivity),
+    ("内容新鲜度(待入全本)", check_pending_integration),
+    ("备份完整性", check_backup_completeness),
+    ("概念图新鲜度", check_concept_graph_freshness),
     ("功能测试套件", check_test_suite),
 ]
 
