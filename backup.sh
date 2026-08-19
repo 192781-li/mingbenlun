@@ -69,6 +69,9 @@ tar czf "备份/生命论_全量_${DATE}.tar.gz" \
     publish_style.tex html_header.html \
     backup.sh sync.sh \
     生命论合订本_最新.md \
+    闪光点.md 创作日志.md \
+    "生命论（明本论）全本_20260820.docx" \
+    "生命论（明本论）全本_20260820.html" \
     2>/dev/null || true
 
 # 最新构建产物
