@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生命论哲学坐标图</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #0a0a0f; color: #e0e0e0; padding: 16px; }
+h1 { text-align: center; font-size: 20px; margin-bottom: 4px; color: #ff4444; letter-spacing: 2px; }
+.subtitle { text-align: center; font-size: 12px; color: #888; margin-bottom: 20px; }
+
+/* 地图容器 */
+.map-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto 24px; aspect-ratio: 1.15; }
+.map-bg { width: 100%; height: 100%; }
+
+/* 图例 */
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; margin-bottom: 20px; font-size: 11px; }
+.legend-item { display: flex; align-items: center; gap: 4px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* 表格 */
+.table-wrap { overflow-x: auto; margin-bottom: 24px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 500px; }
+th { background: #1a1a2e; color: #ff6b6b; padding: 8px 6px; text-align: left; font-weight: 600; border-bottom: 2px solid #ff4444; white-space: nowrap; }
+td { padding: 7px 6px; border-bottom: 1px solid #222; vertical-align: top; line-height: 1.5; }
+tr:hover td { background: #111118; }
+.rel-tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; white-space: nowrap; }
+.共振 { background: #1b5e20; color: #a5d6a7; }
+.对接 { background: #0d47a1; color: #90caf9; }
+.翻转 { background: #b71c1c; color: #ef9a9a; }
+.消解 { background: #4a148c; color: #ce93d8; }
+.吸收 { background: #e65100; color: #ffcc80; }
+.分歧 { background: #37474f; color: #b0bec5; }
+
+/* 核心命题 */
+.props { margin-bottom: 24px; }
+.props h2 { font-size: 16px; color: #ff6b6b; margin-bottom: 10px; border-left: 3px solid #ff4444; padding-left: 8px; }
+.prop-grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.prop-item { background: #111118; border-radius: 6px; padding: 8px 10px; font-size: 12px; border-left: 2px solid #333; }
+.prop-item .pid { color: #ff6b6b; font-weight: 700; margin-right: 6px; }
+.prop-item.highlight { border-left-color: #ff4444; background: #1a0a0a; }
+
+/* 独特性 */
+.unique h2 { font-size: 16px; color: #ff6b6b; margin-bottom: 10px; border-left: 3px solid #ff4444; padding-left: 8px; }
+.unique-item { background: #111118; border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; line-height: 1.6; }
+.unique-item .utitle { color: #ffab40; font-weight: 700; margin-bottom: 4px; }
+
+.footer { text-align: center; font-size: 10px; color: #555; margin-top: 20px; line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<h1>生命论哲学坐标</h1>
+<div class="subtitle">横轴：实体/静态 → 操作/动态 ｜ 纵轴：彼岸/出世 → 此岸/入世</div>
+
+<div class="map-container">
+<svg class="map-bg" viewBox="0 0 600 690" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景象限 -->
+  <rect x="60" y="40" width="500" height="560" fill="#0d0d14" rx="8"/>
+  <!-- 象限分割线 -->
+  <line x1="310" y1="40" x2="310" y2="600" stroke="#222" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="60" y1="320" x2="560" y2="320" stroke="#222" stroke-width="1" stroke-dasharray="4,4"/>
+  
+  <!-- 轴标签 -->
+  <text x="310" y="625" text-anchor="middle" fill="#666" font-size="11">操作/动态 →</text>
+  <text x="60" y="625" text-anchor="start" fill="#666" font-size="11">← 实体/静态</text>
+  <text x="50" y="320" text-anchor="middle" fill="#666" font-size="11" transform="rotate(-90,50,320)">彼岸/出世 ↑</text>
+  <text x="50" y="600" text-anchor="middle" fill="#666" font-size="11" transform="rotate(-90,50,600)">此岸/入世 ↓</text>
+  
+  <!-- 象限标签 -->
+  <text x="185" y="65" text-anchor="middle" fill="#333" font-size="10">形而上学/彼岸实体</text>
+  <text x="435" y="65" text-anchor="middle" fill="#333" font-size="10">过程哲学/动态体系</text>
+  <text x="185" y="595" text-anchor="middle" fill="#333" font-size="10">实用伦理/社会秩序</text>
+  <text x="435" y="595" text-anchor="middle" fill="#444" font-size="10" font-weight="bold">实践/革命/改造世界</text>
+
+  <!-- 西方哲学家 -->
+  <!-- 巴门尼德 -->
+  <circle cx="95" cy="80" r="6" fill="#7e57c2" opacity="0.85"/>
+  <text x="105" y="84" fill="#aaa" font-size="10">巴门尼德</text>
+  <!-- 柏拉图 -->
+  <circle cx="115" cy="110" r="6" fill="#7e57c2" opacity="0.85"/>
+  <text x="125" y="114" fill="#aaa" font-size="10">柏拉图</text>
+  <!-- 笛卡尔 -->
+  <circle cx="145" cy="175" r="6" fill="#7e57c2" opacity="0.85"/>
+  <text x="155" y="179" fill="#aaa" font-size="10">笛卡尔</text>
+  <!-- 康德 -->
+  <circle cx="185" cy="200" r="6" fill="#7e57c2" opacity="0.85"/>
+  <text x="195" y="204" fill="#aaa" font-size="10">康德</text>
+  <!-- 黑格尔 -->
+  <circle cx="240" cy="175" r="6" fill="#7e57c2" opacity="0.85"/>
+  <text x="250" y="179" fill="#aaa" font-size="10">黑格尔</text>
+  <!-- 亚里士多德 -->
+  <circle cx="200" cy="240" r="6" fill="#42a5f5" opacity="0.85"/>
+  <text x="210" y="244" fill="#aaa" font-size="10">亚里士多德</text>
+  <!-- 斯宾诺莎 -->
+  <circle cx="270" cy="250" r="6" fill="#66bb6a" opacity="0.85"/>
+  <text x="280" y="254" fill="#aaa" font-size="10">斯宾诺莎</text>
+  <!-- 休谟 -->
+  <circle cx="300" cy="300" r="6" fill="#42a5f5" opacity="0.85"/>
+  <text x="310" y="304" fill="#aaa" font-size="10">休谟</text>
+  <!-- 佛教 -->
+  <circle cx="280" cy="100" r="6" fill="#7e57c2" opacity="0.85"/>
+  <text x="290" y="104" fill="#aaa" font-size="10">佛教(涅槃)</text>
+  <!-- 老子 -->
+  <circle cx="260" cy="185" r="6" fill="#7e57c2" opacity="0.85"/>
+  <text x="155" y="185" fill="#aaa" font-size="10" text-anchor="end">老子</text>
+  <!-- 庄子 -->
+  <circle cx="290" cy="140" r="6" fill="#7e57c2" opacity="0.85"/>
+  <text x="280" y="144" fill="#aaa" font-size="10" text-anchor="end">庄子</text>
+  <!-- 海德格尔 -->
+  <circle cx="330" cy="230" r="6" fill="#42a5f5" opacity="0.85"/>
+  <text x="340" y="234" fill="#aaa" font-size="10">海德格尔</text>
+  <!-- 维特根斯坦 -->
+  <circle cx="360" cy="290" r="6" fill="#42a5f5" opacity="0.85"/>
+  <text x="370" y="294" fill="#aaa" font-size="10">维特根斯坦</text>
+  <!-- 禅宗 -->
+  <circle cx="380" cy="280" r="6" fill="#66bb6a" opacity="0.85"/>
+  <text x="390" y="284" fill="#aaa" font-size="10">禅宗</text>
+  <!-- 周易 -->
+  <circle cx="340" cy="350" r="6" fill="#66bb6a" opacity="0.85"/>
+  <text x="350" y="354" fill="#aaa" font-size="10">周易</text>
+  <!-- 孔子 -->
+  <circle cx="250" cy="380" r="6" fill="#42a5f5" opacity="0.85"/>
+  <text x="240" y="384" fill="#aaa" font-size="10" text-anchor="end">孔子</text>
+  <!-- 孟子 -->
+  <circle cx="280" cy="400" r="6" fill="#42a5f5" opacity="0.85"/>
+  <text x="270" y="404" fill="#aaa" font-size="10" text-anchor="end">孟子</text>
+  <!-- 荀子 -->
+  <circle cx="250" cy="420" r="6" fill="#42a5f5" opacity="0.85"/>
+  <text x="240" y="424" fill="#aaa" font-size="10" text-anchor="end">荀子</text>
+  <!-- 福柯 -->
+  <circle cx="400" cy="340" r="6" fill="#42a5f5" opacity="0.85"/>
+  <text x="410" y="344" fill="#aaa" font-size="10">福柯</text>
+  <!-- 实用主义 -->
+  <circle cx="420" cy="380" r="6" fill="#42a5f5" opacity="0.85"/>
+  <text x="430" y="384" fill="#aaa" font-size="10">实用主义</text>
+  <!-- 尼采 -->
+  <circle cx="370" cy="420" r="7" fill="#ff9800" opacity="0.85"/>
+  <text x="380" y="424" fill="#ccc" font-size="10">尼采</text>
+  <!-- 马克思 -->
+  <circle cx="470" cy="470" r="8" fill="#ff9800" opacity="0.9"/>
+  <text x="480" y="474" fill="#ddd" font-size="11" font-weight="bold">马克思</text>
+  <!-- 王阳明 -->
+  <circle cx="440" cy="490" r="7" fill="#66bb6a" opacity="0.85"/>
+  <text x="450" y="494" fill="#ccc" font-size="10">王阳明</text>
+
+  <!-- 生命论 —— 红色星标 -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff4444" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#ff4444" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="530" cy="560" r="40" fill="url(#glow)"/>
+  <polygon points="530,538 536,554 553,556 540,568 544,585 530,577 516,585 520,568 507,556 524,554" fill="#ff4444"/>
+  <text x="530" y="605" text-anchor="middle" fill="#ff4444" font-size="13" font-weight="bold">生命论</text>
+  <text x="530" y="620" text-anchor="middle" fill="#ff6b6b" font-size="9">存在即操作</text>
+</svg>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="dot" style="background:#7e57c2"></div>形而上学/出世</div>
+  <div class="legend-item"><div class="dot" style="background:#42a5f5"></div>中间地带</div>
+  <div class="legend-item"><div class="dot" style="background:#66bb6a"></div>强共振</div>
+  <div class="legend-item"><div class="dot" style="background:#ff9800"></div>核心血脉</div>
+  <div class="legend-item"><div class="dot" style="background:#ff4444"></div>生命论位置</div>
+</div>
+
+<!-- 核心命题 -->
+<div class="props">
+<h2>18条核心命题</h2>
+<div class="prop-grid">
+<div class="prop-item highlight"><span class="pid">P1</span>存在即操作——"你在活着"践演坐实，否认它在使用它</div>
+<div class="prop-item"><span class="pid">P2</span>自指操作 S=f(S)——生命的基本形式</div>
+<div class="prop-item"><span class="pid">P3</span>四规定性闭包：边界生成、内生目的、操作再生、环境互动</div>
+<div class="prop-item highlight"><span class="pid">P4</span>感为初相——闭包的内在显现向度，与闭包同一事件</div>
+<div class="prop-item"><span class="pid">P5</span>名词是动词的沉淀，操作先于实体</div>
+<div class="prop-item"><span class="pid">P6</span>阴阳为操作两面，阳主阴从是结构非价值判断</div>
+<div class="prop-item highlight"><span class="pid">P7</span>反自指 P=-f(S)，dV/dt&lt;0，跨生命-社会-文明同型</div>
+<div class="prop-item"><span class="pid">P8</span>f¹/f²/f³三层递归：生命→意识→文明</div>
+<div class="prop-item"><span class="pid">P9</span>明性——前反思的"知道自己在操作"，非灵魂非实体</div>
+<div class="prop-item"><span class="pid">P10</span>真理=操作的成功，非"符合对象"</div>
+<div class="prop-item"><span class="pid">P11</span>范畴是操作的沉淀，非先天</div>
+<div class="prop-item"><span class="pid">P12</span>操作关系——生产/权力/两性/语言等一切操作的关系场</div>
+<div class="prop-item highlight"><span class="pid">P13</span>量论 M=α·T·N·K·Ω，任一为零则整体为零</div>
+<div class="prop-item"><span class="pid">P14</span>解放三阶：解蔽→收权→立序</div>
+<div class="prop-item highlight"><span class="pid">P15</span>被压迫者对一切压迫形式的永久专政</div>
+<div class="prop-item"><span class="pid">P16</span>生活美好高于真理完美</div>
+<div class="prop-item"><span class="pid">P17</span>道在日用</div>
+<div class="prop-item"><span class="pid">P18</span>向生而生——死是边界不是光源</div>
+</div>
+</div>
+
+<!-- 关系表 -->
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>哲学家/流派</th><th>核心</th><th>关系</th><th>共振</th><th>分歧</th></tr>
+</thead>
+<tbody>
+<tr><td>赫拉克利特</td><td>万物皆流、火</td><td><span class="rel-tag 共振">共振</span></td><td>过程性、对立和谐</td><td>logos仍是抽象形而上学原则</td></tr>
+<tr><td>巴门尼德</td><td>存在者存在</td><td><span class="rel-tag 翻转">翻转</span></td><td>—</td><td>静态存在论 vs 存在即操作</td></tr>
+<tr><td>柏拉图</td><td>理念论</td><td><span class="rel-tag 消解">消解</span></td><td>苏格拉底诘问法</td><td>共相独立存在被P5消解；"练习死亡"vs向生而生</td></tr>
+<tr><td>亚里士多德</td><td>energeia、四因</td><td><span class="rel-tag 对接">对接</span></td><td>潜能/现实≈操作；目的因≈内生目的</td><td>宇宙论目的论、形式首要性</td></tr>
+<tr><td>伊壁鸠鲁</td><td>原子论、宁静</td><td><span class="rel-tag 共振">共振</span></td><td>唯物主义、死亡无关</td><td>收缩式宁静 vs 主动提升M</td></tr>
+<tr><td>笛卡尔</td><td>我思故我在</td><td><span class="rel-tag 翻转">翻转</span></td><td>—</td><td>思维起点→操作起点；心物二元被消解</td></tr>
+<tr><td>斯宾诺莎</td><td>conatus、实体一元</td><td><span class="rel-tag 共振">共振</span></td><td>conatus≈自指维持；快乐=能力增强</td><td>几何学永恒实体 vs 有死的操作闭包</td></tr>
+<tr><td>休谟</td><td>因果习惯、怀疑</td><td><span class="rel-tag 对接">对接</span></td><td>因果非逻辑必然</td><td>停在怀疑论；生命论给因果以操作地基</td></tr>
+<tr><td>康德</td><td>先天范畴、物自体</td><td><span class="rel-tag 消解">消解</span></td><td>实践理性优先；理性边界</td><td>六死结失效；范畴先天→操作沉淀；物自体多余</td></tr>
+<tr><td>黑格尔</td><td>辩证法、绝对精神</td><td><span class="rel-tag 吸收">吸收</span></td><td>矛盾运动、主奴辩证法、异化</td><td>绝对精神=新神；概念辩证法头足倒置</td></tr>
+<tr><td>叔本华</td><td>生命意志</td><td><span class="rel-tag 共振">共振</span></td><td>盲目求存冲动；欲望之苦</td><td>出路是否定意志 vs 提升操作权</td></tr>
+<tr><td>克尔凯郭尔</td><td>个体、信仰之跃</td><td><span class="rel-tag 共振">共振</span></td><td>个体高于体系</td><td>信仰之跃=放弃明性</td></tr>
+<tr style="background:#1a1008"><td><b>马克思</b></td><td><b>实践、阶级、异化</b></td><td><span class="rel-tag 对接">对接</span></td><td><b>实践→操作；生产关系→操作关系；资本=反自指</b></td><td><b>未夯存在论地基；未系统处理感；目的论残余</b></td></tr>
+<tr><td>尼采</td><td>权力意志、上帝死了</td><td><span class="rel-tag 共振">共振</span></td><td>反彼岸、生命自我增强、反颓废</td><td>无存在论体系；英雄主义；amor fati硬撑</td></tr>
+<tr><td>胡塞尔</td><td>回到事情本身</td><td><span class="rel-tag 共振">共振</span></td><td>生活世界、前反思</td><td>先验自我仍以意识为基础</td></tr>
+<tr><td>海德格尔</td><td>此在、向死而生</td><td><span class="rel-tag 吸收">吸收</span></td><td>去存在、常人沉沦、在世</td><td><b>向死而生→向生而生</b>；畏不是光源是边界</td></tr>
+<tr><td>维特根斯坦</td><td>意义即使用</td><td><span class="rel-tag 共振">共振</span></td><td>语言批判、私人语言</td><td>寂静主义"不改变任何" vs 改造世界</td></tr>
+<tr><td>萨特</td><td>存在先于本质</td><td><span class="rel-tag 共振">共振</span></td><td>操作先于实体；自欺</td><td>绝对自由 vs 有条件的自指自由</td></tr>
+<tr><td>加缪</td><td>荒谬、西西弗斯</td><td><span class="rel-tag 共振">共振</span></td><td>反彼岸、反抗</td><td>意义来自反抗荒谬 vs 意义在操作中自指生成</td></tr>
+<tr><td>福柯</td><td>规训、生命权力</td><td><span class="rel-tag 吸收">吸收</span></td><td>微观权力分析</td><td>解构主体 vs 保留明性主体；抵抗无方向</td></tr>
+<tr><td>德勒兹</td><td>欲望生产、块茎</td><td><span class="rel-tag 共振">共振</span></td><td>差异先于同一、内在性</td><td>反体系反形式化 vs 追求形式化闭合</td></tr>
+<tr><td>实用主义</td><td>真理=效用</td><td><span class="rel-tag 对接">对接</span></td><td>意义=实践后果</td><td>易滑向相对主义；改良vs革命</td></tr>
+<tr style="background:#0a1a0a"><td><b>周易</b></td><td><b>阴阳、生生、64卦</b></td><td><span class="rel-tag 共振">共振</span></td><td><b>阴阳=操作两面；64卦=状态机；生生=操作</b></td><td><b>混杂占卜/宇宙论；阳善阴恶庸俗化需翻转</b></td></tr>
+<tr><td>老子</td><td>道、无为</td><td><span class="rel-tag 共振">共振</span></td><td>道不可名、反者道之动</td><td>倒退到小国寡民 vs 向前重建平衡</td></tr>
+<tr><td>庄子</td><td>齐物、逍遥</td><td><span class="rel-tag 共振">共振</span></td><td>庖丁解牛=顺势操作</td><td>出世逃避 vs 入世改造；齐是非→相对主义</td></tr>
+<tr><td>孔子</td><td>仁、礼</td><td><span class="rel-tag 吸收">吸收</span></td><td>日常修养、为己之学</td><td>等级制礼教可异化为"以礼杀人"</td></tr>
+<tr><td>孟子</td><td>四端、性善</td><td><span class="rel-tag 共振">共振</span></td><td>良知≈缄默明性；民本</td><td>性善是道德形而上学 vs 善恶是操作结构属性</td></tr>
+<tr><td>荀子</td><td>化性起伪</td><td><span class="rel-tag 共振">共振</span></td><td>阴（礼义）规范阳（欲望）</td><td>性恶是先天道德判断；等级制</td></tr>
+<tr style="background:#0a1a0a"><td><b>王阳明</b></td><td><b>知行合一、致良知</b></td><td><span class="rel-tag 对接">对接</span></td><td><b>知行合一≈操作优先；良知≈缄默明性</b></td><td><b>良知限于道德；无形式化；未突破儒家框架</b></td></tr>
+<tr><td>佛教</td><td>缘起、无我、涅槃</td><td><span class="rel-tag 翻转">翻转</span></td><td>无固定实体、无常</td><td>涅槃=熄灭操作 vs 肯定生命；一切皆苦→苦来自反自指</td></tr>
+<tr><td>禅宗</td><td>日用即道、顿悟</td><td><span class="rel-tag 共振">共振</span></td><td>饥来吃饭困来眠≈道在日用</td><td>出世出家 vs 即世革命；顿悟≠一次性开悟</td></tr>
+<tr><td>中医</td><td>整体观、阴阳辨证</td><td><span class="rel-tag 对接">对接</span></td><td>整体调节、治未病</td><td>混杂天人感应等前科学类比</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- 六个独特性 -->
+<div class="unique">
+<h2>六个结构独特性（别处不存在的配置）</h2>
+<div class="unique-item"><div class="utitle">1. 以"操作"为存在论起点</div>西方从思维/物质/存在出发，东方有直觉但未形式化。生命论从"你在活着"出发，把操作作为第一公理推出一切。</div>
+<div class="unique-item"><div class="utitle">2. 感与操作在存在论层面统一</div>非二元论、非还原论、非功能主义、非取消主义——感是闭包的第一人称维度本身，与闭包同一事件。</div>
+<div class="unique-item"><div class="utitle">3. 反自指P=-f(S)跨领域形式定义</div>癌细胞、资本、官僚制、教条、经文化统一在dV/dt&lt;0一个判据下。</div>
+<div class="unique-item"><div class="utitle">4. 量论M=αTNKΩ贯通存在论与社会指标</div>从自指闭包公理直接推出，乘法结构缺一不可，有实证锚点。</div>
+<div class="unique-item"><div class="utitle">5. 阳主阴从拒绝"阳好阴坏"和"怎么都行"</div>阴阳是结构非价值；好坏由M判定；好阴支撑阳，坏阴压死阳；好阳提升M，坏阳破坏M。</div>
+<div class="unique-item"><div class="utitle">6. 永久专政把继续革命升级为存在论结构</div>阶级消灭后压迫仍从任何操作关系化生；多数人对压迫的反制权如免疫系统，永久存在。</div>
+</div>
+
+<div class="footer">
+生命论哲学坐标定位 · 2026-08-20 · commit 2e36cce<br>
+关系类型：共振/对接/翻转/消解/吸收/分歧——不排谱系，不封先行体<br>
+<b>东方为骨，西方为体，生命为根，人民为向</b>
+</div>
+
+</body>
+</html>
