@@ -8,8 +8,9 @@
   python3 self_audit.py          # 全量检查
   python3 self_audit.py --quiet  # 只在有问题时输出
 """
-import sys, os, re, subprocess
+import sys, os, re, subprocess, threading, io
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # 路径锚定
 SCRIPT_DIR = Path(__file__).parent
@@ -21,21 +22,39 @@ FULL_MD = WORKSPACE / "生命论合订本_最新.md"
 passed = 0
 failed = 0
 warnings = 0
+_lock = threading.Lock()
+_parallel = False
+_output_buffers = {}  # thread_id -> StringIO
 
 def ok(msg):
     global passed
-    passed += 1
-    print(f"  ✅ {msg}")
+    with _lock:
+        passed += 1
+    if _parallel:
+        tid = threading.get_ident()
+        _output_buffers[tid].write(f"  ✅ {msg}\n")
+    else:
+        print(f"  ✅ {msg}")
 
 def fail(msg):
     global failed
-    failed += 1
-    print(f"  ❌ {msg}")
+    with _lock:
+        failed += 1
+    if _parallel:
+        tid = threading.get_ident()
+        _output_buffers[tid].write(f"  ❌ {msg}\n")
+    else:
+        print(f"  ❌ {msg}")
 
 def warn(msg):
     global warnings
-    warnings += 1
-    print(f"  ⚠️  {msg}")
+    with _lock:
+        warnings += 1
+    if _parallel:
+        tid = threading.get_ident()
+        _output_buffers[tid].write(f"  ⚠️  {msg}\n")
+    else:
+        print(f"  ⚠️  {msg}")
 
 # ========== 工具函数 ==========
 
@@ -323,16 +342,20 @@ def check_manifest_completeness():
     entries = [l.strip() for l in manifest.read_text(encoding='utf-8').splitlines()
                if l.strip() and not l.startswith('#')]
     missing = [e for e in entries if not (MODDIR / e).exists()]
-    # 检查是否有md文件遗漏（排除00_固定文件和AGENTS/README）
+    # 检查是否有md文件遗漏（排除00_固定文件、AGENTS/README、答题训练文件）
     fixed = {'00_体系总纲.md', '00_修订记与体系总纲.md', '00_总序与导论.md', '00_推导链总览.md'}
     all_md = set()
     for f in MODDIR.rglob("*.md"):
         rel = str(f.relative_to(MODDIR))
-        if f.name not in ('AGENTS.md', 'README.md') and rel not in fixed and not rel.startswith('00_'):
+        if f.name in ('AGENTS.md', 'README.md'):
+            continue
+        if rel in fixed:
+            continue  # 固定文件不在manifest中
+        if f.name.startswith('训练') and '_' in f.name:
+            continue  # 答题训练文件不入manifest
+        if not rel.startswith('00_'):
             all_md.add(rel)
-        elif f.name in fixed:
-            pass  # 固定文件不在manifest中
-        elif rel.startswith('00_') and f.name not in fixed:
+        else:
             all_md.add(rel)  # 00_卷标题.md等
     orphaned = all_md - set(entries)
 
@@ -484,20 +507,50 @@ CHECKS = [
 ]
 
 def main():
+    global _parallel
     quiet = '--quiet' in sys.argv
+    parallel = '--parallel' in sys.argv or '-p' in sys.argv
 
     if not quiet:
         print("=" * 50)
-        print("明本自筛系统 — 元监督检查")
+        print("明本自筛系统 — 元监督检查" + ("（并行模式）" if parallel else ""))
         print("=" * 50)
 
-    for name, fn in CHECKS:
+    if parallel:
+        _parallel = True
+        results = [None] * len(CHECKS)
+
+        def run_check(idx):
+            name, fn = CHECKS[idx]
+            tid = threading.get_ident()
+            _output_buffers[tid] = io.StringIO()
+            try:
+                fn()
+            except Exception as e:
+                fail(f"{name} 检查自身异常: {e}")
+            output = _output_buffers[tid].getvalue()
+            _output_buffers.pop(tid, None)
+            return idx, name, output
+
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            futures = [executor.submit(run_check, i) for i in range(len(CHECKS))]
+            for future in as_completed(futures):
+                idx, name, output = future.result()
+                results[idx] = (name, output)
+
         if not quiet:
-            print(f"\n[{name}]")
-        try:
-            fn()
-        except Exception as e:
-            fail(f"{name} 检查自身异常: {e}")
+            for name, output in results:
+                print(f"\n[{name}]")
+                if output:
+                    print(output.rstrip())
+    else:
+        for name, fn in CHECKS:
+            if not quiet:
+                print(f"\n[{name}]")
+            try:
+                fn()
+            except Exception as e:
+                fail(f"{name} 检查自身异常: {e}")
 
     if not quiet:
         print("\n" + "=" * 50)

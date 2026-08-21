@@ -78,6 +78,65 @@ build.sh 自动检查：
 - manifest完整性（遗漏文件/幽灵文件）
 - 已知错字
 
+## 统一CLI入口（mingben.py）
+
+所有工具整合到一个命令：`python3 mingben-workbench/mingben.py <子命令>`
+
+```bash
+# 项目总览
+python3 mingben-workbench/mingben.py status
+
+# 构建
+python3 mingben-workbench/mingben.py build --html-only   # 秒级HTML
+python3 mingben-workbench/mingben.py build --check        # 只质检
+
+# 自审（元监督）
+python3 mingben-workbench/mingben.py audit                # 顺序自审
+python3 mingben-workbench/mingben.py audit --parallel     # 并行自审
+
+# 质量门控
+python3 mingben-workbench/mingben.py quality <文件.md>
+
+# 监控
+python3 mingben-workbench/mingben.py monitor --background
+
+# 自动合并新章节
+python3 mingben-workbench/mingben.py merge <新文件.md> --dry-run
+
+# 答题训练（F1/F2/F3）
+python3 mingben-workbench/mingben.py exam analyze <题目.md>    # 三层分析
+python3 mingben-workbench/mingben.py exam practice <题目.md>   # 三遍重写
+python3 mingben-workbench/mingben.py exam status                # 训练进度
+python3 mingben-workbench/mingben.py exam template              # 生成模板
+
+# 构建+提交+推送
+python3 mingben-workbench/mingben.py sync "提交信息"
+```
+
+## F1/F2/F3 答题训练系统
+
+核心铁律：**F1永远先行，F3永远不阻塞F1。**
+
+- **F1（感）**：题感——先于分析的直接抓取（题型、得分结构、答案骨架）
+- **F2（应/操作）**：分析——在结构内填充因果逻辑和具体史实
+- **F3（自指/递归）**：元认知——看见题目怎么造的，用它优化答案
+
+哲学思维不是答题的敌人，是答题的外挂——前提是先把F1骨架搭好。
+
+训练文件放在 `09_练习/` 目录，命名格式：`训练NN_主题_日期.md`。
+
+三遍重写法：第一遍纯F1骨架→第二遍F1+F2填充史实→第三遍F1+F2+F3优化满分。
+
+## 共享工具库（mingben_utils.py）
+
+所有脚本共用的工具函数，消除重复代码：
+- `cn2int()` / `int2cn()`：中文数字转换
+- `parse_chapters()`：章节解析
+- `read_text()` / `write_text()`：安全文件读写
+- `human_size()`：人类可读大小
+- `Timer`：计时器
+- `run_parallel()`：并行执行
+
 ## 写作纪律（修订记中的铁则）
 
 1. 三层纪律（存在论/社会分析/规范立场不混）

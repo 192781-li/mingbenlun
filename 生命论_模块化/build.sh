@@ -104,6 +104,9 @@ if os.path.exists(manifest_path):
                 # 根目录的三个固定文件不在manifest中
                 if '/' not in rel and rel.startswith('00_'):
                     continue
+                # 答题训练文件不入manifest
+                if fn.startswith('训练') and '_' in fn:
+                    continue
                 actual_files.add(rel)
     missing = actual_files - manifest_files
     for m in sorted(missing):
