@@ -104,4 +104,4 @@ S=f(S)。这个技能本身也是一个自指系统：认识世界→生产内�
 - GitHub远程：`https://github.com/192781-li/mingbenlun`
 - 核心概念速查：`references/concepts.md`
 - 明性操作律：`references/mingxing.md`（操作前必读）
-- 全本258章，九卷+附录八种
+- 全本258章，九卷+附录九种
