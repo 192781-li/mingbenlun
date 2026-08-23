@@ -1,0 +1,7 @@
+{
+  "check": "concept_dependency_integrity",
+  "total_concepts": 58,
+  "root": "操作",
+  "issues_count": 0,
+  "issues": []
+}
