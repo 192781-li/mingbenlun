@@ -38,7 +38,7 @@
 \maketitle
 
 \begin{abstract}
-本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子；(6) $\bang$不提升到交互余代数（Mealy机）范畴，但提升到非交互余代数范畴——这给出马克思"形式从属/实际从属"和Braverman"去技能化"的形式证明；(7) 多项式函子的!-分配二分法：!只分配给数据函子（$\tensor$,\&,$\bang$），不分配给计算函子（$\lolli$后件,$\oplus$），这与归纳类型的严格正性条件形成对偶，并对应量子不可克隆定理；(8) 不动点提升定理：数据函子的最大不动点可被!提升（数据流可复制），但交互函子$F_2$的最小和最大不动点均不可被!提升——有限交互和无限生命流都不可复制为过程，唯一可做的是记录为数据（实际从属）；(9) Geometry of Interaction动态语义：操作被解释为带反馈回路的连线网络，Mealy机是GoI反馈回路，迹=测量=实际从属，余归纳GoI以productivity替换nilpotency给出生命过程的执行语义，量论参数通过反馈算子的谱性质和迭代次数操作化。这些结果将线性逻辑、范畴论、GoI与马克思政治经济学统一在一个形式框架中。
+本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子；(6) $\bang$不提升到交互余代数（Mealy机）范畴，但提升到非交互余代数范畴——这给出马克思"形式从属/实际从属"和Braverman"去技能化"的形式证明；(7) 多项式函子的!-分配二分法：!只分配给数据函子（$\tensor$,\&,$\bang$），不分配给计算函子（$\lolli$后件,$\oplus$），这与归纳类型的严格正性条件形成对偶，并对应量子不可克隆定理；(8) 不动点提升定理：数据函子的最大不动点可被!提升（数据流可复制），但交互函子$F_2$的最小和最大不动点均不可被!提升——有限交互和无限生命流都不可复制为过程，唯一可做的是记录为数据（实际从属）；(9) Geometry of Interaction动态语义：操作被解释为带反馈回路的连线网络，Mealy机是GoI反馈回路，迹=测量=实际从属；(10) 余归纳GoI：在Rel中构造流处理器范畴，以productivity替换nilpotency作为无限生命过程的正确性条件，余归纳迹满足迹公理的余归纳版本，!不提升到交互流处理器，执行（践演）不是沉积。这些结果将线性逻辑、范畴论、GoI与马克思政治经济学统一在一个形式框架中。
 \end{abstract}
 
 \tableofcontents
@@ -479,6 +479,56 @@ $\nu F_2$的GoI网络中，反馈线$X$承载当前活状态——每步被$f_{1
 \end{itemize}
 \end{remark}
 
+\section{余归纳GoI：无限生产性过程}
+
+标准GoI要求幂零性（$(f_{11})^n=0$，反馈有限步终止），对应$\mu F_2$。生命$\nu F_2$的反馈永不终止但每步产出。我们在$\mathbf{Rel}$中构造余归纳GoI。
+
+\begin{definition}[流处理器]\label{def:stream-processor}
+从$A$到$B$的流处理器是三元组$(X,R,x_0)$，其中$R\subseteq(A\times X)\times(B\times X)$是转移关系，$x_0\in X$是初始状态。它诱导因果关系$\llbracket R\rrbracket\subseteq A^\omega\times B^\omega$：$(a_\bullet,b_\bullet)\in\llbracket R\rrbracket$当且仅当存在$x_\bullet\in X^\omega$使对所有$n$，$((a_n,x_n),(b_n,x_{n+1}))\in R$。
+\end{definition}
+
+\begin{definition}[生产性]\label{def:productivity}
+$R$是生产性的，如果对所有$(a,x)\in A\times X$，存在$(b,x')\in B\times X$使$((a,x),(b,x'))\in R$。
+\end{definition}
+
+\begin{theorem}[生产性保证完全性]\label{thm:productivity-totality}
+若$R$生产性，则对每个$a_\bullet\in A^\omega$存在$b_\bullet\in B^\omega$使$(a_\bullet,b_\bullet)\in\llbracket R\rrbracket$。
+\end{theorem}
+
+\begin{proof}
+余归纳构造：由生产性，给定$(a_0,x_0)$存在$(b_0,x_1)$；再由生产性，给定$(a_1,x_1)$存在$(b_1,x_2)$；如此继续，构造完整的$b_\bullet$和$x_\bullet$。
+\end{proof}
+
+\begin{definition}[余归纳迹]\label{def:coinductive-trace}
+余归纳迹$\mathrm{Tr}^\omega_X(R)=\llbracket R\rrbracket\subseteq A^\omega\times B^\omega$将Mealy机映射为其无限输入输出行为。它满足迹公理的余归纳版本：
+\begin{itemize}
+  \item \textbf{vanishing}：$\mathrm{Tr}^\omega_I(R)$逐点应用；$\mathrm{Tr}^\omega_{X\times Y}=\mathrm{Tr}^\omega_X\circ\mathrm{Tr}^\omega_Y$
+  \item \textbf{yanking}：$\mathrm{Tr}^\omega_X(\sigma)$诱导恒等流
+  \item \textbf{superposing}：$g\otimes\mathrm{Tr}^\omega(f)=\mathrm{Tr}^\omega(g\otimes f)$
+  \item \textbf{tightening}：$\mathrm{Tr}^\omega((g\otimes\mathrm{id})\circ f\circ(h\otimes\mathrm{id}))=g^\omega\circ\mathrm{Tr}^\omega(f)\circ h^\omega$
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[!不提升到流处理器]\label{thm:no-bang-stream}
+不存在自然提升将生产性Mealy机$R\subseteq(A\times X)\times(B\times X)$映射为$\bang R\subseteq(\bang A\times\bang X)\times(\bang B\times\bang X)$使得$\bang R$的余归纳迹与$R$相容。
+\end{theorem}
+
+\begin{proof}
+$\bang X$是$X$上的有限多重集。余归纳迹要求单一状态线索：每步消耗$x_n$产生$x_{n+1}$。多重集包含多个$X$元素，但元素之间没有身份（identity），无法确定哪个元素是"正在运行的当前状态"。$\bang R$的转移将多重集$\alpha$映射到$\beta$，但无法从$\beta$中追踪一条贯穿的状态线索。非交互$F_1(X)=X\tensor B$中$X$直接出现在输出中（不经过$\lolli$的codomain），配对唯一确定线索，故可提升（命题\ref{prop:lift-noninteractive}）；交互$F_2$中$X$是函数产出，多重集无法追踪。
+\end{proof}
+
+\begin{theorem}[执行不是沉积]\label{thm:execution-not-deposition}
+GoI执行$\mathrm{Ex}(U)$或$\mathrm{Ex}^\omega(U)$不是$\mathcal{C}$中的态射，也不是$\bang$-模态对象。
+\end{theorem}
+
+\begin{proof}
+有限情形$\mathrm{Ex}(U)=U_{00}+\sum_{n\geq0}U_{01}(U_{11})^nU_{10}$的结果是$\mathcal{C}$中态射，但计算这个和的过程是元层面操作（公理\ref{ax:performative}）。无限情形$\mathrm{Ex}^\omega(U)$产生$B^\omega$中的流，存在于流处理器范畴而非$\mathcal{C}$中。执行消耗资源（时间、活操作），而$\mathcal{C}$中态射不消耗任何东西——它只是存在。践演判断$\triangleright A$对应执行事件，不是类型。
+\end{proof}
+
+\begin{remark}[践演=执行]
+矢列$\Gamma\vdash A$的GoI解释是静态连线$U$（阴，可被$\bang$复制存储）；践演判断$\triangleright A$对应$U$的执行$\mathrm{Ex}(U)$（阳，一次性事件）。你可以复制《资本论》（$\bang$），但不能复制"一个人读了《资本论》后改变生命"这个事件（$\triangleright$）。
+\end{remark}
+
 \section{待证猜想}
 
 \begin{conjecture}[生命测度]\label{conj:measure}
@@ -499,7 +549,7 @@ $\nu F_2$的GoI网络中，反馈线$X$承载当前活状态——每步被$f_{1
 
 \section{总结}
 
-本文定义了操作范畴，证明了20个定理，核心结构如下：
+本文定义了操作范畴，证明了23个定理，核心结构如下：
 
 \begin{center}
 \begin{tabular}{lll}
