@@ -38,7 +38,7 @@
 \maketitle
 
 \begin{abstract}
-本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子；(6) $\bang$不提升到交互余代数（Mealy机）范畴，但提升到非交互余代数范畴——这给出马克思"形式从属/实际从属"和Braverman"去技能化"的形式证明。这些结果将线性逻辑、范畴论与马克思政治经济学统一在一个形式框架中。
+本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子；(6) $\bang$不提升到交互余代数（Mealy机）范畴，但提升到非交互余代数范畴——这给出马克思"形式从属/实际从属"和Braverman"去技能化"的形式证明；(7) 多项式函子的!-分配二分法：!只分配给数据函子（$\tensor$,\&,$\bang$），不分配给计算函子（$\lolli$后件,$\oplus$），这与归纳类型的严格正性条件形成对偶，并对应量子不可克隆定理。这些结果将线性逻辑、范畴论与马克思政治经济学统一在一个形式框架中。
 \end{abstract}
 
 \tableofcontents
@@ -318,6 +318,50 @@ $$\frac{\Gamma_1\vdash\bang X\qquad \Gamma_2\vdash B}{\Gamma_1,\Gamma_2\vdash\ba
 由命题\ref{prop:lift-noninteractive}，$\bang$提升到$F_1$；由定理\ref{thm:no-lift-interactive}，$\bang$不提升到$F_2$。因此资本增殖要求$F_2\to F_1$的改造。
 \end{proof}
 
+\section{数据与计算：!-分配的一般刻画}
+
+我们将定理\ref{thm:no-lift-interactive}推广到一般多项式函子。
+
+\begin{definition}[数据函子]
+多项式函子$F$称为\textbf{数据函子}，如果它由以下语法生成：
+$$D(X) ::= C \mid X \mid D_1(X)\tensor D_2(X) \mid D_1(X)\,\&\,D_2(X) \mid \bang D(X)$$
+其中$C$是不含$X$的常量。即：只使用张量、加法与、!模态，不使用$\oplus$，也不使用$X$出现在后件中的$\lolli$。
+\end{definition}
+
+\begin{theorem}[数据函子的!-分配]\label{thm:data-distributes}
+对任意数据函子$D$，分配律$\lambda^D:\bang D(X)\to D(\bang X)$存在。
+\end{theorem}
+
+\begin{proof}
+对$D$结构归纳。常量：$\bang C\to C$由弃置给出。变量：$\bang X\to\bang X$恒等。张量：由$\bang$的monoidal strength$\bang(D_1\tensor D_2)\to\bang D_1\tensor\bang D_2$与归纳假设复合。与：投影后分别应用归纳假设，再用$\&R$合并。!模态：$\bang\bang D_1\to\bang D_1\to D_1(\bang X)\to\bang D_1(\bang X)$（弃置+归纳假设+promotion）。
+\end{proof}
+
+\begin{theorem}[计算函子阻止!-分配]\label{thm:computation-blocks}
+若$F(X)=A\lolli G(X)$且$X$在$G(X)$中非$\bang$-模态地出现，则$\bang F\nRightarrow F\bang$。若$F(X)=F_1(X)\oplus F_2(X)$且$X$在某分支中非平凡出现，则$\bang F\nRightarrow F\bang$。
+\end{theorem}
+
+\begin{proof}
+对$\lolli$情形：矢列$\bang(A\lolli G(X)),A\vdash G(\bang X)$不可证。弃置$\bang(A\lolli G(X))$后与$A$求值得$G(X)$，但$G(X)$中的$X$是线性的（不在$\bang$辖域内），将其提升为$\bang X$需要$X\to\bang X$，由定理\ref{thm:no-A-to-bangA}不可能。
+
+对$\oplus$情形：以$F(X)=X\oplus B$为例，$\bang(X\oplus B)\vdash\bang X\oplus B$不可证。$\oplus R_1$要求$\bang(X\oplus B)\vdash\bang X$，promotion要求$\bang(X\oplus B)\vdash X$，弃置后$\oplus L$要求$B\vdash X$（不可证）；$\oplus R_2$要求$\bang(X\oplus B)\vdash B$，$\oplus L$要求$X\vdash B$（不可证）。
+\end{proof}
+
+\begin{theorem}[!-分配二分法]\label{thm:dichotomy}
+多项式函子$F$允许!-分配当且仅当$F$是数据函子。
+\end{theorem}
+
+\begin{proof}
+($\Leftarrow$)定��\ref{thm:data-distributes}。($\Rightarrow$)若$F$含$\oplus$或$X$在$\lolli$后件中，定理\ref{thm:computation-blocks}阻止分配。
+\end{proof}
+
+\begin{remark}[与严格正性的对偶]
+定理\ref{thm:dichotomy}中"$X$不出现在$\lolli$后件中"与归纳类型的严格正性条件形成对偶：严格正性禁止$X$出现在$\to$的\emph{domain}（否则非良基递归），而!-分配禁止$X$出现在$\lolli$的\emph{codomain}（否则计算结果不可复制）。阴（归纳/$\mu$）禁止$X$作为输入；阳（!-分配/资本化）禁止$X$作为输出。
+\end{remark}
+
+\begin{remark}[与量子不可克隆定理的关系]
+线性逻辑是量子计算的类型论基础。定理\ref{thm:dichotomy}对应量子不可克隆定理：$\bang$-分配（经典复制）只对"经典数据"（$\tensor$,\&,$\bang$结构）有效，对"量子过程"（$\lolli$后件、$\oplus$分支）无效。生命作为交互计算过程$A\lolli(X\tensor B)$，与量子态一样不可复制。
+\end{remark}
+
 \section{待证猜想}
 
 \begin{conjecture}[生命测度]\label{conj:measure}
@@ -338,7 +382,7 @@ $$\frac{\Gamma_1\vdash\bang X\qquad \Gamma_2\vdash B}{\Gamma_1,\Gamma_2\vdash\ba
 
 \section{总结}
 
-本文定义了操作范畴，证明了13个定理，核心结构如下：
+本文定义了操作范畴，证明了16个定理，核心结构如下：
 
 \begin{center}
 \begin{tabular}{lll}
