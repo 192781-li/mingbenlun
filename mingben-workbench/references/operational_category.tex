@@ -731,6 +731,63 @@ $f^1\to f^2$是质变（从无模型到有模型）；$f^2\to f^3$是质变（�
 $\alpha\in\{1,2,3\}$：自在、自为、自觉。不存在"比明性更明"的状态，只存在明性操作得更持续、更彻底。这对应禅宗三段（见山是山$\to$见山不是山$\to$见山还是山），第三段之后没有第四段。
 \end{remark}
 
+\section{量论操作化}
+
+在加权关系模型中，$U_{22}:X\to X$是非负矩阵。量论参数获得精确计算定义：
+
+\begin{definition}[量论参数]
+~
+\begin{itemize}
+\item $T$（寿命）：有限过程$T=\min\{n:U_{22}^n=0\}$（幂零指数）；无限过程$T=\infty$。
+\item $N$（净方向）：$N=\rho(U_{22})$，$U_{22}$的Perron-Frobenius谱半径。$N<1$异化，$N=1$稳态，$N>1$创造。
+\item $\alpha$（f-层级）：反馈嵌套深度，$\alpha\in\{1,2,3\}$。
+\item $M$（意义总量）：有限过程$M=\alpha\cdot T\cdot N$；无限过程$M=\alpha\sum_{n=0}^\infty N^n$。
+\item $W=O/M$（萃取率）：被!-系统取走的产出占总意义的比例。
+\item $l'=(1-N)\times100\%$（异化率，$N\leq1$时）。
+\item $C=R-A$（革命意识）：认清$R$减去接受$A$。
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[慢性死亡]\label{thm:slow-death}
+当$N<1$时，即使过程永远运行（生产性），总意义有限：$M=\alpha/(1-N)<\infty$。系统在"慢性死亡"——每步意义衰减，趋近于零。
+\end{theorem}
+
+\begin{theorem}[萃取加速异化]\label{thm:extraction-alienation}
+$W$越高则$N$越低。萃取把产出从反馈线抽走，$U_{22}$输入减少，谱半径下降。$W=1$时$U_{22}=0$，$N=0$，过程立即死亡。
+\end{theorem}
+
+\begin{theorem}[明性抵抗磨损]\label{thm:mingxing-resists}
+$C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³运行时线性过程$X$保持自我更新；f²把!-模型当自己时$U_{22}$被!-收缩削弱。
+\end{theorem}
+
+\section{完全性}
+
+\begin{theorem}[有限片段完全性]\label{thm:completeness-finite}
+在有限非交互片段（$F_1$型，$\mu$不动点）中，GoI解释对MELL片段完全：每个nilpotent连线对应一个证明（Girard 1989，Danos-Regnier 1995）。
+\end{theorem}
+
+\begin{theorem}[生命过程超越证明]\label{thm:life-beyond-proof}
+在余归纳片段（$\nu F_2$型）中，存在生产性Mealy机不对应任何有限证明。生产性流处理器的集合是连续统，有限证明的集合是可数的。
+\end{theorem}
+
+\begin{remark}[践演比证明根本]
+定理\ref{thm:life-beyond-proof}是"理论不能代替实践"的证明论表达：有限证明（理论）能保证结构性正确（可靠性），但不能穷尽无限生产性过程（践演）。有些真理只能通过"活出来"来知道。这是哥德尔不完备的范畴论版本，f³/践演是出路。
+\end{remark}
+
+\section{Hilb$^\omega$：量子PTC实例}
+
+\begin{theorem}[Hilb$^\omega$是PTC]\label{thm:hilb-ptc}
+以可分Hilbert空间为对象、因果有界线性算子为态射、$\ell^2$流对象、严格压缩反馈（Neumann级数$\sum U_{22}^n$，$\|U_{22}\|<1$时收敛）构成PTC。
+\end{theorem}
+
+\begin{proof}
+SMC结构标准（Hilbert张量积）。流对象$\ell^2(\mathbb{N};A)$有等距cons和hd/tl。生产性迹$\mathrm{Tr}^\omega(U)=U_{11}+U_{12}(I-U_{22})^{-1}U_{21}$在$\|U_{22}\|<1$时有界（Neumann级数定理）。Yanking在无实际反馈（$U_{12}=0$或$U_{21}=0$）时为$U_{11}$。Tightening是矩阵分块乘法的推论。复合保持严格压缩：$\|U_{22}V_{22}\|\leq\|U_{22}\|\|V_{22}\|<1$。Productivity由Neumann级数收敛保证。
+\end{proof}
+
+\begin{remark}[严格压缩的局限]
+$\|U_{22}\|<1$覆盖衰减反馈（异化/$N<1$情形）。酉反馈（量子演化/$N=1$）需要更一般的迹定义（幂有界性或强稳定性），待后续工作。
+\end{remark}
+
 \section{待证猜想}
 
 \begin{conjecture}[生命测度]\label{conj:measure}
@@ -751,7 +808,7 @@ $\alpha\in\{1,2,3\}$：自在、自为、自觉。不存在"比明性更明"的�
 
 \section{总结}
 
-本文定义了操作范畴，证明了42个定理，核心结构如下：
+本文定义了操作范畴，证明了48个定理，核心结构如下：
 
 \begin{center}
 \begin{tabular}{lll}
