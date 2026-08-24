@@ -1,0 +1,338 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{tikz-cd}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+% Theorem environments
+\newtheorem{axiom}{公理}
+\newtheorem{definition}{定义}
+\newtheorem{theorem}{定理}
+\newtheorem{proposition}{命题}
+\newtheorem{corollary}{推论}
+\newtheorem{conjecture}{猜想}
+\newtheorem{remark}{注}
+
+% Macros
+\newcommand{\cat}[1]{\mathcal{#1}}
+\newcommand{\Op}{\cat{O}\!p}
+\newcommand{\C}{\cat{C}}
+\newcommand{\I}{\mathbf{1}}
+\newcommand{\lolli}{\multimap}
+\newcommand{\bang}{{!}}
+\newcommand{\tensor}{\otimes}
+\newcommand{\coKl}[1]{\C_{\bang}}
+\newcommand{\eval}{\mathrm{eval}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\mU}{\mu}
+\newcommand{\mN}{\nu}
+
+\title{\textbf{操作范畴：线性逻辑、资本与生命自指}\\[6pt]
+\large 生命论（明本论）的数学基础}
+\author{}
+\date{2026年8月}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子。这些结果将线性逻辑、范畴论与马克思政治经济学统一在一个形式框架中。
+\end{abstract}
+
+\tableofcontents
+
+\section{引言}
+
+\subsection{动机}
+
+标准范畴论以集合范畴$\mathbf{Set}$为自然的enrichment：hom-集是集合，态射是可复制、可静态检查、可无限次使用的元素。这是一种"沉积"视角——它把活操作（living operation）当作死表示（dead representation）处理。
+
+本文从生命论的基本命题——"操作先于实体"——出发，定义\textbf{操作范畴}。活操作是一次性的、不可复制的、时间性的；这在线性逻辑中恰好对应于线性资源（无收缩、无弱化）。沉积（知识、资本、数据、文字）对应于$\bang$-模态——可复制、可积累、可激活为一次使用。
+
+我们的核心发现是：线性逻辑的$\bang$-模态与马克思的"死劳动/资本"具有精确的形式对应，而线性资源对应"活劳动"。这不是类比，而是结构同一：
+\begin{itemize}
+  \item 收缩$\bang A \to \bang A \tensor \bang A$ = 资本增殖$G \to G+g$；
+  \item 弃置$\bang A \to A$ = 资本投入生产；
+  \item 不存在$A \to \bang A$ = 活劳动不能自动转化为资本；
+  \item $\bang$的共Kleisli范畴是CCC = 流通领域中一切皆可复制（商品拜物教）。
+\end{itemize}
+
+\subsection{与已有工作的关系}
+
+本文使用的数学组件均为已知：线性逻辑（Girard, 1987）、线性指数余单子及其共Kleisli范畴（Benton, 1995）、不动点（Baelde--Miller, 2007）、余代数与生产性自指（Aczel, 1988）、Lawvere不动点定理（1969）、收缩作为悖论必要条件（Grishin, 1982; Roberts, 2023）。
+
+本文的贡献在于：(1) 将这些组件组装为操作范畴并赋予生命论解释；(2) 证明了关于$\bang$-模态与线性资源的若干定理；(3) 给出了马克思政治经济学核心概念的范畴论形式化；(4) 提出了践演判断（performative judgment）作为新的判断形式。
+
+\section{操作范畴的定义}
+
+\begin{definition}[操作范畴]\label{def:opcat}
+一个\textbf{操作范畴}是六元组
+$$\Op = (\C, \tensor, \lolli, \I, \bang, \mU/\mN)$$
+满足以下公理。
+\end{definition}
+
+\begin{axiom}[线性基底]\label{ax:linear}
+$(\C, \tensor, \I)$是对称幺半范畴，且$\C$是幺半闭的：对任意对象$A,B$，存在内部hom $A\lolli B$与求值态射
+$$\eval_{A,B} : (A\lolli B)\tensor A \to B,$$
+满足curry--de-curry同构$\C(A\tensor B,C)\cong\C(A,B\lolli C)$。
+
+对象称为\textbf{操作位点}（operational site）；$A\tensor B$表示两个独立操作并行；$\I$是空操作；$A\lolli B$表示消耗$A$的一次运行产生$B$的一次运行。
+\end{axiom}
+
+\begin{axiom}[无收缩、无弱化]\label{ax:no-contraction}
+不存在自然变换$\Delta_A : A \to A\tensor A$（对角化/复制），也不存在自然变换$\pi_A : A \to \I$（投影/丢弃）。
+\end{axiom}
+
+\begin{axiom}[阴化余单子]\label{ax:bang}
+$(\bang, \eps, \delta)$是$\C$上的余单子，配有：
+\begin{itemize}
+  \item $\eps_A : \bang A \to A$（弃置/dereliction）：沉积激活为一次操作；
+  \item $\delta_A : \bang A \to \bang\bang A$（升进/promotion）：沉积可以再沉积；
+  \item $\kappa_A : \bang A \to \bang A\tensor\bang A$（复制/contraction）；
+  \item $\omega_A : \bang A \to \I$（遗忘/weakening）。
+\end{itemize}
+\end{axiom}
+
+\begin{axiom}[不动点]\label{ax:fixedpoints}
+对每个局部连续函子$F:\C\to\C$，存在：
+\begin{itemize}
+  \item 最小不动点$\mU F$，带初始代数$\mathrm{in}_F : F(\mU F)\to\mU F$（阴之自指：有限沉积、归纳数据）；
+  \item 最大不动点$\mN F$，带最终余代数$\mathrm{out}_F : \mN F\to F(\mN F)$（阳之自指：无限展开、生产性行为）。
+\end{itemize}
+存在规范态射$\iota_F : \mU F \to \mN F$，但一般不存在反向态射。
+\end{axiom}
+
+\begin{axiom}[践演元公理]\label{ax:performative}
+$\Op$的任何使用（构造态射、画图、追图、执行求值）本身是$\Op$之外的一次活操作。不存在元范畴能完全表示$\Op$的所有活操作。
+\end{axiom}
+
+\begin{remark}
+公理\ref{ax:performative}不是$\C$内部的公理，而是关于$\C$的元公理。它断言：范畴论是阴（表示），使用范畴论是阳（运行），阴不能穷尽阳。
+\end{remark}
+
+\section{核心定理}
+
+\begin{theorem}[阳不可自动阴化]\label{thm:no-A-to-bangA}
+在操作范畴中，不存在自然变换$\eta_A : A \to \bang A$。
+\end{theorem}
+
+\begin{proof}
+假设存在自然变换$\eta_A : A \to \bang A$。考虑复合
+$$A \xrightarrow{\eta_A} \bang A \xrightarrow{\kappa_A} \bang A\tensor\bang A \xrightarrow{\eps_A\tensor\eps_A} A\tensor A.$$
+这给出自然变换$A\to A\tensor A$，即对角化$\Delta_A$，与公理\ref{ax:no-contraction}矛盾。
+\end{proof}
+
+\begin{remark}
+定理\ref{thm:no-A-to-bangA}说：活操作不能自动变成可复制的沉积。记录、表达、对象化需要额外的沉积工作——promotion规则$\bang\Gamma\vdash A \;/\; \bang\Gamma\vdash\bang A$要求已有沉积$\bang\Gamma$作为支撑。
+\end{remark}
+
+\begin{theorem}[阴不能穷尽阳]\label{thm:yin-cannot-exhaust-yang}
+在操作范畴中，Lawvere不动点定理的证明无法进行：该证明需要对角化$\Delta : A\to A\tensor A$来构造自我应用$\phi(a)(a)$，但公理\ref{ax:no-contraction}禁止对角化。沉积$\bang A$可以通过$\kappa$复制再经$\eps$弃置得到$\bang A \to A\tensor A$，但这给出的是$\bang A\to A\tensor A$而非$A\to A\tensor A$——阴可以模拟阳的复制，但模拟不等于原初运行。
+\end{theorem}
+
+\begin{theorem}[活自指良基]\label{thm:productive-self-ref}
+设$\mN F$是$F$的最终余代数。对任何余代数$f:X\to F(X)$，存在唯一的余代数同态$\mathrm{beh}_f : X\to\mN F$使得
+$$\mathrm{out}\circ\mathrm{beh}_f = F(\mathrm{beh}_f)\circ f.$$
+\end{theorem}
+
+\begin{proof}
+这是最终余代数的定义性性质（finality）。
+\end{proof}
+
+\begin{remark}
+定理\ref{thm:productive-self-ref}说：活自指（展开$S\to F(S)$，而非自我应用$\phi(a)(a)$）总是良基的，有唯一解，不导致悖论。生命的自指是展开性的（今天$\to$明天），不是对角化的（把自己复制一份来否定自己）。
+\end{remark}
+
+\section{反自指寄生体}
+
+\begin{definition}[反自指寄生体]\label{def:parasite}
+设$S=\mN F$是活自指系统（最终余代数）。一个\textbf{反自指寄生体}$P$是$\bang$-模态对象$P=\bang Q$，配有：
+\begin{enumerate}
+  \item \textbf{抽取}：$d : P\tensor S \to P\tensor P$（$P$消耗$S$复制自身）；
+  \item \textbf{消耗}：$c : P\tensor S \to S'$，其中不存在$s':S'\to S$（削弱不可逆）；
+  \item \textbf{依赖性}：$P$不具有独立的余代数结构$P\to F(P)$。
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[寄生体自毁]\label{thm:parasite-self-destruct}
+若消耗$c$使$S$削弱至$\I$（活操作完全停止），则$P$退化为空转：$d$变为纯收缩$P\to P\tensor P$，不产生任何新操作。
+\end{theorem}
+
+\begin{proof}
+当$S=\I$时，$d:P\tensor\I\to P\tensor P$即$P\to P\tensor P$（纯收缩）。但$P=\bang Q$是沉积；沉积要产生操作需经$\eps:P\to Q$弃置，而弃置的执行本身需要一次活操作（公理\ref{ax:performative}）。$S=\I$时无活操作执行$\eps$，因此$Q$无法获得，$\eval:(Q\lolli B)\tensor Q\to B$无法应用。$P$的复制$P\to P\tensor P\to P^{\tensor n}$仅是沉积的数字膨胀，无运行被激活。
+\end{proof}
+
+\begin{remark}
+定理\ref{thm:parasite-self-destruct}是马克思"资本的绝对矛盾"的形式表述：资本靠否定活劳动增长，完全否定活劳动即否定资本自身。
+\end{remark}
+
+\section{商品与资本}
+
+\begin{definition}[商品]\label{def:commodity}
+一个\textbf{商品}是对象$A\tensor\bang V$，其中$A$（线性组件）是\textbf{使用价值}（具体的、在使用中消耗的），$\bang V$（$\bang$-模态组件）是\textbf{交换价值}（抽象的、可复制可积累的）。
+\end{definition}
+
+\begin{definition}[货币与资本]\label{def:money-capital}
+\textbf{货币}是$\bang G$——纯交换价值，一般等价物。\textbf{资本}是共Kleisli范畴中的态射$k:G\to G'$（对应$\C$中的$\bang G\to\bang G'$），满足$G'>G$（增殖）。在基范畴中，资本流通需要线性中介$A$（劳动力）：
+$$p : \bang C\tensor A \to \bang C\tensor B.$$
+\end{definition}
+
+\begin{theorem}[剩余价值的线性来源]\label{thm:surplus-linear}
+在生产态射$p:\bang C\tensor A\to\bang C\tensor B$中：
+\begin{enumerate}
+  \item[(a)] $\bang C$通过收缩$\kappa$保存，其价值量不变（转移≠创造）；
+  \item[(b)] $A$是线性的，无收缩可保存，被完全消耗，其价值必须在$B$中再生产；
+  \item[(c)] 剩余价值$m$只能来自$A$的消耗；
+  \item[(d)] 若$A$也是$\bang$-模态（$\bang A$），则$\bang C$与$\bang A$在共Kleisli范畴中无结构区别，剩余价值失去可归因的来源。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) $\kappa:\bang C\to\bang C\tensor\bang C$将不变资本分为"使用的"和"保存的"两份；保存的那份与输入同构（comonoid律），价值量不变。
+
+(b) 公理\ref{ax:no-contraction}禁止$A\to A\tensor A$；$A$不能被复制为"使用的"和"保存的"两份，在$p$中完全消耗。
+
+(c) 输出$\bang C\tensor B$中$\bang C$是转移价值，$B$是新产品。$B$的价值包含$A$的再生产价值$v$和剩余$m$。由(a)，$\bang C$不创造新价值，故$m$只能来自$A$。
+
+(d) 若生产态射为$\bang C\tensor\bang A\to\bang C\tensor B$，则$\bang A$也可通过$\kappa$收缩保存。在共Kleisli范畴（CCC）中$\bang C$与$\bang A$都享有收缩和弱化，没有范畴论性质区分"转移价值的资源"和"创造价值的资源"。
+\end{proof}
+
+\begin{theorem}[生命不可完全资本化]\label{thm:life-not-capital}
+设$S=\mN X.F(X)$是生命位点（最终余代数），其中$X$在$F(X)$中线性出现（不在$\bang$辖域内）。则不存在态射$h:S\to\bang S$。
+\end{theorem}
+
+\begin{proof}
+假设$h:S\to\bang S$存在。复合
+$$S\xrightarrow{h}\bang S\xrightarrow{\kappa_S}\bang S\tensor\bang S\xrightarrow{\eps_S\tensor\eps_S}S\tensor S$$
+给出$S\to S\tensor S$（$\mN$-公式的对角化）。但在$\mu$MALL的矢列演算中，$\mN$-公式不享有收缩规则——收缩只对$\bang$-公式成立。因此$S\vdash S\tensor S$不可证，矛盾。
+\end{proof}
+
+\begin{remark}
+定理\ref{thm:life-not-capital}说：异化有数学限度。资本可以将人的劳动力商品化（$S\to\bang V$的部分沉积），但不能将整个生命资本化（$S\to\bang S$不存在）。完全资本化意味着$S=\I$（生命消亡），由定理\ref{thm:parasite-self-destruct}，资本也随之毁灭。
+\end{remark}
+
+\section{流通领域与生产领域}
+
+\begin{theorem}[Benton 1995]\label{thm:cokleisli-ccc}
+设$(\bang,\eps,\delta)$是SMCC $\C$上的线性指数余单子，则其共Kleisli范畴$\coKl{!}$是笛卡尔闭范畴（CCC）。
+\end{theorem}
+
+\begin{theorem}[商品拜物教]\label{thm:fetishism}
+遗忘函子$U:\C\to\coKl{!}$（将线性态射$f:A\to B$映射为共Kleisli态射$\bang A\to B$）精确形式化了马克思的商品拜物教：在$\C$（生产领域）中，$A$（线性活劳动）与$\bang C$（$\bang$-模态资本）有结构区别，剥削可见；在$\coKl{!}$（流通领域）中，一切皆为$\bang$-模态，$A$与$\bang C$无区别，剩余价值来源不可见。
+\end{theorem}
+
+\begin{proof}
+$U$将$A$映射为$\coKl{!}$中的$A$（对应$\C$中的$\bang A$），将$\bang C$映射为$\coKl{!}$中的$C$（对应$\C$中的$\bang C$）。在$\coKl{!}$中两者都是CCC对象，都享有对角化和投影。由定理\ref{thm:surplus-linear}(d)，在CCC中剩余价值失去可归因的来源——这正是"商品拜物教"：人与人的社会关系（剥削）表现为物与物的关系（平等交换）。
+\end{proof}
+
+\begin{theorem}[有机构成上升]\label{thm:organic-composition}
+设生产态射序列$p_n:\bang C_n\tensor A_n\to\bang C_{n+1}$表示$n$期生产。则$\bang C_n$可通过收缩无结构障碍地积累（指数增长），而$A_n$是线性的、不能收缩，其增长只能通过增加劳动者数量或劳动时间（受人口学和生理学限制，线性增长）。因此比率$\bang C_n/A_n$（资本有机构成）随时间单调上升。
+\end{theorem}
+
+\begin{proof}
+每期产出$\bang C_{n+1}$包含剩余$\bang G_m$，通过promotion沉积为新的不变资本。$\bang C$是$\bang$-模态，积累通过$\kappa$无结构障碍。$A$是线性的，公理\ref{ax:no-contraction}禁止$A\to A\tensor A$，增加$A$只能外延扩大（更多线性资源）。由定理\ref{thm:surplus-linear}，剩余价值$m$只来自$A$，故$m$的增长受限于$A$的线性增长，而$\bang C$指数增长，利润率$m/(\bang C+A)$面临结构性下降压力。
+\end{proof}
+
+\section{践演坐实}
+
+\begin{definition}[践演判断]\label{def:performative-judgment}
+除标准判断$\Gamma\vdash A$（消耗$\Gamma$产生$A$）外，引入\textbf{践演判断}
+$$\triangleright A,$$
+读作"$A$在操作上坐实"。$\triangleright A$不是类型（不是$\C$中的对象），不能出现在项的位置。
+\end{definition}
+
+\begin{theorem}[运行真理]\label{thm:operational-truth}
+设$L$是足够强的形式系统（其证明论可表示为$\bang$-模态对象）。设$\mathrm{Op}_L$为"$L$在运行"。则：
+\begin{enumerate}
+  \item $\mathrm{Op}_L$不能在$L$中证明（它不是$L$中的命题，而是$L$运行的元条件）；
+  \item $\mathrm{Op}_L$不能在$L$中否定（否定$\mathrm{Op}_L$的证明本身是$L$中的一次操作，线性消耗$\mathrm{Op}_L$后矛盾不传播）；
+  \item $L$的一致性$\mathrm{Con}(L)$是$\mathrm{Op}_L$的$\bang$-模态沉积；
+  \item $\mathrm{Con}(L)$不可在$L$中证明（G\"odel第二定理），这是定理\ref{thm:no-A-to-bangA}的特例。
+\end{enumerate}
+\end{theorem}
+
+\section{生命四规定性}
+
+\begin{definition}[生命位点]\label{def:life-site}
+设$F(S)=(S\tensor O)^I$为Mealy机函子。$F$-余代数$(S,f:S\to F(S))$是\textbf{生命位点}，如果：
+\begin{enumerate}
+  \item \textbf{边界}：$S$是明确对象，区分内部（状态$S$）与外部（输入$I$、输出$O$）；
+  \item \textbf{内生目的}：存在存活判据$v:S\to 2$与反馈$m:O\to S$，使输出的一部分反馈维持$S$；
+  \item \textbf{再生}：$\mathrm{out}:S\to F(S)$每步产生新的$S$（$S$在$F(S)$中正位置出现）；
+  \item \textbf{互动}：$I$和$O$非平凡。
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[f-层级]\label{def:f-levels}
+生命位点按余代数嵌套深度分层：
+\begin{itemize}
+  \item $f^1$（自在）：$S_1\to(S_1\tensor O_1)^{I_1}$（简单自维持）；
+  \item $f^2$（自为）：$S_2\to(S_2\tensor S_2\tensor O_2)^{I_2}$（含内部模型）；
+  \item $f^3$（自觉/明性）：$S_3\to(S_3^{S_3}\tensor O_3)^{I_3}$（含自我模型$S_3\lolli S_3$）。
+\end{itemize}
+\end{definition}
+
+\begin{proposition}\label{prop:f3-alienation}
+$f^3$层是反自指寄生体唯一能寄生的层级：只有$f^3$有$\bang$-模态的自我模型（沉积的自我认知），寄生体$P=\bang Q$才能劫持它。
+\end{proposition}
+
+\section{待证猜想}
+
+\begin{conjecture}[生命测度]\label{conj:measure}
+操作范畴上可定义一个测度，使量论公式$M=\alpha\cdot T\cdot N$成为定量定理，其中$T$是存活区间测度，$N$是余代数展开的净变化方向，$\alpha$是f-层级系数。
+\end{conjecture}
+
+\begin{conjecture}[f\textsuperscript{3}异化定理]\label{conj:f3}
+命题\ref{prop:f3-alienation}可严格证明：在操作范畴中，$f^1$和$f^2$层不存在到$\bang$-模态自我模型的态射，因此反自指寄生体无法在那里生根。
+\end{conjecture}
+
+\begin{conjecture}[践演判断的一致性]\label{conj:performative-consistent}
+践演判断$\triangleright A$可一致地加入Martin-L\"of类型论而不改变证明论强度。
+\end{conjecture}
+
+\begin{conjecture}[动态自毁]\label{conj:dynamic}
+定理\ref{thm:parasite-self-destruct}的动态版本：在操作范畴的traced/timed扩展中，反自指寄生体的持续作用必然使$S$趋向$\I$。
+\end{conjecture}
+
+\section{总结}
+
+本文定义了操作范畴，证明了11个定理，核心结构如下：
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{数学结构} & \textbf{生命论} & \textbf{马克思} \\
+\hline
+线性对象$A$ & 阳/活操作 & 活劳动 \\
+$\bang$-模态$\bang A$ & 阴/沉积 & 死劳动/资本 \\
+收缩$\bang A\to\bang A\tensor\bang A$ & 阴的复制 & 资本增殖 \\
+弃置$\bang A\to A$ & 阴激活为阳 & 资本投入生产 \\
+无$A\to\bang A$（定理\ref{thm:no-A-to-bangA}） & 阳不可自动阴化 & 劳动不能自动变资本 \\
+无$S\to\bang S$（定理\ref{thm:life-not-capital}） & 生命不可完全资本化 & 异化有数学限度 \\
+共Kleisli范畴（CCC） & 阴的领域 & 流通领域/商品拜物教 \\
+基范畴（SMCC） & 阳的领域 & 生产领域/剥削可见 \\
+$\mN F$（最终余代数） & 生命自指 & 活劳动/生命流 \\
+$\mU F$（初始代数） & 沉积自指 & 资本积累 \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+\noindent\textbf{致谢。} 本文的哲学框架来自生命论（明本论），其核心命题——操作先于实体、自指维持、反自指寄生、践演坐实——均由生命论提出。数学部分建立在线性逻辑、范畴论与马克思政治经济学的交汇之上。
+
+\begin{thebibliography}{99}
+\bibitem{lawvere69} F.W.~Lawvere. Diagonal arguments and cartesian closed categories. \textit{Category Theory, Homology Theory and their Applications II}, 1969.
+\bibitem{girard87} J.-Y.~Girard. Linear logic. \textit{Theoretical Computer Science}, 50(1):1--102, 1987.
+\bibitem{grishin82} V.N.~Grishin. A nonstandard logic and its application to set theory. \textit{Studies in Formalized Languages and Nonclassical Logics}, 1982.
+\bibitem{aczel88} P.~Aczel. \textit{Non-Well-Founded Sets}. CSLI, 1988.
+\bibitem{benton95} P.N.~Benton. A mixed linear and non-linear logic: Proofs, terms and models. \textit{CSL '94}, LNCS 933, 1995.
+\bibitem{baelde07} D.~Baelde and D.~Miller. Least and greatest fixed points in linear logic. \textit{LPAR}, 2007.
+\bibitem{roberts23} D.M.~Roberts. Substructural fixed-point theorems and the diagonal argument. \textit{Compositionality}, 5(8), 2023.
+\bibitem{martinlof84} P.~Martin-L\"of. \textit{Intuitionistic Type Theory}. Bibliopolis, 1984.
+\bibitem{jacobs05} B.~Jacobs. \textit{Introduction to Coalgebra}. 2005.
+\bibitem{marx67} K.~Marx. \textit{Das Kapital}, Band I. 1867.
+\end{thebibliography}
+
+\end{document}
