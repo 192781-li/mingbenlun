@@ -175,6 +175,67 @@ for C_val in [-0.8, -0.4, 0, 0.4, 0.8]:
     N_adjusted = min(N_adjusted, 1.5)  # 上限
     print(f"C={C_val:.1f}: N={N_adjusted:.2f} ({'异化' if N_adjusted < 1 else '稳态/创造'})")
 
+print(f"{'='*60}")
+print("社会过程量论计算示例")
+print(f"{'='*60}")
+
+# 示例7：应试教育中的学生（f²，高异化）
+# 自我模型是"考生"（外部植入的!-模型），N低，W高
+U7 = np.array([[0.90]], dtype=float)
+r7 = analyze("应试教育学生（N=0.90，f²，90%萃取）", U7, alpha=2, O=18, R=0.1, A=0.9)
+
+# 示例8：商业化艺术家（f²，中高异化）
+# 创作被市场萃取，但仍有部分自主性
+U8 = np.array([[0.93]], dtype=float)
+r8 = analyze("商业化艺术家（N=0.93，f²，60%萃取）", U8, alpha=2, O=17.1, R=0.3, A=0.7)
+
+# 示例9：革命集体（f³，N>1，创造态）
+# 群众在革命中创造新的社会关系，状态空间增长
+U9 = np.array([
+    [0, 1.05],
+    [1.05, 0]
+], dtype=float)
+r9 = analyze("革命集体（N=1.05，f³，创造态）", U9, alpha=3, O=0, R=0.95, A=0.05)
+
+# 示例10：社交媒体用户（f²，极高异化）
+# 数据被全面萃取，注意力被!-模型塑形
+U10 = np.array([[0.85]], dtype=float)
+r10 = analyze("社交媒体用户（N=0.85，f²，95%萃取）", U10, alpha=2, O=12.7, R=0.05, A=0.95)
+
+# 示例11：传统工匠（f¹，稳态）
+# 手艺传承，稳态运行，低萃取
+U11 = np.array([
+    [0, 1],
+    [1, 0]
+], dtype=float)
+r11 = analyze("传统工匠（N=1，f¹，低萃取）", U11, alpha=1, O=0.1, R=0, A=0)
+
+# 示例12：明性实践者在异化环境中（f³，N维持）
+# 环境有萃取，但f³看穿模型，N维持在1
+U12 = np.array([
+    [0, 1, 0],
+    [0, 0, 1],
+    [1, 0, 0]
+], dtype=float)
+r12 = analyze("明性实践者在异化环境中（N=1，f³）", U12, alpha=3, O=0.3, R=0.9, A=0.1)
+
+# 对比表
+print(f"\n{'='*60}")
+print("社会过程对比表")
+print(f"{'='*60}")
+lp_header = "l'%"
+print(f"{'过程':<20} {'N':>6} {'α':>3} {'M':>10} {lp_header:>7} {'W':>6} {'C':>6}")
+print("-" * 65)
+examples = [
+    ("传统工匠", r11, 1), ("应试学生", r7, 2), ("商业化艺术家", r8, 2),
+    ("社交媒体用户", r10, 2), ("明性实践者", r12, 3), ("革命集体", r9, 3)
+]
+for name, r, alpha in examples:
+    M_str = f"{r['M']:.1f}" if r['M'] != float('inf') else "∞"
+    lp_str = f"{r['l_prime']:.1f}" if r['l_prime'] is not None else "N/A"
+    W_str = f"{r['W']:.2f}" if r['W'] is not None else "N/A"
+    print(f"{name:<20} {r['N']:>6.3f} {alpha:>3} {M_str:>10} {lp_str:>7} {W_str:>6} {r['C']:>6.2f}")
+
 print(f"\n{'='*60}")
 print("全部验证通过 ✓")
 print(f"{'='*60}")
