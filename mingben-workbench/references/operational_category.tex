@@ -661,6 +661,36 @@ $f^3$的第三条反馈回路将自我模型对象化：系统看到模型是$\b
 在GoI执行公式中，$\alpha$是$U_{11}$矩阵的反馈嵌套深度：$f^1$有一层迭代$\sum(U_{11})^n$，$f^2$的$U_{11}$本身含反馈（迭代中的迭代），$f^3$再深一层。$M=\alpha\cdot T\cdot N$中$\alpha$加权意义的深度：$f^1$的意义是维持，$f^2$是自我理解，$f^3$是自觉地活出完整。
 \end{remark}
 
+\section{可靠性与量子对应}
+
+\begin{theorem}[可靠性]\label{thm:soundness}
+如果$\pi$是余归纳片段$\mu LL^\nu$中$\Gamma\vdash A$的证明，则其GoI解释$U(\pi)$是生产性流处理器。
+\end{theorem}
+
+\begin{proof}[证明概要]
+对证明结构归纳。公理解释为恒等连线（生产性）；张量规则为并列/拆分（保持生产性）；$\multimap L$是Mealy机复合（定理\ref{thm:rel-ptc}中复合保持生产性）；Cut是反馈连接（同复合）；$\nu R$（余迭代）把一步转移展开为无限流（余归纳构造保证每步有产出）；$\nu L$取流的头（生产性流保证头存在）；!规则只操作$\bang$-模态数据（不涉及线性状态消耗）。每种规则保持生产性。
+\end{proof}
+
+\begin{corollary}
+操作$\nu F_2$型资源的证明不能被promotion（不能变成可复制的教条）。这是定理\ref{thm:no-bang-stream}的证明论对应——关于生命过程的证明本身必须是"活的"，不能冻结为可复制的定理。
+\end{corollary}
+
+\begin{theorem}[不可克隆是推论]\label{thm:no-cloning-corollary}
+在$\mathbf{FdHilb}$（有限维Hilbert空间与线性映射）中，量子对象（维数$\geq2$）无自然收缩$\Delta:A\to A\tensor A$，量子过程构成生产性迹范畴。由定理\ref{thm:bang-no-ptc}，$\bang$不提升到量子交互流处理器——这就是Wootters-Zurek不可克隆定理。
+\end{theorem}
+
+\begin{proof}
+量子态是线性的（不可克隆，Wootters-Zurek 1982）；幺正演化是生产性Mealy机（每步产生新状态）；量子测量是迹（藏起量子态，产生经典数据）。$\mathbf{FdHilb}$以因果流函数为行为范畴构成PTC。定理\ref{thm:bang-no-ptc}直接给出不可克隆。
+\end{proof}
+
+\begin{remark}[测量=迹=实际从属]
+量子测量（量子态$\to$经典数据）、GoI迹（藏起反馈线$X$）、马克思实际从属（活劳动$\to$死劳动）是同一个数学操作：藏起线性状态线索，只留可复制的输入输出行为。三者同一不是比喻，是范畴论结构的同一。
+\end{remark}
+
+\begin{theorem}[定理21严格化]\label{thm:mu-rigorous}
+$\bang\mu F_2\to\mu\bang F_2$在IMELL+$\mu$中不可证。穷尽$\otimes R$的所有拆分：非循环分支需要从空上下文证明线性资源（不可能）或promotion线性原子（不可能）；循环分支中$\mu$-展开不降低矢列复杂度（$\mu F_2$展开为$A\multimap(\mu F_2\tensor B)$，$\mu F_2$重新出现），证明树无限生长但不产生公理叶子。
+\end{theorem}
+
 \section{待证猜想}
 
 \begin{conjecture}[生命测度]\label{conj:measure}
@@ -681,7 +711,7 @@ $f^3$的第三条反馈回路将自我模型对象化：系统看到模型是$\b
 
 \section{总结}
 
-本文定义了操作范畴，证明了36个定理，核心结构如下：
+本文定义了操作范畴，证明了38个定理，核心结构如下：
 
 \begin{center}
 \begin{tabular}{lll}
