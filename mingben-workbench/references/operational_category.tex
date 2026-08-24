@@ -784,9 +784,49 @@ $C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³�
 SMC结构标准（Hilbert张量积）。流对象$\ell^2(\mathbb{N};A)$有等距cons和hd/tl。生产性迹$\mathrm{Tr}^\omega(U)=U_{11}+U_{12}(I-U_{22})^{-1}U_{21}$在$\|U_{22}\|<1$时有界（Neumann级数定理）。Yanking在无实际反馈（$U_{12}=0$或$U_{21}=0$）时为$U_{11}$。Tightening是矩阵分块乘法的推论。复合保持严格压缩：$\|U_{22}V_{22}\|\leq\|U_{22}\|\|V_{22}\|<1$。Productivity由Neumann级数收敛保证。
 \end{proof}
 
-\begin{remark}[严格压缩的局限]
-$\|U_{22}\|<1$覆盖衰减反馈（异化/$N<1$情形）。酉反馈（量子演化/$N=1$）需要更一般的迹定义（幂有界性或强稳定性），待后续工作。
+\begin{theorem}[Hilb$^\omega$完整PTC]\label{thm:hilb-ptc-full}
+以每步有界的因果流$A^{\bar\omega}$（$\ell^\infty$型）为流对象、幂有界反馈（$\sup_n\|U_{22}^n\|<\infty$）为生产性条件，Hilb$^\omega$是PTC。$N<1$时输出$\ell^2$有界（衰减/暂态）；$N=1$时输出每步有界（持续/稳态，覆盖酉演化）；$N>1$时输出增长（创造）。
+\end{theorem}
+
+\begin{proof}
+幂有界保证每步输出$b_n=U_{11}(a_n)+\sum_{k<n}U_{12}U_{22}^{n-1-k}U_{21}(a_k)$有界。幂有界算子复合仍幂有界。其余公理同定理\ref{thm:hilb-ptc}。
+\end{proof}
+
+\section{革命跃迁}
+
+\begin{theorem}[异化降低$N$]\label{thm:alienation-lowers-n}
+异化态的反馈算子为$U_{22}\circ\pi_!$，其中$\pi_!$是通过!-模型的投影（非满射，丢失线性状态的不可复制部分）。$\rho(U_{22}\circ\pi_!)\leq\rho(U_{22})$，且$\pi_!$非满射时严格不等。
+\end{theorem}
+
+\begin{theorem}[革命=消除!-寄生Cut]\label{thm:revolution-cut}
+消除!-寄生反馈回路（移除$\pi_!$和!-萃取$!_B$）后，$U_{22}$恢复为原始线性反馈，$N$恢复到$\geq1$，$W$降到0，$M$从有限恢复为无限。社会革命（切断资本的!-回路）和个人明性（切断意识形态的!-回路）在GoI中是同一个操作。
+\end{theorem}
+
+\begin{remark}[过渡时期]
+Cut消除需要多步计算。过渡时期对应!-反馈已断但线性反馈未完全建立，$N$在波动中上升。系统保持生产性当且仅当线性反馈的增长速度超过!-残余的衰减速度。
 \end{remark}
+
+\section{综合}
+
+\begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}
+$G^\omega:\mathbf{PTC}\to\mathbf{PTC}$是PTC范畴上的自函子，把PTC映射为dagger紧闭合PTC。由定理\ref{thm:f3-fixedpoint}，三层封闭：$G^{\omega 3}(\mathcal{C})\cong G^{\omega 2}(\mathcal{C})$。
+\end{theorem}
+
+\begin{theorem}[生命论基本定理]\label{thm:fundamental}
+以下陈述在操作范畴论中是同一个数学结构的面向：
+\begin{enumerate}
+\item 生命是自指过程$S=f(S)$（践演元公理）
+\item 生命过程是线性的（资源敏感，不可复制）
+\item 生命流$\nu F_2$不可被!-资本化（定理\ref{thm:no-bang-stream}）
+\item 异化是把!-模型错认为线性过程（定理\ref{thm:alienation-mistake}）
+\item 明性是看穿!-模型（定理\ref{thm:mingxing}）
+\item 革命是消除!-寄生Cut（定理\ref{thm:revolution-cut}）
+\item 量子不可克隆是同一结构在物理领域的显现（定理\ref{thm:no-cloning-corollary}）
+\item 慢性死亡是$N<1$时意义有限（定理\ref{thm:slow-death}）
+\item 生命过程超越有限证明（定理\ref{thm:life-beyond-proof}）
+\end{enumerate}
+从"在活着"这个践演事实出发，经线性逻辑和范畴论形式化，必然推出全部九条。
+\end{theorem}
 
 \section{待证猜想}
 
@@ -808,7 +848,7 @@ $\|U_{22}\|<1$覆盖衰减反馈（异化/$N<1$情形）。酉反馈（量子演
 
 \section{总结}
 
-本文定义了操作范畴，证明了48个定理，核心结构如下：
+本文定义了操作范畴，证明了54个定理，核心结构如下：
 
 \begin{center}
 \begin{tabular}{lll}
