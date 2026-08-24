@@ -38,7 +38,7 @@
 \maketitle
 
 \begin{abstract}
-本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子；(6) $\bang$不提升到交互余代数（Mealy机）范畴，但提升到非交互余代数范畴——这给出马克思"形式从属/实际从属"和Braverman"去技能化"的形式证明；(7) 多项式函子的!-分配二分法：!只分配给数据函子（$\tensor$,\&,$\bang$），不分配给计算函子（$\lolli$后件,$\oplus$），这与归纳类型的严格正性条件形成对偶，并对应量子不可克隆定理。这些结果将线性逻辑、范畴论与马克思政治经济学统一在一个形式框架中。
+本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子；(6) $\bang$不提升到交互余代数（Mealy机）范畴，但提升到非交互余代数范畴——这给出马克思"形式从属/实际从属"和Braverman"去技能化"的形式证明；(7) 多项式函子的!-分配二分法：!只分配给数据函子（$\tensor$,\&,$\bang$），不分配给计算函子（$\lolli$后件,$\oplus$），这与归纳类型的严格正性条件形成对偶，并对应量子不可克隆定理；(8) 不动点提升定理：数据函子的最大不动点可被!提升（数据流可复制），但交互函子$F_2$的最小和最大不动点均不可被!提升——有限交互和无限生命流都不可复制为过程，唯一可做的是记录为数据（实际从属）。这些结果将线性逻辑、范畴论与马克思政治经济学统一在一个形式框架中。
 \end{abstract}
 
 \tableofcontents
@@ -383,6 +383,52 @@ $\bang$情形：$P(\bang G_1)$由promotion归约为$Q(G_1)$；$D(\bang G_1)$由p
 线性逻辑是量子计算的类型论基础。定理\ref{thm:dichotomy}将量子信息中三个独立的no-go定理统一为$Q(F)$的不同子句：$P(X)=\bot$对应不可克隆定理（Wootters-Zurek 1982）；$Q(A\lolli(X\tensor B))=\bot$对应不可编程定理（Nielsen-Chuang 1997）；$Q(X\oplus B)=\bot$对应不可广播定理（Barnum et al. 1996）。生命作为交互计算过程$A\lolli(X\tensor B)$，与量子过程一样不可复制。
 \end{remark}
 
+\section{不动点的!-分配：生命流不可资本化}
+
+我们将定理\ref{thm:dichotomy}推广到不动点。设$G(X)=F(\bang X)$，问$\bang\mu F\to\mu G$和$\bang\nu F\to\nu G$是否存在。
+
+\begin{theorem}[数据函子的$\nu$-提升]\label{thm:nu-lift-data}
+若$Q(F)=\top$（分配律$\lambda^F:\bang F\To F\bang$存在），则$\bang\nu F\to\nu(F\bang)$存在。
+\end{theorem}
+
+\begin{proof}
+设$\mathrm{out}_F:\nu F\to F(\nu F)$为最终余代数。构造$\bang\nu F$上的$G$-余代数（$G(X)=F(\bang X)$）：
+$$\bang\nu F\xrightarrow{\delta}\bang\bang\nu F\xrightarrow{\bang\,\mathrm{out}_F}\bang F(\nu F)\xrightarrow{\lambda^F_{\nu F}}F(\bang\nu F)\xrightarrow{F(\delta)}F(\bang\bang\nu F)=G(\bang\nu F).$$
+由$\nu G$的终结性，存在唯一态射$\bang\nu F\to\nu G$。
+\end{proof}
+
+\begin{theorem}[生命流不可资本化]\label{thm:nu-no-lift-life}
+对$F_2(X)=A\lolli(X\tensor B)$，不存在$\bang\nu F_2\to\nu(F_2\bang)$。
+\end{theorem}
+
+\begin{proof}
+需证$\bang\nu F_2\vdash\nu G$，$G(X)=A\lolli(\bang X\tensor B)$。由$\nu$-fold，只需证$\bang\nu F_2\vdash A\lolli(\bang\nu G\tensor B)$，即$\bang\nu F_2,A\vdash\bang\nu G\tensor B$。结论主连接词为$\tensor$，最后一步只能是$\tensor R$，四种上下文拆分与定理\ref{thm:no-lift-interactive}完全相同：(1)空上下文证$\bang\nu G$需promotion给$\vdash\nu G$，再由$\nu$-fold要求$A\vdash\bang\nu G\tensor B$，$A$为新原子不可证；(2)$\vdash B$不可证；(3)$A\vdash B$不可证；(4)$A\vdash\bang\nu G$要求promotion但$A$非$\bang$-模态。左侧收缩、弃置、$\nu$-unfold不改变结论：弃置后unfold求值得$\nu F_2\tensor B$，拆分后仍需$\nu F_2\vdash\bang\nu G$（promotion不适用）或回到同一目标（循环）。
+\end{proof}
+
+\begin{theorem}[有限交互过程不可提升为过程]\label{thm:mu-no-lift}
+对$F_2(X)=A\lolli(X\tensor B)$，不存在$\bang\mu F_2\to\mu(F_2\bang)$。
+\end{theorem}
+
+\begin{proof}
+由$\mu$-fold，需证$\bang\mu F_2,A\vdash\bang\mu G\tensor B$，与定理\ref{thm:nu-no-lift-life}结构相同（$\nu$换$\mu$），四种$\tensor R$拆分同样全部失败。$\mu$-elimination归纳步骤$F_2(\bang\mu G\tensor B)\vdash\bang\mu G\tensor B$经$\lolli L$分解后，一个子目标成立（$A\vdash A$公理），另一个子目标成立（弃置多余$B$），但归纳结论$\bang\mu F_2,A,\mu F_2\vdash\bang\mu G\tensor B$与弃置后目标相同，构成循环而非进展。
+\end{proof}
+
+\begin{remark}[2$\times$2矩阵]
+分界不是有限/无限，而是交互/非交互：
+\begin{center}
+\begin{tabular}{c|cc}
+ & $\mu$（有限） & $\nu$（无限）\\\hline
+$F_1$（非交互/数据） & \checkmark & \checkmark（定理\ref{thm:nu-lift-data}）\\
+$F_2$（交互/生命） & \ding{55}（定理\ref{thm:mu-no-lift}） & \ding{55}（定理\ref{thm:nu-no-lift-life}）
+\end{tabular}
+\end{center}
+数据（无论有限无限）可被$\bang$复制；交互过程（无论有限无限）不可被$\bang$复制为过程。有限交互可被\emph{记录为数据}（转化为$F_1$型结构），但记录不是交互——这正是定理\ref{thm:subsumption}的实际从属。
+\end{remark}
+
+\begin{remark}[哲学意义]
+定理\ref{thm:nu-no-lift-life}是"生命不可完全资本化"（定理\ref{thm:life-not-capital}）的加强：不仅一步活操作不可资本化，整个无限交互自指过程$\nu F_2$——一个持续回应、持续成长的生命——不可被$\bang$穿透。这是宇宙中唯一不可被复制/沉积/资本化的结构：无限的交互自指过程。资本唯一能做的是把交互改造成非交互（去技能化，定理\ref{thm:subsumption}），把生命过程改造成数据流。
+\end{remark}
+
 \section{待证猜想}
 
 \begin{conjecture}[生命测度]\label{conj:measure}
@@ -403,7 +449,7 @@ $\bang$情形：$P(\bang G_1)$由promotion归约为$Q(G_1)$；$D(\bang G_1)$由p
 
 \section{总结}
 
-本文定义了操作范畴，证明了16个定理，核心结构如下：
+本文定义了操作范畴，证明了19个定理，核心结构如下：
 
 \begin{center}
 \begin{tabular}{lll}
@@ -420,6 +466,9 @@ $\bang$-模态$\bang A$ & 阴/沉积 & 死劳动/资本 \\
 基范畴（SMCC） & 阳的领域 & 生产领域/剥削可见 \\
 $\mN F$（最终余代数） & 生命自指 & 活劳动/生命流 \\
 $\mU F$（初始代数） & 沉积自指 & 资本积累 \\
+$\bang\nu F_1\to\nu\bang F_1$（定理\ref{thm:nu-lift-data}） & 数据流可复制 & 录像/文本可复制 \\
+$\bang\nu F_2\not\to\nu\bang F_2$（定理\ref{thm:nu-no-lift-life}） & 生命流不可复制 & 人不可复制 \\
+$\bang\mu F_2\not\to\mu\bang F_2$（定理\ref{thm:mu-no-lift}） & 有限交互不可复制为过程 & 对话记录不是对话 \\
 \hline
 \end{tabular}
 \end{center}
