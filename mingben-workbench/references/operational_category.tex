@@ -38,7 +38,7 @@
 \maketitle
 
 \begin{abstract}
-本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子；(6) $\bang$不提升到交互余代数（Mealy机）范畴，但提升到非交互余代数范畴——这给出马克思"形式从属/实际从属"和Braverman"去技能化"的形式证明；(7) 多项式函子的!-分配二分法：!只分配给数据函子（$\tensor$,\&,$\bang$），不分配给计算函子（$\lolli$后件,$\oplus$），这与归纳类型的严格正性条件形成对偶，并对应量子不可克隆定理；(8) 不动点提升定理：数据函子的最大不动点可被!提升（数据流可复制），但交互函子$F_2$的最小和最大不动点均不可被!提升——有限交互和无限生命流都不可复制为过程，唯一可做的是记录为数据（实际从属）。这些结果将线性逻辑、范畴论与马克思政治经济学统一在一个形式框架中。
+本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子；(6) $\bang$不提升到交互余代数（Mealy机）范畴，但提升到非交互余代数范畴——这给出马克思"形式从属/实际从属"和Braverman"去技能化"的形式证明；(7) 多项式函子的!-分配二分法：!只分配给数据函子（$\tensor$,\&,$\bang$），不分配给计算函子（$\lolli$后件,$\oplus$），这与归纳类型的严格正性条件形成对偶，并对应量子不可克隆定理；(8) 不动点提升定理：数据函子的最大不动点可被!提升（数据流可复制），但交互函子$F_2$的最小和最大不动点均不可被!提升——有限交互和无限生命流都不可复制为过程，唯一可做的是记录为数据（实际从属）；(9) Geometry of Interaction动态语义：操作被解释为带反馈回路的连线网络，Mealy机是GoI反馈回路，迹=测量=实际从属，余归纳GoI以productivity替换nilpotency给出生命过程的执行语义，量论参数通过反馈算子的谱性质和迭代次数操作化。这些结果将线性逻辑、范畴论、GoI与马克思政治经济学统一在一个形式框架中。
 \end{abstract}
 
 \tableofcontents
@@ -429,6 +429,56 @@ $F_2$（交互/生命） & \ding{55}（定理\ref{thm:mu-no-lift}） & \ding{55}
 定理\ref{thm:nu-no-lift-life}是"生命不可完全资本化"（定理\ref{thm:life-not-capital}）的加强：不仅一步活操作不可资本化，整个无限交互自指过程$\nu F_2$——一个持续回应、持续成长的生命——不可被$\bang$穿透。这是宇宙中唯一不可被复制/沉积/资本化的结构：无限的交互自指过程。资本唯一能做的是把交互改造成非交互（去技能化，定理\ref{thm:subsumption}），把生命过程改造成数据流。
 \end{remark}
 
+\section{GoI动态语义：操作的执行}
+
+范畴论语义中态射$f:A\to B$是静态的。Girard的Geometry of Interaction（GoI）给出动态语义：态射是带反馈回路的连线（wiring），cut是反馈，执行是反馈的迭代（Girard 1989; Abramsky 1996用traced monoidal范畴形式化）。
+
+\begin{definition}[迹]\label{def:trace}
+在traced symmetric monoidal范畴中，迹算子
+$$\mathrm{Tr}^X_{A,B}(f):A\to B,\qquad f:A\tensor X\to B\tensor X$$
+把输出$X$接回输入$X$形成反馈回路，图形上表示为：
+$$A\longrightarrow\boxed{f}\longrightarrow B,\qquad X\longrightarrow\boxed{f}\longrightarrow X\ \text{（反馈）}.$$
+\end{definition}
+
+\begin{proposition}[Mealy机是GoI反馈回路]\label{prop:mealy-goi}
+$F_2$-余代数$f:A\tensor X\to B\tensor X$（Mealy机）在GoI中是带反馈的盒子：$A$为外部输入，$B$为外部输出，$X$为内部状态（自我），输出$X$接回输入$X$。迹$\mathrm{Tr}^X_{A,B}(f):A\to B$藏起状态，只留可观察的输入输出行为。
+\end{proposition}
+
+\begin{remark}[迹=测量=实际从属]\label{rmk:trace-measurement}
+迹$\mathrm{Tr}(f)$把交互过程$F_2$变成非交互函数$F_1$——藏起自我更新$X\to X$，只留刺激-反应$A\to B$。这与量子测量（量子态$\to$经典数据）和马克思实际从属（活劳动$\to$死劳动/数据）是同一个数学操作。
+\end{remark}
+
+\begin{definition}[执行公式]\label{def:execution}
+将$f:A\tensor X\to B\tensor X$写成分块算子（GoI I，Hilbert空间模型）：
+$$f=\begin{pmatrix} f_{00}:A\to B & f_{01}:X\to B\\ f_{10}:A\to X & f_{11}:X\to X\end{pmatrix},$$
+执行公式为
+$$\mathrm{Ex}(f)=f_{00}+\sum_{n\geq0}f_{01}(f_{11})^n f_{10}.$$
+$f_{11}:X\to X$是自我更新算子；$\sum_{n\geq0}(f_{11})^n$是反馈回路的迭代。
+\end{definition}
+
+\begin{definition}[余归纳执行]\label{def:coinductive-execution}
+标准GoI要求$f_{11}$幂零（$(f_{11})^n=0$，反馈有限步终止），对应$\mu F_2$（有限交互）。对$\nu F_2$（生命），$f_{11}$不幂零——反馈永不终止但每步产生输出。\textbf{余归纳GoI}以productivity（每步有限时间内产出$b_n$）替换nilpotency作为正确性条件：
+$$\mathrm{Ex}^\omega(f)=(b_0,b_1,b_2,\ldots)\in B^\omega,\qquad b_n=f_{01}(f_{11})^n f_{10}(a_n).$$
+\end{definition}
+
+\begin{theorem}[GoI语义证明：生命不可复制]\label{thm:goi-no-clone}
+在GoI中，$\bang\nu F_2\to\nu\bang F_2$的解释需要复制反馈线$X$（收缩$X\to X\tensor X$），但$X$是线性状态（公理\ref{ax:no-contraction}），无收缩。因此不存在满足GoI连通性条件的算子解释。
+\end{theorem}
+
+\begin{proof}
+$\nu F_2$的GoI网络中，反馈线$X$承载当前活状态——每步被$f_{11}$消耗并重建。$\bang\nu F_2$要求收缩整个网络，包括反馈线。但收缩$X\to X\tensor X$被公理\ref{ax:no-contraction}禁止。两个副本不能共享同一反馈线（那是同一过程而非两个副本），也不能分叉反馈线（$X$线性）。故不存在GoI解释。
+\end{proof}
+
+\begin{remark}[量论的GoI操作化路径]\label{rmk:measure-goi}
+定义\ref{def:execution}给出量论参数的操作化路径（猜想，待在具体模型中验证）：
+\begin{itemize}
+  \item $T$（稳态/寿命）：$f_{11}$保持生产性的迭代次数（$\mu$情形为幂零指数，$\nu$情形为$\infty$或退化步数）；
+  \item $N$（净方向）：$f_{11}$的谱半径$r(f_{11})$——$r<1$衰退，$r=1$稳态，$r>1$成长；
+  \item $\alpha$（f-层级）：反馈嵌套深度（$f^1$无内部反馈，$f^2$一层，$f^3$含$X\to(X\to X)$高阶反馈）；
+  \item $M=\alpha\cdot T\cdot N$：总交互量，即执行公式在寿命上的产出总和。
+\end{itemize}
+\end{remark}
+
 \section{待证猜想}
 
 \begin{conjecture}[生命测度]\label{conj:measure}
@@ -449,7 +499,7 @@ $F_2$（交互/生命） & \ding{55}（定理\ref{thm:mu-no-lift}） & \ding{55}
 
 \section{总结}
 
-本文定义了操作范畴，证明了19个定理，核心结构如下：
+本文定义了操作范畴，证明了20个定理，核心结构如下：
 
 \begin{center}
 \begin{tabular}{lll}
@@ -469,6 +519,8 @@ $\mU F$（初始代数） & 沉积自指 & 资本积累 \\
 $\bang\nu F_1\to\nu\bang F_1$（定理\ref{thm:nu-lift-data}） & 数据流可复制 & 录像/文本可复制 \\
 $\bang\nu F_2\not\to\nu\bang F_2$（定理\ref{thm:nu-no-lift-life}） & 生命流不可复制 & 人不可复制 \\
 $\bang\mu F_2\not\to\mu\bang F_2$（定理\ref{thm:mu-no-lift}） & 有限交互不可复制为过程 & 对话记录不是对话 \\
+迹$\mathrm{Tr}(f)$（命题\ref{prop:mealy-goi}） & 藏起自我只留行为 & 测量/实际从属 \\
+余归纳执行（定义\ref{def:coinductive-execution}） & 生命每步有产出 & 活出完整 \\
 \hline
 \end{tabular}
 \end{center}
@@ -487,6 +539,10 @@ $\bang\mu F_2\not\to\mu\bang F_2$（定理\ref{thm:mu-no-lift}） & 有限交互
 \bibitem{martinlof84} P.~Martin-L\"of. \textit{Intuitionistic Type Theory}. Bibliopolis, 1984.
 \bibitem{jacobs05} B.~Jacobs. \textit{Introduction to Coalgebra}. 2005.
 \bibitem{marx67} K.~Marx. \textit{Das Kapital}, Band I. 1867.
+\bibitem{girard89} J.-Y.~Girard. Geometry of Interaction I: Interpretation of system F. \textit{Proc. Logic Colloquium '88}, 1989.
+\bibitem{abramsky96} S.~Abramsky. Retracing some paths in process algebra. \textit{CONCUR '96}, LNCS 1119, 1996.
+\bibitem{jsv96} A.~Joyal, R.~Street, D.~Verity. Traced monoidal categories. \textit{Math. Proc. Camb. Phil. Soc.}, 119:447--468, 1996.
+\bibitem{hasegawa16} M.~Hasegawa. Memoryful Geometry of Interaction. \textit{POPL 2016}.
 \bibitem{braverman74} H.~Braverman. \textit{Labor and Monopoly Capital}. 1974.
 \end{thebibliography}
 
