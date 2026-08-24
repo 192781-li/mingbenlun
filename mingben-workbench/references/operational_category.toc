@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}引言}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}动机}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}与已有工作的关系}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}操作范畴的定义}{2}{section.2}%
+\contentsline {section}{\numberline {3}核心定理}{3}{section.3}%
+\contentsline {section}{\numberline {4}反自指寄生体}{4}{section.4}%
+\contentsline {section}{\numberline {5}商品与资本}{4}{section.5}%
+\contentsline {section}{\numberline {6}流通领域与生产领域}{5}{section.6}%
+\contentsline {section}{\numberline {7}践演坐实}{6}{section.7}%
+\contentsline {section}{\numberline {8}生命四规定性}{6}{section.8}%
+\contentsline {section}{\numberline {9}交互余代数不可资本化}{7}{section.9}%
+\contentsline {section}{\numberline {10}待证猜想}{7}{section.10}%
+\contentsline {section}{\numberline {11}总结}{8}{section.11}%
