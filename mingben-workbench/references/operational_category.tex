@@ -416,8 +416,11 @@ $$\bang\nu F\xrightarrow{\delta}\bang\bang\nu F\xrightarrow{\bang\,\mathrm{out}_
 由$\mu$-fold，需证$\bang\mu F_2,A\vdash\bang\mu G\tensor B$，与定理\ref{thm:nu-no-lift-life}结构相同（$\nu$换$\mu$），四种$\tensor R$拆分同样全部失败。$\mu$-elimination归纳步骤$F_2(\bang\mu G\tensor B)\vdash\bang\mu G\tensor B$经$\lolli L$分解后，一个子目标成立（$A\vdash A$公理），另一个子目标成立（弃置多余$B$），但归纳结论$\bang\mu F_2,A,\mu F_2\vdash\bang\mu G\tensor B$与弃置后目标相同，构成循环而非进展。
 \end{proof}
 
-\begin{remark}[种子定理派生]
-定理\ref{thm:nu-no-lift-life}与\ref{thm:mu-no-lift}是种子定理\ref{thm:no-A-to-bangA}经不动点结构的推广：种子定理说$A\to\bang A$不存在，此处说$\nu F_2\to\bang\nu F_2$和$\mu F_2\to\bang\mu F_2$不存在。
+\begin{remark}[种子定理派生的两个方向]
+种子定理\ref{thm:no-A-to-bangA}（不存在$A\to\bang A$）经不动点结构有两类推广：\\
+(i) \textbf{对象级}：取$A=\nu F_2$（定理\ref{thm:nu-lift-data}）或$A=\mu F_2$，得$\nu F_2\to\bang\nu F_2$、$\mu F_2\to\bang\mu F_2$不存在——阴化方向被阻；\\
+(ii) \textbf{结构级}：定理\ref{thm:nu-no-lift-life}、\ref{thm:mu-no-lift}得$\bang\nu F_2\to\nu(F_2\bang)$、$\bang\mu F_2\to\mu(F_2\bang)$不存在——$\bang$-分配方向被阻。\\
+两个方向彼此独立，共同构成"生命流不可资本化"的两翼。
 \end{remark}
 
 \begin{remark}[2$\times$2矩阵]
@@ -736,7 +739,7 @@ $\bang\mu F_2\to\mu\bang F_2$在IMELL+$\mu$中不可证。穷尽$\otimes R$的�
 
 \section{$G^\omega(\mathcal{C})$：生产性紧闭合范畴}
 
-\begin{definition}[$G^\omega(\mathcal{C})$]
+\begin{definition}[$G^\omega(\mathcal{C})$]\label{def:gomega}
 设$\mathcal{C}$是PTC。$G^\omega(\mathcal{C})$的对象是$(A^+,A^-)$（$\mathcal{C}$中对象的有序对），态射$(A^+,A^-)\to(B^+,B^-)$是$\mathcal{C}$中的生产性Mealy机$A^+\tensor B^-\tensor X\to B^+\tensor A^-\tensor X$，复合用生产性迹$\mathrm{Tr}^\omega$。
 \end{definition}
 
@@ -752,8 +755,8 @@ $G^\omega(\mathcal{C})$是范畴，且是dagger compact closed范畴：对偶$(A
 在$G^\omega(\mathcal{C})$中不存在$\bang\nu F_2\to\nu\bang F_2$。$G^\omega(\mathcal{C})$中的态射是$\mathcal{C}$中的生产性Mealy机，若该提升存在则底层$\mathcal{C}$中也存在，与定理\ref{thm:bang-no-ptc}矛盾（当$\mathcal{C}$满足状态唯一可追踪性条件时）。
 \end{theorem}
 
-\begin{remark}[种子定理派生]
-本定理是种子定理\ref{thm:no-A-to-bangA}在$G^\omega$紧闭合范畴中的推广：若$\bang$穿透$\nu F_2$，则底层$\mathcal{C}$中$A\to\bang A$存在，矛盾。
+\begin{remark}[与种子定理同族]
+本定理与种子定理\ref{thm:no-A-to-bangA}（不存在$A\to\bang A$）同族：$G^\omega$中的$\bang$穿透若存在，将诱导底层$\mathcal{C}$中的$\bang$-结构（具体诱导构造待补充，与定理\ref{thm:bang-no-ptc}同条件），与种子定理的精神一致。
 \end{remark}
 
 \begin{remark}[与Int-构造的关系]
@@ -771,7 +774,7 @@ Rel$^\omega$（关系与流）是已验证的PTC实例。Hilb$^\omega$（Hilbert
 \end{theorem}
 
 \begin{proof}
-依§18的递归类型构造，$f^1\to f^2$是质变（从无模型到有模型）；$f^2\to f^3$是质变（从被模型支配到看见模型是模型）；$f^3\to f^4$不是质变——$f^3$已能对象化任何模型（包括自身的模型），再嵌套一层不增加新的区分能力。在$G^\omega(\mathcal{C})$中，$X_3$的递归类型允许任意深度的$\ulcorner\ulcorner\cdots\urcorner\urcorner$嵌套，$X_4$不增加表达力。\qed
+依定义\ref{def:gomega}与定理\ref{thm:gomega-compact}的递归类型构造，$f^1\to f^2$是质变（从无模型到有模型）；$f^2\to f^3$是质变（从被模型支配到看见模型是模型）；$f^3\to f^4$不是质变——$f^3$已能对象化任何模型（包括自身的模型），再嵌套一层不增加新的区分能力。在$G^\omega(\mathcal{C})$中，$X_3$的递归类型允许任意深度的$\ulcorner\ulcorner\cdots\urcorner\urcorner$嵌套，$X_4$不增加表达力。\qed
 \end{proof}
 
 \begin{remark}[$\alpha$只取三个值]
@@ -814,7 +817,7 @@ $W$越高则$N$越低。萃取把产出从反馈线抽走，$U_{22}$输入减少
 \end{remark}
 
 \begin{theorem}[明性抵抗磨损]\label{thm:mingxing-resists}\lvI
-$C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³运行时线性过程$X$保持自我更新；f²把!-模型当自己时$U_{22}$被!-收缩削弱。
+$C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³运行时线性过程$X$保持自我更新；f²把$\bang\ulcorner f\urcorner$当自己时$U_{22}$被$\bang$-收缩削弱。
 \end{theorem}
 
 \section{完全性}
@@ -824,7 +827,7 @@ $C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³�
 \end{theorem}
 
 \begin{theorem}[生命过程超越证明]\label{thm:life-beyond-proof}\lvP
-在余归纳片段（$\nu F_2$型）中，存在生产性Mealy机不对应任何有限证明。生产性流处理器的集合是连续统，有限证明的集合是可数的。
+设$A$、$B$为可数无限集合。在余归纳片段（$\nu F_2$型）中，存在生产性Mealy机不对应任何有限证明。生产性流处理器的集合是连续统，有限证明的集合是可数的。
 \end{theorem}
 
 \begin{remark}[践演比证明根本]
