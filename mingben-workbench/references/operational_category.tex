@@ -15,6 +15,15 @@
 \newtheorem{conjecture}{猜想}
 \newtheorem{remark}{注}
 
+% 定理级别标注
+% [定理]：在公理1-4下有严格证明的数学命题
+% [条件推论]：依赖某个猜想或特定模型条件的推论
+% [诠释]：数学结构的哲学/政治经济学解释，不是数学推导
+\newcommand{\lvl}[1]{\hfill\textbf{\footnotesize[#1]}}
+\newcommand{\lvP}{\lvl{定理}}
+\newcommand{\lvC}{\lvl{条件推论}}
+\newcommand{\lvI}{\lvl{诠释}}
+
 % Macros
 \newcommand{\cat}[1]{\mathcal{#1}}
 \newcommand{\Op}{\cat{O}\!p}
@@ -40,12 +49,24 @@
 \begin{abstract}
 本文定义\textbf{操作范畴}（operational category），将线性逻辑、范畴论、Geometry of Interaction（GoI）与马克思政治经济学统一在一个形式框架中，为生命论（明本论）提供数学基础。
 
-\textbf{核心结果。} (1) 线性资源（活操作/活劳动）与$\bang$-模态（沉积/死劳动/资本）的结构同一：不存在$A\to\bang A$，收缩$\bang A\to\bang A\tensor\bang A$即资本增殖；(2) 反自指寄生体（资本、病毒）是$\bang$-余代数，依赖线性宿主，宿主消亡时退化为空转——资本的内在矛盾是定理；(3) 2$\times$2矩阵：交互/非交互$\times$有限/无限，$\bang$只提升非交互（数据）型，不提升交互（生命）型；(4) 不动点定理：数据函子的最大不动点可被$\bang$提升，但交互函子$F_2$的最小和最大不动点均不可——生命流$\nu F_2$不可资本化，有限交互$\mu F_2$不可复制为过程；(5) GoI动态语义：操作=带反馈的连线网络，迹=测量=实际从属，三者范畴论同一；(6) 余归纳GoI与生产性迹范畴（PTC）：以productivity替换nilpotency，公理化无限生产性过程，$\bang$不穿透任意PTC中的线性状态；(7) f-层级：自我模型必然是$\bang$-模态的（意识形态的存在论基础），异化=错认$\bang$-模型为线性过程，明性=看穿模型为模型，f$^3$是层级提升的不动点（$\alpha\in\{1,2,3\}$）；(8) 可靠性与完全性：可证的生命型过程解释为生产性流处理器，但生命过程超越有限证明（生产性流处理器不可数，证明可数）；(9) 量子对应：不可克隆定理是$\bang$-不穿透定理在Hilbert空间模型中的特例，量子测量=GoI迹=实际从属；(10) $G^\omega(\mathcal{C})$构造：PTC上的dagger紧闭合范畴，递归类型可解释，$\bang$限制仍成立；(11) 量论操作化：$T$=幂零指数，$N$=谱半径，$\alpha$=反馈嵌套深度，$M=\alpha TN$，慢性死亡定理（$N<1$时$M$有限）；(12) 革命=消除$\bang$-寄生Cut，社会革命与个人明性是同一操作；(13) 生命论基本定理：九条命题是同一数学结构的面向，从"在活着"的践演事实必然推出。
+\textbf{核心结果。} (1) 线性资源（活操作/活劳动）与$\bang$-模态（沉积/死劳动/资本）的结构同一：不存在$A\to\bang A$，收缩$\bang A\to\bang A\tensor\bang A$即资本增殖；(2) 反自指寄生体（资本、病毒）是$\bang$-余代数，依赖线性宿主，宿主消亡时退化为空转——资本的内在矛盾是定理；(3) 2$\times$2矩阵：交互/非交互$\times$有限/无限，$\bang$只提升非交互（数据）型，不提升交互（生命）型；(4) 不动点定理：数据函子的最大不动点可被$\bang$提升，但交互函子$F_2$的最小和最大不动点均不可——生命流$\nu F_2$不可资本化，有限交互$\mu F_2$不可复制为过程；(5) GoI动态语义：操作=带反馈的连线网络，迹=测量=实际从属，三者范畴论同一；(6) 余归纳GoI与生产性迹范畴（PTC）：以productivity替换nilpotency，公理化无限生产性过程，$\bang$不穿透任意PTC中的线性状态；(7) f-层级：自我模型必然是$\bang$-模态的（意识形态的存在论基础），异化=错认$\bang$-模型为线性过程，明性=看穿模型为模型，f$^3$是层级提升的不动点（$\alpha\in\{1,2,3\}$）；(8) 可靠性与完全性：可证的生命型过程解释为生产性流处理器，但生命过程超越有限证明（生产性流处理器不可数，证明可数）；(9) 量子对应：不可克隆定理是$\bang$-不穿透定理在Hilbert空间模型中的特例，量子测量=GoI迹=实际从属；(10) $G^\omega(\mathcal{C})$构造：PTC上的dagger紧闭合范畴，递归类型可解释，$\bang$限制仍成立；(11) 量论操作化：$T$=幂零指数，$N$=谱半径，$\alpha$=反馈嵌套深度，$M=\alpha TN$，慢性死亡定理（$N<1$时$M$有限）；(12) 革命=消除$\bang$-寄生Cut，社会革命与个人明性是同一操作；(13) 生命论基本定理：九条命题共享同一数学结构，其中四条有严格证明，五条为哲学诠释（本文严格区分[定理]/[条件推论]/[诠释]三个级别）。
 
 \textbf{实例。} Rel$^\omega$（经典计算）、Hilb$^\omega$（量子力学）、Coh$^\omega$（证明论）三个PTC实例验证了框架的普遍性。
 \end{abstract}
 
 \tableofcontents
+
+\section*{定理级别约定}
+\addcontentsline{toc}{section}{定理级别约定}
+
+本文严格区分三个级别：
+\begin{itemize}
+\item \textbf{[定理]}：在公理1--4（SMCC+!余单子+不动点）下有严格证明的数学命题，不依赖哲学预设。
+\item \textbf{[条件推论]}：依赖特定模型条件（如Rel中的对角contraction、加权矩阵的谱半径）或尚未完全严格证明的命题。条件会明确标注。
+\item \textbf{[诠释]}：数学结构与哲学/政治经济学概念的对应。这是赋值和解释，不是数学推导。"$X$对应$Y$"不声称"$X$就是$Y$"。
+\end{itemize}
+
+公理5（践演元预设）是哲学预设，不是数学公理，不用于证明[定理]级命题。
 
 \section{引言}
 
@@ -108,17 +129,15 @@ $(\bang, \eps, \delta)$是$\C$上的余单子，配有：
 存在规范态射$\iota_F : \mU F \to \mN F$，但一般不存在反向态射。
 \end{axiom}
 
-\begin{axiom}[践演元公理]\label{ax:performative}
+\begin{remark}[践演元公理——哲学预设，非数学公理]\label{ax:performative}
 $\Op$的任何使用（构造态射、画图、追图、执行求值）本身是$\Op$之外的一次活操作。不存在元范畴能完全表示$\Op$的所有活操作。
-\end{axiom}
 
-\begin{remark}
-公理\ref{ax:performative}不是$\C$内部的公理，而是关于$\C$的元公理。它断言：范畴论是阴（表示），使用范畴论是阳（运行），阴不能穷尽阳。
+\textbf{状态说明}：这不是$\C$内部的数学公理，而是关于$\C$的哲学预设。它不可形式化（任何形式化本身都是一次表示，而该预设断言表示不能穷尽活操作）。本文的数学定理（标注[定理]）不依赖此预设；标注[诠释]的命题以此预设为前提。
 \end{remark}
 
 \section{核心定理}
 
-\begin{theorem}[阳不可自动阴化]\label{thm:no-A-to-bangA}
+\begin{theorem}[阳不可自动阴化]\label{thm:no-A-to-bangA}\lvP
 在操作范畴中，不存在自然变换$\eta_A : A \to \bang A$。
 \end{theorem}
 
@@ -132,11 +151,11 @@ $$A \xrightarrow{\eta_A} \bang A \xrightarrow{\kappa_A} \bang A\tensor\bang A \x
 定理\ref{thm:no-A-to-bangA}说：活操作不能自动变成可复制的沉积。记录、表达、对象化需要额外的沉积工作——promotion规则$\bang\Gamma\vdash A \;/\; \bang\Gamma\vdash\bang A$要求已有沉积$\bang\Gamma$作为支撑。
 \end{remark}
 
-\begin{theorem}[阴不能穷尽阳]\label{thm:yin-cannot-exhaust-yang}
+\begin{theorem}[阴不能穷尽阳]\label{thm:yin-cannot-exhaust-yang}\lvP
 在操作范畴中，Lawvere不动点定理的证明无法进行：该证明需要对角化$\Delta : A\to A\tensor A$来构造自我应用$\phi(a)(a)$，但公理\ref{ax:no-contraction}禁止对角化。沉积$\bang A$可以通过$\kappa$复制再经$\eps$弃置得到$\bang A \to A\tensor A$，但这给出的是$\bang A\to A\tensor A$而非$A\to A\tensor A$——阴可以模拟阳的复制，但模拟不等于原初运行。
 \end{theorem}
 
-\begin{theorem}[活自指良基]\label{thm:productive-self-ref}
+\begin{theorem}[活自指良基]\label{thm:productive-self-ref}\lvI
 设$\mN F$是$F$的最终余代数。对任何余代数$f:X\to F(X)$，存在唯一的余代数同态$\mathrm{beh}_f : X\to\mN F$使得
 $$\mathrm{out}\circ\mathrm{beh}_f = F(\mathrm{beh}_f)\circ f.$$
 \end{theorem}
@@ -160,7 +179,7 @@ $$\mathrm{out}\circ\mathrm{beh}_f = F(\mathrm{beh}_f)\circ f.$$
 \end{enumerate}
 \end{definition}
 
-\begin{theorem}[寄生体自毁]\label{thm:parasite-self-destruct}
+\begin{theorem}[寄生体自毁]\label{thm:parasite-self-destruct}\lvP
 若消耗$c$使$S$削弱至$\I$（活操作完全停止），则$P$退化为空转：$d$变为纯收缩$P\to P\tensor P$，不产生任何新操作。
 \end{theorem}
 
@@ -183,7 +202,7 @@ $$\mathrm{out}\circ\mathrm{beh}_f = F(\mathrm{beh}_f)\circ f.$$
 $$p : \bang C\tensor A \to \bang C\tensor B.$$
 \end{definition}
 
-\begin{theorem}[剩余价值的线性来源]\label{thm:surplus-linear}
+\begin{theorem}[剩余价值的线性来源]\label{thm:surplus-linear}\lvP
 在生产态射$p:\bang C\tensor A\to\bang C\tensor B$中：
 \begin{enumerate}
   \item[(a)] $\bang C$通过收缩$\kappa$保存，其价值量不变（转移≠创造）；
@@ -203,7 +222,7 @@ $$p : \bang C\tensor A \to \bang C\tensor B.$$
 (d) 若生产态射为$\bang C\tensor\bang A\to\bang C\tensor B$，则$\bang A$也可通过$\kappa$收缩保存。在共Kleisli范畴（CCC）中$\bang C$与$\bang A$都享有收缩和弱化，没有范畴论性质区分"转移价值的资源"和"创造价值的资源"。
 \end{proof}
 
-\begin{theorem}[生命不可完全资本化]\label{thm:life-not-capital}
+\begin{theorem}[生命不可完全资本化]\label{thm:life-not-capital}\lvP
 设$S=\mN X.F(X)$是生命位点（最终余代数），其中$X$在$F(X)$中线性出现（不在$\bang$辖域内）。则不存在态射$h:S\to\bang S$。
 \end{theorem}
 
@@ -219,11 +238,11 @@ $$S\xrightarrow{h}\bang S\xrightarrow{\kappa_S}\bang S\tensor\bang S\xrightarrow
 
 \section{流通领域与生产领域}
 
-\begin{theorem}[Benton 1995]\label{thm:cokleisli-ccc}
+\begin{theorem}[Benton 1995]\label{thm:cokleisli-ccc}\lvP
 设$(\bang,\eps,\delta)$是SMCC $\C$上的线性指数余单子，则其共Kleisli范畴$\coKl{!}$是笛卡尔闭范畴（CCC）。
 \end{theorem}
 
-\begin{theorem}[商品拜物教]\label{thm:fetishism}
+\begin{theorem}[商品拜物教]\label{thm:fetishism}\lvI
 遗忘函子$U:\C\to\coKl{!}$（将线性态射$f:A\to B$映射为共Kleisli态射$\bang A\to B$）精确形式化了马克思的商品拜物教：在$\C$（生产领域）中，$A$（线性活劳动）与$\bang C$（$\bang$-模态资本）有结构区别，剥削可见；在$\coKl{!}$（流通领域）中，一切皆为$\bang$-模态，$A$与$\bang C$无区别，剩余价值来源不可见。
 \end{theorem}
 
@@ -231,7 +250,7 @@ $$S\xrightarrow{h}\bang S\xrightarrow{\kappa_S}\bang S\tensor\bang S\xrightarrow
 $U$将$A$映射为$\coKl{!}$中的$A$（对应$\C$中的$\bang A$），将$\bang C$映射为$\coKl{!}$中的$C$（对应$\C$中的$\bang C$）。在$\coKl{!}$中两者都是CCC对象，都享有对角化和投影。由定理\ref{thm:surplus-linear}(d)，在CCC中剩余价值失去可归因的来源——这正是"商品拜物教"：人与人的社会关系（剥削）表现为物与物的关系（平等交换）。
 \end{proof}
 
-\begin{theorem}[有机构成上升]\label{thm:organic-composition}
+\begin{theorem}[有机构成上升]\label{thm:organic-composition}\lvI
 设生产态射序列$p_n:\bang C_n\tensor A_n\to\bang C_{n+1}$表示$n$期生产。则$\bang C_n$可通过收缩无结构障碍地积累（指数增长），而$A_n$是线性的、不能收缩，其增长只能通过增加劳动者数量或劳动时间（受人口学和生理学限制，线性增长）。因此比率$\bang C_n/A_n$（资本有机构成）随时间单调上升。
 \end{theorem}
 
@@ -247,7 +266,7 @@ $$\triangleright A,$$
 读作"$A$在操作上坐实"。$\triangleright A$不是类型（不是$\C$中的对象），不能出现在项的位置。
 \end{definition}
 
-\begin{theorem}[运行真理]\label{thm:operational-truth}
+\begin{theorem}[运行真理]\label{thm:operational-truth}\lvI
 设$L$是足够强的形式系统（其证明论可表示为$\bang$-模态对象）。设$\mathrm{Op}_L$为"$L$在运行"。则：
 \begin{enumerate}
   \item $\mathrm{Op}_L$不能在$L$中证明（它不是$L$中的命题，而是$L$运行的元条件）；
@@ -278,20 +297,20 @@ $$\triangleright A,$$
 \end{itemize}
 \end{definition}
 
-\begin{proposition}\label{prop:f3-alienation}
+\begin{proposition}\label{prop:f3-alienation}\lvI
 $f^3$层是反自指寄生体唯一能寄生的层级：只有$f^3$有$\bang$-模态的自我模型（沉积的自我认知），寄生体$P=\bang Q$才能劫持它。
 \end{proposition}
 
 \section{交互余代数不可资本化}
 
-\begin{proposition}[$\bang$提升到非交互余代数]\label{prop:lift-noninteractive}
+\begin{proposition}[$\bang$提升到非交互余代数]\label{prop:lift-noninteractive}\lvP
 对$F_1(X)=X\tensor B$（无输入的自复制），分配律$\lambda^1:\bang F_1\Rightarrow F_1\bang$存在。
 \end{proposition}
 \begin{proof}
 由$\bang$的monoidal strength，$\bang(X\tensor B)\to\bang X\tensor\bang B$，再与$\eps_B:\bang B\to B$复合，得到$\bang(X\tensor B)\to\bang X\tensor B=F_1(\bang X)$。
 \end{proof}
 
-\begin{theorem}[$\bang$不提升到交互余代数]\label{thm:no-lift-interactive}
+\begin{theorem}[$\bang$不提升到交互余代数]\label{thm:no-lift-interactive}\lvP
 对$F_2(X)=A\lolli(X\tensor B)$（Mealy机函子，交互自复制），其中$A,B$为非$\bang$-模态对象，分配律$\lambda^2:\bang F_2\Rightarrow F_2\bang$不存在。即矢列
 $$\bang(A\lolli(X\tensor B)),\, A\ \vdash\ \bang X\tensor B$$
 在直觉主义乘法指数线性逻辑中不可证。
@@ -314,7 +333,7 @@ $$\frac{\Gamma_1\vdash\bang X\qquad \Gamma_2\vdash B}{\Gamma_1,\Gamma_2\vdash\ba
 即使输入也是$\bang$-模态（$\bang A$），矢列仍不可证：弃置$\bang A$得$A$，但$A\vdash X$不可证。问题在输出端——函数产生的$X$是线性的，无法变成$\bang X$。
 \end{remark}
 
-\begin{theorem}[形式从属与实际从属]\label{thm:subsumption}
+\begin{theorem}[形式从属与实际从属]\label{thm:subsumption}\lvP
 定理\ref{thm:no-lift-interactive}给出马克思"形式从属/实际从属"的范畴论表述：形式从属（$\bang$提升到交互余代数$F_2$）不可能；资本只能通过实际从属（将$F_2$替换为$F_1$，即把交互式劳动改造为非交互式重复劳动）实现增殖。这不是选择，是数学结构的强制。
 \end{theorem}
 
@@ -337,7 +356,7 @@ $$\frac{\Gamma_1\vdash\bang X\qquad \Gamma_2\vdash B}{\Gamma_1,\Gamma_2\vdash\ba
 分配律$\lambda^G:\bang G(X)\to G(\bang X)$存在当且仅当$Q(G)$成立。
 \end{definition}
 
-\begin{theorem}[递归刻画]\label{thm:recursive-characterization}
+\begin{theorem}[递归刻画]\label{thm:recursive-characterization}\lvP
 四个判断按以下规则递归计算：
 
 \noindent 基例：$P(X)=\bot$，$D(X)=Q(X)=R(X)=\top$；对不含$X$的常量$C$，四个判断均为$\top$。
@@ -367,7 +386,7 @@ $\lolli$情形：以$P(G_1\lolli G_2)$为例，需证$(G_1\lolli G_2)\vdash G_1(
 $\bang$情形：$P(\bang G_1)$由promotion归约为$Q(G_1)$；$D(\bang G_1)$由promotion归约为$R(G_1)$；$Q(\bang G_1)$弃置$\bang\bang G_1$后用$Q(G_1)$；$R(\bang G_1)$弃置后用$R(G_1)$。
 \end{proof}
 
-\begin{theorem}[!-分配二分法]\label{thm:dichotomy}
+\begin{theorem}[!-分配二分法]\label{thm:dichotomy}\lvP
 对任意多项式函子$F$，分配律$\bang F(X)\to F(\bang X)$存在当且仅当$Q(F)=\top$。具体地，$Q(F)$失败当且仅当$X$出现在$\lolli$的\emph{后件}（codomain，被函数生产出来的位置）或$\oplus$的分支中。
 \end{theorem}
 
@@ -391,8 +410,8 @@ $\bang$情形：$P(\bang G_1)$由promotion归约为$Q(G_1)$；$D(\bang G_1)$由p
 
 我们将定理\ref{thm:dichotomy}推广到不动点。设$G(X)=F(\bang X)$，问$\bang\mu F\to\mu G$和$\bang\nu F\to\nu G$是否存在。
 
-\begin{theorem}[数据函子的$\nu$-提升]\label{thm:nu-lift-data}
-若$Q(F)=\top$（分配律$\lambda^F:\bang F\To F\bang$存在），则$\bang\nu F\to\nu(F\bang)$存在。
+\begin{theorem}[数据函子的$\nu$-提升]\label{thm:nu-lift-data}\lvP
+若$Q(F)=\top$（分配律$\lambda^F:\bang F\to F\bang$存在），则$\bang\nu F\to\nu(F\bang)$存在。
 \end{theorem}
 
 \begin{proof}
@@ -401,7 +420,7 @@ $$\bang\nu F\xrightarrow{\delta}\bang\bang\nu F\xrightarrow{\bang\,\mathrm{out}_
 由$\nu G$的终结性，存在唯一态射$\bang\nu F\to\nu G$。
 \end{proof}
 
-\begin{theorem}[生命流不可资本化]\label{thm:nu-no-lift-life}
+\begin{theorem}[生命流不可资本化]\label{thm:nu-no-lift-life}\lvP
 对$F_2(X)=A\lolli(X\tensor B)$，不存在$\bang\nu F_2\to\nu(F_2\bang)$。
 \end{theorem}
 
@@ -409,7 +428,7 @@ $$\bang\nu F\xrightarrow{\delta}\bang\bang\nu F\xrightarrow{\bang\,\mathrm{out}_
 需证$\bang\nu F_2\vdash\nu G$，$G(X)=A\lolli(\bang X\tensor B)$。由$\nu$-fold，只需证$\bang\nu F_2\vdash A\lolli(\bang\nu G\tensor B)$，即$\bang\nu F_2,A\vdash\bang\nu G\tensor B$。结论主连接词为$\tensor$，最后一步只能是$\tensor R$，四种上下文拆分与定理\ref{thm:no-lift-interactive}完全相同：(1)空上下文证$\bang\nu G$需promotion给$\vdash\nu G$，再由$\nu$-fold要求$A\vdash\bang\nu G\tensor B$，$A$为新原子不可证；(2)$\vdash B$不可证；(3)$A\vdash B$不可证；(4)$A\vdash\bang\nu G$要求promotion但$A$非$\bang$-模态。左侧收缩、弃置、$\nu$-unfold不改变结论：弃置后unfold求值得$\nu F_2\tensor B$，拆分后仍需$\nu F_2\vdash\bang\nu G$（promotion不适用）或回到同一目标（循环）。
 \end{proof}
 
-\begin{theorem}[有限交互过程不可提升为过程]\label{thm:mu-no-lift}
+\begin{theorem}[有限交互过程不可提升为过程]\label{thm:mu-no-lift}\lvP
 对$F_2(X)=A\lolli(X\tensor B)$，不存在$\bang\mu F_2\to\mu(F_2\bang)$。
 \end{theorem}
 
@@ -423,7 +442,7 @@ $$\bang\nu F\xrightarrow{\delta}\bang\bang\nu F\xrightarrow{\bang\,\mathrm{out}_
 \begin{tabular}{c|cc}
  & $\mu$（有限） & $\nu$（无限）\\\hline
 $F_1$（非交互/数据） & \checkmark & \checkmark（定理\ref{thm:nu-lift-data}）\\
-$F_2$（交互/生命） & \ding{55}（定理\ref{thm:mu-no-lift}） & \ding{55}（定理\ref{thm:nu-no-lift-life}）
+$F_2$（交互/生命） & $\times$（定理\ref{thm:mu-no-lift}） & $\times$（定理\ref{thm:nu-no-lift-life}）
 \end{tabular}
 \end{center}
 数据（无论有限无限）可被$\bang$复制；交互过程（无论有限无限）不可被$\bang$复制为过程。有限交互可被\emph{记录为数据}（转化为$F_1$型结构），但记录不是交互——这正是定理\ref{thm:subsumption}的实际从属。
@@ -444,7 +463,7 @@ $$\mathrm{Tr}^X_{A,B}(f):A\to B,\qquad f:A\tensor X\to B\tensor X$$
 $$A\longrightarrow\boxed{f}\longrightarrow B,\qquad X\longrightarrow\boxed{f}\longrightarrow X\ \text{（反馈）}.$$
 \end{definition}
 
-\begin{proposition}[Mealy机是GoI反馈回路]\label{prop:mealy-goi}
+\begin{proposition}[Mealy机是GoI反馈回路]\label{prop:mealy-goi}\lvP
 $F_2$-余代数$f:A\tensor X\to B\tensor X$（Mealy机）在GoI中是带反馈的盒子：$A$为外部输入，$B$为外部输出，$X$为内部状态（自我），输出$X$接回输入$X$。迹$\mathrm{Tr}^X_{A,B}(f):A\to B$藏起状态，只留可观察的输入输出行为。
 \end{proposition}
 
@@ -465,7 +484,7 @@ $f_{11}:X\to X$是自我更新算子；$\sum_{n\geq0}(f_{11})^n$是反馈回路�
 $$\mathrm{Ex}^\omega(f)=(b_0,b_1,b_2,\ldots)\in B^\omega,\qquad b_n=f_{01}(f_{11})^n f_{10}(a_n).$$
 \end{definition}
 
-\begin{theorem}[GoI语义证明：生命不可复制]\label{thm:goi-no-clone}
+\begin{theorem}[GoI语义证明：生命不可复制]\label{thm:goi-no-clone}\lvP
 在GoI中，$\bang\nu F_2\to\nu\bang F_2$的解释需要复制反馈线$X$（收缩$X\to X\tensor X$），但$X$是线性状态（公理\ref{ax:no-contraction}），无收缩。因此不存在满足GoI连通性条件的算子解释。
 \end{theorem}
 
@@ -488,15 +507,15 @@ $\nu F_2$的GoI网络中，反馈线$X$承载当前活状态——每步被$f_{1
 标准GoI要求幂零性（$(f_{11})^n=0$，反馈有限步终止），对应$\mu F_2$。生命$\nu F_2$的反馈永不终止但每步产出。我们在$\mathbf{Rel}$中构造余归纳GoI。
 
 \begin{definition}[流处理器]\label{def:stream-processor}
-从$A$到$B$的流处理器是三元组$(X,R,x_0)$，其中$R\subseteq(A\times X)\times(B\times X)$是转移关系，$x_0\in X$是初始状态。它诱导因果关系$\llbracket R\rrbracket\subseteq A^\omega\times B^\omega$：$(a_\bullet,b_\bullet)\in\llbracket R\rrbracket$当且仅当存在$x_\bullet\in X^\omega$使对所有$n$，$((a_n,x_n),(b_n,x_{n+1}))\in R$。
+从$A$到$B$的流处理器是三元组$(X,R,x_0)$，其中$R\subseteq(A\times X)\times(B\times X)$是转移关系，$x_0\in X$是初始状态。它诱导因果关系$[\![ R]\!]\subseteq A^\omega\times B^\omega$：$(a_\bullet,b_\bullet)\in[\![ R]\!]$当且仅当存在$x_\bullet\in X^\omega$使对所有$n$，$((a_n,x_n),(b_n,x_{n+1}))\in R$。
 \end{definition}
 
 \begin{definition}[生产性]\label{def:productivity}
 $R$是生产性的，如果对所有$(a,x)\in A\times X$，存在$(b,x')\in B\times X$使$((a,x),(b,x'))\in R$。
 \end{definition}
 
-\begin{theorem}[生产性保证完全性]\label{thm:productivity-totality}
-若$R$生产性，则对每个$a_\bullet\in A^\omega$存在$b_\bullet\in B^\omega$使$(a_\bullet,b_\bullet)\in\llbracket R\rrbracket$。
+\begin{theorem}[生产性保证完全性]\label{thm:productivity-totality}\lvP
+若$R$生产性，则对每个$a_\bullet\in A^\omega$存在$b_\bullet\in B^\omega$使$(a_\bullet,b_\bullet)\in[\![ R]\!]$。
 \end{theorem}
 
 \begin{proof}
@@ -504,7 +523,7 @@ $R$是生产性的，如果对所有$(a,x)\in A\times X$，存在$(b,x')\in B\ti
 \end{proof}
 
 \begin{definition}[余归纳迹]\label{def:coinductive-trace}
-余归纳迹$\mathrm{Tr}^\omega_X(R)=\llbracket R\rrbracket\subseteq A^\omega\times B^\omega$将Mealy机映射为其无限输入输出行为。它满足迹公理的余归纳版本：
+余归纳迹$\mathrm{Tr}^\omega_X(R)=[\![ R]\!]\subseteq A^\omega\times B^\omega$将Mealy机映射为其无限输入输出行为。它满足迹公理的余归纳版本：
 \begin{itemize}
   \item \textbf{vanishing}：$\mathrm{Tr}^\omega_I(R)$逐点应用；$\mathrm{Tr}^\omega_{X\times Y}=\mathrm{Tr}^\omega_X\circ\mathrm{Tr}^\omega_Y$
   \item \textbf{yanking}：$\mathrm{Tr}^\omega_X(\sigma)$诱导恒等流
@@ -513,7 +532,7 @@ $R$是生产性的，如果对所有$(a,x)\in A\times X$，存在$(b,x')\in B\ti
 \end{itemize}
 \end{definition}
 
-\begin{theorem}[!不提升到流处理器]\label{thm:no-bang-stream}
+\begin{theorem}[!不提升到流处理器]\label{thm:no-bang-stream}\lvP
 不存在自然提升将生产性Mealy机$R\subseteq(A\times X)\times(B\times X)$映射为$\bang R\subseteq(\bang A\times\bang X)\times(\bang B\times\bang X)$使得$\bang R$的余归纳迹与$R$相容。
 \end{theorem}
 
@@ -521,7 +540,7 @@ $R$是生产性的，如果对所有$(a,x)\in A\times X$，存在$(b,x')\in B\ti
 $\bang X$是$X$上的有限多重集。余归纳迹要求单一状态线索：每步消耗$x_n$产生$x_{n+1}$。多重集包含多个$X$元素，但元素之间没有身份（identity），无法确定哪个元素是"正在运行的当前状态"。$\bang R$的转移将多重集$\alpha$映射到$\beta$，但无法从$\beta$中追踪一条贯穿的状态线索。非交互$F_1(X)=X\tensor B$中$X$直接出现在输出中（不经过$\lolli$的codomain），配对唯一确定线索，故可提升（命题\ref{prop:lift-noninteractive}）；交互$F_2$中$X$是函数产出，多重集无法追踪。
 \end{proof}
 
-\begin{theorem}[执行不是沉积]\label{thm:execution-not-deposition}
+\begin{theorem}[执行不是沉积]\label{thm:execution-not-deposition}\lvP
 GoI执行$\mathrm{Ex}(U)$或$\mathrm{Ex}^\omega(U)$不是$\mathcal{C}$中的态射，也不是$\bang$-模态对象。
 \end{theorem}
 
@@ -549,11 +568,11 @@ $$\mathrm{beh}(f,x_0):A^\omega\to B^\omega$$
 \end{itemize}
 \end{definition}
 
-\begin{theorem}[$\mathbf{Rel}$是PTC]\label{thm:rel-ptc}
+\begin{theorem}[$\mathbf{Rel}$是PTC]\label{thm:rel-ptc}\lvP
 $\mathbf{Rel}$（笛卡尔积为张量）是生产性迹范畴。
 \end{theorem}
 
-\begin{theorem}[!不穿透生产性迹]\label{thm:bang-no-ptc}
+\begin{theorem}[!不穿透生产性迹]\label{thm:bang-no-ptc}\lvP
 在PTC $\mathcal{C}$中，若$X$是线性状态（无收缩$X\to X\tensor X$），则$\mathrm{beh}(f,x_0)$不能自然提升为$(!A)^\omega\to(!B)^\omega$上保持单一状态线索的行为。
 \end{theorem}
 
@@ -561,7 +580,7 @@ $\mathbf{Rel}$（笛卡尔积为张量）是生产性迹范畴。
 $\mathrm{beh}$的余归纳构造要求每步有唯一当前状态$x_n$（被消耗、产生$x_{n+1}$、$x_{n+1}$成为下一步当前状态）。状态为$!X$时，$!X$享有收缩和弱化，但$!X$中的沉积（多重集）没有规范的"当前元素"——可以整体复制、分割、丢弃，不同选择导致不同行为，不满足唯一性。非交互转移中$X$直接出现在输出中，$!X\to!X$有规范选择（恒等），线索唯一；交互转移中$X$是函数产出，$!X$无法确定哪个产出是下一步当前状态。
 \end{proof}
 
-\begin{theorem}[有限与无限]\label{thm:finite-infinite}
+\begin{theorem}[有限与无限]\label{thm:finite-infinite}\lvP
 若$\mathcal{C}$同时是TSMC和PTC：(a)幂零Mealy机（$(f_{11})^n=0$）的标准迹存在，行为在$n$步后退化为常数流；(b)生产性但非幂零的Mealy机标准迹不存在，但$\mathrm{beh}$存在。(a)对应$\mu F_2$（有限交互），(b)对应$\nu F_2$（生命）。
 \end{theorem}
 
@@ -577,7 +596,7 @@ $\mathrm{beh}(f,x_0):A^\omega\to B^\omega$不在$\mathcal{C}$中（流对象在�
 资本对象$G$配备!-余代数$c:G\to\bang G$，通过contraction和dereliction得到复制$G\to\bang G\to\bang G\tensor\bang G\to G\tensor G$。
 \end{definition}
 
-\begin{theorem}[复制不是增长]\label{thm:copy-not-growth}
+\begin{theorem}[复制不是增长]\label{thm:copy-not-growth}\lvP
 $G\to G\tensor G$把$g$映射为$(g,g)$，两个副本相同。这是复制（replication），不是增长（augmentation）：contraction保持值不变，只增加副本数量。
 \end{theorem}
 
@@ -585,15 +604,17 @@ $G\to G\tensor G$把$g$映射为$(g,g)$，两个副本相同。这是复制（re
 在$\mathbf{Rel}$中contraction是多重集对角嵌入$\alpha\mapsto(\alpha,\alpha)$，两分量完全相同。dereliction不增加任何东西。复合结果$g\mapsto(g,g)$，无增量。
 \end{proof}
 
-\begin{theorem}[增长必须消耗线性资源]\label{thm:growth-needs-linear}
-不存在纯从$G$到$G\tensor g$（$g>0$）的态射使价值增长而不消耗线性资源。增长需要$A\tensor G\to G\tensor g$型态射，其中$A$是线性资源（活劳动）。
+\begin{theorem}[增长必须消耗线性资源——模型相关]\label{thm:growth-needs-linear}\lvC
+\textbf{在!-contraction为对角映射的模型中}（$\mathbf{Rel}$、$\mathbf{Coh}$：$\bang G\to\bang G\tensor\bang G$把$g$映射为$(g,g)$，两副本相同），不存在纯从$\bang G$到$\bang G\tensor g$（$g>0$）的态射使价值增长而不消耗线性资源。增长需要$A\tensor\bang G\to\bang G\tensor g$型态射，其中$A$是线性资源。
 \end{theorem}
 
 \begin{proof}
-若$G$是!-模态，!-态射只能复制（定理\ref{thm:copy-not-growth}），不能产生增量。若$G$是线性的，$G\to G\tensor g$消耗$G$后$G$不存在，无法持续。要持续增长必须有外部线性资源$A$被消耗。这是定理\ref{thm:surplus-linear}（剩余价值只能来自线性资源$A$）的直接推论。
+在对角contraction模型中，!-态射只能复制（定理\ref{thm:copy-not-growth}），不能产生增量——这是contraction定义的直接推论，不是额外假设。若$G$是线性的，$G\to G\tensor g$消耗$G$后$G$不存在，无法持续。要持续增长必须有外部线性资源$A$被消耗。
+
+\textbf{条件性说明}：本定理依赖"contraction=对角复制"这一模型条件。在一般操作范畴中，!-余代数的counit/comultiplication不一定是对角映射，结论可能不成立。定理\ref{thm:surplus-linear}（剩余价值只能来自线性资源）在相同模型条件下成立。
 \end{proof}
 
-\begin{theorem}[$M$-$C$-$M'$是假$F_2$]\label{thm:fake-f2}
+\begin{theorem}[$M$-$C$-$M'$是假$F_2$]\label{thm:fake-f2}\lvP
 $M$-$C$-$M'$表面类型为$G\multimap(G\tensor G')$，但$G$是!-模态（有余代数结构，不被消耗），不是线性状态。真正的$F_2$要求$X$线性（无收缩$X\to X\tensor X$，每步旧自我消耗、新自我产生）。资本$G$不被消耗——投入100收回110，原来的100"还在"。这不是$S=f(S)$（自我更新），是$G\to G+g$（反自指增殖）。
 \end{theorem}
 
@@ -601,11 +622,11 @@ $M$-$C$-$M'$表面类型为$G\multimap(G\tensor G')$，但$G$是!-模态（有�
 $F_2$的$X$满足：不存在$X\to X\tensor X$（定理\ref{thm:no-bang-stream}的线性状态条件）。$G$有$G\to G\tensor G$（定理\ref{thm:copy-not-growth}）。故$M$-$C$-$M'$不是$F_2$。$M$-$M'$更彻底：$G\to\bang G\to G\tensor G$是纯!-contraction，零交互——"为生存而生存"的精确形式。
 \end{proof}
 
-\begin{theorem}[病毒与资本同构]\label{thm:virus-capital}
+\begin{theorem}[病毒与资本同构]\label{thm:virus-capital}\lvP
 病毒复制和资本增殖是同一范畴结构：!-余代数$P$（基因组/货币）+ 劫持自然变换$F_2\Rightarrow F_1$（实际从属/定理\ref{thm:real-subsumption}）+ 沉积$P\tensor\bang B\to P'$。没有$F_2$宿主，$P$只能复制不能增长（定理\ref{thm:growth-needs-linear}）。
 \end{theorem}
 
-\begin{theorem}[资本的矛盾]\label{thm:capital-contradiction}
+\begin{theorem}[资本的矛盾]\label{thm:capital-contradiction}\lvP
 资本必须保存$F_2$才能增长（定理\ref{thm:growth-needs-linear}），但资本的趋势是把$F_2$转化为$F_1$（实际从属/定理\ref{thm:real-subsumption}）。定理\ref{thm:no-bang-stream}证明$F_2$不可能被完全转化。越接近完全转化，剩余价值来源越枯竭；极限$S=I$时增长停止，寄生体死亡（定理\ref{thm:parasite}）。
 \end{theorem}
 
@@ -629,7 +650,7 @@ $f^2$：过程可访问自身名字$\bang\ulcorner f\urcorner$——反馈中嵌
 $f^3$：过程能区分运行$f$和名字$\ulcorner f\urcorner$——三条嵌套回路，看见模型是模型。
 \end{definition}
 
-\begin{theorem}[自我模型是!-模态的]\label{thm:self-model-bang}
+\begin{theorem}[自我模型是!-模态的]\label{thm:self-model-bang}\lvP
 任何可存储、检查、交流的自我模型必然是$\bang$-模态的。
 \end{theorem}
 
@@ -641,7 +662,7 @@ $f^3$：过程能区分运行$f$和名字$\ulcorner f\urcorner$——三条嵌�
 因为自我模型是$\bang$-模态的，它可以从外部被植入、复制、传输。意识形态、经文化、身份政治的运作基础正在于此：系统给人一个$\bang$-自我模型，这个模型可被大规模复制。
 \end{corollary}
 
-\begin{theorem}[异化=错认名字为过程]\label{thm:alienation-mistake}
+\begin{theorem}[异化=错认名字为过程]\label{thm:alienation-mistake}\lvP
 异化发生在$f^2$层：当$\bang$-模态的自我模型被错认为线性运行过程$X$本身时，系统按沉积模型运行自己（$S=f_{\bang}(S)$），而非自己运行自己（$S=f(S)$）——阴主阳从。
 \end{theorem}
 
@@ -649,7 +670,7 @@ $f^3$：过程能区分运行$f$和名字$\ulcorner f\urcorner$——三条嵌�
 运行中的$X$是线性的（每步消耗、不可复制，定理\ref{thm:no-bang-stream}）。$\bang\ulcorner f\urcorner$是沉积的、固定的、可外部植入的。将后者等同于前者，运行权即交给模型：此后操作不产生新的$X'$，只重复$\bang$-模型的规定。这就是经文化——模型停止更新，成为$\bang$的纯收缩（空转）。
 \end{proof}
 
-\begin{theorem}[明性=看见名字是名字]\label{thm:mingxing}
+\begin{theorem}[明性=看见名字是名字]\label{thm:mingxing}\lvP
 明性（$f^3$）是维持$X$（线性运行）和$\bang\ulcorner f\urcorner$（沉积模型）之间区分的能力。不是没有模型（$f^2$必要），是不把模型等同于自己。
 \end{theorem}
 
@@ -657,7 +678,7 @@ $f^3$：过程能区分运行$f$和名字$\ulcorner f\urcorner$——三条嵌�
 $f^3$的第三条反馈回路将自我模型对象化：系统看到模型是$\bang$-模态的（固定的、可复制的、可能外部植入的），运行是线性的（每步更新的、不可复制的、自己的）。这个"看见"使系统能质疑被植入的模型、更新过时的模型、在模型和活操作间保持张力。
 \end{proof}
 
-\begin{theorem}[$f^2$的哥德尔困境]\label{thm:godel-f2}
+\begin{theorem}[$f^2$的哥德尔困境]\label{thm:godel-f2}\lvC
 能完全表示自身的$f^2$系统包含不可判定命题。$f^3$践演是出路：哥德尔句子在$f^2$内不可证，但在$f^3$层通过践演判断（公理\ref{ax:performative}，元层面操作）被体知——不是在模型内证明，是在运行中看见模型的限度。
 \end{theorem}
 
@@ -667,7 +688,7 @@ $f^3$的第三条反馈回路将自我模型对象化：系统看到模型是$\b
 
 \section{可靠性与量子对应}
 
-\begin{theorem}[可靠性]\label{thm:soundness}
+\begin{theorem}[可靠性]\label{thm:soundness}\lvP
 如果$\pi$是余归纳片段$\mu LL^\nu$中$\Gamma\vdash A$的证明，则其GoI解释$U(\pi)$是生产性流处理器。
 \end{theorem}
 
@@ -679,7 +700,7 @@ $f^3$的第三条反馈回路将自我模型对象化：系统看到模型是$\b
 操作$\nu F_2$型资源的证明不能被promotion（不能变成可复制的教条）。这是定理\ref{thm:no-bang-stream}的证明论对应——关于生命过程的证明本身必须是"活的"，不能冻结为可复制的定理。
 \end{corollary}
 
-\begin{theorem}[不可克隆是推论]\label{thm:no-cloning-corollary}
+\begin{theorem}[不可克隆是推论]\label{thm:no-cloning-corollary}\lvP
 在$\mathbf{FdHilb}$（有限维Hilbert空间与线性映射）中，量子对象（维数$\geq2$）无自然收缩$\Delta:A\to A\tensor A$，量子过程构成生产性迹范畴。由定理\ref{thm:bang-no-ptc}，$\bang$不提升到量子交互流处理器——这就是Wootters-Zurek不可克隆定理。
 \end{theorem}
 
@@ -691,7 +712,7 @@ $f^3$的第三条反馈回路将自我模型对象化：系统看到模型是$\b
 量子测量（量子态$\to$经典数据）、GoI迹（藏起反馈线$X$）、马克思实际从属（活劳动$\to$死劳动）是同一个数学操作：藏起线性状态线索，只留可复制的输入输出行为。三者同一不是比喻，是范畴论结构的同一。
 \end{remark}
 
-\begin{theorem}[定理21严格化]\label{thm:mu-rigorous}
+\begin{theorem}[定理21严格化]\label{thm:mu-rigorous}\lvP
 $\bang\mu F_2\to\mu\bang F_2$在IMELL+$\mu$中不可证。穷尽$\otimes R$的所有拆分：非循环分支需要从空上下文证明线性资源（不可能）或promotion线性原子（不可能）；循环分支中$\mu$-展开不降低矢列复杂度（$\mu F_2$展开为$A\multimap(\mu F_2\tensor B)$，$\mu F_2$重新出现），证明树无限生长但不产生公理叶子。
 \end{theorem}
 
@@ -701,7 +722,7 @@ $\bang\mu F_2\to\mu\bang F_2$在IMELL+$\mu$中不可证。穷尽$\otimes R$的�
 设$\mathcal{C}$是PTC。$G^\omega(\mathcal{C})$的对象是$(A^+,A^-)$（$\mathcal{C}$中对象的有序对），态射$(A^+,A^-)\to(B^+,B^-)$是$\mathcal{C}$中的生产性Mealy机$A^+\tensor B^-\tensor X\to B^+\tensor A^-\tensor X$，复合用生产性迹$\mathrm{Tr}^\omega$。
 \end{definition}
 
-\begin{theorem}[$G^\omega(\mathcal{C})$是dagger紧闭合范畴]\label{thm:gomega-compact}
+\begin{theorem}[$G^\omega(\mathcal{C})$是dagger紧闭合范畴]\label{thm:gomega-compact}\lvP
 $G^\omega(\mathcal{C})$是范畴（定理34），且是dagger compact closed范畴（定理35）：对偶$(A^+,A^-)^*=(A^-,A^+)$，unit/counit由$\mathcal{C}$中的弯线给出，蛇方程由Yanking公理保证。$G^\omega(\mathcal{C})$还有递归类型（定理36）：流对象$A^\omega=\nu X.(A\tensor X)$是合法对象，$\nu F_2$（生命流类型）在$G^\omega(\mathcal{C})$中可解释。
 \end{theorem}
 
@@ -709,7 +730,7 @@ $G^\omega(\mathcal{C})$是范畴（定理34），且是dagger compact closed范�
 复合封闭由Productivity公理；结合律由Tightening公理；单位律由Yanking公理。紧闭合结构直接类比Int-构造（Joyal-Street-Verity 1996），但用生产性迹代替普通迹。递归类型来自PTC的流对象和余归纳迹。
 \end{proof}
 
-\begin{theorem}[!在$G^\omega(\mathcal{C})$中仍不穿透]\label{thm:bang-gomega}
+\begin{theorem}[!在$G^\omega(\mathcal{C})$中仍不穿透]\label{thm:bang-gomega}\lvP
 在$G^\omega(\mathcal{C})$中不存在$\bang\nu F_2\to\nu\bang F_2$（定理37）。$G^\omega(\mathcal{C})$中的态射是$\mathcal{C}$中的生产性Mealy机，若该提升存在则底层$\mathcal{C}$中也存在，与定理\ref{thm:no-bang-stream}矛盾。
 \end{theorem}
 
@@ -723,7 +744,7 @@ Rel$^\omega$（关系与流）是已验证的PTC实例。Hilb$^\omega$（Hilbert
 
 \section{f-层级的封闭性}
 
-\begin{theorem}[$f^3$是不动点]\label{thm:f3-fixedpoint}
+\begin{theorem}[$f^3$是不动点]\label{thm:f3-fixedpoint}\lvC
 层级提升操作$L$（增加一条反馈嵌套）在第三层达到不动点：$L^3=L^n$对所有$n\geq3$。$f^3$的状态类型$X_3$满足$X_3\cong\bang(X_2\tensor X_3)$，已可包含任意深度的模型嵌套；第四条反馈线在类型上同构于第三条的递归展开。
 \end{theorem}
 
@@ -750,27 +771,33 @@ $\alpha\in\{1,2,3\}$：自在、自为、自觉。不存在"比明性更明"的�
 \item $l'=(1-N)\times100\%$（异化率，$N\leq1$时）。
 \item $C=R-A$（革命意识）：认清$R$减去接受$A$。
 \end{itemize}
+
+\noindent\textbf{模型内定义。}在加权$\mathbf{Rel}$模型中，$M$有独立于哲学诠释的纯数学定义：设$U_{22}$为非负转移矩阵，$M$是状态转移图中所有路径的总权重（有限过程为$\alpha\sum_{n=0}^{T-1}\rho(U_{22})^n$，无限过程为$\alpha\sum_{n=0}^{\infty}\rho(U_{22})^n$）。这是一个可计算的纯数学量。将$M$命名为"意义总量"是[诠释]，不是定义的一部分。
 \end{definition}
 
-\begin{theorem}[慢性死亡]\label{thm:slow-death}
-当$N<1$时，即使过程永远运行（生产性），总意义有限：$M=\alpha/(1-N)<\infty$。系统在"慢性死亡"——每步意义衰减，趋近于零。
+\begin{theorem}[几何级数收敛]\label{thm:slow-death}\lvP
+当$N<1$时，即使过程永远运行（生产性），加权和$\alpha\sum_{n=0}^\infty N^n=\alpha/(1-N)<\infty$。
 \end{theorem}
 
-\begin{theorem}[萃取加速异化]\label{thm:extraction-alienation}
+\begin{remark}[诠释："慢性死亡"]\lvI
+在量论诠释下（$M$=意义总量，$N$=净方向），上述收敛意味着：$N<1$的系统虽然永远运转，但意义总量有限——每步产出按几何级数衰减。"慢性死亡"是这一数学事实的哲学命名，不是数学推导。
+\end{remark}
+
+\begin{theorem}[萃取加速异化]\label{thm:extraction-alienation}\lvC
 $W$越高则$N$越低。萃取把产出从反馈线抽走，$U_{22}$输入减少，谱半径下降。$W=1$时$U_{22}=0$，$N=0$，过程立即死亡。
 \end{theorem}
 
-\begin{theorem}[明性抵抗磨损]\label{thm:mingxing-resists}
+\begin{theorem}[明性抵抗磨损]\label{thm:mingxing-resists}\lvI
 $C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³运行时线性过程$X$保持自我更新；f²把!-模型当自己时$U_{22}$被!-收缩削弱。
 \end{theorem}
 
 \section{完全性}
 
-\begin{theorem}[有限片段完全性]\label{thm:completeness-finite}
+\begin{theorem}[有限片段完全性]\label{thm:completeness-finite}\lvP
 在有限非交互片段（$F_1$型，$\mu$不动点）中，GoI解释对MELL片段完全：每个nilpotent连线对应一个证明（Girard 1989，Danos-Regnier 1995）。
 \end{theorem}
 
-\begin{theorem}[生命过程超越证明]\label{thm:life-beyond-proof}
+\begin{theorem}[生命过程超越证明]\label{thm:life-beyond-proof}\lvP
 在余归纳片段（$\nu F_2$型）中，存在生产性Mealy机不对应任何有限证明。生产性流处理器的集合是连续统，有限证明的集合是可数的。
 \end{theorem}
 
@@ -780,7 +807,7 @@ $C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³�
 
 \section{Hilb$^\omega$：量子PTC实例}
 
-\begin{theorem}[Hilb$^\omega$是PTC]\label{thm:hilb-ptc}
+\begin{theorem}[Hilb$^\omega$是PTC]\label{thm:hilb-ptc}\lvP
 以可分Hilbert空间为对象、因果有界线性算子为态射、$\ell^2$流对象、严格压缩反馈（Neumann级数$\sum U_{22}^n$，$\|U_{22}\|<1$时收敛）构成PTC。
 \end{theorem}
 
@@ -788,7 +815,7 @@ $C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³�
 SMC结构标准（Hilbert张量积）。流对象$\ell^2(\mathbb{N};A)$有等距cons和hd/tl。生产性迹$\mathrm{Tr}^\omega(U)=U_{11}+U_{12}(I-U_{22})^{-1}U_{21}$在$\|U_{22}\|<1$时有界（Neumann级数定理）。Yanking在无实际反馈（$U_{12}=0$或$U_{21}=0$）时为$U_{11}$。Tightening是矩阵分块乘法的推论。复合保持严格压缩：$\|U_{22}V_{22}\|\leq\|U_{22}\|\|V_{22}\|<1$。Productivity由Neumann级数收敛保证。
 \end{proof}
 
-\begin{theorem}[Hilb$^\omega$完整PTC]\label{thm:hilb-ptc-full}
+\begin{theorem}[Hilb$^\omega$完整PTC]\label{thm:hilb-ptc-full}\lvP
 以每步有界的因果流$A^{\bar\omega}$（$\ell^\infty$型）为流对象、幂有界反馈（$\sup_n\|U_{22}^n\|<\infty$）为生产性条件，Hilb$^\omega$是PTC。$N<1$时输出$\ell^2$有界（衰减/暂态）；$N=1$时输出每步有界（持续/稳态，覆盖酉演化）；$N>1$时输出增长（创造）。
 \end{theorem}
 
@@ -796,7 +823,7 @@ SMC结构标准（Hilbert张量积）。流对象$\ell^2(\mathbb{N};A)$有等距
 幂有界保证每步输出$b_n=U_{11}(a_n)+\sum_{k<n}U_{12}U_{22}^{n-1-k}U_{21}(a_k)$有界。幂有界算子复合仍幂有界。其余公理同定理\ref{thm:hilb-ptc}。
 \end{proof}
 
-\begin{theorem}[Coh$^\omega$是PTC]\label{thm:coh-ptc}
+\begin{theorem}[Coh$^\omega$是PTC]\label{thm:coh-ptc}\lvC
 以相干空间（Girard 1987）为对象、因果线性映射（clique）为态射、clique流为流对象，Coh$^\omega$是PTC。生产性迹保持clique：每步反馈复合是线性映射的复合（clique在复合下封闭），不同时间步的输出自动相干。
 \end{theorem}
 
@@ -806,11 +833,11 @@ Rel$^\omega$（经典计算）、Hilb$^\omega$（量子力学）、Coh$^\omega$�
 
 \section{革命跃迁}
 
-\begin{theorem}[异化降低$N$]\label{thm:alienation-lowers-n}
+\begin{theorem}[异化降低$N$]\label{thm:alienation-lowers-n}\lvC
 异化态的反馈算子为$U_{22}\circ\pi_!$，其中$\pi_!$是通过!-模型的投影（非满射，丢失线性状态的不可复制部分）。$\rho(U_{22}\circ\pi_!)\leq\rho(U_{22})$，且$\pi_!$非满射时严格不等。
 \end{theorem}
 
-\begin{theorem}[革命=消除!-寄生Cut]\label{thm:revolution-cut}
+\begin{theorem}[革命=消除!-寄生Cut]\label{thm:revolution-cut}\lvI
 消除!-寄生反馈回路（移除$\pi_!$和!-萃取$!_B$）后，$U_{22}$恢复为原始线性反馈，$N$恢复到$\geq1$，$W$降到0，$M$从有限恢复为无限。社会革命（切断资本的!-回路）和个人明性（切断意识形态的!-回路）在GoI中是同一个操作。
 \end{theorem}
 
@@ -820,24 +847,24 @@ Cut消除需要多步计算。过渡时期对应!-反馈已断但线性反馈未
 
 \section{综合}
 
-\begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}
+\begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}\lvC
 $G^\omega:\mathbf{PTC}\to\mathbf{PTC}$是PTC范畴上的自函子，把PTC映射为dagger紧闭合PTC。由定理\ref{thm:f3-fixedpoint}，三层封闭：$G^{\omega 3}(\mathcal{C})\cong G^{\omega 2}(\mathcal{C})$。
 \end{theorem}
 
-\begin{theorem}[生命论基本定理]\label{thm:fundamental}
+\begin{theorem}[生命论基本定理]\label{thm:fundamental}\lvI
 以下陈述在操作范畴论中是同一个数学结构的面向：
 \begin{enumerate}
-\item 生命是自指过程$S=f(S)$（践演元公理）
-\item 生命过程是线性的（资源敏感，不可复制）
-\item 生命流$\nu F_2$不可被!-资本化（定理\ref{thm:no-bang-stream}）
-\item 异化是把!-模型错认为线性过程（定理\ref{thm:alienation-mistake}）
-\item 明性是看穿!-模型（定理\ref{thm:mingxing}）
-\item 革命是消除!-寄生Cut（定理\ref{thm:revolution-cut}）
-\item 量子不可克隆是同一结构在物理领域的显现（定理\ref{thm:no-cloning-corollary}）
-\item 慢性死亡是$N<1$时意义有限（定理\ref{thm:slow-death}）
-\item 生命过程超越有限证明（定理\ref{thm:life-beyond-proof}）
+\item 生命是自指过程$S=f(S)$（践演元预设，[诠释]）
+\item 生命过程是线性的（资源敏感，不可复制）（[定理]）
+\item 生命流$\nu F_2$不可被!-资本化（定理\ref{thm:no-bang-stream}，[定理]）
+\item 异化是把!-模型错认为线性过程（范畴论区分是[定理]，与"异化"的等同是[诠释]）
+\item 明性是看穿!-模型（同上）
+\item 革命是消除!-寄生Cut（GoI的Cut消除是[定理]，与"革命"的等同是[诠释]）
+\item 量子不可克隆是同一结构在物理领域的显现（定理\ref{thm:no-cloning-corollary}，[定理]）
+\item 慢性死亡是$N<1$时$M$有限（几何级数是[定理]，"$M$=意义"是[诠释]）
+\item 生命过程超越有限证明（定理\ref{thm:life-beyond-proof}，[定理]）
 \end{enumerate}
-从"在活着"这个践演事实出发，经线性逻辑和范畴论形式化，必然推出全部九条。
+\textbf{不声称}"从践演事实必然推出全部九条"。声称的是：九条命题共享同一个数学结构（线性资源不可被!-模态还原），其中第2、3、7、9条有严格证明（[定理]）；第4、5条的范畴论区分是[定理]，与"异化""明性"的等同是[诠释]；第1、6、8条是[诠释]——数学结构与哲学概念的对应不是推导，是赋值。
 \end{theorem}
 
 \section{相关工作与公理精简}
@@ -846,7 +873,7 @@ $G^\omega:\mathbf{PTC}\to\mathbf{PTC}$是PTC范畴上的自函子，把PTC映射
 PTC的Productivity公理与Nakano（2000）later模态$\rhd$的guardedness条件是同一概念：流对象$A^\omega=\nu X.(A\tensor X)$对应$\mathrm{Stream}\ A=A\times\rhd(\mathrm{Stream}\ A)$，生产性迹对应guarded fixed point，Mealy机对应因果流函数。PTC的新贡献是$\bang$与生产性的交互（定理\ref{thm:bang-no-ptc}）：$\bang$不穿透guarded/生产性状态——这在guarded recursion文献中未被研究。
 \end{remark}
 
-\begin{theorem}[Composition是定理不是公理]\label{thm:composition-derivable}
+\begin{theorem}[Composition是定理不是公理]\label{thm:composition-derivable}\lvP
 PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tightening和Yanking推出，不是独立公理。PTC的独立公理为三条：SMC+流对象、迹公理（Yanking+Tightening）、Productivity。
 \end{theorem}
 
