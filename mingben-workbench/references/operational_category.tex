@@ -828,6 +828,20 @@ $G^\omega:\mathbf{PTC}\to\mathbf{PTC}$是PTC范畴上的自函子，把PTC映射
 从"在活着"这个践演事实出发，经线性逻辑和范畴论形式化，必然推出全部九条。
 \end{theorem}
 
+\section{相关工作与公理精简}
+
+\begin{remark}[与Guarded Recursion的关系]
+PTC的Productivity公理与Nakano（2000）later模态$\rhd$的guardedness条件是同一概念：流对象$A^\omega=\nu X.(A\tensor X)$对应$\mathrm{Stream}\ A=A\times\rhd(\mathrm{Stream}\ A)$，生产性迹对应guarded fixed point，Mealy机对应因果流函数。PTC的新贡献是$\bang$与生产性的交互（定理\ref{thm:bang-no-ptc}）：$\bang$不穿透guarded/生产性状态——这在guarded recursion文献中未被研究。
+\end{remark}
+
+\begin{theorem}[Composition是定理不是公理]\label{thm:composition-derivable}
+PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tightening和Yanking推出，不是独立公理。PTC的独立公理为三条：SMC+流对象、迹公理（Yanking+Tightening）、Productivity。
+\end{theorem}
+
+\begin{proof}
+在traced monoidal category中，复合的结合律从tightening/naturality和yanking推出（Joyal-Street-Verity 1996）。PTC中Mealy机复合用生产性迹定义，其结合律和同一律由相同论证给出。Productivity独立于标准迹公理：标准迹允许nilpotency（$U_{22}^n=0$），但不要求无限反馈每步有产出。
+\end{proof}
+
 \section{待证猜想}
 
 \begin{conjecture}[生命测度]\label{conj:measure}
@@ -848,7 +862,7 @@ $G^\omega:\mathbf{PTC}\to\mathbf{PTC}$是PTC范畴上的自函子，把PTC映射
 
 \section{总结}
 
-本文定义了操作范畴，证明了54个定理，核心结构如下：
+本文定义了操作范畴，证明了55个定理，核心结构如下：
 
 \begin{center}
 \begin{tabular}{lll}
