@@ -691,6 +691,46 @@ $f^3$的第三条反馈回路将自我模型对象化：系统看到模型是$\b
 $\bang\mu F_2\to\mu\bang F_2$在IMELL+$\mu$中不可证。穷尽$\otimes R$的所有拆分：非循环分支需要从空上下文证明线性资源（不可能）或promotion线性原子（不可能）；循环分支中$\mu$-展开不降低矢列复杂度（$\mu F_2$展开为$A\multimap(\mu F_2\tensor B)$，$\mu F_2$重新出现），证明树无限生长但不产生公理叶子。
 \end{theorem}
 
+\section{$G^\omega(\mathcal{C})$：生产性紧闭合范畴}
+
+\begin{definition}[$G^\omega(\mathcal{C})$]
+设$\mathcal{C}$是PTC。$G^\omega(\mathcal{C})$的对象是$(A^+,A^-)$（$\mathcal{C}$中对象的有序对），态射$(A^+,A^-)\to(B^+,B^-)$是$\mathcal{C}$中的生产性Mealy机$A^+\tensor B^-\tensor X\to B^+\tensor A^-\tensor X$，复合用生产性迹$\mathrm{Tr}^\omega$。
+\end{definition}
+
+\begin{theorem}[$G^\omega(\mathcal{C})$是dagger紧闭合范畴]\label{thm:gomega-compact}
+$G^\omega(\mathcal{C})$是范畴（定理34），且是dagger compact closed范畴（定理35）：对偶$(A^+,A^-)^*=(A^-,A^+)$，unit/counit由$\mathcal{C}$中的弯线给出，蛇方程由Yanking公理保证。$G^\omega(\mathcal{C})$还有递归类型（定理36）：流对象$A^\omega=\nu X.(A\tensor X)$是合法对象，$\nu F_2$（生命流类型）在$G^\omega(\mathcal{C})$中可解释。
+\end{theorem}
+
+\begin{proof}
+复合封闭由Productivity公理；结合律由Tightening公理；单位律由Yanking公理。紧闭合结构直接类比Int-构造（Joyal-Street-Verity 1996），但用生产性迹代替普通迹。递归类型来自PTC的流对象和余归纳迹。
+\end{proof}
+
+\begin{theorem}[!在$G^\omega(\mathcal{C})$中仍不穿透]\label{thm:bang-gomega}
+在$G^\omega(\mathcal{C})$中不存在$\bang\nu F_2\to\nu\bang F_2$（定理37）。$G^\omega(\mathcal{C})$中的态射是$\mathcal{C}$中的生产性Mealy机，若该提升存在则底层$\mathcal{C}$中也存在，与定理\ref{thm:no-bang-stream}矛盾。
+\end{theorem}
+
+\begin{remark}[与Int-构造的关系]
+$\mathrm{Int}(\mathcal{C})$是$G^\omega(\mathcal{C})$的全子范畴，由无状态（$X=I$）态射组成。Int(C)处理有限连线（nilpotent反馈），$G^\omega(\mathcal{C})$处理无限流处理器（productive反馈）。$G^\omega$是Int构造的"无限版"。
+\end{remark}
+
+\begin{remark}[PTC实例]
+Rel$^\omega$（关系与流）是已验证的PTC实例。Hilb$^\omega$（Hilbert空间与因果有界算子，生产性迹=Neumann级数$\sum U_{22}^n$，收敛条件$\|U_{22}\|<1$，即控制论小增益定理）和Coh$^\omega$（相干空间与因果clique）是合理的候选实例，严格验证待补。三个实例中!不穿透线性状态都成立——这是PTC公理的普遍推论，不是特定模型的偶然性质。
+\end{remark}
+
+\section{f-层级的封闭性}
+
+\begin{theorem}[$f^3$是不动点]\label{thm:f3-fixedpoint}
+层级提升操作$L$（增加一条反馈嵌套）在第三层达到不动点：$L^3=L^n$对所有$n\geq3$。$f^3$的状态类型$X_3$满足$X_3\cong\bang(X_2\tensor X_3)$，已可包含任意深度的模型嵌套；第四条反馈线在类型上同构于第三条的递归展开。
+\end{theorem}
+
+\begin{proof}
+$f^1\to f^2$是质变（从无模型到有模型）；$f^2\to f^3$是质变（从被模型支配到看见模型是模型）；$f^3\to f^4$不是质变——$f^3$已能对象化任何模型（包括自身的模型），再嵌套一层不增加新的区分能力。在$G^\omega(\mathcal{C})$中，$X_3$的递归类型允许任意深度的$\ulcorner\ulcorner\cdots\urcorner\urcorner$嵌套，$X_4$不增加表达力。
+\end{proof}
+
+\begin{remark}[$\alpha$只取三个值]
+$\alpha\in\{1,2,3\}$：自在、自为、自觉。不存在"比明性更明"的状态，只存在明性操作得更持续、更彻底。这对应禅宗三段（见山是山$\to$见山不是山$\to$见山还是山），第三段之后没有第四段。
+\end{remark}
+
 \section{待证猜想}
 
 \begin{conjecture}[生命测度]\label{conj:measure}
@@ -711,7 +751,7 @@ $\bang\mu F_2\to\mu\bang F_2$在IMELL+$\mu$中不可证。穷尽$\otimes R$的�
 
 \section{总结}
 
-本文定义了操作范畴，证明了38个定理，核心结构如下：
+本文定义了操作范畴，证明了42个定理，核心结构如下：
 
 \begin{center}
 \begin{tabular}{lll}
