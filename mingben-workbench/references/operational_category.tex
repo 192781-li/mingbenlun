@@ -38,7 +38,7 @@
 \maketitle
 
 \begin{abstract}
-本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子；(6) $\bang$不提升到交互余代数（Mealy机）范畴，但提升到非交互余代数范畴——这给出马克思"形式从属/实际从属"和Braverman"去技能化"的形式证明；(7) 多项式函子的!-分配二分法：!只分配给数据函子（$\tensor$,\&,$\bang$），不分配给计算函子（$\lolli$后件,$\oplus$），这与归纳类型的严格正性条件形成对偶，并对应量子不可克隆定理；(8) 不动点提升定理：数据函子的最大不动点可被!提升（数据流可复制），但交互函子$F_2$的最小和最大不动点均不可被!提升——有限交互和无限生命流都不可复制为过程，唯一可做的是记录为数据（实际从属）；(9) Geometry of Interaction动态语义：操作被解释为带反馈回路的连线网络，Mealy机是GoI反馈回路，迹=测量=实际从属；(10) 余归纳GoI：在Rel中构造流处理器范畴，以productivity替换nilpotency作为无限生命过程的正确性条件，余归纳迹满足迹公理的余归纳版本，!不提升到交互流处理器，执行（践演）不是沉积。这些结果将线性逻辑、范畴论、GoI与马克思政治经济学统一在一个形式框架中。
+本文定义\textbf{操作范畴}（operational category）——一个以对称幺半闭范畴（SMCC）为基底、带有线性指数余单子$\bang$与最小/最大不动点$\mU/\mN$的范畴结构，并赋予其生命论的存在论解释。我们证明：(1) 不存在自然变换$A\to\bang A$（活操作不可自动沉积）；(2) 反自指寄生体（$\bang$-模态对象依赖线性宿主）在宿主消亡时退化为空转（资本的绝对矛盾）；(3) 马克思的不变资本/可变资本区分对应于$\bang$-模态/线性资源的结构区分，剩余价值只能来自线性资源；(4) 生命位点（最终余代数$\mN F$）不存在到$\bang(\mN F)$的态射（生命不可完全资本化）；(5) $\bang$的共Kleisli范畴（CCC）精确对应流通领域，基范畴（SMCC）对应生产领域，商品拜物教是从SMCC到CCC遗忘线性性的函子；(6) $\bang$不提升到交互余代数（Mealy机）范畴，但提升到非交互余代数范畴——这给出马克思"形式从属/实际从属"和Braverman"去技能化"的形式证明；(7) 多项式函子的!-分配二分法：!只分配给数据函子（$\tensor$,\&,$\bang$），不分配给计算函子（$\lolli$后件,$\oplus$），这与归纳类型的严格正性条件形成对偶，并对应量子不可克隆定理；(8) 不动点提升定理：数据函子的最大不动点可被!提升（数据流可复制），但交互函子$F_2$的最小和最大不动点均不可被!提升——有限交互和无限生命流都不可复制为过程，唯一可做的是记录为数据（实际从属）；(9) Geometry of Interaction动态语义：操作被解释为带反馈回路的连线网络，Mealy机是GoI反馈回路，迹=测量=实际从属；(10) 余归纳GoI：在Rel中构造流处理器范畴，以productivity替换nilpotency作为无限生命过程的正确性条件，余归纳迹满足迹公理的余归纳版本，!不提升到交互流处理器，执行（践演）不是沉积；(11) 生产性迹范畴（PTC）的公理化：将余归纳GoI从Rel推广为一般范畴论概念，证明!不穿透任意PTC中的线性状态，有限迹（nilpotency/μ）与生产性迹（productivity/ν）的关系。这些结果将线性逻辑、范畴论、GoI与马克思政治经济学统一在一个形式框架中。
 \end{abstract}
 
 \tableofcontents
@@ -529,6 +529,42 @@ GoI执行$\mathrm{Ex}(U)$或$\mathrm{Ex}^\omega(U)$不是$\mathcal{C}$中的态�
 矢列$\Gamma\vdash A$的GoI解释是静态连线$U$（阴，可被$\bang$复制存储）；践演判断$\triangleright A$对应$U$的执行$\mathrm{Ex}(U)$（阳，一次性事件）。你可以复制《资本论》（$\bang$），但不能复制"一个人读了《资本论》后改变生命"这个事件（$\triangleright$）。
 \end{remark}
 
+\section{生产性迹范畴：公理化}
+
+将余归纳GoI从$\mathbf{Rel}$推广为一般范畴论概念。
+
+\begin{definition}[生产性迹]\label{def:ptc}
+设$\mathcal{C}$是SMC，对每个对象$A$有流对象$A^\omega=\nu X.(A\tensor X)$（最终余代数）。对Mealy机$(X,f:A\tensor X\to B\tensor X,x_0:I\to X)$，定义行为态射
+$$\mathrm{beh}(f,x_0):A^\omega\to B^\omega$$
+为余代数$c:X\tensor A^\omega\to B\tensor(X\tensor A^\omega)$的anamorphism（$c$在每步消耗输入头和当前状态，产生输出、新状态和剩余输入流）。$\mathcal{C}$是\textbf{生产性迹范畴}（PTC），如果$\mathrm{beh}$满足：
+\begin{itemize}
+  \item \textbf{Yanking}：$\mathrm{beh}(\sigma_{X,X},x_0)=\mathrm{id}_{X^\omega}$
+  \item \textbf{Tightening}：$\mathrm{beh}((h\tensor\mathrm{id})f(g\tensor\mathrm{id}),x_0)=h^\omega\,\mathrm{beh}(f,x_0)\,g^\omega$
+  \item \textbf{组合}：$\mathrm{beh}(f;g,(x_0,y_0))=\mathrm{beh}(g,y_0)\circ\mathrm{beh}(f,x_0)$
+  \item \textbf{Productivity}：$f$完全则$\mathrm{beh}(f,x_0)$是完全因果流函数
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[$\mathbf{Rel}$是PTC]\label{thm:rel-ptc}
+$\mathbf{Rel}$（笛卡尔积为张量）是生产性迹范畴。
+\end{theorem}
+
+\begin{theorem}[!不穿透生产性迹]\label{thm:bang-no-ptc}
+在PTC $\mathcal{C}$中，若$X$是线性状态（无收缩$X\to X\tensor X$），则$\mathrm{beh}(f,x_0)$不能自然提升为$(!A)^\omega\to(!B)^\omega$上保持单一状态线索的行为。
+\end{theorem}
+
+\begin{proof}
+$\mathrm{beh}$的余归纳构造要求每步有唯一当前状态$x_n$（被消耗、产生$x_{n+1}$、$x_{n+1}$成为下一步当前状态）。状态为$!X$时，$!X$享有收缩和弱化，但$!X$中的沉积（多重集）没有规范的"当前元素"——可以整体复制、分割、丢弃，不同选择导致不同行为，不满足唯一性。非交互转移中$X$直接出现在输出中，$!X\to!X$有规范选择（恒等），线索唯一；交互转移中$X$是函数产出，$!X$无法确定哪个产出是下一步当前状态。
+\end{proof}
+
+\begin{theorem}[有限与无限]\label{thm:finite-infinite}
+若$\mathcal{C}$同时是TSMC和PTC：(a)幂零Mealy机（$(f_{11})^n=0$）的标准迹存在，行为在$n$步后退化为常数流；(b)生产性但非幂零的Mealy机标准迹不存在，但$\mathrm{beh}$存在。(a)对应$\mu F_2$（有限交互），(b)对应$\nu F_2$（生命）。
+\end{theorem}
+
+\begin{remark}[践演判断的范畴论地位]
+$\mathrm{beh}(f,x_0):A^\omega\to B^\omega$不在$\mathcal{C}$中（流对象在余归纳GoI范畴$\mathcal{G}^\omega(\mathcal{C})$中）。构造$\mathrm{beh}$需要anamorphism，是范畴之间的操作而非范畴内部操作——这就是践演判断$\triangleright A$是元公理（公理\ref{ax:performative}）而非内部公理的原因：践演是你对形式系统\emph{做}的事，不是系统内部的命题。
+\end{remark}
+
 \section{待证猜想}
 
 \begin{conjecture}[生命测度]\label{conj:measure}
@@ -549,7 +585,7 @@ GoI执行$\mathrm{Ex}(U)$或$\mathrm{Ex}^\omega(U)$不是$\mathcal{C}$中的态�
 
 \section{总结}
 
-本文定义了操作范畴，证明了23个定理，核心结构如下：
+本文定义了操作范畴，证明了26个定理，核心结构如下：
 
 \begin{center}
 \begin{tabular}{lll}
