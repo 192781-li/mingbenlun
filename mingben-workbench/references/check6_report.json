@@ -1,6 +1,6 @@
 {
   "check": "concept_dependency_integrity",
-  "total_concepts": 58,
+  "total_concepts": 68,
   "root": "操作",
   "issues_count": 0,
   "issues": []
