@@ -101,3 +101,5 @@ __pycache__/
 tmp_*.png
 tmp_*.webp
 .git_bloated_backup/
+mingben-workbench/tools/vitality_log.jsonl
+mingben-workbench/tools/diagnosis_records.jsonl
