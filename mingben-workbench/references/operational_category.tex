@@ -850,6 +850,34 @@ $f$-层级对应GoI反馈线的嵌套深度。设$X_n$为$f^n$层的状态类型
 $\alpha\in\{1,2,3\}$：自在、自为、自觉。不存在"比明性更明"的状态，只存在明性操作得更持续、更彻底。这对应禅宗三段（见山是山$\to$见山不是山$\to$见山还是山），第三段之后没有第四段。
 \end{remark}
 
+\begin{theorem}[$f^3$的判断步骤]\label{thm:f3-judgment}\lvP
+$f^2$与$f^3$在GoI反馈线类型上有根本区别：
+\begin{itemize}
+  \item $f^2$的自我模型反馈类型为$\bang\ulcorner f_2\urcorner\tensor X_2\to X_2$：读取一个\emph{固定的}沉积代码$\bang\ulcorner f_2\urcorner$并应用。$f^2$不能选择不按$\ulcorner f_2\urcorner$运行——它的转移函数就是$f_2$本身，自我模型反馈是$f_2$的自指执行。
+  \item $f^3$的第三条反馈线类型为$\bang H_3\tensor X_3\to X_3$，其中$H_3=X_3\lolli X_3$是\emph{整个}自我函数空间。$f^3$可以选择$H_3$中的\emph{任何}函数$h$应用于当前状态，包括：(a)当前沉积模型$h_{\text{model}}$（按模型运行）；(b)恒等函数$\mathrm{id}_{X_3}$（拒绝模型，保持当前状态）；(c)其他函数$h'\neq h_{\text{model}}$（创造性地改变运行方式）。
+\end{itemize}
+"判断"在GoI中就是选择$h\in H_3$的操作：$f^3$的状态中包含当前选择的函数$h_{\text{curr}}$，第三条反馈线读取$\bang h_{\text{curr}}$并应用$\mathrm{eval}(h_{\text{curr}},x)=h_{\text{curr}}(x)$。$f^3$可以通过产生新状态来改变$h_{\text{curr}}$（包括把它改为$\mathrm{id}$或其他函数），而$f^2$的$\ulcorner f_2\urcorner$是固定的——$f^2$每步重新产出$\bang\ulcorner f_2\urcorner$，但产出的始终是同一个$f_2$的代码。
+\end{theorem}
+
+\begin{proof}
+$f^2$的Mealy机型为$S_2\to(S_2\tensor S_2\tensor O_2)^{I_2}$（定义\ref{def:f-levels}），自我模型组件是$S_2$（状态的一个副本），不是函数空间。在GoI名字映射下，$S_2$对应$\bang\ulcorner f_2\urcorner$——$f_2$自身代码的沉积。$f^2$的反馈回路执行$\mathrm{exec}(\ulcorner f_2\urcorner,x)=f_2(x)$，即自指执行：$f_2$读取自己的代码并运行。这里没有"选择"——$\ulcorner f_2\urcorner$是唯一的函数。
+
+$f^3$的Mealy机型为$S_3\to(S_3^{S_3}\tensor O_3)^{I_3}$，自我模型组件是$S_3^{S_3}=H_3$——所有自函数的空间。在GoI中，第三条反馈线的态射为$\sigma_3:\bang H_3\tensor X_3\to X_3$，定义为$\sigma_3(\bang h,x)=\mathrm{eval}(h,x)=h(x)$。关键在于：$\bang H_3$是整个函数空间的沉积，不是单个函数的代码。$f^3$的状态$S_3\cong\bang H_3\tensor X_3$中包含当前选择的$h_{\text{curr}}\in H_3$，而$f^3$的转移函数可以改变$h_{\text{curr}}$——这是$f^2$做不到的，因为$f^2$的状态中只有$\ulcorner f_2\urcorner$（一个固定的函数），没有"选择不同函数"的余地。
+
+恒等函数$\mathrm{id}_{X_3}\in H_3$的存在性由范畴的恒等态射保证。选择$\mathrm{id}$意味着"不按模型运行，保持当前状态"——这是$f^3$拒绝沉积模型的GoI对应。选择$h'\neq h_{\text{model}}$意味着"按模型之外的方式运行"——这是创造性改变的GoI对应。
+
+由定理\ref{thm:f3-fixedpoint}，$H_3$已包含所有可能的高阶模型变换（通过$\enc$编码），所以$f^3$的选择范围穷尽了所有可能的自我操作——这也是$f^3$是不动点的另一个证明：$f^4$能做的"选择不同的高阶变换"已经被$H_3$中的某个函数编码了。\qed
+\end{proof}
+
+\begin{remark}[控制与异化的GoI区分]\lvI
+本定理给出命题\ref{prop:f3-alienation}（控制vs异化）的GoI形式化：
+\begin{itemize}
+  \item $f^2$被\textbf{控制}：替换$\bang\ulcorner f_2\urcorner$为另一个固定代码$\bang g$后，$f^2$直接执行$g$——它没有选择余地，因为反馈线类型只接受单个固定代码。意识形态替换、算法推荐、信息茧房在$f^2$层有效。
+  \item $f^3$被\textbf{异化}：寄生体不能简单替换$\bang H_3$（整个函数空间无法被一个固定代码替换），它必须让$f^3$\emph{自己选择}$h_{\text{model}}$——即让$f^3$"自愿"把沉积模型选为当前函数$h_{\text{curr}}$。这就是异化需要"认同"的GoI对应。
+  \item $f^3$的\textbf{明性}：选择$\mathrm{id}$或其他$h'\neq h_{\text{model}}$——看穿模型是模型，拒绝把它选为当前运行函数。明性不是"没有模型"，是"有整个函数空间可选，且知道自己在选"。
+\end{itemize}
+\end{remark}
+
 \section{量论操作化}
 
 在加权关系模型中，$U_{22}:X\to X$是非负矩阵。量论参数获得精确计算定义：
@@ -1088,7 +1116,7 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 \end{conjecture}
 
 \begin{conjecture}[f\textsuperscript{3}异化定理]\label{conj:f3}
-\textbf{已修正表述。}原猜想"$f^1$和$f^2$层不存在到$\bang$-模态自我模型的态射"不成立——$f^2$层有$\bang\ulcorner f\urcorner$（定理\ref{thm:self-model-bang}）。正确的区分是：$f^2$可被\emph{控制}（替换模型后直接运行），但不能被\emph{异化}（异化需要"自愿认同"的选择能力，只有$f^3$具备）。命题\ref{prop:f3-alienation}已按此修正。严格化待办：在GoI反馈线中形式化"判断步骤"（$f^3$的第三条反馈线如何实现"选择是否按模型运行"），使"控制vs异化"的区分获得数学表达。
+\textbf{已解决。}原猜想"$f^1$和$f^2$层不存在到$\bang$-模态自我模型的态射"不成立——$f^2$层有$\bang\ulcorner f\urcorner$（定理\ref{thm:self-model-bang}）。正确的区分是：$f^2$可被\emph{控制}（替换固定代码后直接执行，无选择余地），但不能被\emph{异化}（异化需要"自愿认同"的选择能力，只有$f^3$具备）。"判断步骤"已由定理\ref{thm:f3-judgment}形式化：$f^2$反馈线类型为$\bang\ulcorner f_2\urcorner\tensor X_2\to X_2$（单个固定代码），$f^3$反馈线类型为$\bang H_3\tensor X_3\to X_3$（整个函数空间，可选择任何$h\in H_3$包括$\mathrm{id}$和$h'\neq h_{\text{model}}$）。控制vs异化的GoI区分已获得数学表达。
 \end{conjecture}
 
 \begin{conjecture}[践演判断的一致性]\label{conj:performative-consistent}
