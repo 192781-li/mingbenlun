@@ -6,7 +6,7 @@
   T  = 稳态持续时间（幂零指数/∞）
   N  = 反馈强度（谱半径）：N<1衰退，N=1稳态，N>1创造
   α  = 嵌套深度（f层级）：1=自在，2=自为，3=自觉
-  M  = 生命意义量
+  M  = 生命意义量（几何级数：α·ΣN^n）
   W  = 异化率 = O/M
   l' = 生命力指数 = (1-N)×100%
   C  = 自由增量 = R - A
@@ -27,14 +27,18 @@ from datetime import datetime
 
 
 def calc_M(N, alpha, T):
-    """计算生命意义量M"""
-    if N >= 1.0:
-        if T == float('inf'):
-            return float('inf')
-        return alpha * T * N
+    """计算生命意义量M（几何级数求和）"""
+    if T == float('inf'):
+        if N < 1.0:
+            return alpha / (1.0 - N)  # 慢性死亡定理
+        else:
+            return float('inf')       # N>=1且T=∞，M=∞
     else:
-        # 慢性死亡定理：N<1时M有限
-        return alpha / (1.0 - N)
+        # 有限过程：M = α·Σ(n=0到T-1) N^n
+        if abs(N - 1.0) < 1e-9:
+            return alpha * T           # N=1时M=αT
+        else:
+            return alpha * (N**T - 1) / (N - 1)  # 等比数列求和
 
 
 def calc_W(O, M):
@@ -97,13 +101,14 @@ def diagnose_C(C):
 
 
 def dynamic_N(N0, beta, gamma, days):
-    """计算N的动态变化：N(t+1) = N(t) + gamma - beta"""
+    """计算N的动态变化：N(t+1) = (1-beta+gamma)·N(t)（乘法模型）"""
     results = []
     N = N0
+    factor = 1.0 - beta + gamma
     for day in range(days + 1):
         results.append({"day": day, "N": round(N, 6)})
         if day < days:
-            N = N + gamma - beta
+            N = N * factor
             if N < 0:
                 N = 0
     return results
@@ -155,7 +160,7 @@ def cmd_calc(args):
     else:
         print(f"  M（生命意义量）= {M:.2f}")
 
-    print(f"  l'（生命力指数）= {l_prime:+.1f}%", end="")
+    print(f"  l'（流失率，正=流失/负=增长）= {l_prime:+.1f}%", end="")
     if l_prime > 0:
         print("（每轮流失）")
     elif l_prime < 0:
@@ -170,7 +175,7 @@ def cmd_calc(args):
     if N < 1.0:
         print()
         print(f"  ⚠ 慢性死亡定理：N={N}<1，M={M:.2f}有上限")
-        print(f"    即使系统继续运行，总意义量不超过{M:.2f}×α")
+        print(f"    即使系统继续运行，总意义量不超过{M:.2f}")
 
     print()
 
