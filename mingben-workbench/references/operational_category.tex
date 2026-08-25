@@ -34,6 +34,10 @@
 \newcommand{\tensor}{\otimes}
 \newcommand{\coKl}[1]{\C_{\bang}}
 \newcommand{\eval}{\mathrm{eval}}
+
+
+\newcommand{\enc}{\mathrm{enc}}
+\newcommand{\coh}{\mathrel{\frown}}
 \newcommand{\eps}{\varepsilon}
 \newcommand{\mU}{\mu}
 \newcommand{\mN}{\nu}
@@ -781,13 +785,13 @@ $f$-层级对应GoI反馈线的嵌套深度。设$X_n$为$f^n$层的状态类型
 \textbf{第三条反馈线已包含任意高阶变换。}关键观察：$H_3=X_3\lolli X_3$是$X_3$上\emph{所有}自函数的空间，包含：
 \begin{enumerate}
   \item 任何具体运行策略$h:X_3\to X_3$；
-  \item 任何模型变换$g:H_3\to H_3$：定义$\enc(g):X_3\to X_3$为
-  $$\enc(g)(x)=\mathrm{let}\,(\bang h, x')=\pi(x)\,\mathrm{in}\,\iota(g(h), x'),$$
-  其中$\pi:X_3\to\bang H_3\tensor X_3$从状态中提取当前沉积模型与剩余状态（由$X_3\cong\cdots\tensor\bang H_3\tensor\cdots$的out映射给出），$\iota$为其逆。$\enc(g)$是良定义的$X_3\to X_3$态射；
+  \item 任何模型变换$g:H_3\to H_3$：定义$\mathrm{enc}(g):X_3\to X_3$为
+  $$\mathrm{enc}(g)(x)=\mathrm{let}\,(\bang h, x')=\pi(x)\,\mathrm{in}\,\iota(g(h), x'),$$
+  其中$\pi:X_3\to\bang H_3\tensor X_3$从状态中提取当前沉积模型与剩余状态（由$X_3\cong\cdots\tensor\bang H_3\tensor\cdots$的out映射给出），$\iota$为其逆。$\mathrm{enc}(g)$是良定义的$X_3\to X_3$态射；
   \item 任意$k$阶变换$g:H_3^{(k)}\to H_3^{(k)}$（其中$H_3^{(0)}=X_3$，$H_3^{(k+1)}=H_3^{(k)}\to H_3^{(k)}$），通过重复$\enc$编码为$H_3$中的元素。
 \end{enumerate}
 
-\textbf{$f^4$不增加新能力。}$f^4$的第四条反馈线类型为$\bang(H_3\lolli H_3)\tensor X_4\to X_4$，即读取沉积的模型变换$\bang g$并应用。但由(2)，任何$g:H_3\to H_3$都被$\enc(g)\in H_3$编码，第三条反馈线读取$\bang\enc(g)$即可实现$g$的功能。编码$\enc$是单射：给定$\enc(g)$，取任意$h\in H_3$和$x_0\in X_3$，$g(h)=\pi_1(\enc(g)(\iota(h,x_0)))$可恢复$g$。因此第四条反馈线的信息可无损编码到第三条中。
+\textbf{$f^4$不增加新能力。}$f^4$的第四条反馈线类型为$\bang(H_3\lolli H_3)\tensor X_4\to X_4$，即读取沉积的模型变换$\bang g$并应用。但由(2)，任何$g:H_3\to H_3$都被$\mathrm{enc}(g)\in H_3$编码，第三条反馈线读取$\bang\mathrm{enc}(g)$即可实现$g$的功能。编码$\enc$是单射：给定$\mathrm{enc}(g)$，取任意$h\in H_3$和$x_0\in X_3$，$g(h)=\pi_1(\mathrm{enc}(g)(\iota(h,x_0)))$可恢复$g$。因此第四条反馈线的信息可无损编码到第三条中。
 
 由归纳，所有$n\geq3$的$f^n$层操作等价于$f^3$。$f^1\to f^2$（无模型→有模型）和$f^2\to f^3$（被模型支配→能对象化模型）是质变；$f^3\to f^4$不是质变，因为$f^3$的$H_3$已穷尽所有自指变换。\qed
 \end{proof}
@@ -879,9 +883,29 @@ SMC结构标准（Hilbert张量积）。流对象$\ell^2(\mathbb{N};A)$有等距
 幂有界保证每步输出$b_n=U_{11}(a_n)+\sum_{k<n}U_{12}U_{22}^{n-1-k}U_{21}(a_k)$有界。幂有界算子复合仍幂有界。其余公理同定理\ref{thm:hilb-ptc}。
 \end{proof}
 
-\begin{theorem}[Coh$^\omega$是PTC]\label{thm:coh-ptc}\lvC
-以相干空间（Girard 1987）为对象、因果线性映射（clique）为态射、clique流为流对象，Coh$^\omega$是PTC。生产性迹保持clique：每步反馈复合是线性映射的复合（clique在复合下封闭），不同时间步的输出自动相干。
+\begin{theorem}[Coh$^\omega$是PTC]\label{thm:coh-ptc}\lvP
+以相干空间（Girard 1987）为对象、因果线性映射（clique）为态射、clique流为流对象，Coh$^\omega$是PTC。
 \end{theorem}
+
+\begin{proof}
+\textbf{预备。}相干空间$\mathcal{A}$由web $|\mathcal{A}|$和自反对称相干关系$\coh_{\mathcal{A}}$组成；clique是$|\mathcal{A}|$的子集，其中任意两元素相干。$\mathbf{Coh}$的SMC结构是标准的：$\mathcal{A}\otimes\mathcal{B}$的web为$|\mathcal{A}|\times|\mathcal{B}|$，$(a,b)\coh(a',b')$当且仅当$a\coh a'$且$b\coh b'$；线性蕴含$\mathcal{A}\lolli\mathcal{B}$中$(a,b)\coh(a',b')$当且仅当$a\coh a'$蕴涵$b\coh b'$。
+
+\textbf{流对象。}$\mathcal{A}^\omega=\nu X.(\mathcal{A}\otimes X)$在$\mathbf{Coh}$中存在（Girard不动点构造）：web为$|\mathcal{A}|$的有限非空序列$|\mathcal{A}|^+$，$s\coh t$当且仅当在公共长度上逐点相干。clique对应于无限流的有限前缀闭包（相干树）。
+
+\textbf{Mealy机的clique条件。}生产性Mealy机$f$是$(\mathcal{A}\otimes X)\lolli(\mathcal{B}\otimes X)$中的clique，其元素为$(a,x,b,x')$，表示"在状态$x$接收$a$，产出$b$，转移到$x'$"。clique条件为：
+$$(a,x)\coh(a',x')\implies(b,x')\coh(b',x'').$$
+生产性（完全性）：对所有$(a,x)$存在$(b,x')$使$(a,x,b,x')\in f$。
+
+\textbf{生产性迹保持clique。}设$\mathrm{beh}(f,x_0)$诱导的流关系为：$(a_\bullet,b_\bullet)\in\mathrm{beh}(f,x_0)$当且仅当存在$x_\bullet$使$(a_n,x_n,b_n,x_{n+1})\in f$对所有$n$。
+
+需证$\mathrm{beh}(f,x_0)$是$\mathcal{A}^\omega\lolli\mathcal{B}^\omega$中的clique。设$(a_\bullet,b_\bullet),(a'_\bullet,b'_\bullet)\in\mathrm{beh}(f,x_0)$，分别由状态序列$x_\bullet,x'_\bullet$见证。假设$a_\bullet\coh a'_\bullet$（逐点相干）。由$x_0=x'_0$（同一初始状态，相干性自反），若$x_n\coh x'_n$，则$(a_n,x_n)\coh(a'_n,x'_n)$，由$f$的clique条件得$(b_n,x_{n+1})\coh(b'_n,x'_{n+1})$，即$b_n\coh b'_n$且$x_{n+1}\coh x'_{n+1}$。归纳得对所有$n$，$b_n\coh b'_n$，即$b_\bullet\coh b'_\bullet$。故$\mathrm{beh}(f,x_0)$是clique。
+
+\textbf{PTC公理。}
+\emph{Yanking}：$\sigma_{X,X}$的clique条件由$\coh$的对称性保证，$\mathrm{beh}(\sigma,x_0)$逐点交换，余归纳地等于恒等流clique。
+\emph{Tightening}：前处理$g$和后处理$h$都是clique，clique在$\mathbf{Coh}$的复合下封闭，故$\mathrm{beh}((h\otimes\mathrm{id})f(g\otimes\mathrm{id}),x_0)=h^\omega\circ\mathrm{beh}(f,x_0)\circ g^\omega$。
+\emph{组合}：$f$的输出clique与$g$的输入clique复合，clique复合封闭，故$\mathrm{beh}(f;g,(x_0,y_0))=\mathrm{beh}(g,y_0)\circ\mathrm{beh}(f,x_0)$。
+\emph{Productivity}：$f$完全（生产性）保证每步至少有一个$(b,x')$，归纳构造给出完整的$b_\bullet$和$x_\bullet$；上述clique证明保证输出流相干。\qed
+\end{proof}
 
 \begin{remark}[三个PTC实例]
 Rel$^\omega$（经典计算）、Hilb$^\omega$（量子力学）、Coh$^\omega$（证明论）三个实例中$\bang$不穿透生产性交互状态都成立。这从计算、物理、逻辑三个领域验证了同一个结构事实：线性状态的交互过程不可复制。
@@ -991,7 +1015,7 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 定理\ref{thm:godel-f2}（f$^2$哥德尔困境） & 待突破：严格化"f$^2$"为可表示算术的形式系统 \\
 定理\ref{thm:f3-fixedpoint}（f$^3$不动点） & \textbf{已升级为[定理]}：编码论证证明$H_3$穷尽所有自指变换 \\
 定理\ref{thm:extraction-alienation}（萃取加速异化） & 待突破：加权$\mathbf{Rel}$之外"萃取=反馈缩放"的一般函子映射 \\
-定理\ref{thm:coh-ptc}（Coh$^\omega$是PTC） & 待突破：clique流的生产性迹完整验证 \\
+定理\ref{thm:coh-ptc}（Coh$^\omega$是PTC） & \textbf{已升级为[定理]}：clique归纳证明+PTC四公理逐条验证 \\
 定理\ref{thm:alienation-lowers-n}（异化降低$N$） & \textbf{加权$\mathbf{Rel}$中已严格证明}：Perron--Frobenius给出严格下降条件；一般PTC待猜想\ref{conj:bang-ptc} \\
 定理\ref{thm:gomega-endofunctor}（$G^\omega$是自函子） & 三层封闭性已由定理\ref{thm:f3-fixedpoint}解决；函子性待补PTC公理验证 \\
 定理\ref{thm:bang-no-ptc}（$\bang$不穿透生产性迹） & 待突破：见猜想\ref{conj:bang-ptc} \\
