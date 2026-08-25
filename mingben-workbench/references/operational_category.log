@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.8.7)  26 AUG 2026 02:24
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.8.7)  26 AUG 2026 02:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1084,7 +1084,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1635.
 
-[39] [40] [41] [42] [43] [44] [45]
+[39] [40] [41] [42] [43] [44] [45] [46]
 Missing character: There is no δ (U+03B4) in font [lmroman10-regular]:mapping=t
 ex-text;!
 Missing character: There is no ⌜ (U+231C) in font [lmroman10-regular]:mapping=t
@@ -1106,24 +1106,24 @@ ex-text;!
 Missing character: There is no ν (U+03BD) in font [lmroman10-regular]:mapping=t
 ex-text;!
 
-Overfull \hbox (369.71536pt too wide) in paragraph at lines 1895--1909
+Overfull \hbox (369.71536pt too wide) in paragraph at lines 1910--1924
  [] 
  []
 
-[46] [47] [48] [49] (./operational_category.aux)
+[47] [48] [49] [50] (./operational_category.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `operational_category.out' has not changed.
-(rerunfilecheck)             Checksum: 481556E633A6176135D3F9B5B9182ADB;6388.
+(rerunfilecheck)             Checksum: C692CF49A91503DB9F2A3D89B5AEF8D9;6486.
  ) 
 Here is how much of TeX's memory you used:
- 27519 strings out of 477756
- 635722 string characters out of 5843519
- 921387 words of memory out of 5000000
- 47672 multiletter control sequences out of 15000+600000
+ 27522 strings out of 477756
+ 635794 string characters out of 5843519
+ 921617 words of memory out of 5000000
+ 47675 multiletter control sequences out of 15000+600000
  481066 words of font info for 115 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 114i,13n,118p,1267b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 114i,13n,118p,1267b,538s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on operational_category.pdf (49 pages).
+Output written on operational_category.pdf (50 pages).
