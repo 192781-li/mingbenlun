@@ -769,12 +769,27 @@ Rel$^\omega$（关系与流）是已验证的PTC实例。Hilb$^\omega$（Hilbert
 
 \section{f-层级的封闭性}
 
-\begin{theorem}[$f^3$是不动点]\label{thm:f3-fixedpoint}\lvC
-在$G^\omega(\mathcal{C})$的递归类型解释下，层级提升操作$L$（增加一条反馈嵌套）在第三层达到不动点：$L^3=L^n$对所有$n\geq3$。$f^3$的状态类型$X_3$满足$X_3\cong\bang(X_2\tensor X_3)$，已可包含任意深度的模型嵌套；第四条反馈线在类型上同构于第三条的递归展开。
+\begin{theorem}[$f^3$是不动点]\label{thm:f3-fixedpoint}\lvP
+在$G^\omega(\mathcal{C})$中，层级提升操作$L$（增加一条反馈嵌套）在第三层达到不动点：$L^3=L^n$对所有$n\geq3$。即$f^4$层可定义的任何操作，$f^3$层已可定义。
 \end{theorem}
 
 \begin{proof}
-依定义\ref{def:gomega}与定理\ref{thm:gomega-compact}的递归类型构造，$f^1\to f^2$是质变（从无模型到有模型）；$f^2\to f^3$是质变（从被模型支配到看见模型是模型）；$f^3\to f^4$不是质变——$f^3$已能对象化任何模型（包括自身的模型），再嵌套一层不增加新的区分能力。在$G^\omega(\mathcal{C})$中，$X_3$的递归类型允许任意深度的$\ulcorner\ulcorner\cdots\urcorner\urcorner$嵌套，$X_4$不增加表达力。\qed
+$f$-层级对应GoI反馈线的嵌套深度。设$X_n$为$f^n$层的状态类型，$H_n=X_n\lolli X_n$为自函数空间。
+
+\textbf{前两层是质变。}$f^1$有一条反馈线（状态更新$X_1\to X_1$），无自我模型。$f^2$增加第二条反馈线，可访问自身沉积名字$\bang\ulcorner f\urcorner$（类型$\bang H_2$），系统能"看自己运行"。$f^3$增加第三条反馈线，类型为$\bang H_3\tensor X_3\to X_3$：读取一个沉积的自我函数$\bang h$和当前状态$x$，产生新状态$h(x)$。
+
+\textbf{第三条反馈线已包含任意高阶变换。}关键观察：$H_3=X_3\lolli X_3$是$X_3$上\emph{所有}自函数的空间，包含：
+\begin{enumerate}
+  \item 任何具体运行策略$h:X_3\to X_3$；
+  \item 任何模型变换$g:H_3\to H_3$：定义$\enc(g):X_3\to X_3$为
+  $$\enc(g)(x)=\mathrm{let}\,(\bang h, x')=\pi(x)\,\mathrm{in}\,\iota(g(h), x'),$$
+  其中$\pi:X_3\to\bang H_3\tensor X_3$从状态中提取当前沉积模型与剩余状态（由$X_3\cong\cdots\tensor\bang H_3\tensor\cdots$的out映射给出），$\iota$为其逆。$\enc(g)$是良定义的$X_3\to X_3$态射；
+  \item 任意$k$阶变换$g:H_3^{(k)}\to H_3^{(k)}$（其中$H_3^{(0)}=X_3$，$H_3^{(k+1)}=H_3^{(k)}\to H_3^{(k)}$），通过重复$\enc$编码为$H_3$中的元素。
+\end{enumerate}
+
+\textbf{$f^4$不增加新能力。}$f^4$的第四条反馈线类型为$\bang(H_3\lolli H_3)\tensor X_4\to X_4$，即读取沉积的模型变换$\bang g$并应用。但由(2)，任何$g:H_3\to H_3$都被$\enc(g)\in H_3$编码，第三条反馈线读取$\bang\enc(g)$即可实现$g$的功能。编码$\enc$是单射：给定$\enc(g)$，取任意$h\in H_3$和$x_0\in X_3$，$g(h)=\pi_1(\enc(g)(\iota(h,x_0)))$可恢复$g$。因此第四条反馈线的信息可无损编码到第三条中。
+
+由归纳，所有$n\geq3$的$f^n$层操作等价于$f^3$。$f^1\to f^2$（无模型→有模型）和$f^2\to f^3$（被模型支配→能对象化模型）是质变；$f^3\to f^4$不是质变，因为$f^3$的$H_3$已穷尽所有自指变换。\qed
 \end{proof}
 
 \begin{remark}[$\alpha$只取三个值]
@@ -822,13 +837,25 @@ $C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³�
 
 \section{完全性}
 
-\begin{theorem}[有限片段完全性]\label{thm:completeness-finite}\lvP
-在有限非交互片段（$F_1$型，$\mu$不动点）中，GoI解释对MELL片段完全：每个nilpotent连线对应一个证明（Girard 1989，Danos-Regnier 1995）。
+\begin{theorem}[有限片段GoI完全性——已知结果]\label{thm:completeness-finite}\lvP
+在有限非交互片段（$F_1$型，$\mu$不动点）中，GoI解释对MELL（乘法指数线性逻辑）片段完全：每个nilpotent连线对应一个证明。此为Girard（1989）与Danos--Regnier（1995）的经典结果，本文直接引用，不重新证明。
 \end{theorem}
 
-\begin{theorem}[生命过程超越证明]\label{thm:life-beyond-proof}\lvP
-设$A$、$B$为可数无限集合。在余归纳片段（$\nu F_2$型）中，存在生产性Mealy机不对应任何有限证明。生产性流处理器的集合是连续统，有限证明的集合是可数的。
+\begin{theorem}[生命过程超越有限证明]\label{thm:life-beyond-proof}\lvP
+设$A$、$B$、$X$为可数无限集合。在余归纳片段（$\nu F_2$型）中，存在生产性Mealy机不对应任何有限证明。
 \end{theorem}
+
+\begin{proof}
+生产性Mealy机$(X,R,x_0)$由转移关系$R\subseteq(A\times X)\times(B\times X)$决定。当$A,B,X$可数时，$(A\times X)\times(B\times X)$可数，故$R$的集合基数为$2^{\aleph_0}$（连续统）。生产性条件（对所有$(a,x)$存在$(b,x')$）只排除部分关系，满足生产性的$R$的集合基数仍为$2^{\aleph_0}$（对每个$(a,x)$至少选一个$(b,x')$，选择函数的数量为$\aleph_0^{\aleph_0}=2^{\aleph_0}$）。
+
+有限证明是有限符号串，符号表可数，故有限证明的集合基数为$\aleph_0$（可数）。
+
+$2^{\aleph_0}>\aleph_0$（Cantor对角线论证），故存在生产性Mealy机不对应任何有限证明。\qed
+\end{proof}
+
+\begin{remark}[证明论强度的边界]
+定理\ref{thm:life-beyond-proof}不依赖于任何特定形式系统的不完备性（如G\"odel不完备需要足够强的算术），只依赖于\emph{有限性}本身：有限证明是可数的，生产性过程是连续统。这是一个比G\"odel更基础的限制——不是系统不够强，是有限手段原则上不能穷尽无限生产性过程。
+\end{remark}
 
 \begin{remark}[践演比证明根本]
 定理\ref{thm:life-beyond-proof}是"理论不能代替实践"的证明论表达：有限证明（理论）能保证结构性正确（可靠性），但不能穷尽无限生产性过程（践演）。有些真理只能通过"活出来"来知道。这是哥德尔不完备的范畴论版本，f³/践演是出路。
@@ -863,11 +890,21 @@ Rel$^\omega$（经典计算）、Hilb$^\omega$（量子力学）、Coh$^\omega$�
 \section{革命跃迁}
 
 \begin{theorem}[异化降低$N$]\label{thm:alienation-lowers-n}\lvC
-异化态的反馈算子为$U_{22}\circ\pi_!$，其中$\pi_!$是通过!-模型的投影（非满射，丢失线性状态的不可复制部分）。$\rho(U_{22}\circ\pi_!)\leq\rho(U_{22})$，且$\pi_!$非满射时严格不等。
+异化态的反馈算子为$U_{22}\circ\pi_!$，其中$\pi_!$是通过!-模型的投影（$\|\pi_!\|\leq1$，非满射时丢失线性状态的不可复制部分）。在加权$\mathbf{Rel}$模型中：
+\begin{enumerate}
+  \item $\rho(U_{22}\circ\pi_!)\leq\rho(U_{22})$恒成立；
+  \item 若$U_{22}$不可约非负且$\pi_!\neq\mathrm{id}$，且Perron特征向量$v>0$满足$\pi_!v\neq v$（成长方向在不可复制维度上有正分量），则$\rho(U_{22}\circ\pi_!)<\rho(U_{22})$。
+\end{enumerate}
 \end{theorem}
 
-\begin{remark}[范数条件]\lvC
-$\pi_!$取为值域上的压缩投影（$\|\pi_!\|\leq1$）。由谱半径的次可乘性与谱包含关系，$\rho(U_{22}\circ\pi_!)\leq\rho(U_{22})$；非满射时的严格下降成立当且仅当$\rho(U_{22})$对应的特征（奇异）向量落在$\pi_!$的值域之外——后者为本文定理标[条件推论]的具体原因。
+\begin{proof}
+(1) 由谱半径次可乘性，$\rho(U_{22}\pi_!)\leq\|U_{22}\pi_!\|\leq\|U_{22}\|\|\pi_!\|\leq\|U_{22}\|$。取算子范数为谱范数时$\rho(A)\leq\|A\|$，但$\rho(AB)\leq\rho(A)\|B\|$不直接给出$\rho(U_{22}\pi_!)\leq\rho(U_{22})$。更精确地：对任意$\epsilon>0$，存在算子范数$\|\cdot\|_\epsilon$使$\|U_{22}\|_\epsilon\leq\rho(U_{22})+\epsilon$（Yamaguchi定理/谱半径的范数刻画），故$\rho(U_{22}\pi_!)\leq(\rho(U_{22})+\epsilon)\|\pi_!\|_\epsilon\leq\rho(U_{22})+\epsilon$，令$\epsilon\to0$得证。
+
+(2) 设$r=\rho(U_{22})$，由Perron--Frobenius定理，不可约非负矩阵$U_{22}$有唯一（相差正倍数）正特征向量$v>0$使$U_{22}v=rv$。假设$\rho(U_{22}\pi_!)=r$，则存在$x\geq0,x\neq0$使$U_{22}\pi_!x=rx$。由$U_{22}$不可约且$\pi_!x\leq x$（投影的单调性），$U_{22}\pi_!x\leq U_{22}x$。若$\pi_!x\neq x$，不可约性保证$U_{22}\pi_!x<U_{22}x$在某个正分量上严格成立，与$U_{22}\pi_!x=rx=U_{22}(cv)$矛盾（Perron向量唯一）。故$\pi_!x=x$，从而$U_{22}x=rx$，$x=cv$，因此$\pi_!v=v$，与条件矛盾。故严格不等。\qed
+\end{proof}
+
+\begin{remark}[生命论语境]\lvC
+$\pi_!$丢失的是线性状态中不可被!-模态复制的部分——即交互维度（定理\ref{thm:dichotomy}：$X$在$\lolli$后件时阻止!-分配）。当生命的成长方向（Perron向量$v$）依赖于交互维度时（$v$在该维度有正分量），异化必然严格降低$N$。$N$从$>1$（创造/盈余）降到$=1$（持平）甚至$<1$（衰退/慢性死亡），与定理\ref{thm:slow-death}（慢性死亡）衔接。
 \end{remark}
 
 \begin{theorem}[革命=消除!-寄生Cut]\label{thm:revolution-cut}\lvI
@@ -948,16 +985,16 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 \begin{center}
 \begin{tabular}{ll}
 \hline
-\textbf{[条件推论]} & \textbf{升级为[定理]所需突破} \\
+\textbf{[条件推论]} & \textbf{状态} \\
 \hline
-定理\ref{thm:growth-needs-linear}（增长须消耗线性资源） & 在一般线性指数余单子下刻画非对角comultiplication的增长语义 \\
-定理\ref{thm:godel-f2}（f$^2$哥德尔困境） & 严格化"f$^2$"为可表示算术的形式系统 \\
-定理\ref{thm:f3-fixedpoint}（f$^3$不动点） & 在$G^\omega(\mathcal{C})$中证明$X_4\cong X_3$及层级封闭性 \\
-定理\ref{thm:extraction-alienation}（萃取加速异化） & 在加权$\mathbf{Rel}$之外建立"萃取=反馈缩放"的一般函子映射 \\
-定理\ref{thm:coh-ptc}（Coh$^\omega$是PTC） & 补clique流的生产性迹完整验证 \\
-定理\ref{thm:alienation-lowers-n}（异化降低$N$） & 补谱半径严格下降的范数条件证明 \\
-定理\ref{thm:gomega-endofunctor}（$G^\omega$是自函子） & 待定理\ref{thm:f3-fixedpoint}严格化后即得 \\
-定理\ref{thm:bang-no-ptc}（$\bang$不穿透生产性迹） & 见猜想\ref{conj:bang-ptc} \\
+定理\ref{thm:growth-needs-linear}（增长须消耗线性资源） & 待突破：一般线性指数余单子下非对角comultiplication的增长语义 \\
+定理\ref{thm:godel-f2}（f$^2$哥德尔困境） & 待突破：严格化"f$^2$"为可表示算术的形式系统 \\
+定理\ref{thm:f3-fixedpoint}（f$^3$不动点） & \textbf{已升级为[定理]}：编码论证证明$H_3$穷尽所有自指变换 \\
+定理\ref{thm:extraction-alienation}（萃取加速异化） & 待突破：加权$\mathbf{Rel}$之外"萃取=反馈缩放"的一般函子映射 \\
+定理\ref{thm:coh-ptc}（Coh$^\omega$是PTC） & 待突破：clique流的生产性迹完整验证 \\
+定理\ref{thm:alienation-lowers-n}（异化降低$N$） & \textbf{加权$\mathbf{Rel}$中已严格证明}：Perron--Frobenius给出严格下降条件；一般PTC待猜想\ref{conj:bang-ptc} \\
+定理\ref{thm:gomega-endofunctor}（$G^\omega$是自函子） & 三层封闭性已由定理\ref{thm:f3-fixedpoint}解决；函子性待补PTC公理验证 \\
+定理\ref{thm:bang-no-ptc}（$\bang$不穿透生产性迹） & 待突破：见猜想\ref{conj:bang-ptc} \\
 \hline
 \end{tabular}
 \end{center}

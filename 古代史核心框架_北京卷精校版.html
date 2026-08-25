@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>中国古代史核心框架 · 北京卷精校版</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 16mm 20mm 16mm;
+    @bottom-center {
+      content: "中国古代史核心框架 · 北京卷精校版 — " counter(page);
+      font-family: "Noto Sans CJK SC";
+      font-size: 8pt;
+      color: #8a8a8a;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Sans CJK SC";
+    font-size: 10pt;
+    line-height: 1.65;
+    color: #2b2b2b;
+    background: #fff;
+  }
+
+  /* ===== 封面头部 ===== */
+  .cover {
+    border-bottom: 3px double #9e2b25;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .cover .kicker {
+    font-family: "Noto Serif CJK SC";
+    font-size: 9.5pt;
+    letter-spacing: 4px;
+    color: #9e2b25;
+    margin-bottom: 6px;
+  }
+  .cover h1 {
+    font-family: "Noto Serif CJK SC";
+    font-size: 25pt;
+    font-weight: 900;
+    color: #1a1a1a;
+    letter-spacing: 2px;
+  }
+  .cover .sub {
+    font-size: 10.5pt;
+    color: #555;
+    margin-top: 8px;
+  }
+  .cover .meta {
+    font-size: 8.5pt;
+    color: #8a8a8a;
+    margin-top: 6px;
+  }
+
+  /* ===== 章节标题 ===== */
+  h2 {
+    font-family: "Noto Serif CJK SC";
+    font-size: 15pt;
+    font-weight: 900;
+    color: #1f4e5f;
+    margin: 22px 0 10px 0;
+    padding-left: 10px;
+    border-left: 5px solid #9e2b25;
+  }
+  h3 {
+    font-family: "Noto Serif CJK SC";
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: #2b2b2b;
+    margin: 16px 0 6px 0;
+  }
+
+  /* ===== 表格 ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin: 8px 0 12px 0;
+    page-break-inside: auto;
+  }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th {
+    background: #1f4e5f;
+    color: #fff;
+    font-weight: 700;
+    padding: 7px 8px;
+    text-align: left;
+    font-size: 9pt;
+  }
+  td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e2ddd2;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: #faf7f0; }
+  td.period {
+    font-family: "Noto Serif CJK SC";
+    font-weight: 900;
+    color: #fff;
+    background: #9e2b25 !important;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 9.5pt;
+  }
+  td.core {
+    font-weight: 700;
+    color: #9e2b25;
+    white-space: nowrap;
+  }
+  .note {
+    font-size: 8pt;
+    color: #6b6b6b;
+  }
+
+  /* ===== 线索大图 ===== */
+  .timeline {
+    background: #faf7f0;
+    border: 1px solid #e2ddd2;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 8px 0 12px 0;
+    page-break-inside: avoid;
+  }
+  .timeline .flow {
+    font-family: "Noto Sans CJK SC";
+    font-weight: 700;
+    font-size: 9.5pt;
+    color: #1f4e5f;
+    line-height: 2.1;
+  }
+  .timeline .flow .arrow { color: #9e2b25; font-weight: 900; padding: 0 3px; }
+  .timeline .trend {
+    font-size: 9.5pt;
+    color: #2b2b2b;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed #c9c2b5;
+  }
+  .timeline .trend b { color: #9e2b25; }
+
+  /* ===== 易错点卡片 ===== */
+  .warn {
+    background: #fdf3f1;
+    border: 1px solid #e5b8b0;
+    border-left: 5px solid #9e2b25;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 6px 0 10px 0;
+    page-break-inside: avoid;
+  }
+  .warn ol { padding-left: 22px; }
+  .warn li { margin-bottom: 4px; }
+  .warn .tag {
+    display: inline-block;
+    background: #9e2b25;
+    color: #fff;
+    font-size: 8pt;
+    border-radius: 3px;
+    padding: 1px 7px;
+    margin-right: 6px;
+  }
+
+  /* ===== 考向 ===== */
+  .tips {
+    background: #eef4f6;
+    border: 1px solid #cfe0e5;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    page-break-inside: avoid;
+  }
+  .tips ul { padding-left: 22px; }
+  .tips li { margin-bottom: 5px; }
+  .tips li:last-child { margin-bottom: 0; }
+  .tips .hl { color: #9e2b25; font-weight: 700; }
+
+  .footer-note {
+    margin-top: 18px;
+    font-size: 8.5pt;
+    color: #8a8a8a;
+    text-align: center;
+    border-top: 1px solid #e2ddd2;
+    padding-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">生 · 命 · 论 · 学 · 习 · 工 · 具</div>
+  <h1>中国古代史核心框架</h1>
+  <div class="sub">北京卷精校版 · 朝代五维总表 + 五大纵贯线索 + 易错点 + 考向</div>
+  <div class="meta">原始来源：手写五列表（朝代 / 核心 / 政治 / 经济 / 文化）｜精校：补正史实 · 纵贯线索 · 北京卷考向</div>
+</div>
+
+<!-- ==================== 一、朝代框架总表 ==================== -->
+<h2>一、朝代框架总表</h2>
+<table>
+  <thead>
+    <tr><th style="width:9%">朝代</th><th style="width:8%">核心词</th><th style="width:26%">政治</th><th style="width:23%">经济</th><th style="width:18%">文化</th><th style="width:16%">北京卷备注</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="period">先秦</td><td class="core">耕战</td>
+      <td>世袭制取代禅让；分封制、宗法制、礼乐制度</td>
+      <td>井田制（土地国有）；青铜器；春秋战国铁犁牛耕、井田制瓦解</td>
+      <td>商：甲骨文；春秋战国：百家争鸣（儒墨道法）</td>
+      <td class="note">分封制＝贵族政治；宗法制＝血缘纽带；礼崩乐坏＝旧制度瓦解</td>
+    </tr>
+    <tr>
+      <td class="period">秦</td><td class="core">大一统</td>
+      <td>皇帝制度、三公九卿、郡县制（官僚政治取代贵族政治）；书同文、车同轨</td>
+      <td>统一货币（半两钱）、度量衡；修驰道、灵渠</td>
+      <td>焚书坑儒；以法为教、以吏为师</td>
+      <td class="note">郡县制是考点中的考点——中央垂直管理，地方官由皇帝任免</td>
+    </tr>
+    <tr>
+      <td class="period">汉初</td><td class="core">休养生息</td>
+      <td>郡国并行（郡县＋封国）</td>
+      <td>轻徭薄赋、与民休息</td>
+      <td>黄老无为（道家）</td>
+      <td class="note">郡国并行埋下王国问题→七国之乱</td>
+    </tr>
+    <tr>
+      <td class="period">汉武</td><td class="core">大一统</td>
+      <td>推恩令（削封国）、中朝外朝、察举制（举孝廉）、刺史制度</td>
+      <td>盐铁官营、统一铸币权（五铢钱）</td>
+      <td>罢黜百家、独尊儒术（设太学）；丝绸之路</td>
+      <td class="note">经济上中央收权＋思想上定于一尊，双管齐下</td>
+    </tr>
+    <tr>
+      <td class="period">魏晋南北</td><td class="core">分裂融合</td>
+      <td>九品中正制、士族门阀垄断</td>
+      <td>北方战乱；南方开发（经济重心南移始）</td>
+      <td>佛教盛行、道教发展、玄学；书法绘画兴起</td>
+      <td class="note">北魏孝文帝改革（汉化）是融合主线</td>
+    </tr>
+    <tr>
+      <td class="period">隋唐</td><td class="core">开放包容</td>
+      <td>三省六部制（中书/门下/尚书）；科举制（隋创立、唐完善）</td>
+      <td>均田制→租庸调制→两税法（唐中期，按土地财产征税）</td>
+      <td>三教并行（儒佛道）；唐诗、雕版印刷</td>
+      <td class="note">安史之乱＝由盛转衰转折点；两税法＝赋税大变革</td>
+    </tr>
+    <tr>
+      <td class="period">宋元</td><td class="core">商品经济</td>
+      <td>二府三司（中书门下/枢密院/三司）；重文轻武；辽夏金并立→元统一，元设行省制</td>
+      <td>坊市界限打破、夜市；交子（北宋纸币）；海外贸易（市舶司）；经济重心南移完成（南宋）</td>
+      <td>理学（二程、朱熹）；市民文化（话本）；活字印刷、指南针</td>
+      <td class="note">行省制＝元朝地方管理创新，中央集权新阶段</td>
+    </tr>
+    <tr>
+      <td class="period">明清</td><td class="core">集权顶峰</td>
+      <td>废丞相（明太祖）、设内阁、军机处（清雍正，皇权顶峰）；八股取士、文字狱</td>
+      <td>一条鞭法（明中后期）、摊丁入亩（清）；商帮（晋/徽商）；资本主义萌芽（江南手工业）；闭关锁国</td>
+      <td>陆王心学（王阳明）；明末清初三大思想家（黄宗羲/顾炎武/王夫之）；西学东渐；明清小说</td>
+      <td class="note">"资本主义萌芽"是官方叙事，知道是考点即可；北京卷更爱考市镇、商帮、社会转型</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ==================== 二、五大纵贯线索 ==================== -->
+<h2>二、五大纵贯线索（北京卷高频大题线）</h2>
+
+<h3>线索 1 · 中央集权演变</h3>
+<div class="timeline">
+  <div class="flow">分封制 <span class="arrow">→</span> 郡县制 <span class="arrow">→</span> 推恩令 <span class="arrow">→</span> 三省六部 <span class="arrow">→</span> 二府三司 <span class="arrow">→</span> 行省制 <span class="arrow">→</span> 废丞相 <span class="arrow">→</span> 军机处</div>
+  <div class="trend"><b>大势：</b>皇权不断强化、相权不断削弱；中央对地方控制不断加强。<br><b>一句话：</b>地方从"世袭割据"走向"垂直任命"，到军机处皇权达顶峰。</div>
+</div>
+
+<h3>线索 2 · 选官制度演变</h3>
+<div class="timeline">
+  <div class="flow">世官制(血缘) <span class="arrow">→</span> 军功爵(秦·战功) <span class="arrow">→</span> 察举制(汉·品行) <span class="arrow">→</span> 九品中正制(魏晋·门第) <span class="arrow">→</span> 科举制(隋唐-明清·才能)</div>
+  <div class="trend"><b>大势：</b>标准从血缘→军功→品行→门第→才能；选拔权从地方贵族收归中央。<br><b>北京卷爱问：</b>科举制为何是"制度创新"？——打破门第限制、扩大统治基础、选官权收归中央。</div>
+</div>
+
+<h3>线索 3 · 赋税制度演变</h3>
+<div class="timeline">
+  <div class="flow">井田制 <span class="arrow">→</span> 初税亩(春秋·按亩) <span class="arrow">→</span> 租庸调(唐前) <span class="arrow">→</span> 两税法(唐中) <span class="arrow">→</span> 一条鞭法(明) <span class="arrow">→</span> 摊丁入亩(清)</div>
+  <div class="trend"><b>大势：</b>征税标准从<b>人丁为主</b>转向<b>土地财产为主</b>；人头税逐渐取消；实物向货币过渡。<br><b>一句话：</b>人头税越来越轻、土地财产税越来越重——商品经济发展在制度上的倒影。</div>
+</div>
+
+<h3>线索 4 · 经济重心南移</h3>
+<div class="timeline">
+  <div class="flow">东晋南朝(开始) <span class="arrow">→</span> 隋唐(加速) <span class="arrow">→</span> 南宋(完成)</div>
+  <div class="trend"><b>表现：</b>南方户口、赋税比重超过北方；谚语"苏湖熟、天下足"。<br><b>原因（大题模板）：</b>北方战乱→南迁带来劳动力＋技术→南方自然条件优越→政策支持。</div>
+</div>
+
+<h3>线索 5 · 儒学 / 思想演变</h3>
+<div class="timeline">
+  <div class="flow">百家争鸣 <span class="arrow">→</span> 焚书坑儒(秦) <span class="arrow">→</span> 独尊儒术(汉) <span class="arrow">→</span> 佛道冲击(魏晋隋唐) <span class="arrow">→</span> 理学(宋) <span class="arrow">→</span> 心学(明) <span class="arrow">→</span> 批判＋西学东渐(明末清初)</div>
+  <div class="trend"><b>大势：</b>儒学从"诸子之一"→官方正统→吸收佛道→哲学化(理学)→内在化(心学)→被批判质疑。<br><b>暗线：</b>思想控制与统治需要同步——焚书坑儒、独尊儒术、八股取士、文字狱，一个比一个细。</div>
+</div>
+
+<!-- ==================== 三、易错点 ==================== -->
+<h2>三、易错点清单（丢分重灾区）</h2>
+<div class="warn">
+  <ol>
+    <li><span class="tag">1</span><b>郡国并行＝郡县＋封国</b>，不是纯分封；推恩令是"化整为零"削封国，不是直接废</li>
+    <li><span class="tag">2</span><b>九品中正制是魏晋，不是汉朝</b>；察举制才是汉</li>
+    <li><span class="tag">3</span><b>科举制隋朝创立、唐朝完善</b>，不是唐朝才有</li>
+    <li><span class="tag">4</span><b>两税法取消了租庸调</b>，按土地财产征税，标志人头税向财产税过渡</li>
+    <li><span class="tag">5</span><b>经济重心南移完成在南宋，不是隋唐</b>（隋唐只是加速）</li>
+    <li><span class="tag">6</span><b>行省制是元朝首创</b>，明朝继承发展</li>
+    <li><span class="tag">7</span><b>废丞相＝明太祖，设内阁＝明成祖以后</b>；军机处＝清雍正，皇权顶峰</li>
+    <li><span class="tag">8</span><b>一条鞭法是明，摊丁入亩是清</b>，别混</li>
+    <li><span class="tag">9</span><b>理学＝客观唯心（理在事先），心学＝主观唯心（心外无物）</b>，北京卷爱考这层区别</li>
+    <li><span class="tag">10</span><b>焚书坑儒≠独尊儒术</b>：一个灭儒，一个定儒为一尊，方向相反</li>
+  </ol>
+</div>
+
+<!-- ==================== 四、考向 ==================== -->
+<h2>四、北京卷考向提示</h2>
+<div class="tips">
+  <ul>
+    <li><span class="hl">重"制度创新与延续"：</span>爱考"为什么这个时候出现这个制度""这个制度解决／制造了什么新问题"</li>
+    <li><span class="hl">重"变与不变"：</span>唐宋变革（门阀解体、市民兴起、科举普及）是高频视角</li>
+    <li><span class="hl">重"材料＋解释"：</span>题干给一段经济／政治现象，让你用制度演变逻辑解释，不是死背书</li>
+    <li><span class="hl">一条万能思路：</span>任何制度变化 ＝ 旧制度运行出现新问题 → 新制度回应 → 又产生新问题 → 再变。用这条线看线索1-5，全通。</li>
+  </ul>
+</div>
+
+<div class="footer-note">明本学习法 · 操作优先 / 输出导向 / 节律不靠意志力 — 框架立住，基础才有地方放</div>
+
+</body>
+</html>
