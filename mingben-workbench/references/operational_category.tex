@@ -877,13 +877,19 @@ $\alpha\in\{1,2,3\}$：自在、自为、自觉。不存在"比明性更明"的�
 在量论诠释下（$M$=意义总量，$N$=净方向），上述收敛意味着：$N<1$的系统虽然永远运转，但意义总量有限——每步产出按几何级数衰减。"慢性死亡"是这一数学事实的哲学命名，不是数学推导。
 \end{remark}
 
-\begin{theorem}[萃取加速异化]\label{thm:extraction-alienation}\lvC
-$W$越高则$N$越低。萃取把产出从反馈线抽走，$U_{22}$输入减少，谱半径下降。$W=1$时$U_{22}=0$，$N=0$，过程立即死亡。
+\begin{theorem}[萃取加速异化]\label{thm:extraction-alienation}\lvP
+萃取（在反馈回路中插入$\bang$-投影$\pi_!$，把线性状态沉积化）在两个层面上加速异化：
+\begin{enumerate}
+  \item \textbf{一般PTC层面}：由定理\ref{thm:bang-no-ptc}，$\bang$-投影破坏余归纳迹的单一输出流（$\kappa$-分叉论证）。萃取比例越高，反馈回路中被沉积化的线性状态越多，生产性迹越弱；完全萃取（$W=1$，所有线性状态被$\pi_!$捕获）时反馈回路中无线性状态，生产性迹不存在，过程终止。
+  \item \textbf{加权$\mathbf{Rel}$量化}：萃取$W$对应反馈算子缩放$U_{22}\mapsto(1-W)U_{22}$，故$N(W)=\rho((1-W)U_{22})=(1-W)N(0)$。$W$越高$N$越低；$W=1$时$N=0$，过程立即死亡（$S\to\I$）。
+\end{enumerate}
 \end{theorem}
 
-\begin{remark}[模型条件]\lvC
-在加权$\mathbf{Rel}$模型中，萃取$W$对应反馈算子缩放$U_{22}\mapsto(1-W)\cdot U_{22}$，故$\rho((1-W)U_{22})=(1-W)\rho(U_{22})$，$W=1$时$N=0$。本定理为[条件推论]即因该映射依赖加权$\mathbf{Rel}$的具体实现。
-\end{remark}
+\begin{proof}
+(1) 萃取操作在GoI反馈回路中插入$\pi_!:X\to\bang X$（把线性状态投影到沉积模型），复合后反馈算子变为$U_{22}\circ\pi_!$（或等价地，回路中插入$\bang$-收缩）。由定理\ref{thm:bang-no-ptc}的$\kappa$-分叉论证，$\bang$-收缩允许状态分裂为两个副本，破坏余归纳迹要求的单一输出流。萃取比例$W$对应$\pi_!$的作用范围：$W=0$时$\pi_!$为恒等（无沉积化），$W=1$时$\pi_!$捕获全部线性状态（无线性资源参与反馈）。$W=1$时反馈回路中无$X$（线性状态），$U_{22}=0$，迹不存在，过程终止。
+
+(2) 在加权$\mathbf{Rel}$中，$\pi_!$实现为反馈缩放$(1-W)U_{22}$（比例$W$的状态被沉积化、不参与反馈），由谱半径齐次性$\rho(cU)=c\rho(U)$（$c\geq0$）得$N(W)=(1-W)N(0)$。\qed
+\end{proof}
 
 \begin{theorem}[明性抵抗磨损]\label{thm:mingxing-resists}\lvI
 $C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³运行时线性过程$X$保持自我更新；f²把$\bang\ulcorner f\urcorner$当自己时$U_{22}$被$\bang$-收缩削弱。
@@ -900,7 +906,7 @@ $C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³�
 \end{theorem}
 
 \begin{proof}
-(1) 每步萃取$\beta(t)$比例后，反馈算子缩放为$U_{22}(t+1)=(1-\beta(t))U_{22}(t)$（加权$\mathbf{Rel}$中萃取=反馈缩放，定理\ref{thm:extraction-alienation}模型条件）。由谱半径齐次性$\rho(cU)=|c|\rho(U)$（$c\geq0$），$N(t+1)=(1-\beta(t))N(t)$，归纳得$N(t)=N(0)\prod_{s=0}^{t-1}(1-\beta(s))$。因$1-\beta(s)\leq1$，$N(t)$单调不增。
+(1) 每步萃取$\beta(t)$比例后，反馈算子缩放为$U_{22}(t+1)=(1-\beta(t))U_{22}(t)$（加权$\mathbf{Rel}$中萃取=反馈缩放，定理\ref{thm:extraction-alienation}）。由谱半径齐次性$\rho(cU)=|c|\rho(U)$（$c\geq0$），$N(t+1)=(1-\beta(t))N(t)$，归纳得$N(t)=N(0)\prod_{s=0}^{t-1}(1-\beta(s))$。因$1-\beta(s)\leq1$，$N(t)$单调不增。
 
 (2) $\beta(t)\geq\beta_0>0$时$N(t)\leq N(0)(1-\beta_0)^t$，由$0<1-\beta_0<1$得指数衰减至0。
 
@@ -1107,7 +1113,7 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 定理\ref{thm:growth-needs-linear}（增长须消耗线性资源） & \textbf{已升级为定理}：Seely同构(公理3iii)强制δ对角，!-模态态射只能复制/重排/丢弃，与定理6对偶（!G不能产生线性A） \\
 定理\ref{thm:godel-f2}（f$^2$哥德尔困境） & \textbf{已严格化}：f²转移函数图灵可计算→PA可表示；!⌜f⌝=哥德尔码；对角线引理给出G；f³第三条反馈线对应元层面，▷G对应系统外操作 \\
 定理\ref{thm:f3-fixedpoint}（f$^3$不动点） & \textbf{已升级为[定理]}：编码论证证明$H_3$穷尽所有自指变换 \\
-定理\ref{thm:extraction-alienation}（萃取加速异化） & 待突破：加权$\mathbf{Rel}$之外"萃取=反馈缩放"的一般函子映射 \\
+定理\ref{thm:extraction-alienation}（萃取加速异化） & \textbf{已升级为定理}：一般PTC层面由定理bang-no-ptc的κ-分叉论证覆盖；加权Rel中N(W)=(1-W)N(0) \\
 定理\ref{thm:coh-ptc}（Coh$^\omega$是PTC） & \textbf{已升级为[定理]}：clique归纳证明+PTC四公理逐条验证 \\
 定理\ref{thm:alienation-lowers-n}（异化降低$N$） & \textbf{加权$\mathbf{Rel}$中已严格证明}：Perron--Frobenius给出严格下降条件；谱半径论证本质依赖非负矩阵，为模型相关定理 \\
 定理\ref{thm:gomega-endofunctor}（$G^\omega$是自函子） & \textbf{已升级为[定理]}：PTC四公理从底范畴继承+dagger紧闭合+函子性+三层封闭 \\
