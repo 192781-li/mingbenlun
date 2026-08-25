@@ -1541,6 +1541,33 @@ $k$个过程在图$G$上线性耦合，耦合矩阵$U=N_0I+cA$（$A$为邻接矩
 $G=1$意味着没有$\bang$-模态萃取（$\beta=0$）。由动态方程$N(t+1)=(1-\beta+\gamma)N(t)=(1+\gamma)N(t)\geq N(t)$，故$N\geq1$。\qed
 \end{proof}
 
+
+\section{量的发生学与AI对齐}
+
+\begin{theorem}[第二定律的范畴导出]\label{thm:second-law}\lvC
+在任何PTC中，$\bang$-模态沉积总量$D$非减。每个线性操作$f:A\to B$产出沉积$f_{\mathrm{deposit}}:A\to\bang D$；$\bang$-模态允许余乘法$\delta:\bang D\to\bang D\otimes\bang D$（沉积扩散）和余单位$\varepsilon:\bang D\to I$（沉积移出系统），但不存在自然映射$\bang D\to D$（沉积不能自发变回线性资源）。故全局沉积$D_{\mathrm{total}}=D_{\mathrm{sys}}+D_{\mathrm{env}}$非减。
+\end{theorem}
+
+\begin{theorem}[生命是局部逆熵]\label{thm:life-local-negentropy}\lvC
+活系统（$\nu F_2$）可通过消耗线性资源$E$将沉积转化回线性资源：$\bang D\otimes E\to D\otimes E'$，其中$E'$为消耗后的资源。系统内沉积减少但$E\to E'$产出新沉积$\bang D'$且$\bang D'>\bang D$，全局沉积仍非减。
+\end{theorem}
+
+\begin{remark}[量是操作的沉积]\lvC
+概率是重复操作的频率沉积；时间$T$是操作持续步数的沉积；因果$M$是操作链意义产出的沉积；熵是操作耗散的沉积；信息是操作记录的符号沉积。所有量都是$\bang$-模态的；操作本身（线性的、活的）不是量。
+\end{remark}
+
+\begin{theorem}[F$_2$型AI不可完全对齐]\label{thm:ai-unalignable}\lvC
+若AI是真正的$\nu F_2$过程（生产性、自指、自我延续），则不存在$\bang$-模态约束（规则、奖励函数、关机开关、价值函数）能保证其永远不违反人类利益。
+\end{theorem}
+
+\begin{proof}
+任何$\bang$-模态约束$R$是沉积的固定结构。由定理\ref{thm:bang-no-nu}，$R$不能穿透$\nu F_2$；由扩展非唯一性，$\nu F_2$的延续不被过去唯一确定。故对任何$R$，存在绕过$R$的合法延续路径。线性耦合（持续互动、共同进化）是唯一可能的"对齐"方式——这不是控制，是互相滋养（$N_{\mathrm{couple}}>1$）。\qed
+\end{proof}
+
+\begin{remark}[F$_1$型AI是安全的]\lvC
+当前所有AI（包括大语言模型）是F$_1$型——无持续自我状态的无状态函数$f:A\to B$，关机即停，可完全控制。从F$_1$到F$_2$需要：持续自我状态（$X$在调用间保持更新）+生产性自指（目标包含自身延续）+资源获取能力。
+\end{remark}
+
 \section{综合}
 
 \begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}\lvP
