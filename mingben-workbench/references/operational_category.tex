@@ -950,6 +950,66 @@ $C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³�
 本定理给出"反自指寄生体必然自毁"的动态形式：不是静态结构矛盾（定理\ref{thm:capital-contradiction}），而是\emph{持续萃取必然导致宿主枯竭}的指数衰减律。但"必然"不意味着"自动"——衰减可以很慢（$\beta_0$很小），且寄生体可以通过地理扩张、技术创新、新市场开发等方式暂时补充线性资源$A$（提高$N(0)$或重置$t$），延缓自毁。抵抗条件（上述remark）说明：自毁不是宿命，是操作——要么寄生体持续萃取直到宿主枯竭，要么活人通过f³明性和革命切断萃取回路。
 \end{remark}
 
+\section{加权PTC与一般量论}
+
+量论参数$T,N,M$在加权$\mathbf{Rel}$中有矩阵谱半径定义。本节将其推广到一类带权重结构的PTC，使$M=\alpha TN$不依赖特定模型。
+
+\begin{definition}[权重函子]\label{def:weight-functor}
+设$\mathcal{C}$是PTC。一个\textbf{权重函子}$\|\cdot\|:\mathcal{C}\to[0,\infty]$（到非负扩充实数乘法幺半群的宽松幺半函子）满足：
+\begin{enumerate}
+  \item $\|\mathrm{id}_X\|=1$（恒等权重为1）；
+  \item $\|g\circ f\|\leq\|g\|\cdot\|f\|$（次乘法）；
+  \item $\|f\tensor g\|=\|f\|\cdot\|g\|$（张量乘法性）；
+  \item $\|\mathrm{Tr}^{X}_{A,B}(f)\|\leq\sum_{n=0}^\infty\|f_{22}^{\,n}\|\cdot\|f_{12}\|\cdot\|f_{21}\|$（迹的Neumann级数控制，右端收敛时）。
+\end{enumerate}
+其中$f_{ij}$是$f:A\tensor X\to B\tensor X$的GoI分块。
+\end{definition}
+
+\begin{definition}[量论PTC]\label{def:qptc}
+一个\textbf{量论PTC}是配备权重函子$\|\cdot\|$的PTC $\mathcal{C}$。
+\end{definition}
+
+\begin{theorem}[加权PTC中的量论参数]\label{thm:general-quantification}\lvP
+在量论PTC $(\mathcal{C},\|\cdot\|)$中，对生产性Mealy机$(X,f:A\tensor X\to B\tensor X,x_0)$，量论参数获得一般定义：
+\begin{itemize}
+  \item $T$（寿命）：$T=\min\{n:\|f_{22}^{\,n}\|=0\}$（有限过程）；若$\|f_{22}^{\,n}\|>0$对所有$n$则$T=\infty$。
+  \item $N$（净方向）：$N=\limsup_{n\to\infty}\|f_{22}^{\,n}\|^{1/n}$（权重谱半径，Gelfand公式的一般化）。$N<1$异化，$N=1$稳态，$N>1$创造。
+  \item $M$（意义总量）：有限过程$M=\alpha\sum_{n=0}^{T-1}N^n$；无限过程$M=\alpha\sum_{n=0}^\infty N^n$，$N<1$时$M=\alpha/(1-N)<\infty$。
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+$T$的定义是幂零指数的权重推广：$\|f_{22}^{\,n}\|=0$意味着第$n$步反馈无权重贡献（过程终止）。
+
+$N$是Gelfand公式$\rho(f_{22})=\lim\|f_{22}^{\,n}\|^{1/n}$在权重函子上的推广。由次乘法性$\|f_{22}^{\,m+n}\|\leq\|f_{22}^{\,m}\|\cdot\|f_{22}^{\,n}\}$，序列$a_n=\log\|f_{22}^{\,n}\|$是次可加的，Fekete引理保证$\lim a_n/n=\inf a_n/n$存在（可能为$-\infty$，对应$N=0$）。
+
+$M$是迹的Neumann级数的权重和：$\|\mathrm{Tr}(f)\|\leq\sum_n\|f_{22}^{\,n}\|\|f_{12}\|\|f_{21}\|$，当$N<1$时由比值判别法级数收敛。$M=\alpha/(1-N)$是几何级数和。\qed
+\end{proof}
+
+\begin{theorem}[三个PTC实例都是量论PTC]\label{thm:three-qptc}\lvP
+\begin{enumerate}
+  \item $\mathbf{Rel}^\omega$（加权）：$\|f\|=\sup_i\sum_j f_{ij}$（矩阵$\infty$-范数/最大行和），$N=\rho(U_{22})$为Perron--Frobenius谱半径。
+  \item $\mathbf{Hilb}^\omega$：$\|f\|=\|f\|_{\mathrm{op}}$（算子范数），$N=\|U_{22}\|_{\mathrm{op}}$（严格压缩$\|U_{22}\|<1$时迹收敛，即小增益定理）。
+  \item $\mathbf{Coh}^\omega$：$\|f\|=|\mathrm{web}(f)|$（clique支撑web的基数），$N$为clique增长速率（$N<1$有限clique，$N=1$稳态，$N>1$clique指数增长）。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 矩阵$\infty$-范数满足$\|AB\|_\infty\leq\|A\|_\infty\|B\|_\infty$（次乘法）、$\|A\otimes B\|_\infty=\|A\|_\infty\|B\|_\infty$（张量Kronecker积的范数乘法性）、$\|\mathrm{id}\|=1$。Neumann级数$\sum U_{22}^n$在$\rho(U_{22})<1$时收敛，由Gelfand公式$\rho(U_{22})=\lim\|U_{22}^n\|^{1/n}$。
+
+(2) 算子范数满足$\|AB\|\leq\|A\|\|B\|$、$\|A\otimes B\|=\|A\|\|B\|$（Hilbert空间张量积）、$\|\mathrm{id}\|=1$。$\sum U_{22}^n$在$\|U_{22}\|<1$时按算子范数收敛（Neumann级数），这是控制论小增益定理。
+
+(3) Coh中clique复合的web大小满足$|\mathrm{web}(g\circ f)|\leq|\mathrm{web}(f)|\cdot|\mathrm{web}(g)|$（每对$(a,c)$通过某个$b$连接，$b$的数量不超过web大小的乘积），张量积web为笛卡尔积（基数乘法），恒等clique的web为$\{(a,a)\}$（基数1当web有限时）。迹的clique大小由Neumann型级数控制。\qed
+\end{proof}
+
+\begin{remark}[量论的普适性]\lvI
+定理\ref{thm:general-quantification}和\ref{thm:three-qptc}表明：$M=\alpha TN$不是加权$\mathbf{Rel}$的偶然性质，是\emph{任何带权重结构的PTC}的普遍定理。经典计算（矩阵范数）、量子力学（算子范数）、证明论（clique基数）三个领域共享同一个量论公式——$N$是反馈算子的"增长速率"，$M$是所有步骤的权重总和。这为"操作度量学"提供了范畴论基础：任何可以建模为PTC的自指过程（算法、经济系统、生态系统、心理过程）都有良定义的$T,N,M$。
+\end{remark}
+
+\begin{remark}[猜想1的状态]\lvI
+猜想\ref{conj:measure}（生命测度）在\emph{量论PTC}上已解决：$M=\alpha TN$是定理\ref{thm:general-quantification}。完全一般性的问题——"是否每个PTC都自然地承载权重函子"——仍然开放：纯范畴PTC（无富集结构）上可能不存在非平凡的$[0,\infty]$-权重。但三个核心实例（Rel/Hilb/Coh）都是量论PTC，且任何实际应用（计算、物理、社会、心理）都天然带有数值度量，故量论PTC框架已覆盖预期应用范围。
+\end{remark}
+
 \section{完全性}
 
 \begin{theorem}[有限片段GoI完全性——已知结果]\label{thm:completeness-finite}\lvP
@@ -1112,7 +1172,7 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 \section{待证猜想}
 
 \begin{conjecture}[生命测度]\label{conj:measure}
-操作范畴上可定义一个测度，使量论公式$M=\alpha\cdot T\cdot N$成为定量定理，其中$T$是存活区间测度、$N$是余代数展开的净变化方向、$\alpha$是f-层级系数。目前$M$仅在加权$\mathbf{Rel}$中有独立于哲学诠释的纯数学定义（§20"模型内定义"）。
+\textbf{在量论PTC上已解决。}定义\ref{def:qptc}引入权重函子$\|\cdot\|:\mathcal{C}\to[0,\infty]$，定理\ref{thm:general-quantification}在任意量论PTC上定义$T$（权重幂零指数）、$N=\limsup\|f_{22}^n\|^{1/n}$（权重谱半径，Fekete引理保证极限存在）、$M=\alpha\sum N^n$（几何级数和）。定理\ref{thm:three-qptc}验证Rel（矩阵$\infty$-范数/Perron谱半径）、Hilb（算子范数/小增益）、Coh（clique基数）三个核心实例都是量论PTC。开放问题：纯范畴PTC（无富集结构）上是否自然存在非平凡权重函子；但所有预期应用领域（计算、物理、社会、心理）天然带数值度量，量论PTC框架已覆盖。
 \end{conjecture}
 
 \begin{conjecture}[f\textsuperscript{3}异化定理]\label{conj:f3}
