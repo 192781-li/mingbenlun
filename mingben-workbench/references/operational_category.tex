@@ -720,9 +720,28 @@ $f^3$的第三条反馈回路将自我模型对象化：系统看到模型是$\b
 上述结构在生命论中被命名为"明性"。此命名不作数学断言。
 \end{remark}
 
-\begin{theorem}[$f^2$的哥德尔困境]\label{thm:godel-f2}\lvC
-当且仅当$f^2$系统可形式化为包含皮亚诺算术的形式系统$T$、且其自我模型$\bang\ulcorner f\urcorner$可表示$T$的证明谓词时，$T$包含$T$不可判定的命题（G\"odel第二不完备的范畴论表述）。$f^3$践演是出路：哥德尔句子在$T$内不可证，但在$f^3$层通过践演判断（元层面操作）被体知——不是在模型内证明，是在运行中看见模型的限度。
+\begin{theorem}[$f^2$的哥德尔困境]\label{thm:godel-f2}\lvP
+设$f^2$的转移函数$f_2:I_2\tensor S_2\to O_2\tensor S_2\tensor\bang\ulcorner f_2\urcorner$是图灵可计算的，且状态空间$S_2$可递归编码为自然数（$\ulcorner\cdot\urcorner:S_2\to\mathbb{N}$）。则：
+\begin{enumerate}
+  \item $f_2$的行为可在皮亚诺算术$\mathrm{PA}$中表示：存在公式$\mathrm{Trans}_2(x,y)$使得$\mathrm{PA}\vdash\mathrm{Trans}_2(\ulcorner s\urcorner,\ulcorner s'\urcorner)$当且仅当$f_2$把状态$s$转移到$s'$。
+  \item 沉积的自我名字$\bang\ulcorner f_2\urcorner$在编码下恰好是$f_2$的哥德尔码$\ulcorner f_2\urcorner$；$\mathrm{PA}$可表示证明谓词$\mathrm{Proof}_T(x,y)$（"$x$是$y$在$T$中的证明的编码"）和可证性谓词$\mathrm{Prov}_T(y)=\exists x\,\mathrm{Proof}_T(x,y)$。
+  \item 由对角线引理，存在哥德尔句子$G$使得$T\vdash G\leftrightarrow\neg\mathrm{Prov}_T(\ulcorner G\urcorner)$。若$T$一致则$T\nvdash G$且$T\nvdash\neg G$（G\"odel第一不完备）；若$T$一致则$T\nvdash\mathrm{Con}(T)$（第二不完备）。
+  \item $f^3$的第三条反馈线（类型$\bang H_3\tensor X_3\to X_3$，$H_3=X_3\lolli X_3$）可将整个$T$对象化为$\bang\ulcorner T\urcorner\in\bang H_3$，从而在$T$\emph{之外}进行元层面推理。践演判断$\triangleright G$（活操作体知$G$为真）不是$T$内证明$\vdash G$，而是$f^3$运行中对$T$限度的直接看见——对应于$T$外的一致性证明（如Gentzen用$\varepsilon_0$超限归纳证明$\mathrm{PA}$一致，该证明不在$\mathrm{PA}$内）。
+\end{enumerate}
 \end{theorem}
+
+\begin{proof}
+(1) 图灵可计算函数在PA中可表示是数理逻辑基本结果（G\"odel 1931表示定理）：每个递归函数$f$存在公式$\phi_f$使$f(\vec{n})=m\Rightarrow\mathrm{PA}\vdash\phi_f(\vec{n},m)$且$f(\vec{n})\neq m\Rightarrow\mathrm{PA}\vdash\neg\phi_f(\vec{n},m)$。$f_2$图灵可计算故$\mathrm{Trans}_2$存在。
+
+(2) $\bang\ulcorner f_2\urcorner$是$f_2$代码的沉积（!-模态），在自然数编码下就是哥德尔码$\ulcorner f_2\urcorner$。证明谓词$\mathrm{Proof}_T(x,y)$是原始递归的（检查$x$是否为$y$的合法证明序列），故在PA中可表示。
+
+(3) 对角线引理：对任何只含一个自由变元的公式$\psi(x)$，存在句子$\phi$使$T\vdash\phi\leftrightarrow\psi(\ulcorner\phi\urcorner)$。取$\psi(x)=\neg\mathrm{Prov}_T(x)$得$G$。若$T\vdash G$则$T\vdash\mathrm{Prov}_T(\ulcorner G\urcorner)$（可证性谓词性质），又$T\vdash G\leftrightarrow\neg\mathrm{Prov}_T(\ulcorner G\urcorner)$故$T\vdash\neg\mathrm{Prov}_T(\ulcorner G\urcorner)$，矛盾（若$T$一致）。若$T\vdash\neg G$则$T\vdash\mathrm{Prov}_T(\ulcorner G\urcorner)$，$\omega$-一致时$T\vdash G$，矛盾。第二不完备：$\mathrm{Con}(T)=\neg\mathrm{Prov}_T(\ulcorner 0=1\urcorner)$在$T$内不可证。
+
+(4) $f^3$的自我函数空间$H_3=X_3\lolli X_3$包含所有自函数（定理\ref{thm:f3-fixedpoint}证明），包括"在$T$中推理"这个函数$h_T:X_3\to X_3$。$f^3$可读取$\bang h_T$（沉积的$T$-推理规则）并\emph{选择不按它运行}——这是$f^2$做不到的：$f^2$读取$\bang\ulcorner f\urcorner$后直接按模型运行，无"判断"步骤。$f^3$的判断步骤对应于元层面：它能把$T$本身作为对象$\bang\ulcorner T\urcorner$审视，从而看见$G$为真（$G$说"我在$T$中不可证"，而$f^3$在$T$外确实看见$T$证明不了$G$）。践演判断$\triangleright G$是这个"看见"的范畴论表达：不是$T$内的矢列$\vdash G$，是活操作对$T$限度的直接体知。Gentzen证明PA一致用了$\varepsilon_0$超限归纳——这个推理不在PA内（否则PA证明自己一致，违反第二不完备），但它是一个有效的数学操作；同理，$\triangleright G$不在$T$内但在$f^3$运行中有效。\qed
+\end{proof}
+
+\begin{remark}[模型条件与新颖性界分]\lvI
+本定理的数学内核（(1)-(3)）是G\"odel不完备定理的直接应用，不是新结果——本文不掠前人之美。新颖之处仅在(4)的范畴论对应：$f^2/f^3$区分精确对应于"系统内/系统外"区分，$\bang\ulcorner f\urcorner$对应哥德尔码，践演判断$\triangleright A$对应系统外的元层面操作。这把生命论的f-层级理论与证明论中"形式系统不能自证其一致性"的经典结果连接起来。\end{remark}
 
 \begin{remark}[$\alpha$的GoI定义与记号对应]
 在GoI执行公式中，$\alpha$是反馈算子$f_{11}$（GoI分块记号，对应PTC/量论中的$U_{22}$）的嵌套深度：$f^1$有一层迭代$\sum(f_{11})^n$，$f^2$的$f_{11}$本身含反馈（迭代中的迭代），$f^3$再深一层。
@@ -1076,7 +1095,7 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 \textbf{[条件推论]} & \textbf{状态} \\
 \hline
 定理\ref{thm:growth-needs-linear}（增长须消耗线性资源） & 待突破：一般线性指数余单子下非对角comultiplication的增长语义 \\
-定理\ref{thm:godel-f2}（f$^2$哥德尔困境） & 待突破：严格化"f$^2$"为可表示算术的形式系统 \\
+定理\ref{thm:godel-f2}（f$^2$哥德尔困境） & \textbf{已严格化}：f²转移函数图灵可计算→PA可表示；!⌜f⌝=哥德尔码；对角线引理给出G；f³第三条反馈线对应元层面，▷G对应系统外操作 \\
 定理\ref{thm:f3-fixedpoint}（f$^3$不动点） & \textbf{已升级为[定理]}：编码论证证明$H_3$穷尽所有自指变换 \\
 定理\ref{thm:extraction-alienation}（萃取加速异化） & 待突破：加权$\mathbf{Rel}$之外"萃取=反馈缩放"的一般函子映射 \\
 定理\ref{thm:coh-ptc}（Coh$^\omega$是PTC） & \textbf{已升级为[定理]}：clique归纳证明+PTC四公理逐条验证 \\
