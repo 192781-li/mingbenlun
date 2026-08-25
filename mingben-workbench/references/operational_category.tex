@@ -538,8 +538,8 @@ $R$是生产性的，如果对所有$(a,x)\in A\times X$，存在$(b,x')\in B\ti
 $\bang X$是$X$上的有限多重集。余归纳迹要求单一状态线索：每步消耗$x_n$产生$x_{n+1}$。多重集包含多个$X$元素，但元素之间没有身份（identity），无法确定哪个元素是"正在运行的当前状态"。$\bang R$的转移将多重集$\alpha$映射到$\beta$，但无法从$\beta$中追踪一条贯穿的状态线索。非交互$F_1(X)=X\tensor B$中$X$直接出现在输出中（不经过$\lolli$的codomain），配对唯一确定线索，故可提升（命题\ref{prop:lift-noninteractive}）；交互$F_2$中$X$是函数产出，多重集无法追踪。
 \end{proof}
 
-\begin{remark}[模型限定]\lvC
-定理\ref{thm:no-bang-stream}的证明给出$\mathbf{Rel}$（关系范畴）中"多重集无法追踪单一状态线索"的构造性论证。此处"提升"指保持余归纳迹的函子映射$(R,x_0)\mapsto(\bang R,\bang x_0)$；其相对自然性以$\mathbf{Rel}$为底范畴。一般PTC中的完全一般性见猜想\ref{conj:bang-ptc}。
+\begin{remark}[模型限定与一般化]\lvI
+定理\ref{thm:no-bang-stream}的证明给出$\mathbf{Rel}$（关系范畴）中"多重集无法追踪单一状态线索"的构造性论证。此处"提升"指保持余归纳迹的函子映射$(R,x_0)\mapsto(\bang R,\bang x_0)$；其相对自然性以$\mathbf{Rel}$为底范畴。一般PTC中的完全一般性已由定理\ref{thm:bang-no-ptc}（猜想\ref{conj:bang-ptc}已解决）给出：$\kappa$-分叉、$\varepsilon$不唯一、$\bang$与$\nu$不交换三个论证不依赖任何特定模型。
 
 本定理是种子定理\ref{thm:no-A-to-bangA}的GoI推广：种子定理说静态态射$A\to\bang A$不存在，本定理说动态流处理器的自然提升不存在。
 \end{remark}
