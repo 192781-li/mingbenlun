@@ -1292,6 +1292,58 @@ $\pi_!$丢失的是线性状态中不可被!-模态复制的部分——即交�
 Cut消除需要多步计算。过渡时期对应!-反馈已断但线性反馈未完全建立，$N$在波动中上升。系统保持生产性当且仅当线性反馈的增长速度超过!-残余的衰减速度。
 \end{remark}
 
+
+\section{$\mu F_2\to\nu F_2$：生命起源的数学}
+
+$\mu F_2$是有限交互过程（$f_{22}$幂零，过程在$T$步后停止），$\nu F_2$是无限交互过程（$f_{22}$不幂零，过程永远运行）。本节研究：有限过程在什么条件下能扩展为无限过程？这是"生命从非生命中产生"的数学表述。
+
+\begin{definition}[$\nu F_2$-扩展]\label{def:nu-extension}\lvP
+设$f:S\tensor X\to B\tensor X$是$\mu F_2$-余代数（$f_{22}$幂零，幂零指数$T$）。$f$的一个$\nu F_2$-\textbf{扩展}是三元组$(X',f',i)$，其中$i:X\to X'$是嵌入，$f':S\tensor X'\to B\tensor X'$是生产性Mealy机，满足：(1)$f'$在$i(X)$的非终止状态上与$f$一致；(2)$f'_{22}$不幂零。
+\end{definition}
+
+\begin{theorem}[$\mu F_2\to\nu F_2$扩展条件]\label{thm:mu-to-nu}\lvP
+$\mu F_2$-余代数$f$存在$\nu F_2$-扩展，当且仅当存在线性态射$e:X'\to X'$（\textbf{延续态射}）使得：
+\begin{enumerate}
+  \item \textbf{不终止}：$f'_{22}=f_{22}+e$在终止状态处非零，且$f'_{22}$不幂零；
+  \item \textbf{生产性}：$f'$是生产性的——每步产出$(b,x')$，不卡住；
+  \item \textbf{线性}：$e$是线性态射，非$\bang$-模态态射。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+必要性：若$f'$是$\nu F_2$-余代数，则$f'_{22}$不幂零而$f_{22}$幂零，故$e=f'_{22}-f_{22}$在终止状态处非零。生产性由$\nu F_2$定义。若$e$是$\bang$-模态的，则$f'$引入收缩，$X'$不再是线性状态，$f'$退化为$F_1$型或$\bang$-寄生体，不构成$F_2$-余代数。
+
+充分性：给定$e$满足(i)--(iii)，在$i(X)$上令$f'=f$，在终止状态处用$e$定义新转移。由(i)过程不停止，由(ii)$\mathrm{beh}$存在，由(iii)$f'$保持$F_2$型交互结构。故$f'$是$\nu F_2$-余代数。\qed
+\end{proof}
+
+\begin{theorem}[扩展的非唯一性]\label{thm:extension-nonunique}\lvC
+若$f$存在一个$\nu F_2$-扩展，则存在多个不同构的$\nu F_2$-扩展。
+\end{theorem}
+
+\begin{proof}
+在终止状态$x_T$处，可取不同的延续态射$e_1\neq e_2$使$f_{22}+e_1$和$f_{22}+e_2$都不幂零且生产性，但导向不同的未来行为（如$\rho(f_{22}+e_1)>1$成长，$\rho(f_{22}+e_2)=1$稳态）。\qed
+\end{proof}
+
+\begin{remark}[扩展非唯一性与自由]\lvC
+"怎么继续"不被过去唯一决定。延续态射$e$不是$f$的推论，是运行者的践演决断（$\triangleright$）。这连接践演元预设：$\mu F_2\to\nu F_2$的扩展不是命题证明（$\vdash$"过程会继续"），是践演决断（$\triangleright$"我选择继续"）。你不能证明一个有限过程"会"无限运行——你只能在运行中让它继续，而"继续"在运行中坐实自己。
+\end{remark}
+
+\begin{proposition}[生命扩展判据]\label{prop:life-extension}\lvC
+$\nu F_2$-余代数$f'$是\textbf{生命型}的（非空转、非寄生），当且仅当：(i)$f'_{21}\neq 0$（每步产出$B$，非空转）；(ii)$f'_{12}\neq 0$（输入影响状态，是开放交互的）；(iii)$f'$不是$\bang$-余代数（不自我复制、不沉积、不寄生）。
+\end{proposition}
+
+\begin{proof}
+反例排除：$f'_{21}=0$是while-skip空转（无输出）；$f'_{12}=0$是封闭自循环（无交互）；$\bang$-余代数是定理\ref{thm:virus-is-bang}的$\bang$-寄生体（资本/病毒型）。三者皆非生命。三者同时满足时，过程是开放的、产出的、线性的——即生命型$\nu F_2$。\qed
+\end{proof}
+
+\begin{remark}[$N$三态与扩展质量]\lvC
+在加权PTC中，扩展质量由$N=\rho(f'_{22})$决定：$N<1$是衰退扩展（慢性死亡，$M=\alpha/(1-N)$有限）；$N=1$且$1$不是特征值是稳态扩展（$M=\alpha T$）；$N>1$是成长扩展（$M=\infty$，生命展开）。$N>1$时Neumann级数$\sum f_{22}^n$发散（成长不能"加总"为有限值），但$(I-f_{22})^{-1}$在$1$不是特征值时代数存在。这对应：生命的无限性是潜无限（正在进行），不是实无限（已经完成）。你不能把一个正在成长的生命"加总"——它还在长。
+\end{remark}
+
+\begin{remark}[生命起源的两步跃迁]\lvC
+生命从非生命产生在数学上是两步：(1)$F_1\to F_2$——系统"开口"，输出影响环境、环境影响系统，反馈回路闭合（化学对应：封闭反应网络$\to$开放反应网络）；(2)$\mu F_2\to\nu F_2$——反馈增益$N\geq1$，过程自我维持（化学对应：开放网络$\to$自催化集合，催化效率$\geq1$）。两步合在一起：开口且闭合、闭合且$N\geq1$，即生命。
+\end{remark}
+
 \section{综合}
 
 \begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}\lvP
