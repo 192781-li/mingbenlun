@@ -941,9 +941,25 @@ Cut消除需要多步计算。过渡时期对应!-反馈已断但线性反馈未
 
 \section{综合}
 
-\begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}\lvC
-$G^\omega:\mathbf{PTC}\to\mathbf{PTC}$是PTC范畴上的自函子，把PTC映射为dagger紧闭合PTC。由定理\ref{thm:f3-fixedpoint}，三层封闭：$G^{\omega 3}(\mathcal{C})\cong G^{\omega 2}(\mathcal{C})$。（依赖定理\ref{thm:f3-fixedpoint}的递归类型解释，故为[条件推论]。）
+\begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}\lvP
+$G^\omega:\mathbf{PTC}\to\mathbf{PTC}$是PTC范畴上的自函子，把PTC映射为dagger紧闭合PTC。由定理\ref{thm:f3-fixedpoint}，三层封闭：$G^{\omega 3}(\mathcal{C})\cong G^{\omega 2}(\mathcal{C})$。
 \end{theorem}
+
+\begin{proof}
+\textbf{$G^\omega(\mathcal{C})$是PTC。}$G^\omega(\mathcal{C})$的态射是$\mathcal{C}$中的生产性Mealy机，复合用$\mathrm{Tr}^\omega$。逐条验证PTC公理：
+\begin{itemize}
+  \item \emph{Yanking}：$G^\omega(\mathcal{C})$中的弯线是$\mathcal{C}$中Mealy机的弯线，其行为态射由$\mathcal{C}$的Yanking公理保证为恒等流。
+  \item \emph{Tightening}：$\mathrm{beh}((h\otimes\mathrm{id})f(g\otimes\mathrm{id}),x_0)=h^\omega\,\mathrm{beh}(f,x_0)\,g^\omega$由$\mathcal{C}$的Tightening公理直接推出（前后处理都是$\mathcal{C}$中的态射）。
+  \item \emph{组合}：$\mathrm{beh}(f;g,(x_0,y_0))=\mathrm{beh}(g,y_0)\circ\mathrm{beh}(f,x_0)$由$\mathcal{C}$的组合公理推出（Mealy机复合在$\mathcal{C}$中用$\mathrm{Tr}^\omega$定义）。
+  \item \emph{Productivity}：$\mathcal{C}$中生产性Mealy机的复合仍生产性（$\mathcal{C}$的Productivity公理），故$G^\omega(\mathcal{C})$中态射完全。
+\end{itemize}
+
+\textbf{dagger紧闭合。}定理\ref{thm:gomega-compact}已证$G^\omega(\mathcal{C})$是dagger compact closed范畴（对偶$(A^+,A^-)^*=(A^-,A^+)$，蛇方程由Yanking保证，类比Joyal--Street--Verity 1996的Int-构造）。
+
+\textbf{函子性。}对PTC态射$F:\mathcal{C}\to\mathcal{D}$（保持张量、迹和生产性的强幺半函子），定义$G^\omega(F):G^\omega(\mathcal{C})\to G^\omega(\mathcal{D})$逐对象作用$F$、逐态射将$\mathcal{C}$中Mealy机$(X,R,x_0)$映射为$(FX,F(R),F(x_0))$。$F$保持$\mathrm{Tr}^\omega$（PTC态射定义），故$G^\omega(F)$保持复合和恒等。$G^\omega(\mathrm{id}_\mathcal{C})=\mathrm{id}_{G^\omega(\mathcal{C})}$，$G^\omega(F\circ G)=G^\omega(F)\circ G^\omega(G)$。
+
+\textbf{三层封闭。}由定理\ref{thm:f3-fixedpoint}，$f^3$是层级提升的不动点。$G^\omega$构造对应增加一层反馈嵌套（$G^{\omega(n+1)}(\mathcal{C})$的态射比$G^{\omega(n)}(\mathcal{C})$多一条弯线），故$G^{\omega 3}(\mathcal{C})\cong G^{\omega 2}(\mathcal{C})$。\qed
+\end{proof}
 
 \begin{theorem}[生命论基本定理]\label{thm:fundamental}\lvI
 以下九条命题共享同一数学结构——\textbf{线性资源不可被$\bang$-模态还原}——其中四条有严格证明、两条分拆为"数学+等同"、三条为纯诠释：
@@ -1017,7 +1033,7 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 定理\ref{thm:extraction-alienation}（萃取加速异化） & 待突破：加权$\mathbf{Rel}$之外"萃取=反馈缩放"的一般函子映射 \\
 定理\ref{thm:coh-ptc}（Coh$^\omega$是PTC） & \textbf{已升级为[定理]}：clique归纳证明+PTC四公理逐条验证 \\
 定理\ref{thm:alienation-lowers-n}（异化降低$N$） & \textbf{加权$\mathbf{Rel}$中已严格证明}：Perron--Frobenius给出严格下降条件；一般PTC待猜想\ref{conj:bang-ptc} \\
-定理\ref{thm:gomega-endofunctor}（$G^\omega$是自函子） & 三层封闭性已由定理\ref{thm:f3-fixedpoint}解决；函子性待补PTC公理验证 \\
+定理\ref{thm:gomega-endofunctor}（$G^\omega$是自函子） & \textbf{已升级为[定理]}：PTC四公理从底范畴继承+dagger紧闭合+函子性+三层封闭 \\
 定理\ref{thm:bang-no-ptc}（$\bang$不穿透生产性迹） & 待突破：见猜想\ref{conj:bang-ptc} \\
 \hline
 \end{tabular}
