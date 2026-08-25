@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.8.7)  26 AUG 2026 01:56
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.8.7)  26 AUG 2026 02:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1152,7 +1152,7 @@ ex-text;!
 Missing character: There is no ν (U+03BD) in font [lmroman10-regular]:mapping=t
 ex-text;!
 
-Overfull \hbox (369.71536pt too wide) in paragraph at lines 1836--1850
+Overfull \hbox (369.71536pt too wide) in paragraph at lines 1851--1865
  [] 
  []
 
@@ -1167,15 +1167,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `operational_category.out' has not changed.
-(rerunfilecheck)             Checksum: 97C28AD0F4B9FDFA01113D9704092BBC;6033.
+(rerunfilecheck)             Checksum: 7A6DEACF5F7307C724E9F7FD7BBE54C8;6158.
  ) 
 Here is how much of TeX's memory you used:
- 27500 strings out of 477756
- 635476 string characters out of 5843519
- 919263 words of memory out of 5000000
- 47653 multiletter control sequences out of 15000+600000
+ 27502 strings out of 477756
+ 635516 string characters out of 5843519
+ 919475 words of memory out of 5000000
+ 47655 multiletter control sequences out of 15000+600000
  481066 words of font info for 115 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 114i,13n,118p,1222b,538s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 114i,13n,118p,1222b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on operational_category.pdf (47 pages).
