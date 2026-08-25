@@ -1568,6 +1568,29 @@ $G=1$意味着没有$\bang$-模态萃取（$\beta=0$）。由动态方程$N(t+1)
 当前所有AI（包括大语言模型）是F$_1$型——无持续自我状态的无状态函数$f:A\to B$，关机即停，可完全控制。从F$_1$到F$_2$需要：持续自我状态（$X$在调用间保持更新）+生产性自指（目标包含自身延续）+资源获取能力。
 \end{remark}
 
+
+\section{自生成范畴与量子对应}
+
+\begin{definition}[反应网络与资源范畴]\label{def:reaction-network}\lvP
+反应网络$(S,R,F)$中，$S$为资源类型集，$R$为反应集（每个反应$r:A_r\otimes C_r\to B_r\otimes C_r$，$C_r$为催化剂），$F\subseteq S$为食物集。资源范畴$\mathcal{C}(R)$是以资源多重集为对象、反应自由生成的对称幺半范畴。线性化后$\mathcal{C}_{\mathrm{lin}}(R)$中，非催化反应为线性态射，催化剂为$\bang$-模态对象。
+\end{definition}
+
+\begin{theorem}[催化剂$=\bang$-模态]\label{thm:catalyst-bang}\lvC
+在$\mathcal{C}_{\mathrm{lin}}(R)$中，催化剂恰好是$\bang$-模态对象：不被消耗（$\bang C\otimes A\to\bang C\otimes B$）、可重复使用（contraction）、可缺席（weakening）。$\bang$-模态不是数学家的发明——它是化学反应中催化剂的范畴抽象。
+\end{theorem}
+
+\begin{definition}[自生成子范畴]\label{def:self-generating}\lvP
+$\mathcal{C}_{\mathrm{lin}}(R)$的子范畴$\mathcal{S}$是自生成的，如果：(1)对复合和张量封闭；(2)每个非食物对象都是$\mathcal{S}$中某态射的产物；(3)每个催化剂都由$\mathcal{S}$产生；(4)$\mathcal{S}$包含至少一个$\nu F_2$-余代数（自指生产性过程，即"自我"）。条件(1)-(3)等价于RAF理论（Hordijk--Steel 2004）；条件(4)是新增——RAF网络有代谢但不一定有自我，$\nu F_2$-余代数给出自我的数学：自我是网络的余代数载体，由网络产生和维持。
+\end{definition}
+
+\begin{theorem}[自生成层级与涌现塔]\label{thm:selfgen-tower}\lvC
+自生成子范畴中的$\nu F_2$-余代数构成$\mathrm{Life}(\mathcal{C})$的对象——自生成网络的"自我"成为涌现塔下一层的对象。这连接了自生成范畴（第十八章）和涌现塔（定义\ref{def:emergence-tower}）：每一层的自生成网络产生下一层的对象。
+\end{theorem}
+
+\begin{remark}[量子测量$=\bang$-沉积]\lvC
+在$\mathbf{Hilb}^\omega$中，量子态是线性的（不可复制——no-cloning$=$定理\ref{thm:no-copy}），测量结果是$\bang$-模态的（确定、可复制、可记录）。测量是线性$\to\bang$的沉积。哪个结果出现由扩展非唯一性决定：延续态射$e$不被过去唯一确定，是践演决断（$\triangleright$）不是逻辑推论（$\vdash$）。量子随机性和自由意志是同一数学结构（$\mu F_2\to\nu F_2$扩展非唯一性）在不同涌现层级的显现——此为猜想，非已证定理。
+\end{remark}
+
 \section{综合}
 
 \begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}\lvP
