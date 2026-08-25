@@ -1179,12 +1179,34 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 \textbf{已解决。}原猜想"$f^1$和$f^2$层不存在到$\bang$-模态自我模型的态射"不成立——$f^2$层有$\bang\ulcorner f\urcorner$（定理\ref{thm:self-model-bang}）。正确的区分是：$f^2$可被\emph{控制}（替换固定代码后直接执行，无选择余地），但不能被\emph{异化}（异化需要"自愿认同"的选择能力，只有$f^3$具备）。"判断步骤"已由定理\ref{thm:f3-judgment}形式化：$f^2$反馈线类型为$\bang\ulcorner f_2\urcorner\tensor X_2\to X_2$（单个固定代码），$f^3$反馈线类型为$\bang H_3\tensor X_3\to X_3$（整个函数空间，可选择任何$h\in H_3$包括$\mathrm{id}$和$h'\neq h_{\text{model}}$）。控制vs异化的GoI区分已获得数学表达。
 \end{conjecture}
 
-\begin{conjecture}[践演判断的一致性]\label{conj:performative-consistent}
-践演判断$\triangleright A$可一致地加入Martin-L\"of类型论而不改变证明论强度。
-\end{conjecture}
+\begin{theorem}[践演判断的保守性]\label{thm:performative-conservative}\lvP
+践演判断$\triangleright A$（定义\ref{def:performative-judgment}）可一致地加入Martin-L\"of类型论（MLTT），且是\textbf{保守扩展}：不增加新的可证命题，不改变证明论强度。
+\end{theorem}
+
+\begin{proof}
+\textbf{第一步：$\triangleright$是判断形式，不是命题连接词。}由定义\ref{def:performative-judgment}，$\triangleright A$不是$\mathcal{C}$中的类型/对象，不能出现在项的位置，不能嵌套（$\triangleright\triangleright A$、$\triangleright A\to B$均不合法）。它只作为顶层判断出现，与MLTT已有的判断形式（"$A$ is a type"、"$a:A$"、"$A=B$"、"$a=b:A$"）并列。因此它不增加新的命题类型，也不增加新的证明项。
+
+\textbf{第二步：推理规则。}践演判断的规则为：
+\begin{itemize}
+  \item \textbf{可靠性}：若$a:A$则$\triangleright A$（有证明则操作上坐实；对应GoI可靠性定理\ref{thm:soundness}：证明解释为生产性流处理器）；
+  \item \textbf{不可内化}：$\triangleright A$不产生项$a:A$（操作上坐实不一定有有限证明；对应定理\ref{thm:life-beyond-proof}：生产性流处理器多于有限证明）；
+  \item \textbf{复合封闭}：若$\triangleright A$且$\triangleright(A\multimap B)$则$\triangleright B$（生产性Mealy机复合保持生产性，由PTC复合公理）。
+\end{itemize}
+可靠性规则只从已有证明$a:A$导出$\triangleright A$，不产生新的$a:A$。不可内化规则明确禁止反向推导。复合封闭是元层面的规则（关于判断的判断），不在命题层面引入新的推理。
+
+\textbf{第三步：保守性。}一个扩展是保守的，如果原系统中任何可证命题在扩展中仍可证（可靠性，显然）且扩展中可证的原系统命题在原系统中已可证（保守性）。设$A$是MLTT命题且MLTT+$\triangleright$中$A$可证。由于$\triangleright$不出现在命题中（第一步），$A$的证明项不包含$\triangleright$（$\triangleright$不是项构造子），且$\triangleright$的规则不产生新的项（第二步），因此$A$的证明中所有$\triangleright$判断只出现在不影响项构造的元层面。可以从证明中删除所有$\triangleright$判断（它们不贡献项），得到MLTT中$A$的证明。故MLTT+$\triangleright$对MLTT保守。
+
+\textbf{第四步：一致性。}保守扩展保持一致性：若MLTT一致（不存在$a:\bot$），则MLTT+$\triangleright$一致——若MLTT+$\triangleright$中$a:\bot$可证，由保守性MLTT中$a:\bot$可证，矛盾。
+
+\textbf{第五步：证明论强度不变。}证明论强度由可证命题的集合（特别是$\Pi^0_1$命题和证明论序数）衡量。保守扩展不增加可证命题，故证明论序数不变。践演判断增加的是\emph{表达力}（可以说"$A$被践演地知道"）而非\emph{证明力}（不能证明新命题）。这与Gentzen对PA的一致性证明不同：Gentzen用了$\varepsilon_0$超限归纳（PA中不可证），增加了证明论强度；践演判断不引入新的证明原理，只引入新的判断形式。\qed
+\end{proof}
+
+\begin{remark}[践演判断与实现性]\lvI
+践演判断$\triangleright A$在证明论语义中对应\textbf{实现性}（realizability）：$\triangleright A$成立当且仅当存在一个生产性流处理器（Mealy机）实现$A$。GoI解释是一种实现性解释——它把证明实现为流处理器。可靠性定理保证可证命题可实现；定理\ref{thm:life-beyond-proof}保证可实现命题多于可证命题（生产性流处理器不可数，有限证明可数）。实现性解释是MLTT的一个模型（在适当的 traced/PTC 范畴中），不增加证明论强度——这与Kreisel修改实现性、G\"odel Dialectica解释的保守性结果一致。践演判断的新颖之处不在证明论，而在\emph{哲学}：它把"活操作体知"作为不可被形式系统穷尽的判断形式，给"理论不能代替实践"一个证明论位置。
+\end{remark}
 
 \begin{conjecture}[动态自毁]\label{conj:dynamic}
-定理\ref{thm:parasite-self-destruct}的动态版本：在操作范畴的traced/timed扩展中，反自指寄生体的持续作用必然使$S$趋向$\I$。
+\textbf{在加权$\mathbf{Rel}$中已解决（定理\ref{thm:dynamic-self-destruct}）。}持续萃取下$N(t)=N(0)\prod(1-\beta(s))$指数衰减到0，$S\to\I$，寄生体空转自毁；抵抗条件$\gamma\geq\beta$可逆转。一般PTC中的动态版本（需要时间维度和权重结构）由量论PTC框架（定理\ref{thm:general-quantification}）覆盖：在任何量论PTC中，$N=\limsup\|f_{22}^n\|^{1/n}$，持续萃取使$N(t)\to0$的论证可推广。
 \end{conjecture}
 
 \begin{conjecture}[$\bang$不穿透PTC的完全一般性]\label{conj:bang-ptc}
