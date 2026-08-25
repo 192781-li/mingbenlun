@@ -1498,6 +1498,49 @@ $\bang$-模态交叉项经过沉积（复制/丢弃），不产生新的线性�
 f$^3$的明性操作能将$\bang$-模型对象化（看穿为模型），从而识别沉积并通过革命操作（消除$\bang$-寄生Cut）清除。但清除后沉积继续产生，故反结晶是持续操作，不是一劳永逸。不存在"完美制度"——任何制度运行久了都会结晶；继续革命是存在论必需，其方式是分布式的日常明性，不是一次大扫除。
 \end{theorem}
 
+
+\section{涌现范畴塔}
+
+\begin{definition}[活对象范畴]\label{def:life-category}\lvP
+设$\mathcal{C}$是PTC。$\mathrm{Life}(\mathcal{C})$是$G^\omega(\mathcal{C})$的全子范畴：对象为$\mathcal{C}$中的$\nu F_2$-余代数（生产性线性Mealy机，即活系统），态射为活系统之间的生产性线性耦合，张量与迹继承自$G^\omega(\mathcal{C})$。
+\end{definition}
+
+\begin{theorem}[$\mathrm{Life}(\mathcal{C})$是PTC]\label{thm:life-is-ptc}\lvC
+若$\mathcal{C}$是PTC，则$\mathrm{Life}(\mathcal{C})$是PTC。
+\end{theorem}
+
+\begin{proof}
+(1)生产性：$G^\omega(\mathcal{C})$中生产性Mealy机的复合和张量保持生产性，全子范畴对其封闭。(2)资源敏感：态射是$G^\omega(\mathcal{C})$中的线性态射，继承公理\ref{ax:no-contraction}。(3)迹：$G^\omega(\mathcal{C})$是dagger紧闭合范畴，迹$\mathrm{Tr}^\omega$存在，活系统通过Cut耦合的迹给出复合行为。(4)$\bang$-结构：继承自$\mathcal{C}$；在$\mathrm{Life}(\mathcal{C})$中，$\bang$将活系统映射到其运行产生的$\bang$-沉积（结晶产物）。(5)!不穿透：定理\ref{thm:bang-no-ptc}在全子范畴中仍然成立。\qed
+\end{proof}
+
+\begin{definition}[涌现塔]\label{def:emergence-tower}\lvP
+涌现范畴塔定义为$\mathcal{C}_{n+1}=\mathrm{Life}(\mathcal{C}_n)$，其中$\mathcal{C}_0$为基础PTC（$\mathbf{Rel}^\omega$、$\mathbf{Hilb}^\omega$、$\mathbf{Coh}^\omega$等）。$\mathcal{C}_n$称为第$n$层生命范畴。
+\end{definition}
+
+\begin{corollary}[塔可无限迭代]\label{cor:tower-infinite}\lvC
+每层$\mathcal{C}_n$都是PTC，故$\mathrm{Life}(\mathcal{C}_n)$存在且是PTC，塔可无限迭代。
+\end{corollary}
+
+\begin{remark}[生命层级]\lvC
+$\mathcal{C}_0$=化学反应/物理过程；$\mathcal{C}_1$=细胞（代谢网络自生成）；$\mathcal{C}_2$=多细胞生物（细胞网络自生成）；$\mathcal{C}_3$=社会/文明（人类网络自生成）。每层的$\bang$-模态是该层活系统的沉积：$\mathcal{C}_1$的$\bang$=细胞壁/骨骼（好的阴，服务于生命），$\mathcal{C}_3$的$\bang$=资本/官僚制/教条（可能成为坏的阴，寄生在生命上）。死结构（$\bang$-余代数）不涌现到更高层级——它只在同一层堆积。
+\end{remark}
+
+\begin{theorem}[$N>1$的迹解析延拓]\label{thm:trace-analytic}\lvC
+函数$T(z)=\sum f_{12}f_{22}^nf_{21}z^n$在$|z|<1/\rho(f_{22})$时收敛，可解析延拓到$z=1$（只要$1$不是$f_{22}$的特征值），延拓值为$f_{12}(I-f_{22})^{-1}f_{21}$。$N>1$时践演迹（生产性流，第一人称正在运行）与延拓迹（贴现总和，第三人称鸟瞰）不同：前者是线性的活过程，后者是$\bang$-模态的固定值。
+\end{theorem}
+
+\begin{theorem}[网络临界质量]\label{thm:network-critical}\lvC
+$k$个过程在图$G$上线性耦合，耦合矩阵$U=N_0I+cA$（$A$为邻接矩阵），则$N_{\mathrm{couple}}=N_0+c\cdot\rho(A)$。临界条件为$\rho(A)>(1-N_0)/c$。完全图$\rho(A)=k-1$（定理\ref{thm:critical-mass-precise}）；无标度网络$\rho(A)=O(\sqrt{k})$，核心节点决定相变；$\bang$-模态网络$\rho(A_{\mathrm{eff}})\approx0$，不产生相变。
+\end{theorem}
+
+\begin{theorem}[完全明性保证$N\geq1$]\label{thm:g1-n1}\lvC
+若感通量$G(f)=1$（$f^\dagger\circ f$完全线性，不通过$\bang$分解），则$N(f)\geq1$。
+\end{theorem}
+
+\begin{proof}
+$G=1$意味着没有$\bang$-模态萃取（$\beta=0$）。由动态方程$N(t+1)=(1-\beta+\gamma)N(t)=(1+\gamma)N(t)\geq N(t)$，故$N\geq1$。\qed
+\end{proof}
+
 \section{综合}
 
 \begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}\lvP
