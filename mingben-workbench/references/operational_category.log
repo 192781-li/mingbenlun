@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.8.7)  26 AUG 2026 00:45
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.8.7)  26 AUG 2026 00:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1081,7 +1081,7 @@ LaTeX Warning: Reference `thm:virus-is-bang' on page 33 undefined on input line
 LaTeX Warning: Reference `thm:virus-is-bang' on page 35 undefined on input line
  1447.
 
-[35] [36] [37]
+[35] [36] [37] [38]
 Missing character: There is no δ (U+03B4) in font [lmroman10-regular]:mapping=t
 ex-text;!
 Missing character: There is no ⌜ (U+231C) in font [lmroman10-regular]:mapping=t
@@ -1103,11 +1103,11 @@ ex-text;!
 Missing character: There is no ν (U+03BD) in font [lmroman10-regular]:mapping=t
 ex-text;!
 
-Overfull \hbox (369.71536pt too wide) in paragraph at lines 1560--1574
+Overfull \hbox (369.71536pt too wide) in paragraph at lines 1607--1621
  [] 
  []
 
-[38] [39] [40] (./operational_category.aux)
+[39] [40] [41] (./operational_category.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1115,15 +1115,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `operational_category.out' has not changed.
-(rerunfilecheck)             Checksum: 96E3F2083DD671EC59E11865B58DB9EF;4548.
+(rerunfilecheck)             Checksum: 966700EA8071EB9616B8896A90FF1C0A;4902.
  ) 
 Here is how much of TeX's memory you used:
- 27447 strings out of 477756
- 633808 string characters out of 5843519
- 915999 words of memory out of 5000000
- 47600 multiletter control sequences out of 15000+600000
+ 27454 strings out of 477756
+ 633983 string characters out of 5843519
+ 916636 words of memory out of 5000000
+ 47607 multiletter control sequences out of 15000+600000
  481066 words of font info for 115 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  114i,13n,118p,1222b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on operational_category.pdf (40 pages).
+Output written on operational_category.pdf (41 pages).
