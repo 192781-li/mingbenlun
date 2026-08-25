@@ -1621,6 +1621,29 @@ GDP衡量$\bang$-模态沉积的货币化总量，不区分：线性产出（活
 社会$N$值不是个体$N$的平均，是社会耦合矩阵的谱半径$N_{\mathrm{society}}=\rho(U)$（定理\ref{thm:network-critical}）。社会萃取率$W_{\mathrm{society}}=$（资本收入+租金+利息）/GDP，对应剑桥资本争论（Robinson 1953, Sraffa 1960）对资本边际生产力的批判——$W$直接衡量萃取，不需要"资本总量"概念。
 \end{remark}
 
+
+\section{$\nu^*F$的严格化与结晶函子}
+
+\begin{definition}[有向系统范畴]\label{def:dir-cat}\lvP
+$\mathrm{Dir}(\mathcal{C})$的对象为$\mathcal{C}$中的有向系统$X=(X_0\xrightarrow{i_0}X_1\xrightarrow{i_1}\cdots)$，态射为与转移映射相容的态射族。若$\mathcal{C}$是PTC，则$\mathrm{Dir}(\mathcal{C})$逐点继承PTC结构。
+\end{definition}
+
+\begin{definition}[移位函子$F^*$]\label{def:shift-functor}\lvP
+对$\mathcal{C}$上自函子$F$，定义$\mathrm{Dir}(\mathcal{C})$上$F^*(X)_n=F(X_{n+1})$（索引移位）。$F^*$-余代数$c:X\to F^*(X)$是一族$c_n:X_n\to F(X_{n+1})$——状态空间在成长的Mealy机。标准$\nu F_2$对应$X_n=X$常数的平凡系统；$\nu^*F$允许$X_n$严格增长。
+\end{definition}
+
+\begin{theorem}[$\nu F^*$存在]\label{thm:nustar-exists}\lvC
+若$\mathcal{C}$有$\omega_1$-余极限且$F^*$保持它们，则$F^*$在$\mathrm{Dir}(\mathcal{C})$中的最终余代数存在（Ad\'amek--Milius构造）。$\nu F^*$严格大于$\nu F$：后者是固定状态空间，前者允许状态空间逐次扩展。
+\end{theorem}
+
+\begin{theorem}[结晶函子不是余单子]\label{thm:cryst-not-comonad}\lvC
+结晶函子$\mathrm{Cryst}:\mathrm{Life}(\mathcal{C})\to\mathcal{C}^!$将活系统映射到其$\bang$-沉积。它不是$\mathrm{Life}(\mathcal{C})$上的余单子：余单位$\mathrm{Cryst}(X)\to X$不存在（定理\ref{thm:second-law}：无$\bang D\to D$自然映射），余乘法$\bang X\to\bang\bang X$存在但落在$\mathcal{C}^!$中（死结构自我繁殖）。逆结晶需要线性资源：$\bang D\otimes E\to D\otimes E'$（定理\ref{thm:life-local-negentropy}）。
+\end{theorem}
+
+\begin{remark}[$\nu^*F$与Fock空间]\lvC
+猜想：$\nu^*F$在$\mathbf{Hilb}^\omega$中对应量子场论的Fock空间$\mathcal{F}(H)=\bigoplus_{n=0}^\infty H^{\otimes n}$——粒子产生算符$a^\dagger$增加一个粒子（维度+1），对应$X_n\to X_{n+1}$状态空间扩展；$N>1$对应粒子产生，践演迹对应S-矩阵展开。此为猜想，需严格证明$\mathrm{Dir}(\mathbf{Hilb}^\omega)$中$\nu F^*$与Fock空间构造等价。
+\end{remark}
+
 \section{综合}
 
 \begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}\lvP
