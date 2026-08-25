@@ -330,6 +330,84 @@ def cmd_diagnose(args):
         print(f"已保存到 {path}")
 
 
+def cmd_track(args):
+    """记录每日活力分并估计N值"""
+    import os
+    path = os.path.join(os.path.dirname(__file__), 'vitality_log.jsonl')
+
+    if args.add is not None:
+        score = args.add
+        record = {"date": args.date or datetime.now().strftime("%Y-%m-%d"), "score": score}
+        with open(path, 'a', encoding='utf-8') as f:
+            f.write(json.dumps(record, ensure_ascii=False) + '\n')
+        print(f"已记录：{record['date']} 活力分={score}")
+        print()
+
+    # 读取所有记录
+    records = []
+    if os.path.exists(path):
+        with open(path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    records.append(json.loads(line))
+
+    if len(records) < 2:
+        print(f"需要至少2天记录才能估计N值，当前{len(records)}天。")
+        print("用法：python3 lianglun_calc.py track --add 7（记录今天活力分7/10）")
+        return
+
+    scores = [r['score'] for r in records]
+    diffs = [scores[i+1] - scores[i] for i in range(len(scores)-1)]
+    avg_diff = sum(diffs) / len(diffs)
+
+    # 用差分趋势估计N：
+    # 活力分是N的有界指示器。平均日变化>0.3→成长，<-0.3→衰退
+    if avg_diff > 0.3:
+        N_est = 1.0 + avg_diff * 0.05  # 粗略映射：每天+1分≈N=1.05
+        trend = "成长"
+    elif avg_diff < -0.3:
+        N_est = 1.0 + avg_diff * 0.05
+        trend = "衰退"
+    else:
+        N_est = 1.0 + avg_diff * 0.05
+        trend = "稳态"
+
+    # 波动率
+    variance = sum((d - avg_diff)**2 for d in diffs) / len(diffs)
+    volatility = math.sqrt(variance)
+
+    print("=" * 50)
+    print(f"活力记录（共{len(records)}天）")
+    print("=" * 50)
+    for i, r in enumerate(records):
+        bar = "█" * int(r['score']) + "░" * (10 - int(r['score']))
+        diff_str = ""
+        if i > 0:
+            d = diffs[i-1]
+            diff_str = f"  {d:+.1f}"
+        print(f"  {r['date']} |{bar}| {r['score']:.0f}/10{diff_str}")
+
+    print()
+    print(f"  平均日变化：{avg_diff:+.2f}分/天")
+    print(f"  波动率：{volatility:.2f}")
+    print(f"  N估计值：{N_est:.3f}（{trend}）")
+    print()
+
+    N_status, N_desc = diagnose_N(N_est)
+    print(f"  诊断：{N_status}——{N_desc}")
+
+    if N_est < 0.99:
+        print(f"  β-γ ≈ {(1-N_est)*100:.1f}%/天（萃取大于恢复）")
+    elif N_est > 1.01:
+        print(f"  γ-β ≈ {(N_est-1)*100:.1f}%/天（恢复大于萃取）")
+    else:
+        print(f"  γ≈β，僵持状态")
+
+    if volatility > 2.0:
+        print(f"  波动率高（{volatility:.1f}），状态不稳定——注意睡眠和节律")
+
+
 def main():
     parser = argparse.ArgumentParser(description='量论计算器')
     sub = parser.add_subparsers(dest='command')
@@ -353,6 +431,12 @@ def main():
     # diagnose
     sub.add_parser('diagnose', help='交互式诊断')
 
+    # track
+    p_track = sub.add_parser('track', help='记录每日活力分并估计N')
+    p_track.add_argument('--add', type=float, default=None, help='今天的活力分（1-10）')
+    p_track.add_argument('--date', type=str, default=None, help='日期（YYYY-MM-DD，默认今天）')
+
+
     args = parser.parse_args()
     if args.command == 'calc':
         cmd_calc(args)
@@ -360,6 +444,8 @@ def main():
         cmd_dynamic(args)
     elif args.command == 'diagnose':
         cmd_diagnose(args)
+    elif args.command == 'track':
+        cmd_track(args)
     else:
         parser.print_help()
 
