@@ -1644,6 +1644,25 @@ $\mathrm{Dir}(\mathcal{C})$的对象为$\mathcal{C}$中的有向系统$X=(X_0\xr
 猜想：$\nu^*F$在$\mathbf{Hilb}^\omega$中对应量子场论的Fock空间$\mathcal{F}(H)=\bigoplus_{n=0}^\infty H^{\otimes n}$——粒子产生算符$a^\dagger$增加一个粒子（维度+1），对应$X_n\to X_{n+1}$状态空间扩展；$N>1$对应粒子产生，践演迹对应S-矩阵展开。此为猜想，需严格证明$\mathrm{Dir}(\mathbf{Hilb}^\omega)$中$\nu F^*$与Fock空间构造等价。
 \end{remark}
 
+
+\section{概率、信息与生命信息}
+
+\begin{theorem}[Kolmogorov公理的操作论导出]\label{thm:kolmogorov}\lvC
+在加权PTC中，重复线性操作$f:I\to\bigoplus_i O_i$（重量$w_i\geq0$，$\sum w_i=1$），频率$k_i/n$是$\bang$-模态沉积。取极限得概率$P(O_i)=\lim k_i/n$：非负性由计数非负给出，规范性由$\sum k_i=n$给出，$\sigma$-可加性由不相交事件计数可加给出。概率不是世界的不确定性，是重复操作的沉积模式。
+\end{theorem}
+
+\begin{theorem}[数据处理不等式$=$第二定律]\label{thm:dpi}\lvC
+操作链$A\xrightarrow{f}B\xrightarrow{g}C$中$I(A;C)\leq I(A;B)$——后处理不增加信息。这是定理\ref{thm:second-law}（$\bang$-沉积非减）的信息论版本：线性信息通过$\bang$-模态通道时只会丢失。
+\end{theorem}
+
+\begin{theorem}[信息三层分类]\label{thm:three-info}\lvC
+信息分三层：(1)\textbf{经典信息}$=\bang$-模态：可复制、可丢弃、非生产性（Shannon信息论，$H=-\sum p\log p$）；(2)\textbf{量子信息}$=$线性非生产性：不可复制（定理\ref{thm:no-copy}）、不可丢弃，但酉演化可逆不产生新结构（量子信息论）；(3)\textbf{生命信息}$=\nu F_2$型：不可复制、生产性（$\nu^*F$状态空间扩展）、自指性（DNA、语言、文化、意识）。Shannon熵对$\nu F_2$过程不定义（生产性过程无固定熵）；生命信息的度量是$M=\alpha\sum N^n$（意义量），不是信息量$H$。
+\end{theorem}
+
+\begin{remark}[意义量与信息量]\lvC
+$H$是$\bang$-模态的、静态的、可加的；$M$是线性的、动态的、乘性的。信息（$\bang$-沉积）可被$\nu F_2$过程激活而提高$N$（$\bang A\otimes E\to A\otimes E'$，定理\ref{thm:life-local-negentropy}），但需要线性资源$E$（理解力/明性）。信息过载$=$$\bang$-沉积过载：未被激活的信息成为$\bang$-寄生体（算法推荐系统），萃取注意力、压低$N$。
+\end{remark}
+
 \section{综合}
 
 \begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}\lvP
