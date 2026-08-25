@@ -71,17 +71,17 @@ def diagnose_N(N):
 
 
 def diagnose_W(W):
-    """诊断W值"""
-    if W < 0.5:
-        return "健康", "产出远小于意义，生活本身就是目的"
+    """诊断W值（W=每轮被拿走的比例，即萃取率β）"""
+    if W < 0.3:
+        return "健康", "大部分产出留给自己，生活本身就是目的"
+    elif W < 0.6:
+        return "轻度异化", "超过一半产出被拿走，但还有自留地"
+    elif W < 0.8:
+        return "严重异化", "大部分产出被拿走，在为别人活"
     elif W < 1.0:
-        return "正常", "产出在意义范围内，工作与生活基本统一"
-    elif W < 2.0:
-        return "轻度异化", "产出开始超过意义，注意调整"
-    elif W < 5.0:
-        return "严重异化", "产出远超意义，生命在被萃取"
+        return "极度异化", "几乎全部产出被拿走，只剩维持生存的最低量"
     else:
-        return "极度异化", "意义趋近于零，系统在空转"
+        return "存量消耗", "不仅拿走全部产出，还在消耗生命力存量——N必降"
 
 
 def diagnose_C(C):
@@ -136,7 +136,7 @@ def cmd_calc(args):
 
     M = calc_M(N, alpha, T)
     l_prime = calc_l_prime(N)
-    W = calc_W(O, M) if O is not None else None
+    W = O if O is not None else None  # O直接就是每轮被拿走的比例W
 
     print("=" * 50)
     print("量论参数计算")
@@ -165,7 +165,7 @@ def cmd_calc(args):
 
     if W is not None:
         W_status, W_desc = diagnose_W(W)
-        print(f"  W（异化率）    = {W:.2f}——{W_status}：{W_desc}")
+        print(f"  W（异化率=β）  = {W:.2f}（每轮产出被拿走的比例）——{W_status}：{W_desc}")
 
     if N < 1.0:
         print()
@@ -250,9 +250,10 @@ def cmd_diagnose(args):
 
     # W
     print()
-    print("【W：异化率】")
-    print("  你的产出（工作成果、被拿走的东西）和你活着的意义，哪个大？")
-    W_input = input("  W≈产出/意义（0.1-10，回车跳过）：")
+    print("【W：异化率（萃取率β）】")
+    print("  你每天产出的东西，有多少比例被拿走了？")
+    print("  0.2 = 八成给自己；0.5 = 一半被拿走；0.8 = 八成被拿走；1.0 = 全被拿走")
+    W_input = input("  W（0-1，>1表示连存量都在消耗，回车跳过）：")
     W = float(W_input) if W_input else None
 
     # C
@@ -299,8 +300,8 @@ def cmd_diagnose(args):
         print("  • N<1：首要任务是提高γ（恢复率）——睡眠、运动、真正的休息、")
         print("    做让自己成长的事；同时降低β（萃取率）——减少无意义消耗")
         print(f"  • 需要γ ≥ β才能止跌，γ=1才能逆转")
-    if W is not None and W > 1.0:
-        print("  • W>1：产出超过意义，问自己：这些产出是我要的还是别人要的？")
+    if W is not None and W > 0.6:
+        print("  • W>0.6：大部分产出被拿走。问自己：这些产出是我要的还是别人要的？")
         print("    能不能减少被拿走的部分，增加留给自己的部分？")
     if C < 0:
         print("  • C<0：外在因果主导。每天增加1小时自己决定的事，")
@@ -338,7 +339,7 @@ def main():
     p_calc.add_argument('--N', type=float, required=True, help='反馈强度（谱半径）')
     p_calc.add_argument('--alpha', type=int, default=2, choices=[1,2,3], help='嵌套深度')
     p_calc.add_argument('--T', type=float, default=0, help='持续时间（0=∞）')
-    p_calc.add_argument('--O', type=float, default=None, help='产出O（计算W用）')
+    p_calc.add_argument('--O', type=float, default=None, help='每轮被拿走的产出比例W（0-1正常，>1消耗存量）')
     p_calc.add_argument('--gamma', type=float, default=None, help='恢复率γ')
     p_calc.add_argument('--beta', type=float, default=None, help='萃取率β')
 
