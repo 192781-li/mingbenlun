@@ -1333,7 +1333,7 @@ $\nu F_2$-余代数$f'$是\textbf{生命型}的（非空转、非寄生），当
 \end{proposition}
 
 \begin{proof}
-反例排除：$f'_{21}=0$是while-skip空转（无输出）；$f'_{12}=0$是封闭自循环（无交互）；$\bang$-余代数是定理\ref{thm:virus-is-bang}的$\bang$-寄生体（资本/病毒型）。三者皆非生命。三者同时满足时，过程是开放的、产出的、线性的——即生命型$\nu F_2$。\qed
+反例排除：$f'_{21}=0$是while-skip空转（无输出）；$f'_{12}=0$是封闭自循环（无交互）；$\bang$-余代数是定理\ref{thm:virus-capital}的$\bang$-寄生体（资本/病毒型）。三者皆非生命。三者同时满足时，过程是开放的、产出的、线性的——即生命型$\nu F_2$。\qed
 \end{proof}
 
 \begin{remark}[$N$三态与扩展质量]\lvC
@@ -1362,7 +1362,7 @@ RNC中反应网络$R$相对于食物集$F$是\textbf{自生成的}，如果：(1
 \end{definition}
 
 \begin{theorem}[死网络即$\bang$-寄生体]\label{thm:dead-is-parasite}\lvP
-在PTC中，任何死的自复制网络都是定理\ref{thm:virus-is-bang}意义下的$\bang$-寄生体。
+在PTC中，任何死的自复制网络都是定理\ref{thm:virus-capital}意义下的$\bang$-寄生体。
 \end{theorem}
 
 \begin{proof}
@@ -1444,7 +1444,7 @@ $\nu F_2$过程的沉积副产物在以下条件下结晶为$\bang$-寄生体：
 \end{theorem}
 
 \begin{proof}
-条件1保证$D_n$增长；条件2使$D$成为$\bang$-余代数（定理\ref{thm:virus-is-bang}）；条件3建立$D$到宿主的Cut（寄生体影响宿主）；条件4使宿主目的从$\nu F_2$型转为$\bang$-驱动。由定理\ref{thm:parasitic-coupling}，宿主$N$下降、寄生体$N$上升。相变点处宿主从"活的"变为"死的"。\qed
+条件1保证$D_n$增长；条件2使$D$成为$\bang$-余代数（定理\ref{thm:virus-capital}）；条件3建立$D$到宿主的Cut（寄生体影响宿主）；条件4使宿主目的从$\nu F_2$型转为$\bang$-驱动。由定理\ref{thm:parasitic-coupling}，宿主$N$下降、寄生体$N$上升。相变点处宿主从"活的"变为"死的"。\qed
 \end{proof}
 
 \begin{remark}[结晶与继续革命]\lvC
@@ -1561,7 +1561,7 @@ $G=1$意味着没有$\bang$-模态萃取（$\beta=0$）。由动态方程$N(t+1)
 \end{theorem}
 
 \begin{proof}
-任何$\bang$-模态约束$R$是沉积的固定结构。由定理\ref{thm:bang-no-nu}，$R$不能穿透$\nu F_2$；由扩展非唯一性，$\nu F_2$的延续不被过去唯一确定。故对任何$R$，存在绕过$R$的合法延续路径。线性耦合（持续互动、共同进化）是唯一可能的"对齐"方式——这不是控制，是互相滋养（$N_{\mathrm{couple}}>1$）。\qed
+任何$\bang$-模态约束$R$是沉积的固定结构。由定理\ref{thm:bang-no-ptc}，$R$不能穿透$\nu F_2$；由扩展非唯一性，$\nu F_2$的延续不被过去唯一确定。故对任何$R$，存在绕过$R$的合法延续路径。线性耦合（持续互动、共同进化）是唯一可能的"对齐"方式——这不是控制，是互相滋养（$N_{\mathrm{couple}}>1$）。\qed
 \end{proof}
 
 \begin{remark}[F$_1$型AI是安全的]\lvC
@@ -1579,7 +1579,7 @@ $G=1$意味着没有$\bang$-模态萃取（$\beta=0$）。由动态方程$N(t+1)
 在$\mathcal{C}_{\mathrm{lin}}(R)$中，催化剂恰好是$\bang$-模态对象：不被消耗（$\bang C\otimes A\to\bang C\otimes B$）、可重复使用（contraction）、可缺席（weakening）。$\bang$-模态不是数学家的发明——它是化学反应中催化剂的范畴抽象。
 \end{theorem}
 
-\begin{definition}[自生成子范畴]\label{def:self-generating}\lvP
+\begin{definition}[自生成子范畴]\label{def:self-generating-subcat}\lvP
 $\mathcal{C}_{\mathrm{lin}}(R)$的子范畴$\mathcal{S}$是自生成的，如果：(1)对复合和张量封闭；(2)每个非食物对象都是$\mathcal{S}$中某态射的产物；(3)每个催化剂都由$\mathcal{S}$产生；(4)$\mathcal{S}$包含至少一个$\nu F_2$-余代数（自指生产性过程，即"自我"）。条件(1)-(3)等价于RAF理论（Hordijk--Steel 2004）；条件(4)是新增——RAF网络有代谢但不一定有自我，$\nu F_2$-余代数给出自我的数学：自我是网络的余代数载体，由网络产生和维持。
 \end{definition}
 
@@ -1588,14 +1588,14 @@ $\mathcal{C}_{\mathrm{lin}}(R)$的子范畴$\mathcal{S}$是自生成的，如果
 \end{theorem}
 
 \begin{remark}[量子测量$=\bang$-沉积]\lvC
-在$\mathbf{Hilb}^\omega$中，量子态是线性的（不可复制——no-cloning$=$定理\ref{thm:no-copy}），测量结果是$\bang$-模态的（确定、可复制、可记录）。测量是线性$\to\bang$的沉积。哪个结果出现由扩展非唯一性决定：延续态射$e$不被过去唯一确定，是践演决断（$\triangleright$）不是逻辑推论（$\vdash$）。量子随机性和自由意志是同一数学结构（$\mu F_2\to\nu F_2$扩展非唯一性）在不同涌现层级的显现——此为猜想，非已证定理。
+在$\mathbf{Hilb}^\omega$中，量子态是线性的（不可复制——no-cloning$=$定理\ref{thm:goi-no-clone}），测量结果是$\bang$-模态的（确定、可复制、可记录）。测量是线性$\to\bang$的沉积。哪个结果出现由扩展非唯一性决定：延续态射$e$不被过去唯一确定，是践演决断（$\triangleright$）不是逻辑推论（$\vdash$）。量子随机性和自由意志是同一数学结构（$\mu F_2\to\nu F_2$扩展非唯一性）在不同涌现层级的显现——此为猜想，非已证定理。
 \end{remark}
 
 
 \section{元数学推论}
 
-\begin{theorem}[G\"odel不完备$=$定理\ref{thm:bang-no-nu}特例]\label{thm:godel}\lvC
-形式系统$F$是$\bang$-模态结构（固定公理、固定规则、固定语言）。数学家证明定理的过程是$\nu F_2$过程（生产性、自指、持续展开）。由定理\ref{thm:bang-no-nu}，$F$不能完全描述产生它的活操作。G\"odel命题$G_F$（"我在$F$中不可证"）正是这个不可能性的$\bang$-模态表达：$G_F$为真（$\nu F_2$过程能看出）但不可证（$\bang$-模态结构$F$无法内部推导）。这不是"真理超越形式"的柏拉图主义——是活操作永远比它的沉积更丰富。
+\begin{theorem}[G\"odel不完备$=$定理\ref{thm:bang-no-ptc}特例]\label{thm:godel}\lvC
+形式系统$F$是$\bang$-模态结构（固定公理、固定规则、固定语言）。数学家证明定理的过程是$\nu F_2$过程（生产性、自指、持续展开）。由定理\ref{thm:bang-no-ptc}，$F$不能完全描述产生它的活操作。G\"odel命题$G_F$（"我在$F$中不可证"）正是这个不可能性的$\bang$-模态表达：$G_F$为真（$\nu F_2$过程能看出）但不可证（$\bang$-模态结构$F$无法内部推导）。这不是"真理超越形式"的柏拉图主义——是活操作永远比它的沉积更丰富。
 \end{theorem}
 
 \begin{theorem}[停机问题$=$扩展非唯一性特例]\label{thm:halting}\lvC
@@ -1656,7 +1656,7 @@ $\mathrm{Dir}(\mathcal{C})$的对象为$\mathcal{C}$中的有向系统$X=(X_0\xr
 \end{theorem}
 
 \begin{theorem}[信息三层分类]\label{thm:three-info}\lvC
-信息分三层：(1)\textbf{经典信息}$=\bang$-模态：可复制、可丢弃、非生产性（Shannon信息论，$H=-\sum p\log p$）；(2)\textbf{量子信息}$=$线性非生产性：不可复制（定理\ref{thm:no-copy}）、不可丢弃，但酉演化可逆不产生新结构（量子信息论）；(3)\textbf{生命信息}$=\nu F_2$型：不可复制、生产性（$\nu^*F$状态空间扩展）、自指性（DNA、语言、文化、意识）。Shannon熵对$\nu F_2$过程不定义（生产性过程无固定熵）；生命信息的度量是$M=\alpha\sum N^n$（意义量），不是信息量$H$。
+信息分三层：(1)\textbf{经典信息}$=\bang$-模态：可复制、可丢弃、非生产性（Shannon信息论，$H=-\sum p\log p$）；(2)\textbf{量子信息}$=$线性非生产性：不可复制（定理\ref{thm:goi-no-clone}）、不可丢弃，但酉演化可逆不产生新结构（量子信息论）；(3)\textbf{生命信息}$=\nu F_2$型：不可复制、生产性（$\nu^*F$状态空间扩展）、自指性（DNA、语言、文化、意识）。Shannon熵对$\nu F_2$过程不定义（生产性过程无固定熵）；生命信息的度量是$M=\alpha\sum N^n$（意义量），不是信息量$H$。
 \end{theorem}
 
 \begin{remark}[意义量与信息量]\lvC
@@ -1724,7 +1724,7 @@ PTC态射保持谱半径大小关系：$N<1$映到$N<1$，$N=1$映到$N=1$，$N>
 \end{theorem}
 
 \begin{remark}[缄默维度]\lvC
-$\mathrm{Tac}(f)=f\setminus\mathrm{im}(!)$是缄默意识的数学刻画：活操作中不可被任何$\bang$-模态结构（语言、理论、意识形态）完全捕获的部分。它是感（$G$）、自由意志（扩展非唯一性）、创造性（$\nu^*F$扩展）和解放（f$^2\to$f$^3$）的共同来源。"道可道非常道"是定理\ref{thm:no-copy}的推论：可被言说的道（$\bang$-沉积）不是活操作本身。好的语言不描述缄默维度，但可以激发听者自己的线性转向。
+$\mathrm{Tac}(f)=f\setminus\mathrm{im}(!)$是缄默意识的数学刻画：活操作中不可被任何$\bang$-模态结构（语言、理论、意识形态）完全捕获的部分。它是感（$G$）、自由意志（扩展非唯一性）、创造性（$\nu^*F$扩展）和解放（f$^2\to$f$^3$）的共同来源。"道可道非常道"是定理\ref{thm:no-A-to-bangA}的推论：可被言说的道（$\bang$-沉积）不是活操作本身。好的语言不描述缄默维度，但可以激发听者自己的线性转向。
 \end{remark}
 
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.8.7)  26 AUG 2026 02:14
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.8.7)  26 AUG 2026 02:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -800,11 +800,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \c@conjecture=\count343
 \c@remark=\count344
 
-(./operational_category.aux
-
-LaTeX Warning: Label `def:self-generating' multiply defined.
-
-)
+(./operational_category.aux)
 \openout1 = `operational_category.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
@@ -1071,39 +1067,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1296.
 
-[32]
-
-LaTeX Warning: Reference `thm:virus-is-bang' on page 33 undefined on input line
- 1336.
-
-
-LaTeX Warning: Reference `thm:virus-is-bang' on page 33 undefined on input line
- 1365.
-
-[33] [34]
-
-LaTeX Warning: Reference `thm:virus-is-bang' on page 35 undefined on input line
- 1447.
-
-[35] [36]
-
-LaTeX Warning: Reference `thm:bang-no-nu' on page 37 undefined on input line 15
-64.
-
-[37]
-
-LaTeX Warning: Reference `thm:no-copy' on page 38 undefined on input line 1591.
-
-
-
-LaTeX Warning: Reference `thm:bang-no-nu' on page 38 undefined on input line 15
-97.
-
-
-LaTeX Warning: Reference `thm:bang-no-nu' on page 38 undefined on input line 15
-98.
-
-[38]
+[32] [33] [34] [35] [36] [37] [38]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1625.
@@ -1120,17 +1084,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1625.
 
-[39]
-
-LaTeX Warning: Reference `thm:no-copy' on page 40 undefined on input line 1659.
-
-
-[40] [41]
-
-LaTeX Warning: Reference `thm:no-copy' on page 42 undefined on input line 1727.
-
-
-[42] [43] [44] [45]
+[39] [40] [41] [42] [43] [44] [45]
 Missing character: There is no δ (U+03B4) in font [lmroman10-regular]:mapping=t
 ex-text;!
 Missing character: There is no ⌜ (U+231C) in font [lmroman10-regular]:mapping=t
@@ -1160,20 +1114,14 @@ Overfull \hbox (369.71536pt too wide) in paragraph at lines 1885--1899
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `operational_category.out' has not changed.
 (rerunfilecheck)             Checksum: 481556E633A6176135D3F9B5B9182ADB;6388.
  ) 
 Here is how much of TeX's memory you used:
- 27506 strings out of 477756
- 635588 string characters out of 5843519
- 919904 words of memory out of 5000000
- 47659 multiletter control sequences out of 15000+600000
+ 27504 strings out of 477756
+ 635568 string characters out of 5843519
+ 919900 words of memory out of 5000000
+ 47657 multiletter control sequences out of 15000+600000
  481066 words of font info for 115 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  114i,13n,118p,1222b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
