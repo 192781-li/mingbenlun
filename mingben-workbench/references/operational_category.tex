@@ -1344,6 +1344,113 @@ $\nu F_2$-余代数$f'$是\textbf{生命型}的（非空转、非寄生），当
 生命从非生命产生在数学上是两步：(1)$F_1\to F_2$——系统"开口"，输出影响环境、环境影响系统，反馈回路闭合（化学对应：封闭反应网络$\to$开放反应网络）；(2)$\mu F_2\to\nu F_2$——反馈增益$N\geq1$，过程自我维持（化学对应：开放网络$\to$自催化集合，催化效率$\geq1$）。两步合在一起：开口且闭合、闭合且$N\geq1$，即生命。
 \end{remark}
 
+
+\section{自生成范畴与践演迹}
+
+\subsection{活的自维持与死的自复制}
+
+\begin{definition}[反应网络范畴]\label{def:rnc}\lvP
+一个\textbf{反应网络范畴}（RNC）是对称幺半范畴$(\mathcal{C},\tensor,I)$，其中对象为物种（资源类型），态射为反应（消耗输入、产出输出），$\tensor$为并行。态射是线性的（反应物被消耗，不可隐式复制或丢弃）；$\bang A$表示催化剂——不被消耗、可重复使用的物种。
+\end{definition}
+
+\begin{definition}[自生成网络]\label{def:self-generating}\lvP
+RNC中反应网络$R$相对于食物集$F$是\textbf{自生成的}，如果：(1)自催化：每个反应所需的催化剂由$R$内反应产生；(2)食物生成：反应物要么属于$F$，要么由$R$内反应产生；(3)生产性：每个食物输入存在反应链产生非食物输出。
+\end{definition}
+
+\begin{definition}[活的自维持与死的自复制]\label{def:living-dead}\lvP
+自生成网络$R$是\textbf{活的}（$\nu F_2$型），如果：(i)产出线性（非$\bang$）资源且非输入的简单复制；(ii)允许新对象从网络内部产生（状态扩展）；(iii)有非平凡输入输出（开放）。$R$是\textbf{死的}（$\bang$型），如果：(i)所有输出都是$\bang$-模态；(ii)不产生新对象（状态固定）；(iii)不需要外部线性输入（$G\to G\tensor G$空转）。
+\end{definition}
+
+\begin{theorem}[死网络即$\bang$-寄生体]\label{thm:dead-is-parasite}\lvP
+在PTC中，任何死的自复制网络都是定理\ref{thm:virus-is-bang}意义下的$\bang$-寄生体。
+\end{theorem}
+
+\begin{proof}
+死网络的所有反应都是$\bang$-模态态射。由公理\ref{ax:no-contraction}，$\bang$-模态态射的运行需要线性上下文（Cut连接到线性资源）。切断所有线性连接后，只剩$\bang$-余代数结构（余乘法$G\to G\tensor G$和余单位$G\to I$），即纯自我复制与丢弃——空转。\qed
+\end{proof}
+
+\begin{theorem}[活网络不可完全资本化]\label{thm:living-not-capitalized}\lvC
+活的自维持网络不能被任何$\bang$-模态结构完全表示。
+\end{theorem}
+
+\begin{proof}
+由定义\ref{def:living-dead}(i)，活网络产出线性资源$X$。由定理\ref{thm:no-A-to-bangA}，$X$不能自动沉积为$\bang X$。由定理\ref{thm:nu-no-lift-life}，$\nu F_2$不被$\bang$穿透。\qed
+\end{proof}
+
+\subsection{践演迹：成长过程的迹}
+
+\begin{definition}[扩展余代数序列]\label{def:expanding-coalgebra}\lvP
+$F$-扩展序列是$((X_n,c_n,i_n))_{n\geq0}$，其中$i_n:X_n\to X_{n+1}$是单态，$c_n:X_n\to F(X_{n+1})$，满足$F(i_n)\circ c_n=c_{n+1}\circ i_n$。极限$X^*=\mathrm{colim}\,X_n$上有余代数$c^*:X^*\to F(X^*)$（$F$保持可数余极限时）。
+\end{definition}
+
+\begin{definition}[$\nu^*F$：扩展不动点]\label{def:nu-star}\lvP
+$\nu^*F$是所有$F$-扩展序列及其极限的类型。它严格大于$\nu F$：每个$\nu F$过程都是$\nu^*F$的特例（$X_n=X$），但存在$\nu^*F$过程不能被任何固定$X$的$\nu F$表示。
+\end{definition}
+
+\begin{theorem}[$N>1$要求无限扩展]\label{thm:n1-requires-expansion}\lvC
+若所有$X_n$有限维且维数有界（$\dim X_n\leq D$），则扩展谱半径$N^*=\limsup_n\|f_{22}^{(0)}\cdots f_{22}^{(n)}\|^{1/(n+1)}\leq1$。$N^*>1$要求$\dim X_n\to\infty$。
+\end{theorem}
+
+\begin{proof}
+若$\dim X_n\leq D$，复合$f_{22}^{(0)}\circ\cdots\circ f_{22}^{(n)}$是$D$维空间中的算子，其范数增长由谱半径控制：$\|A^n\|\leq C\cdot r^n$。若$N^*>1$则范数指数增长，但有限维空间中算子范数有界，矛盾。故$\dim X_n$必须无界。\qed
+\end{proof}
+
+\begin{definition}[践演迹]\label{def:performative-trace}\lvP
+扩展Mealy机$f:A\tensor X^*\to B\tensor X^*$的践演迹是余归纳行为$\mathrm{Tr}^*(f):A^\omega\to B^\omega$：给定输入流和初始状态，逐次应用$f$，每步产出$b_n$和新状态$x_{n+1}\in X_{n+1}$。
+\end{definition}
+
+\begin{theorem}[践演迹存在条件]\label{thm:performative-exists}\lvP
+$\mathrm{Tr}^*(f)$存在当且仅当$f$是生产性的（每步产出输出和新状态）。践演迹不要求$N^*<1$——$N^*>1$时$\sum\|f_{22}^n\|$发散，但行为仍良定义，因为迹是流（逐次产出），不是无限和。
+\end{theorem}
+
+\begin{proof}
+生产性保证每步有$(b_n,x_{n+1})$，归纳构造完整输出流。$N^*>1$时Neumann级数发散，但生产性只要求每步有限时间内产出，不要求产出的"和"收敛。\qed
+\end{proof}
+
+\begin{remark}[迹是过程不是和]\lvC
+标准GoI迹$\mathrm{Tr}(f)=\sum f_{12}f_{22}^nf_{21}$要求$N<1$（级数收敛）。践演迹$\mathrm{Tr}^*(f)$只要求生产性——它是"永远有下一步"的过程，不是"所有步的总和"。这是潜无限（正在进行）与实无限（已经完成）的区别：$N>1$的成长过程不能加总，因为它还在长。
+\end{remark}
+
+\subsection{多体耦合}
+
+\begin{theorem}[互相增强]\label{thm:mutual-enhancement}\lvC
+两个$\nu F_2$过程$f:A\tensor X\to B\tensor X$和$g:B\tensor Y\to A\tensor Y$通过Cut耦合，若交叉项$f_{21}g_{12}$和$g_{21}f_{12}$都是正的（生产性、非萃取），则$N_{\mathrm{couple}}=\rho(U)\geq\max(N_f,N_g)$，其中$U$是耦合反馈矩阵。
+\end{theorem}
+
+\begin{proof}
+耦合反馈矩阵$U=\begin{pmatrix}f_{22}&f_{21}g_{12}\\g_{21}f_{12}&g_{22}\end{pmatrix}$。由Perron--Frobenius理论，非负矩阵的谱半径不小于对角块谱半径；正交叉项只增加反馈强度。\qed
+\end{proof}
+
+\begin{theorem}[寄生耦合整体衰退]\label{thm:parasitic-coupling}\lvC
+若$f$是$g$的$\bang$-寄生体（$f$通过$\bang$-模态萃取$g$的线性产出），则$N_f>1$，$N_g<1$，但$N_{\mathrm{couple}}<1$。
+\end{theorem}
+
+\begin{proof}
+寄生萃取使$g$的反馈乘以$(1-\beta)$，$\beta>0$，故$N_g=(1-\beta)N_{g,0}<1$。$f$的成长来自$g$的萃取而非自身线性产出。复合系统总线性产出在减少（被$\bang$-模态吸收），故整体$N_{\mathrm{couple}}<1$。\qed
+\end{proof}
+
+\begin{theorem}[临界质量]\label{thm:critical-mass}\lvC
+存在阈值$k$，当$k$个$N<1$的过程以生产性方式互相耦合时，$N_{\mathrm{couple}}>1$。
+\end{theorem}
+
+\begin{proof}
+$k\times k$正分块矩阵的谱半径随$k$和非对角项增长（Perron--Frobenius）。当$k$足够大时，交叉项的累积效应使$\rho(U)>1$。\qed
+\end{proof}
+
+\subsection{结晶定理}
+
+\begin{theorem}[结晶定理]\label{thm:crystallization}\lvC
+$\nu F_2$过程的沉积副产物在以下条件下结晶为$\bang$-寄生体：(1)积累：每步产出非零$\bang$-模态沉积$D_n$；(2)自催化：$D$形成$\bang$-余代数（$D\to D\tensor D$）；(3)反馈：$D$反馈到过程输入（$D\to\bang A$）且强度随$D$增长；(4)捕获：过程目标从线性产出偏移为沉积增长。四条件满足时，宿主$N$从$>1$单调下降，寄生体$N$从$0$单调上升，$N_{\mathrm{host}}=N_{\mathrm{parasite}}=1$为相变点。
+\end{theorem}
+
+\begin{proof}
+条件1保证$D_n$增长；条件2使$D$成为$\bang$-余代数（定理\ref{thm:virus-is-bang}）；条件3建立$D$到宿主的Cut（寄生体影响宿主）；条件4使宿主目的从$\nu F_2$型转为$\bang$-驱动。由定理\ref{thm:parasitic-coupling}，宿主$N$下降、寄生体$N$上升。相变点处宿主从"活的"变为"死的"。\qed
+\end{proof}
+
+\begin{remark}[结晶与继续革命]\lvC
+结晶是自发过程——$\bang$-沉积每步都在产生，II型晶体永远是热力学默认态。这给出"继续革命"的存在论根据：不是永久政治运动，是明性永久运作——持续检测和清除结晶，分布式地交给每个$f^3$的日常明性，而不是一次大扫除。
+\end{remark}
+
 \section{综合}
 
 \begin{theorem}[$G^\omega$是自函子]\label{thm:gomega-endofunctor}\lvP
