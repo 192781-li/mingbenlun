@@ -860,6 +860,33 @@ $W$越高则$N$越低。萃取把产出从反馈线抽走，$U_{22}$输入减少
 $C>0$（认清多于接受）时$N$趋向$\geq1$；$C<0$时$N$趋向$<1$。f³运行时线性过程$X$保持自我更新；f²把$\bang\ulcorner f\urcorner$当自己时$U_{22}$被$\bang$-收缩削弱。
 \end{theorem}
 
+\begin{theorem}[动态自毁]\label{thm:dynamic-self-destruct}\lvC
+在加权$\mathbf{Rel}$模型中，设反自指寄生体每步萃取比例$\beta(t)\in[0,1]$的线性资源（反馈状态被沉积化的比例），则：
+\begin{enumerate}
+  \item $N(t)=\rho(U_{22}(t))=N(0)\prod_{s=0}^{t-1}(1-\beta(s))$单调不增；
+  \item 若存在$\beta_0>0$使$\beta(t)\geq\beta_0$对所有$t$（持续萃取不衰减），则$N(t)\leq N(0)(1-\beta_0)^t\to0$（指数衰减）；
+  \item 若$\beta(t)\to0$但$\sum_{t=0}^\infty\beta(t)=\infty$（萃取率递减但总量发散），则$N(t)\leq N(0)\exp(-\sum_{s=0}^{t-1}\beta(s))\to0$；
+  \item $N(t)\to0$时$M(t)=\alpha\sum_{n=0}^\infty N(t)^n\to\alpha$（意义总量趋向f-层级系数本身，无增量），$S\to\I$，寄生体无宿主可寄生（定理\ref{thm:parasite-self-destruct}）。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 每步萃取$\beta(t)$比例后，反馈算子缩放为$U_{22}(t+1)=(1-\beta(t))U_{22}(t)$（加权$\mathbf{Rel}$中萃取=反馈缩放，定理\ref{thm:extraction-alienation}模型条件）。由谱半径齐次性$\rho(cU)=|c|\rho(U)$（$c\geq0$），$N(t+1)=(1-\beta(t))N(t)$，归纳得$N(t)=N(0)\prod_{s=0}^{t-1}(1-\beta(s))$。因$1-\beta(s)\leq1$，$N(t)$单调不增。
+
+(2) $\beta(t)\geq\beta_0>0$时$N(t)\leq N(0)(1-\beta_0)^t$，由$0<1-\beta_0<1$得指数衰减至0。
+
+(3) 由不等式$1-x\leq e^{-x}$（$x\geq0$），$\prod_{s=0}^{t-1}(1-\beta(s))\leq\exp(-\sum_{s=0}^{t-1}\beta(s))$。$\sum\beta(s)=\infty$时右端趋向0。
+
+(4) $N(t)\to0$时，$M(t)=\alpha/(1-N(t))\to\alpha$（$N<1$时几何级数和），即意义总量只剩f-层级系数的常数——无成长、无盈余、无新意义。反馈算子$U_{22}(t)\to0$意味着无状态更新，$S\to\I$，由定理\ref{thm:parasite-self-destruct}寄生体退化为纯收缩（空转），无增长。\qed
+\end{proof}
+
+\begin{remark}[抵抗条件]\lvC
+动态自毁是\emph{无抵抗条件下}的结论。若f³明性操作（$C>0$）每步恢复比例$\gamma(t)$的线性资源（把沉积状态重新激活为线性运行），则有效萃取率为$\beta(t)-\gamma(t)$。当$\gamma(t)\geq\beta(t)$时$N(t)$不再下降；当$\gamma(t)>\beta(t)$时$N(t)$回升。革命（定理\ref{thm:revolution-cut}）是$\gamma=1$的极端情形：一次性消除!-寄生Cut，$N$完全恢复。\end{remark}
+
+\begin{remark}["资本主义必然灭亡"的数学形式]\lvI
+本定理给出"反自指寄生体必然自毁"的动态形式：不是静态结构矛盾（定理\ref{thm:capital-contradiction}），而是\emph{持续萃取必然导致宿主枯竭}的指数衰减律。但"必然"不意味着"自动"——衰减可以很慢（$\beta_0$很小），且寄生体可以通过地理扩张、技术创新、新市场开发等方式暂时补充线性资源$A$（提高$N(0)$或重置$t$），延缓自毁。抵抗条件（上述remark）说明：自毁不是宿命，是操作——要么寄生体持续萃取直到宿主枯竭，要么活人通过f³明性和革命切断萃取回路。
+\end{remark}
+
 \section{完全性}
 
 \begin{theorem}[有限片段GoI完全性——已知结果]\label{thm:completeness-finite}\lvP
