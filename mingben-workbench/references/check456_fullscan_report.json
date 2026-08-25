@@ -1,8 +1,8 @@
 {
-  "scan_time": "2026-08-24T21:24:07.736029",
+  "scan_time": "2026-08-25T21:25:07.234448",
   "book_dir": "/sandboxdata/workspace/file/生命论_模块化",
   "files_scanned": 74,
-  "paragraphs_total": 2236,
+  "paragraphs_total": 2352,
   "stats": {
     "检查4": 20,
     "检查5": 2,
@@ -11,7 +11,7 @@
   "total_issues": 29,
   "results": {
     "00_体系总纲.md": {
-      "paragraphs": 170,
+      "paragraphs": 187,
       "issues": [
         {
           "line": 23,
@@ -89,7 +89,7 @@
       ]
     },
     "01_卷一_存在论/篇三_缄默意识与明性.md": {
-      "paragraphs": 103,
+      "paragraphs": 121,
       "issues": [
         {
           "line": 15,
@@ -101,7 +101,7 @@
       ]
     },
     "01_卷一_存在论/篇二_自指操作：生命的存在方式.md": {
-      "paragraphs": 190,
+      "paragraphs": 192,
       "issues": [
         {
           "line": 35,
@@ -148,11 +148,11 @@
       ]
     },
     "01_卷一_存在论/篇五_形上形下与道在日用.md": {
-      "paragraphs": 45,
+      "paragraphs": 58,
       "issues": []
     },
     "01_卷一_存在论/篇六_践演存在论.md": {
-      "paragraphs": 54,
+      "paragraphs": 69,
       "issues": []
     },
     "01_卷一_存在论/篇四_康德难题的消解.md": {
@@ -164,7 +164,7 @@
       "issues": []
     },
     "02_卷二_认识论/篇一_明性：前反思的自我觉知.md": {
-      "paragraphs": 23,
+      "paragraphs": 25,
       "issues": [
         {
           "line": 25,
@@ -219,7 +219,7 @@
       "issues": []
     },
     "03_卷三_群己论/篇三_阶级：反自指的主体结构.md": {
-      "paragraphs": 45,
+      "paragraphs": 50,
       "issues": []
     },
     "03_卷三_群己论/篇二_分工、私有制与异化的起源.md": {
@@ -243,7 +243,7 @@
       "issues": []
     },
     "04_卷四_异化论/篇一_商品、货币与资本.md": {
-      "paragraphs": 20,
+      "paragraphs": 28,
       "issues": []
     },
     "04_卷四_异化论/篇七_生态危机：资本与自然的对立.md": {
@@ -295,7 +295,7 @@
       "issues": []
     },
     "04_卷四_异化论/篇四_反自指展开的六个阶段.md": {
-      "paragraphs": 11,
+      "paragraphs": 19,
       "issues": []
     },
     "05_卷五_解放论/00_卷标题.md": {
@@ -303,7 +303,7 @@
       "issues": []
     },
     "05_卷五_解放论/篇一_解放的本质.md": {
-      "paragraphs": 35,
+      "paragraphs": 41,
       "issues": [
         {
           "line": 3,
@@ -361,7 +361,7 @@
       ]
     },
     "05_卷五_解放论/篇八_世界革命与人类解放.md": {
-      "paragraphs": 1,
+      "paragraphs": 8,
       "issues": []
     },
     "05_卷五_解放论/篇六_自由人联合体.md": {
@@ -377,7 +377,7 @@
       "issues": []
     },
     "06_卷六_实践论/篇一_明性修养论.md": {
-      "paragraphs": 25,
+      "paragraphs": 27,
       "issues": []
     },
     "06_卷六_实践论/篇三_情感操作论.md": {
@@ -473,11 +473,11 @@
       "issues": []
     },
     "08_卷八_人文论/篇六_摇滚风格的生命论分析.md": {
-      "paragraphs": 118,
+      "paragraphs": 122,
       "issues": []
     },
     "08_卷八_人文论/篇四_艺术与美.md": {
-      "paragraphs": 28,
+      "paragraphs": 33,
       "issues": []
     },
     "09_卷九_术数传统/00_卷标题.md": {
@@ -485,7 +485,7 @@
       "issues": []
     },
     "09_卷九_术数传统/篇一_我们如何对待传统.md": {
-      "paragraphs": 1,
+      "paragraphs": 5,
       "issues": []
     },
     "09_卷九_术数传统/篇三_中医与生命科学.md": {
