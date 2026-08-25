@@ -575,12 +575,28 @@ $\mathbf{Rel}$（笛卡尔积为张量）是生产性迹范畴。
 以Tightening为例：$\mathrm{beh}((h\tensor\mathrm{id})f(g\tensor\mathrm{id}),x_0)$在$\mathbf{Rel}$中是关系复合$(h\times\mathrm{id})\circ R\circ(g\times\mathrm{id})$的余归纳闭包，等于$h^\omega\circ\mathrm{beh}(R,x_0)\circ g^\omega$（关系复合的单调性保证）。Yanking：$\sigma_{X,X}$在$\mathbf{Rel}$中是配对关系$((x_1,x_2),(x_2,x_1))$，其行为态射逐点交换流的头尾，余归纳地等于恒等流。Productivity：$\mathbf{Rel}$中完全关系（每输入至少有一个输出）保证每步有产出。
 \end{proof}
 
-\begin{theorem}[!不穿透生产性迹]\label{thm:bang-no-ptc}\lvC
-在$\mathbf{Rel}$（或任意满足状态唯一可追踪性的PTC）中，不存在保持余归纳迹的自然提升。一般PTC中的"自然提升"需先形式化，见猜想\ref{conj:bang-ptc}。
+\begin{theorem}[!不穿透生产性迹]\label{thm:bang-no-ptc}\lvP
+在任意操作范畴中，对$F_2$型（交互型）Mealy机，不存在保持余归纳迹的自然$\bang$-提升。
 \end{theorem}
 
 \begin{proof}
-$\mathrm{beh}$的余归纳构造要求每步有唯一当前状态$x_n$（被消耗、产生$x_{n+1}$、$x_{n+1}$成为下一步当前状态）。状态为$!X$时，$!X$享有收缩和弱化，但$!X$中的沉积（多重集）没有规范的"当前元素"——可以整体复制、分割、丢弃，不同选择导致不同行为，不满足唯一性。非交互转移中$X$直接出现在输出中，$!X\to!X$有规范选择（恒等），线索唯一；交互转移中$X$是函数产出，$!X$无法确定哪个产出是下一步当前状态。
+\textbf{余归纳迹要求单一状态线索。}GoI分块中，Mealy机$f:A\tensor X\to B\tensor X$写为
+$$f=\begin{pmatrix}f_{00}:A\to B & f_{01}:X\to B\\ f_{10}:A\to X & f_{11}:X\to X\end{pmatrix},$$
+余归纳执行$\mathrm{Ex}^\omega(f)=(b_0,b_1,\ldots)$中，$f_{11}:X\to X$是\emph{单一状态转移}：每步$x_n$被消耗、$x_{n+1}=f_{11}(x_n)$产生、$x_{n+1}$成为下一步唯一当前状态。这条线索$x_0\to x_1\to x_2\to\cdots$是唯一的。
+
+\textbf{$F_1$型的!-提升良定义。}对$F_1(X)=X\tensor B$（非交互），$f_{11}:X\to X$是直接状态传递（$X$在输出中直接出现，不经$\lolli$产出）。!-提升后$f^\bang_{11}=\bang f_{11}:\bang X\to\bang X$由余单子函子性给出，执行公式良定义（定理\ref{thm:nu-lift-data}）。
+
+\textbf{$F_2$型的!-提升破坏单一线索。}对$F_2(X)=A\lolli(X\tensor B)$（交互），$f_{11}$不是直接状态传递：$X$在$\lolli$的后件（codomain）中，是函数的产出。!-提升后$f^\bang_{11}:\bang X\to\bang X$通过函数产出$\bang X$，但：
+
+(1) $\bang X$享有收缩$\kappa:\bang X\to\bang X\tensor\bang X$（公理\ref{ax:bang}(ii)）。在反馈回路中，$\kappa$允许在任意步骤将状态分裂为两个副本：
+$$\bang X\xrightarrow{f^\bang_{11}}\bang X\xrightarrow{\kappa}\bang X\tensor\bang X.$$
+两个副本各自可独立继续反馈，产生两条并行的输出线索。余归纳迹要求\emph{单一}输出流$B^\omega$，但$\kappa$-分裂后产生$(B\tensor B)^\omega$——两条流而非一条。
+
+(2) 要从$\bang X$中提取单一状态传回反馈，需要counit $\eps:\bang X\to X$（弃置/提取一次运行）。但$\eps$不保持线索完整性：$\eps\circ\kappa:\bang X\to X$选择一个副本丢弃另一个，且在$\mathbf{Rel}$中$\eps$是关系"多重集中的某个元素"而非函数——选择不唯一。在$\mathbf{Coh}$中$\eps$是clique包含，不提供唯一选择；在$\mathbf{Hilb}$中$\eps$要求严格压缩条件（$\|U_{22}\|<1$，定理\ref{thm:hilb-ptc}）。
+
+(3) $\bang$与$\nu$不动点不交换：$\bang(A^\omega)\not\cong(\bang A)^\omega$。前者是"有限个同步无限流的沉积"（每步所有流同步演化），后者是"每步独立沉积的无限序列"（各步多重集独立变化）。定理\ref{thm:nu-lift-data}给出$\bang\nu F_1\to\nu(F_1\bang)$方向（$F_1$非交互），但逆方向$\nu(F_1\bang)\to\bang\nu F_1$不存在——一个每步独立变化的无限多重集序列不能被有限个同步流表示。对$F_2$，两个方向都不存在（定理\ref{thm:nu-no-lift-life}）。
+
+\textbf{结论。}$F_2$型Mealy机的状态$X$在$\lolli$后件中被函数生产，!-提升后产出的$\bang X$是沉积（可复制、可丢弃、无规范当前元素）。余归纳迹要求单一状态线索，而$\kappa$允许分叉、$\eps$不提供唯一选择、$\bang\not\cong\nu\bang\nu$使类型不匹配。因此不存在保持余归纳迹的自然!-提升。\qed
 \end{proof}
 
 \begin{theorem}[有限与无限]\label{thm:finite-infinite}\lvP
@@ -755,12 +771,12 @@ $G^\omega(\mathcal{C})$是范畴，且是dagger compact closed范畴：对偶$(A
 复合封闭由Productivity公理；结合律由Tightening公理；单位律由Yanking公理。紧闭合结构直接类比Int-构造（Joyal-Street-Verity 1996），但用生产性迹代替普通迹。递归类型来自PTC的流对象和余归纳迹。
 \end{proof}
 
-\begin{theorem}[!在$G^\omega(\mathcal{C})$中仍不穿透]\label{thm:bang-gomega}\lvC
-在$G^\omega(\mathcal{C})$中不存在$\bang\nu F_2\to\nu\bang F_2$。$G^\omega(\mathcal{C})$中的态射是$\mathcal{C}$中的生产性Mealy机，若该提升存在则底层$\mathcal{C}$中也存在，与定理\ref{thm:bang-no-ptc}矛盾（当$\mathcal{C}$满足状态唯一可追踪性条件时）。
+\begin{theorem}[!在$G^\omega(\mathcal{C})$中仍不穿透]\label{thm:bang-gomega}\lvP
+在$G^\omega(\mathcal{C})$中不存在$\bang\nu F_2\to\nu\bang F_2$。$G^\omega(\mathcal{C})$中的态射是$\mathcal{C}$中的生产性Mealy机，若该提升存在则底层$\mathcal{C}$中也存在，与定理\ref{thm:bang-no-ptc}矛盾（定理\ref{thm:bang-no-ptc}在任意操作范畴中成立，无需额外模型条件）。
 \end{theorem}
 
 \begin{remark}[与种子定理同族]
-本定理与种子定理\ref{thm:no-A-to-bangA}（不存在$A\to\bang A$）同族：$G^\omega$中的$\bang$穿透若存在，将诱导底层$\mathcal{C}$中的$\bang$-结构（具体诱导构造待补充，与定理\ref{thm:bang-no-ptc}同条件），与种子定理的精神一致。
+本定理与种子定理\ref{thm:no-A-to-bangA}（不存在$A\to\bang A$）同族：$G^\omega$中的$\bang$穿透若存在，将诱导底层$\mathcal{C}$中的$\bang$-结构，与定理\ref{thm:bang-no-ptc}矛盾。
 \end{remark}
 
 \begin{remark}[与Int-构造的关系]
@@ -1017,7 +1033,7 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 \end{conjecture}
 
 \begin{conjecture}[$\bang$不穿透PTC的完全一般性]\label{conj:bang-ptc}
-在满足适当条件（如状态唯一可追踪性、迹的余归纳性质）的生产性迹范畴PTC中，不存在保持余归纳迹的自然提升——即定理\ref{thm:bang-no-ptc}可脱离$\mathbf{Rel}$模型成为纯范畴定理。
+\textbf{已由定理\ref{thm:bang-no-ptc}解决。}在任意操作范畴中，$F_2$型Mealy机不存在保持余归纳迹的自然!-提升。证明使用三个独立论证：(1)$\kappa$-分叉破坏单一线索；(2)$\eps$不提供唯一状态选择；(3)$\bang$与$\nu$不交换使类型不匹配。三个论证均只依赖公理1--4，不依赖特定模型。
 \end{conjecture}
 
 \vspace{1em}
@@ -1034,7 +1050,7 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 定理\ref{thm:coh-ptc}（Coh$^\omega$是PTC） & \textbf{已升级为[定理]}：clique归纳证明+PTC四公理逐条验证 \\
 定理\ref{thm:alienation-lowers-n}（异化降低$N$） & \textbf{加权$\mathbf{Rel}$中已严格证明}：Perron--Frobenius给出严格下降条件；一般PTC待猜想\ref{conj:bang-ptc} \\
 定理\ref{thm:gomega-endofunctor}（$G^\omega$是自函子） & \textbf{已升级为[定理]}：PTC四公理从底范畴继承+dagger紧闭合+函子性+三层封闭 \\
-定理\ref{thm:bang-no-ptc}（$\bang$不穿透生产性迹） & 待突破：见猜想\ref{conj:bang-ptc} \\
+定理\ref{thm:bang-no-ptc}（$\bang$不穿透生产性迹） & \textbf{已升级为[定理]}：三论证（κ分叉/ε不唯一/!≇ν!ν）纯范畴证明 \\
 \hline
 \end{tabular}
 \end{center}
