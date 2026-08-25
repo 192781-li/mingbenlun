@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.8.7)  26 AUG 2026 01:10
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2026.8.7)  26 AUG 2026 01:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1095,7 +1095,15 @@ LaTeX Warning: Reference `thm:bang-no-nu' on page 37 undefined on input line 15
 LaTeX Warning: Reference `thm:no-copy' on page 38 undefined on input line 1591.
 
 
-[38] [39] [40]
+
+LaTeX Warning: Reference `thm:bang-no-nu' on page 38 undefined on input line 15
+97.
+
+
+LaTeX Warning: Reference `thm:bang-no-nu' on page 38 undefined on input line 15
+98.
+
+[38] [39] [40] [41]
 Missing character: There is no δ (U+03B4) in font [lmroman10-regular]:mapping=t
 ex-text;!
 Missing character: There is no ⌜ (U+231C) in font [lmroman10-regular]:mapping=t
@@ -1117,11 +1125,11 @@ ex-text;!
 Missing character: There is no ν (U+03BD) in font [lmroman10-regular]:mapping=t
 ex-text;!
 
-Overfull \hbox (369.71536pt too wide) in paragraph at lines 1700--1714
+Overfull \hbox (369.71536pt too wide) in paragraph at lines 1719--1733
  [] 
  []
 
-[41] [42] [43] (./operational_category.aux)
+[42] [43] [44] (./operational_category.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1132,15 +1140,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `operational_category.out' has not changed.
-(rerunfilecheck)             Checksum: 3E5476AEC067B7532B7F5F05627CB56C;5231.
+(rerunfilecheck)             Checksum: 955F6F3753EF7B27F80D4095CBFD92A3;5316.
  ) 
 Here is how much of TeX's memory you used:
- 27469 strings out of 477756
- 634265 string characters out of 5843519
- 917531 words of memory out of 5000000
- 47622 multiletter control sequences out of 15000+600000
+ 27471 strings out of 477756
+ 634289 string characters out of 5843519
+ 917736 words of memory out of 5000000
+ 47624 multiletter control sequences out of 15000+600000
  481066 words of font info for 115 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 114i,13n,118p,1222b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 114i,13n,118p,1222b,532s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on operational_category.pdf (43 pages).
+Output written on operational_category.pdf (44 pages).
