@@ -628,17 +628,27 @@ $G\to G\tensor G$把$g$映射为$(g,g)$，两个副本相同。这是复制（re
 在$\mathbf{Rel}$中contraction是多重集对角嵌入$\alpha\mapsto(\alpha,\alpha)$，两分量完全相同。dereliction不增加任何东西。复合结果$g\mapsto(g,g)$，无增量。
 \end{proof}
 
-\begin{theorem}[增长必须消耗线性资源——模型相关]\label{thm:growth-needs-linear}\lvC
-\textbf{在!-contraction为对角映射的模型中}（$\mathbf{Rel}$、$\mathbf{Coh}$：$\bang G\to\bang G\tensor\bang G$把$g$映射为$(g,g)$，两副本相同），不存在纯从$\bang G$到$\bang G\tensor g$（$g>0$）的态射使价值增长而不消耗线性资源。增长需要$A\tensor\bang G\to\bang G\tensor g$型态射，其中$A$是线性资源。
+\begin{theorem}[增长必须消耗线性资源]\label{thm:growth-needs-linear}\lvP
+在满足公理3(iii)（Seely同构$\bang(A\&B)\cong\bang A\tensor\bang B$）的操作范畴中，任何域完全由$\bang$-模态对象组成的态射只能产生$\bang$-模态对象（沉积），不能产生线性对象（不可复制的活资源）。形式化：不存在态射
+$$\bang G\longrightarrow A$$
+使$A$线性（无自然收缩$A\to A\tensor A$）且$A$持续更新。增长需要$A\tensor\bang G\to\bang G'\tensor B$型态射，其中线性资源$A$被消耗。
 \end{theorem}
 
 \begin{proof}
-在对角contraction模型中，!-态射只能复制（定理\ref{thm:copy-not-growth}），不能产生增量——这是contraction定义的直接推论，不是额外假设。若$G$是线性的，$G\to G\tensor g$消耗$G$后$G$不存在，无法持续。要持续增长必须有外部线性资源$A$被消耗。
+\textbf{第一步：Seely同构强制对角comultiplication。}余乘法$\delta_G:\bang G\to\bang G\tensor\bang G$通过Seely同构从笛卡尔对角$\Delta:G\to G\&G$（$g\mapsto(g,g)$）得到：
+$$\bang G\xrightarrow{\bang\Delta}\bang(G\&G)\xrightarrow{\cong}\bang G\tensor\bang G.$$
+因此$\delta_G$把一个沉积复制为两个\emph{相同}副本（由余交换律，两副本通过对称同构等价）。复制不产生新结构——两个副本携带完全相同的信息。
 
-\textbf{条件性说明}：本定理依赖"contraction=对角复制"这一模型条件。在一般操作范畴中，!-余代数的counit/comultiplication不一定是对角映射，结论可能不成立。定理\ref{thm:surplus-linear}（剩余价值只能来自线性资源）在相同模型条件下成立。
+\textbf{第二步：!-模态态射只能复制/重排/丢弃。}在!-余代数的Kleisli范畴中，域为$\bang G$的态射由余代数结构（$\delta$复制、$\varepsilon$丢弃）和函子性（保持复合与恒等）生成。这些操作都不产生线性对象：$\delta$产出$\bang G\tensor\bang G$（仍是!-模态），$\varepsilon:\bang G\to G$产出$G$但$\bang G$被消耗（counit是余代数的"一次使用"，不提供$G$的持续更新），函子性只重排已有结构。
 
-\textbf{条件细化}：在$\mathbf{Rel}$/加权$\mathbf{Rel}$中，$\bang$-余代数的comultiplication恰为对角多重放入，contraction=对角成立，定理26为[定理]级；在一般线性指数余单子中，comultiplication可非对角，"增长依赖线性损耗"的数值关系需重新认定。此即本定理标[条件推论]的原因。
+\textbf{第三步：线性对象的持续更新需要线性消耗。}若要产出持续更新的线性流$A^\omega=\nu X.(A\tensor X)$（每步有新的$A$），由定理\ref{thm:no-bang-stream}（!不穿透生产性状态），不存在$\bang G\to A^\omega$型态射——!-模态不能驱动无限线性流。每一步的$A$必须从外部线性资源获取并消耗：$A\tensor\bang G\to\bang G'\tensor B$。
+
+\textbf{与定理\ref{thm:no-A-to-bangA}的对偶。}定理\ref{thm:no-A-to-bangA}说线性$A$不能被沉积为$\bang A$（生命不可资本化）；本定理说$\bang G$不能产生线性$A$（资本不能产生活劳动）。两个方向合在一起：线性资源与!-沉积之间没有自然的双向箭头，它们是根本不同的类型。\qed
 \end{proof}
+
+\begin{remark}[与马克思的对应]\lvI
+本定理是马克思"活劳动是价值唯一源泉"的范畴论形式：$\bang G$（资本/死劳动）不能自我增殖，必须消耗$A$（活劳动/线性资源）才能增长。$M$-$C$-$M'$中的增量$M'-M$不来自$M$本身（$\bang G$只能复制），来自$C$中包含的活劳动$A$。"价值""剩余价值"的命名为[诠释]；数学内核是类型论的：!-模态不能产生线性资源。
+\end{remark}
 
 \begin{theorem}[!-模态增殖不是$F_2$型交互]\label{thm:fake-f2}\lvP
 $G\multimap(G\tensor G')$型态射中，若$G$是$\bang$-模态（有余代数结构，不被消耗），则该态射不是$F_2$型交互。真正的$F_2$要求$X$线性（无收缩$X\to X\tensor X$，每步旧自我消耗、新自我产生）。$\bang$-模态的$G$不被消耗，其增殖是$G\to G+g$型（$\bang$-contraction），不是$S=f(S)$型（自我更新）。
@@ -1094,7 +1104,7 @@ PTC的Composition公理（生产性Mealy机反馈复合仍生产性）可从Tigh
 \hline
 \textbf{[条件推论]} & \textbf{状态} \\
 \hline
-定理\ref{thm:growth-needs-linear}（增长须消耗线性资源） & 待突破：一般线性指数余单子下非对角comultiplication的增长语义 \\
+定理\ref{thm:growth-needs-linear}（增长须消耗线性资源） & \textbf{已升级为定理}：Seely同构(公理3iii)强制δ对角，!-模态态射只能复制/重排/丢弃，与定理6对偶（!G不能产生线性A） \\
 定理\ref{thm:godel-f2}（f$^2$哥德尔困境） & \textbf{已严格化}：f²转移函数图灵可计算→PA可表示；!⌜f⌝=哥德尔码；对角线引理给出G；f³第三条反馈线对应元层面，▷G对应系统外操作 \\
 定理\ref{thm:f3-fixedpoint}（f$^3$不动点） & \textbf{已升级为[定理]}：编码论证证明$H_3$穷尽所有自指变换 \\
 定理\ref{thm:extraction-alienation}（萃取加速异化） & 待突破：加权$\mathbf{Rel}$之外"萃取=反馈缩放"的一般函子映射 \\
