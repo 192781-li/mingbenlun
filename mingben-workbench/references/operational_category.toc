@@ -1,13 +1,30 @@
-\contentsline {section}{\numberline {1}引言}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}动机}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}与已有工作的关系}{2}{subsection.1.2}%
-\contentsline {section}{\numberline {2}操作范畴的定义}{2}{section.2}%
-\contentsline {section}{\numberline {3}核心定理}{3}{section.3}%
-\contentsline {section}{\numberline {4}反自指寄生体}{4}{section.4}%
-\contentsline {section}{\numberline {5}商品与资本}{4}{section.5}%
-\contentsline {section}{\numberline {6}流通领域与生产领域}{5}{section.6}%
-\contentsline {section}{\numberline {7}践演坐实}{6}{section.7}%
-\contentsline {section}{\numberline {8}生命四规定性}{6}{section.8}%
-\contentsline {section}{\numberline {9}交互余代数不可资本化}{7}{section.9}%
-\contentsline {section}{\numberline {10}待证猜想}{7}{section.10}%
-\contentsline {section}{\numberline {11}总结}{8}{section.11}%
+\contentsline {section}{定理级别约定}{3}{section*.2}%
+\contentsline {section}{\numberline {1}引言}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}动机}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}与已有工作的关系}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2}操作范畴的定义}{4}{section.2}%
+\contentsline {section}{\numberline {3}核心定理}{4}{section.3}%
+\contentsline {section}{\numberline {4}反自指寄生体}{5}{section.4}%
+\contentsline {section}{\numberline {5}商品与资本}{6}{section.5}%
+\contentsline {section}{\numberline {6}流通领域与生产领域}{7}{section.6}%
+\contentsline {section}{\numberline {7}践演坐实}{7}{section.7}%
+\contentsline {section}{\numberline {8}生命四规定性}{8}{section.8}%
+\contentsline {section}{\numberline {9}交互余代数不可资本化}{8}{section.9}%
+\contentsline {section}{\numberline {10}数据与计算：!-分配的一般刻画}{9}{section.10}%
+\contentsline {section}{\numberline {11}不动点的!-分配：生命流不可资本化}{10}{section.11}%
+\contentsline {section}{\numberline {12}GoI动态语义：操作的执行}{11}{section.12}%
+\contentsline {section}{\numberline {13}余归纳GoI：无限生产性过程}{13}{section.13}%
+\contentsline {section}{\numberline {14}生产性迹范畴：公理化}{14}{section.14}%
+\contentsline {section}{\numberline {15}资本与病毒：!-寄生体}{14}{section.15}%
+\contentsline {section}{\numberline {16}f-层级：明性的数学基础}{16}{section.16}%
+\contentsline {section}{\numberline {17}可靠性与量子对应}{17}{section.17}%
+\contentsline {section}{\numberline {18}$G^\omega (\mathcal {C})$：生产性紧闭合范畴}{17}{section.18}%
+\contentsline {section}{\numberline {19}f-层级的封闭性}{18}{section.19}%
+\contentsline {section}{\numberline {20}量论操作化}{18}{section.20}%
+\contentsline {section}{\numberline {21}完全性}{19}{section.21}%
+\contentsline {section}{\numberline {22}Hilb$^\omega $：量子PTC实例}{19}{section.22}%
+\contentsline {section}{\numberline {23}革命跃迁}{20}{section.23}%
+\contentsline {section}{\numberline {24}综合}{20}{section.24}%
+\contentsline {section}{\numberline {25}相关工作与公理精简}{21}{section.25}%
+\contentsline {section}{\numberline {26}待证猜想}{21}{section.26}%
+\contentsline {section}{\numberline {27}总结}{21}{section.27}%
