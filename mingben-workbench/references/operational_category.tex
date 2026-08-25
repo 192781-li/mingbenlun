@@ -1751,12 +1751,29 @@ $$\mu F \cong \bigoplus_{n=0}^{\infty}\mathcal{H}^{\otimes n}$$
 $n$次$F$-迭代对应$n$个$\mathcal{H}$元素的张量积（$n$个"操作量子"）。这是全Fock空间的有限粒子部分。
 \end{theorem}
 
-\begin{proposition}[$\nu F=$Fock空间完备化]\label{prop:nu-fock}\lvC
-在GoI迹内积$\langle x|y\rangle_{\mathrm{Tr}}=\mathrm{Tr}(x^\dagger y)$下，$\nu F$完备化为全Fock空间$\mathcal{F}(\mathcal{H})=\bigoplus_{n=0}^{\infty}\mathcal{H}^{\otimes n}$（平方可迹条件$\sum_n\langle x_n|x_n\rangle<\infty$）。粒子数算符$a^\dagger a$对应量论的$T$（操作持续步数）。此命题依赖迹内积正定性的验证。
-\end{proposition}
+\begin{theorem}[$\nu F=$Fock空间]\label{thm:nu-fock}\lvC
+在Hilb（压缩映射范畴）中，$F(X)=\mathbb{C}\oplus(\mathcal{H}\otimes X)$的终余代数是全Fock空间$\mathcal{F}(\mathcal{H})=\bigoplus_{n=0}^{\infty}\mathcal{H}^{\otimes n}$（Hilbert直和/完备化），余代数结构由标准同构给出：
+$$\mathcal{F}(\mathcal{H})\cong\mathbb{C}\oplus(\mathcal{H}\otimes\mathcal{F}(\mathcal{H}))$$
+初始代数$\mu F$是有限粒子空间（代数直和，$\mu F_2$有限生命），终余代数$\nu F$是其完备化（$\nu F_2$无限生命）。粒子数算符$a^\dagger a$对应量论的$T$（操作持续步数）。此结果是量子计算语义中Fock空间模型的已知构造，但与$\nu F_2$生产性自指和生命的对应是新的。
+\end{theorem}
 
 \begin{remark}[玻色/费米与模态]\lvC
 对称化$F(X)=\mathbb{C}\oplus S(\mathcal{H}\otimes X)$给出玻色Fock空间（对称$=$可交换$=$$\bang$-模态特征）；反对称化$F(X)=\mathbb{C}\oplus\Lambda(\mathcal{H}\otimes X)$给出费米Fock空间（反对称$=$排他$=$线性资源敏感特征）。这暗示量子统计的两种类型对应操作的两种模态——玻色子可聚集（$\bang$可复制），费米子互斥（线性不可复制）。
+\end{remark}
+
+
+\section{涌现塔修正与层级余单子}
+
+\begin{theorem}[Life$(\mathcal{C})$的结构]\label{thm:life-structure}\lvC
+$\mathrm{Life}(\mathcal{C})$是对称幺半闭范畴，有GoI迹和守卫递归，但$\bang$是函子$\mathrm{Life}(\mathcal{C})\to\mathcal{C}^!$（从生到死），不是$\mathrm{Life}(\mathcal{C})$上的自函子。在纯粹生命范畴中没有"死亡"的位置——$\bang$-沉积是向死结构范畴的变换，不是生命内部操作。
+\end{theorem}
+
+\begin{definition}[层级余单子]\label{def:hierarchical-comonad}\lvC
+涌现塔第$n$层有余单子$\bang_n$：$\bang_0=\bang$（物理沉积），$\bang_1=$遗传复制（基因），$\bang_2=$神经/文化复制（记忆、语言），$\bang_3=$社会复制（制度、法律）。每个$\bang_n$在$\mathrm{Life}_n$内部是"活的复制"（为生命服务），但可结晶为$\bang_{n-1}$型死沉积（反客为主）。结晶$=$高层活复制模式退化为低层死沉积。
+\end{definition}
+
+\begin{remark}[涌现塔正确表述]\lvC
+$\mathcal{C}_0=\mathrm{PTC}$；$\mathrm{Life}_0(\mathcal{C}_0)=\nu F_2$余代数（生命涌现）；$\mathcal{C}_1=\mathrm{Life}_0+\bang_1$（生物层PTC）；$\mathrm{Life}_1(\mathcal{C}_1)=$有意识生命；$\mathcal{C}_2=\mathrm{Life}_1+\bang_2$（文化层PTC）；依此类推。每层先有$\nu F_2$涌现，再有$\bang_n$沉积，$\bang_n$可服务生命或结晶为寄生体，新$\nu F_2$在$\bang_n$基础上涌现。这是"阳生阴、阴生阳"的层级数学。
 \end{remark}
 
 \section{综合}
