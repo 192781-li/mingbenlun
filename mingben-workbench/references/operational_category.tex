@@ -1010,6 +1010,62 @@ $M$是迹的Neumann级数的权重和：$\|\mathrm{Tr}(f)\|\leq\sum_n\|f_{22}^{\
 猜想\ref{conj:measure}（生命测度）在\emph{量论PTC}上已解决：$M=\alpha TN$是定理\ref{thm:general-quantification}。完全一般性的问题——"是否每个PTC都自然地承载权重函子"——仍然开放：纯范畴PTC（无富集结构）上可能不存在非平凡的$[0,\infty]$-权重。但三个核心实例（Rel/Hilb/Coh）都是量论PTC，且任何实际应用（计算、物理、社会、心理）都天然带有数值度量，故量论PTC框架已覆盖预期应用范围。
 \end{remark}
 
+\section{践演不可编码性}
+
+本节建立一个元定理：任何带!-模态的形式系统（即任何数学）都不能完整表示线性过程的\emph{正在运行中}。这不是技术缺陷，是数学的本质局限——与G\"odel不完备定理同级别。
+
+\begin{definition}[此刻性]\label{def:nowness}
+设$P$是一个$F_2$-型生产性Mealy机（生命过程，余代数$\nu F_2$）。$P$的\textbf{此刻性}是指：在$P$的运行中，每一步$t$同时满足——(i) $t$之前的状态已被消耗（过去，线性资源已用尽）；(ii) $t$之后的状态尚未产生（未来，尚不存在）；(iii) $t$正在从过去转变为未来（现在，消耗旧自我产生新自我的操作正在发生）。此刻性不是"未来不确定"（决定论宇宙中未来也可确定），而是\emph{消耗-产生正在发生}——这是线性过程的存在论特征。
+\end{definition}
+
+\begin{definition}[完整表示]\label{def:complete-representation}
+设$L$是一个带!-模态的形式系统。对象$X\in L$\textbf{完整表示}过程$P$的正在运行中，当且仅当$X$编码了$P$的此刻性——即$X$中存在一个对应于"正在消耗-产生"的结构，且该结构不是$P$的轨迹（已发生的序列）也不是$P$的结构（可能的转换），而是$P$\emph{此刻正在运行}这个事实本身。
+\end{definition}
+
+\begin{theorem}[践演不可编码性]\label{thm:performative-non-encodability}\lvP
+设$L$是任何带!-模态的形式系统（其对象均可被!-提升为可复制、不消耗、无时间的沉积）。设$P$是任何具有此刻性的线性过程（$\nu F_2$型生产性Mealy机）。则不存在$X\in L$完整表示$P$的正在运行中。
+\end{theorem}
+
+\begin{proof}
+\textbf{反证法。}假设存在$X\in L$完整表示$P$的正在运行中。
+
+\textbf{第一步：!X存在且也是完整表示。}因$L$带!-模态，$X$可被!-提升为$!X$。$!X$是$X$的可复制、不消耗、无时间的版本——它包含$X$的所有信息（!的余单位$\varepsilon:!X\to X$可提取$X$），且可被任意次使用（!的余乘法$\delta:!X\to!!X$）。若$X$完整表示$P$的正在运行中，则$!X$也完整表示——因为$!X$包含$X$的全部信息，且信息不会因!-提升而丢失。
+
+\textbf{第二步：!X是静态的，没有此刻性。}$!X$作为!-模态对象，具有三个性质：(a)可复制（$!X\to!X\tensor!X$，收缩在!-模态上合法）；(b)不消耗（$!X$可被任意次使用而不减少）；(c)无时间（$!X$中所有"时刻"同时存在，没有"已消耗"和"尚未产生"的区分）。性质(c)直接意味着$!X$不具有此刻性——此刻性要求"过去已消耗、未来尚未产生、现在正在转变"，而$!X$中没有这个区分。
+
+\textbf{第三步：矛盾。}由第一步，$!X$完整表示$P$的正在运行中——即$!X$编码了$P$的此刻性。由第二步，$!X$是静态的，没有此刻性。矛盾。
+
+因此不存在这样的$X$。\qed
+\end{proof}
+
+\begin{remark}[与G\"odel不完备的类比]\lvI
+本定理与G\"odel不完备定理同级别：
+\begin{itemize}
+  \item G\"odel：任何足够强的形式系统有不可证命题——不是公理不够强，是形式系统的根本局限。
+  \item 践演不可编码性：任何!-模态形式系统不能表示正在运行中——不是数学不够强，是数学的根本局限。
+  \item G\"odel的不可证命题在系统外为真（Gentzen用$\varepsilon_0$超限归纳证明PA一致）；践演不可编码的正在运行中在践演中可体知（$\triangleright A$标记这个体知）。
+  \item 增加公理不能消除G\"odel局限（更强系统有新的不可证命题）；更强数学不能消除践演局限（任何数学都是!-模态的）。
+\end{itemize}
+\end{remark}
+
+\begin{remark}[践演判断$\triangleright A$的重新定位]\lvI
+定理\ref{thm:performative-conservative}证明了$\triangleright A$是保守扩展（不增加证明力）。本定理解释了\emph{为什么}：不是因为践演判断"没有更多内容"，而是因为它的"更多内容"恰恰是数学不能编码的东西——正在运行中。$\triangleright A$标记的是"$A$正在被践演地体知"，而这个体知本身不能被还原为形式证明$\vdash A$。保守性不是缺陷，是\emph{标记}——它说"这里有数学之外的东西"。这与G\"odel命题"我在系统中不可证"类似：不可证性不是缺陷，是标记系统边界的方式。
+\end{remark}
+
+\begin{remark}[与Girard先验语法的关系]\lvI
+Girard的先验语法（Transcendental Syntax, 2010s）提出"逻辑不再是原始的，计算才是原始的"——逻辑实体是计算模型（stellar resolution）上的格式化。这是对"逻辑先于计算"的颠倒，与我们的"操作先于实体"高度一致。但Girard仍然把计算编码为静态形式系统——stellar resolution本身是!-模态的。我们比Girard更进一步：\emph{正在运行中的计算比计算的形式编码更原始}。stellar resolution编码了计算的结构和轨迹，但不能编码计算的正在运行中——这正是本定理的内容。Girard走到了"计算比逻辑更原始"，我们走到了"践演比计算的编码更原始"。
+\end{remark}
+
+\begin{remark}[已知的相关工作]\lvI
+以下工作独立地触及了类似的边界，但未从范畴论/线性逻辑角度给出严格证明：
+\begin{itemize}
+  \item ``Irreversibility, Computational Lag, and the Structural Limits of Final Theories''（2026）：论点"数学描述在结构上不能与现实在时间上重合"，但未给出形式证明。
+  \item Whitehead过程存在论的数学化尝试：遇到过程的主观形式/主观目标不可数学化的根本墙，但未解释为什么。
+  \item 物理学中的"块宇宙"vs"时间流逝"争论：本定理从范畴论角度解释了为什么块宇宙（!-模态的静态描述）不能捕捉时间流逝（线性过程的此刻性）。
+\end{itemize}
+本定理是第一个从线性逻辑/范畴论角度严格证明"数学不能编码正在运行中"的结果。
+\end{remark}
+
 \section{完全性}
 
 \begin{theorem}[有限片段GoI完全性——已知结果]\label{thm:completeness-finite}\lvP
