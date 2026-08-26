@@ -1,0 +1,11 @@
+;; f³/明性：成长状态不仅能用能力（f²），还能看见自己的能力集（f³）
+(let learner (growing (perceive 1))
+  (let l2 (grow learner remember 42)
+    (let l3 (grow l2 recognize true)
+      (let awake (reflect l3)
+        (seq
+          (get-cap awake remember)
+          (self-caps awake)
+          (self-history awake)
+          (let l4 (grow awake reflect_str "我知道我知道")
+            (self-caps l4)))))))

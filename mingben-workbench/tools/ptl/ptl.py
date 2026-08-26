@@ -51,6 +51,12 @@ class TGrowing(Ty):
     fields: dict
     def __eq__(self, o): return isinstance(o, TGrowing) and self.fields==o.fields
     def __repr__(self): return "G{" + ",".join(f"{k}:{v}" for k,v in self.fields.items()) + "}"
+@dataclass
+class TReflected(Ty):
+    """f³/明性：包装一个类型，表示该值能看见自己的模型"""
+    inner: Ty
+    def __eq__(self, o): return isinstance(o, TReflected) and self.inner==o.inner
+    def __repr__(self): return f"明({self.inner})"
 
 # ============================================================
 # AST
@@ -86,6 +92,14 @@ class EGrowing(Expr): fields: dict
 class EGrow(Expr): tgt: Expr; cap: str; val: Expr
 @dataclass
 class EGetCap(Expr): tgt: Expr; cap: str
+@dataclass
+class EReflect(Expr): tgt: Expr       # f³: 包装成长状态，使其能看见自己
+@dataclass
+class ESelfCaps(Expr): tgt: Expr      # f³: 看见自己当前的全部能力（模型作为模型）
+@dataclass
+class ESelfHistory(Expr): tgt: Expr   # f³: 看见自己的成长历史
+@dataclass
+class EReify(Expr): tgt: Expr         # 从f³回到f²：取出被包装的成长状态
 @dataclass
 class EBinOp(Expr): op: str; l: Expr; r: Expr
 @dataclass
@@ -199,6 +213,10 @@ def parse_list(lst):
         if op == 'get-cap' and len(lst) == 3:
             cap = lst[2].name if isinstance(lst[2], EVar) else str(lst[2])
             return EGetCap(lst[1], cap)
+        if op == 'reflect' and len(lst) == 2: return EReflect(lst[1])
+        if op == 'self-caps' and len(lst) == 2: return ESelfCaps(lst[1])
+        if op == 'self-history' and len(lst) == 2: return ESelfHistory(lst[1])
+        if op == 'reify' and len(lst) == 2: return EReify(lst[1])
         if op == 'if' and len(lst) == 4: return EIf(lst[1], lst[2], lst[3])
         if op == 'let' and len(lst) == 4:
             name = lst[1].name if isinstance(lst[1], EVar) else str(lst[1])
@@ -326,17 +344,44 @@ def tc(e, env):
     
     if isinstance(e, EGrow):
         tt = tc(e.tgt, env); vt = tc(e.val, env)
+        was_reflected = isinstance(tt, TReflected)
+        if was_reflected and isinstance(tt.inner, TGrowing):
+            tt = tt.inner
         if not isinstance(tt, TGrowing): raise TCError(f"grow需要G类型，得到{tt}")
         if e.cap in tt.fields: raise TCError(f"能力'{e.cap}'已存在（ν*F单调扩展不可重复）")
         nf = dict(tt.fields); nf[e.cap] = vt
-        return TGrowing(nf)
+        result = TGrowing(nf)
+        return TReflected(result) if was_reflected else result
     
     if isinstance(e, EGetCap):
         tt = tc(e.tgt, env)
+        if isinstance(tt, TReflected): tt = tt.inner  # 明性状态也能访问能力
         if not isinstance(tt, TGrowing): raise TCError(f"get-cap需要G类型，得到{tt}")
         if e.cap not in tt.fields:
             raise TCError(f"能力'{e.cap}'不存在。已有: {list(tt.fields.keys())}")
         return tt.fields[e.cap]
+    
+    # === f³/明性：反射机制 ===
+    if isinstance(e, EReflect):
+        tt = tc(e.tgt, env)
+        if not isinstance(tt, TGrowing): raise TCError(f"reflect需要G类型（只有成长状态能明性），得到{tt}")
+        return TReflected(tt)
+    
+    if isinstance(e, ESelfCaps):
+        tt = tc(e.tgt, env)
+        if not isinstance(tt, TReflected): raise TCError(f"self-caps需要明(G)类型（f²看不见自己的模型），得到{tt}")
+        if not isinstance(tt.inner, TGrowing): raise TCError(f"self-caps的内部必须是G类型，得到{tt.inner}")
+        return TStr()  # 返回能力名列表的字符串表示
+    
+    if isinstance(e, ESelfHistory):
+        tt = tc(e.tgt, env)
+        if not isinstance(tt, TReflected): raise TCError(f"self-history需要明(G)类型，得到{tt}")
+        return TStr()
+    
+    if isinstance(e, EReify):
+        tt = tc(e.tgt, env)
+        if not isinstance(tt, TReflected): raise TCError(f"reify需要明(T)类型，得到{tt}")
+        return tt.inner
     
     if isinstance(e, EBinOp):
         lt = tc(e.l, env); rt = tc(e.r, env)
@@ -354,7 +399,7 @@ def tc(e, env):
         vt = tc(e.val, env)
         # let绑定默认线性（必须用恰好一次）
         # 只有lambda闭包是bang（可复制，因为无状态）
-        if isinstance(vt, (TF1, TF2, TNuF2, TGrowing)):
+        if isinstance(vt, (TF1, TF2, TNuF2, TGrowing, TReflected)):
             env.bang[e.name] = vt
         else:
             env.linear[e.name] = vt
@@ -399,6 +444,16 @@ class GrowingVal:
         if cap not in self.fields: raise RuntimeError(f"能力'{cap}'不存在，已有{list(self.fields.keys())}")
         return self.fields[cap]
     def __repr__(self): return f"G({list(self.fields.keys())})"
+class ReflectedVal:
+    """f³/明性：包装一个GrowingVal，使其能看见自己的模型"""
+    def __init__(self, gv):
+        if not isinstance(gv, GrowingVal): raise RuntimeError("reflect只能包装G值")
+        self.gv = gv
+    def self_caps(self):
+        return ",".join(self.gv.fields.keys())
+    def self_history(self):
+        return ",".join(self.gv.history) if self.gv.history else "(尚未成长)"
+    def __repr__(self): return f"明({self.gv})"
 
 class F1Closure:
     def __init__(self, p, body, env): self.p, self.body, self.env = p, body, dict(env)
@@ -448,12 +503,34 @@ def ev(e, env):
     if isinstance(e, EGrowing): return GrowingVal({k: ev(v, env) for k,v in e.fields.items()})
     if isinstance(e, EGrow):
         t = ev(e.tgt, env); v = ev(e.val, env)
-        if isinstance(t, GrowingVal): t.grow(e.cap, v); return t
+        reflected = isinstance(t, ReflectedVal)
+        gv = t.gv if reflected else t
+        if isinstance(gv, GrowingVal):
+            gv.grow(e.cap, v)
+            return t  # 明性状态grow后仍返回明性值（保持f³）
         raise RuntimeError("grow需要G值")
     if isinstance(e, EGetCap):
         t = ev(e.tgt, env)
         if isinstance(t, GrowingVal): return t.get(e.cap)
+        if isinstance(t, ReflectedVal): return t.gv.get(e.cap)  # 明性状态也能用能力
         raise RuntimeError("get-cap需要G值")
+    if isinstance(e, EReflect):
+        t = ev(e.tgt, env)
+        if isinstance(t, ReflectedVal): return t  # 已经是明性，幂等
+        if isinstance(t, GrowingVal): return ReflectedVal(t)
+        raise RuntimeError("reflect需要G值")
+    if isinstance(e, ESelfCaps):
+        t = ev(e.tgt, env)
+        if isinstance(t, ReflectedVal): return t.self_caps()
+        raise RuntimeError("self-caps需要明(G)值")
+    if isinstance(e, ESelfHistory):
+        t = ev(e.tgt, env)
+        if isinstance(t, ReflectedVal): return t.self_history()
+        raise RuntimeError("self-history需要明(G)值")
+    if isinstance(e, EReify):
+        t = ev(e.tgt, env)
+        if isinstance(t, ReflectedVal): return t.gv
+        raise RuntimeError("reify需要明(T)值")
     if isinstance(e, EBinOp):
         l, r = ev(e.l, env), ev(e.r, env)
         ops = {'+':lambda a,b:a+b,'-':lambda a,b:a-b,'*':lambda a,b:a*b,'/':lambda a,b:a/b,
@@ -476,6 +553,7 @@ def classify(ty):
     if isinstance(ty, TF1): return "F1（无状态函数，可完全对齐）"
     if isinstance(ty, TF2): return "F2（交互过程，不可完全对齐）"
     if isinstance(ty, TNuF2): return "νF2（生产性无限流，不可完全对齐）"
+    if isinstance(ty, TReflected): return f"f³/明性（{classify(ty.inner)}能看见自己的模型）"
     if isinstance(ty, TGrowing): return "ν*F（成长过程，状态空间可扩展）"
     return f"值（{ty}）"
 
@@ -553,16 +631,32 @@ EXAMPLES = {
   (proc (a Int) (s Int) (pair (+ s a) s))
   (stream n 0 (pair (+ n 1) n)))
 """,
+"8_reflection_f3.ptl": """
+;; f³/明性：成长状态不仅能用能力（f²），还能看见自己的能力集（f³）
+(let learner (growing (perceive 1))
+  (let l2 (grow learner remember 42)
+    (let l3 (grow l2 recognize true)
+      (let awake (reflect l3)
+        (seq
+          (get-cap awake remember)
+          (self-caps awake)
+          (self-history awake)
+          (let l4 (grow awake reflect_str "我知道我知道")
+            (self-caps l4)))))))
+""",
 }
 
 REJECTS = [
     ("线性变量使用两次", "(let x 42 (+ x x))"),
     ("线性变量被丢弃", "(let x 42 0)"),
-    ("访问不存在的能力", "(let g (growing ((a 1))) (get-cap g b))"),
-    ("重复成长同一能力", "(let g (growing ((a 1))) (grow g a 2))"),
+    ("访问不存在的能力", "(let g (growing (a 1)) (get-cap g b))"),
+    ("重复成长同一能力", "(let g (growing (a 1)) (grow g a 2))"),
     ("非生产性stream", "(let s (stream n 0 n) (take s 3))"),
     ("F2状态类型不一致", "(let p (proc (a Int) (s Int) (pair true a)) (run p 1 0))"),
     ("F2输入类型不匹配", "(let p (proc (a Int) (s Int) (pair s a)) (run p true 0))"),
+    ("对非G值reflect", "(reflect 42)"),
+    ("f²不能self-caps（看不见自己的模型）", "(let g (growing (a 1)) (self-caps g))"),
+    ("对非明值reify", "(reify 42)"),
 ]
 
 def main():
