@@ -267,21 +267,47 @@ class RefConsistencyChecker:
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        root_dir = sys.argv[1]
+    import argparse
+    parser = argparse.ArgumentParser(description='引用一致性检查器')
+    parser.add_argument('root_dir', nargs='?', default='.', help='扫描目录（默认当前目录）')
+    parser.add_argument('--registry', '-r', default=None, help='定理注册表路径')
+    parser.add_argument('--quiet', action='store_true', help='安静模式，不输出到控制台')
+    parser.add_argument('--output', '-o', default=None, help='报告输出路径')
+    args = parser.parse_args()
+    
+    root_dir = args.root_dir
+    quiet = args.quiet
+    
+    if args.registry:
+        registry_path = args.registry
     else:
-        root_dir = '.'
-
-    if len(sys.argv) > 2:
-        registry_path = sys.argv[2]
-    else:
-        registry_path = str(Path(root_dir) / 'theorem_registry.json')
+        # 默认注册表路径
+        script_dir = Path(__file__).parent
+        default_registry = script_dir.parent / 'references' / 'theorem_registry.json'
+        if default_registry.exists():
+            registry_path = str(default_registry)
+        else:
+            registry_path = str(Path(root_dir) / 'theorem_registry.json')
 
     checker = RefConsistencyChecker(root_dir, registry_path)
     report = checker.run()
 
-    print(report)
+    if not quiet:
+        print(report)
 
-    report_path = Path(root_dir) / 'ref_consistency_report.md'
+    if args.output:
+        report_path = Path(args.output)
+    else:
+        script_dir = Path(__file__).parent
+        default_output = script_dir.parent / 'references' / 'ref_consistency_report.md'
+        if default_output.parent.exists():
+            report_path = default_output
+        else:
+            report_path = Path(root_dir) / 'ref_consistency_report.md'
+    
+    report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(report, encoding='utf-8')
-    print(f'\n报告已保存到: {report_path}')
+    if not quiet:
+        print(f'\n报告已保存到: {report_path}')
+    
+    sys.exit(0)

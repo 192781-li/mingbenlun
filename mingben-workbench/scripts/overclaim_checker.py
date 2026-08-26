@@ -246,18 +246,40 @@ class OverclaimChecker:
 # ============ 主程序 ============
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        root_dir = sys.argv[1]
-    else:
-        root_dir = '.'
+    import argparse
+    parser = argparse.ArgumentParser(description='越级陈述检查器')
+    parser.add_argument('root_dir', nargs='?', default='.', help='扫描目录（默认当前目录）')
+    parser.add_argument('--quiet', action='store_true', help='安静模式，不输出到控制台')
+    parser.add_argument('--output', '-o', default=None, help='报告输出路径（默认: 扫描目录/overclaim_report.md）')
+    args = parser.parse_args()
+    
+    root_dir = args.root_dir
+    quiet = args.quiet
 
     checker = OverclaimChecker(root_dir)
     report = checker.run()
 
     # 输出到控制台
-    print(report)
+    if not quiet:
+        print(report)
 
     # 保存到文件
-    report_path = Path(root_dir) / 'overclaim_report.md'
+    if args.output:
+        report_path = Path(args.output)
+    else:
+        # 默认保存到 mingben-workbench/references/ 目录
+        script_dir = Path(__file__).parent
+        default_output = script_dir.parent / 'references' / 'overclaim_report.md'
+        if default_output.parent.exists():
+            report_path = default_output
+        else:
+            report_path = Path(root_dir) / 'overclaim_report.md'
+    
+    report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(report, encoding='utf-8')
-    print(f'\n报告已保存到: {report_path}')
+    if not quiet:
+        print(f'\n报告已保存到: {report_path}')
+    
+    # 退出码：0=成功（无论有没有问题，只要报告生成了就算成功）
+    # 检查器的目的是发现问题并生成报告，不是阻止提交
+    sys.exit(0)
