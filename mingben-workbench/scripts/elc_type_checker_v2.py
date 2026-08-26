@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Author: workbuddy
 """
 践演λ-演算（Enactive λ-Calculus, EλC）类型检查器 v2
 
