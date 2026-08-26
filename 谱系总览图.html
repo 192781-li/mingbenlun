@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>生命论全本人物谱系</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Noto Serif SC', serif;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0f0f23 100%);
+    color: #e8e8e8;
+    min-height: 100vh;
+    padding: 40px;
+    overflow-x: hidden;
+  }
+  
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .title h1 {
+    font-size: 42px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffd700, #ffaa00, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .title .subtitle {
+    font-size: 16px;
+    color: #888;
+    letter-spacing: 4px;
+  }
+  
+  .core {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+  }
+  
+  .core-box {
+    display: inline-block;
+    padding: 25px 50px;
+    background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,140,0,0.1));
+    border: 2px solid #ffd700;
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(255,215,0,0.2), inset 0 0 20px rgba(255,215,0,0.05);
+  }
+  
+  .core-box .main {
+    font-size: 32px;
+    font-weight: 900;
+    color: #ffd700;
+    letter-spacing: 6px;
+    margin-bottom: 8px;
+  }
+  
+  .core-box .chain {
+    font-size: 14px;
+    color: #aaa;
+    letter-spacing: 2px;
+  }
+  
+  .daotong {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .daotong-box {
+    display: inline-block;
+    padding: 20px 40px;
+    background: linear-gradient(135deg, rgba(220,38,38,0.15), rgba(185,28,28,0.1));
+    border: 2px solid #dc2626;
+    border-radius: 14px;
+    box-shadow: 0 0 30px rgba(220,38,38,0.15);
+  }
+  
+  .daotong-box .label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #dc2626;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+  }
+  
+  .daotong-people {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .daotong-person {
+    padding: 10px 20px;
+    background: rgba(220,38,38,0.1);
+    border: 1px solid rgba(220,38,38,0.3);
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .daotong-person .name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fca5a5;
+  }
+  
+  .daotong-person .field {
+    font-size: 11px;
+    color: #888;
+    margin-top: 2px;
+  }
+  
+  .dimensions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+  }
+  
+  .dimension {
+    padding: 22px;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .dimension::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  
+  .dimension.resource {
+    background: linear-gradient(135deg, rgba(168,85,247,0.1), rgba(139,92,246,0.05));
+    border: 1px solid rgba(168,85,247,0.3);
+  }
+  .dimension.resource::before { background: linear-gradient(90deg, #a855f7, #8b5cf6); }
+  
+  .dimension.science {
+    background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(16,185,129,0.05));
+    border: 1px solid rgba(34,197,94,0.3);
+  }
+  .dimension.science::before { background: linear-gradient(90deg, #22c55e, #10b981); }
+  
+  .dimension.transcend {
+    background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(99,102,241,0.05));
+    border: 1px solid rgba(59,130,246,0.3);
+  }
+  .dimension.transcend::before { background: linear-gradient(90deg, #3b82f6, #6366f1); }
+  
+  .dimension.companion {
+    background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(217,119,6,0.05));
+    border: 1px solid rgba(245,158,11,0.3);
+    grid-column: 1 / -1;
+  }
+  .dimension.companion::before { background: linear-gradient(90deg, #f59e0b, #d97706); }
+  
+  .dim-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .resource .dim-title { color: #a855f7; }
+  .science .dim-title { color: #22c55e; }
+  .transcend .dim-title { color: #3b82f6; }
+  .companion .dim-title { color: #f59e0b; }
+  
+  .people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  
+  .companion .people-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  
+  .person {
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  
+  .resource .person { border-left: 3px solid #a855f7; }
+  .science .person { border-left: 3px solid #22c55e; }
+  .transcend .person { border-left: 3px solid #3b82f6; }
+  .companion .person { border-left: 3px solid #f59e0b; }
+  
+  .person .name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #e8e8e8;
+    margin-bottom: 2px;
+  }
+  
+  .person .field {
+    font-size: 11px;
+    color: #888;
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .footer .quote {
+    font-size: 16px;
+    color: #888;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  
+  .footer .quote span { color: #ffd700; }
+  
+  .footer .note {
+    font-size: 12px;
+    color: #555;
+  }
+  
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #aaa;
+  }
+  
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  
+  <div class="title">
+    <h1>生命论全本人物谱系</h1>
+    <div class="subtitle">感 → 操作 → 自指 → 反自指 → 量论 → 解放</div>
+  </div>
+  
+  <div class="core">
+    <div class="core-box">
+      <div class="main">生 命 论</div>
+      <div class="chain">在感 · 自指操作 · 反自指系统 · 量论 · 明性 · 操作权复归</div>
+    </div>
+  </div>
+  
+  <div class="daotong">
+    <div class="daotong-box">
+      <div class="label">🔴 道 统 继 承（立场+方法+方向）</div>
+      <div class="daotong-people">
+        <div class="daotong-person">
+          <div class="name">马克思</div>
+          <div class="field">政治经济学 · 阶级分析</div>
+        </div>
+        <div class="daotong-person">
+          <div class="name">毛泽东</div>
+          <div class="field">实践论 · 革命战略</div>
+        </div>
+        <div class="daotong-person">
+          <div class="name">列 宁</div>
+          <div class="field">帝国主义 · 国家与革命</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div>道统继承</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#a855f7"></div>思想资源</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div>科学佐证</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>超越/批判</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>同路人</div>
+  </div>
+  
+  <div class="dimensions">
+    
+    <div class="dimension resource">
+      <div class="dim-title"><span class="icon">📚</span> 思 想 资 源（借鉴洞见，立场不延续）</div>
+      <div class="people-grid">
+        <div class="person"><div class="name">老 子</div><div class="field">道论 · 反者道之动</div></div>
+        <div class="person"><div class="name">黑格尔</div><div class="field">辩证法 · 批判改造</div></div>
+        <div class="person"><div class="name">庄 子</div><div class="field">齐物论 · 辩证思维</div></div>
+        <div class="person"><div class="name">王夫之</div><div class="field">气一元论 · 知行合一</div></div>
+      </div>
+    </div>
+    
+    <div class="dimension science">
+      <div class="dim-title"><span class="icon">🔬</span> 科 学 佐 证（自然对应，非思想来源）</div>
+      <div class="people-grid">
+        <div class="person"><div class="name">达尔文</div><div class="field">进化论 · 自然选择</div></div>
+        <div class="person"><div class="name">普利高津</div><div class="field">耗散结构 · 自组织</div></div>
+        <div class="person"><div class="name">爱因斯坦</div><div class="field">相对论 · 时空</div></div>
+      </div>
+    </div>
+    
+    <div class="dimension transcend">
+      <div class="dim-title"><span class="icon">⚔️</span> 超 越 / 批 判（思想战场的标杆）</div>
+      <div class="people-grid">
+        <div class="person"><div class="name">康 德</div><div class="field">认识论 · 物自体</div></div>
+        <div class="person"><div class="name">罗尔斯</div><div class="field">正义论 · 无知之幕</div></div>
+        <div class="person"><div class="name">福 柯</div><div class="field">生命政治 · 规训</div></div>
+        <div class="person"><div class="name">海德格尔</div><div class="field">存在论 · 此在</div></div>
+        <div class="person"><div class="name">巴迪欧</div><div class="field">事件哲学 · 数学本体论</div></div>
+        <div class="person"><div class="name">哈耶克</div><div class="field">新自由主义 · 自发秩序</div></div>
+        <div class="person"><div class="name">弗洛伊德</div><div class="field">潜意识 · 还原论</div></div>
+        <div class="person"><div class="name">拉 康</div><div class="field">主体解构 · 象征界</div></div>
+        <div class="person"><div class="name">维特根斯坦</div><div class="field">语言治疗 · 消极哲学</div></div>
+      </div>
+    </div>
+    
+    <div class="dimension companion">
+      <div class="dim-title"><span class="icon">🤝</span> 同 路 人（方向一致，可结盟）</div>
+      <div class="people-grid">
+        <div class="person"><div class="name">卢麒元</div><div class="field">财政学 · 直接税 · 人民宪政</div></div>
+        <div class="person"><div class="name">温铁军</div><div class="field">三农问题 · 成本转嫁论</div></div>
+        <div class="person"><div class="name">阳和平</div><div class="field">苏共官僚退化 · 工人实践</div></div>
+        <div class="person"><div class="name">奈格里</div><div class="field">诸众 · 非物质劳动 · 自治主义</div></div>
+        <div class="person"><div class="name">德勒兹</div><div class="field">欲望机器 · 块茎 · 生成</div></div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="footer">
+    <div class="quote">道统只有马列毛 —— 不拒绝任何前人的智慧，也不被任何前人的框架束缚 —— <span>各得其位，各明其性</span></div>
+    <div class="note">生命论（明本论）全本人物谱系 · 卷首命经 + 10卷73篇</div>
+  </div>
+  
+</div>
+</body>
+</html>
