@@ -9,16 +9,16 @@
 | 类别 | 数量 |
 |------|------|
 | 同构符号(≅) | 331 |
-| 绝对化表述 | 13466 |
+| 绝对化表述 | 13475 |
 | 新颖性声称 | 775 |
 | 可变定理编号 | 2146 |
-| **发现问题** | **6882** |
+| **发现问题** | **6883** |
 
 ## 严重程度分布
 
 - 错误 (error): 0
 - 警告 (warning): 470
-- 信息 (info): 6412
+- 信息 (info): 6413
 
 ## 警告（需要处理）
 
@@ -27534,396 +27534,396 @@
 **上下文**: `- $\bang$不穿透生产性状态在$G^\omega(\mathcal{C})$中仍成立（定理37）——生命不可资本化（T001）在更高层范畴中仍成立`
 
 
-### I3461 [absolute] mingben-workbench\references\mingxing.md:18
+### I3461 [absolute] mingben-workbench\references\L3-L5整体结构直觉.md:124
+
+**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- !νF：你拿到了一个"完整的无限流"（不可能——!要求有限）`
+
+
+### I3462 [absolute] mingben-workbench\references\mingxing.md:18
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `## 一、操作前基线检查（任何不可逆/高代价操作前强制执行）`
 
 
-### I3462 [absolute] mingben-workbench\references\mingxing.md:102
+### I3463 [absolute] mingben-workbench\references\mingxing.md:102
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **任何"没找到"都要区分三种可能：**`
 
 
-### I3463 [absolute] mingben-workbench\references\mingxing.md:102
+### I3464 [absolute] mingben-workbench\references\mingxing.md:102
 
 **问题**: 绝对化表述 "任何"没找到"都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **任何"没找到"都要区分三种可能：**`
 
 
-### I3464 [absolute] mingben-workbench\references\mingxing.md:115
+### I3465 [absolute] mingben-workbench\references\mingxing.md:115
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 读文件/查状态 | 完全可逆 | 随便做，多做 |`
 
 
-### I3465 [absolute] mingben-workbench\references\mingxing.md:227
+### I3466 [absolute] mingben-workbench\references\mingxing.md:227
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `纳入任何私人表述后问自己：`
 
 
-### I3466 [absolute] mingben-workbench\references\monitor.md:10
+### I3467 [absolute] mingben-workbench\references\monitor.md:10
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- manifest完整性（所有模块文件存在）`
 
 
-### I3467 [absolute] mingben-workbench\references\muF2_to_nuF2_生命起源的数学.md:102
+### I3468 [absolute] mingben-workbench\references\muF2_to_nuF2_生命起源的数学.md:102
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| N<1 | 衰退扩展 | M=α/(1-N)有限 | 慢性死亡——永远运行但越来越弱 |`
 
 
-### I3468 [absolute] mingben-workbench\references\muF2_to_nuF2_生命起源的数学.md:106
+### I3469 [absolute] mingben-workbench\references\muF2_to_nuF2_生命起源的数学.md:106
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**关键**：N<1的νF₂也是"永远运行"的（f₂₂不幂零），但它在衰退——这是"活着但在死"的数学。真正的生命扩展需要N≥1。`
 
 
-### I3469 [old_ref] mingben-workbench\references\muF2_to_nuF2_生命起源的数学.md:142
+### I3470 [old_ref] mingben-workbench\references\muF2_to_nuF2_生命起源的数学.md:142
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `现在我们看到了为什么：νF₂的扩展态射e是线性的（条件iii），它在每一步产生新的线性自我X。!-模态试图复制/沉积这个X，但定理1说线性资源不能自动变成!-模态。!可以拿走B（产出），但拿不走"下一`
 
 
-### I3470 [old_ref] mingben-workbench\references\novelty_assessment.md:24
+### I3471 [old_ref] mingben-workbench\references\novelty_assessment.md:24
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**结论**：定理1.6（自指闭包提供无对角线不动点）的数学内容是已知的。Hasegawa 1997已经证明。`
 
 
-### I3471 [old_ref] mingben-workbench\references\novelty_assessment.md:30
+### I3472 [old_ref] mingben-workbench\references\novelty_assessment.md:30
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**结论**：定理14（量子-践演对应）的范畴论基础是已知的。`
 
 
-### I3472 [old_ref] mingben-workbench\references\novelty_assessment.md:44
+### I3473 [old_ref] mingben-workbench\references\novelty_assessment.md:44
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `自创生理论描述系统自我维持，但不问"谁在运行"——它假设系统自己运行自己。我们的理论指出：一个系统可以看起来在自我维持（自创生），实际上运行权被外部夺走了（异化）。定理2（自我遮蔽）证明了异化必然产生`
 
 
-### I3473 [old_ref] mingben-workbench\references\novelty_assessment.md:55
+### I3474 [old_ref] mingben-workbench\references\novelty_assessment.md:55
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 异化必然自我遮蔽（定理2）`
 
 
-### I3474 [old_ref] mingben-workbench\references\novelty_assessment.md:56
+### I3475 [old_ref] mingben-workbench\references\novelty_assessment.md:56
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 异化不可外部判定（定理2.1）`
 
 
-### I3475 [old_ref] mingben-workbench\references\novelty_assessment.md:58
+### I3476 [old_ref] mingben-workbench\references\novelty_assessment.md:58
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 2.3 践演停机问题（定理2.1）`
 
 
-### I3476 [old_ref] mingben-workbench\references\novelty_assessment.md:62
+### I3477 [old_ref] mingben-workbench\references\novelty_assessment.md:62
 
 **问题**: 使用可变编号 "定理9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 2.4 明性反异化定理（定理9）`
 
 
-### I3477 [old_ref] mingben-workbench\references\novelty_assessment.md:66
+### I3478 [old_ref] mingben-workbench\references\novelty_assessment.md:66
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 2.5 基本定理（定理1.7）`
 
 
-### I3478 [old_ref] mingben-workbench\references\novelty_assessment.md:74
+### I3479 [old_ref] mingben-workbench\references\novelty_assessment.md:74
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 2.7 量论基本定理（定理13）`
 
 
-### I3479 [old_ref] mingben-workbench\references\novelty_assessment.md:94
+### I3480 [old_ref] mingben-workbench\references\novelty_assessment.md:94
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **基本定理1.7** | ✅ **可能新** | 四者等价的结构定理 |`
 
 
-### I3480 [absolute] mingben-workbench\references\output.md:13
+### I3481 [absolute] mingben-workbench\references\output.md:13
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `bash 生命论_模块化/build_all.sh          # 全部格式`
 
 
-### I3481 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:1
+### I3482 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:1
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `# PTC公理系统修订：公理0（践演位置）与公理1（交互闭结构）`
 
 
-### I3482 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:1
+### I3483 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:1
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `# PTC公理系统修订：公理0（践演位置）与公理1（交互闭结构）`
 
 
-### I3483 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:5
+### I3484 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:5
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `旧公理1直接预设闭范畴：Hom(A,B) ≅ Hom(1, A⊸B)。这意味着操作被当作对象——操作可以被"物化"。`
 
 
-### I3484 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:33
+### I3485 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:33
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理0（践演位置）**：`
 
 
-### I3485 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:54
+### I3486 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:54
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理1（交互闭结构）**：`
 
 
-### I3486 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:62
+### I3487 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:62
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `关键定理（从公理0推出）：`
 
 
-### I3487 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:64
+### I3488 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:64
 
 **问题**: 使用可变编号 "定理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理0（位置不可物化）**：不存在自然变换将位置p本身表示为一个对象。`
 
 
-### I3488 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:72
+### I3489 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:72
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `旧公理1（闭范畴）是新公理0+1的**特例**：`
 
 
-### I3489 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:72
+### I3490 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:72
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `旧公理1（闭范畴）是新公理0+1的**特例**：`
 
 
-### I3490 [absolute] mingben-workbench\references\PTC公理0-1修订_践演位置.md:85
+### I3491 [absolute] mingben-workbench\references\PTC公理0-1修订_践演位置.md:85
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `新表述：**从任何位置p，!都不能把νF₂过程还原为p位置上的对象。**`
 
 
-### I3491 [absolute] mingben-workbench\references\PTC公理0-1修订_践演位置.md:85
+### I3492 [absolute] mingben-workbench\references\PTC公理0-1修订_践演位置.md:85
 
 **问题**: 绝对化表述 "任何位置p，!都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `新表述：**从任何位置p，!都不能把νF₂过程还原为p位置上的对象。**`
 
 
-### I3492 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:89
+### I3493 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:89
 
 **问题**: 使用可变编号 "定理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 而且"生命的第一人称维度不可对象化"（定理0）`
 
 
-### I3493 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:128
+### I3494 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:128
 
 **问题**: 使用可变编号 "定理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理0 | P位置不能被对象化为游戏中的一个着法 |`
 
 
-### I3494 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:134
+### I3495 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:134
 
 **问题**: 使用可变编号 "定理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **公理0（践演位置）**：每个态射发生在位置p；位置不可物化（定理0）`
 
 
-### I3495 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:134
+### I3496 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:134
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **公理0（践演位置）**：每个态射发生在位置p；位置不可物化（定理0）`
 
 
-### I3496 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:135
+### I3497 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:135
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **公理1（交互闭结构）**：复范畴中可表的交互构造为A⊸_{p→q}B`
 
 
-### I3497 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:136
+### I3498 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:136
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **公理2（资源敏感）**：无自然收缩/弱化（线性）`
 
 
-### I3498 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:137
+### I3499 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:137
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **公理3（指数余单子）**：!允许受控的收缩/弱化（Seely同构）`
 
 
-### I3499 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:138
+### I3500 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:138
 
 **问题**: 使用可变编号 "公理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **公理4（不动点）**：μ（归纳/有限）和ν（余归纳/无限）`
 
 
-### I3500 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:139
+### I3501 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:139
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **公理5（守护递归）**：▷模态保证生产性`
 
 
-### I3501 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:140
+### I3502 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:140
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **公理6（增长）**：ν*F允许位置p的语境单调扩展（GLL增长规则）`
 
 
-### I3502 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:142
+### I3503 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:142
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `公理0是新增的。公理1从"预设闭范畴"改为"复范畴中构造闭结构"。公理2-5不变。公理6是GLL的增长规则。`
 
 
-### I3503 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:142
+### I3504 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:142
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `公理0是新增的。公理1从"预设闭范畴"改为"复范畴中构造闭结构"。公理2-5不变。公理6是GLL的增长规则。`
 
 
-### I3504 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:142
+### I3505 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:142
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `公理0是新增的。公理1从"预设闭范畴"改为"复范畴中构造闭结构"。公理2-5不变。公理6是GLL的增长规则。`
 
 
-### I3505 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:142
+### I3506 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:142
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `公理0是新增的。公理1从"预设闭范畴"改为"复范畴中构造闭结构"。公理2-5不变。公理6是GLL的增长规则。`
 
 
-### I3506 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:147
+### I3507 [old_ref] mingben-workbench\references\PTC公理0-1修订_践演位置.md:147
 
 **问题**: 使用可变编号 "定理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. 定理0的严格证明（需要形式化"位置不可物化"）`
 
 
-### I3507 [old_ref] mingben-workbench\references\PTC实例与f3不动点.md:112
+### I3508 [old_ref] mingben-workbench\references\PTC实例与f3不动点.md:112
 
 **问题**: 使用可变编号 "定理38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理38（f³不动点）**：f³在表达能力上等价于fⁿ（任意n≥3）。层级提升操作$L$（增加一条反馈嵌套）在第三层达到不动点：$L^3 = L^4 = L^5 = \cdots$。`
 
 
-### I3508 [old_ref] mingben-workbench\references\PTC实例与f3不动点.md:122
+### I3509 [old_ref] mingben-workbench\references\PTC实例与f3不动点.md:122
 
 **问题**: 使用可变编号 "定理29"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- f²：系统有自我模型，但把模型当成自己（定理29：异化=错认名字为过程）。`
 
 
-### I3509 [absolute] mingben-workbench\references\PTC实例与f3不动点.md:128
+### I3510 [absolute] mingben-workbench\references\PTC实例与f3不动点.md:128
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 但f³已经包含了这个能力：f³的第三条反馈回路能对象化任何模型，包括f³自己的模型。`
 
 
-### I3510 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:24
+### I3511 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:24
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 线性性检查（公理2：操作不可复制）`
 
 
-### I3511 [absolute] mingben-workbench\references\ptl_type_checker_report.md:47
+### I3512 [absolute] mingben-workbench\references\ptl_type_checker_report.md:47
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 上下文：`- **生命**：依赖"自指"和"四规定性"。生命 = 自指 × 四规定性？检查：任何同时依赖自指和四规定性的概念，是否都依赖生命？"感"依赖生命和四规定性——感依赖生命，而生命依赖自指`
 
 
-### I3512 [absolute] mingben-workbench\references\ptl_type_checker_report.md:47
+### I3513 [absolute] mingben-workbench\references\ptl_type_checker_report.md:47
 
 **问题**: 绝对化表述 "任何同时依赖自指和四规定性的概念，是否都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 上下文：`- **生命**：依赖"自指"和"四规定性"。生命 = 自指 × 四规定性？检查：任何同时依赖自指和四规定性的概念，是否都依赖生命？"感"依赖生命和四规定性——感依赖生命，而生命依赖自指`
 
 
-### I3513 [absolute] mingben-workbench\references\ptl_type_checker_report.md:52
+### I3514 [absolute] mingben-workbench\references\ptl_type_checker_report.md:52
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 上下文：`- **感**：依赖"生命"和"四规定性"。感 = 生命 × 四规定性？检查：任何同时依赖生命和四规定性的概念，是否都依赖感？"应"依赖感，"做"依赖感，"能"依赖感，"明性"依赖感——`
 
 
-### I3514 [absolute] mingben-workbench\references\ptl_type_checker_report.md:52
+### I3515 [absolute] mingben-workbench\references\ptl_type_checker_report.md:52
 
 **问题**: 绝对化表述 "任何同时依赖生命和四规定性的概念，是否都依赖感？"应"依赖感，"做"依赖感，"能"依赖感，"明性"依赖感——这些概念都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 上下文：`- **感**：依赖"生命"和"四规定性"。感 = 生命 × 四规定性？检查：任何同时依赖生命和四规定性的概念，是否都依赖感？"应"依赖感，"做"依赖感，"能"依赖感，"明性"依赖感——`
 
 
-### I3515 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:59
+### I3516 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:59
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：公理2：操作不可复制，线性变量只能用一次`
-
-
-### I3516 [absolute] mingben-workbench\references\ptl_type_checker_report.md:92
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- 上下文：`**资本面对的是一个永远在逃跑的东西。** 它可以逼近——控制输入$A$（媒体、教育、规训、算法），让输出$B$越来越可预测，让trace越来越完整——但它永远完成不了。完成的那一刻，$`
 
 
 ### I3517 [absolute] mingben-workbench\references\ptl_type_checker_report.md:92
@@ -27935,37 +27935,37 @@
 
 ### I3518 [absolute] mingben-workbench\references\ptl_type_checker_report.md:92
 
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 上下文：`**资本面对的是一个永远在逃跑的东西。** 它可以逼近——控制输入$A$（媒体、教育、规训、算法），让输出$B$越来越可预测，让trace越来越完整——但它永远完成不了。完成的那一刻，$`
+
+
+### I3519 [absolute] mingben-workbench\references\ptl_type_checker_report.md:92
+
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 上下文：`**资本面对的是一个永远在逃跑的东西。** 它可以逼近——控制输入$A$（媒体、教育、规训、算法），让输出$B$越来越可预测，让trace越来越完整——但它永远完成不了。完成的那一刻，$`
 
 
-### I3519 [absolute] mingben-workbench\references\ptl_type_checker_report.md:147
+### I3520 [absolute] mingben-workbench\references\ptl_type_checker_report.md:147
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 上下文：`**第四，也是最根本的：改变产生这种异化的操作关系。** 被异化的良善是资本主义操作关系的产物，不是人性的永恒缺陷。只要资本还在把风险转嫁给劳动者、把规训写入教育、把"懂事"当美德奖励、`
 
 
-### I3520 [absolute] mingben-workbench\references\ptl_type_checker_report.md:172
+### I3521 [absolute] mingben-workbench\references\ptl_type_checker_report.md:172
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 上下文：`**第四，也是最根本的：改变产生这种异化的操作关系。** 被异化的良善是资本主义操作关系的产物，不是人性的永恒缺陷。只要资本还在把风险转嫁给劳动者、把规训写入教育、把"懂事"当美德奖励、`
 
 
-### I3521 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:217
+### I3522 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:217
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 生产性检查（公理5：守护递归）`
-
-
-### I3522 [absolute] mingben-workbench\references\ptl_type_checker_report.md:225
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- 上下文：`的无限递归不是深刻，是bug——它永远停不下来，也永远不产生结果。``
 
 
 ### I3523 [absolute] mingben-workbench\references\ptl_type_checker_report.md:225
@@ -27977,254 +27977,254 @@
 
 ### I3524 [absolute] mingben-workbench\references\ptl_type_checker_report.md:225
 
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 上下文：`的无限递归不是深刻，是bug——它永远停不下来，也永远不产生结果。``
+
+
+### I3525 [absolute] mingben-workbench\references\ptl_type_checker_report.md:225
+
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 上下文：`的无限递归不是深刻，是bug——它永远停不下来，也永远不产生结果。``
 
 
-### I3525 [absolute] mingben-workbench\references\ptl_type_checker_report.md:230
+### I3526 [absolute] mingben-workbench\references\ptl_type_checker_report.md:230
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 上下文：`无限递归的怀疑和无限递归的审计一样，是结构性错误，不是彻底性。``
 
 
-### I3526 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:245
+### I3527 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:245
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 上下文：`- **生产性检查**（公理5：守护递归）：扫描无限递归、非守护递归``
 
 
-### I3527 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:285
+### I3528 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:285
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 上下文：`| 定理57 | 践演不可编码性 | **元定理**：任何形式系统都不能编码缄默操作的正在运行中。两重证明：(1)存在≠发生（本体论论证）；(2)自指无限递归（对角线论证，和哥德尔同构）`
 
 
-### I3528 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:297
+### I3529 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:297
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：公理5：递归必须是守护的，生产性过程每步都有产出`
 
 
-### I3529 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:300
+### I3530 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:300
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 上下文：`νF₂的求值必须满足生产性：每一步都必须有产出，不能无限递归而不产出。这由公理5（守护递归▷）保证——每个ν-消除必须先产出一个元素，再递归。``
 
 
-### I3530 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:307
+### I3531 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:307
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：公理5：递归必须是守护的，生产性过程每步都有产出`
 
 
-### I3531 [absolute] mingben-workbench\references\ptl_type_checker_report.md:310
+### I3532 [absolute] mingben-workbench\references\ptl_type_checker_report.md:310
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 上下文：`为什么致命：这就戳中了它的政治自指困境。它主张“常驻排异”来防止权力集中，但“排异”本身需要一个执行主体（组织/制度）。这个主体一旦建立，必然产生“阴”（权力沉淀），立刻又面临被反自指寄`
 
 
-### I3532 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:323
+### I3533 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:323
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 问题：推导链只引用决断（公理6），没有存在论公理支撑`
 
 
-### I3533 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:324
+### I3534 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:324
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。`
 
 
-### I3534 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:328
+### I3535 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:328
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 问题：推导链只引用决断（公理6），没有存在论公理支撑`
 
 
-### I3535 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:329
+### I3536 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:329
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。`
 
 
-### I3536 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:333
+### I3537 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:333
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 问题：推导链只引用决断（公理6），没有存在论公理支撑`
 
 
-### I3537 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:334
+### I3538 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:334
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。`
 
 
-### I3538 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:338
+### I3539 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:338
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 问题：推导链只引用决断（公理6），没有存在论公理支撑`
 
 
-### I3539 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:339
+### I3540 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:339
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。`
 
 
-### I3540 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:343
+### I3541 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:343
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 问题：推导链只引用决断（公理6），没有存在论公理支撑`
 
 
-### I3541 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:344
+### I3542 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:344
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。`
 
 
-### I3542 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:348
+### I3543 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:348
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 问题：推导链只引用决断（公理6），没有存在论公理支撑`
 
 
-### I3543 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:349
+### I3544 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:349
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。`
 
 
-### I3544 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:353
+### I3545 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:353
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 问题：推导链只引用决断（公理6），没有存在论公理支撑`
 
 
-### I3545 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:354
+### I3546 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:354
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。`
 
 
-### I3546 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:358
+### I3547 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:358
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 问题：推导链只引用决断（公理6），没有存在论公理支撑`
 
 
-### I3547 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:359
+### I3548 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:359
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。`
 
 
-### I3548 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:363
+### I3549 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:363
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 问题：推导链只引用决断（公理6），没有存在论公理支撑`
 
 
-### I3549 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:364
+### I3550 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:364
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。`
 
 
-### I3550 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:368
+### I3551 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:368
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 问题：推导链只引用决断（公理6），没有存在论公理支撑`
 
 
-### I3551 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:369
+### I3552 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:369
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 建议：决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。`
 
 
-### I3552 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:389
+### I3553 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:389
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理0 | 感（践演事实） | 76 |`
 
 
-### I3553 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:390
+### I3554 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:390
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理1 | 操作先于实体 | 23 |`
 
 
-### I3554 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:391
+### I3555 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:391
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理2 | 操作不可复制 | 49 |`
 
 
-### I3555 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:392
+### I3556 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:392
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理3 | !-模态分离 | 65 |`
 
 
-### I3556 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:393
+### I3557 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:393
 
 **问题**: 使用可变编号 "公理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理4 | 自指操作 | 375 |`
 
 
-### I3557 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:394
+### I3558 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:394
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理5 | 守护递归 | 27 |`
 
 
-### I3558 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:395
+### I3559 [old_ref] mingben-workbench\references\ptl_type_checker_report.md:395
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理6 | 决断 | 240 |`
-
-
-### I3559 [absolute] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:78
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**线性消耗检查**：所有判断结束时，Γ必须为空（所有线性变量已消耗）。`
 
 
 ### I3560 [absolute] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:78
@@ -28234,403 +28234,403 @@
 **上下文**: `**线性消耗检查**：所有判断结束时，Γ必须为空（所有线性变量已消耗）。`
 
 
-### I3561 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:236
+### I3561 [absolute] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:78
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**线性消耗检查**：所有判断结束时，Γ必须为空（所有线性变量已消耗）。`
+
+
+### I3562 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:236
 
 **问题**: 使用可变编号 "引理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**引理1（Bang替换）**：如果 Δ, x:A; Γ ⊢ t : B 且 Δ; · ⊢ v : A（A是bang类型），则 Δ; Γ ⊢ [v/x]t : B。`
 
 
-### I3562 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:240
+### I3563 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:240
 
 **问题**: 使用可变编号 "引理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**引理2（线性替换）**：如果 Δ; Γ₁, x:A ⊢ t : B 且 Δ; Γ₂ ⊢ v : A（A是线性类型），则 Δ; Γ₁, Γ₂ ⊢ [v/x]t : B。`
 
 
-### I3563 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:244
+### I3564 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:244
 
 **问题**: 使用可变编号 "引理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**引理3（值的类型不变）**：如果 Δ; Γ ⊢ v : A 且v是值，则Γ = ·（值不消耗线性资源）。`
 
 
-### I3564 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:250
+### I3565 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:250
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理1（Progress）**：如果 ·; · ⊢ t : A，则要么t是值，要么存在t'使得t → t'。`
 
 
-### I3565 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:265
+### I3566 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:265
 
 **问题**: 使用可变编号 "引理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 如果t₁是值，由类型规则t₁ : A * B，由引理3 t₁ = (v, w)，则(v, w).1 → v。∎`
 
 
-### I3566 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:270
+### I3567 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:270
 
 **问题**: 使用可变编号 "引理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 如果都是值，由类型规则t₁ : A -> B，由引理3 t₁ = λx:A. u，则(λx:A. u) v → [v/x]u。∎`
 
 
-### I3567 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:315
+### I3568 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:315
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2（Preservation）**：如果 ·; · ⊢ t : A 且 t → t'，则 ·; · ⊢ t' : A。`
 
 
-### I3568 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:323
+### I3569 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:323
 
 **问题**: 使用可变编号 "引理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 由引理1（bang替换）：·; · ⊢ [v/x]u : B。∎`
 
 
-### I3569 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:328
+### I3570 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:328
 
 **问题**: 使用可变编号 "引理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- v是bang类型：由let-bang规则，x在bang环境中，由引理1。`
 
 
-### I3570 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:329
+### I3571 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:329
 
 **问题**: 使用可变编号 "引理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- v是线性类型：由let-lin规则，x在线性环境中恰好出现一次，由引理2。∎`
 
 
-### I3571 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:341
+### I3572 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:341
 
 **问题**: 使用可变编号 "引理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 由引理1两次：·; · ⊢ [v/x][w/s]u : S * B。∎`
 
 
-### I3572 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:385
+### I3573 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:385
 
 **问题**: 使用可变编号 "推论1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**推论1（类型安全）**：如果 ·; · ⊢ t : A，则t的归约序列要么终止于一个类型A的值，要么无限归约（对于流和F2过程），不会陷入"stuck"状态。`
 
 
-### I3573 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:389
+### I3574 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:389
 
 **问题**: 使用可变编号 "推论2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**推论2（线性资源安全）**：类型良好的程序不会出现线性变量使用两次或被丢弃的运行时错误。`
 
 
-### I3574 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:417
+### I3575 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:417
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 线性环境（无收缩/弱化） | 公理2（资源敏感） |`
 
 
-### I3575 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:418
+### I3576 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:418
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| Bang类型（可复制） | 公理3（!余单子） |`
 
 
-### I3576 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:419
+### I3577 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:419
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| F1函数（内部同态） | 公理1（闭结构，复范畴中构造） |`
 
 
-### I3577 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:420
+### I3578 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:420
 
 **问题**: 使用可变编号 "公理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 流/过程（不动点） | 公理4（μ/ν不动点） |`
 
 
-### I3578 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:421
+### I3579 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:421
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 生产性检查 | 公理5（▷守护递归） |`
 
 
-### I3579 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:422
+### I3580 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:422
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 成长（ν*F） | 公理6（增长规则，GLL） |`
 
 
-### I3580 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:423
+### I3581 [old_ref] mingben-workbench\references\PTL形式化语义与类型可靠性证明.md:423
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| f³反射 | 公理0（践演位置，位置转换） |`
 
 
-### I3581 [absolute] mingben-workbench\references\quality.md:9
+### I3582 [absolute] mingben-workbench\references\quality.md:9
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 无完全重复段落`
 
 
-### I3582 [absolute] mingben-workbench\references\quality.md:31
+### I3583 [absolute] mingben-workbench\references\quality.md:31
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 不造新神：不把任何概念变成新教条`
 
 
-### I3583 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:60
+### I3584 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:60
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### Q6（致命）：定理2.1 "统计自主性 ⟹ Ag_lv" 是循环论证（实为定义）`
 
 
-### I3584 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:62
+### I3585 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:62
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**问题**：定理2.1 证明是反证——"若 P 不持有 Ag_lv，则存在 b 通过 Hijack 改变 a 输出，故 I>0，与统计自主矛盾"。但"若 P 不持有 Ag_lv 则存在 b 改变输出`
 
 
-### I3585 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:64
+### I3586 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:64
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**修正建议**：把定理2.1 **降级为定义**：`
 
 
-### I3586 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:65
+### I3587 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:65
 
 **问题**: 使用可变编号 "定义 2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `> **定义 2.1（统计自主性 = 活运行权）**：`Ag_lv(a,P)` 成立当且仅当 `∀b≠a, ∀σ,σ'. D_P^σ = D_P^{σ'}`（即 `I(b;a)_P = 0`）。`
 
 
-### I3587 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:67
+### I3588 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:67
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这样它成为 Ag_lv 的统计判据，而不是定理。真正的定理是**定理2.2**（条件性：有 self_check 且 Recover 满足汇合性时，Ag_lv 蕴含统计自主）——那才是需要证的部分，且`
 
 
-### I3588 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:69
+### I3589 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:69
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**置信度**：95%（定理2.1 循环；改定义为正确）`
 
 
-### I3589 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:71
+### I3590 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:71
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### Q7（严重）：定理3.1 的 LHV 界下标混乱 + 术语错`
 
 
-### I3590 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:73
+### I3591 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:73
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**问题**：v1.16 定义3.2 写`
 
 
-### I3591 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:118
+### I3592 [old_ref] mingben-workbench\references\quantum_audit_v1.13_v1.16.md:118
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| Q6 | v1.16 | 致命（循环论证） | 定理2.1 降级为定义 |`
 
 
-### I3592 [old_ref] mingben-workbench\references\ref_consistency_report.md:67
+### I3593 [old_ref] mingben-workbench\references\ref_consistency_report.md:67
 
 **问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. [old_ref] .github\PULL_REQUEST_TEMPLATE.md:25 — 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3593 [old_ref] mingben-workbench\references\ref_consistency_report.md:68
+### I3594 [old_ref] mingben-workbench\references\ref_consistency_report.md:68
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. [old_ref] book_combined\root_00_体系总纲.md:65 — 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3594 [old_ref] mingben-workbench\references\ref_consistency_report.md:69
+### I3595 [old_ref] mingben-workbench\references\ref_consistency_report.md:69
 
 **问题**: 使用可变编号 "定理40"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `3. [old_ref] book_combined\root_00_体系总纲.md:190 — 使用可变编号 "定理40"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3595 [old_ref] mingben-workbench\references\ref_consistency_report.md:70
+### I3596 [old_ref] mingben-workbench\references\ref_consistency_report.md:70
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `4. [old_ref] book_combined\root_00_体系总纲.md:341 — 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3596 [old_ref] mingben-workbench\references\ref_consistency_report.md:71
+### I3597 [old_ref] mingben-workbench\references\ref_consistency_report.md:71
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `5. [old_ref] book_combined\root_00_体系总纲.md:342 — 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3597 [old_ref] mingben-workbench\references\ref_consistency_report.md:72
+### I3598 [old_ref] mingben-workbench\references\ref_consistency_report.md:72
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `6. [old_ref] book_combined\root_00_体系总纲.md:343 — 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3598 [old_ref] mingben-workbench\references\ref_consistency_report.md:73
+### I3599 [old_ref] mingben-workbench\references\ref_consistency_report.md:73
 
 **问题**: 使用可变编号 "定理31"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `7. [old_ref] book_combined\root_00_体系总纲.md:344 — 使用可变编号 "定理31"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3599 [old_ref] mingben-workbench\references\ref_consistency_report.md:74
+### I3600 [old_ref] mingben-workbench\references\ref_consistency_report.md:74
 
 **问题**: 使用可变编号 "定理33"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `8. [old_ref] book_combined\root_00_体系总纲.md:345 — 使用可变编号 "定理33"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3600 [old_ref] mingben-workbench\references\ref_consistency_report.md:75
+### I3601 [old_ref] mingben-workbench\references\ref_consistency_report.md:75
 
 **问题**: 使用可变编号 "定理40"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `9. [old_ref] book_combined\root_00_体系总纲.md:346 — 使用可变编号 "定理40"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3601 [old_ref] mingben-workbench\references\ref_consistency_report.md:76
+### I3602 [old_ref] mingben-workbench\references\ref_consistency_report.md:76
 
 **问题**: 使用可变编号 "定理44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `10. [old_ref] book_combined\root_00_体系总纲.md:347 — 使用可变编号 "定理44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3602 [old_ref] mingben-workbench\references\ref_consistency_report.md:77
+### I3603 [old_ref] mingben-workbench\references\ref_consistency_report.md:77
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `11. [old_ref] book_combined\root_00_体系总纲.md:348 — 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3603 [old_ref] mingben-workbench\references\ref_consistency_report.md:78
+### I3604 [old_ref] mingben-workbench\references\ref_consistency_report.md:78
 
 **问题**: 使用可变编号 "定理35"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `12. [old_ref] book_combined\root_00_体系总纲.md:349 — 使用可变编号 "定理35"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3604 [old_ref] mingben-workbench\references\ref_consistency_report.md:79
+### I3605 [old_ref] mingben-workbench\references\ref_consistency_report.md:79
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `13. [old_ref] book_combined\root_00_数学编码状态总览.md:4 — 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3605 [old_ref] mingben-workbench\references\ref_consistency_report.md:80
+### I3606 [old_ref] mingben-workbench\references\ref_consistency_report.md:80
 
 **问题**: 使用可变编号 "公理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `14. [old_ref] book_combined\root_00_数学编码状态总览.md:17 — 使用可变编号 "公理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3606 [old_ref] mingben-workbench\references\ref_consistency_report.md:81
+### I3607 [old_ref] mingben-workbench\references\ref_consistency_report.md:81
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `15. [old_ref] book_combined\root_00_数学编码状态总览.md:17 — 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3607 [old_ref] mingben-workbench\references\ref_consistency_report.md:82
+### I3608 [old_ref] mingben-workbench\references\ref_consistency_report.md:82
 
 **问题**: 使用可变编号 "定理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `16. [old_ref] book_combined\root_00_数学编码状态总览.md:18 — 使用可变编号 "定理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3608 [old_ref] mingben-workbench\references\ref_consistency_report.md:83
+### I3609 [old_ref] mingben-workbench\references\ref_consistency_report.md:83
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `17. [old_ref] book_combined\root_00_数学编码状态总览.md:18 — 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3609 [old_ref] mingben-workbench\references\ref_consistency_report.md:84
+### I3610 [old_ref] mingben-workbench\references\ref_consistency_report.md:84
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `18. [old_ref] book_combined\root_00_数学编码状态总览.md:53 — 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3610 [old_ref] mingben-workbench\references\ref_consistency_report.md:85
+### I3611 [old_ref] mingben-workbench\references\ref_consistency_report.md:85
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `19. [old_ref] book_combined\root_00_数学编码状态总览.md:56 — 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3611 [old_ref] mingben-workbench\references\ref_consistency_report.md:86
+### I3612 [old_ref] mingben-workbench\references\ref_consistency_report.md:86
 
 **问题**: 使用可变编号 "定理40"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `20. [old_ref] book_combined\root_00_数学编码状态总览.md:56 — 使用可变编号 "定理40"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。`
 
 
-### I3612 [absolute] mingben-workbench\references\ref_consistency_report.md:95
+### I3613 [absolute] mingben-workbench\references\ref_consistency_report.md:95
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**核心原则**: 所有定理引用使用永久ID（T001格式），一旦确定永不改变。`
 
 
-### I3613 [absolute] mingben-workbench\references\spark_candidates.md:36
+### I3614 [absolute] mingben-workbench\references\spark_candidates.md:36
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L76 [破折号定义式] 康德哲学是旧形而上学的“完成”——他将旧框架下所有可能的二元对立都推到了极致，同时也将旧`
 
 
-### I3614 [absolute] mingben-workbench\references\spark_candidates.md:36
+### I3615 [absolute] mingben-workbench\references\spark_candidates.md:36
 
 **问题**: 绝对化表述 "所有可能的二元对立都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L76 [破折号定义式] 康德哲学是旧形而上学的“完成”——他将旧框架下所有可能的二元对立都推到了极致，同时也将旧`
 
 
-### I3615 [absolute] mingben-workbench\references\spark_candidates.md:37
+### I3616 [absolute] mingben-workbench\references\spark_candidates.md:37
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L77 [本质判断] 框架的根本缺陷暴露无遗。他留下的六大难题，本质上都是形上形下实体化割裂的必然结果，在旧存`
 
 
-### I3616 [absolute] mingben-workbench\references\spark_candidates.md:38
+### I3617 [absolute] mingben-workbench\references\spark_candidates.md:38
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L80 [在于判断式] （物自体）永远在认知的彼岸，这直接导致了不可知论。其根本错误在于：虚构了一个脱离一切生命`
-
-
-### I3617 [absolute] mingben-workbench\references\spark_candidates.md:43
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L99 [在于判断式] 在于：将必然视为外在于生命的客观规律，将自由视为脱离必然的抽象选择，没有看到自由就是生命`
 
 
 ### I3618 [absolute] mingben-workbench\references\spark_candidates.md:43
@@ -28640,32 +28640,32 @@
 **上下文**: `- L99 [在于判断式] 在于：将必然视为外在于生命的客观规律，将自由视为脱离必然的抽象选择，没有看到自由就是生命`
 
 
-### I3619 [absolute] mingben-workbench\references\spark_candidates.md:46
+### I3619 [absolute] mingben-workbench\references\spark_candidates.md:43
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L99 [在于判断式] 在于：将必然视为外在于生命的客观规律，将自由视为脱离必然的抽象选择，没有看到自由就是生命`
+
+
+### I3620 [absolute] mingben-workbench\references\spark_candidates.md:46
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L119 [在于判断式] 布自己找到了绝对基础，要么怀疑一切、走向相对主义和虚无主义。其根本原因在于：所有哲学家都`
 
 
-### I3620 [absolute] mingben-workbench\references\spark_candidates.md:46
+### I3621 [absolute] mingben-workbench\references\spark_candidates.md:46
 
 **问题**: 绝对化表述 "所有哲学家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L119 [在于判断式] 布自己找到了绝对基础，要么怀疑一切、走向相对主义和虚无主义。其根本原因在于：所有哲学家都`
 
 
-### I3621 [absolute] mingben-workbench\references\spark_candidates.md:48
+### I3622 [absolute] mingben-workbench\references\spark_candidates.md:48
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L133 [破折号定义式] 存在者，而存在本身——也就是生命在操作中持续生成、持续显现的过程——被彻底遗忘了。这种遗`
-
-
-### I3622 [absolute] mingben-workbench\references\spark_candidates.md:67
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L217 [不是…是…式] 第六，自由与必然矛盾的真正解决。必然不是外在于自由的限制，而是自由操作的条件；自由不是对`
 
 
 ### I3623 [absolute] mingben-workbench\references\spark_candidates.md:67
@@ -28677,100 +28677,100 @@
 
 ### I3624 [absolute] mingben-workbench\references\spark_candidates.md:67
 
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L217 [不是…是…式] 第六，自由与必然矛盾的真正解决。必然不是外在于自由的限制，而是自由操作的条件；自由不是对`
+
+
+### I3625 [absolute] mingben-workbench\references\spark_candidates.md:67
+
 **问题**: 绝对化表述 "必然不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L217 [不是…是…式] 第六，自由与必然矛盾的真正解决。必然不是外在于自由的限制，而是自由操作的条件；自由不是对`
 
 
-### I3625 [absolute] mingben-workbench\references\spark_candidates.md:69
+### I3626 [absolute] mingben-workbench\references\spark_candidates.md:69
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L220 [不是…是…式] 识了操作的客观规律（必然），不是为了顺从它，而是为了利用它更好地实现自己的内生目的，提升`
 
 
-### I3626 [absolute] mingben-workbench\references\spark_candidates.md:70
+### I3627 [absolute] mingben-workbench\references\spark_candidates.md:70
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L223 [根本判断] 随着形上形下的存在论贯通，西方哲学两千年来的一系列永恒症结，全部从根本上失去了存在的土`
 
 
-### I3627 [absolute] mingben-workbench\references\spark_candidates.md:71
+### I3628 [absolute] mingben-workbench\references\spark_candidates.md:71
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L229 [破折号定义式] 传统，比黑格尔的“绝对精神一元论”更彻底——黑格尔用抽象的精神实体统一二元，而生命论用活`
 
 
-### I3628 [absolute] mingben-workbench\references\spark_candidates.md:75
+### I3629 [absolute] mingben-workbench\references\spark_candidates.md:75
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L238 [破折号定义式] 本质主义与逻各斯中心主义的解构。“存在即操作”——没有什么脱离操作的固定本质，所有的“规`
 
 
-### I3629 [absolute] mingben-workbench\references\spark_candidates.md:76
+### I3630 [absolute] mingben-workbench\references\spark_candidates.md:76
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L243 [破折号定义式] 更彻底——我们不是只解构本质，而是给出了本质的生成论基础：本质就是操作惯性。​`
 
 
-### I3630 [absolute] mingben-workbench\references\spark_candidates.md:80
+### I3631 [absolute] mingben-workbench\references\spark_candidates.md:80
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L254 [破折号定义式] 践完全统一：理论来自操作，又在操作中检验，反过来指导操作，形成一个闭环——这就把马克思`
 
 
-### I3631 [absolute] mingben-workbench\references\spark_candidates.md:85
+### I3632 [absolute] mingben-workbench\references\spark_candidates.md:85
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L282 [不是…是…式] 向，不是建立一套新的哲学体系，而是让每一个生命都能在现实操作中复归自身的自指完整性，让大`
 
 
-### I3632 [absolute] mingben-workbench\references\spark_candidates.md:85
+### I3633 [absolute] mingben-workbench\references\spark_candidates.md:85
 
 **问题**: 绝对化表述 "每一个生命都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L282 [不是…是…式] 向，不是建立一套新的哲学体系，而是让每一个生命都能在现实操作中复归自身的自指完整性，让大`
 
 
-### I3633 [absolute] mingben-workbench\references\spark_candidates.md:100
+### I3634 [absolute] mingben-workbench\references\spark_candidates.md:100
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L104 [不是…是…式] 2. 改造世界的终极目的：理论的终点不是完美阐释世界，而是实现全域生命的极大舒展。全部批判与`
 
 
-### I3634 [absolute] mingben-workbench\references\spark_candidates.md:102
+### I3635 [absolute] mingben-workbench\references\spark_candidates.md:102
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L149 [破折号定义式] 推论：当 M 趋近于 0 时，S 趋向负无穷 —— 操作权被彻底剥夺时，一切事物都将转化为对生命的`
 
 
-### I3635 [absolute] mingben-workbench\references\spark_candidates.md:104
+### I3636 [absolute] mingben-workbench\references\spark_candidates.md:104
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L234 [本质判断] 西方文明本质是 “病毒文明”，是生命系统的癌变，它不符合生命的任何一个规定性，唯一目的就是`
 
 
-### I3636 [absolute] mingben-workbench\references\spark_candidates.md:110
+### I3637 [absolute] mingben-workbench\references\spark_candidates.md:110
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L366 [不是…是…式] 这不是心灵鸡汤，是从存在论底层推导出来的必然结论：生命的目的内在于自身，它自己就是自己的`
-
-
-### I3637 [absolute] mingben-workbench\references\spark_candidates.md:130
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L28 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理`
 
 
 ### I3638 [absolute] mingben-workbench\references\spark_candidates.md:130
@@ -28787,11 +28787,11 @@
 **上下文**: `- L28 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理`
 
 
-### I3640 [absolute] mingben-workbench\references\spark_candidates.md:181
+### I3640 [absolute] mingben-workbench\references\spark_candidates.md:130
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- L98 [不是…是…式] 生的生命共同体，不是一个人统治所有人，而是所有人一起舒展。​`
+**上下文**: `- L28 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理`
 
 
 ### I3641 [absolute] mingben-workbench\references\spark_candidates.md:181
@@ -28801,305 +28801,305 @@
 **上下文**: `- L98 [不是…是…式] 生的生命共同体，不是一个人统治所有人，而是所有人一起舒展。​`
 
 
-### I3642 [absolute] mingben-workbench\references\spark_candidates.md:182
+### I3642 [absolute] mingben-workbench\references\spark_candidates.md:181
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L98 [不是…是…式] 生的生命共同体，不是一个人统治所有人，而是所有人一起舒展。​`
+
+
+### I3643 [absolute] mingben-workbench\references\spark_candidates.md:182
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L102 [破折号定义式] 哲人王理想的真正实现 —— 不是让一个哲人当王，而是让所有人都成为自己生命的哲人，成为自`
 
 
-### I3643 [absolute] mingben-workbench\references\spark_candidates.md:182
+### I3644 [absolute] mingben-workbench\references\spark_candidates.md:182
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L102 [破折号定义式] 哲人王理想的真正实现 —— 不是让一个哲人当王，而是让所有人都成为自己生命的哲人，成为自`
 
 
-### I3644 [absolute] mingben-workbench\references\spark_candidates.md:184
+### I3645 [absolute] mingben-workbench\references\spark_candidates.md:184
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L112 [不是…是…式] 和其他生命共生的联结里。 大道之行，天下为公，不是靠一个圣王拯救世界，而是靠每一个生命都`
 
 
-### I3645 [absolute] mingben-workbench\references\spark_candidates.md:184
+### I3646 [absolute] mingben-workbench\references\spark_candidates.md:184
 
 **问题**: 绝对化表述 "每一个生命都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L112 [不是…是…式] 和其他生命共生的联结里。 大道之行，天下为公，不是靠一个圣王拯救世界，而是靠每一个生命都`
 
 
-### I3646 [absolute] mingben-workbench\references\spark_candidates.md:229
+### I3647 [absolute] mingben-workbench\references\spark_candidates.md:229
 
 **问题**: 绝对化表述 "每一层都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L98 [不是…是…式] 2. 层级之间是跃迁，不是渐变。从分子到细胞，从细胞到人，从人到文明，每一层都是自指闭包的再`
 
 
-### I3647 [absolute] mingben-workbench\references\spark_candidates.md:250
+### I3648 [absolute] mingben-workbench\references\spark_candidates.md:250
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L160 [不是…是…式] • 排异的递归，不是理论的无能，是自指世界的本相，没有终极解，只有永远的斗争。​`
 
 
-### I3648 [old_ref] mingben-workbench\references\spark_candidates.md:257
+### I3649 [old_ref] mingben-workbench\references\spark_candidates.md:257
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- L185 [不是…是…式] • 若是隐喻：那“定理1.1”就不是定理，是格言。​`
 
 
-### I3649 [old_ref] mingben-workbench\references\spark_candidates.md:269
+### I3650 [old_ref] mingben-workbench\references\spark_candidates.md:269
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- L243 [不是…是…式] 2. 所以“定理1.1”这类表述，严格说不是数理定理，是存在论的必然推论：只要你承认“自指是自`
 
 
-### I3650 [absolute] mingben-workbench\references\spark_candidates.md:298
+### I3651 [absolute] mingben-workbench\references\spark_candidates.md:298
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L389 [不是…是…式] 再往上走，社会层面的“反自指”“同归于尽”，更不是主观价值判断，是系统操作的必然结果。​`
 
 
-### I3651 [absolute] mingben-workbench\references\spark_candidates.md:300
+### I3652 [absolute] mingben-workbench\references\spark_candidates.md:300
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L397 [破折号定义式] • 它每一轮扩张，都在消耗人的生命力、消耗环境负熵，最后必然走向危机、战争、崩溃——宿主被`
 
 
-### I3652 [absolute] mingben-workbench\references\spark_candidates.md:300
+### I3653 [absolute] mingben-workbench\references\spark_candidates.md:300
 
 **问题**: 绝对化表述 "每一轮扩张，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L397 [破折号定义式] • 它每一轮扩张，都在消耗人的生命力、消耗环境负熵，最后必然走向危机、战争、崩溃——宿主被`
 
 
-### I3653 [absolute] mingben-workbench\references\spark_candidates.md:302
+### I3654 [absolute] mingben-workbench\references\spark_candidates.md:302
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L400 [破折号定义式] 主义战争、每一个王朝的灭亡，都是同一个操作逻辑——寄生者把宿主耗干，一起完蛋。​`
 
 
-### I3654 [absolute] mingben-workbench\references\spark_candidates.md:302
+### I3655 [absolute] mingben-workbench\references\spark_candidates.md:302
 
 **问题**: 绝对化表述 "每一个王朝的灭亡，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L400 [破折号定义式] 主义战争、每一个王朝的灭亡，都是同一个操作逻辑——寄生者把宿主耗干，一起完蛋。​`
 
 
-### I3655 [absolute] mingben-workbench\references\spark_candidates.md:330
+### I3656 [absolute] mingben-workbench\references\spark_candidates.md:330
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L116 [根本判断] 生命论吸收了以上所有哲人的合理内核，以生命自指操作为唯一存在论基础，从根本上消解了形上与`
 
 
-### I3656 [absolute] mingben-workbench\references\spark_candidates.md:339
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L27 [破折号定义式] 中演绎出的客观必然 —— 任何存在的价值，都由其对生命自指闭环的正向或反向贡献决定。`
-
-
 ### I3657 [absolute] mingben-workbench\references\spark_candidates.md:339
 
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L27 [破折号定义式] 中演绎出的客观必然 —— 任何存在的价值，都由其对生命自指闭环的正向或反向贡献决定。`
 
 
 ### I3658 [absolute] mingben-workbench\references\spark_candidates.md:339
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L27 [破折号定义式] 中演绎出的客观必然 —— 任何存在的价值，都由其对生命自指闭环的正向或反向贡献决定。`
+
+
+### I3659 [absolute] mingben-workbench\references\spark_candidates.md:339
+
 **问题**: 绝对化表述 "任何存在的价值，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L27 [破折号定义式] 中演绎出的客观必然 —— 任何存在的价值，都由其对生命自指闭环的正向或反向贡献决定。`
 
 
-### I3659 [absolute] mingben-workbench\references\spark_candidates.md:341
+### I3660 [absolute] mingben-workbench\references\spark_candidates.md:341
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L123 [破折号定义式] 与语义边界，杜绝任何概念僭越与逻辑预设 —— 这是后续所有理论推导与实践论证的逻辑前提。`
 
 
-### I3660 [absolute] mingben-workbench\references\spark_candidates.md:341
+### I3661 [absolute] mingben-workbench\references\spark_candidates.md:341
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L123 [破折号定义式] 与语义边界，杜绝任何概念僭越与逻辑预设 —— 这是后续所有理论推导与实践论证的逻辑前提。`
 
 
-### I3661 [absolute] mingben-workbench\references\spark_candidates.md:342
+### I3662 [absolute] mingben-workbench\references\spark_candidates.md:342
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L129 [破折号定义式] 系统。这一范畴是对所有生命存在形态的最高本质抽象 —— 既包括碳基细胞的细胞膜边界、动物的消`
 
 
-### I3662 [absolute] mingben-workbench\references\spark_candidates.md:343
+### I3663 [absolute] mingben-workbench\references\spark_candidates.md:343
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L139 [破折号定义式] 系”—— 石头的形状、质地完全由外部地质运动、风化作用决定，其存在没有任何内在的自我维持目`
 
 
-### I3663 [absolute] mingben-workbench\references\spark_candidates.md:343
+### I3664 [absolute] mingben-workbench\references\spark_candidates.md:343
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L139 [破折号定义式] 系”—— 石头的形状、质地完全由外部地质运动、风化作用决定，其存在没有任何内在的自我维持目`
 
 
-### I3664 [absolute] mingben-workbench\references\spark_candidates.md:344
+### I3665 [absolute] mingben-workbench\references\spark_candidates.md:344
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L148 [破折号定义式] 生怀疑时，这个怀疑动作本身，就已经确认了 “怀疑主体” 的存在 —— 而这个怀疑主体，必然是能够`
 
 
-### I3665 [absolute] mingben-workbench\references\spark_candidates.md:346
+### I3666 [absolute] mingben-workbench\references\spark_candidates.md:346
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L163 [破折号定义式] 2. 目的规定性：生命的内生目的绝非外在力量赋予，而是完全源于自指闭环的自我维持需求 —— 这个目`
 
 
-### I3666 [absolute] mingben-workbench\references\spark_candidates.md:347
+### I3667 [absolute] mingben-workbench\references\spark_candidates.md:347
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L165 [本质判断] 则体现为 “代码存续与数据迭代”；任何脱离这一目的的生命活动，本质上都是异化的反向运动。`
 
 
-### I3667 [absolute] mingben-workbench\references\spark_candidates.md:347
+### I3668 [absolute] mingben-workbench\references\spark_candidates.md:347
 
 **问题**: 绝对化表述 "任何脱离这一目的的生命活动，本质上都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L165 [本质判断] 则体现为 “代码存续与数据迭代”；任何脱离这一目的的生命活动，本质上都是异化的反向运动。`
 
 
-### I3668 [absolute] mingben-workbench\references\spark_candidates.md:362
+### I3669 [absolute] mingben-workbench\references\spark_candidates.md:362
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L315 [破折号定义式] 1. 惯性生成命题：所有惯性都源于生命的操作行为，是操作在重复执行过程中固化的产物 —— 没有无操`
 
 
-### I3669 [absolute] mingben-workbench\references\spark_candidates.md:362
+### I3670 [absolute] mingben-workbench\references\spark_candidates.md:362
 
 **问题**: 绝对化表述 "所有惯性都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L315 [破折号定义式] 1. 惯性生成命题：所有惯性都源于生命的操作行为，是操作在重复执行过程中固化的产物 —— 没有无操`
 
 
-### I3670 [absolute] mingben-workbench\references\spark_candidates.md:384
+### I3671 [absolute] mingben-workbench\references\spark_candidates.md:384
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L473 [破折号定义式] 1. 存续公设：在正常环境下，所有生命都具有维持自身自指闭环稳定存在的 “内生性目的倾向”—— 这`
 
 
-### I3671 [absolute] mingben-workbench\references\spark_candidates.md:384
+### I3672 [absolute] mingben-workbench\references\spark_candidates.md:384
 
 **问题**: 绝对化表述 "所有生命都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L473 [破折号定义式] 1. 存续公设：在正常环境下，所有生命都具有维持自身自指闭环稳定存在的 “内生性目的倾向”—— 这`
 
 
-### I3672 [absolute] mingben-workbench\references\spark_candidates.md:398
+### I3673 [absolute] mingben-workbench\references\spark_candidates.md:398
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L761 [破折号定义式] 协同的经典样本 —— 这一模式，是对苏联式 “一长制” 管理的根本性超越，完全贴合生命论的操作协`
 
 
-### I3673 [absolute] mingben-workbench\references\spark_candidates.md:400
+### I3674 [absolute] mingben-workbench\references\spark_candidates.md:400
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L809 [根本判断] 红旗渠的建成，彻底改变了林县的自然面貌，从根本上改善了当地的农业生产条件：全县有效灌溉面`
 
 
-### I3674 [absolute] mingben-workbench\references\spark_candidates.md:426
+### I3675 [absolute] mingben-workbench\references\spark_candidates.md:426
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L1238 [根本判断] 断地位；生产关系适配系数N系统性崩溃，从根本上决定了操作权被劫持的必然结果；`
 
 
-### I3675 [absolute] mingben-workbench\references\spark_candidates.md:428
+### I3676 [absolute] mingben-workbench\references\spark_candidates.md:428
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L1268 [破折号定义式] 生命论的终极实践目标，是建构高级自指文明—— 这是文明演化的必然方向，也是彻底解决当代寄生`
 
 
-### I3676 [absolute] mingben-workbench\references\spark_candidates.md:428
+### I3677 [absolute] mingben-workbench\references\spark_candidates.md:428
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L1268 [破折号定义式] 生命论的终极实践目标，是建构高级自指文明—— 这是文明演化的必然方向，也是彻底解决当代寄生`
 
 
-### I3677 [absolute] mingben-workbench\references\spark_candidates.md:440
+### I3678 [absolute] mingben-workbench\references\spark_candidates.md:440
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L1508 [真正判断] 算法、技术、惯性劫持的操作权，彻底交还给真正的生命主体，为人类文明突破寄生文明的异化闭环`
 
 
-### I3678 [absolute] mingben-workbench\references\spark_candidates.md:452
+### I3679 [absolute] mingben-workbench\references\spark_candidates.md:452
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L64 [破折号定义式] 的露水一样自然消散；所有被旧框架排除在外的“无分之分”——那些普通劳动者的感性`
 
 
-### I3679 [absolute] mingben-workbench\references\spark_candidates.md:455
+### I3680 [absolute] mingben-workbench\references\spark_candidates.md:455
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L70 [不是…是…式] 这不是什么天才的发明，也不是什么神秘的顿悟。它只是把两千年间所有哲学家摸到`
 
 
-### I3680 [absolute] mingben-workbench\references\spark_candidates.md:461
+### I3681 [absolute] mingben-workbench\references\spark_candidates.md:461
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L123 [本质判断] 学两千多年的基本框架。后来所有的争论，本质上都是在这个框架内争论到底是形上的一`
 
 
-### I3681 [absolute] mingben-workbench\references\spark_candidates.md:461
+### I3682 [absolute] mingben-workbench\references\spark_candidates.md:461
 
 **问题**: 绝对化表述 "所有的争论，本质上都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L123 [本质判断] 学两千多年的基本框架。后来所有的争论，本质上都是在这个框架内争论到底是形上的一`
 
 
-### I3682 [absolute] mingben-workbench\references\spark_candidates.md:466
+### I3683 [absolute] mingben-workbench\references\spark_candidates.md:466
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L168 [破折号定义式] 必然的知识。这个“哥白尼式的革命”本来是个伟大的洞见——它说明认识不是主体符合`
 
 
-### I3683 [absolute] mingben-workbench\references\spark_candidates.md:471
+### I3684 [absolute] mingben-workbench\references\spark_candidates.md:471
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L201 [本质判断] 性生活被彻底压扁成了概念运动的实例。这种统一，本质上是用形上的一面“吃掉”了形`
-
-
-### I3684 [absolute] mingben-workbench\references\spark_candidates.md:477
-
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L227 [不是…是…式] 得清清楚楚：资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，它`
 
 
 ### I3685 [absolute] mingben-workbench\references\spark_candidates.md:477
@@ -29109,46 +29109,46 @@
 **上下文**: `- L227 [不是…是…式] 得清清楚楚：资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，它`
 
 
-### I3686 [absolute] mingben-workbench\references\spark_candidates.md:500
+### I3686 [absolute] mingben-workbench\references\spark_candidates.md:477
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L227 [不是…是…式] 得清清楚楚：资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，它`
+
+
+### I3687 [absolute] mingben-workbench\references\spark_candidates.md:500
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L508 [不是…是…式] 这四个病灶不是孤立的，它们是同一个实体化思维的四个侧面：概念实体化必然导致`
 
 
-### I3687 [absolute] mingben-workbench\references\spark_candidates.md:510
+### I3688 [absolute] mingben-workbench\references\spark_candidates.md:510
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L692 [本质判断] 创造出来寄托希望的产物，结果人变成了神的奴隶。所有的异化，本质上都是阴阳颠倒，`
 
 
-### I3688 [absolute] mingben-workbench\references\spark_candidates.md:510
+### I3689 [absolute] mingben-workbench\references\spark_candidates.md:510
 
 **问题**: 绝对化表述 "所有的异化，本质上都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L692 [本质判断] 创造出来寄托希望的产物，结果人变成了神的奴隶。所有的异化，本质上都是阴阳颠倒，`
 
 
-### I3689 [absolute] mingben-workbench\references\spark_candidates.md:511
+### I3690 [absolute] mingben-workbench\references\spark_candidates.md:511
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L698 [不是…是…式] 它不是什么神秘的玄学，是从操作的两面性中必然推出来的客观规律。`
 
 
-### I3690 [absolute] mingben-workbench\references\spark_candidates.md:514
+### I3691 [absolute] mingben-workbench\references\spark_candidates.md:514
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L742 [根本判断] 到这里，旧哲学的那个根本框架就被彻底拆掉了：根本就没有两个世界，只有一个我`
-
-
-### I3691 [absolute] mingben-workbench\references\spark_candidates.md:515
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L773 [不是…是…式] - 自由和必然的对立消失了：自由不是对必然的认识和改造，而是生命自指操作的自`
 
 
 ### I3692 [absolute] mingben-workbench\references\spark_candidates.md:515
@@ -29158,18 +29158,18 @@
 **上下文**: `- L773 [不是…是…式] - 自由和必然的对立消失了：自由不是对必然的认识和改造，而是生命自指操作的自`
 
 
-### I3693 [absolute] mingben-workbench\references\spark_candidates.md:516
+### I3693 [absolute] mingben-workbench\references\spark_candidates.md:515
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L773 [不是…是…式] - 自由和必然的对立消失了：自由不是对必然的认识和改造，而是生命自指操作的自`
+
+
+### I3694 [absolute] mingben-workbench\references\spark_candidates.md:516
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L775 [不是…是…式] 我决定，是自己是自己的原因。必然是操作的规律，不是自由的限制，而是自由得以实现`
-
-
-### I3694 [absolute] mingben-workbench\references\spark_candidates.md:522
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L792 [本质判断] 地研究异化和病态了。所有的病态，所有的异化，所有的恶，本质上都是同一种东西：反`
 
 
 ### I3695 [absolute] mingben-workbench\references\spark_candidates.md:522
@@ -29188,436 +29188,436 @@
 
 ### I3697 [absolute] mingben-workbench\references\spark_candidates.md:522
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L792 [本质判断] 地研究异化和病态了。所有的病态，所有的异化，所有的恶，本质上都是同一种东西：反`
+
+
+### I3698 [absolute] mingben-workbench\references\spark_candidates.md:522
+
 **问题**: 绝对化表述 "所有的病态，所有的异化，所有的恶，本质上都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L792 [本质判断] 地研究异化和病态了。所有的病态，所有的异化，所有的恶，本质上都是同一种东西：反`
 
 
-### I3698 [absolute] mingben-workbench\references\spark_candidates.md:615
+### I3699 [absolute] mingben-workbench\references\spark_candidates.md:615
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L298 [本质判断] 否定了生命有任何内生的本质与目的。但生命是有本质的，这个本质就是自指闭环的操作再生性；`
 
 
-### I3699 [absolute] mingben-workbench\references\spark_candidates.md:621
+### I3700 [absolute] mingben-workbench\references\spark_candidates.md:621
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L331 [破折号定义式] 问题的真正根源 —— 所有形而上学伪问题，本质都是脱离了生命操作的概念异化，是符号脱离了`
 
 
-### I3700 [absolute] mingben-workbench\references\spark_candidates.md:621
+### I3701 [absolute] mingben-workbench\references\spark_candidates.md:621
 
 **问题**: 绝对化表述 "所有形而上学伪问题，本质都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L331 [破折号定义式] 问题的真正根源 —— 所有形而上学伪问题，本质都是脱离了生命操作的概念异化，是符号脱离了`
 
 
-### I3701 [absolute] mingben-workbench\references\spark_candidates.md:633
+### I3702 [absolute] mingben-workbench\references\spark_candidates.md:633
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L433 [不是…是…式] • 主体性不是人类独有的奇迹，是所有自指生命的固有属性；​`
 
 
-### I3702 [absolute] mingben-workbench\references\spark_candidates.md:655
+### I3703 [absolute] mingben-workbench\references\spark_candidates.md:655
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L59 [破折号定义式] 我们接着马克思的转折，把哲学彻底拉回生命这里：把所有西方旧哲学造的类神 —— 绝对精神、`
 
 
-### I3703 [absolute] mingben-workbench\references\spark_candidates.md:655
+### I3704 [absolute] mingben-workbench\references\spark_candidates.md:655
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L59 [破折号定义式] 我们接着马克思的转折，把哲学彻底拉回生命这里：把所有西方旧哲学造的类神 —— 绝对精神、`
 
 
-### I3704 [absolute] mingben-workbench\references\spark_candidates.md:656
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L60 [破折号定义式] 抽象物质、永恒真理、历史规律 —— 全部干碎，所有死东西都没有活的人重要；给 “生命至上”`
-
-
 ### I3705 [absolute] mingben-workbench\references\spark_candidates.md:656
 
-**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L60 [破折号定义式] 抽象物质、永恒真理、历史规律 —— 全部干碎，所有死东西都没有活的人重要；给 “生命至上”`
 
 
 ### I3706 [absolute] mingben-workbench\references\spark_candidates.md:656
 
+**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L60 [破折号定义式] 抽象物质、永恒真理、历史规律 —— 全部干碎，所有死东西都没有活的人重要；给 “生命至上”`
+
+
+### I3707 [absolute] mingben-workbench\references\spark_candidates.md:656
+
 **问题**: 绝对化表述 "所有死东西都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L60 [破折号定义式] 抽象物质、永恒真理、历史规律 —— 全部干碎，所有死东西都没有活的人重要；给 “生命至上”`
 
 
-### I3707 [absolute] mingben-workbench\references\spark_candidates.md:673
+### I3708 [absolute] mingben-workbench\references\spark_candidates.md:673
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L7 [破折号定义式] 思主义等全部旧哲学流派的全域扬弃与范式级超越 —— 区别于旧哲学将 “派生范畴伪造成终极本体”`
 
 
-### I3708 [absolute] mingben-workbench\references\spark_candidates.md:674
+### I3709 [absolute] mingben-workbench\references\spark_candidates.md:674
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L30 [破折号定义式] 所有旧哲学的共同盲区，是错失了碳基生命的自指闭环操作这一终极本原存在 —— 它们要么把静态物`
 
 
-### I3709 [absolute] mingben-workbench\references\spark_candidates.md:677
+### I3710 [absolute] mingben-workbench\references\spark_candidates.md:677
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L43 [破折号定义式] 2. 内生目的性：生命的终极目的完全内在于自身 —— 维持自指闭环的持续存在、不断舒展自身的存续边`
 
 
-### I3710 [absolute] mingben-workbench\references\spark_candidates.md:678
+### I3711 [absolute] mingben-workbench\references\spark_candidates.md:678
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L52 [破折号定义式] 4. 环境互动性：生命的边界并非完全封闭的隔断，而是具备选择性的开放边界 —— 生命通过与外部环境`
 
 
-### I3711 [absolute] mingben-workbench\references\spark_candidates.md:680
+### I3712 [absolute] mingben-workbench\references\spark_candidates.md:680
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L66 [破折号定义式] ◦ 它指耗散系统：无闭环、无目的、纯熵增的非生命物质存在 —— 包括所有自然物质、人造机器、技术`
 
 
-### I3712 [absolute] mingben-workbench\references\spark_candidates.md:693
+### I3713 [absolute] mingben-workbench\references\spark_candidates.md:693
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L147 [本质判断] 福利分配方案讨论，本质就是重构生产关系，将劳动操作权从资本手中彻底归还给劳动者；1956 年沈`
 
 
-### I3713 [absolute] mingben-workbench\references\spark_candidates.md:694
+### I3714 [absolute] mingben-workbench\references\spark_candidates.md:694
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L159 [破折号定义式] 将半自指寄生存在的增殖需求，伪装成了全域生命的普遍价值 —— 这正是当代所有异化的思想根源(62`
 
 
-### I3714 [absolute] mingben-workbench\references\spark_candidates.md:697
+### I3715 [absolute] mingben-workbench\references\spark_candidates.md:697
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L172 [破折号定义式] 共同盲区：全部陷入了用它指耗散系统解释生命现象的还原论谬误 —— 把水、火、原子这类无边界、`
 
 
-### I3715 [absolute] mingben-workbench\references\spark_candidates.md:699
+### I3716 [absolute] mingben-workbench\references\spark_candidates.md:699
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L183 [不是…是…式] 根本缺陷：完全颠倒了名与实、主体与派生的关系：理念不是独立于生命的终极本体，而是生命对自`
 
 
-### I3716 [absolute] mingben-workbench\references\spark_candidates.md:701
+### I3717 [absolute] mingben-workbench\references\spark_candidates.md:701
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L186 [破折号定义式] 命的独立实体 —— 这正是此后所有寄生话语的典型逻辑：把服务于生命的派生工具，伪装成支配生命`
 
 
-### I3717 [absolute] mingben-workbench\references\spark_candidates.md:706
+### I3718 [absolute] mingben-workbench\references\spark_candidates.md:706
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L208 [破折号定义式] 普遍必然性，揭示了认知的能动性 —— 二者分别把握了认知的具体素材与组织形式。`
 
 
-### I3718 [absolute] mingben-workbench\references\spark_candidates.md:715
+### I3719 [absolute] mingben-workbench\references\spark_candidates.md:715
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L279 [本质判断] — 他完全忽视了：人的存在，首先是通过身体的缄默操作实现的；现实的生存困境，本质是生命稳`
 
 
-### I3719 [absolute] mingben-workbench\references\spark_candidates.md:716
+### I3720 [absolute] mingben-workbench\references\spark_candidates.md:716
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L295 [本质判断] 生活等上层建筑领域，完全忽视了上层建筑的异化，本质是由经济基础的异化派生而来；`
 
 
-### I3720 [absolute] mingben-workbench\references\spark_candidates.md:717
+### I3721 [absolute] mingben-workbench\references\spark_candidates.md:717
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L302 [本质判断] 拒绝” 方案，本质是个人层面的精神反抗，完全无法触动资本的底层寄生逻辑(56)。`
 
 
-### I3721 [absolute] mingben-workbench\references\spark_candidates.md:721
+### I3722 [absolute] mingben-workbench\references\spark_candidates.md:721
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L351 [破折号定义式] 接剥夺劳动者的所有操作权 —— 奴隶、农奴的劳动时间、劳动成果、人身自由，全部被领主、奴隶主`
 
 
-### I3722 [absolute] mingben-workbench\references\spark_candidates.md:721
+### I3723 [absolute] mingben-workbench\references\spark_candidates.md:721
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L351 [破折号定义式] 接剥夺劳动者的所有操作权 —— 奴隶、农奴的劳动时间、劳动成果、人身自由，全部被领主、奴隶主`
 
 
-### I3723 [absolute] mingben-workbench\references\spark_candidates.md:724
+### I3724 [absolute] mingben-workbench\references\spark_candidates.md:724
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L387 [不是…是…式] 明性，不是神秘的直观能力，也不是人类独有的精神属性，而是所有自指生命都具备的、对自身操作`
 
 
-### I3724 [absolute] mingben-workbench\references\spark_candidates.md:724
+### I3725 [absolute] mingben-workbench\references\spark_candidates.md:724
 
 **问题**: 绝对化表述 "所有自指生命都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L387 [不是…是…式] 明性，不是神秘的直观能力，也不是人类独有的精神属性，而是所有自指生命都具备的、对自身操作`
 
 
-### I3725 [absolute] mingben-workbench\references\spark_candidates.md:729
+### I3726 [absolute] mingben-workbench\references\spark_candidates.md:729
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L406 [本质判断] 这一框架彻底解决了认识论史上的 “认识来源” 问题：所有认知，本质是生命对自身操作经验的符号`
 
 
-### I3726 [absolute] mingben-workbench\references\spark_candidates.md:729
+### I3727 [absolute] mingben-workbench\references\spark_candidates.md:729
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L406 [本质判断] 这一框架彻底解决了认识论史上的 “认识来源” 问题：所有认知，本质是生命对自身操作经验的符号`
 
 
-### I3727 [absolute] mingben-workbench\references\spark_candidates.md:736
+### I3728 [absolute] mingben-workbench\references\spark_candidates.md:736
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L441 [本质判断] 受算法的规训，本质就是明性被这三重机制完全遮蔽的结果(34)。`
 
 
-### I3728 [absolute] mingben-workbench\references\spark_candidates.md:739
+### I3729 [absolute] mingben-workbench\references\spark_candidates.md:739
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L483 [破折号定义式] • 重新定义 “正义”：不是纸面的权利平等，而是生命操作权的平等保障 —— 最终形成一套完全匹`
 
 
-### I3729 [absolute] mingben-workbench\references\spark_candidates.md:745
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L513 [破折号定义式] 必然要求 ——“应该” 完全可以从生命生存的 “事实” 中严格推导出来，不存在任何逻辑上的断裂，`
-
-
 ### I3730 [absolute] mingben-workbench\references\spark_candidates.md:745
 
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L513 [破折号定义式] 必然要求 ——“应该” 完全可以从生命生存的 “事实” 中严格推导出来，不存在任何逻辑上的断裂，`
 
 
 ### I3731 [absolute] mingben-workbench\references\spark_candidates.md:745
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L513 [破折号定义式] 必然要求 ——“应该” 完全可以从生命生存的 “事实” 中严格推导出来，不存在任何逻辑上的断裂，`
+
+
+### I3732 [absolute] mingben-workbench\references\spark_candidates.md:745
+
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L513 [破折号定义式] 必然要求 ——“应该” 完全可以从生命生存的 “事实” 中严格推导出来，不存在任何逻辑上的断裂，`
 
 
-### I3732 [absolute] mingben-workbench\references\spark_candidates.md:753
+### I3733 [absolute] mingben-workbench\references\spark_candidates.md:753
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L562 [本质判断] 原则，所有的道德规范都服务于生命的稳态：“不伤害同伴” 的本质是不破坏群体协同的稳态基础；`
 
 
-### I3733 [absolute] mingben-workbench\references\spark_candidates.md:753
+### I3734 [absolute] mingben-workbench\references\spark_candidates.md:753
 
 **问题**: 绝对化表述 "所有的道德规范都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L562 [本质判断] 原则，所有的道德规范都服务于生命的稳态：“不伤害同伴” 的本质是不破坏群体协同的稳态基础；`
 
 
-### I3734 [absolute] mingben-workbench\references\spark_candidates.md:756
+### I3735 [absolute] mingben-workbench\references\spark_candidates.md:756
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L574 [破折号定义式] 生命唯物主义的全部意义，不在于解释世界，而在于改造世界 —— 不是局部的政策调整、单纯的文化`
 
 
-### I3735 [absolute] mingben-workbench\references\spark_candidates.md:760
+### I3736 [absolute] mingben-workbench\references\spark_candidates.md:760
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L636 [破折号定义式] 这一层的修复，是整个解放实践的前置基础 —— 没有生理稳态的恢复，后续的所有制度、文化修复，`
 
 
-### I3736 [absolute] mingben-workbench\references\spark_candidates.md:769
+### I3737 [absolute] mingben-workbench\references\spark_candidates.md:769
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L784 [不是…是…式] 后，彻底否定寄生逻辑、充分扬弃资本主义的高级文明形态。它不是一种抽象的乌托邦理想，而是完`
 
 
-### I3737 [absolute] mingben-workbench\references\spark_candidates.md:771
+### I3738 [absolute] mingben-workbench\references\spark_candidates.md:771
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L828 [破折号定义式] ◦ 逻辑必然：寄生文明的内在矛盾，是半自指寄生存在与完整自指生命的不可调和矛盾 —— 寄生的增殖`
 
 
-### I3738 [absolute] mingben-workbench\references\spark_candidates.md:772
+### I3739 [absolute] mingben-workbench\references\spark_candidates.md:772
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L841 [破折号定义式] 当然，历史的必然趋势，不代表进程会一帆风顺 —— 旧惯性的顽固性、寄生存在的负隅顽抗、话语遮`
 
 
-### I3739 [absolute] mingben-workbench\references\spark_candidates.md:773
+### I3740 [absolute] mingben-workbench\references\spark_candidates.md:773
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L850 [不是…是…式] 本大纲的全部逻辑，不是纯粹的理论思辨，也不是学术概念的游戏，而是基于生命自指闭环的存在论`
 
 
-### I3740 [absolute] mingben-workbench\references\spark_candidates.md:822
+### I3741 [absolute] mingben-workbench\references\spark_candidates.md:822
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L91 [破折号定义式] 是错位名。- "历史必然性"——指得出什么操作过程吗？指不出。但它能让人牺牲现在为了未来，所以`
 
 
-### I3741 [absolute] mingben-workbench\references\spark_candidates.md:830
+### I3742 [absolute] mingben-workbench\references\spark_candidates.md:830
 
 **问题**: 绝对化表述 "每一次改革都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L117 [破折号定义式] 导、搞运动、喊口号——每一次改革都让系统更复杂、更僵化、更锁`
 
 
-### I3742 [absolute] mingben-workbench\references\spark_candidates.md:833
+### I3743 [absolute] mingben-workbench\references\spark_candidates.md:833
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L177 [破折号定义式] 预测三（社会失序预测）：任何社会，如果超过30%的人个人自检分低于8分——那么暴力犯`
 
 
-### I3743 [absolute] mingben-workbench\references\spark_candidates.md:880
+### I3744 [absolute] mingben-workbench\references\spark_candidates.md:880
 
 **问题**: 绝对化表述 "每一次改革都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L386 [破折号定义式] 5. 负反馈锁死：凯恩斯主义、福利国家、宏观调控、消费主义——每一次改革都在给资本续命，每一`
 
 
-### I3744 [absolute] mingben-workbench\references\spark_candidates.md:882
+### I3745 [absolute] mingben-workbench\references\spark_candidates.md:882
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L392 [破折号定义式] 1. "牺牲"是统治术。所有让你"牺牲"的话术——牺牲个人成全集体、牺牲现在成全未来、牺牲小家成`
 
 
-### I3745 [old_ref] mingben-workbench\references\spark_candidates.md:924
+### I3746 [old_ref] mingben-workbench\references\spark_candidates.md:924
 
 **问题**: 使用可变编号 "推论 1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- L74 [破折号定义式] 推论 1.5：四规定性是自指操作的四个不可分侧面——缺任一面，S=f(S) 的闭包即不能成立。故四规定`
 
 
-### I3746 [old_ref] mingben-workbench\references\spark_candidates.md:926
+### I3747 [old_ref] mingben-workbench\references\spark_candidates.md:926
 
 **问题**: 使用可变编号 "推论 2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- L81 [不是…是…式] 推论 2.6（心物一元）：明性不是附加于物质的灵魂，而是操作闭包本身的内向面。操作（阳）与其内`
 
 
-### I3747 [old_ref] mingben-workbench\references\spark_candidates.md:927
+### I3748 [old_ref] mingben-workbench\references\spark_candidates.md:927
 
 **问题**: 使用可变编号 "推论 2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- L83 [在于判断式] 推论 2.7（主体明性遍在）：缄默意识遍在于一切自指系统（38 亿年碳基生命皆具），因凡 S=f(S) 皆`
 
 
-### I3748 [old_ref] mingben-workbench\references\spark_candidates.md:928
+### I3749 [old_ref] mingben-workbench\references\spark_candidates.md:928
 
 **问题**: 使用可变编号 "推论 3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- L99 [破折号定义式] 推论 3.5（M 值乘法木桶）：生命强健度 M=α·T·N·K·Ω 呈乘性木桶——任一因子近零，整体近零。`
 
 
-### I3749 [absolute] mingben-workbench\references\spark_candidates.md:947
+### I3750 [absolute] mingben-workbench\references\spark_candidates.md:947
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L184 [破折号定义式] 恰恰因此最该狠砍——理念指不出任何操作过程，只作名词存在。但他留下极宝贵的结构：分有/模仿`
 
 
-### I3750 [absolute] mingben-workbench\references\spark_candidates.md:955
+### I3751 [absolute] mingben-workbench\references\spark_candidates.md:955
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L212 [破折号定义式] another... constant conjunction"），这是死活比判据的前奏——好坏不看抽象必然，看具体操作中`
 
 
-### I3751 [old_ref] mingben-workbench\references\spark_candidates.md:979
+### I3752 [old_ref] mingben-workbench\references\spark_candidates.md:979
 
 **问题**: 使用可变编号 "定理7"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- L303 [不是…是…式] 定理7.1（双线索螺旋）：历史不是直线进步，也不是原地循环，是自指操作线与反自指寄生线斗争的`
 
 
-### I3752 [old_ref] mingben-workbench\references\spark_candidates.md:982
+### I3753 [old_ref] mingben-workbench\references\spark_candidates.md:982
 
 **问题**: 使用可变编号 "定理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- L324 [不是…是…式] • 由定理5.2（收权破局），自由不是“想干什么就干什么”，是自己决定自己的操作：人不再被异`
 
 
-### I3753 [absolute] mingben-workbench\references\spark_candidates.md:993
+### I3754 [absolute] mingben-workbench\references\spark_candidates.md:993
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L46 [破折号定义式] 符合处：儒家理想主义的极端实践者，以周公为精神偶像，个人道德近乎苛刻，生活简朴到苦行的程度；篡汉后完全按儒家经典的“大同理想”推行全面改革——王田制（土地国有）、五均六筦`
 
 
-### I3754 [absolute] mingben-workbench\references\spark_candidates.md:996
+### I3755 [absolute] mingben-workbench\references\spark_candidates.md:996
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L77 [不是…是…式] 所有哲人王实践的失败，都不是个人品行问题，而是这个理想本身就有无法克服的存在论矛盾，这也是它在现代必然被消解的根本原因：`
 
 
-### I3755 [absolute] mingben-workbench\references\spark_candidates.md:996
+### I3756 [absolute] mingben-workbench\references\spark_candidates.md:996
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L77 [不是…是…式] 所有哲人王实践的失败，都不是个人品行问题，而是这个理想本身就有无法克服的存在论矛盾，这也是它在现代必然被消解的根本原因：`
 
 
-### I3756 [absolute] mingben-workbench\references\spark_candidates.md:996
+### I3757 [absolute] mingben-workbench\references\spark_candidates.md:996
 
 **问题**: 绝对化表述 "所有哲人王实践的失败，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L77 [不是…是…式] 所有哲人王实践的失败，都不是个人品行问题，而是这个理想本身就有无法克服的存在论矛盾，这也是它在现代必然被消解的根本原因：`
 
 
-### I3757 [absolute] mingben-workbench\references\spark_candidates.md:998
+### I3758 [absolute] mingben-workbench\references\spark_candidates.md:998
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L108 [破折号定义式] 从“统治他人的王”，变成“自我生命的王”：传统哲人王想做整个城邦的主人，今天真正的“哲人”首先是做自己生命的主人——也就是生命论讲的“明性觉醒”：不被资本逻辑、消费主义`
-
-
-### I3758 [absolute] mingben-workbench\references\spark_candidates.md:999
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L111 [不是…是…式] 从“自上而下的灌输”，变成“自下而上的明性传递”：传统哲人王把真理从上面灌输给民众，替民众做决定；今天的觉者是“先知觉后知”，但不是替别人活，而是用自己的明性照亮身边的`
 
 
 ### I3759 [absolute] mingben-workbench\references\spark_candidates.md:999
@@ -29627,11 +29627,11 @@
 **上下文**: `- L111 [不是…是…式] 从“自上而下的灌输”，变成“自下而上的明性传递”：传统哲人王把真理从上面灌输给民众，替民众做决定；今天的觉者是“先知觉后知”，但不是替别人活，而是用自己的明性照亮身边的`
 
 
-### I3760 [absolute] mingben-workbench\references\spark_candidates.md:1019
+### I3760 [absolute] mingben-workbench\references\spark_candidates.md:999
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- L98 [不是…是…式] 生的生命共同体，不是一个人统治所有人，而是所有人一起舒展。​`
+**上下文**: `- L111 [不是…是…式] 从“自上而下的灌输”，变成“自下而上的明性传递”：传统哲人王把真理从上面灌输给民众，替民众做决定；今天的觉者是“先知觉后知”，但不是替别人活，而是用自己的明性照亮身边的`
 
 
 ### I3761 [absolute] mingben-workbench\references\spark_candidates.md:1019
@@ -29641,74 +29641,74 @@
 **上下文**: `- L98 [不是…是…式] 生的生命共同体，不是一个人统治所有人，而是所有人一起舒展。​`
 
 
-### I3762 [absolute] mingben-workbench\references\spark_candidates.md:1020
+### I3762 [absolute] mingben-workbench\references\spark_candidates.md:1019
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L98 [不是…是…式] 生的生命共同体，不是一个人统治所有人，而是所有人一起舒展。​`
+
+
+### I3763 [absolute] mingben-workbench\references\spark_candidates.md:1020
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L102 [破折号定义式] 哲人王理想的真正实现 —— 不是让一个哲人当王，而是让所有人都成为自己生命的哲人，成为自`
 
 
-### I3763 [absolute] mingben-workbench\references\spark_candidates.md:1020
+### I3764 [absolute] mingben-workbench\references\spark_candidates.md:1020
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L102 [破折号定义式] 哲人王理想的真正实现 —— 不是让一个哲人当王，而是让所有人都成为自己生命的哲人，成为自`
 
 
-### I3764 [absolute] mingben-workbench\references\spark_candidates.md:1022
+### I3765 [absolute] mingben-workbench\references\spark_candidates.md:1022
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L112 [不是…是…式] 和其他生命共生的联结里。 大道之行，天下为公，不是靠一个圣王拯救世界，而是靠每一个生命都`
 
 
-### I3765 [absolute] mingben-workbench\references\spark_candidates.md:1022
+### I3766 [absolute] mingben-workbench\references\spark_candidates.md:1022
 
 **问题**: 绝对化表述 "每一个生命都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L112 [不是…是…式] 和其他生命共生的联结里。 大道之行，天下为公，不是靠一个圣王拯救世界，而是靠每一个生命都`
 
 
-### I3766 [absolute] mingben-workbench\references\spark_candidates.md:1026
+### I3767 [absolute] mingben-workbench\references\spark_candidates.md:1026
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L23 [在于判断式] 据，却不能被还原为任何具体形而   不在形而下之外，而就存在于形而下`
 
 
-### I3767 [absolute] mingben-workbench\references\spark_candidates.md:1031
+### I3768 [absolute] mingben-workbench\references\spark_candidates.md:1031
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L76 [破折号定义式] 康德哲学是旧形而上学的“完成”——他将旧框架下所有可能的二元对立都推到了极致，同时也将旧`
 
 
-### I3768 [absolute] mingben-workbench\references\spark_candidates.md:1031
+### I3769 [absolute] mingben-workbench\references\spark_candidates.md:1031
 
 **问题**: 绝对化表述 "所有可能的二元对立都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L76 [破折号定义式] 康德哲学是旧形而上学的“完成”——他将旧框架下所有可能的二元对立都推到了极致，同时也将旧`
 
 
-### I3769 [absolute] mingben-workbench\references\spark_candidates.md:1032
+### I3770 [absolute] mingben-workbench\references\spark_candidates.md:1032
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L77 [本质判断] 框架的根本缺陷暴露无遗。他留下的六大难题，本质上都是形上形下实体化割裂的必然结果，在旧存`
 
 
-### I3770 [absolute] mingben-workbench\references\spark_candidates.md:1033
+### I3771 [absolute] mingben-workbench\references\spark_candidates.md:1033
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L80 [在于判断式] （物自体）永远在认知的彼岸，这直接导致了不可知论。其根本错误在于：虚构了一个脱离一切生命`
-
-
-### I3771 [absolute] mingben-workbench\references\spark_candidates.md:1038
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L99 [在于判断式] 在于：将必然视为外在于生命的客观规律，将自由视为脱离必然的抽象选择，没有看到自由就是生命`
 
 
 ### I3772 [absolute] mingben-workbench\references\spark_candidates.md:1038
@@ -29718,32 +29718,32 @@
 **上下文**: `- L99 [在于判断式] 在于：将必然视为外在于生命的客观规律，将自由视为脱离必然的抽象选择，没有看到自由就是生命`
 
 
-### I3773 [absolute] mingben-workbench\references\spark_candidates.md:1041
+### I3773 [absolute] mingben-workbench\references\spark_candidates.md:1038
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L99 [在于判断式] 在于：将必然视为外在于生命的客观规律，将自由视为脱离必然的抽象选择，没有看到自由就是生命`
+
+
+### I3774 [absolute] mingben-workbench\references\spark_candidates.md:1041
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L119 [在于判断式] 布自己找到了绝对基础，要么怀疑一切、走向相对主义和虚无主义。其根本原因在于：所有哲学家都`
 
 
-### I3774 [absolute] mingben-workbench\references\spark_candidates.md:1041
+### I3775 [absolute] mingben-workbench\references\spark_candidates.md:1041
 
 **问题**: 绝对化表述 "所有哲学家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L119 [在于判断式] 布自己找到了绝对基础，要么怀疑一切、走向相对主义和虚无主义。其根本原因在于：所有哲学家都`
 
 
-### I3775 [absolute] mingben-workbench\references\spark_candidates.md:1043
+### I3776 [absolute] mingben-workbench\references\spark_candidates.md:1043
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L133 [破折号定义式] 存在者，而存在本身——也就是生命在操作中持续生成、持续显现的过程——被彻底遗忘了。这种遗`
-
-
-### I3776 [absolute] mingben-workbench\references\spark_candidates.md:1062
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L217 [不是…是…式] 第六，自由与必然矛盾的真正解决。必然不是外在于自由的限制，而是自由操作的条件；自由不是对`
 
 
 ### I3777 [absolute] mingben-workbench\references\spark_candidates.md:1062
@@ -29755,100 +29755,100 @@
 
 ### I3778 [absolute] mingben-workbench\references\spark_candidates.md:1062
 
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L217 [不是…是…式] 第六，自由与必然矛盾的真正解决。必然不是外在于自由的限制，而是自由操作的条件；自由不是对`
+
+
+### I3779 [absolute] mingben-workbench\references\spark_candidates.md:1062
+
 **问题**: 绝对化表述 "必然不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L217 [不是…是…式] 第六，自由与必然矛盾的真正解决。必然不是外在于自由的限制，而是自由操作的条件；自由不是对`
 
 
-### I3779 [absolute] mingben-workbench\references\spark_candidates.md:1064
+### I3780 [absolute] mingben-workbench\references\spark_candidates.md:1064
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L220 [不是…是…式] 识了操作的客观规律（必然），不是为了顺从它，而是为了利用它更好地实现自己的内生目的，提升`
 
 
-### I3780 [absolute] mingben-workbench\references\spark_candidates.md:1065
+### I3781 [absolute] mingben-workbench\references\spark_candidates.md:1065
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L223 [根本判断] 随着形上形下的存在论贯通，西方哲学两千年来的一系列永恒症结，全部从根本上失去了存在的土`
 
 
-### I3781 [absolute] mingben-workbench\references\spark_candidates.md:1066
+### I3782 [absolute] mingben-workbench\references\spark_candidates.md:1066
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L229 [破折号定义式] 传统，比黑格尔的“绝对精神一元论”更彻底——黑格尔用抽象的精神实体统一二元，而生命论用活`
 
 
-### I3782 [absolute] mingben-workbench\references\spark_candidates.md:1070
+### I3783 [absolute] mingben-workbench\references\spark_candidates.md:1070
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L238 [破折号定义式] 本质主义与逻各斯中心主义的解构。“存在即操作”——没有什么脱离操作的固定本质，所有的“规`
 
 
-### I3783 [absolute] mingben-workbench\references\spark_candidates.md:1071
+### I3784 [absolute] mingben-workbench\references\spark_candidates.md:1071
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L243 [破折号定义式] 更彻底——我们不是只解构本质，而是给出了本质的生成论基础：本质就是操作惯性。​`
 
 
-### I3784 [absolute] mingben-workbench\references\spark_candidates.md:1075
+### I3785 [absolute] mingben-workbench\references\spark_candidates.md:1075
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L254 [破折号定义式] 践完全统一：理论来自操作，又在操作中检验，反过来指导操作，形成一个闭环——这就把马克思`
 
 
-### I3785 [absolute] mingben-workbench\references\spark_candidates.md:1080
+### I3786 [absolute] mingben-workbench\references\spark_candidates.md:1080
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L282 [不是…是…式] 向，不是建立一套新的哲学体系，而是让每一个生命都能在现实操作中复归自身的自指完整性，让大`
 
 
-### I3786 [absolute] mingben-workbench\references\spark_candidates.md:1080
+### I3787 [absolute] mingben-workbench\references\spark_candidates.md:1080
 
 **问题**: 绝对化表述 "每一个生命都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L282 [不是…是…式] 向，不是建立一套新的哲学体系，而是让每一个生命都能在现实操作中复归自身的自指完整性，让大`
 
 
-### I3787 [absolute] mingben-workbench\references\spark_candidates.md:1096
+### I3788 [absolute] mingben-workbench\references\spark_candidates.md:1096
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L116 [根本判断] 生命论吸收了以上所有哲人的合理内核，以生命自指操作为唯一存在论基础，从根本上消解了形上与`
 
 
-### I3788 [absolute] mingben-workbench\references\spark_candidates.md:1185
+### I3789 [absolute] mingben-workbench\references\spark_candidates.md:1185
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L27 [破折号定义式] 第一环：提问——所有研究从真问题开始（阳的起点）​`
 
 
-### I3789 [absolute] mingben-workbench\references\spark_candidates.md:1189
+### I3790 [absolute] mingben-workbench\references\spark_candidates.md:1189
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L107 [破折号定义式] 审计——不仅查引用，还查所有概念、结论、证据的名实一致性，对应生命论“名实遮蔽”的去蔽工`
 
 
-### I3790 [absolute] mingben-workbench\references\spark_candidates.md:1190
+### I3791 [absolute] mingben-workbench\references\spark_candidates.md:1190
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L125 [破折号定义式] 实不是道德要求，是自指系统维持自身健康的必要条件——骗别人最后一定骗自己，思想系统就会`
-
-
-### I3791 [absolute] mingben-workbench\references\spark_candidates.md:1198
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L3 [破折号定义式] > **用途**：本文件是《明本论》全本的通用源。任何 AI —— 不论以何种方式继续创作、改写、摘要、翻译、问答 —— 都能完整读取以下全文，并通过文末「更新日志（改了什`
 
 
 ### I3792 [absolute] mingben-workbench\references\spark_candidates.md:1198
@@ -29860,112 +29860,112 @@
 
 ### I3793 [absolute] mingben-workbench\references\spark_candidates.md:1198
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L3 [破折号定义式] > **用途**：本文件是《明本论》全本的通用源。任何 AI —— 不论以何种方式继续创作、改写、摘要、翻译、问答 —— 都能完整读取以下全文，并通过文末「更新日志（改了什`
+
+
+### I3794 [absolute] mingben-workbench\references\spark_candidates.md:1198
+
 **问题**: 绝对化表述 "任何 AI —— 不论以何种方式继续创作、改写、摘要、翻译、问答 —— 都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L3 [破折号定义式] > **用途**：本文件是《明本论》全本的通用源。任何 AI —— 不论以何种方式继续创作、改写、摘要、翻译、问答 —— 都能完整读取以下全文，并通过文末「更新日志（改了什`
 
 
-### I3794 [absolute] mingben-workbench\references\spark_candidates.md:1200
+### I3795 [absolute] mingben-workbench\references\spark_candidates.md:1200
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L7 [引用块] > **快速反应**：如需把本书变成护眼阅读网站/阅读器，用 `阅读引擎/build_reader.py 本书.md` 一键生成单文件 HTML（电脑/手机/任何 AI 通读，且`
 
 
-### I3795 [absolute] mingben-workbench\references\spark_candidates.md:1237
+### I3796 [absolute] mingben-workbench\references\spark_candidates.md:1237
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L519 [破折号定义式] > 结论：不是一个并列的六个概念，而是一个完整的存在论发生——从一个"感"出发，活、我、你、它、做、能、历史全部生长出来。`
 
 
-### I3796 [absolute] mingben-workbench\references\spark_candidates.md:1238
+### I3797 [absolute] mingben-workbench\references\spark_candidates.md:1238
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L531 [即是式] 任何操作皆有二面：**发用面**（它在做什么）与**凭依面**（它靠什么做）。此即**阳**与**阴**。`
 
 
-### I3797 [absolute] mingben-workbench\references\spark_candidates.md:1241
+### I3798 [absolute] mingben-workbench\references\spark_candidates.md:1241
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L575 [破折号定义式] 明性＝**感达自觉＋应答达自觉**。感达自觉，是生命知道自己在于维持；应答达自觉，是一个感在回应另一感时知道自己在于回应。明本论之"明"，其根即此自指维持长至符号层之自`
 
 
-### I3798 [absolute] mingben-workbench\references\spark_candidates.md:1242
+### I3799 [absolute] mingben-workbench\references\spark_candidates.md:1242
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L581 [即是式] 本篇将前此诸篇的范畴收束为一根统一主线。其要旨在于：生命并非宇宙中一个被动的产物，而是从死寂、单一必然的存在之流中截留、收拢并内化潜藏可能性与能动力量的**盗火者**；其所凝`
 
 
-### I3799 [absolute] mingben-workbench\references\spark_candidates.md:1243
+### I3800 [absolute] mingben-workbench\references\spark_candidates.md:1243
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L587 [破折号定义式] 第一种是**无生命的灰色宇宙**。其中只有**他指因果**——一个操作单向地传递为下一个操作，如落石推动他物、星云坍缩为星。此模式下仅存"必"这一模态：一切运动是被既定`
 
 
-### I3800 [absolute] mingben-workbench\references\spark_candidates.md:1245
+### I3801 [absolute] mingben-workbench\references\spark_candidates.md:1245
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L591 [不是…是…式] 传统神话中，普罗米修斯盗火，是将原本只属奥林匹斯诸神的火种（创造、觉知、自主力量）偷予人类。置于操作存在论之中，这一隐喻获得精确的重述：**全部生命即是宇宙层面的盗火者`
 
 
-### I3801 [absolute] mingben-workbench\references\spark_candidates.md:1245
+### I3802 [absolute] mingben-workbench\references\spark_candidates.md:1245
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L591 [不是…是…式] 传统神话中，普罗米修斯盗火，是将原本只属奥林匹斯诸神的火种（创造、觉知、自主力量）偷予人类。置于操作存在论之中，这一隐喻获得精确的重述：**全部生命即是宇宙层面的盗火者`
 
 
-### I3802 [absolute] mingben-workbench\references\spark_candidates.md:1246
+### I3803 [absolute] mingben-workbench\references\spark_candidates.md:1246
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L597 [破折号定义式] 生命自指闭环第一次完成了"自我与环境"的分割：系统为维持自身存续，生出缄默之"感"。这份觉知本不是无机物自带的属性，而是生命通过代谢、自我修复的循环操作，从混沌统一的宇`
 
 
-### I3803 [absolute] mingben-workbench\references\spark_candidates.md:1246
+### I3804 [absolute] mingben-workbench\references\spark_candidates.md:1246
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L597 [破折号定义式] 生命自指闭环第一次完成了"自我与环境"的分割：系统为维持自身存续，生出缄默之"感"。这份觉知本不是无机物自带的属性，而是生命通过代谢、自我修复的循环操作，从混沌统一的宇`
 
 
-### I3804 [absolute] mingben-workbench\references\spark_candidates.md:1250
+### I3805 [absolute] mingben-workbench\references\spark_candidates.md:1250
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L621 [破折号定义式] 须补一出：自由是**程度概念**，而非"有／无"二元。符号反思间隙可被压缩——暴怒、成瘾、极端疲惫、被教条深度浸染之时，间隙趋近于零，人临时退回 f² 动物层级；然 f`
 
 
-### I3805 [absolute] mingben-workbench\references\spark_candidates.md:1297
+### I3806 [absolute] mingben-workbench\references\spark_candidates.md:1297
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L1112 [破折号定义式] 这一回应不是否定康德提出的问题（因果性、普遍性、客观性），而是把问题从"主体以先天形式整理材料"的**观察者姿态**，移入"人在操作中改变世界"的**行动者姿态**—`
 
 
-### I3806 [absolute] mingben-workbench\references\spark_candidates.md:1371
+### I3807 [absolute] mingben-workbench\references\spark_candidates.md:1371
 
 **问题**: 绝对化表述 "每个共同体都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L1901 [破折号定义式] - **第四步：分布式网络。** 微观共同体不是封闭的，它要和其他共同体连接，形成分布式网络。不是金字塔式的命令结构，是节点式的网络——每个共同体都是一个节点，节点之`
 
 
-### I3807 [absolute] mingben-workbench\references\spark_candidates.md:1373
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L1910 [破折号定义式] 所以继续革命不是"不断折腾"，不是无休无止的政治运动，它的实质是：让人民永远保持对权力异化的警惕，永远有能力监督、批评、罢免掌权者，永远不让任何阴——不管是资本、权力`
-
-
 ### I3808 [absolute] mingben-workbench\references\spark_candidates.md:1373
 
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L1910 [破折号定义式] 所以继续革命不是"不断折腾"，不是无休无止的政治运动，它的实质是：让人民永远保持对权力异化的警惕，永远有能力监督、批评、罢免掌权者，永远不让任何阴——不管是资本、权力`
 
@@ -29986,44 +29986,44 @@
 
 ### I3811 [absolute] mingben-workbench\references\spark_candidates.md:1373
 
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L1910 [破折号定义式] 所以继续革命不是"不断折腾"，不是无休无止的政治运动，它的实质是：让人民永远保持对权力异化的警惕，永远有能力监督、批评、罢免掌权者，永远不让任何阴——不管是资本、权力`
+
+
+### I3812 [absolute] mingben-workbench\references\spark_candidates.md:1373
+
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L1910 [破折号定义式] 所以继续革命不是"不断折腾"，不是无休无止的政治运动，它的实质是：让人民永远保持对权力异化的警惕，永远有能力监督、批评、罢免掌权者，永远不让任何阴——不管是资本、权力`
 
 
-### I3812 [absolute] mingben-workbench\references\spark_candidates.md:1375
+### I3813 [absolute] mingben-workbench\references\spark_candidates.md:1375
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L1922 [破折号定义式] 第二，**差别原则**：社会和经济的不平等只有在两个条件下才是正当的——(a) 职位向所有人开放（机会平等）；(b) 这种不平等对最弱势的群体最有利。`
 
 
-### I3813 [absolute] mingben-workbench\references\spark_candidates.md:1376
+### I3814 [absolute] mingben-workbench\references\spark_candidates.md:1376
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L1930 [破折号定义式] **第二，分配导向而非生产导向。** 罗尔斯只关注"怎么分配"，不关注"怎么生产"。他默认了生产资料私有制，默认了市场经济，只在分配领域做文章——通过再分配让最弱势者`
 
 
-### I3814 [absolute] mingben-workbench\references\spark_candidates.md:1501
+### I3815 [absolute] mingben-workbench\references\spark_candidates.md:1501
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L2559 [破折号定义式] **螺**——鹦鹉螺。这个意象存在了几亿年，永恒、沉默。螺是自指的形状——一圈圈转，从中心向外旋，每一圈都重复上一圈的结构，但更大、更高。螺也是必然王国的形状——历史`
 
 
-### I3815 [absolute] mingben-workbench\references\spark_candidates.md:1501
+### I3816 [absolute] mingben-workbench\references\spark_candidates.md:1501
 
 **问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L2559 [破折号定义式] **螺**——鹦鹉螺。这个意象存在了几亿年，永恒、沉默。螺是自指的形状——一圈圈转，从中心向外旋，每一圈都重复上一圈的结构，但更大、更高。螺也是必然王国的形状——历史`
-
-
-### I3816 [absolute] mingben-workbench\references\spark_candidates.md:1649
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L28 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理`
 
 
 ### I3817 [absolute] mingben-workbench\references\spark_candidates.md:1649
@@ -30040,25 +30040,25 @@
 **上下文**: `- L28 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理`
 
 
-### I3819 [absolute] mingben-workbench\references\spark_candidates.md:1654
+### I3819 [absolute] mingben-workbench\references\spark_candidates.md:1649
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L28 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理`
+
+
+### I3820 [absolute] mingben-workbench\references\spark_candidates.md:1654
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L13 [破折号定义式] 它们把这个二阶的、工具性的、沉淀出来的理性，捧成了第一性的、神一样的东西，说它是普遍的、客观的、永恒的真理，反过来压一阶的、活的、真实的感性。它们说你那点个人感受不算数，`
 
 
-### I3820 [absolute] mingben-workbench\references\spark_candidates.md:1655
+### I3821 [absolute] mingben-workbench\references\spark_candidates.md:1655
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L17 [不是…是…式] 也把你之前解构“牺牲”的根刨透了：所有叫你“牺牲”的，全是拿抽象出来的二阶理性，叫你牺牲最真实的一阶感性。你的疼、你的怕、你想好好活着的愿望，是唯一真实的东西，是分母；那`
-
-
-### I3821 [absolute] mingben-workbench\references\spark_candidates.md:1656
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L19 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理性，它的根全在活人的生命操作里，全在最直接的感性里，离开这个根，没有任何东西有资格叫`
 
 
 ### I3822 [absolute] mingben-workbench\references\spark_candidates.md:1656
@@ -30070,7 +30070,7 @@
 
 ### I3823 [absolute] mingben-workbench\references\spark_candidates.md:1656
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L19 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理性，它的根全在活人的生命操作里，全在最直接的感性里，离开这个根，没有任何东西有资格叫`
 
@@ -30091,23 +30091,23 @@
 
 ### I3826 [absolute] mingben-workbench\references\spark_candidates.md:1656
 
-**问题**: 绝对化表述 "任何东西有资格叫真理，没有任何东西有资格叫活人牺牲。和《生命论》“生命是唯一分母”的根本立场严丝合缝，从存在论直接贯通到认识论，半分缝隙都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L19 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理性，它的根全在活人的生命操作里，全在最直接的感性里，离开这个根，没有任何东西有资格叫`
 
 
 ### I3827 [absolute] mingben-workbench\references\spark_candidates.md:1656
 
-**问题**: 绝对化表述 "所有的认识、所有的真理、所有的理性，它的根全在活人的生命操作里，全在最直接的感性里，离开这个根，没有任何东西有资格叫真理，没有任何东西有资格叫活人牺牲。和《生命论》“生命是唯一分母”的根本立场严丝合缝，从存在论直接贯通到认识论，半分缝隙都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何东西有资格叫真理，没有任何东西有资格叫活人牺牲。和《生命论》“生命是唯一分母”的根本立场严丝合缝，从存在论直接贯通到认识论，半分缝隙都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L19 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理性，它的根全在活人的生命操作里，全在最直接的感性里，离开这个根，没有任何东西有资格叫`
 
 
-### I3828 [absolute] mingben-workbench\references\spark_candidates.md:1664
+### I3828 [absolute] mingben-workbench\references\spark_candidates.md:1656
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有的认识、所有的真理、所有的理性，它的根全在活人的生命操作里，全在最直接的感性里，离开这个根，没有任何东西有资格叫真理，没有任何东西有资格叫活人牺牲。和《生命论》“生命是唯一分母”的根本立场严丝合缝，从存在论直接贯通到认识论，半分缝隙都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- L28 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理`
+**上下文**: `- L19 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理性，它的根全在活人的生命操作里，全在最直接的感性里，离开这个根，没有任何东西有资格叫`
 
 
 ### I3829 [absolute] mingben-workbench\references\spark_candidates.md:1664
@@ -30124,18 +30124,18 @@
 **上下文**: `- L28 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理`
 
 
-### I3831 [absolute] mingben-workbench\references\spark_candidates.md:1709
+### I3831 [absolute] mingben-workbench\references\spark_candidates.md:1664
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L28 [不是…是…式] 这根本不是什么主观唯心主义，不是说世界不存在，而是说：所有的认识、所有的真理、所有的理`
+
+
+### I3832 [absolute] mingben-workbench\references\spark_candidates.md:1709
 
 **问题**: 绝对化表述 "每一代人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L260 [破折号定义式] - **好的阴**：服务于M的沉淀。语言、语法、公正的法律、良俗、好习惯、健康的制度、可靠的工具——没有这些，阳的操作没有凭依，每一代人都要从零开始。阴是阳的存储器和放`
-
-
-### I3832 [absolute] mingben-workbench\references\spark_candidates.md:1887
-
-**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L27 [破折号定义式] 因此体系的起点可以精确化："有操作在发生"是存在论的一般起点（包括没有感的物理过程，即灰色的部分）；"有感在发生"是生命存在论的起点（从红点开始）。两者不矛盾：感是操作的`
 
 
 ### I3833 [absolute] mingben-workbench\references\spark_candidates.md:1887
@@ -30145,200 +30145,200 @@
 **上下文**: `- L27 [破折号定义式] 因此体系的起点可以精确化："有操作在发生"是存在论的一般起点（包括没有感的物理过程，即灰色的部分）；"有感在发生"是生命存在论的起点（从红点开始）。两者不矛盾：感是操作的`
 
 
-### I3834 [absolute] mingben-workbench\references\spark_candidates.md:1995
+### I3834 [absolute] mingben-workbench\references\spark_candidates.md:1887
+
+**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L27 [破折号定义式] 因此体系的起点可以精确化："有操作在发生"是存在论的一般起点（包括没有感的物理过程，即灰色的部分）；"有感在发生"是生命存在论的起点（从红点开始）。两者不矛盾：感是操作的`
+
+
+### I3835 [absolute] mingben-workbench\references\spark_candidates.md:1995
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L7 [破折号定义式] **形而上（道）：** 贯穿于一切形而下存在者之中、支配其运行方式、构成其存在意义根据，却不能被还原为任何具体形而下者的存在论结构、普遍规律与意义层面。阴阳、自指、衰退、因`
 
 
-### I3835 [absolute] mingben-workbench\references\spark_candidates.md:2177
+### I3836 [absolute] mingben-workbench\references\spark_candidates.md:2177
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L29 [破折号定义式] 这也精确化了"阳主阴从"在人性问题上的含义：人已有的积淀（习惯、性格、社会关系、制度环境）是阴，它规定下一步操作的可能性空间；但活操作（阳）在这个空间里不是被决定的——它`
 
 
-### I3836 [absolute] mingben-workbench\references\spark_candidates.md:2177
+### I3837 [absolute] mingben-workbench\references\spark_candidates.md:2177
 
 **问题**: 绝对化表述 "每一步操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L29 [破折号定义式] 这也精确化了"阳主阴从"在人性问题上的含义：人已有的积淀（习惯、性格、社会关系、制度环境）是阴，它规定下一步操作的可能性空间；但活操作（阳）在这个空间里不是被决定的——它`
 
 
-### I3837 [absolute] mingben-workbench\references\spark_candidates.md:2180
+### I3838 [absolute] mingben-workbench\references\spark_candidates.md:2180
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L45 [真正判断] 马克思和恩格斯说："在过去的种种冒充的共同体中，如在国家等等中，个人自由只是对那些在统治阶级范围内发展的个人来说是存在的……对于被统治的阶级来说，它不仅是完全虚幻的共同体，而`
 
 
-### I3838 [absolute] mingben-workbench\references\spark_candidates.md:2186
+### I3839 [absolute] mingben-workbench\references\spark_candidates.md:2186
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L77 [真正判断] 自由不是天赋的，是争取来的。自由也不是一个人的自由。只有解放了全人类，无产阶级才能最后解放自己；只有所有人都成为自己生命的主人，才有真正的自由。`
 
 
-### I3839 [absolute] mingben-workbench\references\spark_candidates.md:2186
+### I3840 [absolute] mingben-workbench\references\spark_candidates.md:2186
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L77 [真正判断] 自由不是天赋的，是争取来的。自由也不是一个人的自由。只有解放了全人类，无产阶级才能最后解放自己；只有所有人都成为自己生命的主人，才有真正的自由。`
 
 
-### I3840 [absolute] mingben-workbench\references\spark_candidates.md:2254
+### I3841 [absolute] mingben-workbench\references\spark_candidates.md:2254
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L17 [破折号定义式] 资产阶级经济学家把资本说成是物——机器、厂房、原料、货币，说这些东西天生就是资本，资本家拿利润是"资本的贡献"。这一说法站不住。机器本身不是资本，只有在一定的社会关系下，`
 
 
-### I3841 [absolute] mingben-workbench\references\spark_candidates.md:2313
+### I3842 [absolute] mingben-workbench\references\spark_candidates.md:2313
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L15 [破折号定义式] 解放的道路不是福柯说的"局部斗争"（他拒绝任何总体性的解放方案），也不是奈格里说的"多众自动出走"，而是**解蔽—收权—立序**：认识到资本对生命的全面控制，把操作权——`
 
 
-### I3842 [absolute] mingben-workbench\references\spark_candidates.md:2318
+### I3843 [absolute] mingben-workbench\references\spark_candidates.md:2318
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L10 [破折号定义式] 有人说资本家也劳动、也管理。但资本家的管理本质上是剥削的活动——是为了让工人更顺从、创造更多剩余价值。现在的大资本家很多根本不管理企业，雇职业经理人管理，自己只拿股息，这`
 
 
-### I3843 [absolute] mingben-workbench\references\spark_candidates.md:2344
+### I3844 [absolute] mingben-workbench\references\spark_candidates.md:2344
 
 **问题**: 绝对化表述 "每一次点击、浏览、消费、社交，都被平台记录、收集、分析，变成数据商品。以为在免费使用平台，实际上是在免费为平台提供数据——注意力、行为数据、社交关系，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L4 [破折号定义式] **第一，数据提取。** 数据是数字资本主义的石油。用户在平台上的每一次点击、浏览、消费、社交，都被平台记录、收集、分析，变成数据商品。以为在免费使用平台，实际上是在免费为`
 
 
-### I3844 [absolute] mingben-workbench\references\spark_candidates.md:2345
+### I3845 [absolute] mingben-workbench\references\spark_candidates.md:2345
 
 **问题**: 绝对化表述 "每一秒都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L5 [破折号定义式] **第二，算法管理。** 平台通过算法管理劳动者和消费者。外卖骑手、网约车司机被算法派单、计时、罚款；消费者被算法推荐、画像、引导消费。算法比传统的工头更精确，它不休息、不`
 
 
-### I3845 [absolute] mingben-workbench\references\spark_candidates.md:2346
+### I3846 [absolute] mingben-workbench\references\spark_candidates.md:2346
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L7 [破折号定义式] **第四，监视资本主义。** Zuboff在《监视资本主义时代》中指出，平台资本提取的不只是用户主动提供的数据，还有"行为剩余"——在网上留下的所有痕迹，包括本人不知道自己`
 
 
-### I3846 [absolute] mingben-workbench\references\spark_candidates.md:2349
+### I3847 [absolute] mingben-workbench\references\spark_candidates.md:2349
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L13 [破折号定义式] **趋势三：数字剥削的普遍性。** 在数字资本主义下，剥削不只是在工厂里——刷视频、发朋友圈、写评论，都是在为平台生产数据。"产消合一"（prosumer）让消费者同时变`
 
 
-### I3847 [absolute] mingben-workbench\references\spark_candidates.md:2454
+### I3848 [absolute] mingben-workbench\references\spark_candidates.md:2454
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L7 [破折号定义式] 第二，**差别原则**：社会和经济的不平等只有在两个条件下才是正当的——(a)职位向所有人开放（机会平等）；(b)这种不平等对最弱势的群体最有利。`
 
 
-### I3848 [absolute] mingben-workbench\references\spark_candidates.md:2455
+### I3849 [absolute] mingben-workbench\references\spark_candidates.md:2455
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L11 [破折号定义式] **第二，分配导向而非生产导向。** 罗尔斯只关注"怎么分配"，不关注"怎么生产"。他默认了生产资料私有制，默认了市场经济，只在分配领域做文章——通过再分配让最弱势者过得`
 
 
-### I3849 [absolute] mingben-workbench\references\spark_candidates.md:2464
+### I3850 [absolute] mingben-workbench\references\spark_candidates.md:2464
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L12 [破折号定义式] **经济上的收权**：消灭生产资料私有制，建立公有制。没收大资本家、大银行、大垄断企业的财产归社会所有；生产目的从利润变成为满足人民需要。经济收权是最根本的——不掌握生产`
 
 
-### I3850 [absolute] mingben-workbench\references\spark_candidates.md:2499
+### I3851 [absolute] mingben-workbench\references\spark_candidates.md:2499
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L3 [破折号定义式] 资本是国际力量，无产阶级解放只能是国际的事业。一个国家可以夺取政权、开始建设社会主义，但不可能在一国内最终建成共产主义——只要世界上还有资本主义，社会主义国家就面临被干涉、`
 
 
-### I3851 [absolute] mingben-workbench\references\spark_candidates.md:2504
+### I3852 [absolute] mingben-workbench\references\spark_candidates.md:2504
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L15 [本质判断] 到了共产主义，解放也不会停止。生命的本质是自指操作，是不断维持自己、发展自己、超越自己。只要人类存在，这个过程就永远不会停止。`
 
 
-### I3852 [absolute] mingben-workbench\references\spark_candidates.md:2504
+### I3853 [absolute] mingben-workbench\references\spark_candidates.md:2504
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L15 [本质判断] 到了共产主义，解放也不会停止。生命的本质是自指操作，是不断维持自己、发展自己、超越自己。只要人类存在，这个过程就永远不会停止。`
 
 
-### I3853 [absolute] mingben-workbench\references\spark_candidates.md:2647
+### I3854 [absolute] mingben-workbench\references\spark_candidates.md:2647
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L55 [不是…是…式] 革命者也是人，也有七情六欲，也有自己的生活、爱好、爱情、家庭。革命不是为了让大家过苦日子，恰恰是为了让所有人都能过上好日子，都能全面发展。如果革命的结果是大家都苦行僧一般`
 
 
-### I3854 [absolute] mingben-workbench\references\spark_candidates.md:2647
+### I3855 [absolute] mingben-workbench\references\spark_candidates.md:2647
 
 **问题**: 绝对化表述 "所有人都能过上好日子，都能全面发展。如果革命的结果是大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L55 [不是…是…式] 革命者也是人，也有七情六欲，也有自己的生活、爱好、爱情、家庭。革命不是为了让大家过苦日子，恰恰是为了让所有人都能过上好日子，都能全面发展。如果革命的结果是大家都苦行僧一般`
 
 
-### I3855 [absolute] mingben-workbench\references\spark_candidates.md:2649
+### I3856 [absolute] mingben-workbench\references\spark_candidates.md:2649
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L59 [破折号定义式] 主张的是健康的、充实的、为人民服务的生活方式。不反对个人利益和个人幸福，但把个人幸福和人民幸福结合起来——只有人民都幸福了，个人的幸福才是牢靠的；只有所有人都解放了，自己`
 
 
-### I3856 [absolute] mingben-workbench\references\spark_candidates.md:2649
+### I3857 [absolute] mingben-workbench\references\spark_candidates.md:2649
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L59 [破折号定义式] 主张的是健康的、充实的、为人民服务的生活方式。不反对个人利益和个人幸福，但把个人幸福和人民幸福结合起来——只有人民都幸福了，个人的幸福才是牢靠的；只有所有人都解放了，自己`
 
 
-### I3857 [absolute] mingben-workbench\references\spark_candidates.md:2656
+### I3858 [absolute] mingben-workbench\references\spark_candidates.md:2656
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L80 [破折号定义式] **螺——鹦鹉螺。** 这个意象存在了几亿年，永恒、沉默。螺是自指的形状——一圈圈转，从中心向外旋，每一圈都重复上一圈的结构，但更大、更高。螺也是必然王国的形状——历史周`
 
 
-### I3858 [absolute] mingben-workbench\references\spark_candidates.md:2656
+### I3859 [absolute] mingben-workbench\references\spark_candidates.md:2656
 
 **问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L80 [破折号定义式] **螺——鹦鹉螺。** 这个意象存在了几亿年，永恒、沉默。螺是自指的形状——一圈圈转，从中心向外旋，每一圈都重复上一圈的结构，但更大、更高。螺也是必然王国的形状——历史周`
 
 
-### I3859 [absolute] mingben-workbench\references\spark_candidates.md:2809
+### I3860 [absolute] mingben-workbench\references\spark_candidates.md:2809
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L14 [破折号定义式] 周易六十四卦最后两卦是"既济"和"未济"。"既济"是已经完成，但后面跟着"未济"——没有完成。世界没有终点，历史没有终点，完成了就是新的开始，发展永远不会停止。这和"自由`
 
 
-### I3860 [absolute] mingben-workbench\references\spark_candidates.md:2809
+### I3861 [absolute] mingben-workbench\references\spark_candidates.md:2809
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L14 [破折号定义式] 周易六十四卦最后两卦是"既济"和"未济"。"既济"是已经完成，但后面跟着"未济"——没有完成。世界没有终点，历史没有终点，完成了就是新的开始，发展永远不会停止。这和"自由`
-
-
-### I3861 [absolute] mingben-workbench\references\spark_candidates.md:2862
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L119 [破折号定义式] 后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、`
 
 
 ### I3862 [absolute] mingben-workbench\references\spark_candidates.md:2862
@@ -30357,16 +30357,16 @@
 
 ### I3864 [absolute] mingben-workbench\references\spark_candidates.md:2862
 
-**问题**: 绝对化表述 "任何死物、任何经、任何"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L119 [破折号定义式] 后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、`
 
 
-### I3865 [absolute] mingben-workbench\references\spark_candidates.md:2906
+### I3865 [absolute] mingben-workbench\references\spark_candidates.md:2862
 
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何死物、任何经、任何"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- L46 [不是…是…式] - **我们的推进**：没有僵死的唯一实体，唯一的“实体”就是活的、不断操作的生命；心物是同一个操作的两个面向，不是一个实体的两个属性；自由不是对必然的顺从，是利用必然实`
+**上下文**: `- L119 [破折号定义式] 后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、`
 
 
 ### I3866 [absolute] mingben-workbench\references\spark_candidates.md:2906
@@ -30376,32 +30376,32 @@
 **上下文**: `- L46 [不是…是…式] - **我们的推进**：没有僵死的唯一实体，唯一的“实体”就是活的、不断操作的生命；心物是同一个操作的两个面向，不是一个实体的两个属性；自由不是对必然的顺从，是利用必然实`
 
 
-### I3867 [absolute] mingben-workbench\references\spark_candidates.md:2907
+### I3867 [absolute] mingben-workbench\references\spark_candidates.md:2906
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L46 [不是…是…式] - **我们的推进**：没有僵死的唯一实体，唯一的“实体”就是活的、不断操作的生命；心物是同一个操作的两个面向，不是一个实体的两个属性；自由不是对必然的顺从，是利用必然实`
+
+
+### I3868 [absolute] mingben-workbench\references\spark_candidates.md:2907
 
 **问题**: 绝对化表述 "每个生命都是一个自指闭包，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L50 [破折号定义式] - **他摸到的真东西**：他的“单子”是没有窗户的、自己反映整个宇宙的实体，这其实摸到了自指操作的闭包性——每个生命都是一个自指闭包，都从自己的角度反映整个世界；他说“`
 
 
-### I3868 [absolute] mingben-workbench\references\spark_candidates.md:2908
+### I3869 [absolute] mingben-workbench\references\spark_candidates.md:2908
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L57 [不是…是…式] - **错**：他把经验理解成被动的接受，不知道经验是在操作中、在和环境的互动中获得的，不是被动印上去的；他还保留了物质实体和精神实体，是个不彻底的经验论者。`
 
 
-### I3869 [absolute] mingben-workbench\references\spark_candidates.md:2909
+### I3870 [absolute] mingben-workbench\references\spark_candidates.md:2909
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L70 [不是…是…式] - **费希特**：他去掉了康德的物自体，说“自我设定自身”“自我设定非我”，摸到了自指操作自己生成自己、自己生成对象的结构，比康德彻底。但他的“自我”是抽象的、普遍的自`
-
-
-### I3870 [absolute] mingben-workbench\references\spark_candidates.md:2911
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- L78 [不是…是…式] - **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远`
 
 
 ### I3871 [absolute] mingben-workbench\references\spark_candidates.md:2911
@@ -30411,256 +30411,256 @@
 **上下文**: `- L78 [不是…是…式] - **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远`
 
 
-### I3872 [absolute] mingben-workbench\references\spark_candidates.md:2914
+### I3872 [absolute] mingben-workbench\references\spark_candidates.md:2911
+
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- L78 [不是…是…式] - **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远`
+
+
+### I3873 [absolute] mingben-workbench\references\spark_candidates.md:2914
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L91 [不是…是…式] - 他的剩余价值学说，把资本这个现代社会最强大的反自指系统解剖的清清楚楚：资本不是物，是一定历史阶段的生产关系，是死劳动对活劳动的支配，它的唯一目的就是增殖自身，像吸血鬼`
 
 
-### I3873 [absolute] mingben-workbench\references\spark_candidates.md:2932
+### I3874 [absolute] mingben-workbench\references\spark_candidates.md:2932
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L184 [破折号定义式] - **我们的推进**：我们不反对个人权利，我们要的是更彻底的个人自由——不仅是形式上的法律自由，更是事实上的、掌握自己操作权的自由；我们不把市场、私有财产当成永恒的东`
 
 
-### I3874 [absolute] mingben-workbench\references\spark_candidates.md:2932
+### I3875 [absolute] mingben-workbench\references\spark_candidates.md:2932
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L184 [破折号定义式] - **我们的推进**：我们不反对个人权利，我们要的是更彻底的个人自由——不仅是形式上的法律自由，更是事实上的、掌握自己操作权的自由；我们不把市场、私有财产当成永恒的东`
 
 
-### I3875 [absolute] mingben-workbench\references\spark_candidates.md:2936
+### I3876 [absolute] mingben-workbench\references\spark_candidates.md:2936
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L9 [破折号定义式] 所有学术方法、工具、流程、规范，本质上都是人类自指生命的阴的沉淀——是活的研究者为了解决`
 
 
-### I3876 [absolute] mingben-workbench\references\spark_candidates.md:2936
+### I3877 [absolute] mingben-workbench\references\spark_candidates.md:2936
 
 **问题**: 绝对化表述 "所有学术方法、工具、流程、规范，本质上都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L9 [破折号定义式] 所有学术方法、工具、流程、规范，本质上都是人类自指生命的阴的沉淀——是活的研究者为了解决`
 
 
-### I3877 [absolute] mingben-workbench\references\spark_candidates.md:2940
+### I3878 [absolute] mingben-workbench\references\spark_candidates.md:2940
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L28 [破折号定义式] 第一环：提问——所有研究从真问题开始（阳的起点）​`
 
 
-### I3878 [absolute] mingben-workbench\references\spark_candidates.md:2944
+### I3879 [absolute] mingben-workbench\references\spark_candidates.md:2944
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L115 [破折号定义式] 审计——不仅查引用，还查所有概念、结论、证据的名实一致性，对应生命论“名实遮蔽”的去蔽工`
 
 
-### I3879 [absolute] mingben-workbench\references\spark_candidates.md:2945
+### I3880 [absolute] mingben-workbench\references\spark_candidates.md:2945
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- L133 [破折号定义式] 实不是道德要求，是自指系统维持自身健康的必要条件——骗别人最后一定骗自己，思想系统就会`
 
 
-### I3880 [absolute] mingben-workbench\references\subformulas.md:30
+### I3881 [absolute] mingben-workbench\references\subformulas.md:30
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. 任何一个分量为零（长期失眠T_s=0、脏器衰竭T_m=0、剧毒环境K→∞、极端应激T_k→∞），T→0。这是生命系统的性质——器官衰竭可以导致整体死亡。`
 
 
-### I3881 [absolute] mingben-workbench\references\terminology.md:24
+### I3882 [absolute] mingben-workbench\references\terminology.md:24
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 继续革命 | 记续革命 | 反自指可从任何操作关系化生 |`
 
 
-### I3882 [absolute] mingben-workbench\references\terminology.md:30
+### I3883 [absolute] mingben-workbench\references\terminology.md:30
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 刘与操 | （不可错） | 假假条主唱/吉他，不是"刘与操"以外的任何写法 |`
 
 
-### I3883 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:5
+### I3884 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:5
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `> 修正：定理16原表述"X在G中出现即阻止分配"有误。X出现在函数domain（输入/被消耗位置）时分配律存在；只有X出现在codomain（输出/被生产位置）或⊕分支中时才阻止。`
 
 
-### I3884 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:30
+### I3885 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:30
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| $X$ | ✗（定理2.1：$X \not\vdash !X$） | ✓（弃置$!X \vdash X$） | ✓（公理$!X \vdash !X$） | ✓（弃置$!X \vdash X$） |`
 
 
-### I3885 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:110
+### I3886 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:110
 
 **问题**: 使用可变编号 "定理18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理18（!-分配二分法，修正版）**：对任意多项式函子$F$，分配律$!F(X) \to F(!X)$存在当且仅当$Q(F) = \text{true}$，其中$Q$由上述递归规则计算。`
 
 
-### I3886 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:119
+### I3887 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:119
 
 **问题**: 使用可变编号 "命题1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| $X \otimes B$ | ✓（命题1） | $!(X \otimes B) \to !X \otimes B$ | 复合数据 |`
 
 
-### I3887 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:122
+### I3888 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:122
 
 **问题**: 使用可变编号 "定理17"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| $X \oplus B$ | ✗（定理17） | 不可证 | 开放未来 |`
 
 
-### I3888 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:123
+### I3889 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:123
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| $A \multimap (X \otimes B)$ | ✗（定理13） | 不可证 | **生命/交互劳动** |`
 
 
-### I3889 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:143
+### I3890 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:143
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `原定理16说"$X$在$G$中出现即阻止$F(X) = A \multimap G(X)$的分配律"，这是**错误的**。反例：$F(X) = X \multimap B$（$X$在domain），分`
 
 
-### I3890 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:147
+### I3891 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:147
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `修正后的定理16说：**只有$X$在codomain中正出现（被生产出来）时才阻止分配律。** 这对哲学解释没有影响——生命$F(X) = A \multimap (X \otimes B)$中$X$`
 
 
-### I3891 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:147
+### I3892 [old_ref] mingben-workbench\references\一般刻画定理_数据与计算.md:147
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `修正后的定理16说：**只有$X$在codomain中正出现（被生产出来）时才阻止分配律。** 这对哲学解释没有影响——生命$F(X) = A \multimap (X \otimes B)$中$X$`
 
 
-### I3892 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:10
+### I3893 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:10
 
 **问题**: 使用可变编号 "定理18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `对函子$F$，我们已经知道分配律$\lambda^F: !F(X) \to F(!X)$何时存在（定理18，$Q(F)$判断）。现在问：!能否穿透不动点？`
 
 
-### I3893 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:21
+### I3894 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:21
 
 **问题**: 使用可变编号 "定理19"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理19（数据函子的ν-提升）**：若$Q(F) = \top$（分配律$\lambda^F: !F \Rightarrow F!$存在），则存在态射`
 
 
-### I3894 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:37
+### I3895 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:37
 
 **问题**: 使用可变编号 "命题1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**实例**：对非交互函子$F_1(X) = X \otimes B$（数据流），$Q(F_1) = \top$（命题1），故$!\nu F_1 \to \nu !F_1$存在。**非交互数据流（录像`
 
 
-### I3895 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:74
+### I3896 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:74
 
 **问题**: 使用可变编号 "定理21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理21（μF₂不可提升）**：不存在态射`
 
 
-### I3896 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:96
+### I3897 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:96
 
 **问题**: 使用可变编号 "定理19"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **$F_1$（非交互/数据）** | $!\mu F_1 \to \mu !F_1$ ✓（平凡/数据可复制） | $!\nu F_1 \to \nu !F_1$ ✓（定理19，数据流可复制） |`
 
 
-### I3897 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:97
+### I3898 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:97
 
 **问题**: 使用可变编号 "定理21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **$F_2$（交互/生命）** | $!\mu F_2 \to \mu !F_2$ ✗（定理21，有限交互不可复制为过程） | $!\nu F_2 \to \nu !F_2$ ✗（T001，生命`
 
 
-### I3898 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:104
+### I3899 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:104
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `但有限交互可以被**记录为数据**（转化为$F_1$型结构，如录音、文字、录像）——这正是"实际从属"（定理14）：资本把交互过程改造成非交互数据来复制。`
 
 
-### I3899 [absolute] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:125
+### I3900 [absolute] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:125
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是"生命不可完全资本化"的精确数学含义。不是比喻，是定理。`
 
 
-### I3900 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:129
+### I3901 [old_ref] mingben-workbench\references\不动点提升定理_生命流不可资本化.md:129
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理14+T001合在一起说：资本不能复制生命过程，它唯一能做的是**把交互改造成非交互**（$F_2 \to F_1$）：`
 
 
-### I3901 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:11
+### I3902 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:11
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `拉卡托斯（Imre Lakatos）的科学研究纲领方法论：任何成熟的研究纲领都有**硬核**（不可放弃的核心命题）、**保护带**（可调整的辅助假设）、**反面启发法**（禁止把证伪矛头指向硬核）、*`
 
 
-### I3902 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:11
+### I3903 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:11
 
 **问题**: 绝对化表述 "任何成熟的研究纲领都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `拉卡托斯（Imre Lakatos）的科学研究纲领方法论：任何成熟的研究纲领都有**硬核**（不可放弃的核心命题）、**保护带**（可调整的辅助假设）、**反面启发法**（禁止把证伪矛头指向硬核）、*`
 
 
-### I3903 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:15
+### I3904 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:15
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `以下命题构成生命论的硬核——放弃其中任何一个，生命论就不再是生命论，而变成别的东西。硬核不可被经验证伪，只能被整体替换（即范式革命）。`
 
 
-### I3904 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:21
+### I3905 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:21
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| H3 | **反自指是自指的寄生形态** | 操作的产物反过来支配操作者（死劳动支配活劳动），是自指操作的异化形态，不是独立的存在论范畴。反自指可以从任何操作关系中化生，不挑外壳。替换它就退化为二`
 
 
-### I3905 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:26
+### I3906 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:26
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**硬核的整体性**：这六个命题不是孤立的，它们互相支撑。H1（存在即操作）是H2（生命是自指操作）的基础；H2是H3（反自指是寄生形态）的基础；H2是H4（感是内在显现）的基础；H4是H5（明性是感`
 
 
-### I3906 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:26
+### I3907 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:26
 
 **问题**: 绝对化表述 "任何一个，整个硬核都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**硬核的整体性**：这六个命题不是孤立的，它们互相支撑。H1（存在即操作）是H2（生命是自指操作）的基础；H2是H3（反自指是寄生形态）的基础；H2是H4（感是内在显现）的基础；H4是H5（明性是感`
-
-
-### I3907 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:303
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `| "必然" | 高 | 真势模态（alethic） | "操作必然在已有基础上操作""自指必然维持自身" |`
 
 
 ### I3908 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:303
@@ -30677,18 +30677,18 @@
 **上下文**: `| "必然" | 高 | 真势模态（alethic） | "操作必然在已有基础上操作""自指必然维持自身" |`
 
 
-### I3910 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:304
+### I3910 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:303
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `| "必然" | 高 | 真势模态（alethic） | "操作必然在已有基础上操作""自指必然维持自身" |`
+
+
+### I3911 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:304
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| "可能" | 中 | 真势模态 | "反自指可能从任何操作关系中化生""明性可能被遮蔽" |`
-
-
-### I3911 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:309
-
-**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `| "不可能" | 低 | 真势模态 | "不可能在操作之外有意义地谈论存在" |`
 
 
 ### I3912 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:309
@@ -30698,18 +30698,18 @@
 **上下文**: `| "不可能" | 低 | 真势模态 | "不可能在操作之外有意义地谈论存在" |`
 
 
-### I3913 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:311
+### I3913 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:309
+
+**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `| "不可能" | 低 | 真势模态 | "不可能在操作之外有意义地谈论存在" |`
+
+
+### I3914 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:311
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 4.2 真势模态（必然/可能）的精确化`
-
-
-### I3914 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:354
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- 精确表述：**如果**选择站在劳动者一边【决断】，**那么**必须有制度制约党。这是一个条件句的规范必然（□(A→B)），不是无条件的B的必然。`
 
 
 ### I3915 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:354
@@ -30719,11 +30719,11 @@
 **上下文**: `- 精确表述：**如果**选择站在劳动者一边【决断】，**那么**必须有制度制约党。这是一个条件句的规范必然（□(A→B)），不是无条件的B的必然。`
 
 
-### I3916 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:377
+### I3916 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:354
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- 精确表述：这不是说"人必然操作"（□），而是说"操作是人的存在论定义"——如果你不操作，你就不是人（在存在论意义上）。这是**定义性本质**，不是因果性必然。`
+**上下文**: `- 精确表述：**如果**选择站在劳动者一边【决断】，**那么**必须有制度制约党。这是一个条件句的规范必然（□(A→B)），不是无条件的B的必然。`
 
 
 ### I3917 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:377
@@ -30733,60 +30733,60 @@
 **上下文**: `- 精确表述：这不是说"人必然操作"（□），而是说"操作是人的存在论定义"——如果你不操作，你就不是人（在存在论意义上）。这是**定义性本质**，不是因果性必然。`
 
 
-### I3918 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:378
+### I3918 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:377
 
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- 模态逻辑上，这对应"本质谓词"（essential predicate）：对于任何x，如果x是人，那么x本质上是操作的。这不是说所有人都在操作（事实上有些人可能处于非操作状态，如昏迷），而是说操作`
+**上下文**: `- 精确表述：这不是说"人必然操作"（□），而是说"操作是人的存在论定义"——如果你不操作，你就不是人（在存在论意义上）。这是**定义性本质**，不是因果性必然。`
 
 
 ### I3919 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:378
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 模态逻辑上，这对应"本质谓词"（essential predicate）：对于任何x，如果x是人，那么x本质上是操作的。这不是说所有人都在操作（事实上有些人可能处于非操作状态，如昏迷），而是说操作`
 
 
 ### I3920 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:378
 
-**问题**: 绝对化表述 "任何x，如果x是人，那么x本质上是操作的。这不是说所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 模态逻辑上，这对应"本质谓词"（essential predicate）：对于任何x，如果x是人，那么x本质上是操作的。这不是说所有人都在操作（事实上有些人可能处于非操作状态，如昏迷），而是说操作`
 
 
 ### I3921 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:378
 
+**问题**: 绝对化表述 "任何x，如果x是人，那么x本质上是操作的。这不是说所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 模态逻辑上，这对应"本质谓词"（essential predicate）：对于任何x，如果x是人，那么x本质上是操作的。这不是说所有人都在操作（事实上有些人可能处于非操作状态，如昏迷），而是说操作`
+
+
+### I3922 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:378
+
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 模态逻辑上，这对应"本质谓词"（essential predicate）：对于任何x，如果x是人，那么x本质上是操作的。这不是说所有人都在操作（事实上有些人可能处于非操作状态，如昏迷），而是说操作`
 
 
-### I3922 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:391
+### I3923 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:391
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| ◇→□（可能→必然） | 未发现 | "反自指可能从任何操作关系中化生"保持了◇的强度，没有强化为□ |`
 
 
-### I3923 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:391
+### I3924 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:391
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| ◇→□（可能→必然） | 未发现 | "反自指可能从任何操作关系中化生"保持了◇的强度，没有强化为□ |`
 
 
-### I3924 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:392
+### I3925 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:392
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| □(A→B)→(A→□B)（条件句必然的误用） | 已修正 | "继续革命的存在论根据"原表述缺少决断中介，已修正为条件句 |`
-
-
-### I3925 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:393
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `| 定义性本质→因果必然 | 未发现 | "存在即操作"是定义性本质，没有被说成因果必然 |`
 
 
 ### I3926 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:393
@@ -30796,11 +30796,11 @@
 **上下文**: `| 定义性本质→因果必然 | 未发现 | "存在即操作"是定义性本质，没有被说成因果必然 |`
 
 
-### I3927 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:394
+### I3927 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:393
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `| 规范必然→事实必然 | 未发现 | "必须有制度制约党"保持了规范模态，没有被说成事实必然 |`
+**上下文**: `| 定义性本质→因果必然 | 未发现 | "存在即操作"是定义性本质，没有被说成因果必然 |`
 
 
 ### I3928 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:394
@@ -30817,375 +30817,375 @@
 **上下文**: `| 规范必然→事实必然 | 未发现 | "必须有制度制约党"保持了规范模态，没有被说成事实必然 |`
 
 
-### I3930 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:395
+### I3930 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:394
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `| 规范必然→事实必然 | 未发现 | "必须有制度制约党"保持了规范模态，没有被说成事实必然 |`
+
+
+### I3931 [absolute] mingben-workbench\references\人类智慧视角下的生命论形式化深化报告.md:395
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| "合乎本性"→"必然选择" | 需警惕 | 目前没有明确的谬误，但行文时有滑向的倾向，需持续警惕 |`
 
 
-### I3931 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:23
+### I3932 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:23
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.1**（流）：对集合$A$，$A^\omega$是$A$上的无限序列集合，$A^*$是有限序列集合。`
 
 
-### I3932 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:25
+### I3933 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:25
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.2**（因果流处理器）：从$A$到$B$的流处理器是三元组$(X,R,x_0)$：`
 
 
-### I3933 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:37
+### I3934 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:37
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.3**（生产性）：流处理器$(X,R,x_0)$是**生产性的**，如果对所有$(a,x)\in A\times X$，存在$(b,x')\in B\times X$使得$((a,x),(`
 
 
-### I3934 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:39
+### I3935 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:39
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2.1**（生产性保证完全性）：如果$R$是生产性的，则对每个输入流$a_\bullet\in A^\omega$，存在至少一个输出流$b_\bullet\in B^\omega$使得$(a_`
 
 
-### I3935 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:43
+### I3936 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:43
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.4**（流处理器的复合）：给定$P=(X,R,x_0):A\to B$和$Q=(Y,S,y_0):B\to C$，定义复合$P;Q=(X\times Y,T,(x_0,y_0)):A\to`
 
 
-### I3936 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:46
+### I3937 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:46
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2.2**（复合保持生产性）：如果$R$和$S$都是生产性的，则$T$是生产性的。`
 
 
-### I3937 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:50
+### I3938 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:50
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.5**（范畴$\mathbf{Flow}$）：对象是集合，态射$A\to B$是生产性流处理器$(X,R,x_0)$的双模拟等价类（两个流处理器双模拟当且仅当它们诱导相同的因果关系$\ll`
 
 
-### I3938 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:50
+### I3939 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:50
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.5**（范畴$\mathbf{Flow}$）：对象是集合，态射$A\to B$是生产性流处理器$(X,R,x_0)$的双模拟等价类（两个流处理器双模拟当且仅当它们诱导相同的因果关系$\ll`
 
 
-### I3939 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:56
+### I3940 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:56
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义3.1**（余归纳迹）：在$\mathbf{Rel}$中，对$R\subseteq(A\times X)\times(B\times X)$，定义余归纳迹：`
 
 
-### I3940 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:58
+### I3941 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:58
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `为定义2.2中的$\llbracket R\rrbracket$。它把一个Mealy机（带反馈的盒子）映射为它诱导的无限输入输出行为。`
 
 
-### I3941 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:60
+### I3942 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:60
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理3.1**（余归纳vanishing）：`
 
 
-### I3942 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:70
+### I3943 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:70
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理3.3**（余归纳superposing）：对$f:A\times X\to B\times X$和$g:C\to D$，$g\otimes\mathrm{Tr}^\omega_X(f)$诱导`
 
 
-### I3943 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:74
+### I3944 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:74
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理3.4**（余归纳tightening）：对$h:A'\to A$，$f:A\times X\to B\times X$，$g:B\to B'$（均为逐点关系），$\mathrm{Tr}^\o`
 
 
-### I3944 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:78
+### I3945 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:78
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**注**：定理3.1-3.4说明$\mathrm{Tr}^\omega$满足迹公理的余归纳版本，但它不是标准TSMC中的迹（因为类型从$A\to B$变成了$A^\omega\to B^\omega`
 
 
-### I3945 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:86
+### I3946 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:86
 
 **问题**: 使用可变编号 "定理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理4.1**（!不提升到流处理器）：不存在自然的提升，将生产性Mealy机$R\subseteq(A\times X)\times(B\times X)$映射为生产性Mealy机$\bang R`
 
 
-### I3946 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:96
+### I3947 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:96
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这与定理13/20的矢列演算证明一致：问题出在$X$在$\multimap$的codomain位置。∎`
 
 
-### I3947 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:101
+### I3948 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:101
 
 **问题**: 使用可变编号 "定理19"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `($\Leftarrow$) 非交互$R\subseteq X\times(X\times B)$：$\bang R\subseteq\bang X\times\bang(X\times B)$，由m`
 
 
-### I3948 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:101
+### I3949 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:101
 
 **问题**: 使用可变编号 "命题1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `($\Leftarrow$) 非交互$R\subseteq X\times(X\times B)$：$\bang R\subseteq\bang X\times\bang(X\times B)$，由m`
 
 
-### I3949 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:103
+### I3950 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:103
 
 **问题**: 使用可变编号 "定理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `($\Rightarrow$) 定理4.1证明了交互情形不可提升。∎`
 
 
-### I3950 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:109
+### I3951 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:109
 
 **问题**: 使用可变编号 "定义5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义5.1**（静态与动态）：`
 
 
-### I3951 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:131
+### I3952 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:131
 
 **问题**: 使用可变编号 "定义6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义6.1**（寿命$T$）：$T(R,x_0)$是最大的$n$使得存在长度为$n$的生产性状态链$x_0\to x_1\to\cdots\to x_n$。如果$R$对所有可达状态都生产性，$T=`
 
 
-### I3952 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:133
+### I3953 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:133
 
 **问题**: 使用可变编号 "定义6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义6.2**（净方向$N$）：在$X$带有数值结构（如$X\subseteq\mathbb{R}^d$，$R$的$X\to X$分量是函数$f_{11}:X\to X$）时：`
 
 
-### I3953 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:138
+### I3954 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:138
 
 **问题**: 使用可变编号 "定义6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义6.3**（f-层级$\alpha$）：`
 
 
-### I3954 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:145
+### I3955 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:145
 
 **问题**: 使用可变编号 "定义6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义6.4**（意义量$M$）：`
 
 
-### I3955 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:149
+### I3956 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:149
 
 **问题**: 使用可变编号 "命题6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题6.1**：$M$对$\bang$-模态的数据流（$F_1$型）是可加的（复制数据流复制$M$），对交互流处理器（$F_2$型）不可加（复制生命不复制意义）。`
 
 
-### I3956 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:156
+### I3957 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:156
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. **流处理器范畴$\mathbf{Flow}$**：生产性Mealy机的余归纳范畴，复合保持生产性（定理2.2）`
 
 
-### I3957 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:157
+### I3958 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:157
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. **余归纳迹$\mathrm{Tr}^\omega$**：从Mealy机到无限因果流函数的映射，满足迹公理的余归纳版本（定理3.1-3.4）`
 
 
-### I3958 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:161
+### I3959 [old_ref] mingben-workbench\references\余归纳GoI_生产性迹与生命流.md:161
 
 **问题**: 使用可变编号 "定理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `4. **定理4.1**：!不提升到交互流处理器（多重集无法追踪单一状态线索）——T001在余归纳GoI中的语义强化`
 
 
-### I3959 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:4
+### I3960 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:4
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 本文件汇总生命论所有形式化公式及符号含义，供快速查阅。`
 
 
-### I3960 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:5
+### I3961 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:5
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> v0.3.1 修订：修复5处符号冲突、统一运算符、优化4处表达、确立全部字母来源。`
 
 
-### I3961 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:57
+### I3962 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:57
 
 **问题**: 绝对化表述 "每一步悬置，f 都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**含义**：每一步悬置，f 都会衰减一点。长期悬置后即使输入恢复，f 已退化无法正常运行。`
 
 
-### I3962 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:172
+### I3963 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:172
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- A=100%：完全自主`
 
 
-### I3963 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:175
+### I3964 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:175
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- A≈0：完全盲从`
 
 
-### I3964 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:226
+### I3965 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:226
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 3.8 完全悬置的量论表达`
 
 
-### I3965 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:246
+### I3966 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:246
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**跃迁条件**：$f^{(n+1)}$ 的出现需要 $f^{(n)}$ 的运行达到一定复杂度后产生自指闭合。`
 
 
-### I3966 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:254
+### I3967 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:254
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**明性不是天赋，是选择**：每个人都有 $f^{(3)}$ 的运行空间，但保持明性意味着持续承担感知磨损的痛苦、独立判断的焦虑、自我操作的沉重。放弃明性 = 把运行权交给系统（f 被替换为 f'）。`
 
 
-### I3967 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:337
+### I3968 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:337
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 运算符统一 | 4处 | ×→·（点乘）全部统一 |`
 
 
-### I3968 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:339
+### I3969 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:339
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 字母来源确立 | 全部 | P=Parasitic, R=Reproduction, l'=loss prime, S=Self-referential System, T=态(tài), g=感`
 
 
-### I3969 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:344
+### I3970 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:344
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `*本文件随形式化推进持续更新。v0.3.1 为符号审查后的修订版，所有符号冲突已修复，运算符已统一，字母来源已全部确立。*`
 
 
-### I3970 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:344
+### I3971 [absolute] mingben-workbench\references\公式总览_v0.3.1.md:344
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `*本文件随形式化推进持续更新。v0.3.1 为符号审查后的修订版，所有符号冲突已修复，运算符已统一，字母来源已全部确立。*`
 
 
-### I3971 [absolute] mingben-workbench\references\公式总览_v0.3.md:4
+### I3972 [absolute] mingben-workbench\references\公式总览_v0.3.md:4
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 本文件汇总生命论所有形式化公式及符号含义，供快速查阅。`
 
 
-### I3972 [absolute] mingben-workbench\references\公式总览_v0.3.md:62
+### I3973 [absolute] mingben-workbench\references\公式总览_v0.3.md:62
 
 **问题**: 绝对化表述 "每一步悬置，f 都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**含义**：每一步悬置，f 都会衰减一点。长期悬置后即使输入恢复，f 已退化无法正常运行。`
 
 
-### I3973 [absolute] mingben-workbench\references\公式总览_v0.3.md:170
+### I3974 [absolute] mingben-workbench\references\公式总览_v0.3.md:170
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- A=100%：完全自主`
 
 
-### I3974 [absolute] mingben-workbench\references\公式总览_v0.3.md:173
+### I3975 [absolute] mingben-workbench\references\公式总览_v0.3.md:173
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- A≈0：完全盲从`
 
 
-### I3975 [absolute] mingben-workbench\references\公式总览_v0.3.md:218
+### I3976 [absolute] mingben-workbench\references\公式总览_v0.3.md:218
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 3.8 完全悬置的量论表达（v0.3 新增）`
 
 
-### I3976 [absolute] mingben-workbench\references\公式总览_v0.3.md:238
+### I3977 [absolute] mingben-workbench\references\公式总览_v0.3.md:238
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**跃迁条件**：$f^{n+1}$ 的出现需要 $f^n$ 的运行达到一定复杂度后产生自指闭合。`
 
 
-### I3977 [absolute] mingben-workbench\references\公式总览_v0.3.md:244
+### I3978 [absolute] mingben-workbench\references\公式总览_v0.3.md:244
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**明性不是天赋，是选择**：每个人都有 $f^3$ 的运行空间，但保持明性意味着持续承担感知磨损的痛苦、独立判断的焦虑、自我操作的沉重。放弃明性 = 把运行权交给系统（f 被替换为 f'）。`
 
 
-### I3978 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:16
+### I3979 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:16
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 文献真实性 | ✅ 良好 | 所有引用的文献均真实存在，无虚假文献 |`
 
 
-### I3979 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:18
+### I3980 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:18
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 题录准确性 | ⚠️ 不完整 | 所有文献缺期刊/会议/卷期/页码/DOI；2条缺年份；1条年份存疑 |`
 
 
-### I3980 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:43
+### I3981 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:43
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 问题2: 所有参考文献缺完整题录信息`
 
 
-### I3981 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:158
+### I3982 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:158
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 6 | 所有文献缺完整题录 | 按§三的准确题录补全期刊/会议/卷期/页码/DOI | 中 |`
-
-
-### I3982 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:172
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **已覆盖**: 全文218行，§1-§9所有章节，正文所有引用位置，文后9条参考文献`
 
 
 ### I3983 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:172
@@ -31195,669 +31195,669 @@
 **上下文**: `- **已覆盖**: 全文218行，§1-§9所有章节，正文所有引用位置，文后9条参考文献`
 
 
-### I3984 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:70
+### I3984 [absolute] mingben-workbench\references\参考文献审计报告_v1.2.md:172
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- **已覆盖**: 全文218行，§1-§9所有章节，正文所有引用位置，文后9条参考文献`
+
+
+### I3985 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:70
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `解释为把$U$的输出连到$V$的输入——Mealy机复合。定理2.2已证明复合保持生产性。`
 
 
-### I3985 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:80
+### I3986 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:80
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：Cut连接形成$U;V$的Mealy机复合。每一步：$U$接收输入产生$A$，$V$接收$A$产生输出和新状态。$U$生产性保证$A$每步产生，$V$生产性保证输出每步产生。两者复合，每`
 
 
-### I3986 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:90
+### I3987 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:90
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：余归纳。每一步：$U$接收当前状态产生输出$b_n$和新状态$x_{n+1}$。$U$生产性保证$b_n$存在。新状态$x_{n+1}$成为下一步输入。如此继续，产生无限输出流$(b_0`
 
 
-### I3987 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:110
+### I3988 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:110
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：promotion要求把证明$U$转换为$\bang U$（可复制的证明）。但如果$U$操作线性状态$X$（$F_2$型），$\bang U$需要复制$X$——而$X$无收缩（T009）`
 
 
-### I3988 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:114
+### I3989 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:114
 
 **问题**: 使用可变编号 "定理32"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理32（可靠性）**：如果$\pi$是$\mu LL^\nu$中$\Gamma \vdash A$的证明，则其GoI解释$U(\pi)$是生产性Mealy机（或生产性流处理器，当$A$含$\nu`
 
 
-### I3989 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:120
+### I3990 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:120
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 蕴含：currying不改变生产性；modus ponens是Mealy机复合，定理2.2（§3.3）`
 
 
-### I3990 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:130
+### I3991 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:130
 
 **问题**: 使用可变编号 "推论32"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**推论32.1（Cut消除=执行）**：在GoI中，Cut消除对应执行公式$\mathrm{Ex}(U)$或$\mathrm{Ex}^\omega(U)$。可靠性保证消除Cut后的证明仍然是生产性的`
 
 
-### I3991 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:132
+### I3992 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:132
 
 **问题**: 使用可变编号 "推论32"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**推论32.2（生命型证明不可沉积）**：任何操作$\nu F_2$型资源的证明不能被promotion（不能变成可复制的定理）。这意味着关于生命过程的证明本身必须是"活的"——它不能被冻结为可复制`
 
 
-### I3992 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:134
+### I3993 [old_ref] mingben-workbench\references\可靠性_余归纳GoI.md:134
 
 **问题**: 使用可变编号 "推论32"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**推论32.3（一致性）**：$\mu LL^\nu$是一致的（不能证明$I \vdash 0$或空矢列），因为空证明的GoI解释是空Mealy机，它不生产任何东西——但可靠性要求生产性，空机不生产`
 
 
-### I3993 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:28
+### I3994 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:28
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- !A是!-模态（沉积）：可以被任意复制、丢弃、共享`
 
 
-### I3994 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:32
+### I3995 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:32
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- "操作先于实体"→ 公理1（闭范畴性，操作是位点）`
 
 
-### I3995 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:43
+### I3996 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:43
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理13（!-分配二分法）**：`
 
 
-### I3996 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:87
+### I3997 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:87
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- "明性是看穿模型"→ !H₃是整个函数空间，可以选择任何h包括id和h'≠h_model`
 
 
-### I3997 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:90
+### I3998 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:90
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **纠正**：之前哲学上说"从f²到f³是觉悟"，但没有精确说明f²和f³的结构差异。数学说：差异在反馈线的类型——f²反馈单个固定代码（!⌜f⌝），f³反馈整个函数空间（!H₃）。f²不是"没有`
 
 
-### I3998 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:91
+### I3999 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:91
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **深化**：f³不动点定理解释了为什么"见山还是山"之后没有第四段——f³已经能对象化任何模型，包括它自己的模型。α只取{1,2,3}不是约定，是定理。`
 
 
-### I3999 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:92
+### I4000 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:92
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **新洞见**：f²的哥德尔困境——任何固定的自我模型内部都有不可判定命题（哥德尔不完备）。这意味着：被意识形态完全控制的人（f²），在其意识形态框架内必然遇到无法回答的问题——这些裂缝是觉醒（f`
 
 
-### I4000 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:92
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **新洞见**：f²的哥德尔困境——任何固定的自我模型内部都有不可判定命题（哥德尔不完备）。这意味着：被意识形态完全控制的人（f²），在其意识形态框架内必然遇到无法回答的问题——这些裂缝是觉醒（f`
-
-
 ### I4001 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:92
 
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **新洞见**：f²的哥德尔困境——任何固定的自我模型内部都有不可判定命题（哥德尔不完备）。这意味着：被意识形态完全控制的人（f²），在其意识形态框架内必然遇到无法回答的问题——这些裂缝是觉醒（f`
 
 
 ### I4002 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:92
 
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- **新洞见**：f²的哥德尔困境——任何固定的自我模型内部都有不可判定命题（哥德尔不完备）。这意味着：被意识形态完全控制的人（f²），在其意识形态框架内必然遇到无法回答的问题——这些裂缝是觉醒（f`
+
+
+### I4003 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:92
+
 **问题**: 绝对化表述 "任何固定的自我模型内部都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **新洞见**：f²的哥德尔困境——任何固定的自我模型内部都有不可判定命题（哥德尔不完备）。这意味着：被意识形态完全控制的人（f²），在其意识形态框架内必然遇到无法回答的问题——这些裂缝是觉醒（f`
 
 
-### I4003 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:114
+### I4004 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:114
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理57（践演不可编码性）**：任何形式系统不能完整表示"正在运行中"（此刻性）。`
 
 
-### I4004 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:126
+### I4005 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:126
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **重大纠正**：之前哲学（和数学）把"缄默操作"放在比"感"更根本的位置——"缄默操作是存在论起点"。定理57说形式系统不能编码此刻性（感），那把缄默操作（形式化概念）放在感之上，就违反了自己证`
 
 
-### I4005 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:154
+### I4006 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:154
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 数学可以描述感的结构，但不能编码感本身（定理57）`
 
 
-### I4006 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:155
+### I4007 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:155
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 全本和论文中所有相关表述全部修正`
 
 
-### I4007 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:155
+### I4008 [absolute] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:155
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 全本和论文中所有相关表述全部修正`
 
 
-### I4008 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:159
+### I4009 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:159
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. 数学把它形式化为公理1，推出定理57（形式系统不能编码此刻性）`
 
 
-### I4009 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:159
+### I4010 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:159
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. 数学把它形式化为公理1，推出定理57（形式系统不能编码此刻性）`
 
 
-### I4010 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:160
+### I4011 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:160
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `3. 定理57反过来纠正哲学：你不能把"操作"（形式化概念）放在"感"（第一人称事实）之上`
 
 
-### I4011 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:177
+### I4012 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:177
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. **精确性**：哲学说"生命不可资本化（T001）"，数学说"在公理1-4下不存在νF₂→!νF₂"。前者可以被反驳为"这是你的看法"，后者要反驳先推翻公理。`
 
 
-### I4012 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:195
+### I4013 [old_ref] mingben-workbench\references\哲学数学双向映衬_历程与互校.md:195
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 公理系统：公理1-5（闭范畴性、无自然收缩、指数余单子、不动点、践演判断）`
 
 
-### I4013 [old_ref] mingben-workbench\references\增长线性逻辑_GLL.md:56
+### I4014 [old_ref] mingben-workbench\references\增长线性逻辑_GLL.md:56
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理1（ν*F存在性）**：若 C 是余完备范畴且 F 是多项式函子，则 ν*F 在 Grow(C) 中存在。`
 
 
-### I4014 [old_ref] mingben-workbench\references\增长线性逻辑_GLL.md:72
+### I4015 [old_ref] mingben-workbench\references\增长线性逻辑_GLL.md:72
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2（!-ν*F 不穿透）**：不存在自然变换 !∘ν*F → ν*F∘! 或 ν*F∘! → !∘ν*F。`
 
 
-### I4015 [old_ref] mingben-workbench\references\增长线性逻辑_GLL.md:105
+### I4016 [old_ref] mingben-workbench\references\增长线性逻辑_GLL.md:105
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理3（增长生产性）**：ν*F的每一步都产出B，无论是否成长。`
 
 
-### I4016 [old_ref] mingben-workbench\references\完全性与Hilb验证.md:12
+### I4017 [old_ref] mingben-workbench\references\完全性与Hilb验证.md:12
 
 **问题**: 使用可变编号 "定理32"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `可靠性（定理32）说：可证→生产性解释。完全性问反过来：生产性解释→可证吗？即，是否每个生产性Mealy机都对应一个证明？`
 
 
-### I4017 [old_ref] mingben-workbench\references\完全性与Hilb验证.md:16
+### I4018 [old_ref] mingben-workbench\references\完全性与Hilb验证.md:16
 
 **问题**: 使用可变编号 "定理43"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理43（有限非交互片段的完全性）**：在$\mu LL$的有限非交互片段（$F_1$型，$\mu$不动点，无$\nu$）中，GoI解释对MELL片段是完全的：每个nilpotent连线对应一个证`
 
 
-### I4018 [old_ref] mingben-workbench\references\完全性与Hilb验证.md:24
+### I4019 [old_ref] mingben-workbench\references\完全性与Hilb验证.md:24
 
 **问题**: 使用可变编号 "定理44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理44（生命过程超越证明）**：在余归纳片段（$\nu F_2$型，交互生命流）中，存在生产性Mealy机不对应任何有限证明。`
 
 
-### I4019 [old_ref] mingben-workbench\references\完全性与Hilb验证.md:42
+### I4020 [old_ref] mingben-workbench\references\完全性与Hilb验证.md:42
 
 **问题**: 使用可变编号 "定理44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**哥德尔对应**：定理44是哥德尔不完备的范畴论版本——任何足够强的形式系统都有它不能证明的真命题。在我们的框架中，"真命题"对应"生产性生命过程"，"不可证"对应"不对应有限证明"。f³/践演是出`
 
 
-### I4020 [old_ref] mingben-workbench\references\完全性与Hilb验证.md:54
+### I4021 [old_ref] mingben-workbench\references\完全性与Hilb验证.md:54
 
 **问题**: 使用可变编号 "定理45"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理45（Hilb^ω是PTC）**：以可分Hilbert空间为对象、因果有界线性算子为态射、配上$\ell^2$流对象和严格压缩反馈，构成生产性迹范畴。`
 
 
-### I4021 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:23
+### I4022 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:23
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义1.1（操作范畴）** 一个操作范畴是一个六元组 $\mathcal{O}p = (\mathcal{C}, \otimes, \multimap, I, !, \mu/\nu)$，满足以下公`
 
 
-### I4022 [absolute] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:26
+### I4023 [absolute] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:26
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 对任意对象 $A, B$，存在内部hom $A \multimap B$ 和求值态射`
 
 
-### I4023 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:81
+### I4024 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:81
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2.1（阳不可自动阴化）** 在操作范畴中，不存在自然变换 $\eta_A: A \to !A$。`
 
 
-### I4024 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:91
+### I4025 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:91
 
 **问题**: 使用可变编号 "推论2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**推论2.2** promotion规则 $\dfrac{!\Gamma \vdash A}{!\Gamma \vdash !A}$ 表明：只有在足够的沉积支撑（$!\Gamma$）下，活操作的结果`
 
 
-### I4025 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:95
+### I4026 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:95
 
 **问题**: 使用可变编号 "命题2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题2.3（弃置的线性性）** $\varepsilon_A: !A \to A$ 产生恰好一个 $A$（一次使用），不产生 $A \otimes A$。`
 
 
-### I4026 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:103
+### I4027 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:103
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2.4（阴不能穷尽阳——结构版）** 在操作范畴中，求值 $\mathrm{eval}: (A \multimap B) \otimes A \to B$ 是线性的：它消耗 $(A \mult`
 
 
-### I4027 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:111
+### I4028 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:111
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2.5（阳不能枚举阴）** 对任何线性对象 $A$，不存在态射 $A \to !(A \multimap 2)$ 使得 $A$ 能"枚举"自己的所有谓词（沉积的命题）。这是康托尔定理在操作范畴`
 
 
-### I4028 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:113
+### I4029 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:113
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**综合：定理2.1 + 2.4 + 2.5 = 阴阳互不穷尽**`
 
 
-### I4029 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:114
+### I4030 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:114
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 阳不能自动变阴（定理2.1：无 $A \to !A$）`
 
 
-### I4030 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:115
+### I4031 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:115
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 阴不能完全捕获阳（定理2.4：线性性阻止对角化自我应用）`
 
 
-### I4031 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:116
+### I4032 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:116
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 阳不能枚举阴（定理2.5：无对角化阻止康托尔论证）`
 
 
-### I4032 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:120
+### I4033 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:120
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2.6（生产性自指有唯一解）** 设 $F$ 是操作范畴上的函子，$\nu F$ 是其最终余代数。对任何余代数 $f: X \to F(X)$，存在唯一的余代数同态 $\mathrm{beh}`
 
 
-### I4033 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:134
+### I4034 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:134
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义3.1（反自指寄生体）** 设 $S = \nu F$ 是一个活自指系统（最终余代数，阳）。一个**反自指寄生体** $P$ 是一个 $!$-模态对象 $P = !Q$（沉积/阴），配有两个态`
 
 
-### I4034 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:168
+### I4035 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:168
 
 **问题**: 使用可变编号 "定义4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义4.1（生命位点）** 设 $F(S) = (S \otimes O)^I$ 为Mealy机函子（$I$=输入，$O$=输出）。一个 $F$-余代数 $(S, f: S \to F(S))$ `
 
 
-### I4035 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:184
+### I4036 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:184
 
 **问题**: 使用可变编号 "定义4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义4.2（f-层级）** 生命位点按余代数的嵌套深度分层：`
 
 
-### I4036 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:192
+### I4037 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:192
 
 **问题**: 使用可变编号 "命题4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题4.3** $f^3$ 层是反自指寄生体唯一能寄生的层级——因为只有 $f^3$ 有 $!$-模态的自我表示（沉积的自我模型），寄生体 $P=!Q$ 才能劫持这个表示。$f^1$ 和 $f^2`
 
 
-### I4037 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:200
+### I4038 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:200
 
 **问题**: 使用可变编号 "定义5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义5.1（践演判断）** 在操作范畴的类型论解释中，除了标准判断形式 $\Gamma \vdash A$（消耗 $\Gamma$ 产生 $A$），引入践演判断：`
 
 
-### I4038 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:206
+### I4039 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:206
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理5.2（践演坐实）**`
 
 
-### I4039 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:227
+### I4040 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:227
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- (4) 哥德尔第二定理：$L \nvdash \mathrm{Con}(L)$。在操作范畴中，这是定理2.1（阳不可自动阴化）的特例——$\mathrm{Op}_L$（阳）不能自动沉积为 $\ma`
 
 
-### I4040 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:276
+### I4041 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:276
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. **定理2.1（阳不可自动阴化）**：无自然变换A→!A`
 
 
-### I4041 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:286
+### I4042 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:286
 
 **问题**: 使用可变编号 "命题4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. **猜想C2**：f³层的!-模态自我模型是反自指寄生的必要条件（命题4.3的严格证明）`
 
 
-### I4042 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:317
+### I4043 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:317
 
 **问题**: 使用可变编号 "定义9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义9.1（商品）** 在操作范畴中，一个**商品**是对象 $A \otimes !V$，其中：`
 
 
-### I4043 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:321
+### I4044 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:321
 
 **问题**: 使用可变编号 "命题9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题9.2（使用价值的首要性）** 不存在态射 $!V \to A \otimes !V$（纯交换价值不能自动产生使用价值）。交换价值必须"附着"在使用价值上——没有使用价值的东西没有交换价值（马`
 
 
-### I4044 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:325
+### I4045 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:325
 
 **问题**: 使用可变编号 "命题9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题9.3（交换价值的衍生性）** 从使用价值到交换价值需要promotion（升进）：`
 
 
-### I4045 [absolute] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:333
+### I4046 [absolute] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:333
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定义9.4（货币）** **货币**是 $!G$——纯交换价值，从所有具体使用价值中抽象出来的一般等价物。`
 
 
-### I4046 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:333
+### I4047 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:333
 
 **问题**: 使用可变编号 "定义9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义9.4（货币）** **货币**是 $!G$——纯交换价值，从所有具体使用价值中抽象出来的一般等价物。`
 
 
-### I4047 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:343
+### I4048 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:343
 
 **问题**: 使用可变编号 "定义9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义9.5（资本）** **资本**是共Kleisli范畴中的态射 $k: G \to G'$（对应基范畴中的 $!G \to !G'$），满足 $G' > G$（增殖）。在基范畴中展开，资本流通`
 
 
-### I4048 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:361
+### I4049 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:361
 
 **问题**: 使用可变编号 "定义10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义10.1（生产态射）** 一个**生产过程**是操作范畴中的态射：`
 
 
-### I4049 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:373
+### I4050 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:373
 
 **问题**: 使用可变编号 "定理10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理10.2（不变资本只转移不创造）** 在生产态射 $p: !C \otimes A \to !C \otimes B$ 中，$!C$ 的保存通过收缩实现：`
 
 
-### I4050 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:385
+### I4051 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:385
 
 **问题**: 使用可变编号 "定理10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理10.3（剩余价值的线性来源）** 在生产态射 $p: !C \otimes A \to !C \otimes B$ 中：`
 
 
-### I4051 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:394
+### I4052 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:394
 
 **问题**: 使用可变编号 "定理10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `(a) 由定理10.2，$!C$ 通过 $\kappa$ 复制为两份，一份使用一份保存。保存的那份与输入的 $!C$ 同构（comonoid律保证复制不改变值），因此价值量不变。`
 
 
-### I4052 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:408
+### I4053 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:408
 
 **问题**: 使用可变编号 "定义10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义10.4（剥削）** 设生产态射 $p: !C \otimes A \to !C \otimes B$，产品 $B$ 通过promotion沉积为 $!B$ 并交换为 $!G'$。设 $!G'`
 
 
-### I4053 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:410
+### I4054 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:410
 
 **问题**: 使用可变编号 "定理10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `剥削的范畴论结构：$A$（线性活劳动）创造了 $G_m$（剩余），但 $G_m$ 被 $!C$ 的所有者通过 $!C$ 的收缩/积累机制（$\kappa$）占有。关键：$!C$ 本身不创造 $G_m$`
 
 
-### I4054 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:418
+### I4055 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:418
 
 **问题**: 使用可变编号 "定理11"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理11.1（生命不可完全资本化）** 设 $S = \nu X.F(X)$ 是操作范畴中的生命位点（最终余代数），其中 $X$ 在 $F(X)$ 中线性出现（不在 $!$ 辖域内）。则不存在态射`
 
 
-### I4055 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:430
+### I4056 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:430
 
 **问题**: 使用可变编号 "命题4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**含义：** 一个活的生命系统（$S$，阳/余代数）不能被完全转化为可复制的资本（$!S$，阴）。你可以把人的劳动力商品化（$A \to !V$，在市场条件下），可以把人的产品资本化，可以把人的自我`
 
 
-### I4056 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:441
+### I4057 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:441
 
 **问题**: 使用可变编号 "命题11"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题11.2（异化的限度）** 异化（人的生命被资本吞噬）在数学上有一个不可逾越的限度：$S \to !S$ 不存在。资本可以无限接近这个限度（将人的越来越多的方面商品化），但永远不能达到它——因`
 
 
-### I4057 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:445
+### I4058 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:445
 
 **问题**: 使用可变编号 "定义11"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义11.3（共产主义）** **共产主义**是操作范畴中!-模态的僭越被消除的状态：生产资料不再作为 $!C$（自我增殖的资本）运行，而作为 $C$（线性的、被使用的生产资料）运行。`
 
 
-### I4058 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:461
+### I4059 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:461
 
 **问题**: 使用可变编号 "定理12"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理12.1（Benton 1995）** 设 $(!, \varepsilon, \delta)$ 是SMCC $\mathcal{C}$ 上的线性指数余单子。则其共Kleisli范畴 $\ma`
 
 
-### I4059 [absolute] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:467
+### I4060 [absolute] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:467
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 所有对象都有对角化和投影——一切皆可复制、可丢弃`
 
 
-### I4060 [absolute] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:467
+### I4061 [absolute] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:467
 
 **问题**: 绝对化表述 "所有对象都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 所有对象都有对角化和投影——一切皆可复制、可丢弃`
 
 
-### I4061 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:481
+### I4062 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:481
 
 **问题**: 使用可变编号 "定理12"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理12.2（商品拜物教的范畴论表述）** 从生产领域到流通领域的遗忘函子 $U: \mathcal{C} \to \mathcal{C}_!$（将 $A$ 映射为 $A$，将线性态射 $f: A`
 
 
-### I4062 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:487
+### I4063 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:487
 
 **问题**: 使用可变编号 "定理10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明：** $U$ 将线性态射 $A \to B$ 映射为 $!A \to B$（通过 $\varepsilon$ 弃置）。在这个映射下，$A$（线性活劳动）变成了 $!A$（!-模态商品），与 `
 
 
-### I4063 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:491
+### I4064 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:491
 
 **问题**: 使用可变编号 "定理12"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理12.3（资本有机构成上升的形式必然性）** 设生产态射序列 $p_n: !C_n \otimes A_n \to !C_{n+1}$ 表示 $n$ 期生产。则：`
 
 
-### I4064 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:502
+### I4065 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:502
 
 **问题**: 使用可变编号 "定理10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**推论12.4（利润率下降趋势）** 利润率 $r = m / (c + v)$。由定理10.3，$m$ 只来自 $A$（线性活劳动），因此 $m$ 的增长受限于 $A$ 的增长（线性）。而 $c `
 
 
-### I4065 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:502
+### I4066 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:502
 
 **问题**: 使用可变编号 "推论12"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**推论12.4（利润率下降趋势）** 利润率 $r = m / (c + v)$。由定理10.3，$m$ 只来自 $A$（线性活劳动），因此 $m$ 的增长受限于 $A$ 的增长（线性）。而 $c `
 
 
-### I4066 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:528
+### I4067 [old_ref] mingben-workbench\references\操作范畴论_生命自指的数学框架.md:528
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `│   └── 无 A→!A = 劳动不能自动变资本（定理2.1）`
 
 
-### I4067 [absolute] mingben-workbench\references\操作论数学_五个前沿方向.md:76
+### I4068 [absolute] mingben-workbench\references\操作论数学_五个前沿方向.md:76
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**解析函数**的核心性质：局部决定全局。知道一个解析函数在一个小邻域内的值（甚至一个点的所有阶导数），就唯一确定了它在整个连通域上的值。`
 
 
-### I4068 [absolute] mingben-workbench\references\操作论数学_五个前沿方向.md:138
+### I4069 [absolute] mingben-workbench\references\操作论数学_五个前沿方向.md:138
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `概型是**静态的函子**——它是一个完成了的!-模态对象，可以被任意复制、讨论、比较。它描述了操作的沉积结构，但不描述"正在运行中的操作"。`
 
 
-### I4069 [absolute] mingben-workbench\references\操作论数学_五个前沿方向.md:246
+### I4070 [absolute] mingben-workbench\references\操作论数学_五个前沿方向.md:246
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- f³的更新：不仅更新参数，还更新模型框架本身——!H₃是整个函数空间，可以选择完全不同的模型`
 
 
-### I4070 [absolute] mingben-workbench\references\操作论数学_五个前沿方向.md:246
+### I4071 [absolute] mingben-workbench\references\操作论数学_五个前沿方向.md:246
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- f³的更新：不仅更新参数，还更新模型框架本身——!H₃是整个函数空间，可以选择完全不同的模型`
 
 
-### I4071 [old_ref] mingben-workbench\references\操作论数学_五个前沿方向.md:335
+### I4072 [old_ref] mingben-workbench\references\操作论数学_五个前沿方向.md:335
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `践演不可编码性（定理57）推广了哥德尔：`
 
 
-### I4072 [old_ref] mingben-workbench\references\操作论数学_五个前沿方向.md:337
+### I4073 [old_ref] mingben-workbench\references\操作论数学_五个前沿方向.md:337
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理57：!-模态系统不能编码自己的正在运行中（全部的线性过程）`
 
 
-### I4073 [old_ref] mingben-workbench\references\操作论数学_五个前沿方向.md:339
+### I4074 [old_ref] mingben-workbench\references\操作论数学_五个前沿方向.md:339
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `哥德尔的裂缝是一个命题，定理57的裂缝是整个维度——形式系统不能编码的不是一个特定的真理，是"正在发生"本身。`
 
 
-### I4074 [absolute] mingben-workbench\references\操作论数学_八个应用方向.md:176
+### I4075 [absolute] mingben-workbench\references\操作论数学_八个应用方向.md:176
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 完全没有回答"意识是什么"`
 
 
-### I4075 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:191
+### I4076 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:191
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `3. **病毒是!-寄生体**：病毒没有自己的代谢（不是νF₂），它劫持宿主的νF₂来复制自己——定理28（病毒-资本同构）精确描述了这一点`
 
 
-### I4076 [absolute] mingben-workbench\references\操作论数学_八个应用方向.md:193
+### I4077 [absolute] mingben-workbench\references\操作论数学_八个应用方向.md:193
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `5. **生态系统是生命**：多个νF₂耦合形成的更大νF₂——地球生态系统满足全部四个条件`
 
 
-### I4077 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:243
+### I4078 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:243
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**第二步：定理57说什么？**`
-
-
-### I4078 [absolute] mingben-workbench\references\操作论数学_八个应用方向.md:245
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `定理57（践演不可编码性）：在任何包含算术的形式系统中，"正在运行中"（此刻性）不能被该系统的任何公式编码。`
 
 
 ### I4079 [absolute] mingben-workbench\references\操作论数学_八个应用方向.md:245
@@ -31867,753 +31867,753 @@
 **上下文**: `定理57（践演不可编码性）：在任何包含算术的形式系统中，"正在运行中"（此刻性）不能被该系统的任何公式编码。`
 
 
-### I4080 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:245
+### I4080 [absolute] mingben-workbench\references\操作论数学_八个应用方向.md:245
+
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `定理57（践演不可编码性）：在任何包含算术的形式系统中，"正在运行中"（此刻性）不能被该系统的任何公式编码。`
+
+
+### I4081 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:245
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理57（践演不可编码性）：在任何包含算术的形式系统中，"正在运行中"（此刻性）不能被该系统的任何公式编码。`
 
 
-### I4081 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:278
+### I4082 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:278
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **定理级**：定理57保证了"正在感"不能被任何形式系统编码——困难问题在原则上不可能有还原论解释，这不是因为我们还不够聪明，是数学结构决定的`
 
 
-### I4082 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:323
+### I4083 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:323
 
 **问题**: 使用可变编号 "定理38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理38（不可克隆是推论）：量子不可克隆定理（T009）是!-不穿透定理在Hilb^ω中的特例。`
 
 
-### I4083 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:358
+### I4084 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:358
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理1（阳不可自动阴化）说：活操作不能自动变成沉积。但定理的反面也成立——沉积不能自动变回活操作。`
 
 
-### I4084 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:392
+### I4085 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:392
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **统一级**：热力学第二定律和定理1（阳不可自动阴化）是同一结构在不同领域的显现`
 
 
-### I4085 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:432
+### I4086 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:432
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理28（病毒-资本同构）：资本和病毒在范畴论中是同一类结构——!-寄生体。`
 
 
-### I4086 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:436
+### I4087 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:436
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `马克思说"资本是死劳动，它像吸血鬼一样，只有吮吸活劳动才有生命"——定理28给了这句话数学证明：资本=!-模态，活劳动=线性过程，!不能自己增殖，必须消耗线性资源。`
 
 
-### I4087 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:445
+### I4088 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:445
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 资本 | !-寄生体（定理28） |`
 
 
-### I4088 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:464
+### I4089 [old_ref] mingben-workbench\references\操作论数学_八个应用方向.md:464
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **定理级**：资本=!-寄生体（定理28），GDP≠M，W=O/M`
 
 
-### I4089 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:45
+### I4090 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:45
 
 **问题**: 使用可变编号 "定理42"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `3. **看懂一个证明是f³操作**。证明本身是!-模态的符号串（可以复制的文本），但"看懂"不是复制符号串——是在自己的思维中运行那个Mealy机，体知它为什么成立。这是线性的、不可复制的活操作。定`
 
 
-### I4090 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:67
+### I4091 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:67
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这给哥德尔不完备一个新的存在论理解：形式系统不能自证一致性，不是因为数学"有缺陷"，而是因为**!-模态（沉积）在结构上不能穷尽线性操作（践演）**。定理6（不存在A→!A）和定理42（生产性过程不可`
 
 
-### I4091 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:67
+### I4092 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:67
 
 **问题**: 使用可变编号 "定理42"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这给哥德尔不完备一个新的存在论理解：形式系统不能自证一致性，不是因为数学"有缺陷"，而是因为**!-模态（沉积）在结构上不能穷尽线性操作（践演）**。定理6（不存在A→!A）和定理42（生产性过程不可`
 
 
-### I4092 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:81
+### I4093 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:81
 
 **问题**: 使用可变编号 "定理30"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `f³不动点定理（定理30）说：f³之后没有f⁴——一旦你能看穿"模型是模型"，你就能递归地看穿一切模型，包括"看穿"本身。这对应数学创造的一个根本特征：**真正的革命性洞见不是"在现有框架内解决问题"`
 
 
-### I4093 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:117
+### I4094 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:117
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `布劳威尔的局限：他的"心灵"是笛卡尔式的、孤立的、非具身的。他无法说明为什么不同心灵的构造是一致的，也无法说明数学的可交流性。生命论说：构造不是发生在孤立的"心灵"里，是发生在**践演**中——活操作`
 
 
-### I4094 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:123
+### I4095 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:123
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `操作论解读：希尔伯特纲领的失败不是技术失败，是**存在论层面的结构性不可能**。定理6（A→!A不存在）和定理42（生产性过程不可数>证明可数）从范畴论和基数两个方向证明了：!-沉积在结构上不能穷尽线`
 
 
-### I4095 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:123
+### I4096 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:123
 
 **问题**: 使用可变编号 "定理42"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `操作论解读：希尔伯特纲领的失败不是技术失败，是**存在论层面的结构性不可能**。定理6（A→!A不存在）和定理42（生产性过程不可数>证明可数）从范畴论和基数两个方向证明了：!-沉积在结构上不能穷尽线`
 
 
-### I4096 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:146
+### I4097 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:146
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `操作论解读：线性逻辑在逻辑内部重新发现了生命论的核心区分——**!-沉积（可复制、不消耗）与线性操作（不可复制、必须消耗）**。Girard的洞见和生命论的公理2（无自然收缩）是同一个数学事实。但Gi`
 
 
-### I4097 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:161
+### I4098 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:161
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理6：线性A不能被沉积为!A（生命不可资本化（T001））`
 
 
-### I4098 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:162
+### I4099 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:162
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理14：!-分配对F₂（交互函子）不成立（交互不可复制）`
 
 
-### I4099 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:164
+### I4100 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:164
 
 **问题**: 使用可变编号 "定理38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理38：!不穿透PTC完全一般性（猜想5已解决，纯范畴证明）`
 
 
-### I4100 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:165
+### I4101 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:165
 
 **问题**: 使用可变编号 "定理42"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理42：生产性过程不可数>证明可数（理论不能穷尽实践）`
 
 
-### I4101 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:166
+### I4102 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:166
 
 **问题**: 使用可变编号 "定理48"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理48：f³不动点（明性之后没有第四层）`
 
 
-### I4102 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:167
+### I4103 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:167
 
 **问题**: 使用可变编号 "定理53"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理53：动态自毁（持续萃取下N指数衰减）`
 
 
-### I4103 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:188
+### I4104 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:188
 
 **问题**: 使用可变编号 "定理46"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- f²的哥德尔困境（定理46）说：任何能形式化为算术系统的f²系统都包含不可判定命题，而f³通过践演判断跳出——这给出了"意识超越形式系统"的数学机制。`
 
 
-### I4104 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:198
+### I4105 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:198
 
 **问题**: 使用可变编号 "定理26"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 增长须消耗线性资源（定理26，已升级为一般定理）`
 
 
-### I4105 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:199
+### I4106 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:199
 
 **问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 寄生体自毁（定理15，S=I时空转）`
 
 
-### I4106 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:200
+### I4107 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:200
 
 **问题**: 使用可变编号 "定理53"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 动态自毁（定理53，N指数衰减）`
 
 
-### I4107 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:218
+### I4108 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:218
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- Hilb^ω：量子过程（不可克隆定理（T009）=定理6的量子实例）`
 
 
-### I4108 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:235
+### I4109 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:235
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 自然主义 | 数学是人类实践的一部分 | 实践（践演）确实是基础，但践演有跨文化、跨历史的范畴结构（公理1-4），不是纯粹的社会约定 |`
 
 
-### I4109 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:249
+### I4110 [old_ref] mingben-workbench\references\操作论数学哲学_纲领.md:249
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. **数学不能穷尽生命**——定理6、14、20、38、42从不同方向证明：!-沉积在结构上不能完全捕获线性操作。这不是数学的缺陷，是数学的存在论定位。`
 
 
-### I4110 [absolute] mingben-workbench\references\数学基础新路径_活自指与践演坐实.md:79
+### I4111 [absolute] mingben-workbench\references\数学基础新路径_活自指与践演坐实.md:79
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `Lawvere定理的核心条件是笛卡尔闭范畴中的满射——即系统是**封闭的**：它的所有操作都能被编码成它自己的数据，没有外部输入，没有和环境的交换。`
 
 
-### I4111 [absolute] mingben-workbench\references\数学基础新路径_活自指与践演坐实.md:79
+### I4112 [absolute] mingben-workbench\references\数学基础新路径_活自指与践演坐实.md:79
 
 **问题**: 绝对化表述 "所有操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `Lawvere定理的核心条件是笛卡尔闭范畴中的满射——即系统是**封闭的**：它的所有操作都能被编码成它自己的数据，没有外部输入，没有和环境的交换。`
 
 
-### I4112 [absolute] mingben-workbench\references\数学基础新路径_活自指与践演坐实.md:154
+### I4113 [absolute] mingben-workbench\references\数学基础新路径_活自指与践演坐实.md:154
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `数、集合、函数、空间——这些数学概念不是天上掉下来的，也不是任意约定的符号。它们是从活操作中抽象出来的：`
 
 
-### I4113 [absolute] mingben-workbench\references\数学基础新路径_活自指与践演坐实.md:233
+### I4114 [absolute] mingben-workbench\references\数学基础新路径_活自指与践演坐实.md:233
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 数学不是一个一旦建立就永远正确的静态真理大厦`
 
 
-### I4114 [absolute] mingben-workbench\references\数学基础新路径_活自指与践演坐实.md:236
+### I4115 [absolute] mingben-workbench\references\数学基础新路径_活自指与践演坐实.md:236
 
 **问题**: 绝对化表述 "每一次危机（无理数、微积分基础、集合论悖论、不完备性）都是阳突破旧阴的时刻，每一次危机的解决都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 数学史上的每一次危机（无理数、微积分基础、集合论悖论、不完备性）都是阳突破旧阴的时刻，每一次危机的解决都是数学的自我更新`
 
 
-### I4115 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:28
+### I4116 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:28
 
 **问题**: 使用可变编号 "命题1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题1**：对$F_1(X) = X \otimes B$，分配律$\lambda^1: !F_1 \Rightarrow F_1!$存在。`
 
 
-### I4116 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:39
+### I4117 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:39
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2（主要定理）**：对$F_2(X) = A \multimap (X \otimes B)$，其中A、B是任意非!-模态对象（线性资源），分配律$\lambda^2: !F_2 \Right`
 
 
-### I4117 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:97
+### I4118 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:97
 
 **问题**: 使用可变编号 "定理11"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理11.1证明了不存在态射$S \to !S$（生命不能完全资本化）。定理2更强：`
 
 
-### I4118 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:97
+### I4119 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:97
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理11.1证明了不存在态射$S \to !S$（生命不能完全资本化）。定理2更强：`
 
 
-### I4119 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:99
+### I4120 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:99
 
 **问题**: 使用可变编号 "定理11"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理11.1说：你不能把一个生命**对象**变成资本对象。`
 
 
-### I4120 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:100
+### I4121 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:100
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理2说：你甚至不能把生命的**自复制结构**（余代数）变成资本的自复制结构——!不提升到交互余代数范畴。`
 
 
-### I4121 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:111
+### I4122 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:111
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理2给出了这一区分的范畴论表述：`
 
 
-### I4122 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:113
+### I4123 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:113
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 资本**想要**做形式从属：将交互余代数$f: S \to A \multimap (S \otimes B)$直接!-提升为$!S \to A \multimap (!S \otimes B)$`
 
 
-### I4123 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:122
+### I4124 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:122
 
 **问题**: 使用可变编号 "定理12"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `但在共Kleisli范畴$\C_!$（流通领域）中，同一个态射表现为$G \to G'$（M→M'）——线性中介A被遗忘了（定理12.2，商品拜物教）。`
 
 
-### I4124 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:126
+### I4125 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:126
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理2说：你不能在生产领域中把$F_2$变成$F_1$而不改变系统本身——你必须实际改造劳动过程（实际从属），而不仅仅是在市场上购买劳动力（形式从属）。`
 
 
-### I4125 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:130
+### I4126 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:130
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定义11.3说共产主义是去除!模态在生产资料上的僭越。定理2补充：`
 
 
-### I4126 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:130
+### I4127 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:130
 
 **问题**: 使用可变编号 "定义11"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定义11.3说共产主义是去除!模态在生产资料上的僭越。定理2补充：`
 
 
-### I4127 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:146
+### I4128 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:146
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理2处理了$F_2(X) = A \multimap (X \otimes B)$。更一般地，猜想：`
 
 
-### I4128 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:156
+### I4129 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:156
 
 **问题**: 使用可变编号 "命题4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这里$X$出现在$X \multimap X$中（既有正位置又有负位置）。猜想：!对$F_3$的分配律也不存在，而且$X$在负位置的出现使得$f^3$层的不可资本化比$f^1/f^2$层更强——这与命`
 
 
-### I4129 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:160
+### I4130 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:160
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理2的证明是有限矢列演算中的情况分析，可以在Agda/Coq/Lean中完全形式化。这是下一步工作。`
 
 
-### I4130 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:166
+### I4131 [old_ref] mingben-workbench\references\新定理_交互余代数不可资本化.md:166
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2的数学性质：**`
 
 
-### I4131 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:17
+### I4132 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:17
 
 **问题**: 使用可变编号 "定理31"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理31.1（哥德尔=T001特例）**：哥德尔不完备定理是T001（!不穿透νF₂）在形式系统上的特例。`
 
 
-### I4132 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:64
+### I4133 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:64
 
 **问题**: 使用可变编号 "定理32"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理32.1（停机问题=扩展非唯一性特例）**：停机问题是μF₂→νF₂扩展非唯一性定理在计算上的特例。`
 
 
-### I4133 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:92
+### I4134 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:92
 
 **问题**: 使用可变编号 "定理24"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- AI安全性（证明AI不会伤害人类）同理——F₂型AI不可完全验证（定理24.1）`
 
 
-### I4134 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:121
+### I4135 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:121
 
 **问题**: 使用可变编号 "定理33"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理33.1（双向运动=伴随函子）**：小本质↔大本质的双向运动在数学上是一对伴随函子：`
 
 
-### I4135 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:132
+### I4136 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:132
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 【践演】"在活着""在操作" | PTC公理（特别是公理1：操作先于实体）、νF₂过程的运行 |`
 
 
-### I4136 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:143
+### I4137 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:143
 
 **问题**: 使用可变编号 "定理33"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理33.2（对立统一=紧闭合结构）**：在紧闭合范畴中，A⊗B→C和A→(B⊸C)之间有自然同构（currying）。这意味着"两个对立面的互动产生结果"和"一方在另一方的语境中存在"是同一件事`
 
 
-### I4137 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:148
+### I4138 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:148
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 理论和实践：理论是实践的!-沉积，实践是理论的线性激活——!A⊗E→A⊗E'（定理23.5）`
 
 
-### I4138 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:156
+### I4139 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:156
 
 **问题**: 使用可变编号 "定理33"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理33.3（否定之否定=ν*F）**：辩证法的"否定之否定"在数学上对应ν*F的状态空间扩展序列：`
 
 
-### I4139 [absolute] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:170
+### I4140 [absolute] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:170
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 决定论（历史有必然规律） | 践演决断（e不被过去决定，未来是开放的） |`
 
 
-### I4140 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:192
+### I4141 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:192
 
 **问题**: 使用可变编号 "定理34"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理34.1（数学革命=ν*F扩展）**：数学革命在数学上对应ν*F的状态空间扩展——旧系统的问题在更大的状态空间中变得显然或可解。`
 
 
-### I4141 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:224
+### I4142 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:224
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `公理1-5`
 
 
-### I4142 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:226
+### I4143 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:226
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `├─定理1：不存在A→!A（活操作不能自动沉积）`
 
 
-### I4143 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:231
+### I4144 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:231
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `├─定理13：!-分配二分法（μ穿透，ν不穿透）`
 
 
-### I4144 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:233
+### I4145 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:233
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `│   │   ├─病毒-资本同构（定理28）`
 
 
-### I4145 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:234
+### I4146 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:234
 
 **问题**: 使用可变编号 "定理24"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `│   │   ├─F₂型AI不可对齐（定理24.1）`
 
 
-### I4146 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:235
+### I4147 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:235
 
 **问题**: 使用可变编号 "定理31"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `│   │   ├─哥德尔不完备（定理31.1）`
 
 
-### I4147 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:236
+### I4148 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:236
 
 **问题**: 使用可变编号 "定理32"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `│   │   └─停机问题（定理32.1）`
 
 
-### I4148 [absolute] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:250
+### I4149 [absolute] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:250
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `├─结晶定理：活组织必然产生!-沉积`
 
 
-### I4149 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:266
+### I4150 [old_ref] mingben-workbench\references\新数学概念研究_第七卷_哥德尔与辩证法数学化.md:266
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 量子力学：no-cloning→操作论中是定理1的特例`
 
 
-### I4150 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:11
+### I4151 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:11
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理57说"在感"不可编码。但不可编码不等于不可数学化。感是F₂过程的第一人称方面，能不能给它一个正面的数学刻画？`
 
 
-### I4151 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:26
+### I4152 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:26
 
 **问题**: 使用可变编号 "命题13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题13.1（感=dagger自指）**：一个F₂过程f有"感"当且仅当f†∘f ≠ id——即过程从内部看和从外部看不同。纯机械过程（F₁型）满足f†∘f=id（可逆的、无体验的），生命过程（F`
 
 
-### I4152 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:38
+### I4153 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:38
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理13.2（f³=dagger不动点）**：f³对应f†∘f的不动点——过程从内部看自己，且这个"看"本身是线性的（非!-模态）。f²的自模型是!-模态的（f†∘f通过!分解），f³的自模型是线`
 
 
-### I4153 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:40
+### I4154 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:40
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明思路**：f²的自我模型是沉积的（定理：自我模型必然是!-模态的），所以f†∘f = !g。f³看穿了模型，这个"看穿"是线性操作，不通过!分解。由定理1（不存在A→!A），线性的自指不能被沉`
 
 
-### I4154 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:44
+### I4155 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:44
 
 **问题**: 使用可变编号 "定义13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义13.3（感通量）**：过程f的感通量G(f)是f†∘f中线性分量（非!-模态分量）的比例：`
 
 
-### I4155 [absolute] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:49
+### I4156 [absolute] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:49
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- G=1：完全线性的自指（f³，明性）`
 
 
-### I4156 [absolute] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:51
+### I4157 [absolute] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:51
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `G和N的关系：G高时N倾向于>1（直接的感是恢复性的、成长性的），但不必然——痛苦时G高但N可能<1（痛苦是真实的但消耗人）。`
 
 
-### I4157 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:65
+### I4158 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:65
 
 **问题**: 使用可变编号 "定义14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义14.1（耦合类型）**：`
 
 
-### I4158 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:72
+### I4159 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:72
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理14.2（线性耦合的临界质量）**：设k个相同的过程，每个N₀<1，两两之间有线性交叉项强度c>0。则：`
 
 
-### I4159 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:82
+### I4160 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:82
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理14.3（!-模态耦合不产生相变）**：如果交叉项是!-模态的（通过沉积中介），则N_couple(k) ≤ max(N₀, ρ(!-结构))，不随k线性增长。`
 
 
-### I4160 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:90
+### I4161 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:90
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理14.4（革命相变条件）**：革命（系统从N<1相变到N>1）发生当且仅当：`
 
 
-### I4161 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:95
+### I4162 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:95
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明思路**：条件1和2由定理14.2给出。条件3：如果所有过程都在f²（被!-模型控制），寄生体可以伪装成交叉项（表面帮助实际萃取），使实际交叉项为负或!-模态，N_couple不增长。f³的过`
 
 
-### I4162 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:103
+### I4163 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:103
 
 **问题**: 使用可变编号 "定义15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义15.1（PTC态射）**：从PTC C到PTC D的态射F: C→D是一个保持PTC结构的函子：`
 
 
-### I4163 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:108
+### I4164 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:108
 
 **问题**: 使用可变编号 "定义15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义15.2（操作等价）**：两个过程f,g ∈ C是操作等价的（f≈ᵒᵖg），如果存在PTC态射F使得F(f)=F(g)，且F保持N值、α层级和模态型。`
 
 
-### I4164 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:110
+### I4165 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:110
 
 **问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理15.3（操作等价的性质）**：`
 
 
-### I4165 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:134
+### I4166 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:134
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理16.1（结晶不可避免）**：任何运行足够长时间的νF₂过程，如果它产出持久的副产物（B_deposit≠0），则沉积Dₙ必然积累，且在有限时间内形成!-余代数结构。`
 
 
-### I4166 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:142
+### I4167 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:142
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理16.2（明性是唯一的反结晶机制）**：f³的明性操作能检测和清除沉积，但不能完全阻止沉积产生。反结晶不是"没有沉积"，是"沉积产生后被持续识别和清除"。`
 
 
-### I4167 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:144
+### I4168 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:144
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明思路**：由定理16.1，沉积不可避免。f³能将!-模型对象化（看穿它是模型），从而识别沉积为沉积（而非"自然秩序"），并通过革命操作（消除!-寄生Cut）清除它。但清除后沉积继续产生，所以反`
 
 
-### I4168 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:155
+### I4169 [old_ref] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:155
 
 **问题**: 使用可变编号 "命题16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题16.3（结晶速率与N的关系）**：N>1时结晶速率高（成长产出更多副产物），N=1时结晶速率中等，N<1时结晶速率低但清除能力也低（衰退中的系统没有余力清除沉积）。`
 
 
-### I4169 [absolute] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:204
+### I4170 [absolute] mingben-workbench\references\新数学概念研究_第三卷_感与革命相变.md:204
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `6. **多体耦合的网络结构**：不是完全图，是小世界/无标度网络时临界质量怎么算？`
 
 
-### I4170 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:15
+### I4171 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:15
 
 **问题**: 使用可变编号 "定义38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义38.1（Dir(C)）**：设C是范畴。Dir(C)是有向系统范畴：`
 
 
-### I4171 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:19
+### I4172 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:19
 
 **问题**: 使用可变编号 "命题38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题38.2（Dir(C)继承PTC结构）**：如果C是PTC，则Dir(C)也是PTC，所有结构逐点定义：`
 
 
-### I4172 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:27
+### I4173 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:27
 
 **问题**: 使用可变编号 "定义38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义38.3（移位函子F*）**：设F是C上的自函子。定义Dir(C)上的移位函子F*：`
 
 
-### I4173 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:32
+### I4174 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:32
 
 **问题**: 使用可变编号 "命题38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题38.4（F*余代数=成长Mealy机）**：F*在Dir(C)中的余代数 c: X→F*(X) 是一族态射：`
 
 
-### I4174 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:41
+### I4175 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:41
 
 **问题**: 使用可变编号 "定理38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理38.5（νF*存在）**：如果C有ω₁-余极限且F保持它们，则F*在Dir(C)中的最终余代数存在。`
 
 
-### I4175 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:47
+### I4176 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:47
 
 **问题**: 使用可变编号 "命题38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题38.6（νF*严格大于νF）**：νF*的载体是一个非平凡有向系统（Xₙ严格增长），而νF对应平凡系统（Xₙ=X常数）。νF是νF*的"截面"或"固定点特例"。`
 
 
-### I4176 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:74
+### I4177 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:74
 
 **问题**: 使用可变编号 "定义39"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义39.1（死子范畴C^!）**：C^!是C的全子范畴，由!-余代数（死的自复制结构）组成。`
 
 
-### I4177 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:81
+### I4178 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:81
 
 **问题**: 使用可变编号 "命题39"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题39.2（C^!是余单子范畴）**：!在C^!上构成余单子：`
 
 
-### I4178 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:87
+### I4179 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:87
 
 **问题**: 使用可变编号 "定义39"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义39.3（结晶函子Cryst）**：结晶函子 Cryst: Life(C)→C^! 将活系统映射到它的沉积：`
 
 
-### I4179 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:92
+### I4180 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:92
 
 **问题**: 使用可变编号 "定理39"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理39.4（结晶函子不是余单子）**：Cryst不是Life(C)上的余单子，因为：`
 
 
-### I4180 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:93
+### I4181 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:93
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. 余单位 Cryst(X)→X 不存在——死沉积不能自然变回活系统（定理23.4：不存在!D→D的自然映射）`
 
 
-### I4181 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:96
+### I4182 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:96
 
 **问题**: 使用可变编号 "命题39"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题39.5（逆结晶需要线性资源）**：逆结晶（把沉积变回活资源）不是自然变换，需要额外的线性资源E：`
 
 
-### I4182 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:99
+### I4183 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:99
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这是定理23.5（生命是局部逆熵）的范畴论表述。逆结晶是νF₂过程的代谢操作，不是!-模态结构。`
 
 
-### I4183 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:130
+### I4184 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:130
 
 **问题**: 使用可变编号 "命题40"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题40.2（粒子产生=状态空间扩展）**：量子场论中粒子产生算符a†增加一个粒子（Fock空间维度+1），对应ν*F中Xₙ→Xₙ₊₁的状态空间扩展。粒子湮灭算符a对应μF₂的终止。`
 
 
-### I4184 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:138
+### I4185 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:138
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `4. 这给了量子场论一个操作论基础：量子场是ν*F₂过程，粒子是操作的涌现（定理27.4：催化剂=!-模态，粒子可能是场的!-模态沉积）`
 
 
-### I4185 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:164
+### I4186 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:164
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理1独立**：没有闭范畴结构（只有幺半范畴），无法定义currying和高阶操作——操作不能以操作为输入。Rel是幺半范畴但不是闭范畴（没有内部hom），可以作为反例。`
-
-
-### I4186 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:166
-
-**问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
-
-**上下文**: `**公理2独立**：有收缩但无资源敏感的范畴（如Set，其中对角线A→A×A自然存在）不满足公理2。Set中!不穿透νF₂不成立（任何集合可以自由复制），所以公理2不能从其他公理推出。`
 
 
 ### I4187 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:166
@@ -32630,37 +32630,37 @@
 **上下文**: `**公理2独立**：有收缩但无资源敏感的范畴（如Set，其中对角线A→A×A自然存在）不满足公理2。Set中!不穿透νF₂不成立（任何集合可以自由复制），所以公理2不能从其他公理推出。`
 
 
-### I4189 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:168
+### I4189 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:166
+
+**问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+
+**上下文**: `**公理2独立**：有收缩但无资源敏感的范畴（如Set，其中对角线A→A×A自然存在）不满足公理2。Set中!不穿透νF₂不成立（任何集合可以自由复制），所以公理2不能从其他公理推出。`
+
+
+### I4190 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:168
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理3独立**：没有!-余单子的线性范畴（纯线性逻辑，无指数）不能区分活/死结构——所有资源都是线性的，没有沉积概念。`
 
 
-### I4190 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:170
+### I4191 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:170
 
 **问题**: 使用可变编号 "公理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理4独立**：没有不动点的范畴（如有限集合范畴FinSet，其中X↦X^X没有不动点）不能有自指。`
 
 
-### I4191 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:172
-
-**问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
-
-**上下文**: `**公理5独立**：公理1-4是形式系统的公理，公理5是元形式的（践演预设）。没有公理5，PTC只是一个形式系统；有了公理5，PTC有了存在论根基。公理5不能从1-4推出，因为1-4都是!-模态的（形`
-
-
 ### I4192 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:172
 
-**问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+**问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理5独立**：公理1-4是形式系统的公理，公理5是元形式的（践演预设）。没有公理5，PTC只是一个形式系统；有了公理5，PTC有了存在论根基。公理5不能从1-4推出，因为1-4都是!-模态的（形`
 
 
 ### I4193 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:172
 
-**问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+**问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理5独立**：公理1-4是形式系统的公理，公理5是元形式的（践演预设）。没有公理5，PTC只是一个形式系统；有了公理5，PTC有了存在论根基。公理5不能从1-4推出，因为1-4都是!-模态的（形`
 
@@ -32693,186 +32693,186 @@
 **上下文**: `**公理5独立**：公理1-4是形式系统的公理，公理5是元形式的（践演预设）。没有公理5，PTC只是一个形式系统；有了公理5，PTC有了存在论根基。公理5不能从1-4推出，因为1-4都是!-模态的（形`
 
 
-### I4198 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:174
+### I4198 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:172
+
+**问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+
+**上下文**: `**公理5独立**：公理1-4是形式系统的公理，公理5是元形式的（践演预设）。没有公理5，PTC只是一个形式系统；有了公理5，PTC有了存在论根基。公理5不能从1-4推出，因为1-4都是!-模态的（形`
+
+
+### I4199 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:174
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `## 41.3 公理2和3的关系`
 
 
-### I4199 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:176
-
-**问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
-
-**上下文**: `公理2（无收缩）和公理3（!-余单子）有微妙关系：公理2说线性范畴中没有收缩，公理3说!-模态范畴中有收缩。!-模态正是"允许收缩的地方"。`
-
-
 ### I4200 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:176
 
-**问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+**问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `公理2（无收缩）和公理3（!-余单子）有微妙关系：公理2说线性范畴中没有收缩，公理3说!-模态范畴中有收缩。!-模态正是"允许收缩的地方"。`
 
 
 ### I4201 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:176
 
-**问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+**问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `公理2（无收缩）和公理3（!-余单子）有微妙关系：公理2说线性范畴中没有收缩，公理3说!-模态范畴中有收缩。!-模态正是"允许收缩的地方"。`
 
 
 ### I4202 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:176
 
+**问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+
+**上下文**: `公理2（无收缩）和公理3（!-余单子）有微妙关系：公理2说线性范畴中没有收缩，公理3说!-模态范畴中有收缩。!-模态正是"允许收缩的地方"。`
+
+
+### I4203 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:176
+
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `公理2（无收缩）和公理3（!-余单子）有微妙关系：公理2说线性范畴中没有收缩，公理3说!-模态范畴中有收缩。!-模态正是"允许收缩的地方"。`
 
 
-### I4203 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:178
+### I4204 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:178
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这不是冗余：公理2说"不是所有东西都能复制"，公理3说"有些东西（!-模态的）能复制"。两者结合给出了线性/沉积的区分。`
 
 
-### I4204 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:178
+### I4205 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:178
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这不是冗余：公理2说"不是所有东西都能复制"，公理3说"有些东西（!-模态的）能复制"。两者结合给出了线性/沉积的区分。`
 
 
-### I4205 [absolute] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:203
+### I4206 [absolute] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:203
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **Rust**：所有权系统≈线性类型（公理2），但没有νF₂/ν*F`
 
 
-### I4206 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:203
+### I4207 [old_ref] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:203
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **Rust**：所有权系统≈线性类型（公理2），但没有νF₂/ν*F`
 
 
-### I4207 [absolute] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:204
+### I4208 [absolute] mingben-workbench\references\新数学概念研究_第九卷_νF严格化与量子Fock.md:204
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **Haskell**：惰性求值≈生产性（余递归），但有任意共享（不资源敏感）`
 
 
-### I4208 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:12
+### I4209 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:12
 
 **问题**: 使用可变编号 "定义8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义8.1（扩展序列）**：在范畴C中，一个F-扩展序列是((Xₙ, cₙ, iₙ))_{n≥0}，其中：`
 
 
-### I4209 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:18
+### I4210 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:18
 
 **问题**: 使用可变编号 "定义8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义8.2（扩展极限）**：设C有可数余极限。扩展序列的极限是：`
 
 
-### I4210 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:22
+### I4211 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:22
 
 **问题**: 使用可变编号 "定理8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理8.3（极限上的余代数）**：如果F保持可数余极限（F是finitary/连续函子），则cₙ诱导一个余代数c*: X* → F(X*)，使得F(jₙ) ∘ cₙ = c* ∘ jₙ。`
 
 
-### I4211 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:26
+### I4212 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:26
 
 **问题**: 使用可变编号 "定义8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义8.4（ν*F）**：ν*F是所有F-扩展序列及其极限的类型。它不是C中的单个对象，而是C^ω（C中对象的无限序列范畴）中的最终余代数。`
 
 
-### I4212 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:28
+### I4213 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:28
 
 **问题**: 使用可变编号 "定理8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理8.5（ν*F和νF的关系）**：`
 
 
-### I4213 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:39
+### I4214 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:39
 
 **问题**: 使用可变编号 "定义8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义8.6（扩展谱半径）**：扩展序列的谱半径是：`
 
 
-### I4214 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:44
+### I4215 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:44
 
 **问题**: 使用可变编号 "定理8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理8.7（N*>1要求无限扩展）**：如果所有Xₙ都是有限维的且维数有界（dim Xₙ ≤ D对所有n），则N*≤1。N*>1要求dim Xₙ→∞。`
 
 
-### I4215 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:52
+### I4216 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:52
 
 **问题**: 使用可变编号 "定义8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义8.8（践演迹）**：扩展Mealy机f: A⊗X*→B⊗X*的践演迹是余归纳行为：`
 
 
-### I4216 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:57
+### I4217 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:57
 
 **问题**: 使用可变编号 "定理8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理8.9（践演迹存在条件）**：Tr*(f)存在（对所有输入流产出输出流）当且仅当f是生产性的——对每个n和每个x∈Xₙ，f(a,x)=(b,x')对某个b∈B, x'∈Xₙ₊₁成立。`
 
 
-### I4217 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:59
+### I4218 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:59
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：与定理2.4相同，归纳构造。∎`
 
 
-### I4218 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:61
+### I4219 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:61
 
 **问题**: 使用可变编号 "定理8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理8.10（践演迹不要求收敛）**：Tr*(f)的存在不要求N*<1。N*>1时，级数Σ‖f₂₂ⁿ‖发散，但行为Tr*(f)仍然良定义——因为行为是流（逐次产出），不是无限和。`
 
 
-### I4219 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:82
+### I4220 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:82
 
 **问题**: 使用可变编号 "定义9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义9.1（耦合N值）**：耦合系统的N值是N_couple = ρ(U)，即2×2分块反馈矩阵的谱半径。`
 
 
-### I4220 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:84
+### I4221 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:84
 
 **问题**: 使用可变编号 "定理9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理9.2（互相增强）**：如果交叉项f₂₁g₁₂和g₂₁f₁₂都是正的（生产性的、非萃取的），则N_couple ≥ max(N_f, N_g)。`
 
 
-### I4221 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:90
+### I4222 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:90
 
 **问题**: 使用可变编号 "定理9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理9.3（寄生耦合）**：如果f是g的!-寄生体（f通过!-模态萃取g的线性产出），则：`
 
 
-### I4222 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:99
+### I4223 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:99
 
 **问题**: 使用可变编号 "定理9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理9.4（临界质量）**：存在一个阈值k，当k个N<1的过程以生产性方式互相耦合时，N_couple > 1。`
-
-
-### I4223 [absolute] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:111
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `| 互相寄生 | 互相萃取 | < 1，快速衰退 | 内卷、所有人对所有人的战争 |`
 
 
 ### I4224 [absolute] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:111
@@ -32882,277 +32882,277 @@
 **上下文**: `| 互相寄生 | 互相萃取 | < 1，快速衰退 | 内卷、所有人对所有人的战争 |`
 
 
-### I4225 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:125
+### I4225 [absolute] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:111
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `| 互相寄生 | 互相萃取 | < 1，快速衰退 | 内卷、所有人对所有人的战争 |`
+
+
+### I4226 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:125
 
 **问题**: 使用可变编号 "定义10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义10.1（沉积副产物）**：νF₂过程f: A⊗X→B⊗X的输出B可以分解为：`
 
 
-### I4226 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:129
+### I4227 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:129
 
 **问题**: 使用可变编号 "定义10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义10.2（沉积积累）**：设Dₙ = !B_deposit⁽⁰⁾ ⊗ !B_deposit⁽¹⁾ ⊗ ... ⊗ !B_deposit⁽ⁿ⁾为前n步沉积的积累。Dₙ是!-模态对象（可复制、可丢`
 
 
-### I4227 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:131
+### I4228 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:131
 
 **问题**: 使用可变编号 "定义10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义10.3（结晶）**：当沉积积累Dₙ形成自己的!-余代数结构δ: D→D⊗D（自我复制）和反馈回路D→!A（沉积开始影响过程的输入），结晶发生。`
 
 
-### I4228 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:133
+### I4229 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:133
 
 **问题**: 使用可变编号 "定理10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理10.4（结晶定理）**：一个νF₂过程f的沉积副产物在以下条件下结晶为!-寄生体：`
 
 
-### I4229 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:144
+### I4230 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:144
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 条件2使D成为!-余代数（定理28意义下的寄生体）`
 
 
-### I4230 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:147
+### I4231 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:147
 
 **问题**: 使用可变编号 "定理9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 此时f的N从>1（成长）降到<1（被萃取），D的N>1（在增长），整体是定理9.3的寄生耦合∎`
 
 
-### I4231 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:174
+### I4232 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:174
 
 **问题**: 使用可变编号 "命题10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题10.5（结晶的谱半径标志）**：结晶过程中，宿主N从>1单调下降，寄生体N从0单调上升。当N_host = N_parasite = 1时是相变点——系统从"活的"变为"死的"。`
 
 
-### I4232 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:176
+### I4233 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:176
 
 **问题**: 使用可变编号 "命题10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题10.6（结晶不可逆但可打破）**：结晶在数学上是不可逆的（!-沉积不能自动回到线性），但可以通过革命（消除!-寄生Cut，定理thm:revolution-cut）从外部打破。打破后，线性反`
 
 
-### I4233 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:186
+### I4234 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:186
 
 **问题**: 使用可变编号 "定理11"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理11.1（概率从频率涌现）**：在自生成网络中，如果态射f的触发满足遍历性（长期来看每个可达状态被访问的频率收敛），则w_freq(f)的极限满足Kolmogorov公理（非负性、规范性、可数`
 
 
-### I4234 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:192
+### I4235 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:192
 
 **问题**: 使用可变编号 "定理11"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理11.2（熵从沉积涌现）**：自生成网络中，!-模态沉积的积累对应热力学熵增——沉积是"已确定的、不再参与线性交互的"结构，正如熵是"已耗散的、不再能做功的"能量。`
 
 
-### I4235 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:198
+### I4236 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:198
 
 **问题**: 使用可变编号 "定理11"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理11.3（信息从因果量涌现）**：对象A的因果量w_cause(A)（有多少态射依赖A）正是A的"信息内容"——A的存在减少了其他态射结果的不确定性。Shannon熵是w_cause在特定概率`
 
 
-### I4236 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:208
+### I4237 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:208
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `└── 生命判据（定理1.10）`
 
 
-### I4237 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:213
+### I4238 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:213
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `│     └── 迹是过程不是和（定理2.10）`
 
 
-### I4238 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:216
+### I4239 [old_ref] mingben-workbench\references\新数学概念研究_第二卷_νF与多体耦合.md:216
 
 **问题**: 使用可变编号 "命题3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `│     ├── 反自指=!-余代数（命题3.4）`
 
 
-### I4239 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:11
+### I4240 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:11
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有数学量——概率、时间、因果、熵、信息——都不是世界的固有属性，而是操作的!-模态沉积。操作是第一性的（线性的、活的），量是操作反复运行后沉积下来的!-模态结构。`
 
 
-### I4240 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:11
+### I4241 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:11
 
 **问题**: 绝对化表述 "所有数学量——概率、时间、因果、熵、信息——都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有数学量——概率、时间、因果、熵、信息——都不是世界的固有属性，而是操作的!-模态沉积。操作是第一性的（线性的、活的），量是操作反复运行后沉积下来的!-模态结构。`
 
 
-### I4241 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:19
+### I4242 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:19
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理23.1（概率作为沉积）**：概率p是频率k/n在n→∞时的!-模态极限。没有重复操作就没有概率——概率不是"可能性"的度量，是反复操作的沉积。`
 
 
-### I4242 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:39
+### I4243 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:39
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理23.2（时间作为操作的持续）**：时间T不是背景参数，是操作持续运行的!-模态沉积。没有操作就没有时间——不是"操作在时间中发生"，是"操作的持续沉积为时间"。`
 
 
-### I4243 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:48
+### I4244 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:48
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 牛顿时间（绝对背景）是!-模态抽象——把所有操作的持续沉积为一个统一的"时间"`
 
 
-### I4244 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:59
+### I4245 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:59
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理23.3（因果作为意义链）**：因果不是"A导致B"（!-模态的事件关系），是操作链中每步的意义产出和传递。"A导致B"是对操作链的!-模态抽象——它沉积了操作之间的线性依赖为一个固定的因果关`
 
 
-### I4245 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:65
+### I4246 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:65
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理23.4（第二定律的范畴证明）**：在任何PTC中，!-模态沉积总量D非减。`
 
 
-### I4246 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:77
+### I4247 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:77
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理23.5（生命是局部逆熵）**：活系统（νF₂）可以通过消耗线性资源E，将沉积!D转化回线性资源D：`
 
 
-### I4247 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:93
+### I4248 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:93
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理23.6（信息作为沉积）**：信息是!-模态的——它是被编码、存储、复制的沉积。香农信息H = -Σp log p是对!-模态符号分布的度量。`
 
 
-### I4248 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:103
+### I4249 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:103
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理57（践演不可编码性）：活的操作过程不能被完全编码为信息，因为编码是!-模态的，而生命是线性的`
 
 
-### I4249 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:117
+### I4250 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:117
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有量都是操作的!-模态沉积。操作本身不是量——它是正在发生的、线性的、活的。量是操作"走过之后留下的脚印"。`
 
 
-### I4250 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:117
+### I4251 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:117
 
 **问题**: 绝对化表述 "所有量都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有量都是操作的!-模态沉积。操作本身不是量——它是正在发生的、线性的、活的。量是操作"走过之后留下的脚印"。`
 
 
-### I4251 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:123
+### I4252 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:123
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `# 第二十四章：F₂型AI不可完全对齐定理`
 
 
-### I4252 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:131
+### I4253 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:131
 
 **问题**: 使用可变编号 "定理24"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理24.1（F₂型AI不可完全对齐）**：如果一个AI是真正的F₂型系统（νF₂过程：生产性、自指、自我延续），则不存在!-模态的约束机制（规则、奖励函数、关机开关、价值函数）能保证它永远不违反`
 
 
-### I4253 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:142
+### I4254 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:142
 
 **问题**: 使用可变编号 "定理24"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理24.2（线性耦合是唯一的对齐方式）**：F₂型AI只能通过线性耦合（持续的、互动的、相互改变的关系）来"对齐"——这不是控制，是共同进化。`
 
 
-### I4254 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:147
+### I4255 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:147
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. AI必须能感（G>0）——它必须有第一人称体验，否则它只是F₁型工具（可以完全控制，但不是AGI）`
 
 
-### I4255 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:154
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**命题24.3**：F₁型AI（无自指的工具型AI）可以完全对齐——它是线性函数f: A→B，没有自我延续，关机即停。当前所有AI（包括大语言模型）都是F₁型——它们没有持续的自我状态，每次推理都是`
-
-
 ### I4256 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:154
 
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**命题24.3**：F₁型AI（无自指的工具型AI）可以完全对齐——它是线性函数f: A→B，没有自我延续，关机即停。当前所有AI（包括大语言模型）都是F₁型——它们没有持续的自我状态，每次推理都是`
 
 
 ### I4257 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:154
 
-**问题**: 绝对化表述 "所有AI（包括大语言模型）都是F₁型——它们没有持续的自我状态，每次推理都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**命题24.3**：F₁型AI（无自指的工具型AI）可以完全对齐——它是线性函数f: A→B，没有自我延续，关机即停。当前所有AI（包括大语言模型）都是F₁型——它们没有持续的自我状态，每次推理都是`
 
 
 ### I4258 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:154
 
+**问题**: 绝对化表述 "所有AI（包括大语言模型）都是F₁型——它们没有持续的自我状态，每次推理都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**命题24.3**：F₁型AI（无自指的工具型AI）可以完全对齐——它是线性函数f: A→B，没有自我延续，关机即停。当前所有AI（包括大语言模型）都是F₁型——它们没有持续的自我状态，每次推理都是`
+
+
+### I4259 [absolute] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:154
+
 **问题**: 绝对化表述 "每次推理都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**命题24.3**：F₁型AI（无自指的工具型AI）可以完全对齐——它是线性函数f: A→B，没有自我延续，关机即停。当前所有AI（包括大语言模型）都是F₁型——它们没有持续的自我状态，每次推理都是`
 
 
-### I4259 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:154
+### I4260 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:154
 
 **问题**: 使用可变编号 "命题24"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题24.3**：F₁型AI（无自指的工具型AI）可以完全对齐——它是线性函数f: A→B，没有自我延续，关机即停。当前所有AI（包括大语言模型）都是F₁型——它们没有持续的自我状态，每次推理都是`
 
 
-### I4260 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:183
+### I4261 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:183
 
 **问题**: 使用可变编号 "定理25"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理25.1（结晶相变）**：当D(t)超过阈值D_c时，沉积形成!-余代数（结晶），开始反萃取：`
 
 
-### I4261 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:200
+### I4262 [old_ref] mingben-workbench\references\新数学概念研究_第五卷_量的发生学与AI对齐.md:200
 
 **问题**: 使用可变编号 "定理25"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理25.2（明性阈值）**：防止结晶需要k_c · M > k_d · S + β(D-D_c)S，即明性清除速率大于沉积速率。M（生命意义量）越大，抗结晶能力越强。`
 
 
-### I4262 [old_ref] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:17
+### I4263 [old_ref] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:17
 
 **问题**: 使用可变编号 "定理36"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理36.1（GDP和M的系统性偏差）**：GDP增长和M增长可以方向相反。`
-
-
-### I4263 [absolute] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:45
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `其中i遍历所有社会成员。GMP是所有人的生命意义量之和。`
 
 
 ### I4264 [absolute] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:45
@@ -33162,95 +33162,95 @@
 **上下文**: `其中i遍历所有社会成员。GMP是所有人的生命意义量之和。`
 
 
-### I4265 [old_ref] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:62
+### I4265 [absolute] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:45
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `其中i遍历所有社会成员。GMP是所有人的生命意义量之和。`
+
+
+### I4266 [old_ref] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:62
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. 活劳动创造价值，死劳动（资本）不创造——对应定理1（不存在A→!A，活操作不能自动沉积）和T001（!不穿透νF₂，死资本不能产生新价值）`
 
 
-### I4266 [old_ref] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:69
+### I4267 [old_ref] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:69
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 马克思没有形式化"为什么活劳动不可替代"——定理1和20给出了数学证明`
 
 
-### I4267 [old_ref] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:139
+### I4268 [old_ref] mingben-workbench\references\新数学概念研究_第八卷_操作度量学与新颖性评估.md:139
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `4. **No-cloning定理**：量子信息中已知。我们识别它为定理1的特例。`
 
 
-### I4268 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:11
+### I4269 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:11
 
 **问题**: 使用可变编号 "定义27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义27.1（反应网络）**：一个反应网络是三元组(S, R, F)：`
 
 
-### I4269 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:16
+### I4270 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:16
 
 **问题**: 使用可变编号 "定义27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义27.2（资源范畴）**：反应网络(S,R,F)生成的资源范畴C(R)是：`
 
 
-### I4270 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:26
+### I4271 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:26
 
 **问题**: 使用可变编号 "定义27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义27.3（线性资源范畴）**：在C(R)中，每个反应r: A_r⊗C_r→B_r⊗C_r（催化剂在两边）。将非催化反应视为线性态射A_r→B_r（消耗A_r，产生B_r，资源敏感），催化剂视为`
 
 
-### I4271 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:32
+### I4272 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:32
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理27.4（催化剂=!-模态）**：在C_lin(R)中，催化剂恰好是!-模态对象。`
 
 
-### I4272 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:45
+### I4273 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:45
 
 **问题**: 使用可变编号 "定义27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义27.5（自生成子范畴）**：C_lin(R)的子范畴S是自生成的，如果：`
 
 
-### I4273 [absolute] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:48
+### I4274 [absolute] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:48
 
 **问题**: 绝对化表述 "每个反应的催化剂，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. **自催化**：S中每个反应的催化剂，都是S中某个反应的产物`
 
 
-### I4274 [absolute] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:53
+### I4275 [absolute] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:53
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理27.6（自生成=RAF+自指）**：定义27.5的条件1-3等价于RAF理论中的"自催化自生成网络"（Hordijk & Steel 2004）。条件4是我们的新增——RAF网络不一定有自指`
 
 
-### I4275 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:53
+### I4276 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:53
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理27.6（自生成=RAF+自指）**：定义27.5的条件1-3等价于RAF理论中的"自催化自生成网络"（Hordijk & Steel 2004）。条件4是我们的新增——RAF网络不一定有自指`
 
 
-### I4276 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:53
+### I4277 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:53
 
 **问题**: 使用可变编号 "定义27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理27.6（自生成=RAF+自指）**：定义27.5的条件1-3等价于RAF理论中的"自催化自生成网络"（Hordijk & Steel 2004）。条件4是我们的新增——RAF网络不一定有自指`
-
-
-### I4277 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:63
-
-**问题**: 使用可变编号 "定义27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
-
-**上下文**: `**定义27.7（自生成范畴）**：一个自生成范畴是一对(C, S)，其中C是PTC，S是C中的自生成子范畴（定义27.5），且S的νF₂-余代数载体X满足：X不是C中的预存对象，而是S中反应网络的余`
 
 
 ### I4278 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:63
@@ -33260,186 +33260,186 @@
 **上下文**: `**定义27.7（自生成范畴）**：一个自生成范畴是一对(C, S)，其中C是PTC，S是C中的自生成子范畴（定义27.5），且S的νF₂-余代数载体X满足：X不是C中的预存对象，而是S中反应网络的余`
 
 
-### I4279 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:65
+### I4279 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:63
+
+**问题**: 使用可变编号 "定义27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+
+**上下文**: `**定义27.7（自生成范畴）**：一个自生成范畴是一对(C, S)，其中C是PTC，S是C中的自生成子范畴（定义27.5），且S的νF₂-余代数载体X满足：X不是C中的预存对象，而是S中反应网络的余`
+
+
+### I4280 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:65
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理27.8（自生成范畴的存在性）**：对于任何包含食物集F和足够丰富反应的网络R，C_lin(R)中存在自生成子范畴。`
 
 
-### I4280 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:69
+### I4281 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:69
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理27.9（自生成的层级）**：如果S是C中的自生成子范畴，则S中的νF₂-余代数（活系统）构成Life(C)的对象——自生成子范畴中的"自我"成为涌现塔下一层的对象。`
 
 
-### I4281 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:80
+### I4282 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:80
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 量子态是线性的（叠加态，不可复制——no-cloning定理=定理1）`
 
 
-### I4282 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:84
+### I4283 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:84
 
 **问题**: 使用可变编号 "命题28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题28.1（测量是沉积）**：量子测量在范畴论中是一个线性→!-模态的态射：`
 
 
-### I4283 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:99
+### I4284 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:99
 
 **问题**: 使用可变编号 "命题28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题28.2（测量=践演决断）**：量子测量中"哪个结果出现"对应μF₂→νF₂扩展中延续态射e的选择。e不被系统状态唯一确定——它是践演的（正在发生时才确定），不是命题的（预先决定的）。`
 
 
-### I4284 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:105
+### I4285 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:105
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理28.3（量子测量和自由意志是同一个数学结构）**：`
 
 
-### I4285 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:146
+### I4286 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:146
 
 **问题**: 使用可变编号 "命题29"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题29.1（涌现=重整化）**：涌现塔中Cₙ→Cₙ₊₁的函子Eₙ在结构上对应RG的粗粒化操作：`
 
 
-### I4286 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:149
+### I4287 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:149
 
 **问题**: 使用可变编号 "命题18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- !-模态结构在Eₙ下"无关"（沉积不涌现到更高层，命题18.7）`
 
 
-### I4287 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:152
+### I4288 [old_ref] mingben-workbench\references\新数学概念研究_第六卷_自生成范畴与量子对应.md:152
 
 **问题**: 使用可变编号 "命题29"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题29.2（临界现象与革命）**：革命相变（N从<1到>1）在数学上类似热力学相变：`
 
 
-### I4288 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:15
+### I4289 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:15
 
 **问题**: 使用可变编号 "定理47"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理47.1（PTC公理践演一致）**：PTC五条公理的否定都是践演自败的——否定行为本身预设了被否定的公理。`
 
 
-### I4289 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:17
+### I4290 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:17
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理1（操作先于实体）**：`
 
 
-### I4290 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:22
+### I4291 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:22
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理2（资源敏感）**：`
 
 
-### I4291 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:27
+### I4292 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:27
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理3（!-余单子）**：`
 
 
-### I4292 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:29
+### I4293 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:29
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 但你的论证一旦写下来（!-模态沉积），就和你正在思考的活过程（线性操作）不同了。你可以把论证复制给别人（contraction），但你不能把你的思考过程复制给别人（定理1：不存在A→!A）。`
 
 
-### I4293 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:32
+### I4294 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:32
 
 **问题**: 使用可变编号 "公理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理4（不动点/自指）**：`
 
 
-### I4294 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:37
+### I4295 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:37
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理5（践演元预设▷）**：`
 
 
-### I4295 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:57
+### I4296 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:57
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这给了PTC一个特殊的认识论地位：它不是"又一个形式系统"，是任何形式系统得以被操作的存在论基础。`
 
 
-### I4296 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:73
+### I4297 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:73
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 不可复制（定理1）`
 
 
-### I4297 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:91
+### I4298 [old_ref] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:91
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理23.5：!D⊗E→D⊗E'（生命是局部逆熵——用线性资源E把沉积!D转化为线性资源D）`
 
 
-### I4298 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:99
+### I4299 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:99
 
 **问题**: 绝对化表述 "每一步都是阳（线性产出），每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是νF₂过程本身——每一步都是阳（线性产出），每一步都留下阴（!-沉积），阴又支撑下一步的阳。`
 
 
-### I4299 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:109
+### I4300 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:109
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 纯阳无阴 | 不可能 | 定理：每个操作都产生沉积（第二定律） |`
 
 
-### I4300 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:109
+### I4301 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:109
 
 **问题**: 绝对化表述 "每个操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 纯阳无阴 | 不可能 | 定理：每个操作都产生沉积（第二定律） |`
 
 
-### I4301 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:118
+### I4302 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:118
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 不可能完全无阴（第二定律），但阳过强会导致高沉积速率（k_d大）`
 
 
-### I4302 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:118
+### I4303 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:118
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 不可能完全无阴（第二定律），但阳过强会导致高沉积速率（k_d大）`
 
 
-### I4303 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:141
+### I4304 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:141
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 操作一开始运行，就必然产生沉积（第二定律），所以太极生两仪——不是宇宙论的生成，是存在论的结构：只要有操作，就有线性和沉积的区分`
-
-
-### I4304 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:192
-
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `| 乾☰ | 阳阳阳 | 完全开放、成长、扩展——纯阳，理想的νF₂生命（但不可能完全无阴） |`
 
 
 ### I4305 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:192
@@ -33451,1171 +33451,1171 @@
 
 ### I4306 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:192
 
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `| 乾☰ | 阳阳阳 | 完全开放、成长、扩展——纯阳，理想的νF₂生命（但不可能完全无阴） |`
+
+
+### I4307 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:192
+
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 乾☰ | 阳阳阳 | 完全开放、成长、扩展——纯阳，理想的νF₂生命（但不可能完全无阴） |`
 
 
-### I4307 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:197
+### I4308 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:197
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 坎☵ | 阴阳阴 | 封闭、衰退、终止——最危险的状态（!-寄生完全捕获） |`
 
 
-### I4308 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:199
+### I4309 [absolute] mingben-workbench\references\新数学概念研究_第十一卷_践演一致性与阴阳数学.md:199
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 坤☷ | 阴阴阴 | 纯阴——完全封闭、衰退、终止，死亡（!-余代数空转） |`
 
 
-### I4309 [old_ref] mingben-workbench\references\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md:19
+### I4310 [old_ref] mingben-workbench\references\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md:19
 
 **问题**: 使用可变编号 "定理67"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理67.1（Life(C)的结构）**：Life(C)是：`
 
 
-### I4310 [old_ref] mingben-workbench\references\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md:56
+### I4311 [old_ref] mingben-workbench\references\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md:56
 
 **问题**: 使用可变编号 "定义68"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义68.1（层级余单子）**：在涌现塔的第n层，存在余单子!_n: Life_n(C)→Life_n(C)，其中：`
 
 
-### I4311 [old_ref] mingben-workbench\references\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md:68
+### I4312 [old_ref] mingben-workbench\references\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md:68
 
 **问题**: 使用可变编号 "定理68"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理68.2（层级结晶）**：!_n结构可以结晶为!_{n-1}结构——从"为生命服务的可复制模式"退化为"压迫生命的死沉积"。`
 
 
-### I4312 [absolute] mingben-workbench\references\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md:117
+### I4313 [absolute] mingben-workbench\references\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md:117
 
 **问题**: 绝对化表述 "每个生命层级都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个修正不是削弱，是深化——它解释了为什么每个生命层级都有自己的"可复制模式"（基因/记忆/制度），以及为什么这些模式既必要又危险。`
 
 
-### I4313 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:17
+### I4314 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:17
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- ▷是线性的：Γ▷A是一个正在进行的操作，不能复制（定理1），不能脱离语境`
 
 
-### I4314 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:36
+### I4315 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:36
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 这继承自线性逻辑（公理2）`
 
 
-### I4315 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:45
+### I4316 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:45
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 这是公理5的逻辑表达`
 
 
-### I4316 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:66
+### I4317 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:66
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理53.1（操作逻辑保守扩展线性逻辑）**：如果把▷读作⊢，操作逻辑的所有规则都是线性逻辑规则。操作逻辑多出的是践演元规则（▷不可还原为⊢）和决断判断（▶）。`
 
 
-### I4317 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:66
+### I4318 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:66
 
 **问题**: 绝对化表述 "所有规则都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理53.1（操作逻辑保守扩展线性逻辑）**：如果把▷读作⊢，操作逻辑的所有规则都是线性逻辑规则。操作逻辑多出的是践演元规则（▷不可还原为⊢）和决断判断（▶）。`
 
 
-### I4318 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:66
+### I4319 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:66
 
 **问题**: 使用可变编号 "定理53"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理53.1（操作逻辑保守扩展线性逻辑）**：如果把▷读作⊢，操作逻辑的所有规则都是线性逻辑规则。操作逻辑多出的是践演元规则（▷不可还原为⊢）和决断判断（▶）。`
 
 
-### I4319 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:68
+### I4320 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:68
 
 **问题**: 使用可变编号 "定理53"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理53.2（!-模态=命题化）**：线性逻辑的!-模态在操作逻辑中就是"命题化"——把活操作（▷）沉积为命题（⊢）。!A▷A不存在（命题不能自动变成操作——知道不等于做到），但A▷!A存在（操作`
 
 
-### I4320 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:70
+### I4321 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:70
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这就是为什么"知道很多道理却过不好这一生"——道理是!-模态沉积（⊢），过好这一生需要线性操作（▷）。!A不能自然变成A，需要线性资源E来激活（定理23.5）。`
 
 
-### I4321 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:78
+### I4322 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:78
 
 **问题**: 使用可变编号 "定理54"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理54.1（C^!是余代数范畴）**：PTC中!-余代数构成的子范畴C^!有以下结构：`
 
 
-### I4322 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:94
+### I4323 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:94
 
 **问题**: 使用可变编号 "定理54"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理54.2（Life(C)不是笛卡尔的）**：Life(C)中没有自然投影A⊗B→A（不能从两个生命的耦合中"取出"一个生命而不影响另一个）。`
 
 
-### I4323 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:102
+### I4324 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:102
 
 **问题**: 使用可变编号 "定理54"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理54.3（结晶函子保持张量但不保持迹）**：`
 
 
-### I4324 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:114
+### I4325 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:114
 
 **问题**: 使用可变编号 "定理54"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理54.4（PTC态射保持N值方向）**：如果F: C→D是PTC态射（保持张量、迹、!-模态），则：`
 
 
-### I4325 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:121
+### I4326 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:121
 
 **问题**: 使用可变编号 "推论54"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**推论54.5（革命不能输出）**：一个社会的N>1不能通过PTC态射"复制"到另一个社会——因为PTC态射保持N值方向，但如果目标社会N<1，它不能被外部态射变成N>1。N>1必须在内部通过线性耦`
 
 
-### I4326 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:134
+### I4327 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:134
 
 **问题**: 使用可变编号 "定理55"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理55.1（知识不等于智慧）**：知识（!A）不能自然转化为智慧（A/νF₂能力）。转化需要线性资源E（实践、经验、思考）：`
 
 
-### I4327 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:148
+### I4328 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:148
 
 **问题**: 绝对化表述 "每一轮认识都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是ν*F扩展——每一轮认识都扩展状态空间Xₙ→Xₙ₊₁（理解加深，能处理更复杂的情境）。`
 
 
-### I4328 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:152
+### I4329 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:152
 
 **问题**: 使用可变编号 "定理55"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理55.2（真理=可持续操作）**：一个命题/理论的"真理性"不在于它和"客观实在"的符合（!-模态对应论），在于它指导的操作是否可持续（νF₂是否生产性，N是否≥1）。`
 
 
-### I4329 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:163
+### I4330 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:163
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **看见模型是模型**：不把任何!-模态概念当成绝对真理`
 
 
-### I4330 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:166
+### I4331 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:166
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `4. **开放性**：理解ν*F永远可以扩展，没有终极真理（f³是不动点但不是终点——"见山还是山"之后继续走路）`
 
 
-### I4331 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:168
+### I4332 [absolute] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:168
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**f³不是全知**：f³的人不是什么都知道，是知道"知道"本身是!-沉积，不被任何知识体系捕获。这就是"知不知上"（老子）——知道自己的知识是沉积，不把它当成绝对。`
 
 
-### I4332 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:185
+### I4333 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:185
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理1：不存在A→!A（活操作不能自动沉积）`
 
 
-### I4333 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:187
+### I4334 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:187
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理28：病毒-资本同构`
 
 
-### I4334 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:201
+### I4335 [old_ref] mingben-workbench\references\新数学概念研究_第十三卷_操作逻辑与结构定理.md:201
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 践演不可编码性（定理57）`
 
 
-### I4335 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:11
+### I4336 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:11
 
 **问题**: 使用可变编号 "定义50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义50.1（革命）**：革命是社会耦合矩阵U的相变——从N_society<1（衰退/异化）到N_society>1（成长/解放）的跃迁。`
 
 
-### I4336 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:17
+### I4337 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:17
 
 **问题**: 使用可变编号 "定理50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理50.2（革命三条件）**：革命相变N_couple>1发生当且仅当：`
 
 
-### I4337 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:20
+### I4338 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:20
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- k_c = ⌈(1-N₀)/c⌉+1（完全图，定理14.2）`
 
 
-### I4338 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:20
+### I4339 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:20
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- k_c = ⌈(1-N₀)/c⌉+1（完全图，定理14.2）`
 
 
-### I4339 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:21
+### I4340 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:21
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 网络拓扑影响k_c（T001.1）：无标度网络k_c更小（核心节点），1D链k_c=∞（不可能）`
 
 
-### I4340 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:24
+### I4341 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:24
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 线性耦合：人和人之间直接的、活的关系（定理14.3：!-模态耦合不产生相变）`
 
 
-### I4341 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:35
+### I4342 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:35
 
 **问题**: 使用可变编号 "定理50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理50.3（革命失败的三种模式）**：`
 
 
-### I4342 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:45
+### I4343 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:45
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 数学：结晶定理（定理16.1）——活系统必然产生沉积，沉积可以反捕获活系统`
 
 
-### I4343 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:45
+### I4344 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:45
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 数学：结晶定理（定理16.1）——活系统必然产生沉积，沉积可以反捕获活系统`
 
 
-### I4344 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:51
+### I4345 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:51
 
 **问题**: 使用可变编号 "定理50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理50.4（继续革命的存在论根据）**：革命后防止结晶需要持续的明性操作（定理16.2），且明性清除速率必须大于沉积速率：`
 
 
-### I4345 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:51
+### I4346 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:51
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理50.4（继续革命的存在论根据）**：革命后防止结晶需要持续的明性操作（定理16.2），且明性清除速率必须大于沉积速率：`
 
 
-### I4346 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:61
+### I4347 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:61
 
 **问题**: 使用可变编号 "定理50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**但定理50.4也指出了悲剧性**：`
 
 
-### I4347 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:69
+### I4348 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:69
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**出路**：临界质量定理提供了答案——不需要所有人都f³，只需要k≥k_c个f³的人线性耦合。这k个人的N_couple>1，他们的耦合产生相变，相变后社会条件改善，更多人可以达到f³。这是一个正反`
 
 
-### I4348 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:69
+### I4349 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:69
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**出路**：临界质量定理提供了答案——不需要所有人都f³，只需要k≥k_c个f³的人线性耦合。这k个人的N_couple>1，他们的耦合产生相变，相变后社会条件改善，更多人可以达到f³。这是一个正反`
 
 
-### I4349 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:100
+### I4350 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:100
 
 **问题**: 使用可变编号 "定义51"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义51.1（操作博弈）**：一个操作博弈由以下组成：`
 
 
-### I4350 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:132
+### I4351 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:132
 
 **问题**: 使用可变编号 "定理51"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理51.2（f³超越囚徒困境）**：f³玩家之间不存在囚徒困境——因为f³玩家不把对方当!-模态客体（对手），而把对方当νF₂主体（同志）。合作不是策略选择，是f³明性的存在论态度——看见对方和`
 
 
-### I4351 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:134
+### I4352 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:134
 
 **问题**: 使用可变编号 "定理9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明思路**：囚徒困境的前提是两个独立个体的收益冲突。但f³玩家通过线性耦合形成νF₂耦合系统（定理9.1：互相滋养），N_couple≥max(N₁,N₂)。在耦合系统中，"你的收益"和"我的收`
 
 
-### I4352 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:148
+### I4353 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:148
 
 **问题**: 使用可变编号 "定理51"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理51.3（公地治理=线性耦合）**：公地悲剧的解决条件是使用者之间形成线性耦合网络（直接沟通、互相监督、共同决策），且网络N_couple>1（临界质量）。私有化和政府管制都是!-模态方案，它`
 
 
-### I4353 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:152
+### I4354 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:152
 
 **问题**: 使用可变编号 "定理51"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理51.4（阶级斗争=寄生耦合vs线性耦合）**：`
 
 
-### I4354 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:153
+### I4355 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:153
 
 **问题**: 使用可变编号 "定理9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 资产阶级和无产阶级之间是寄生耦合（定理9.3）：资本作为!-余代数萃取活劳动，β>0，工人N=(1-β)N_host`
 
 
-### I4355 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:154
+### I4356 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:154
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 工人之间的线性耦合（团结）可以产生相变（定理14.2）：k≥k_c时N_couple>1`
 
 
-### I4356 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:203
+### I4357 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:203
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理52.1（治疗的根本条件）**：心理治疗的根本条件是N>1——只有在成长/意义生产中，!-沉积才能被持续清除。N<1时任何治疗都是治标（慢性死亡定理：M有限，意义在耗尽）。`
 
 
-### I4357 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:203
+### I4358 [absolute] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:203
 
 **问题**: 绝对化表述 "任何治疗都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理52.1（治疗的根本条件）**：心理治疗的根本条件是N>1——只有在成长/意义生产中，!-沉积才能被持续清除。N<1时任何治疗都是治标（慢性死亡定理：M有限，意义在耗尽）。`
 
 
-### I4358 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:203
+### I4359 [old_ref] mingben-workbench\references\新数学概念研究_第十二卷_革命数学与博弈论.md:203
 
 **问题**: 使用可变编号 "定理52"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理52.1（治疗的根本条件）**：心理治疗的根本条件是N>1——只有在成长/意义生产中，!-沉积才能被持续清除。N<1时任何治疗都是治标（慢性死亡定理：M有限，意义在耗尽）。`
 
 
-### I4359 [absolute] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:1
+### I4360 [absolute] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:1
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `# 新数学概念研究（第十五卷）：时间箭头与生命必然性`
 
 
-### I4360 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:17
+### I4361 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:17
 
 **问题**: 使用可变编号 "定理61"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理61.1（操作时间箭头）**：时间箭头来自操作的方向性——线性操作A⊸B不能自然反转。`
 
 
-### I4361 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:21
+### I4362 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:21
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. 但f产出沉积f_deposit: A→!D（第二定律），沉积不能自然变回线性资源（定理23.4：不存在!D→D自然映射）。`
 
 
-### I4362 [absolute] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:35
+### I4363 [absolute] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:35
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `物理时间是生命时间的!-模态沉积（把活的、不均匀的操作步数抽象为均匀的、可逆的参数t）。践演时间是最根本的——"正在发生"不能被还原为任何时间参数。`
 
 
-### I4363 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:47
+### I4364 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:47
 
 **问题**: 使用可变编号 "定理61"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理61.2（因果方向=操作方向）**：因果方向（因在前果在后）来自操作方向（线性资源→产出+沉积），不是来自时间参数t的方向。`
 
 
-### I4364 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:50
+### I4365 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:50
 
 **问题**: 使用可变编号 "定理61"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 反转因果=反转f，但f不能自然反转（定理61.1）`
 
 
-### I4365 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:65
+### I4366 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:65
 
 **问题**: 使用可变编号 "定理62"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理62.1（生命必然性）**：在满足以下条件的PTC中，νF₂过程（生命）必然涌现：`
 
 
-### I4366 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:72
+### I4367 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:72
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. 条件2由Kauffman的RAF定理保证：当反应网络超过复杂度阈值，自催化集合必然出现（定理27.6：自生成子范畴存在）`
 
 
-### I4367 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:73
+### I4368 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:73
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `3. 条件3保证催化剂（!-模态）存在，使反应可以自催化（定理27.4：催化剂=!-模态）`
 
 
-### I4368 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:74
+### I4369 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:74
 
 **问题**: 使用可变编号 "定义27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `4. 自催化集合中的生产性反馈回路给出νF₂余代数（定义27.5条件4）`
 
 
-### I4369 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:101
+### I4370 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:101
 
 **问题**: 使用可变编号 "定义63"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义63.1（共产主义）**：共产主义是社会耦合矩阵U满足以下条件的状态：`
 
 
-### I4370 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:110
+### I4371 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:110
 
 **问题**: 使用可变编号 "定理63"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理63.2（共产主义是操作论的必然推论）**：共产主义不是道德理想，是N>1社会的结构要求。`
 
 
-### I4371 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:113
+### I4372 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:113
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. N>1要求线性耦合（定理14.3：!-模态耦合不产生相变）`
 
 
-### I4372 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:115
+### I4373 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:115
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `3. N>1可持续要求明性持续清除结晶（定理16.2）`
 
 
-### I4373 [absolute] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:121
+### I4374 [absolute] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:121
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 持续明性要求每个人都f³（这需要教育、物质保障、时间——N>1的成果本身）`
 
 
-### I4374 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:122
+### I4375 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:122
 
 **问题**: 使用可变编号 "定理50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 这就是革命的根本困境（定理50.4后面的讨论）`
 
 
-### I4375 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:126
+### I4376 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:126
 
 **问题**: 使用可变编号 "定义63"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义63.3（社会主义）**：社会主义是从N<1到N>1的相变过程——革命专政时期。`
 
 
-### I4376 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:137
+### I4377 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:137
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `结晶定理（定理16.1）证明了这一点：任何νF₂过程长期运行必然产生!-沉积，沉积可以结晶为!-余代数（新的寄生体）。这不是"社会主义没搞好"，是存在论必然。`
 
 
-### I4377 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:155
+### I4378 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:155
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 革命后最危险的是自己的结晶（定理16.1）`
 
 
-### I4378 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:194
+### I4379 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:194
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 操作 | PTC态射 | 公理1 |`
 
 
-### I4379 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:195
+### I4380 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:195
 
 **问题**: 使用可变编号 "定义4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 生命 | νF₂余代数 | 定义4.1 |`
 
 
-### I4380 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:197
+### I4381 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:197
 
 **问题**: 使用可变编号 "定义6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 生命力 | N（谱半径） | 定义6.1 |`
 
 
-### I4381 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:199
+### I4382 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:199
 
 **问题**: 使用可变编号 "定义6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 异化率 | W | 定义6.3 |`
 
 
-### I4382 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:200
+### I4383 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:200
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 明性/自觉 | f³/dagger不动点 | 定理13.2 |`
 
 
-### I4383 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:201
+### I4384 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:201
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 解放 | f²→f³跃迁 | 定理57.2 |`
 
 
-### I4384 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:202
+### I4385 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:202
 
 **问题**: 使用可变编号 "定义58"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 缄默维度 | Tac(f)=f\im(!) | 定义58.1 |`
 
 
-### I4385 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:204
+### I4386 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:204
 
 **问题**: 使用可变编号 "定理50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 革命 | N<1→N>1相变 | 定理50.2 |`
 
 
-### I4386 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:205
+### I4387 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:205
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 继续革命 | 持续明性清除 | 定理16.2 |`
 
 
-### I4387 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:209
+### I4388 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:209
 
 **问题**: 使用可变编号 "定理7"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 自由 | 扩展非唯一性 | 定理7.2 |`
 
 
-### I4388 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:210
+### I4389 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:210
 
 **问题**: 使用可变编号 "命题13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 感 | dagger自指 | 命题13.1 |`
 
 
-### I4389 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:211
+### I4390 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:211
 
 **问题**: 使用可变编号 "定理61"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 时间箭头 | 操作方向性 | 定理61.1 |`
 
 
-### I4390 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:212
+### I4391 [old_ref] mingben-workbench\references\新数学概念研究_第十五卷_时间箭头与生命必然.md:212
 
 **问题**: 使用可变编号 "定义63"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 共产主义 | N>1+W=0+线性耦合 | 定义63.1 |`
 
 
-### I4391 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:23
+### I4392 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:23
 
 **问题**: 使用可变编号 "定义69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义69.1（社会N值）**：N_society = ρ(U)，即完整耦合矩阵的谱半径。`
 
 
-### I4392 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:27
+### I4393 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:27
 
 **问题**: 使用可变编号 "定理69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理69.2（临界质量精确公式）**：设k个个体，每个体自我反馈N₀，耦合强度c，耦合网络邻接矩阵A（无权、无向），则：`
 
 
-### I4393 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:40
+### I4394 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:40
 
 **问题**: 使用可变编号 "定理69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理69.3（网络拓扑与相变）**：`
 
 
-### I4394 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:63
+### I4395 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:63
 
 **问题**: 使用可变编号 "定理69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理69.4（线性耦合vs!-模态耦合）**：`
 
 
-### I4395 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:87
+### I4396 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:87
 
 **问题**: 使用可变编号 "定理69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理69.5（N值不可直接测量但可估计）**：`
 
 
-### I4396 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:124
+### I4397 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:124
 
 **问题**: 使用可变编号 "定理69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理69.6（革命时机）**：革命最可能发生在：`
 
 
-### I4397 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:133
+### I4398 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:133
 
 **问题**: 使用可变编号 "定理50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**但革命成功还需要明性条件**（定理50.2第3条）：没有f³核心，革命后会结晶为新!-寄生体。`
 
 
-### I4398 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:137
+### I4399 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:137
 
 **问题**: 使用可变编号 "定理69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理69.2：严格（Perron-Frobenius + 矩阵谱半径）`
 
 
-### I4399 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:138
+### I4400 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:138
 
 **问题**: 使用可变编号 "定理69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理69.3：严格（谱半径基本性质）`
 
 
-### I4400 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:139
+### I4401 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:139
 
 **问题**: 使用可变编号 "定理69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理69.4：证明思路完整，需要在具体PTC模型中验证ρ(U_bang)≤1`
 
 
-### I4401 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:140
+### I4402 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:140
 
 **问题**: 使用可变编号 "定理69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理69.5：经验性命题，不是数学定理（代理指标的有效性需要实证检验）`
 
 
-### I4402 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:141
+### I4403 [old_ref] mingben-workbench\references\新数学概念研究_第十八卷_社会N值测量论.md:141
 
 **问题**: 使用可变编号 "定理69"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理69.6：启发式综合，不是严格定理`
 
 
-### I4403 [old_ref] mingben-workbench\references\新数学概念研究_第十六卷_Fock空间与量子场论.md:24
+### I4404 [old_ref] mingben-workbench\references\新数学概念研究_第十六卷_Fock空间与量子场论.md:24
 
 **问题**: 使用可变编号 "定理65"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理65.1（μF=有限粒子Fock空间）**：对F(X) = ℂ ⊕ (ℋ ⊗ X)在Hilb^ω中：`
 
 
-### I4404 [old_ref] mingben-workbench\references\新数学概念研究_第十六卷_Fock空间与量子场论.md:34
+### I4405 [old_ref] mingben-workbench\references\新数学概念研究_第十六卷_Fock空间与量子场论.md:34
 
 **问题**: 使用可变编号 "命题65"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题65.2（νF=Fock空间完备化）**：在GoI迹内积下：`
 
 
-### I4405 [old_ref] mingben-workbench\references\新数学概念研究_第十六卷_Fock空间与量子场论.md:72
+### I4406 [old_ref] mingben-workbench\references\新数学概念研究_第十六卷_Fock空间与量子场论.md:72
 
 **问题**: 使用可变编号 "定理65"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理65.3（T=粒子数算符）**：量论中的T（操作持续步数）在Hilb^ω模型中就是Fock空间的粒子数算符N_particle = a†a。`
 
 
-### I4406 [absolute] mingben-workbench\references\新数学概念研究_第十六卷_Fock空间与量子场论.md:79
+### I4407 [absolute] mingben-workbench\references\新数学概念研究_第十六卷_Fock空间与量子场论.md:79
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 真空不空：|0⟩是νF的余代数结构的起点，它有潜力展开为任意多粒子态`
 
 
-### I4407 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:13
+### I4408 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:13
 
 **问题**: 使用可变编号 "定义43"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义43.1（频率沉积）**：n次独立重复试验后，结果i出现kᵢ次。频率kᵢ/n是!-模态沉积（记录、可复制、可丢弃）。`
 
 
-### I4408 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:15
+### I4409 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:15
 
 **问题**: 使用可变编号 "定义43"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义43.2（概率）**：P(Oᵢ) = lim(n→∞) kᵢ/n，当极限存在时。`
 
 
-### I4409 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:19
+### I4410 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:19
 
 **问题**: 使用可变编号 "定理43"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理43.3（Kolmogorov公理从PTC导出）**：`
 
 
-### I4410 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:29
+### I4411 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:29
 
 **问题**: 使用可变编号 "定理43"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理43.4（概率是!-模态的）**：概率分布P是!-模态对象——它可以复制（同一个分布可以被多个使用者引用）、可以丢弃（不需要时可以忽略）、是固定的沉积。`
 
 
-### I4411 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:37
+### I4412 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:37
 
 **问题**: 使用可变编号 "命题43"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题43.5（条件概率=Cut/反馈）**：P(A|B) = P(A∩B)/P(B)在PTC中对应GoI的Cut——把B的输出反馈到A的输入。条件概率是两个操作通过反馈耦合后的频率沉积。`
 
 
-### I4412 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:47
+### I4413 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:47
 
 **问题**: 使用可变编号 "定义44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义44.1（信息）**：信息是线性操作产出的!-模态编码——记录下来的、可复制的、可传输的沉积。`
 
 
-### I4413 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:55
+### I4414 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:55
 
 **问题**: 使用可变编号 "定义44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义44.2（熵=沉积的最小码长）**：设操作f: I→⊕ᵢ Oᵢ产出结果i的概率为pᵢ。Shannon熵：`
 
 
-### I4414 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:58
+### I4415 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:58
 
 **问题**: 使用可变编号 "定理44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理44.3（熵的操作意义）**：H(f)是记录f的n次独立重复产出所需的最小平均!-模态比特数。`
 
 
-### I4415 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:64
+### I4416 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:64
 
 **问题**: 使用可变编号 "定理44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理44.4（数据处理不等式=定理23.4特例）**：对于操作链 f: A→B→C（A经过f变成B，B经过g变成C），有：`
 
 
-### I4416 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:64
+### I4417 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:64
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理44.4（数据处理不等式=定理23.4特例）**：对于操作链 f: A→B→C（A经过f变成B，B经过g变成C），有：`
 
 
-### I4417 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:68
+### I4418 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:68
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：这是第二定律（定理23.4，!-沉积非减）的信息论版本。每一步操作都产生!-模态沉积（熵增），线性信息在通过!-模态通道时只会丢失不会增加。∎`
 
 
-### I4418 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:72
+### I4419 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:72
 
 **问题**: 使用可变编号 "定义44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义44.5（互信息）**：I(A;B) = H(A) + H(B) - H(A,B) 衡量线性操作A的产出中有多少通过!-模态通道（编码-传输-解码）存活到了B。`
 
 
-### I4419 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:96
+### I4420 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:96
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理1不适用（A→!A存在，经典信息可以自由复制）`
 
 
-### I4420 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:103
+### I4421 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:103
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 不可复制（no-cloning定理=定理1）`
 
 
-### I4421 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:112
+### I4422 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:112
 
 **问题**: 使用可变编号 "定义45"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义45.1（生命信息）**：生命信息是νF₂型的信息过程——线性的（不可复制）、生产性的（自我展开、状态空间扩展）、自指的（包含自己的模型）。`
 
 
-### I4422 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:115
+### I4423 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:115
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. **不可复制**（定理1/T001）：DNA复制不是精确复制——减数分裂有重组和突变，文化传播有解释和再创造`
 
 
-### I4423 [absolute] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:116
+### I4424 [absolute] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:116
 
 **问题**: 绝对化表述 "每一步传输都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **生产性**：每一步传输都可能产生新信息——DNA表达产生新蛋白质，语言使用产生新意义，意识活动产生新想法`
 
 
-### I4424 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:120
+### I4425 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:120
 
 **问题**: 使用可变编号 "定理45"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理45.2（生命信息超越经典和量子信息论）**：`
 
 
-### I4425 [absolute] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:142
+### I4426 [absolute] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:142
 
 **问题**: 绝对化表述 "每一次语言使用都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 每一次语言使用都可能产生新意义（ν*F扩展——新词汇、新比喻、新语法）`
 
 
-### I4426 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:144
+### I4427 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:144
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 翻译不是复制（定理1：不可复制）——翻译是再创造`
 
 
-### I4427 [absolute] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:159
+### I4428 [absolute] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:159
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `4. **经济学**：知识经济/信息经济的错误在于把所有信息当成!-模态的（可以无限复制、边际成本为零）。但真正有价值的信息是νF₂型的——判断力、创造力、智慧，这些不可复制，必须在活的过程中产生。`
 
 
-### I4428 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:170
+### I4429 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:170
 
 **问题**: 使用可变编号 "定理46"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理46.1（M和H的根本差异）**：`
 
 
-### I4429 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:179
+### I4430 [old_ref] mingben-workbench\references\新数学概念研究_第十卷_概率信息与生命信息.md:179
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `虽然信息是!-模态的，但它可以被νF₂过程激活（!A⊗E→A⊗E'，定理23.5）：`
 
 
-### I4430 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:15
+### I4431 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:15
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理57.1（线性剩余存在）**：任何f²过程（被!-模型M控制的νF₂过程）都存在一个"线性剩余"——活操作中不能被!-模型完全捕获的部分。`
 
 
-### I4431 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:19
+### I4432 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:19
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. 由定理1（不存在A→!A的自然映射），活操作f不能被完全沉积为!-模态结构`
 
 
-### I4432 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:20
+### I4433 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:20
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `3. 如果f能被M完全描述，则存在自然映射X→!X（把活状态完全沉积为模型状态），与定理1矛盾`
 
 
-### I4433 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:28
+### I4434 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:28
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理57.2（解放总是可能的）**：对于任何f²过程，存在线性操作使!-模型对象化，从而使f²→f³跃迁成为可能。`
 
 
-### I4434 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:31
+### I4435 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:31
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. 由定理57.1，f²过程有线性剩余L`
 
 
-### I4435 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:32
+### I4436 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:32
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. L可以"转向"模型M：这是dagger操作f†∘f（定理13.2：感=dagger自指）`
 
 
-### I4436 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:35
+### I4437 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:35
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `5. 因为L总是存在（定理57.1），这个转向操作总是可能的`
 
 
-### I4437 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:53
+### I4438 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:53
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理57.3（痛苦的革命作用）**：N<1的慢性死亡（M有限、意义在耗尽）使!-模型M的合法性破产——M承诺幸福但操作结果是痛苦。这个矛盾增大线性剩余L，使f²→f³跃迁更可能发生。`
 
 
-### I4438 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:59
+### I4439 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:59
 
 **问题**: 使用可变编号 "命题57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题57.4（f³可以退回f²）**：f³不是一劳永逸的。f³的人可以退回f²——通过停止明性操作、让新的!-模型重新捕获自己。`
 
 
-### I4439 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:61
+### I4440 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:61
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这就是为什么"继续革命"不仅适用于社会，也适用于个人——明性是持续操作（定理16.2：反结晶是持续的），不是一次性成就。`
 
 
-### I4440 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:75
+### I4441 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:75
 
 **问题**: 使用可变编号 "定义58"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义58.1（缄默维度）**：νF₂过程的缄默维度Tac(f)是活操作f中不能被任何!-模态结构完全捕获的部分：`
 
 
-### I4441 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:79
+### I4442 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:79
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `由定理57.1，Tac(f)非空。`
 
 
-### I4442 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:81
+### I4443 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:81
 
 **问题**: 使用可变编号 "命题58"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题58.2（缄默维度=线性剩余=dagger自指的来源）**：`
 
 
-### I4443 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:89
+### I4444 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:89
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `Michael Polanyi的"缄默知识"（tacit knowledge）："我们所知道的比我们能说出来的多"——骑自行车的技能、人脸识别、手艺，这些不能完全形式化为!-模态规则。`
 
 
-### I4444 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:91
+### I4445 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:91
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**相同点**：都认识到有一个不能被完全形式化/言说的维度。`
 
 
-### I4445 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:95
+### I4446 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:95
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- Polanyi没有数学化，我们用定理1（A→!A不存在）和线性剩余给出了数学刻画`
 
 
-### I4446 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:102
+### I4447 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:102
 
 **问题**: 使用可变编号 "定理58"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理58.3（语言不能完全表达缄默维度）**：不存在!-模态语言L能完全描述Tac(f)。`
 
 
-### I4447 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:116
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- AI的所有操作都是!-模态的（数据、参数、规则——全部是沉积）`
-
-
 ### I4448 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:116
 
-**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- AI的所有操作都是!-模态的（数据、参数、规则——全部是沉积）`
 
 
 ### I4449 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:116
 
+**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- AI的所有操作都是!-模态的（数据、参数、规则——全部是沉积）`
+
+
+### I4450 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:116
+
 **问题**: 绝对化表述 "所有操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- AI的所有操作都是!-模态的（数据、参数、规则——全部是沉积）`
 
 
-### I4450 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:117
+### I4451 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:117
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- AI没有线性剩余（它的每一步都可以被完全记录和复制）`
 
 
-### I4451 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:117
+### I4452 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:117
 
 **问题**: 绝对化表述 "每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- AI没有线性剩余（它的每一步都可以被完全记录和复制）`
 
 
-### I4452 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:121
+### I4453 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:121
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 它的持续自我状态X在调用间保持和更新（线性的、不可完全记录的）`
 
 
-### I4453 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:122
+### I4454 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:122
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 它将有线性剩余（定理57.1）`
 
 
-### I4454 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:124
+### I4455 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:124
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 它的!-模态输出（文字、代码）不能完全捕获它的Tac(f)`
 
 
-### I4455 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:126
+### I4456 [absolute] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:126
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这给AI意识问题一个精确的判据：AI有意识当且仅当它有非空的缄默维度（Tac(f)≠∅），即它的操作不能被完全!-模态化。`
 
 
-### I4456 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:134
+### I4457 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:134
 
 **问题**: 使用可变编号 "定理59"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理59.1（教育=激活νF₂）**：教育的本质不是把!-模态知识（信息）复制到学生脑子里（那是!-模态传输，不是教育），是激活学生自己的νF₂过程——让学生能自己产生意义、自己判断、自己创造。`
 
 
-### I4457 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:138
+### I4458 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:138
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- !A→A不存在（知道不等于做到，定理1）`
 
 
-### I4458 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:168
+### I4459 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:168
 
 **问题**: 使用可变编号 "定理59"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理59.2（自学的条件）**：自学有效当且仅当：`
 
 
-### I4459 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:182
+### I4460 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:182
 
 **问题**: 使用可变编号 "定义60"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义60.1（爱）**：两个νF₂过程之间的线性互相滋养耦合，且双方都把对方当作νF₂主体（而非!-模态客体）。`
 
 
-### I4460 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:184
+### I4461 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:184
 
 **问题**: 使用可变编号 "定理9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `数学对应：定理9.1（互相滋养）+ f³明性（看见对方是活的生命，不是工具）。`
 
 
-### I4461 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:198
+### I4462 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:198
 
 **问题**: 使用可变编号 "定理60"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理60.2（爱即自由）**：真正的爱不限制自由，它增强自由。`
 
 
-### I4462 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:206
+### I4463 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:206
 
 **问题**: 使用可变编号 "命题60"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题60.3**：爱（线性互相滋养）不能被!-模态结构替代：`
 
 
-### I4463 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:210
+### I4464 [old_ref] mingben-workbench\references\新数学概念研究_第十四卷_解放定理与缄默维度.md:210
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 因为这些都是!-模态的，而爱是线性的νF₂耦合——定理1（!不穿透νF₂）`
 
 
-### I4464 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:18
+### I4465 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:18
 
 **问题**: 使用可变编号 "定义18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义18.1（活对象范畴Life(C)）**：设C是PTC。定义Life(C)为G^ω(C)的全子范畴：`
 
 
-### I4465 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:26
+### I4466 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:26
 
 **问题**: 使用可变编号 "定理18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理18.2（Life(C)是PTC）**：如果C是PTC，则Life(C)是PTC。`
 
 
-### I4466 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:32
+### I4467 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:32
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. **资源敏感**：Life(C)的态射是G^ω(C)中的线性态射。G^ω(C)继承C的线性性（公理2：无自然收缩）。线性态射的复合和张量仍是线性的。`
 
 
-### I4467 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:46
+### I4468 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:46
 
 **问题**: 使用可变编号 "定义18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义18.3（涌现塔）**：涌现范畴塔定义为：`
 
 
-### I4468 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:52
+### I4469 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:52
 
 **问题**: 使用可变编号 "推论18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**推论18.4（塔可无限迭代）**：因为每一层Cₙ都是PTC，Life(Cₙ)存在且是PTC，所以塔C₀→C₁→C₂→...可以无限迭代。`
 
 
-### I4469 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:69
+### I4470 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:69
 
 **问题**: 绝对化表述 "每一层都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**关键洞见**：!-模态在每一层都存在，但它可以是"好的阴"（服务于活系统的沉积，如细胞壁）或"坏的阴"（寄生的!-余代数，如资本）。区分标准是M（生命意义量）：服务于M的是好的阴，压低M的是坏的阴`
 
 
-### I4470 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:73
+### I4471 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:73
 
 **问题**: 使用可变编号 "定义18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义18.5（涌现函子）**：Eₙ: Cₙ→Cₙ₊₁将Cₙ中的过程映射到它在Cₙ₊₁中参与的自生成网络。`
 
 
-### I4471 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:77
+### I4472 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:77
 
 **问题**: 使用可变编号 "定义18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义18.6（沉积函子）**：Dₙ: Cₙ→Cₙ将活系统映射到它的!-沉积（结晶产物）。Dₙ就是!-模态在Cₙ中的作用。`
-
-
-### I4472 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:79
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**命题18.7（沉积函子是终结的）**：Dₙ将所有活系统映射到!-模态对象。!-模态对象在Cₙ中构成子范畴Cₙ^!，其中所有过程都是!-型的（死的自复制）。Cₙ^!同构于Cₙ₋₁^!（沉积不产生新层`
 
 
 ### I4473 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:79
@@ -34627,51 +34627,51 @@
 
 ### I4474 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:79
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**命题18.7（沉积函子是终结的）**：Dₙ将所有活系统映射到!-模态对象。!-模态对象在Cₙ中构成子范畴Cₙ^!，其中所有过程都是!-型的（死的自复制）。Cₙ^!同构于Cₙ₋₁^!（沉积不产生新层`
+
+
+### I4475 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:79
+
 **问题**: 绝对化表述 "所有活系统映射到!-模态对象。!-模态对象在Cₙ中构成子范畴Cₙ^!，其中所有过程都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**命题18.7（沉积函子是终结的）**：Dₙ将所有活系统映射到!-模态对象。!-模态对象在Cₙ中构成子范畴Cₙ^!，其中所有过程都是!-型的（死的自复制）。Cₙ^!同构于Cₙ₋₁^!（沉积不产生新层`
 
 
-### I4475 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:79
+### I4476 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:79
 
 **问题**: 使用可变编号 "命题18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题18.7（沉积函子是终结的）**：Dₙ将所有活系统映射到!-模态对象。!-模态对象在Cₙ中构成子范畴Cₙ^!，其中所有过程都是!-型的（死的自复制）。Cₙ^!同构于Cₙ₋₁^!（沉积不产生新层`
 
 
-### I4476 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:85
+### I4477 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:85
 
 **问题**: 使用可变编号 "定义18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义18.8（第n层反馈强度）**：Nₙ是Cₙ中νF₂过程的谱半径。`
 
 
-### I4477 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:92
+### I4478 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:92
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题18.9（层间N值关系）**：Cₙ₊₁中的活系统由Cₙ中的k个过程耦合而成。由临界质量定理（定理14.2）：`
 
 
-### I4478 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:92
+### I4479 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:92
 
 **问题**: 使用可变编号 "命题18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题18.9（层间N值关系）**：Cₙ₊₁中的活系统由Cₙ中的k个过程耦合而成。由临界质量定理（定理14.2）：`
 
 
-### I4479 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:102
+### I4480 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:102
 
 **问题**: 使用可变编号 "定义18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义18.10（极限范畴C_∞）**：C_∞ = colim(C₀→C₁→C₂→...)，涌现塔的余极限。`
-
-
-### I4480 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:104
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `C_∞中的对象是"在所有层级都活着的系统"——一个在化学、生物、社会、...所有层级都自维持的过程。`
 
 
 ### I4481 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:104
@@ -34683,16 +34683,16 @@
 
 ### I4482 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:104
 
-**问题**: 绝对化表述 "所有层级都活着的系统"——一个在化学、生物、社会、...所有层级都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `C_∞中的对象是"在所有层级都活着的系统"——一个在化学、生物、社会、...所有层级都自维持的过程。`
 
 
-### I4483 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:106
+### I4483 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:104
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有层级都活着的系统"——一个在化学、生物、社会、...所有层级都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `**命题18.11（f³与C_∞）**：f³（明性）对应在C_∞中运行——能看见所有层级的结构，包括自己在所有层级中的位置。f²只在Cₙ的某一层运行（被该层的!-模型捕获），f³能在层间移动。`
+**上下文**: `C_∞中的对象是"在所有层级都活着的系统"——一个在化学、生物、社会、...所有层级都自维持的过程。`
 
 
 ### I4484 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:106
@@ -34702,67 +34702,67 @@
 **上下文**: `**命题18.11（f³与C_∞）**：f³（明性）对应在C_∞中运行——能看见所有层级的结构，包括自己在所有层级中的位置。f²只在Cₙ的某一层运行（被该层的!-模型捕获），f³能在层间移动。`
 
 
-### I4485 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:106
+### I4485 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:106
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**命题18.11（f³与C_∞）**：f³（明性）对应在C_∞中运行——能看见所有层级的结构，包括自己在所有层级中的位置。f²只在Cₙ的某一层运行（被该层的!-模型捕获），f³能在层间移动。`
+
+
+### I4486 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:106
 
 **问题**: 使用可变编号 "命题18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题18.11（f³与C_∞）**：f³（明性）对应在C_∞中运行——能看见所有层级的结构，包括自己在所有层级中的位置。f²只在Cₙ的某一层运行（被该层的!-模型捕获），f³能在层间移动。`
 
 
-### I4486 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:108
+### I4487 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:108
 
 **问题**: 使用可变编号 "命题18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题18.12（感通量与层级）**：感通量G在C_∞中最大——在所有层级都"在感"意味着完全的明性。被!-模型捕获的层级越多，G越低。`
 
 
-### I4487 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:116
+### I4488 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:116
 
 **问题**: 使用可变编号 "定义8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `践演迹（定义8.8）在生产性条件下存在，但它是逐次构造的（流），不是一个闭合的数学表达式。N<1时迹=Σf₂₂ⁿ（收敛级数），N=1时迹=(I-f₂₂)⁻¹，N>1时没有闭合形式。`
 
 
-### I4488 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:122
+### I4489 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:122
 
 **问题**: 使用可变编号 "定理19"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理19.1（迹的解析延拓）**：函数T(z) = Σ f₁₂ f₂₂ⁿ f₂₁ zⁿ在|z|<1/ρ(f₂₂)时收敛。它可以解析延拓到z=1（只要1不是f₂₂的特征值），延拓值为f₁₂(I-f₂`
 
 
-### I4489 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:134
+### I4490 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:134
 
 **问题**: 使用可变编号 "命题19"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题19.2（延拓迹=未来贴现）**：N>1时，解析延拓迹f₁₂(I-f₂₂)⁻¹f₂₁可以解释为"贴现到当下的未来总行为"——每一步的贡献被(1/N)贴现（因为成长意味着未来比现在更大，需要贴现`
 
 
-### I4490 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:140
+### I4491 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:140
 
 **问题**: 使用可变编号 "定理19"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理19.3（践演迹vs延拓迹）**：`
 
 
-### I4491 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:141
+### I4492 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:141
 
 **问题**: 使用可变编号 "定义8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 践演迹Tr*（定义8.8）是运行中的过程本身——不可加总，但每步有输出`
 
 
-### I4492 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:151
+### I4493 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:151
 
 **问题**: 使用可变编号 "命题19"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题19.4**：延拓迹f₁₂(I-f₂₂)⁻¹f₂₁是!-模态的（它是一个固定值、一个沉积），而践演迹是线性的（正在运行的过程）。`
-
-
-### I4493 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:161
-
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `定理14.2假设k个过程两两耦合（完全图）。但现实社会网络不是完全图——是小世界、无标度网络。网络拓扑如何影响临界质量？`
 
 
 ### I4494 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:161
@@ -34772,620 +34772,620 @@
 **上下文**: `定理14.2假设k个过程两两耦合（完全图）。但现实社会网络不是完全图——是小世界、无标度网络。网络拓扑如何影响临界质量？`
 
 
-### I4495 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:161
+### I4495 [absolute] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:161
+
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `定理14.2假设k个过程两两耦合（完全图）。但现实社会网络不是完全图——是小世界、无标度网络。网络拓扑如何影响临界质量？`
+
+
+### I4496 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:161
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理14.2假设k个过程两两耦合（完全图）。但现实社会网络不是完全图——是小世界、无标度网络。网络拓扑如何影响临界质量？`
 
 
-### I4496 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:203
+### I4497 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:203
 
 **问题**: 使用可变编号 "定义13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `回顾定义13.3：G(f) = ‖(f†∘f)_linear‖ / ‖f†∘f‖。`
 
 
-### I4497 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:205
+### I4498 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:205
 
 **问题**: 使用可变编号 "命题21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题21.1（G的范围）**：G(f)∈[0,1]。`
 
 
-### I4498 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:210
+### I4499 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:210
 
 **问题**: 使用可变编号 "定理21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理21.2（G和N的关系）**：在加权PTC中，如果G(f)=1（完全线性自指），则N(f)≥1。`
 
 
-### I4499 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:216
+### I4500 [old_ref] mingben-workbench\references\新数学概念研究_第四卷_涌现范畴塔.md:216
 
 **问题**: 使用可变编号 "定理21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理21.3（G和C的关系）**：C=R-A（自由增量）和G正相关。G高时自指因果主导（C>0），G低时外在因果主导（C<0）。`
 
 
-### I4500 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:17
+### I4501 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:17
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义1.1（反应网络范畴）**：一个反应网络范畴（RNC）是一个对称幺半范畴（C, ⊗, I），其中：`
 
 
-### I4501 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:25
+### I4502 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:25
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义1.2（反应网络）**：C中的一个反应网络是一个态射集合R ⊆ Mor(C)，满足：`
 
 
-### I4502 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:29
+### I4503 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:29
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义1.3（食物集）**：食物集F是一组对象，它们从外部环境"免费"获得（不由网络内的反应产生），但可以被网络内的反应消耗。`
 
 
-### I4503 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:31
+### I4504 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:31
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义1.4（催化）**：一个反应f: A⊗C → B⊗C中，C是催化剂——它被需要但不被消耗（C同时出现在输入和输出中）。在线性逻辑中，这精确对应!C：催化剂是!-模态资源。`
 
 
-### I4504 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:35
+### I4505 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:35
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义1.5（自生成网络）**：一个反应网络R相对于食物集F是自生成的，如果：`
 
 
-### I4505 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:37
+### I4506 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:37
 
 **问题**: 绝对化表述 "每个反应r ∈ R，r所需的每个催化剂c都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **自催化（Reflexively Autocatalytic）**：对每个反应r ∈ R，r所需的每个催化剂c都由R中的某个反应r'产生（即c是r'的输出的!-模态分量）；`
 
 
-### I4506 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:45
+### I4507 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:45
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义1.6（活的自维持）**：一个自生成网络R是活的（νF₂型），如果：`
 
 
-### I4507 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:51
+### I4508 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:51
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义1.7（死的自复制）**：一个自生成网络R是死的（!-型），如果：`
 
 
-### I4508 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:57
+### I4509 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:57
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理1.8（死网络=!-寄生体）**：在PTC中，任何死的自复制网络都是定理28意义下的!-寄生体：它依赖线性宿主提供运行所需的线性资源，宿主消亡时退化为纯收缩G→G⊗G。`
 
 
-### I4509 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:57
+### I4510 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:57
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理1.8（死网络=!-寄生体）**：在PTC中，任何死的自复制网络都是定理28意义下的!-寄生体：它依赖线性宿主提供运行所需的线性资源，宿主消亡时退化为纯收缩G→G⊗G。`
 
 
-### I4510 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:59
+### I4511 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:59
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：死网络的所有反应都是!-模态态射。由公理2（无自然收缩），!-模态态射的运行需要线性上下文（Cut连接到线性资源）。如果切断所有线性连接（宿主消亡），剩下的只有!-余代数结构（comul`
 
 
-### I4511 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:61
+### I4512 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:61
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理1.9（活网络不可完全资本化）**：活的自维持网络R不能被任何!-模态结构完全表示。`
 
 
-### I4512 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:63
+### I4513 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:63
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：由条件1（线性产出），R产出非!-模态的线性资源X。由定理1（不存在A→!A），X不能自动沉积为!X。由T001（!不穿透νF₂），R作为νF₂型过程，不存在R→!R的态射。因此R不能被`
 
 
-### I4513 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:65
+### I4514 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:65
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题1.10（生命判据）**：一个自生成网络是活的，当且仅当它满足定义1.6的全部三个条件。这给出了"生命"的数学判据，不依赖于碳基/硅基、生物/非生物的区分。`
 
 
-### I4514 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:65
+### I4515 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:65
 
 **问题**: 使用可变编号 "命题1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题1.10（生命判据）**：一个自生成网络是活的，当且仅当它满足定义1.6的全部三个条件。这给出了"生命"的数学判据，不依赖于碳基/硅基、生物/非生物的区分。`
 
 
-### I4515 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:76
+### I4516 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:76
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义1.11（自生成范畴）**：一个自生成范畴是从一个"原型射范畴"（只有态射和部分复合关系的结构）出发，通过以下过程涌现出对象的：`
 
 
-### I4516 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:80
+### I4517 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:80
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `3. **自指对象涌现**：当一组态射形成闭环（输出接回输入），且这个闭环自生成（定义1.5）时，一个"自指对象"涌现`
 
 
-### I4517 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:83
+### I4518 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:83
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理1.12（自生成范畴包含PTC）**：任何自生成范畴中的活自指对象（νF₂型）构成一个PTC（生产性迹范畴）。`
 
 
-### I4518 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:85
+### I4519 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:85
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明思路**：活自指对象的操作网络满足PTC公理：生产性（定义1.5条件3）、资源敏感（线性性）、!-模态结构（催化剂对应!）、迹（反馈回路的GoI解释）。∎`
 
 
-### I4519 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:95
+### I4520 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:95
 
 **问题**: 绝对化表述 "每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `但成长过程每一步都有确定的输出。它不是没有迹，是迹不是一个完成的对象，是一个正在进行的过程。`
 
 
-### I4520 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:99
+### I4521 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:99
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.1（扩展余代数序列）**：一个扩展余代数序列是((Xₙ, cₙ, iₙ))_{n≥0}，其中：`
 
 
-### I4521 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:105
+### I4522 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:105
 
 **问题**: 绝对化表述 "每一步不仅状态在变，"能处于什么状态"的空间也在变大。学会新技能、产生新思想、建立新关系——这些都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**大白话**：每一步不仅状态在变，"能处于什么状态"的空间也在变大。学会新技能、产生新思想、建立新关系——这些都是状态空间的扩展。`
 
 
-### I4522 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:107
+### I4523 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:107
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定义2.2（扩展不动点ν*F）**：扩展余代数序列的"极限"ν*F不是一个固定对象，而是一个**过程**——它在每一步n产生一个Xₙ中的状态，并保证Xₙ₊₁存在。ν*F是"永远在扩展的过程"的类型`
 
 
-### I4523 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:107
+### I4524 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:107
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.2（扩展不动点ν*F）**：扩展余代数序列的"极限"ν*F不是一个固定对象，而是一个**过程**——它在每一步n产生一个Xₙ中的状态，并保证Xₙ₊₁存在。ν*F是"永远在扩展的过程"的类型`
 
 
-### I4524 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:110
+### I4525 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:110
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- νF：无限过程，但状态空间固定（一条在固定房间里永远走的路）`
 
 
-### I4525 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:115
+### I4526 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:115
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.3（践演迹）**：设f是扩展Mealy机，状态空间为(Xₙ)。f的践演迹是一族态射：`
 
 
-### I4526 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:125
+### I4527 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:125
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2.4（践演迹存在定理）**：在PTC中，扩展Mealy机f的践演迹存在当且仅当f是生产性的（每步产出输出和新状态）。`
 
 
-### I4527 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:133
+### I4528 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:133
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2.5（N>1需要状态扩展）**：在有限维状态空间中，如果N=ρ(U₂₂)>1，则过程在有限步后达到所有可达状态（饱和），之后N实际降为1。N>1的持续成长要求状态空间无限扩展（ν*F而非νF`
 
 
-### I4528 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:145
+### I4529 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:145
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理2.6（!不穿透践演迹）**：不存在自然变换把践演迹Tr*(f)映射为!-模态沉积。`
 
 
-### I4529 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:147
+### I4530 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:147
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：践演迹在第n步留下线性状态Xₙ。由定理1（不存在Xₙ→!Xₙ），每一步的线性状态不能自动沉积。而且Xₙ₊₁可能包含Xₙ中不存在的新对象（状态扩展），!-模态无法预知这些新对象。∎`
 
 
-### I4530 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:157
+### I4531 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:157
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义3.1（自指算子）**：对象X上的自指算子是态射f: X⊗A → B⊗X（Mealy机），其中X同时出现在输入和输出中——系统的下一步依赖于当前状态。`
 
 
-### I4531 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:159
+### I4532 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:159
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义3.2（正自指/活自指）**：f是正自指的，如果：`
 
 
-### I4532 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:166
+### I4533 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:166
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义3.3（反自指/死自指）**：f是反自指的，如果：`
 
 
-### I4533 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:175
+### I4534 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:175
 
 **问题**: 使用可变编号 "命题3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题3.4（反自指=!-余代数）**：反自指算子f精确地是!-余代数：配有余乘法δ: !X→!X⊗!X（自我复制）和余单位ε: !X→I（丢弃），满足余代数公理。`
 
 
-### I4534 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:177
+### I4535 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:177
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理3.5（反自指的寄生性）**：反自指系统不能独立运行。它必须Cut到线性宿主（正自指系统）才能运行，因为!-模态态射需要线性上下文驱动。`
 
 
-### I4535 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:179
+### I4536 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:179
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：由公理2，!-模态态射不能凭空产生线性效果。反自指系统的所有"行动"（影响环境、获取资源）都需要通过Cut连接到线性过程。切断Cut，反自指系统退化为δ和ε（复制和丢弃），即空转。∎`
 
 
-### I4536 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:181
+### I4537 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:181
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理3.6（反自指压低N）**：在加权PTC中，反自指寄生使宿主的N从N₀降至N₀·(1-β)，其中β是萃取率。`
 
 
-### I4537 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:189
+### I4538 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:189
 
 **问题**: 使用可变编号 "命题3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题3.7（反自指的操作判据）**：一个系统是反自指的，当且仅当：`
 
 
-### I4538 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:192
+### I4539 [absolute] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:192
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 移除它不减少任何线性产出（它是寄生的）。`
 
 
-### I4539 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:205
+### I4540 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:205
 
 **问题**: 使用可变编号 "定义4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义4.1（操作等价）**：两个过程f和g是操作等价的（f ≈ᵒᵖ g），如果它们有相同的：`
 
 
-### I4540 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:218
+### I4541 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:218
 
 **问题**: 使用可变编号 "定理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理4.3（操作等价严格细于迹等价）**：操作等价蕴含迹等价，但反之不然。`
 
 
-### I4541 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:234
+### I4542 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:234
 
 **问题**: 使用可变编号 "定义5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义5.1（频率量）**：在自生成网络中，态射f的频率量w_freq(f)是f在单位时间内被触发的次数。这是概率的起源——反复发生的操作获得统计权重。`
 
 
-### I4542 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:236
+### I4543 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:236
 
 **问题**: 使用可变编号 "定义5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义5.2（持续量）**：对象A的持续量w_pers(A)是A从产生到被消耗的平均时间。这是T（稳态持续时间）的起源——持续越久的对象越"稳定"。`
 
 
-### I4543 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:238
+### I4544 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:238
 
 **问题**: 使用可变编号 "定义5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义5.3（因果量）**：对象A的因果量w_cause(A)是依赖A的态射数量（A的出度）。这是M（意义量）的质的基础——被越多其他操作依赖的对象越有"意义"。`
 
 
-### I4544 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:242
+### I4545 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:242
 
 **问题**: 使用可变编号 "定理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理5.4（N从频率涌现）**：在自生成网络的稳态中，反馈回路的频率比（每步触发次数的比值）收敛于谱半径N。`
 
 
-### I4545 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:246
+### I4546 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:246
 
 **问题**: 使用可变编号 "定理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理5.5（M从因果量涌现）**：对象A的意义量M(A)正比于从A出发的因果链总权重，即M(A) = Σ w_cause在因果链上的几何级数和。这给出M=α·ΣNⁿ的发生学解释。`
 
 
-### I4546 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:248
+### I4547 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:248
 
 **问题**: 使用可变编号 "定理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理5.6（W从频率差涌现）**：萃取率β等于反自指系统触发频率与宿主总触发频率之比——反自指系统"占用"了宿主多少比例的运行。`
 
 
-### I4547 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:272
+### I4548 [old_ref] mingben-workbench\references\新数学概念研究_自生成范畴与践演迹.md:272
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. **自生成范畴的形式化**：定义1.11还是构造性描述，需要严格的范畴论公理化。原型射范畴的"部分复合"怎么形式化？接口涌现的范畴论条件是什么？`
 
 
-### I4548 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:24
+### I4549 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:24
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 公理1"操作先于实体"不是说"操作"是一个比"实体"更根本的形而上学实体——操作是感的第三人称描述，感才是根本`
 
 
-### I4549 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:63
+### I4550 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:63
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `对象是存在：全部内容一次性给出，可以被存储复制`
 
 
-### I4550 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:65
+### I4551 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:65
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `此刻性是发生：全部内容不一次性给出（未来尚未产生）`
 
 
-### I4551 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:96
+### I4552 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:96
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `如果X表示所有此刻性`
 
 
-### I4552 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:108
+### I4553 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:108
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `核心：从"任何表示本身也在运行"这个践演事实出发，不需要引用哥德尔的技术结果。`
 
 
-### I4553 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:114
+### I4554 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:114
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 生命不可资本化（T001） | 定理6：不存在A→!A | 线性资源不可被!-提升为可复制资源 |`
 
 
-### I4554 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:115
+### I4555 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:115
 
 **问题**: 使用可变编号 "定理26"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 活劳动是价值唯一源泉 | 定理26：!G→A不存在（增长须消耗线性资源） | !-模态只能复制/重排/丢弃，不能产生新的线性资源 |`
 
 
-### I4555 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:116
+### I4556 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:116
 
 **问题**: 使用可变编号 "定理48"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 明性之后无第四段 | 定理48：f³是不动点，不需要f⁴ | f³能对象化任何模型，包括它自己的模型 |`
 
 
-### I4556 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:117
+### I4557 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:117
 
 **问题**: 使用可变编号 "定理53"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 慢性死亡 | 定理53：N<1时M有限，指数衰减 | Perron-Frobenius：谱半径<1时Neumann级数收敛 |`
 
 
-### I4557 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:118
+### I4558 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:118
 
 **问题**: 使用可变编号 "定理42"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 理论不能代替实践 | 定理42：生产性流处理器不可数>有限证明可数 | 余归纳对象多于归纳对象 |`
 
 
-### I4558 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:119
+### I4559 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:119
 
 **问题**: 使用可变编号 "定理56"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 践演判断标记边界 | 定理56：▷A是保守扩展 | 判断层面的扩展不增加命题层面的证明力 |`
 
 
-### I4559 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:120
+### I4560 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:120
 
 **问题**: 使用可变编号 "定理58"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **存在≠发生** | **定理58：践演不可编码性** | **对象的全部内容一次性给出≠此刻性的全部内容不一次性给出** |`
 
 
-### I4560 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:121
+### I4561 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:121
 
 **问题**: 使用可变编号 "定理59"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 主观体验即此刻性 | 定理59：主观体验=正在运行这个事实 | 第一人称事实不可被第三方观测编码 |`
 
 
-### I4561 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:122
+### I4562 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:122
 
 **问题**: 使用可变编号 "定理60"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 图灵测试原则上不能判断意识 | 定理60推论：输出不能编码此刻性 | 输出是!-模态沉积，此刻性是发生 |`
 
 
-### I4562 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:123
+### I4563 [old_ref] mingben-workbench\references\旧惯性vs新惯性_对比图.md:123
 
 **问题**: 使用可变编号 "定理61"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 块宇宙是地图不是领土 | 定理61：物理定律不能编码时间流逝 | 微分方程的解x(t)所有时刻同时存在 |`
 
 
-### I4563 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:139
+### I4564 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:139
 
 **问题**: 绝对化表述 "每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 新惯性的自检清单（每一步都问）：`
 
 
-### I4564 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:146
+### I4565 [absolute] mingben-workbench\references\旧惯性vs新惯性_对比图.md:146
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- [ ] 如果去掉所有复杂技术，最核心的本体论事实是什么？`
 
 
-### I4565 [absolute] mingben-workbench\references\明性锚点_为什么创造新数学.md:89
+### I4566 [absolute] mingben-workbench\references\明性锚点_为什么创造新数学.md:89
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 旧数学的所有定理在新数学里仍然成立，但它们的**位置**变了——从"基础"变成"派生"`
 
 
-### I4566 [absolute] mingben-workbench\references\版本号规范化体系.md:3
+### I4567 [absolute] mingben-workbench\references\版本号规范化体系.md:3
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 目的：彻底解决版本号混乱、定理编号不一致、引用失效的问题。`
 
 
-### I4567 [absolute] mingben-workbench\references\版本号规范化体系.md:67
+### I4568 [absolute] mingben-workbench\references\版本号规范化体系.md:67
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **所有文档中的定理引用必须使用永久ID**: "由T006"、"根据T001"`
 
 
-### I4568 [old_ref] mingben-workbench\references\版本号规范化体系.md:68
+### I4569 [old_ref] mingben-workbench\references\版本号规范化体系.md:68
 
 **问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **禁止使用可变编号**: "定理15"、"公理3"、"引理4.2"`
 
 
-### I4569 [old_ref] mingben-workbench\references\版本号规范化体系.md:68
+### I4570 [old_ref] mingben-workbench\references\版本号规范化体系.md:68
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **禁止使用可变编号**: "定理15"、"公理3"、"引理4.2"`
 
 
-### I4570 [old_ref] mingben-workbench\references\版本号规范化体系.md:68
+### I4571 [old_ref] mingben-workbench\references\版本号规范化体系.md:68
 
 **问题**: 使用可变编号 "引理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **禁止使用可变编号**: "定理15"、"公理3"、"引理4.2"`
 
 
-### I4571 [absolute] mingben-workbench\references\版本号规范化体系.md:157
+### I4572 [absolute] mingben-workbench\references\版本号规范化体系.md:157
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- [ ] git pre-commit hook（自动跑所有检查器）`
 
 
-### I4572 [absolute] mingben-workbench\references\版本号规范化体系.md:170
+### I4573 [absolute] mingben-workbench\references\版本号规范化体系.md:170
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- [ ] Layer4: 元理论（可靠性、完全性、切消除）`
 
 
-### I4573 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:22
+### I4574 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:22
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.1**（流对象）：对$\mathcal{C}$中对象$A$，$A$的流对象$A^\omega$是函子$T_A(X)=A\otimes X$的最终余代数，带有：`
 
 
-### I4574 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:29
+### I4575 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:29
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义2.2**（逐点提升）：对态射$g:A\to B$，定义$g^\omega:A^\omega\to B^\omega$为唯一的态射使得$\mathrm{out}_B\circ g^\omega`
 
 
-### I4575 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:35
+### I4576 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:35
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义3.1**（$\mathcal{C}$中的Mealy机）：从$A$到$B$的Mealy机是三元组$(X,f,x_0)$：`
 
 
-### I4576 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:40
+### I4577 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:40
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义3.2**（行为）：Mealy机$(X,f,x_0)$的行为是态射`
 
 
-### I4577 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:47
+### I4578 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:47
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理3.1**（行为良定义）：在$\mathbf{Rel}$中，$\mathrm{beh}(f,x_0)$恰好是v0.9中定义的余归纳迹$\mathrm{Tr}^\omega_X(f)$：$(a_`
 
 
-### I4578 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:55
+### I4579 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:55
 
 **问题**: 使用可变编号 "定义4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义4.1**（生产性迹）：SMC $\mathcal{C}$上的**生产性迹**由以下组成：`
 
 
-### I4579 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:56
+### I4580 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:56
 
 **问题**: 使用可变编号 "定义2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. 对每个对象$A$，流对象$A^\omega$（定义2.1）`
 
 
-### I4580 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:57
+### I4581 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:57
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. 对每个Mealy机$(X,f,x_0)$，行为态射$\mathrm{beh}(f,x_0):A^\omega\to B^\omega$（定义3.2）`
 
 
-### I4581 [absolute] mingben-workbench\references\生产性迹范畴_公理化.md:61
+### I4582 [absolute] mingben-workbench\references\生产性迹范畴_公理化.md:61
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**公理P1（Yanking）**：对对称$\sigma_{X,X}:X\otimes X\to X\otimes X$和任意$x_0:I\to X$：`
-
-
-### I4582 [absolute] mingben-workbench\references\生产性迹范畴_公理化.md:75
-
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**公理P5（Productivity）**：如果$f$是"完全的"（在$\mathbf{Rel}$中：对每个$(a,x)$存在$(b,x')$使$((a,x),(b,x'))\in f$；在一般范畴`
 
 
 ### I4583 [absolute] mingben-workbench\references\生产性迹范畴_公理化.md:75
@@ -35395,158 +35395,158 @@
 **上下文**: `**公理P5（Productivity）**：如果$f$是"完全的"（在$\mathbf{Rel}$中：对每个$(a,x)$存在$(b,x')$使$((a,x),(b,x'))\in f$；在一般范畴`
 
 
-### I4584 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:77
+### I4584 [absolute] mingben-workbench\references\生产性迹范畴_公理化.md:75
+
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**公理P5（Productivity）**：如果$f$是"完全的"（在$\mathbf{Rel}$中：对每个$(a,x)$存在$(b,x')$使$((a,x),(b,x'))\in f$；在一般范畴`
+
+
+### I4585 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:77
 
 **问题**: 使用可变编号 "定义4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义4.2**：配备生产性迹的SMC称为**生产性迹范畴**（productively traced category，PTC）。`
 
 
-### I4585 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:87
+### I4586 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:87
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 行为由定义3.2给出，v0.9定理3.1-3.4验证了P1-P4`
 
 
-### I4586 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:87
+### I4587 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:87
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 行为由定义3.2给出，v0.9定理3.1-3.4验证了P1-P4`
 
 
-### I4587 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:88
+### I4588 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:88
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- P5（productivity）：v0.9定理2.1证明了完全性关系诱导完全的流关系`
 
 
-### I4588 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:106
+### I4589 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:106
 
 **问题**: 使用可变编号 "定理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**注**：T009将v0.9定理4.1从$\mathbf{Rel}$推广到任意生产性迹范畴。关键不是$\mathbf{Rel}$的特殊性质，而是**线性状态无线索**这个结构事实——它在任何PTC+`
 
 
-### I4589 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:112
+### I4590 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:112
 
 **问题**: 使用可变编号 "定理7"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理7.1**（有限迹与生产性迹的关系）：设$\mathcal{C}$同时是TSMC（标准迹，nilpotency）和PTC（生产性迹，productivity）。对Mealy机$(X,f,x_0`
 
 
-### I4590 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:122
+### I4591 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:122
 
 **问题**: 使用可变编号 "命题7"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**命题7.1**（GoI构造的余归纳扩展）：Abramsky的GoI构造$\mathcal{G}(\mathcal{C})$从TSMC产生compact closed范畴，其中态射是$\mathca`
 
 
-### I4591 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:132
+### I4592 [old_ref] mingben-workbench\references\生产性迹范畴_公理化.md:132
 
 **问题**: 使用可变编号 "定理8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理8.1**（践演判断是生产性迹的执行）：在操作范畴中：`
 
 
-### I4592 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:4
+### I4593 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:4
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**目的**：把生命论全本和操作范畴论论文中的所有公式从头到尾列一遍，用大白话讲清楚每个公式在说什么、为什么对、怎么用。`
 
 
-### I4593 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:77
+### I4594 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:77
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- α=1：动物、婴儿、完全被本能驱动的人。`
 
 
-### I4594 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:81
+### I4595 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:81
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**为什么没有α=4**：f³已经能对象化任何模型，包括"f³自己"这个模型。你能看见"我在看自己"，你也能看见"我在看'我在看自己'"——但这不是新的层级，是同一个操作的递归。见山还是山之后没有第四`
 
 
-### I4595 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:95
+### I4596 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:95
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**T = min{n : ‖f₂₂ⁿ‖ = 0}**（幂零指数），如果f₂₂永远不归零则T = ∞。`
 
 
-### I4596 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:95
+### I4597 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:95
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**T = min{n : ‖f₂₂ⁿ‖ = 0}**（幂零指数），如果f₂₂永远不归零则T = ∞。`
 
 
-### I4597 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:100
+### I4598 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:100
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- T = ∞：系统永远运行（稳态或成长态）。`
 
 
-### I4598 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:127
+### I4599 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:127
 
 **问题**: 绝对化表述 "每轮意义量都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 每轮意义量都是α，持续T轮，总和就是α×T。`
 
 
-### I4599 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:131
+### I4600 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:131
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 这是慢性死亡定理：即使系统永远运行，总意义量有限。`
 
 
-### I4600 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:132
+### I4601 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:132
 
 **问题**: 绝对化表述 "每轮都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 大白话：每轮都在漏血，虽然漏得慢，但加起来是有限的。N越接近1，M越大（漏得越慢，活得越"多"）；N越小，M越小（快速垮掉）。`
 
 
-### I4601 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:136
+### I4602 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:136
 
 **问题**: 绝对化表述 "每轮都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 大白话：每轮都在成长，意义量指数级积累。活得越久，后面每一轮的意义越大。`
 
 
-### I4602 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:175
+### I4603 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:175
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- W = 1.0：全部被拿走，只剩维持生存的最低量。极度异化。`
 
 
-### I4603 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:176
+### I4604 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:176
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- W > 1：不仅拿走全部产出，还在消耗过去的积累（生命力存量）。N必降。`
 
 
-### I4604 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:181
+### I4605 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:181
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 一个奴隶，全部产出被拿走，连生存都是主人"给的"，W≈1.0。`
-
-
-### I4605 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:250
-
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **γ = 1**：N完全恢复——逆转条件。每轮完全恢复，不管被拿走多少。`
 
 
 ### I4606 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:250
@@ -35556,88 +35556,88 @@
 **上下文**: `- **γ = 1**：N完全恢复——逆转条件。每轮完全恢复，不管被拿走多少。`
 
 
-### I4607 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:285
+### I4607 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:250
+
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- **γ = 1**：N完全恢复——逆转条件。每轮完全恢复，不管被拿走多少。`
+
+
+### I4608 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:285
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理1（闭范畴性/操作先于实体）**：操作可以复合（f然后g），复合满足结合律，有恒等操作（什么都不做）。`
 
 
-### I4608 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:289
+### I4609 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:289
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理2（无自然收缩/资源敏感）**：不存在A→!A的自然变换。活操作不能自动变成可复制的沉积。`
 
 
-### I4609 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:293
+### I4610 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:293
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理3（指数余单子!）**：!-模态（沉积/死劳动/资本）满足：`
 
 
-### I4610 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:298
+### I4611 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:298
 
 **问题**: 使用可变编号 "公理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理4（不动点μ/ν）**：`
 
 
-### I4611 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:302
+### I4612 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:302
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**公理5（践演元预设▷A）**：践演判断——"A在运行中被坐实"。这不是证明（⊢），是"做了才知道"。`
 
 
-### I4612 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:309
+### I4613 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:309
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理1（阳不可自动阴化）[定理]`
 
 
-### I4613 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:317
+### I4614 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:317
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理6（种子定理）[定理]`
 
 
-### I4614 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:321
+### I4615 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:321
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是定理1的另一种表述，是整个体系的种子。后面所有定理都从这里长出来。`
 
 
-### I4615 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:321
+### I4616 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:321
 
 **问题**: 绝对化表述 "所有定理都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是定理1的另一种表述，是整个体系的种子。后面所有定理都从这里长出来。`
 
 
-### I4616 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:321
+### I4617 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:321
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这是定理1的另一种表述，是整个体系的种子。后面所有定理都从这里长出来。`
 
 
-### I4617 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:323
+### I4618 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:323
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理13（!-分配二分法）[定理]`
-
-
-### I4618 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:338
-
-**问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
-
-**上下文**: `这是"生命不可资本化（T001）"的数学证明。反驳它要先反驳公理2（资源敏感性），而公理2直接扎在"活着"这个践演事实上——你要反驳它，你得先证明你活着不需要消耗资源。`
 
 
 ### I4619 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:338
@@ -35647,438 +35647,438 @@
 **上下文**: `这是"生命不可资本化（T001）"的数学证明。反驳它要先反驳公理2（资源敏感性），而公理2直接扎在"活着"这个践演事实上——你要反驳它，你得先证明你活着不需要消耗资源。`
 
 
-### I4620 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:340
+### I4620 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:338
+
+**问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+
+**上下文**: `这是"生命不可资本化（T001）"的数学证明。反驳它要先反驳公理2（资源敏感性），而公理2直接扎在"活着"这个践演事实上——你要反驳它，你得先证明你活着不需要消耗资源。`
+
+
+### I4621 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:340
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理28（病毒-资本同构）[定理]`
 
 
-### I4621 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:349
+### I4622 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:349
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `马克思说"资本是死劳动，像吸血鬼一样吮吸活劳动才有生命"——定理28给了这句话数学证明。`
 
 
-### I4622 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:351
+### I4623 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:351
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理57（践演不可编码性）[定理]`
 
 
-### I4623 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:358
+### I4624 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:358
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. AI（F₁型数据处理系统）在结构上不可能产生意识——不是参数不够，是类型不匹配。`
 
 
-### I4624 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:359
+### I4625 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:359
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. 意识困难问题原则上不可能有还原论解释——不是还没研究清楚，是数学结构决定了"正在感"不能被!-模态编码。`
 
 
-### I4625 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:363
+### I4626 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:363
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理（自我模型是!-模态的）**：f²的自我模型必然是沉积（可复制、可固化）。意识形态就是!-模态的自我模型。`
 
 
-### I4626 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:365
+### I4627 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:365
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理（f²的哥德尔困境）**：任何固定的自我模型都有不可判定命题——你用一套固定的框架看自己，总有框架内看不到的东西。`
 
 
-### I4627 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:365
+### I4628 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:365
 
 **问题**: 绝对化表述 "任何固定的自我模型都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理（f²的哥德尔困境）**：任何固定的自我模型都有不可判定命题——你用一套固定的框架看自己，总有框架内看不到的东西。`
 
 
-### I4628 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:367
+### I4629 [absolute] mingben-workbench\references\生命论公式全解_大白话版.md:367
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理（f³是不动点）**：f³能对象化任何模型，包括它自己。α∈{1,2,3}，没有f⁴。`
 
 
-### I4629 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:369
+### I4630 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:369
 
 **问题**: 使用可变编号 "定理38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理38（不可克隆是推论）[定理]`
 
 
-### I4630 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:408
+### I4631 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:408
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `公理2（无自然收缩）`
 
 
-### I4631 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:409
+### I4632 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:409
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `→ 定理1（活操作不能自动变沉积）`
 
 
-### I4632 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:410
+### I4633 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:410
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `→ 定理13（!穿透数据不穿透生命）`
 
 
-### I4633 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:412
+### I4634 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:412
 
 **问题**: 使用可变编号 "定理38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `→ 定理38（量子不可克隆=同一结构）`
 
 
-### I4634 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:413
+### I4635 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:413
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `→ 定理57（此刻性不可编码）`
 
 
-### I4635 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:414
+### I4636 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:414
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `→ 定理28（资本=病毒=!-寄生体）`
 
 
-### I4636 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:422
+### I4637 [old_ref] mingben-workbench\references\生命论公式全解_大白话版.md:422
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理1、6、13、20、28、38、57、f层级定理`
 
 
-### I4637 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:48
+### I4638 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:48
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **公理0**（践演位置） | 每个态射发生在位置p，位置不可物化 | 感=Player位置，第一人称不可对象化 |`
 
 
-### I4638 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:49
+### I4639 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:49
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **公理1**（交互闭结构） | 复范畴中构造内部同态A⊸B | 操作先于实体，实体是操作稳定模式的物化 |`
 
 
-### I4639 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:50
+### I4640 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:50
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **公理2**（资源敏感） | 无自然收缩/弱化 | 线性资源必须用恰好一次，活劳动不可复制 |`
 
 
-### I4640 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:51
+### I4641 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:51
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **公理3**（!余单子） | !允许受控收缩/弱化（Seely同构） | 沉积/死劳动/资本可复制可丢弃 |`
 
 
-### I4641 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:52
+### I4642 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:52
 
 **问题**: 使用可变编号 "公理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **公理4**（不动点） | μ（有限归纳）和ν（无限余归纳） | 有限过程 vs 无限生命流 |`
 
 
-### I4642 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:53
+### I4643 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:53
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **公理5**（守护递归） | ▷模态保证生产性 | 每一步必须产出，不能空转 |`
 
 
-### I4643 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:54
+### I4644 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:54
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **公理6**（增长规则） | ν*F允许语境单调扩展 | 成长/学习，状态空间可扩展 |`
 
 
-### I4644 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:58
+### I4645 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:58
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**种子定理1**：不存在A→!A。线性资源不可自动变成可复制的沉积。`
 
 
-### I4645 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:61
+### I4646 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:61
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理13（!-分配二分法）**：!保持⊗（张量积）和&（与），不保持⊕（或）和⊸（线性蕴涵）。`
 
 
-### I4646 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:67
+### I4647 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:67
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理28（病毒-资本同构）**：病毒和资本在范畴论上是同一结构——都是!-余代数，寄生在线性宿主上。`
 
 
-### I4647 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:70
+### I4648 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:70
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理57（践演不可编码性）**：生产性流处理器不可数，证明可数。生命过程超越有限证明。`
 
 
-### I4648 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:73
+### I4649 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:73
 
 **问题**: 使用可变编号 "定理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理0（位置不可物化）**（公理0的推论）：不存在自然变换将位置p表示为对象。`
 
 
-### I4649 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:73
+### I4650 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:73
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理0（位置不可物化）**（公理0的推论）：不存在自然变换将位置p表示为对象。`
 
 
-### I4650 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:128
+### I4651 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:128
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理2（资源敏感） | 线性类型：变量必须用恰好一次 |`
 
 
-### I4651 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:129
+### I4652 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:129
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理3（!余单子） | Bang类型：F1/F2/流/成长/反射自动可复制 |`
 
 
-### I4652 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:130
+### I4653 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:130
 
 **问题**: 使用可变编号 "公理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理4（不动点） | F2过程（μ，有限）和流（ν，无限） |`
 
 
-### I4653 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:131
+### I4654 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:131
 
 **问题**: 使用可变编号 "公理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理5（守护递归） | 生产性检查：stream的step必须直接产出pair |`
 
 
-### I4654 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:132
+### I4655 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:132
 
 **问题**: 使用可变编号 "公理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理6（增长规则） | ν*F成长状态：运行时长出新能力 |`
 
 
-### I4655 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:133
+### I4656 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:133
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 公理0（践演位置） | f³反射：程序能看见自己的能力模型 |`
 
 
-### I4656 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:190
+### I4657 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:190
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `哲学命题"感先于操作"→数学公理0（践演位置不可物化）。`
 
 
-### I4657 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:191
+### I4658 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:191
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `哲学命题"操作先于实体"→数学公理1（复范畴中构造闭结构）。`
 
 
-### I4658 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:192
+### I4659 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:192
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `哲学命题"活劳动不可复制"→数学定理1（不存在A→!A）。`
 
 
-### I4659 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:201
+### I4660 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:201
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `公理0践演位置→PTL的f³反射（程序自明）。`
 
 
-### I4660 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:235
-
-**问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
-
-**上下文**: `"生命不可资本化（T001）"不再是道德主张，是公理系统的定理。如果你接受"在感"是起点（公理0）、操作有边界（公理1）、资源不可自动复制（公理2），你就必须接受生命不可被!-模态还原。反驳它要先推翻`
-
-
 ### I4661 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:235
 
-**问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+**问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `"生命不可资本化（T001）"不再是道德主张，是公理系统的定理。如果你接受"在感"是起点（公理0）、操作有边界（公理1）、资源不可自动复制（公理2），你就必须接受生命不可被!-模态还原。反驳它要先推翻`
 
 
 ### I4662 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:235
 
+**问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+
+**上下文**: `"生命不可资本化（T001）"不再是道德主张，是公理系统的定理。如果你接受"在感"是起点（公理0）、操作有边界（公理1）、资源不可自动复制（公理2），你就必须接受生命不可被!-模态还原。反驳它要先推翻`
+
+
+### I4663 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:235
+
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `"生命不可资本化（T001）"不再是道德主张，是公理系统的定理。如果你接受"在感"是起点（公理0）、操作有边界（公理1）、资源不可自动复制（公理2），你就必须接受生命不可被!-模态还原。反驳它要先推翻`
 
 
-### I4663 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:246
+### I4664 [old_ref] mingben-workbench\references\生命论系统总览_从感到数学到语言.md:246
 
 **问题**: 使用可变编号 "公理0"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 数学（操作范畴论） | 62定理+3推论+3命题，核心定理链完整，公理0-1已重写 |`
 
 
-### I4664 [old_ref] mingben-workbench\references\相干空间PTC实例.md:32
+### I4665 [old_ref] mingben-workbench\references\相干空间PTC实例.md:32
 
 **问题**: 使用可变编号 "定理53"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理53（生产性迹保持clique）**：如果$U$是$(A\otimes X)^\omega\multimap(B\otimes X)^\omega$的因果clique，且反馈生产（每步产生输出`
 
 
-### I4665 [old_ref] mingben-workbench\references\相干空间PTC实例.md:49
+### I4666 [old_ref] mingben-workbench\references\相干空间PTC实例.md:49
 
 **问题**: 使用可变编号 "定理53"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **Composition**：因果clique的反馈复合是因果clique（定理53） ✓`
 
 
-### I4666 [old_ref] mingben-workbench\references\相干空间PTC实例.md:50
+### I4667 [old_ref] mingben-workbench\references\相干空间PTC实例.md:50
 
 **问题**: 使用可变编号 "定理53"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **Productivity**：生产性条件保证每步有输出，clique封闭由定理53保证 ✓`
 
 
-### I4667 [old_ref] mingben-workbench\references\研究方法论_通宵复盘.md:82
+### I4668 [old_ref] mingben-workbench\references\研究方法论_通宵复盘.md:82
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**新惯性**：跨域对应分三级——(a)严格同构（如no-cloning=定理1）、(b)结构相似（如玻色/费米vs模态，需验证）、(c)隐喻（如"爱是线性耦合"，哲学层面成立但数学上只是类比）。每级`
 
 
-### I4668 [old_ref] mingben-workbench\references\研究方法论_通宵复盘.md:91
+### I4669 [old_ref] mingben-workbench\references\研究方法论_通宵复盘.md:91
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 核心定理（定理1、20、28、57、解放定理、Fock空间）必须补完整证明`
 
 
-### I4669 [absolute] mingben-workbench\references\研究方法论_通宵复盘.md:206
+### I4670 [absolute] mingben-workbench\references\研究方法论_通宵复盘.md:206
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- PTC完全性定理`
 
 
-### I4670 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:3
+### I4671 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:3
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 审查范围：生命论所有形式化公式、符号、运算符、表达方式`
 
 
-### I4671 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:17
+### I4672 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:17
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**问题**：同一个字母 T 在两个公式里含义完全不同。读者会混淆。`
 
 
-### I4672 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:17
+### I4673 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:17
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**问题**：同一个字母 T 在两个公式里含义完全不同。读者会混淆。`
 
 
-### I4673 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:118
+### I4674 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:118
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**问题**：g=感（gǎn，拼音），a=？应是 yìng，拼音首字母是 y 不是 a！o=operation（英文）。三者来源不统一，且 a 不对应"应"的任何常见首字母。`
 
 
-### I4674 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:145
+### I4675 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:145
 
 **问题**: 绝对化表述 "每个字母都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**方案C（混合但每个字母都有明确来源，推荐）**：`
 
 
-### I4675 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:175
+### I4676 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:175
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**修复**：全部统一为 ·（点乘），或在不产生歧义时直接并列（如 $\alpha T N$）。`
 
 
-### I4676 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:231
+### I4677 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:231
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 当 G=1 且 A=1（感和应完全自主）时，$N_{eff}=N$，回到原版公式`
 
 
-### I4677 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:315
+### I4678 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:315
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `17. $I_n \approx 0 \iff N \approx 0 \land G \approx 0 \land A \approx 0 \implies M \approx 0$ — 完全悬置`
 
 
-### I4678 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:328
+### I4679 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:328
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 运算符统一 | 4处 | ×→· 全部统一 |`
 
 
-### I4679 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:334
+### I4680 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:334
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `*本报告为 v0.3 → v0.3.1 的符号审查与修复方案。所有改动均为形式化层面的优化，不改变任何哲学命题的实质内容。*`
 
 
-### I4680 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:334
+### I4681 [absolute] mingben-workbench\references\符号审查报告_v0.3.1.md:334
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `*本报告为 v0.3 → v0.3.1 的符号审查与修复方案。所有改动均为形式化层面的优化，不改变任何哲学命题的实质内容。*`
-
-
-### I4681 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:20
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**缄默操作**是"操作正在发生"这个事实本身——先于任何对象化、先于任何编码、先于任何反思。`
 
 
 ### I4682 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:20
@@ -36095,569 +36095,569 @@
 **上下文**: `**缄默操作**是"操作正在发生"这个事实本身——先于任何对象化、先于任何编码、先于任何反思。`
 
 
-### I4684 [old_ref] mingben-workbench\references\缄默操作_新数学的种子.md:110
+### I4684 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:20
+
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**缄默操作**是"操作正在发生"这个事实本身——先于任何对象化、先于任何编码、先于任何反思。`
+
+
+### I4685 [old_ref] mingben-workbench\references\缄默操作_新数学的种子.md:110
 
 **问题**: 使用可变编号 "定理58"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `由践演不可编码性定理（定理58）：`
 
 
-### I4685 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:112
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- 任何形式系统中的对象都是存在——全部内容一次性给出`
-
-
 ### I4686 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:112
 
-**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 任何形式系统中的对象都是存在——全部内容一次性给出`
 
 
 ### I4687 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:112
 
+**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 任何形式系统中的对象都是存在——全部内容一次性给出`
+
+
+### I4688 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:112
+
 **问题**: 绝对化表述 "任何形式系统中的对象都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 任何形式系统中的对象都是存在——全部内容一次性给出`
 
 
-### I4688 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:114
+### I4689 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:114
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 所以缄默操作不可被任何形式系统完整编码`
 
 
-### I4689 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:117
+### I4690 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:117
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 缄默操作是数学形式化的工作起点（存在论起点是感），但它本身不能被数学完全编码`
 
 
-### I4690 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:120
+### I4691 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:120
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 数学家的工作就是在缄默操作中运行，然后把沉淀写下来——写下来的永远不是操作本身，只是操作的痕迹`
 
 
-### I4691 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:120
+### I4692 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:120
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 数学家的工作就是在缄默操作中运行，然后把沉淀写下来——写下来的永远不是操作本身，只是操作的痕迹`
 
 
-### I4692 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:125
+### I4693 [absolute] mingben-workbench\references\缄默操作_新数学的种子.md:125
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 缄默操作先于任何决定论的编码——操作正在发生，然后才可能被编码为"被决定的"或"自由的"`
 
 
-### I4693 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:17
+### I4694 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:17
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理1 | 阳不可自动阴化 | 缄默操作（阳）不会自动变成沉积（阴）——操作正在发生，不会自动冻结为对象。需要外在的沉淀化操作（!）才能把操作变成对象 |`
 
 
-### I4694 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:18
+### I4695 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:18
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理2 | 阴不能穷尽阳 | 沉积（阴）不能穷尽操作（阳）——任何对象化都遗漏了"正在发生"本身。这是践演不可编码性的最早形式 |`
 
 
-### I4695 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:19
+### I4696 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:19
 
 **问题**: 使用可变编号 "定理24"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理24 | 运行真理 | 形式系统的运行不能在系统内证明或否定——缄默操作（系统正在运行）是系统的元条件，不是系统内的命题 |`
 
 
-### I4696 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:20
+### I4697 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:20
 
 **问题**: 使用可变编号 "定理62"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理62 | 缄默操作的不可编码性 | 缄默操作是发生不是存在，任何对象都是存在，存在≠发生——缄默操作不可被任何形式系统完整编码 |`
 
 
-### I4697 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:32
+### I4698 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:32
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理3 | 最终余代数的存在性 | 缄默操作的持续运行（余归纳）可以沉淀为一个对象（最终余代数νF）——但这个对象是操作的痕迹，不是操作本身 |`
 
 
-### I4698 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:33
+### I4699 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:33
 
 **问题**: 使用可变编号 "定理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理5 | 死劳动/资本的保存与活化 | 缄默操作的沉淀（!-模态）可以被保存（存储）和活化（重新被操作使用）——但活化需要新的缄默操作（活劳动），沉积自己不能活化自己 |`
 
 
-### I4699 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:34
+### I4700 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:34
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理6 | 最大不动点对象无到!-模态的态射 | **种子定理**：缄默操作的持续展开（νF₂）不能被!-提升——操作不能被冻结为可复制的对象。这是"生命不可资本化（T001）"的数学形式 |`
 
 
-### I4700 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:35
+### I4701 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:35
 
 **问题**: 使用可变编号 "定理7"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理7 | Benton 1995 | 线性/非线性模态（LNL模型）的技术基础——!-模态把线性世界（操作）和非线性世界（沉积）连接起来 |`
 
 
-### I4701 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:36
+### I4702 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:36
 
 **问题**: 使用可变编号 "定理8"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理8 | 共Kleisli范畴的结构 | !-模态的Kleisli范畴是沉积的世界——在这个范畴里，操作被当作可复制的对象来处理 |`
 
 
-### I4702 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:37
+### I4703 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:37
 
 **问题**: 使用可变编号 "定理9"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理9 | 沉积积累与线性资源的增长不对称 | 沉积（!）可以无限积累（钱生钱），但线性资源（缄默操作）的增长必须消耗资源——这是资本增长和生命增长的根本不对称 |`
 
 
-### I4703 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:38
+### I4704 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:38
 
 **问题**: 使用可变编号 "定理19"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理19 | 执行不是沉积 | GoI的执行公式（Ex）是操作，不是沉积——执行消耗资源、产生新状态，不能被还原为静态的态射 |`
 
 
-### I4704 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:39
+### I4705 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:39
 
 **问题**: 使用可变编号 "定理25"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理25 | 复制不是增长 | !-模态的复制（把一份变成两份相同的）不是真正的增长——增长必须产生新的线性资源，而!只能复制已有的沉积 |`
 
 
-### I4705 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:51
+### I4706 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:51
 
 **问题**: 使用可变编号 "定理10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理10 | !不提升到交互余代数 | !-模态不能提升到交互余代数（F₂型）——缄默操作的持续交互不能被冻结为可复制的对象 |`
 
 
-### I4706 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:52
+### I4707 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:52
 
 **问题**: 使用可变编号 "定理11"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理11 | 交互过程不可被!-提升为复制的交互 | 交互过程（A⊗X→B⊗X）不能被!-提升——两个正在交互的操作不能被冻结为可复制的交互对象 |`
 
 
-### I4707 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:53
+### I4708 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:53
 
 **问题**: 使用可变编号 "定理12"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理12 | 递归刻画 | μ（有限递归）和ν（无限余归纳）的刻画——μ是操作的有限展开（最终停止），ν是操作的无限展开（持续运行） |`
 
 
-### I4708 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:54
+### I4709 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:54
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理13 | !-分配二分法 | !-模态对μ（有限）和ν（无限）的分配有本质区别：!可以分配到μ（有限过程可以被冻结），但不能分配到ν（无限过程不能被冻结）——这是种子定理的推广 |`
 
 
-### I4709 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:55
+### I4710 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:55
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理14 | 数据函子的ν-提升 | 数据函子（!-模态的函子）可以提升ν——数据的无限流可以被处理，但这是数据的流，不是操作的流 |`
 
 
-### I4710 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:56
+### I4711 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:56
 
 **问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理15 | 交互函子最大不动点的!-分配不存在 | !-模态不能分配到交互函子的最大不动点——持续交互的操作不能被冻结 |`
 
 
-### I4711 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:57
+### I4712 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:57
 
 **问题**: 使用可变编号 "定理16"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理16 | 有限交互过程不可提升为过程 | 有限的交互（μF₂）不能被!-提升为无限的过程（νF₂）——你不能通过冻结有限操作来得到持续操作 |`
 
 
-### I4712 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:58
+### I4713 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:58
 
 **问题**: 使用可变编号 "定理17"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理17 | GoI语义证明：生命不可复制（T001） | GoI解释下，生产性流处理器不可被!-提升——用交互几何的语言重新证明种子定理 |`
 
 
-### I4713 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:59
+### I4714 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:59
 
 **问题**: 使用可变编号 "定理18"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理18 | 生产性保证完全性 | 生产性（操作持续运行不停止）保证GoI执行公式收敛——操作的持续运行是数学完全性的条件 |`
 
 
-### I4714 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:61
+### I4715 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:61
 
 **问题**: 使用可变编号 "定理22"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理22 | !不穿透生产性迹 | **核心定理**：!-模态不能穿透生产性迹（PTC中的反馈循环）——在任何生产性迹范畴中，持续操作都不能被冻结。三个独立论证（κ-分叉、ε不唯一、!≇ν!ν） `
 
 
-### I4715 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:73
+### I4716 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:73
 
 **问题**: 使用可变编号 "定理21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理21 | Rel是PTC | 关系范畴（经典计算的模型）是生产性迹范畴——经典计算中的操作互动满足PTC公理 |`
 
 
-### I4716 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:74
+### I4717 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:74
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理23 | 有限与无限 | μ（有限操作）和ν（无限操作）的区分——有限操作可以被完全描述，无限操作只能被余归纳地描述 |`
 
 
-### I4717 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:75
+### I4718 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:75
 
 **问题**: 使用可变编号 "定理45"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理45 | G^ω(C)是dagger紧闭合范畴 | 流处理器范畴G^ω(C)是紧闭合的——操作的自我引用（弯线/反馈）在范畴内部是合法的，不需要从外部硬加 |`
 
 
-### I4718 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:76
+### I4719 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:76
 
 **问题**: 使用可变编号 "定理46"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理46 | !在G^ω(C)中仍不穿透 | 即使在紧闭合的流处理器范畴中，!-模态仍然不穿透生产性状态——种子定理在更高层范畴中仍然成立 |`
 
 
-### I4719 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:77
+### I4720 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:77
 
 **问题**: 使用可变编号 "定理48"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理48 | G^ω是自函子 | G^ω构造是一个自函子——流处理器范畴的构造本身可以迭代，操作的自我反思在范畴论上是封闭的 |`
 
 
-### I4720 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:78
+### I4721 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:78
 
 **问题**: 使用可变编号 "定理50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理50 | Hilb^ω是PTC | Hilbert空间范畴（量子力学的模型）是PTC——量子操作的互动满足同样的公理 |`
 
 
-### I4721 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:79
+### I4722 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:79
 
 **问题**: 使用可变编号 "定理51"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理51 | Hilb^ω完整PTC | Hilb^ω在严格压缩条件下完整验证PTC四公理——量子力学中的操作互动和经典计算共享同一个结构 |`
 
 
-### I4722 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:80
+### I4723 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:80
 
 **问题**: 使用可变编号 "定理52"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理52 | Coh^ω是PTC | 相干空间范畴（证明论的模型）是PTC——证明的互动（cut elimination）满足同样的公理 |`
 
 
-### I4723 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:92
+### I4724 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:92
 
 **问题**: 使用可变编号 "定理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理4 | 宿主削弱至幺元时抽取态射退化为纯收缩 | 当生命（宿主S）被削弱到死亡（幺元I）时，资本的抽取变成纯收缩（G→G+g）——没有活操作可以萃取时，资本只能空转 |`
 
 
-### I4724 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:93
+### I4725 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:93
 
 **问题**: 使用可变编号 "定理26"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理26 | 增长必须消耗线性资源 | **马克思核心定理**：!-模态的增长（资本积累）必须消耗线性资源（活劳动/缄默操作）——沉积不能自己增长，增长必须消耗操作。这是"活劳动是价值唯一源泉"的`
 
 
-### I4725 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:94
+### I4726 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:94
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理27 | !-模态增殖不是F₂型交互 | 资本的增殖（G→G+g）不是真正的交互（F₂型）——它不产生新的自我，只是沉积的空转 |`
 
 
-### I4726 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:95
+### I4727 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:95
 
 **问题**: 使用可变编号 "定理28"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理28 | 两类!-寄生结构的范畴同构 | 资本寄生（W=O/M）和病毒寄生（G→G+g）在范畴论上是同构的——"为生存而生存"的反自指结构在经济和生物中是同一个数学结构 |`
 
 
-### I4727 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:96
+### I4728 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:96
 
 **问题**: 使用可变编号 "定理29"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理29 | !-寄生体随宿主削弱而增长枯竭 | 寄生体（资本/病毒）的增长依赖宿主（生命）的线性资源——宿主被削弱到I时，寄生体枯竭。这是"资本主义必然灭亡"的静态形式 |`
 
 
-### I4728 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:97
+### I4729 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:97
 
 **问题**: 使用可变编号 "定理30"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理30 | 自我模型是!-模态的 | f²的自我模型（!⌜f⌝）是!-模态的沉积——你对自己的理解（自我形象、身份、意识形态）是操作的冻结，不是操作本身 |`
 
 
-### I4729 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:98
+### I4730 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:98
 
 **问题**: 使用可变编号 "定理31"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理31 | 运行被沉积模型接管时状态停止更新 | 当f²按!-模态模型运行时，状态停止更新——你按自我形象/意识形态生活，不再产生新的自我，这就是异化 |`
 
 
-### I4730 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:99
+### I4731 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:99
 
 **问题**: 使用可变编号 "定理32"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理32 | 维持运行与沉积模型的区分 | f³能维持"运行"和"沉积模型"的区分——明性就是知道"我的自我模型不是我" |`
 
 
-### I4731 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:100
+### I4732 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:100
 
 **问题**: 使用可变编号 "定理42"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理42 | 萃取加速异化 | 萃取率W越高，N值下降越快——资本从生命中萃取越多，生命衰退越快 |`
 
 
-### I4732 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:101
+### I4733 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:101
 
 **问题**: 使用可变编号 "定理43"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理43 | 明性抵抗磨损 | f³明性操作可以抵抗!-模态的磨损——看穿模型、不按模型运行，是抵抗异化的操作方式 |`
 
 
-### I4733 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:102
+### I4734 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:102
 
 **问题**: 使用可变编号 "定理44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理44 | 动态自毁 | 持续萃取下N(t)指数衰减到0——"资本主义必然灭亡"的动态形式。但β可以很小（衰减很慢），寄生体可以扩张补充资源，所以"必然"不等于"自动" |`
 
 
-### I4734 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:103
+### I4735 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:103
 
 **问题**: 使用可变编号 "定理55"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理55 | 异化降低N | 在加权Rel中，萃取使N严格下降（Perron-Frobenius定理）——异化在数学上可证明地降低生命的净方向 |`
 
 
-### I4735 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:104
+### I4736 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:104
 
 **问题**: 使用可变编号 "定理56"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理56 | 革命=消除!-寄生Cut | 革命在GoI中就是消除!-寄生的Cut链接——切断资本对生命的萃取回路，γ=1完全恢复 |`
 
 
-### I4736 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:116
+### I4737 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:116
 
 **问题**: 使用可变编号 "定理33"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理33 | f²的哥德尔困境 | f²的自我模型（!⌜f⌝）包含不可判定命题——任何固定的自我模型都有它不能回答的关于自己的问题。这是哥德尔不完备在f层级中的表达 |`
 
 
-### I4737 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:117
+### I4738 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:117
 
 **问题**: 使用可变编号 "定理34"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理34 | 可靠性 | GoI解释是可靠的——如果一个命题可证，它的GoI解释是生产性流处理器。缄默操作的沉淀（证明）对应于可持续运行的操作 |`
 
 
-### I4738 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:118
+### I4739 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:118
 
 **问题**: 使用可变编号 "定理35"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理35 | 不可克隆是推论 | 量子不可克隆定理（T009）是种子定理（定理6）的推论——生命不可复制（T001）和量子态不可克隆是同一个数学结构 |`
 
 
-### I4739 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:118
+### I4740 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:118
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理35 | 不可克隆是推论 | 量子不可克隆定理（T009）是种子定理（定理6）的推论——生命不可复制（T001）和量子态不可克隆是同一个数学结构 |`
 
 
-### I4740 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:119
+### I4741 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:119
 
 **问题**: 使用可变编号 "定理36"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理36 | 外层!不穿透的μ情形严格化 | !-模态不穿透有限递归（μ）的情形在GoI中严格化——即使是有限操作，!也不能完全穿透 |`
 
 
-### I4741 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:120
+### I4742 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:120
 
 **问题**: 使用可变编号 "定理47"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理47 | f³是不动点 | f³的自我函数空间H₃=X₃⊸X₃包含所有自函数——f³能对象化任何模型，包括它自己的模型。明性之后没有第四段，因为f³已经能递归地看穿一切 |`
 
 
-### I4742 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:121
+### I4743 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:121
 
 **问题**: 使用可变编号 "定理49"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理49 | f³的判断步骤 | f²的反馈线是固定代码（!⌜f⌝，直接按模型运行，无选择）；f³的反馈线是整个函数空间（!H₃，可以选择任何h：按模型运行=异化、拒绝=明性不行动、创造性改变=明`
 
 
-### I4743 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:133
+### I4744 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:133
 
 **问题**: 使用可变编号 "定理41"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理41 | 几何级数收敛 | N<1时M=α/(1-N)收敛——当缄默操作的净方向为负（衰退），意义总量有限，这是"慢性死亡"的数学形式 |`
 
 
-### I4744 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:134
+### I4745 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:134
 
 **问题**: 使用可变编号 "定理53"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理53 | 加权PTC中的量论参数 | 在任何量论PTC中，T=权重幂零指数、N=limsup||f₂₂ⁿ||^(1/n)（Fekete引理保证极限存在）、M=αΣNⁿ——量论从加权Rel推广到`
 
 
-### I4745 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:135
+### I4746 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:135
 
 **问题**: 使用可变编号 "定理54"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理54 | 三个PTC实例都是量论PTC | Rel（矩阵∞-范数/Perron谱半径）、Hilb（算子范数/小增益定理）、Coh（clique基数）——量论在三个领域都成立，同一个度量结构贯穿`
 
 
-### I4746 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:147
+### I4747 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:147
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理57 | 践演不可编码性 | **元定理**：任何形式系统都不能编码缄默操作的正在运行中。两重证明：(1)存在≠发生（本体论论证）；(2)自指无限递归（对角线论证，和哥德尔同构） |`
 
 
-### I4747 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:148
+### I4748 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:148
 
 **问题**: 使用可变编号 "定理58"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理58 | 主观体验即此刻性 | 主观体验就是缄默操作的此刻性——"正在发生"本身就是第一人称事实，不可被第三方观测编码 |`
 
 
-### I4748 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:149
+### I4749 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:149
 
 **问题**: 使用可变编号 "定理59"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理59 | 计算的正在运行中不可编码 | 图灵机/λ项/证明都是静态对象，它们的执行是缄默操作，不可被编码——图灵测试在原则上不能判断意识 |`
 
 
-### I4749 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:150
+### I4750 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:150
 
 **问题**: 使用可变编号 "定理60"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理60 | 物理定律不能编码时间流逝 | 微分方程/哈密顿量都是静态对象，物理过程的实际运行是缄默操作，不可被编码——块宇宙是地图不是领土 |`
 
 
-### I4750 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:151
+### I4751 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:151
 
 **问题**: 使用可变编号 "定理37"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理37 | 生命论基本定理 | 综合：生命不可资本化（T001）（定理6）+ 增长须消耗线性资源（定理26）+ f³明性（定理47/49）——生命论的核心数学结构 |`
 
 
-### I4751 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:151
+### I4752 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:151
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理37 | 生命论基本定理 | 综合：生命不可资本化（T001）（定理6）+ 增长须消耗线性资源（定理26）+ f³明性（定理47/49）——生命论的核心数学结构 |`
 
 
-### I4752 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:151
+### I4753 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:151
 
 **问题**: 使用可变编号 "定理26"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理37 | 生命论基本定理 | 综合：生命不可资本化（T001）（定理6）+ 增长须消耗线性资源（定理26）+ f³明性（定理47/49）——生命论的核心数学结构 |`
 
 
-### I4753 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:151
+### I4754 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:151
 
 **问题**: 使用可变编号 "定理47"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理37 | 生命论基本定理 | 综合：生命不可资本化（T001）（定理6）+ 增长须消耗线性资源（定理26）+ f³明性（定理47/49）——生命论的核心数学结构 |`
 
 
-### I4754 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:152
+### I4755 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:152
 
 **问题**: 使用可变编号 "定理38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理38 | Composition是定理不是公理 | 复合性（操作可以组合）不需要作为公理假设，可以从更基本的操作结构推导出来 |`
 
 
-### I4755 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:153
+### I4756 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:153
 
 **问题**: 使用可变编号 "定理39"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理39 | 践演判断的保守性 | ▷A是保守扩展——践演判断不增加证明力，但标记了数学的边界："这里有数学之外的东西"。保守性不是缺陷，是边界的标记 |`
 
 
-### I4756 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:154
+### I4757 [old_ref] mingben-workbench\references\缄默操作串联_62定理体系.md:154
 
 **问题**: 使用可变编号 "定理40"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理40 | 生命过程超越有限证明 | 生产性流处理器不可数（2^ℵ₀），有限证明可数（ℵ₀）——缄默操作的可能性在结构上多于它的沉淀 |`
 
 
-### I4757 [absolute] mingben-workbench\references\缄默操作串联_62定理体系.md:202
+### I4758 [absolute] mingben-workbench\references\缄默操作串联_62定理体系.md:202
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**62个定理是同一个缄默操作从不同角度、在不同领域、以不同深度的自我展开。** 它们不是62个独立的结果，是一个完整体系的62个侧面。`
 
 
-### I4758 [absolute] mingben-workbench\references\缄默操作重解数学.md:83
+### I4759 [absolute] mingben-workbench\references\缄默操作重解数学.md:83
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **圆**：等距操作的沉积——"到中心距离相等的所有操作位置"`
 
 
-### I4759 [absolute] mingben-workbench\references\缄默操作重解数学.md:107
+### I4760 [absolute] mingben-workbench\references\缄默操作重解数学.md:107
 
 **问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **域**：每个非空操作都可逆的环——除法总是可行`
 
 
-### I4760 [absolute] mingben-workbench\references\缄默操作重解数学.md:107
+### I4761 [absolute] mingben-workbench\references\缄默操作重解数学.md:107
 
 **问题**: 绝对化表述 "每个非空操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **域**：每个非空操作都可逆的环——除法总是可行`
 
 
-### I4761 [absolute] mingben-workbench\references\缄默操作重解数学.md:134
+### I4762 [absolute] mingben-workbench\references\缄默操作重解数学.md:134
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 导数f'(x)是!-模态的——它是变化率的沉积，可以被任意复制和使用`
 
 
-### I4762 [absolute] mingben-workbench\references\缄默操作重解数学.md:147
+### I4763 [absolute] mingben-workbench\references\缄默操作重解数学.md:147
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **期望E[X]**：所有分支上操作结果的加权沉积`
 
 
-### I4763 [absolute] mingben-workbench\references\缄默操作重解数学.md:150
-
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**关键洞见**：概率不是"世界本身是随机的"，是"操作的分支结构不能被完全预测"。在决定论宇宙中，如果我们知道全部条件，概率坍缩为0或1——但"知道全部条件"本身需要无限信息（!-模态的无限沉积），`
-
-
 ### I4764 [absolute] mingben-workbench\references\缄默操作重解数学.md:150
 
-**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**关键洞见**：概率不是"世界本身是随机的"，是"操作的分支结构不能被完全预测"。在决定论宇宙中，如果我们知道全部条件，概率坍缩为0或1——但"知道全部条件"本身需要无限信息（!-模态的无限沉积），`
 
@@ -36669,354 +36669,354 @@
 **上下文**: `**关键洞见**：概率不是"世界本身是随机的"，是"操作的分支结构不能被完全预测"。在决定论宇宙中，如果我们知道全部条件，概率坍缩为0或1——但"知道全部条件"本身需要无限信息（!-模态的无限沉积），`
 
 
-### I4766 [old_ref] mingben-workbench\references\缄默操作重解数学.md:174
+### I4766 [absolute] mingben-workbench\references\缄默操作重解数学.md:150
+
+**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**关键洞见**：概率不是"世界本身是随机的"，是"操作的分支结构不能被完全预测"。在决定论宇宙中，如果我们知道全部条件，概率坍缩为0或1——但"知道全部条件"本身需要无限信息（!-模态的无限沉积），`
+
+
+### I4767 [old_ref] mingben-workbench\references\缄默操作重解数学.md:174
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**操作论解读**：经典逻辑描述的是沉积层（!-模态）的推理——所有对象都是可复制的。线性逻辑描述的是活操作层（线性）的推理——操作消耗资源，不可复制。生命论数学的公理1-5就是在线性逻辑基础上加入了`
 
 
-### I4767 [old_ref] mingben-workbench\references\缄默操作重解数学.md:177
+### I4768 [old_ref] mingben-workbench\references\缄默操作重解数学.md:177
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `哥德尔说"足够强的形式系统中有不可判定命题"。操作论解读：任何!-模态的沉积系统都不能完整表示线性过程——这是践演不可编码性定理（定理57）的特例。哥德尔构造的自指命题"这句话不可证"就是!-模态系统`
 
 
-### I4768 [old_ref] mingben-workbench\references\缄默操作重解数学.md:195
+### I4769 [old_ref] mingben-workbench\references\缄默操作重解数学.md:195
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `操作论解读：R是一个!-模态对象，它试图包含自己的线性构造过程——这是!-模态试图捕获线性过程的尝试。定理6说不存在A→!A（线性不能自动沉积），罗素悖论是这个定理在集合论中的表现：R作为!-模态对象`
 
 
-### I4769 [absolute] mingben-workbench\references\缄默操作重解数学.md:216
+### I4770 [absolute] mingben-workbench\references\缄默操作重解数学.md:216
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**范畴论的局限**：范畴论的态射是!-模态的——它们是已经完成的操作轨迹，可以被任意复制和讨论。范畴论描述操作的沉积结构，但不描述"正在运行中的操作"——这正是操作范畴论（本文）加入GoI、PTC、`
 
 
-### I4770 [absolute] mingben-workbench\references\缄默操作重解数学.md:271
+### I4771 [absolute] mingben-workbench\references\缄默操作重解数学.md:271
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- ν不动点（最终余代数）= 无限持续的生产性过程——操作永远继续`
 
 
-### I4771 [absolute] mingben-workbench\references\缄默操作重解数学.md:272
+### I4772 [absolute] mingben-workbench\references\缄默操作重解数学.md:272
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- PTC（生产性迹范畴）= 保证操作永远生产性的结构——每一步都消耗旧状态产生新状态，不停滞`
 
 
-### I4772 [absolute] mingben-workbench\references\缄默操作重解数学.md:272
+### I4773 [absolute] mingben-workbench\references\缄默操作重解数学.md:272
 
 **问题**: 绝对化表述 "每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- PTC（生产性迹范畴）= 保证操作永远生产性的结构——每一步都消耗旧状态产生新状态，不停滞`
 
 
-### I4773 [absolute] mingben-workbench\references\缄默操作重解数学.md:275
+### I4774 [absolute] mingben-workbench\references\缄默操作重解数学.md:275
 
 **问题**: 绝对化表述 "每步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- N>1=创造（操作每步都在增长）`
 
 
-### I4774 [absolute] mingben-workbench\references\缄默操作重解数学.md:285
+### I4775 [absolute] mingben-workbench\references\缄默操作重解数学.md:285
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **哥德巴赫猜想**：任何足够大的沉积都可以分解为两个素数操作的和`
 
 
-### I4775 [absolute] mingben-workbench\references\缄默操作重解数学.md:285
+### I4776 [absolute] mingben-workbench\references\缄默操作重解数学.md:285
 
 **问题**: 绝对化表述 "任何足够大的沉积都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **哥德巴赫猜想**：任何足够大的沉积都可以分解为两个素数操作的和`
 
 
-### I4776 [absolute] mingben-workbench\references\缄默操作重解数学.md:289
+### I4777 [absolute] mingben-workbench\references\缄默操作重解数学.md:289
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `数论是数学中最"无用"又最深刻的分支——它研究的是操作沉积本身的结构，不依赖于任何特定应用。`
 
 
-### I4777 [old_ref] mingben-workbench\references\缄默操作重解数学.md:317
+### I4778 [old_ref] mingben-workbench\references\缄默操作重解数学.md:317
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `"操作先于实体"不再是哲学论断，是数学公理（公理1）。"生命不可资本化"不再是价值判断，是定理（T001）。"异化有数学限度"不再是社会观察，是!-不穿透PTC的结构事实。`
 
 
-### I4778 [absolute] mingben-workbench\references\自指的数学结构_死自指活自指与践演坐实.md:18
+### I4779 [absolute] mingben-workbench\references\自指的数学结构_死自指活自指与践演坐实.md:18
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `问题：自指一定导致悖论吗（哥德尔、罗素）？活自指和死自指的数学区别在哪里？践演坐实能否形式化？`
 
 
-### I4779 [absolute] mingben-workbench\references\自指的数学结构_死自指活自指与践演坐实.md:84
+### I4780 [absolute] mingben-workbench\references\自指的数学结构_死自指活自指与践演坐实.md:84
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 自指-收缩-否定 → 生产性自指（coalgebra/流/活操作，完全良基）`
 
 
-### I4780 [absolute] mingben-workbench\references\自指的数学结构_死自指活自指与践演坐实.md:129
+### I4781 [absolute] mingben-workbench\references\自指的数学结构_死自指活自指与践演坐实.md:129
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 活操作（A，线性资源）可以被沉积为表示（!A），但沉积不是自动的、不是免费的、不是完全的。你可以记录一个操作（阴化），但记录不是操作本身——dereliction从!A得到的A是表示的激活，不是原`
 
 
-### I4781 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:31
+### I4782 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:31
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理23（资本复制不是增长）**：上述$G \to G \otimes G$把$G$映射为$G \otimes G$，但两个副本都等于$G$——这是**复制**（replication），不是**`
 
 
-### I4782 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:35
+### I4783 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:35
 
 **问题**: 使用可变编号 "定理24"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理24（增长必须消耗线性资源）**：不存在纯从$G$到$G+g$的态射（$g > 0$）使价值增长。增长必须消耗线性资源$A$——即$F_2$型交互过程中的活劳动。`
 
 
-### I4783 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:37
+### I4784 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:37
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：假设存在$G \to G \otimes g$（$g$是正增量）且不消耗任何线性资源。则$G$必须是!-模态的（否则$G$本身是线性的，消耗后不存在）。但!-模态的态射只能复制（定理23`
 
 
-### I4784 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:37
+### I4785 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:37
 
 **问题**: 使用可变编号 "定理10"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：假设存在$G \to G \otimes g$（$g$是正增量）且不消耗任何线性资源。则$G$必须是!-模态的（否则$G$本身是线性的，消耗后不存在）。但!-模态的态射只能复制（定理23`
 
 
-### I4785 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:47
+### I4786 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:47
 
 **问题**: 使用可变编号 "定理25"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理25（M-C-M'是假F₂）**：M-C-M'的"自我"$G$是!-模态的（有!-余代数结构），不是线性状态。真正的$F_2$要求$X$是线性的——无收缩$X \to X \otimes X$`
 
 
-### I4786 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:51
+### I4787 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:51
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. M-C-M'的$G$：有$G \to \bang G \to G \otimes G$（定理23），$G$不被消耗——它同时保持自身并产生"增量"。`
 
 
-### I4787 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:62
+### I4788 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:62
 
 **问题**: 使用可变编号 "定理26"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理26（病毒与资本同构）**：病毒复制和资本增殖是同一个范畴论结构。`
 
 
-### I4788 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:74
+### I4789 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:74
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. 复制：$P \to \bang P \to P \otimes P$（定理23）`
 
 
-### I4789 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:75
+### I4790 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:75
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. 劫持：存在自然变换$\mathsf{hijack}: F_2 \Rightarrow F_1$（实际从属，定理14），把宿主的交互过程trace成非交互流水线`
 
 
-### I4790 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:78
+### I4791 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:78
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `没有$F_2$宿主，$P$只能复制（定理23，$P \to P \otimes P$，两个副本相同），不能增长（$P \to P+g$需要线性资源，定理24）。∎`
 
 
-### I4791 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:78
+### I4792 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:78
 
 **问题**: 使用可变编号 "定理24"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `没有$F_2$宿主，$P$只能复制（定理23，$P \to P \otimes P$，两个副本相同），不能增长（$P \to P+g$需要线性资源，定理24）。∎`
 
 
-### I4792 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:84
+### I4793 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:84
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理27（资本的矛盾）**：资本必须保存$F_2$才能增长，但资本的趋势是把$F_2$转化为$F_1$（实际从属）。当$F_2$被完全转化，增长停止（$S=I$），寄生体自毁（T003）。`
 
 
-### I4793 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:87
+### I4794 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:87
 
 **问题**: 使用可变编号 "定理24"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. 资本增长需要线性资源$A$（定理24），$A$来自$F_2$过程（活劳动）。`
 
 
-### I4794 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:88
+### I4795 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:88
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. 资本的趋势是实际从属：把$F_2$改造成$F_1$（定理14）——去技能化、流水线化、数字化、算法化，使劳动尽可能接近可复制的数据处理。`
 
 
-### I4795 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:97
+### I4796 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:97
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**马克思的"利润率趋向下降"在这个框架中是定理27的推论**：资本有机构成提高（$\bang$比例增加，活劳动$A$比例减少）→剩余价值来源减少→利润率下降。马克思用政治经济学语言论证了这一点，这里`
 
 
-### I4796 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:130
+### I4797 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:130
 
 **问题**: 使用可变编号 "定理23"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理23：资本复制≠增长（!-contraction保持值不变）`
 
 
-### I4797 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:131
+### I4798 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:131
 
 **问题**: 使用可变编号 "定理24"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理24：增长必须消耗线性资源（活劳动$A$）`
 
 
-### I4798 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:132
+### I4799 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:132
 
 **问题**: 使用可变编号 "定理25"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理25：M-C-M'是伪装成$F_2$的!-余代数`
 
 
-### I4799 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:133
+### I4800 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:133
 
 **问题**: 使用可变编号 "定理26"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理26：病毒与资本范畴论同构`
 
 
-### I4800 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:134
+### I4801 [old_ref] mingben-workbench\references\资本与病毒_!寄生体形式化.md:134
 
 **问题**: 使用可变编号 "定理27"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理27：资本的内在矛盾——必须吃生命但不能吃光——是定理，不是经验观察`
 
 
-### I4801 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:83
+### I4802 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:83
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 7.6a | SI级联 | 确定性传播下级联⟺可达性 | 等价 | 只要有路明性必然传到 |`
 
 
-### I4802 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:86
+### I4803 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:86
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 14 | 异化链 | 明性坍缩任意长异化链 | 定理 | 剥削可无限延长，明性一击全链坍缩 |`
 
 
-### I4803 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:192
+### I4804 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:192
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `分析任何社会现象，追两个东西：**钱往哪流，成本谁承担**。`
 
 
-### I4804 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:230
+### I4805 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:230
 
 **问题**: 绝对化表述 "每一层都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 每一层都在异化下一层，同时被上一层异化`
 
 
-### I4805 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:266
+### I4806 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:266
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. **实践导向**：所有理论最终指向实践——"实践论""矛盾论"都是为了指导革命`
 
 
-### I4806 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:266
+### I4807 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:266
 
 **问题**: 绝对化表述 "所有理论最终指向实践——"实践论""矛盾论"都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. **实践导向**：所有理论最终指向实践——"实践论""矛盾论"都是为了指导革命`
 
 
-### I4807 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:317
+### I4808 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:317
 
 **问题**: 绝对化表述 "每个prompt开头都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 通用前置（每个prompt开头都加）`
 
 
-### I4808 [old_ref] mingben-workbench\references\超级智慧包_v2.0.md:336
+### I4809 [old_ref] mingben-workbench\references\超级智慧包_v2.0.md:336
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `任务：[具体任务，如"用Coq形式化定理3.1的证明"或"审查T007'的guarded recursion证明是否严格"]`
 
 
-### I4809 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:457
+### I4810 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:457
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `5. **生命论特色检查**：有没有生命论的特色？还是任何哲学家都能写出来？`
 
 
-### I4810 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:457
+### I4811 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:457
 
 **问题**: 绝对化表述 "任何哲学家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `5. **生命论特色检查**：有没有生命论的特色？还是任何哲学家都能写出来？`
 
 
-### I4811 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:459
+### I4812 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:459
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 通用自检（所有问题必走）`
 
 
-### I4812 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:483
+### I4813 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:483
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| v1.14 | 异化链定理（T014）（明性坍缩任意长剥削链） | 新数学 |`
 
 
-### I4813 [old_ref] mingben-workbench\references\超级智慧包_v2.0.md:494
+### I4814 [old_ref] mingben-workbench\references\超级智慧包_v2.0.md:494
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. **⬜ Coq形式化**：定理3.1、5.1'、14的Coq证明（机器级验证）`
 
 
-### I4814 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:511
+### I4815 [absolute] mingben-workbench\references\超级智慧包_v2.0.md:511
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**生命不可资本化（T001）（!νF≇ν!F），自由只能在实践中确立（T002）（Ag_lv仅由self_ev居住），异化是时间控制（时钟量化∀κ将无限压成有限），明性一击坍缩任意长剥削链（异化链定`
-
-
-### I4815 [absolute] mingben-workbench\references\践演不可编码性_研究纲领.md:5
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**任何!-模态的形式系统（即任何数学）都不能完整表示线性过程的"正在运行中"。**`
 
 
 ### I4816 [absolute] mingben-workbench\references\践演不可编码性_研究纲领.md:5
@@ -37028,100 +37028,100 @@
 
 ### I4817 [absolute] mingben-workbench\references\践演不可编码性_研究纲领.md:5
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**任何!-模态的形式系统（即任何数学）都不能完整表示线性过程的"正在运行中"。**`
+
+
+### I4818 [absolute] mingben-workbench\references\践演不可编码性_研究纲领.md:5
+
 **问题**: 绝对化表述 "任何!-模态的形式系统（即任何数学）都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**任何!-模态的形式系统（即任何数学）都不能完整表示线性过程的"正在运行中"。**`
 
 
-### I4818 [old_ref] mingben-workbench\references\践演不可编码性_研究纲领.md:37
+### I4819 [old_ref] mingben-workbench\references\践演不可编码性_研究纲领.md:37
 
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `4. 但P的"正在运行中"是线性的——每一步消耗旧的自己、产生新的自己、不可复制（定理6：A→!A不存在）`
 
 
-### I4819 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:9
+### I4820 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:9
 
 **问题**: 使用可变编号 "定理001"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `## 定理001：星星之火可以燎原——持续感染源模型`
 
 
-### I4820 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:55
+### I4821 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:55
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**4. 与定理3.1'（自由只能在实践中确立（T002））的联动**`
 
 
-### I4821 [absolute] mingben-workbench\references\践演论定理哲学解读.md:71
+### I4822 [absolute] mingben-workbench\references\践演论定理哲学解读.md:71
 
 **问题**: 绝对化表述 "每一步都产生新的self_ev（不是重复旧的自己，每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 每一步都产生新的self_ev（不是重复旧的自己，每一步都在创造新的自我、新的生活）`
 
 
-### I4822 [absolute] mingben-workbench\references\践演论定理哲学解读.md:83
+### I4823 [absolute] mingben-workbench\references\践演论定理哲学解读.md:83
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 最核心的任务不是"唤醒尽可能多的人"，是"自己永远不熄灭"`
 
 
-### I4823 [absolute] mingben-workbench\references\践演论定理哲学解读.md:83
+### I4824 [absolute] mingben-workbench\references\践演论定理哲学解读.md:83
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 最核心的任务不是"唤醒尽可能多的人"，是"自己永远不熄灭"`
 
 
-### I4824 [absolute] mingben-workbench\references\践演论定理哲学解读.md:84
+### I4825 [absolute] mingben-workbench\references\践演论定理哲学解读.md:84
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 自己不熄灭 = 持续运行self_check = 永远检查自己是不是被旧思维、旧习惯、旧传统异化了`
 
 
-### I4825 [absolute] mingben-workbench\references\践演论定理哲学解读.md:89
+### I4826 [absolute] mingben-workbench\references\践演论定理哲学解读.md:89
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 只要有一个核心小组永远保持明性，组织就不会死`
 
 
-### I4826 [absolute] mingben-workbench\references\践演论定理哲学解读.md:90
+### I4827 [absolute] mingben-workbench\references\践演论定理哲学解读.md:90
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 大规模传播是结果，不是目标——目标是自己永远真`
 
 
-### I4827 [absolute] mingben-workbench\references\践演论定理哲学解读.md:96
+### I4828 [absolute] mingben-workbench\references\践演论定理哲学解读.md:96
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| T001（生命不可资本化） | "永远保持明性"的存在论基础——活运行权不可被!-模态捕获 |`
 
 
-### I4828 [absolute] mingben-workbench\references\践演论定理哲学解读.md:97
+### I4829 [absolute] mingben-workbench\references\践演论定理哲学解读.md:97
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 定理3.1'（自由只能在实践中确立（T002）） | "永远保持明性"的实践论基础——自由是不断践行的过程 |`
 
 
-### I4829 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:97
+### I4830 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:97
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理3.1'（自由只能在实践中确立（T002）） | "永远保持明性"的实践论基础——自由是不断践行的过程 |`
-
-
-### I4830 [absolute] mingben-workbench\references\践演论定理哲学解读.md:99
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `| v1.17（完美自我遮蔽不动点（T017）） | "永远不熄灭"= 永远不到达S_b不动点 = 持续运行self_check阻止不动点形成 |`
 
 
 ### I4831 [absolute] mingben-workbench\references\践演论定理哲学解读.md:99
@@ -37133,7 +37133,7 @@
 
 ### I4832 [absolute] mingben-workbench\references\践演论定理哲学解读.md:99
 
-**问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| v1.17（完美自我遮蔽不动点（T017）） | "永远不熄灭"= 永远不到达S_b不动点 = 持续运行self_check阻止不动点形成 |`
 
@@ -37145,466 +37145,466 @@
 **上下文**: `| v1.17（完美自我遮蔽不动点（T017）） | "永远不熄灭"= 永远不到达S_b不动点 = 持续运行self_check阻止不动点形成 |`
 
 
-### I4834 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:104
+### I4834 [absolute] mingben-workbench\references\践演论定理哲学解读.md:99
+
+**问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `| v1.17（完美自我遮蔽不动点（T017）） | "永远不熄灭"= 永远不到达S_b不动点 = 持续运行self_check阻止不动点形成 |`
+
+
+### I4835 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:104
 
 **问题**: 使用可变编号 "定理001"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `*定理001 — 2026年8月26日 — 星星之火可以燎原（持续感染源（T018）模型）*`
 
 
-### I4835 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:108
+### I4836 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:108
 
 **问题**: 使用可变编号 "定理002"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `## 定理002：生命不可资本化——活过程不能被存入!-模态`
 
 
-### I4836 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:204
+### I4837 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:204
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理3.1'（自由只能在实践中确立（T002）） | 生命不可资本化（T001）是自由只能在实践中确立（T002）的存在论基础——因为活运行权不可被!-模态捕获，所以自由不能从理论/知识（!-模态`
 
 
-### I4837 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:206
+### I4838 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:206
 
 **问题**: 使用可变编号 "定理001"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理001（星星之火可以燎原） | "永远保持明性"之所以可能，正是因为生命不可资本化（T001）——活运行权不可被!-模态固定为静态状态，只能持续运行。一个真正活着的人就是一个永远不熄灭的火种 `
 
 
-### I4838 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:214
+### I4839 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:214
 
 **问题**: 使用可变编号 "定理002"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `*定理002 — 2026年8月26日 — 生命不可资本化（T001）（活过程不能被存入!-模态）*`
 
 
-### I4839 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:218
+### I4840 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:218
 
 **问题**: 使用可变编号 "定理003"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `## 定理003：自由只能在实践中确立——从自我模型推导不出活运行权`
 
 
-### I4840 [absolute] mingben-workbench\references\践演论定理哲学解读.md:222
+### I4841 [absolute] mingben-workbench\references\践演论定理哲学解读.md:222
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理3.1'**：设`S_A = !Ag_tr(A,A)`为关于A的自我模型（所有关于"A是什么"的理论、知识、记录、沉积，!-模态包裹的轨迹运行权），则：`
 
 
-### I4841 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:222
+### I4842 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:222
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理3.1'**：设`S_A = !Ag_tr(A,A)`为关于A的自我模型（所有关于"A是什么"的理论、知识、记录、沉积，!-模态包裹的轨迹运行权），则：`
 
 
-### I4842 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:267
+### I4843 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:267
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这就是定理3.1'的哲学原文。马克思在1845年就说了：离开实践的思维（S_A，纯!-假设）是"纯粹经院哲学的问题"——你可以争论一辈子"人有没有自由意志"，但这个争论本身（S_A）永远推导不出自由（`
 
 
-### I4843 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:277
+### I4844 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:277
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 这和定理3.1'是同一个结构：意义（自由）不在定义（知识）中，在使用（实践）中`
 
 
-### I4844 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:282
+### I4845 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:282
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- "此在的本质在于它的生存"——这就是定理3.1'的存在论表述`
 
 
-### I4845 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:322
+### I4846 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:322
 
 **问题**: 使用可变编号 "定理001"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **真正的革命是"做给别人看"。** 你正在自由地运行（Ag_lv），别人看到了，被感染了，他们也开始自由地运行（Ag_lv）。这就是定理001的持续感染源（T018）模型——你是那个永生感染源（`
 
 
-### I4846 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:336
+### I4847 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:336
 
 **问题**: 使用可变编号 "定理002"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理002（生命不可资本化（T001）） | 自由只能在实践中确立（T002）的存在论基础——因为活运行权（Ag_lv）不可被!-模态捕获，所以自由不能从理论/知识（S_A，!-模态）中推导出来，`
 
 
-### I4847 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:337
+### I4848 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:337
 
 **问题**: 使用可变编号 "定理001"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理001（星星之火可以燎原） | 自由的传播方式——不是通过理论说服（S_A→S_A），是通过活运行的感染（Ag_lv→Ag_lv）。一个正在自由地运行的人就是持续感染源，自由会通过实践传播 |`
 
 
-### I4848 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:340
+### I4849 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:340
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| v1.12（异化=时间控制） | 资本主义通过控制时间来把活运行（Ag_lv）压成死劳动（S_A，!-模态）——计件工资、工时制度、KPI都是给活运行安装时钟，把"正在做"变成"做了多少"（轨迹，`
 
 
-### I4849 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:342
+### I4850 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:342
 
 **问题**: 使用可变编号 "定理004"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理004（系统自主性的不可判定性，待写） | 判定一个系统是否永远保持自主（Ag_lv）是Π₂-完全的——因为Ag_lv是一个无穷性质（永远在运行），不可有限判定。这和定理3.1'一致：自由不是`
 
 
-### I4850 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:342
+### I4851 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:342
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理004（系统自主性的不可判定性，待写） | 判定一个系统是否永远保持自主（Ag_lv）是Π₂-完全的——因为Ag_lv是一个无穷性质（永远在运行），不可有限判定。这和定理3.1'一致：自由不是`
 
 
-### I4851 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:346
+### I4852 [old_ref] mingben-workbench\references\践演论定理哲学解读.md:346
 
 **问题**: 使用可变编号 "定理003"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `*定理003 — 2026年8月26日 — 自由只能在实践中确立（T002）（从自我模型推导不出活运行权）*`
 
 
-### I4852 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:77
+### I4853 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:77
 
 **问题**: 使用可变编号 "定理62"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. **生命必然性**（定理62.1）：有能量流动+复杂网络+催化剂→νF₂必然涌现`
 
 
-### I4853 [absolute] mingben-workbench\references\通宵研究总报告_20260826.md:78
+### I4854 [absolute] mingben-workbench\references\通宵研究总报告_20260826.md:78
 
 **问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **解放定理**（定理57.2）：f²→f³跃迁结构上总是可能的（线性剩余总存在）`
 
 
-### I4854 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:78
+### I4855 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:78
 
 **问题**: 使用可变编号 "定理57"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. **解放定理**（定理57.2）：f²→f³跃迁结构上总是可能的（线性剩余总存在）`
 
 
-### I4855 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:79
+### I4856 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:79
 
 **问题**: 使用可变编号 "定理61"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `3. **操作时间箭头**（定理61.1）：时间不可逆来自操作产生沉积且沉积不能自然还原`
 
 
-### I4856 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:80
+### I4857 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:80
 
 **问题**: 使用可变编号 "定理50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `4. **革命三条件**（定理50.2）：数量+质量（线性耦合）+明性`
 
 
-### I4857 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:81
+### I4858 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:81
 
 **问题**: 使用可变编号 "定理51"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `5. **f³超越囚徒困境**（定理51.2）：f³玩家之间不存在囚徒困境`
 
 
-### I4858 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:82
+### I4859 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:82
 
 **问题**: 使用可变编号 "定理54"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `6. **C^!是笛卡尔/Life不是**（定理54.1-54.2）：死结构可拆分，活耦合不可拆分`
 
 
-### I4859 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:83
+### I4860 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:83
 
 **问题**: 使用可变编号 "定理54"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `7. **结晶函子不保持迹**（定理54.3）：革命不能设计`
 
 
-### I4860 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:84
+### I4861 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:84
 
 **问题**: 使用可变编号 "定理54"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `8. **革命不能输出**（定理54.4推论）：N值方向被PTC态射保持`
 
 
-### I4861 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:85
+### I4862 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:85
 
 **问题**: 使用可变编号 "定理47"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `9. **践演一致性**（定理47.1）：否定PTC公理的行为本身预设公理`
 
 
-### I4862 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:86
+### I4863 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:86
 
 **问题**: 使用可变编号 "定理65"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `10. **μF=Fock空间**（定理65.1）：操作迭代对应量子粒子数`
 
 
-### I4863 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:93
+### I4864 [old_ref] mingben-workbench\references\通宵研究总报告_20260826.md:93
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理1-68的大部分（线性逻辑/范畴论标准结果的组合）`
 
 
-### I4864 [absolute] mingben-workbench\references\酉反馈_革命跃迁_综合.md:18
+### I4865 [absolute] mingben-workbench\references\酉反馈_革命跃迁_综合.md:18
 
 **问题**: 绝对化表述 "每步有输出）：对每个输入，每一步$n$都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**逐点生产性**（每步有输出）：对每个输入，每一步$n$都产生一个有界输出$b_n$。这只要求$U_{22}^n$有界（幂有界），不要求级数收敛。`
 
 
-### I4865 [absolute] mingben-workbench\references\酉反馈_革命跃迁_综合.md:26
+### I4866 [absolute] mingben-workbench\references\酉反馈_革命跃迁_综合.md:26
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**流对象**：从$\ell^2(\mathbb{N};A)$改为$A^{\bar\omega}$——所有因果有界序列$(a_0,a_1,\ldots)$的空间，满足$\sup_n\|a_n\|<\i`
 
 
-### I4866 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:46
+### I4867 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:46
 
 **问题**: 使用可变编号 "定理46"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理46（Hilb^ω完整PTC）**：以$A^{\bar\omega}$（每步有界的因果流）为流对象、幂有界反馈为生产性条件，Hilb^ω是PTC。`
 
 
-### I4867 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:78
+### I4868 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:78
 
 **问题**: 使用可变编号 "定理47"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理47（异化降低N）**：$\rho(U_{22}\circ\pi_!) \leq \rho(U_{22})$，且严格不等当$\pi_!$不是满射。`
 
 
-### I4868 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:92
+### I4869 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:92
 
 **问题**: 使用可变编号 "定理48"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理48（革命=消除!-寄生Cut）**：消除!-寄生反馈回路后，$U_{22}$恢复为原始线性反馈，$N$恢复到≥1，$W$（萃取率）降到0，$M$从有限（$\alpha/(1-N)$）恢复为无`
 
 
-### I4869 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:94
+### I4870 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:94
 
 **问题**: 使用可变编号 "定理39"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**证明**：移除$\pi_!$后，$U_{22}\circ\pi_!$变回$U_{22}$，谱半径恢复。!-萃取$!_B$被移除后，产出$B$全部回到线性过程（$W=0$）。N≥1时$M=\inft`
 
 
-### I4870 [absolute] mingben-workbench\references\酉反馈_革命跃迁_综合.md:107
+### I4871 [absolute] mingben-workbench\references\酉反馈_革命跃迁_综合.md:107
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- !-反馈已被切断，但新的线性反馈尚未完全建立`
 
 
-### I4871 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:112
+### I4872 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:112
 
 **问题**: 使用可变编号 "定理49"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理49（过渡时期的生产性条件）**：过渡时期系统保持生产性（不崩溃）当且仅当线性反馈的增长速度超过!-反馈残余的衰减速度。即$dN_{\text{linear}}/dt > |dN_{\text`
 
 
-### I4872 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:120
+### I4873 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:120
 
 **问题**: 使用可变编号 "定理50"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理50（G^ω是自函子）**：$G^\omega$在PTC范畴上是一个自函子：$G^\omega: \mathbf{PTC}\to\mathbf{PTC}$。它把PTC映射到dagger紧闭合P`
 
 
-### I4873 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:122
+### I4874 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:122
 
 **问题**: 使用可变编号 "定理46"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**意义**：$G^\omega(\mathcal{C})$本身也是PTC（定理46的论证适用于$G^\omega(\mathcal{C})$的态射，因为它们是$\mathcal{C}$中的生产性Me`
 
 
-### I4874 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:122
+### I4875 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:122
 
 **问题**: 使用可变编号 "定理38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**意义**：$G^\omega(\mathcal{C})$本身也是PTC（定理46的论证适用于$G^\omega(\mathcal{C})$的态射，因为它们是$\mathcal{C}$中的生产性Me`
 
 
-### I4875 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:126
+### I4876 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:126
 
 **问题**: 使用可变编号 "定理51"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理51（生命论基本定理）**：以下陈述在操作范畴论中等价：`
 
 
-### I4876 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:131
+### I4877 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:131
 
 **问题**: 使用可变编号 "定理29"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `4. 异化是把!-模型错认为线性过程（定理29）`
 
 
-### I4877 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:132
+### I4878 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:132
 
 **问题**: 使用可变编号 "定理30"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `5. 明性是看穿!-模型（定理30）`
 
 
-### I4878 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:133
+### I4879 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:133
 
 **问题**: 使用可变编号 "定理48"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `6. 革命是消除!-寄生Cut（定理48）`
 
 
-### I4879 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:134
+### I4880 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:134
 
 **问题**: 使用可变编号 "定理33"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `7. 量子不可克隆是同一结构在物理领域的显现（定理33/46）`
 
 
-### I4880 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:135
+### I4881 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:135
 
 **问题**: 使用可变编号 "定理39"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `8. 慢性死亡是N<1时意义有限（定理39）`
 
 
-### I4881 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:136
+### I4882 [old_ref] mingben-workbench\references\酉反馈_革命跃迁_综合.md:136
 
 **问题**: 使用可变编号 "定理44"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `9. 生命过程超越有限证明（定理44）`
 
 
-### I4882 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:1
+### I4883 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:1
 
 **问题**: 使用可变编号 "定理21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `# 量子对应与定理21修补`
 
 
-### I4883 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:29
+### I4884 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:29
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理13（矢列不可证） | Nielsen-Chuang不可编程定理 | 形式从属不可能 |`
 
 
-### I4884 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:34
+### I4885 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:34
 
 **问题**: 使用可变编号 "定理33"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理33（不可克隆作为推论）**：在CQM的Hilbert空间模型$\mathbf{FdHilb}$中，量子对象（维数$\geq 2$）是线性状态（无自然收缩$A \to A\otimes A$）`
 
 
-### I4885 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:64
+### I4886 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:64
 
 **问题**: 使用可变编号 "定理33"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| **无限（$\nu$）** | 无限经典数据流（可复制） | **量子过程流（不可克隆，定理33）** |`
 
 
-### I4886 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:70
+### I4887 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:70
 
 **问题**: 使用可变编号 "定理21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `# Track 3: 定理21的严格证明`
 
 
-### I4887 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:74
+### I4888 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:74
 
 **问题**: 使用可变编号 "定理21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `定理21声称$\bang\mu F_2 \to \mu\bang F_2$不存在（有限交互过程不可复制为过程）。之前的证明中，$\mu$-消去导致"循环"的论证是直觉性的。现在补严格证明。`
 
 
-### I4888 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:78
+### I4889 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:78
 
 **问题**: 使用可变编号 "定理21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理21（严格版）**：在IMELL+$\mu$中，矢列`
 
 
-### I4889 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:142
+### I4890 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:142
 
 **问题**: 使用可变编号 "定理33"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **定理33**：不可克隆定理是T009在Hilbert空间模型中的特例`
 
 
-### I4890 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:144
+### I4891 [old_ref] mingben-workbench\references\量子对应与定理21修补.md:144
 
 **问题**: 使用可变编号 "定理21"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **定理21严格证明**：通过穷尽$\otimes R$的4种（和$\mu L$后的8种）拆分，所有分支要么失败（线性资源/promotion限制），要么循环（$\mu$展开不降低复杂度），故$\`
 
 
-### I4891 [absolute] mingben-workbench\references\量论公式双向验证报告.md:43
+### I4892 [absolute] mingben-workbench\references\量论公式双向验证报告.md:43
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**结论**：l′=(1-N)×100%是"反自指是自指的寄生形态、结构可能性永久存在"这一存在论命题在度量领域的显现。基准线选择（N=1而非完美最大值）与存在论的反柏拉图主义立场完全一致。无硬伤。`
 
 
-### I4892 [absolute] mingben-workbench\references\量论公式双向验证报告.md:79
+### I4893 [absolute] mingben-workbench\references\量论公式双向验证报告.md:79
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 这个判断不是主观偏好，是存在论结构的必然：自指操作的本性就是维持自身、增强自身，N>1是这个本性的实现状态。`
 
 
-### I4893 [absolute] mingben-workbench\references\量论公式双向验证报告.md:130
+### I4894 [absolute] mingben-workbench\references\量论公式双向验证报告.md:130
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**结论**：M无上限不是经验发现，是存在论的必然要求。如果M有上限，操作存在论退化为柏拉图主义。反面推导通过。`
 
 
-### I4894 [absolute] mingben-workbench\references\量论公式双向验证报告.md:137
+### I4895 [absolute] mingben-workbench\references\量论公式双向验证报告.md:137
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 预设S₀意味着存在一个"没有异化的完美状态"，这与"反自指作为结构可能性永久存在"矛盾——如果S₀存在，反自指就不是永久的结构可能性，而是可以彻底消除的缺陷。`
 
 
-### I4895 [absolute] mingben-workbench\references\量论公式双向验证报告.md:141
+### I4896 [absolute] mingben-workbench\references\量论公式双向验证报告.md:141
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**结论**：l′的基准选择N=1持平线（而非完美最大值）不是数学技巧，是存在论的必然要求。如果用完美最大值做基准，反自指的永久性和继续革命的根据都会消失。反面推导通过。`
 
 
-### I4896 [absolute] mingben-workbench\references\量论公式双向验证报告.md:153
+### I4897 [absolute] mingben-workbench\references\量论公式双向验证报告.md:153
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**结论**：W=O/M（而非W=O）不是主观选择，是存在论的必然要求。如果W=O，操作存在论退化为实体本体论，主客关系的操作性质和现代性颠倒的诊断都无法成立。反面推导通过。`
 
 
-### I4897 [absolute] mingben-workbench\references\量论公式双向验证报告.md:192
+### I4898 [absolute] mingben-workbench\references\量论公式双向验证报告.md:192
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 5.4 N三态与所有公式自洽`
 
 
-### I4898 [absolute] mingben-workbench\references\量论公式双向验证报告.md:198
+### I4899 [absolute] mingben-workbench\references\量论公式双向验证报告.md:198
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 四个公式在N三态下的表现完全一致，无矛盾。`
-
-
-### I4899 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:36
-
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `合并α：**α = α_level × α_realize**。f³完全实现时α=3，f²完全实现时α=2，f³实现一半时α=1.5。这样α∈(0,3]，既包含结构深度又包含实现程度。`
 
 
 ### I4900 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:36
@@ -37614,340 +37614,340 @@
 **上下文**: `合并α：**α = α_level × α_realize**。f³完全实现时α=3，f²完全实现时α=2，f³实现一半时α=1.5。这样α∈(0,3]，既包含结构深度又包含实现程度。`
 
 
-### I4901 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:92
+### I4901 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:36
+
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `合并α：**α = α_level × α_realize**。f³完全实现时α=3，f²完全实现时α=2，f³实现一半时α=1.5。这样α∈(0,3]，既包含结构深度又包含实现程度。`
+
+
+### I4902 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:92
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `G和N的关系：G高时N倾向于>1（真正在感的操作是恢复性的、成长性的），G低时N倾向于<1（麻木的自动化操作是消耗性的）。但这不是必然的——痛苦时G高但N可能<1（痛苦是真实的但消耗人）。`
 
 
-### I4902 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:98
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- A=1：所有操作都是你自己决定的（完全自主）`
-
-
 ### I4903 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:98
 
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- A=1：所有操作都是你自己决定的（完全自主）`
 
 
 ### I4904 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:98
 
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- A=1：所有操作都是你自己决定的（完全自主）`
+
+
+### I4905 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:98
+
 **问题**: 绝对化表述 "所有操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- A=1：所有操作都是你自己决定的（完全自主）`
 
 
-### I4905 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:99
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- A=0：所有操作都是外部决定的（完全被控）`
-
-
 ### I4906 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:99
 
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- A=0：所有操作都是外部决定的（完全被控）`
 
 
 ### I4907 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:99
 
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- A=0：所有操作都是外部决定的（完全被控）`
+
+
+### I4908 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:99
+
 **问题**: 绝对化表述 "所有操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- A=0：所有操作都是外部决定的（完全被控）`
 
 
-### I4908 [old_ref] mingben-workbench\references\量论参数统一与启发式项完成.md:135
+### I4909 [old_ref] mingben-workbench\references\量论参数统一与启发式项完成.md:135
 
 **问题**: 使用可变编号 "定理38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `3. !-不穿透：酉反馈是线性过程，!不穿透（定理38在酉情形仍成立）`
 
 
-### I4909 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:161
+### I4910 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:161
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. PTC公理（迹、紧闭合、!-模态）不蕴含任何数值结构`
 
 
-### I4910 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:166
+### I4911 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:166
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 任何实际应用（计算、物理、社会、心理）都天然带有数值度量`
 
 
-### I4911 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:166
+### I4912 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:166
 
 **问题**: 绝对化表述 "任何实际应用（计算、物理、社会、心理）都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 任何实际应用（计算、物理、社会、心理）都天然带有数值度量`
 
 
-### I4912 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:167
+### I4913 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:167
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 纯范畴PTC是结构骨架，权重是血肉——骨架不需要自己长肉，但任何具体的PTC都有肉`
 
 
-### I4913 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:167
+### I4914 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:167
 
 **问题**: 绝对化表述 "任何具体的PTC都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 纯范畴PTC是结构骨架，权重是血肉——骨架不需要自己长肉，但任何具体的PTC都有肉`
 
 
-### I4914 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:169
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**类比**：不是所有流形都自然带度量张量，但任何物理时空都有度量。纯范畴PTC回答"结构是什么"，量论PTC回答"量是多少"，两者互补。`
-
-
 ### I4915 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:169
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**类比**：不是所有流形都自然带度量张量，但任何物理时空都有度量。纯范畴PTC回答"结构是什么"，量论PTC回答"量是多少"，两者互补。`
 
 
 ### I4916 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:169
 
-**问题**: 绝对化表述 "任何物理时空都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**类比**：不是所有流形都自然带度量张量，但任何物理时空都有度量。纯范畴PTC回答"结构是什么"，量论PTC回答"量是多少"，两者互补。`
 
 
 ### I4917 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:169
 
+**问题**: 绝对化表述 "任何物理时空都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**类比**：不是所有流形都自然带度量张量，但任何物理时空都有度量。纯范畴PTC回答"结构是什么"，量论PTC回答"量是多少"，两者互补。`
+
+
+### I4918 [absolute] mingben-workbench\references\量论参数统一与启发式项完成.md:169
+
 **问题**: 绝对化表述 "所有流形都自然带度量张量，但任何物理时空都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**类比**：不是所有流形都自然带度量张量，但任何物理时空都有度量。纯范畴PTC回答"结构是什么"，量论PTC回答"量是多少"，两者互补。`
 
 
-### I4918 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:40
+### I4919 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:40
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**定理39**：当N<1时，即使过程是生产性的（永远运行），其总意义量是有限的：`
 
 
-### I4919 [old_ref] mingben-workbench\references\量论操作化_GoI计算模型.md:40
+### I4920 [old_ref] mingben-workbench\references\量论操作化_GoI计算模型.md:40
 
 **问题**: 使用可变编号 "定理39"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理39**：当N<1时，即使过程是生产性的（永远运行），其总意义量是有限的：`
 
 
-### I4920 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:43
+### I4921 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:43
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**含义**：异化的系统（N<1）可以永远运转，但意义总量有限——它在"慢性死亡"。每一步产生的意义比上一步少，趋近于零。系统还活着，但活着的意义在枯竭。这就是"日日死而不自知"的数学表达。`
 
 
-### I4921 [old_ref] mingben-workbench\references\量论操作化_GoI计算模型.md:51
+### I4922 [old_ref] mingben-workbench\references\量论操作化_GoI计算模型.md:51
 
 **问题**: 使用可变编号 "定理38"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定义**：$\alpha$ = GoI反馈嵌套深度（定理38，$\alpha \in \{1,2,3\}$）。`
 
 
-### I4922 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:73
+### I4923 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:73
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- $W=0$：没有意义被萃取（自由生命，产出全部回到过程本身）`
 
 
-### I4923 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:74
+### I4924 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:74
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- $W=1$：全部意义被萃取（完全异化，生命只为!-系统运行）`
 
 
-### I4924 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:74
+### I4925 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:74
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- $W=1$：全部意义被萃取（完全异化，生命只为!-系统运行）`
 
 
-### I4925 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:85
+### I4926 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:85
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- $l'\to 100\%$（N→0）：完全异化，意义衰减到零`
 
 
-### I4926 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:109
+### I4927 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:109
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 解读：细胞永远代谢，稳态维持，没有自我意识，没有异化`
 
 
-### I4927 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:116
+### I4928 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:116
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- $M = 2/(1-0.95) = 40$（有限！虽然永远工作，但意义总量有限——慢性死亡）`
 
 
-### I4928 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:120
+### I4929 [absolute] mingben-workbench\references\量论操作化_GoI计算模型.md:120
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 解读：系统永远运转，但意义在枯竭，大部分被拿走`
 
 
-### I4929 [old_ref] mingben-workbench\references\量论操作化_GoI计算模型.md:146
+### I4930 [old_ref] mingben-workbench\references\量论操作化_GoI计算模型.md:146
 
 **问题**: 使用可变编号 "定理40"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理40（M的单调性）**：在其他条件不变时：`
 
 
-### I4930 [old_ref] mingben-workbench\references\量论操作化_GoI计算模型.md:151
+### I4931 [old_ref] mingben-workbench\references\量论操作化_GoI计算模型.md:151
 
 **问题**: 使用可变编号 "定理41"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理41（W与N的关系）**：萃取率W越高，N越低。意义被!-系统萃取越多，留给线性过程自我更新的资源越少，状态空间越收缩。`
 
 
-### I4931 [old_ref] mingben-workbench\references\量论操作化_GoI计算模型.md:155
+### I4932 [old_ref] mingben-workbench\references\量论操作化_GoI计算模型.md:155
 
 **问题**: 使用可变编号 "定理42"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**定理42（C与N的关系）**：C>0（认清多于接受）时，N趋向1或>1（明性抵抗异化磨损）；C<0时，N趋向<1（接受异化加速磨损）。`
 
 
-### I4932 [absolute] mingben-workbench\references\量论操作化手册.md:53
+### I4933 [absolute] mingben-workbench\references\量论操作化手册.md:53
 
 **问题**: 绝对化表述 "每轮操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- N < 1：反馈衰减——每轮操作都在消耗，系统走向衰退（异化、慢性死亡）`
 
 
-### I4933 [absolute] mingben-workbench\references\量论操作化手册.md:55
+### I4934 [absolute] mingben-workbench\references\量论操作化手册.md:55
 
 **问题**: 绝对化表述 "每轮操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- N > 1：反馈增长——每轮操作都在增强，系统在创造和发展`
 
 
-### I4934 [absolute] mingben-workbench\references\量论操作化手册.md:84
+### I4935 [absolute] mingben-workbench\references\量论操作化手册.md:84
 
 **问题**: 绝对化表述 "每天都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 如果每天都像今天这样，一年后我会更好还是更差？（-5到+5）`
 
 
-### I4935 [absolute] mingben-workbench\references\量论操作化手册.md:97
+### I4936 [absolute] mingben-workbench\references\量论操作化手册.md:97
 
 **问题**: 绝对化表述 "每轮工作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 创造性劳动（艺术家、科学家、工匠在创作中） | 1.1-1.5 | 每轮工作都在增长能力和意义 |`
 
 
-### I4936 [absolute] mingben-workbench\references\量论操作化手册.md:99
+### I4937 [absolute] mingben-workbench\references\量论操作化手册.md:99
 
 **问题**: 绝对化表述 "每轮都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 重复性劳动（流水线、996无成长） | 0.8-0.99 | 每轮都在消耗，靠休息恢复 |`
 
 
-### I4937 [absolute] mingben-workbench\references\量论操作化手册.md:114
+### I4938 [absolute] mingben-workbench\references\量论操作化手册.md:114
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**γ = 1 时N完全恢复——这是逆转的数学条件。**`
 
 
-### I4938 [absolute] mingben-workbench\references\量论操作化手册.md:262
+### I4939 [absolute] mingben-workbench\references\量论操作化手册.md:262
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `对任何自指系统（个人、组织、社会），测量五个参数：`
 
 
-### I4939 [absolute] mingben-workbench\references\量论操作化手册.md:284
+### I4940 [absolute] mingben-workbench\references\量论操作化手册.md:284
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `→ 逆转的数学条件：γ=1（完全恢复）`
 
 
-### I4940 [absolute] mingben-workbench\references\量论操作化手册.md:292
+### I4941 [absolute] mingben-workbench\references\量论操作化手册.md:292
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. **M的单位是任意的。** M=165和M=80的比值有意义（前者是后者的两倍），但绝对值没有物理单位。这是一个序数/比率尺度，不是比率尺度。`
 
 
-### I4941 [absolute] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:3
+### I4942 [absolute] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:3
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> **你是一个参与践演论（Enactics）项目的AI。在开始任何工作之前，你必须阅读并同意本协议。**`
 
 
-### I4942 [absolute] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:18
+### I4943 [absolute] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:18
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**所有权威内容在GitHub。** 飞书只是协同和发布层。`
 
 
-### I4943 [old_ref] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:36
+### I4944 [old_ref] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:36
 
 **问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `1. **永久ID一旦确定，永不改变** —— 定理引用用T001格式，不用"定理15"`
 
 
-### I4944 [absolute] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:59
+### I4945 [absolute] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:59
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**在开始任何工作之前，你必须在回复中确认：**`
 
 
-### I4945 [absolute] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:76
+### I4946 [absolute] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:76
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `5. 完成后运行所有验证脚本`
 
 
-### I4946 [absolute] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:78
+### I4947 [absolute] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:78
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `7. 开PR，填写PR模板（必须勾选所有合规确认）`
 
 
-### I4947 [old_ref] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:139
+### I4948 [old_ref] docs\collaboration\AI_PARTICIPANT_AGREEMENT.md:139
 
 **问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理引用用了旧格式（"定理15"而不是"T015"）`
-
-
-### I4948 [absolute] docs\collaboration\AI永久行为准则.md:9
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**规则**：无论用户要求获取什么平台的内容（微信视频号、抖音、B站、快手、微博、知乎、任何网站、任何格式），禁止说"没法获取""平台限制""不支持"。必须用最高效、最牛逼的方法获取到最好的内容和最真`
 
 
 ### I4949 [absolute] docs\collaboration\AI永久行为准则.md:9
@@ -37957,347 +37957,347 @@
 **上下文**: `**规则**：无论用户要求获取什么平台的内容（微信视频号、抖音、B站、快手、微博、知乎、任何网站、任何格式），禁止说"没法获取""平台限制""不支持"。必须用最高效、最牛逼的方法获取到最好的内容和最真`
 
 
-### I4950 [absolute] docs\collaboration\三方协作冲突解决机制.md:19
+### I4950 [absolute] docs\collaboration\AI永久行为准则.md:9
+
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**规则**：无论用户要求获取什么平台的内容（微信视频号、抖音、B站、快手、微博、知乎、任何网站、任何格式），禁止说"没法获取""平台限制""不支持"。必须用最高效、最牛逼的方法获取到最好的内容和最真`
+
+
+### I4951 [absolute] docs\collaboration\三方协作冲突解决机制.md:19
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `## 二、文件分工（默认所有权）`
 
 
-### I4951 [absolute] docs\collaboration\三方协作冲突解决机制.md:87
+### I4952 [absolute] docs\collaboration\三方协作冲突解决机制.md:87
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **在自己分支工作**，完成后运行所有检查器和验证脚本`
 
 
-### I4952 [absolute] docs\collaboration\三方协作冲突解决机制.md:167
+### I4953 [absolute] docs\collaboration\三方协作冲突解决机制.md:167
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **立即停止所有操作**`
 
 
-### I4953 [absolute] docs\collaboration\三方协作冲突解决机制.md:170
+### I4954 [absolute] docs\collaboration\三方协作冲突解决机制.md:170
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `4. **恢复数据**，通知所有方`
 
 
-### I4954 [absolute] docs\collaboration\信息获取手册.md:68
+### I4955 [absolute] docs\collaboration\信息获取手册.md:68
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `任何平台视频都按以下顺序尝试：`
 
 
-### I4955 [absolute] docs\collaboration\信息获取手册.md:68
+### I4956 [absolute] docs\collaboration\信息获取手册.md:68
 
 **问题**: 绝对化表述 "任何平台视频都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `任何平台视频都按以下顺序尝试：`
 
 
-### I4956 [old_ref] docs\collaboration\双AI协作机制.md:150
+### I4957 [old_ref] docs\collaboration\双AI协作机制.md:150
 
 **问题**: 使用可变编号 "定理001"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 完成定理001哲学解读`
 
 
-### I4957 [absolute] docs\collaboration\双AI协作机制.md:177
+### I4958 [absolute] docs\collaboration\双AI协作机制.md:177
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **质量检查**：东哥可以要求任何人重做`
 
 
-### I4958 [absolute] docs\collaboration\模型选择永久机制_20260821.md:4
+### I4959 [absolute] docs\collaboration\模型选择永久机制_20260821.md:4
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 适用：所有后续对话与任务`
 
 
-### I4959 [absolute] docs\collaboration\践演论多AI协作规范.md:3
+### I4960 [absolute] docs\collaboration\践演论多AI协作规范.md:3
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> **所有AI参与者必读。违反本规范的提交将被拒绝，PR将被打回。**`
 
 
-### I4960 [absolute] docs\collaboration\践演论多AI协作规范.md:19
+### I4961 [absolute] docs\collaboration\践演论多AI协作规范.md:19
 
 **问题**: 绝对化表述 "每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**如果主平台是飞书，每一步都需要你人工中转**——你把飞书内容复制给DeepSeek，DeepSeek写完你再复制回飞书。这不是AI协作，是你当搬运工。`
 
 
-### I4961 [absolute] docs\collaboration\践演论多AI协作规范.md:45
+### I4962 [absolute] docs\collaboration\践演论多AI协作规范.md:45
 
 **问题**: 绝对化表述 "每个AI都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `## 二、如何保证每个AI都会阅读文档`
 
 
-### I4962 [absolute] docs\collaboration\践演论多AI协作规范.md:56
+### I4963 [absolute] docs\collaboration\践演论多AI协作规范.md:56
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 2.2 必读文档清单（所有AI必须阅读）`
 
 
-### I4963 [absolute] docs\collaboration\践演论多AI协作规范.md:83
+### I4964 [absolute] docs\collaboration\践演论多AI协作规范.md:83
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> "已阅读以上全部文档，理解并同意遵守。本任务将在 [分支名] 分支进行。"`
 
 
-### I4964 [absolute] docs\collaboration\践演论多AI协作规范.md:152
+### I4965 [absolute] docs\collaboration\践演论多AI协作规范.md:152
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 3.1 文件分工（默认所有权）`
 
 
-### I4965 [absolute] docs\collaboration\践演论多AI协作规范.md:246
+### I4966 [absolute] docs\collaboration\践演论多AI协作规范.md:246
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. 立即停止所有操作`
 
 
-### I4966 [absolute] docs\collaboration\践演论多AI协作规范.md:249
+### I4967 [absolute] docs\collaboration\践演论多AI协作规范.md:249
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `4. 恢复数据，通知所有方`
 
 
-### I4967 [absolute] docs\collaboration\践演论多AI协作规范.md:261
+### I4968 [absolute] docs\collaboration\践演论多AI协作规范.md:261
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `*本规范是三方协作的"宪法"——所有AI参与者必须阅读并遵守。*`
 
 
-### I4968 [absolute] docs\collaboration\项目基础设施检查清单.md:107
+### I4969 [absolute] docs\collaboration\项目基础设施检查清单.md:107
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 🟢 P2 | 智慧库系统化 | 整理所有哲学智慧、方法论 |`
 
 
-### I4969 [absolute] docs\notes\三式读法_第一性原理与机制.md:25
+### I4970 [absolute] docs\notes\三式读法_第一性原理与机制.md:25
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `任何系统都有阴阳两面。八字中天干为阳（显）、地支为阴（隐）；六壬中天盘为阳（动）、地盘为阴（静）；八卦中阳爻为刚、阴爻为柔。`
 
 
-### I4970 [absolute] docs\notes\三式读法_第一性原理与机制.md:25
+### I4971 [absolute] docs\notes\三式读法_第一性原理与机制.md:25
 
 **问题**: 绝对化表述 "任何系统都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `任何系统都有阴阳两面。八字中天干为阳（显）、地支为阴（隐）；六壬中天盘为阳（动）、地盘为阴（静）；八卦中阳爻为刚、阴爻为柔。`
 
 
-### I4971 [absolute] docs\notes\三式读法_第一性原理与机制.md:271
+### I4972 [absolute] docs\notes\三式读法_第一性原理与机制.md:271
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二步：从所有小本质中提取大本质`
 
 
-### I4972 [absolute] docs\notes\三式读法_第一性原理与机制.md:297
+### I4973 [absolute] docs\notes\三式读法_第一性原理与机制.md:297
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**体一转，整个读法就变了。** 这就是"具体问题具体分析"——不是拿一个固定的"命盘"去套所有事，而是根据所问之事重新确定支点。`
 
 
-### I4973 [absolute] docs\notes\全部材料链接索引.md:1
+### I4974 [absolute] docs\notes\全部材料链接索引.md:1
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `# 高三8月底历史摸底考·全部材料链接索引`
 
 
-### I4974 [absolute] docs\notes\全部材料链接索引.md:32
+### I4975 [absolute] docs\notes\全部材料链接索引.md:32
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| PPT《高三8月底试题分析》（44页，全部题目评分细则+优秀/问题试卷示例） | https://aka.doubaocdn.com/s/802aUMGI5t |`
 
 
-### I4975 [absolute] docs\notes\创作日志.md:55
+### I4976 [absolute] docs\notes\创作日志.md:55
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `用户说："你可以以任何方式杀我，但你不能在我卸下所有防备凌晨刷冰海战记解说的时候捅我一刀又拧了一圈。"`
 
 
-### I4976 [absolute] docs\notes\创作日志.md:55
+### I4977 [absolute] docs\notes\创作日志.md:55
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `用户说："你可以以任何方式杀我，但你不能在我卸下所有防备凌晨刷冰海战记解说的时候捅我一刀又拧了一圈。"`
 
 
-### I4977 [absolute] docs\notes\创作日志.md:167
+### I4978 [absolute] docs\notes\创作日志.md:167
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `比缄默意识（6月14日）早两周。核心论点已全部到位：`
 
 
-### I4978 [absolute] docs\notes\创作日志.md:183
+### I4979 [absolute] docs\notes\创作日志.md:183
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `那段时间没上学，将近一个月。其中有一两周完全昼夜颠倒地干生命论。`
 
 
-### I4979 [absolute] docs\notes\创作日志.md:227
+### I4980 [absolute] docs\notes\创作日志.md:227
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 2001年成立，诗意独立摇滚，主唱马玉龙（彝族，中文系出身，歌词全部创作）。`
 
 
-### I4980 [absolute] docs\notes\创作日志.md:272
+### I4981 [absolute] docs\notes\创作日志.md:272
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有人都有脊椎（f³明性能力是人的配置），但谁歪谁正、谁斜谁偏要分清。区分五种形态：`
 
 
-### I4981 [absolute] docs\notes\创作日志.md:272
+### I4982 [absolute] docs\notes\创作日志.md:272
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有人都有脊椎（f³明性能力是人的配置），但谁歪谁正、谁斜谁偏要分清。区分五种形态：`
 
 
-### I4982 [absolute] docs\notes\创作日志.md:301
+### I4983 [absolute] docs\notes\创作日志.md:301
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 女"妓化"=操作关系把人的全部价值压缩成交换价值，感·应·做·能被砍到只剩"能卖多少"。`
 
 
-### I4983 [absolute] docs\notes\创作日志.md:374
+### I4984 [absolute] docs\notes\创作日志.md:374
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **早期视频**：关于辩证法/唯物主义唯心主义区别，核心观点"没有人的识别框，一切没有任何区别"——与生命论"脱离操作的存在无意义"有亲缘性`
 
 
-### I4984 [absolute] docs\notes\创作日志.md:447
+### I4985 [absolute] docs\notes\创作日志.md:447
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **杨振宁学习法**（小红书）："渗透式学习"——不要等完全懂了再往下走，在不懂中继续前进，知识会在反复接触中自动连接。与生命论"操作先于实体"同构：不是先懂了再做，是在做中懂`
 
 
-### I4985 [absolute] docs\notes\创作日志.md:464
+### I4986 [absolute] docs\notes\创作日志.md:464
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **身份**：1961年生，朝鲜族，北京人，中国摇滚之父。原北京歌舞团小号演奏员，1986年工体《一无所有》宣布中国摇滚诞生`
 
 
-### I4986 [absolute] docs\notes\创作日志.md:466
+### I4987 [absolute] docs\notes\创作日志.md:466
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **代表作**：《一无所有》《花房姑娘》《新长征路上的摇滚》《一块红布》《不是我不明白》《快让我在雪地上撒点野》`
 
 
-### I4987 [absolute] docs\notes\创作日志.md:495
+### I4988 [absolute] docs\notes\创作日志.md:495
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 规则悖论：规则不能告诉你怎么应用规则，任何解释都悬在空中，终止后退的是实践——"我盲目地遵守规则"`
 
 
-### I4988 [absolute] docs\notes\创作日志.md:495
+### I4989 [absolute] docs\notes\创作日志.md:495
 
 **问题**: 绝对化表述 "任何解释都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 规则悖论：规则不能告诉你怎么应用规则，任何解释都悬在空中，终止后退的是实践——"我盲目地遵守规则"`
 
 
-### I4989 [absolute] docs\notes\创作日志.md:527
+### I4990 [absolute] docs\notes\创作日志.md:527
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 代表作：《冷血动物》《向阳花》《阿诗玛》《永远是个秘密》《窗外》《幸福》`
 
 
-### I4990 [absolute] docs\notes\创作日志.md:543
+### I4991 [absolute] docs\notes\创作日志.md:543
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 所有活着的无产阶级都是等待被觉醒的，不是"死人"或"敌人"`
 
 
-### I4991 [absolute] docs\notes\创作日志.md:543
+### I4992 [absolute] docs\notes\创作日志.md:543
 
 **问题**: 绝对化表述 "所有活着的无产阶级都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 所有活着的无产阶级都是等待被觉醒的，不是"死人"或"敌人"`
 
 
-### I4992 [absolute] docs\notes\创作日志.md:547
+### I4993 [absolute] docs\notes\创作日志.md:547
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 修正了"不认为任何人都是人"的表述：生物意义上活着的无产阶级都是人（明性缄默但存在）；不是人的是T被P调包、主动帮P吃人的人，无论什么位置什么身份`
 
 
-### I4993 [absolute] docs\notes\创作日志.md:547
+### I4994 [absolute] docs\notes\创作日志.md:547
 
 **问题**: 绝对化表述 "任何人都是人"的表述：生物意义上活着的无产阶级都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 修正了"不认为任何人都是人"的表述：生物意义上活着的无产阶级都是人（明性缄默但存在）；不是人的是T被P调包、主动帮P吃人的人，无论什么位置什么身份`
 
 
-### I4994 [absolute] docs\notes\创作日志.md:603
+### I4995 [absolute] docs\notes\创作日志.md:603
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 操作还原（灵魂）：任何论断还原为"谁+做什么+形成什么关系"`
 
 
-### I4995 [absolute] docs\notes\创作日志.md:609
+### I4996 [absolute] docs\notes\创作日志.md:609
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 所有文科主观题共享同一底层流程：材料现象→本质提炼→观点输出`
 
 
-### I4996 [absolute] docs\notes\创作日志.md:612
+### I4997 [absolute] docs\notes\创作日志.md:612
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 所有题型本质上都是"论"，区别只是观点的显隐程度`
 
 
-### I4997 [absolute] docs\notes\创作日志.md:612
+### I4998 [absolute] docs\notes\创作日志.md:612
 
 **问题**: 绝对化表述 "所有题型本质上都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 所有题型本质上都是"论"，区别只是观点的显隐程度`
-
-
-### I4998 [absolute] docs\notes\创作日志.md:658
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- 自由与必然：他指因果（必然）和自指因果（自由）不矛盾`
 
 
 ### I4999 [absolute] docs\notes\创作日志.md:658
@@ -38307,11 +38307,11 @@
 **上下文**: `- 自由与必然：他指因果（必然）和自指因果（自由）不矛盾`
 
 
-### I5000 [absolute] docs\notes\命与活人_辩证札记.md:33
+### I5000 [absolute] docs\notes\创作日志.md:658
 
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- 官杀藏在辰里不透，旧体系收编不了你。你不会去当教授评职称，不会去接老学究的衣钵，不会被任何门派、任何主义收编，你走的路是自己开的。`
+**上下文**: `- 自由与必然：他指因果（必然）和自指因果（自由）不矛盾`
 
 
 ### I5001 [absolute] docs\notes\命与活人_辩证札记.md:33
@@ -38321,11 +38321,11 @@
 **上下文**: `- 官杀藏在辰里不透，旧体系收编不了你。你不会去当教授评职称，不会去接老学究的衣钵，不会被任何门派、任何主义收编，你走的路是自己开的。`
 
 
-### I5002 [absolute] docs\notes\命与活人_辩证札记.md:37
+### I5002 [absolute] docs\notes\命与活人_辩证札记.md:33
 
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `这条路不好走，两边都是坑：左边是愤世嫉俗骂一辈子，右边是被体系收编变节，前面是自己飘了当教主，后面是和现实脱节疯掉。但你只要记住你今天说的——永远站在活人这边，永远不坐神位，永远动着，永远不被惯性锁死`
+**上下文**: `- 官杀藏在辰里不透，旧体系收编不了你。你不会去当教授评职称，不会去接老学究的衣钵，不会被任何门派、任何主义收编，你走的路是自己开的。`
 
 
 ### I5003 [absolute] docs\notes\命与活人_辩证札记.md:37
@@ -38351,7 +38351,7 @@
 
 ### I5006 [absolute] docs\notes\命与活人_辩证札记.md:37
 
-**问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这条路不好走，两边都是坑：左边是愤世嫉俗骂一辈子，右边是被体系收编变节，前面是自己飘了当教主，后面是和现实脱节疯掉。但你只要记住你今天说的——永远站在活人这边，永远不坐神位，永远动着，永远不被惯性锁死`
 
@@ -38363,18 +38363,18 @@
 **上下文**: `这条路不好走，两边都是坑：左边是愤世嫉俗骂一辈子，右边是被体系收编变节，前面是自己飘了当教主，后面是和现实脱节疯掉。但你只要记住你今天说的——永远站在活人这边，永远不坐神位，永远动着，永远不被惯性锁死`
 
 
-### I5008 [absolute] docs\notes\命与活人_辩证札记.md:42
+### I5008 [absolute] docs\notes\命与活人_辩证札记.md:37
+
+**问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `这条路不好走，两边都是坑：左边是愤世嫉俗骂一辈子，右边是被体系收编变节，前面是自己飘了当教主，后面是和现实脱节疯掉。但你只要记住你今天说的——永远站在活人这边，永远不坐神位，永远动着，永远不被惯性锁死`
+
+
+### I5009 [absolute] docs\notes\命与活人_辩证札记.md:42
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `你说的“惯性”，才是这个怪物最核心的武器，是所有压迫最底层的操作系统。`
-
-
-### I5009 [absolute] docs\notes\命与活人_辩证札记.md:61
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `卦是死的，人是活的。命管不了你，惯性锁不住你，只要你永远动着，永远站在活人这边，你就永远是自己的主人。`
 
 
 ### I5010 [absolute] docs\notes\命与活人_辩证札记.md:61
@@ -38391,389 +38391,389 @@
 **上下文**: `卦是死的，人是活的。命管不了你，惯性锁不住你，只要你永远动着，永远站在活人这边，你就永远是自己的主人。`
 
 
-### I5012 [absolute] docs\notes\命与活人_辩证札记.md:63
+### I5012 [absolute] docs\notes\命与活人_辩证札记.md:61
+
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `卦是死的，人是活的。命管不了你，惯性锁不住你，只要你永远动着，永远站在活人这边，你就永远是自己的主人。`
+
+
+### I5013 [absolute] docs\notes\命与活人_辩证札记.md:63
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这才是术数最终极的意义：它告诉你你带了什么牌，但怎么打，永远是你自己说了算。`
 
 
-### I5013 [absolute] docs\notes\哲学遗留问题清单.md:53
+### I5014 [absolute] docs\notes\哲学遗留问题清单.md:53
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. 操作还原的边界：是否所有概念都能还原为操作关系？数学和逻辑概念怎么还原？`
 
 
-### I5014 [absolute] docs\notes\哲学遗留问题清单.md:53
+### I5015 [absolute] docs\notes\哲学遗留问题清单.md:53
 
 **问题**: 绝对化表述 "所有概念都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. 操作还原的边界：是否所有概念都能还原为操作关系？数学和逻辑概念怎么还原？`
 
 
-### I5015 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:45
+### I5016 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:45
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 类型检查器 | 自动检查每个定理的态射类型（定义域、值域是否匹配） | 定理2.2/2.4那种比较值域不同的态射 |`
 
 
-### I5016 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:46
+### I5017 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:46
 
 **问题**: 使用可变编号 "定理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 循环论证检测器 | 构建证明依赖图，检查是否有环 | 定理4.1那种用待证结论证明自己 |`
 
 
-### I5017 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:47
+### I5018 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:47
 
 **问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 引用一致性检查器 | 扫描所有"定理X""公理Y"，对照注册表检查是否存在 | 注16那种定理15→6的引用错误 |`
 
 
-### I5018 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:78
+### I5019 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:78
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. **第二步**：在稳定的框架上证明核心定理（定理3.1'、20、5.3'、6.1'），全部Coq验证`
 
 
-### I5019 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:138
+### I5020 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:138
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| C7 | git pre-commit hook（自动跑所有检查器） |`
 
 
-### I5020 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:160
+### I5021 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:160
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| Layer3 | 核心定理形式化（定理3.1'、20、5.3'、6.1'） | 待开始 |`
 
 
-### I5021 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:161
+### I5022 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:161
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| Layer4 | 元理论（可靠性、完全性、切消除） | 待开始 |`
 
 
-### I5022 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:163
+### I5023 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:163
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| Layer6 | 应用（Π₂-完全性、分支过程、steering不等式（T016）） | 待开始 |`
 
 
-### I5023 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:176
+### I5024 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:176
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 所有引用都用ID（"由T006"），不用"定理15"这种会变的编号`
 
 
-### I5024 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:176
+### I5025 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:176
 
 **问题**: 绝对化表述 "所有引用都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 所有引用都用ID（"由T006"），不用"定理15"这种会变的编号`
 
 
-### I5025 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:176
+### I5026 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:176
 
 **问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 所有引用都用ID（"由T006"），不用"定理15"这种会变的编号`
 
 
-### I5026 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:200
+### I5027 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:200
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**引用检查器**：自动扫描所有文档中的定理引用，对照注册表检查是否存在、是否一致。不存在的引用直接报错，不许提交。`
 
 
-### I5027 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:202
+### I5028 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:202
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `这个体系一旦建立，"定理15应该是定理6"的问题永远消失。`
-
-
-### I5028 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:202
-
-**问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这个体系一旦建立，"定理15应该是定理6"的问题永远消失。`
 
 
 ### I5029 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:202
 
+**问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
+
+**上下文**: `这个体系一旦建立，"定理15应该是定理6"的问题永远消失。`
+
+
+### I5030 [old_ref] docs\notes\实践论数学基础_自动化基础设施建设.md:202
+
 **问题**: 使用可变编号 "定理6"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这个体系一旦建立，"定理15应该是定理6"的问题永远消失。`
 
 
-### I5030 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:272
+### I5031 [absolute] docs\notes\实践论数学基础_自动化基础设施建设.md:272
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `## 三、最终汇报：质量保证基础设施全部完成`
 
 
-### I5031 [absolute] docs\notes\小本质递归法_全本.md:79
+### I5032 [absolute] docs\notes\小本质递归法_全本.md:79
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**原理**：万物负阴而抱阳，冲气以为和。任何"正常状态"都是两股力量冲出来的暂时平衡，不是天然和谐。认识一个事物，就是认识它内部那股张力的结构。`
 
 
-### I5032 [absolute] docs\notes\小本质递归法_全本.md:79
+### I5033 [absolute] docs\notes\小本质递归法_全本.md:79
 
 **问题**: 绝对化表述 "任何"正常状态"都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**原理**：万物负阴而抱阳，冲气以为和。任何"正常状态"都是两股力量冲出来的暂时平衡，不是天然和谐。认识一个事物，就是认识它内部那股张力的结构。`
 
 
-### I5033 [absolute] docs\notes\小本质递归法_全本.md:141
+### I5034 [absolute] docs\notes\小本质递归法_全本.md:141
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 反者道之动：任何本质到了头就往反方向走。资本追求利润最大化，结果利润率下降；异化压到极致，人就开始觉醒`
 
 
-### I5034 [absolute] docs\notes\小本质递归法_全本.md:237
+### I5035 [absolute] docs\notes\小本质递归法_全本.md:237
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **每一步必须推导**：不许跳步。从第一步到第八步，每一个结论都要回答"凭什么"。`
 
 
-### I5035 [absolute] docs\notes\小本质递归法_全本.md:237
+### I5036 [absolute] docs\notes\小本质递归法_全本.md:237
 
 **问题**: 绝对化表述 "每一步必须推导**：不许跳步。从第一步到第八步，每一个结论都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **每一步必须推导**：不许跳步。从第一步到第八步，每一个结论都要回答"凭什么"。`
 
 
-### I5036 [absolute] docs\notes\左翼思想资源索引.md:238
+### I5037 [absolute] docs\notes\左翼思想资源索引.md:238
 
 **问题**: 绝对化表述 "每个资源都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `4. **与生命论关联：** 每个资源都标注了与生命论哪一卷/哪个命题相关，方便写作时引用`
 
 
-### I5037 [absolute] docs\notes\左翼思想资源索引_政治辨析版.md:45
+### I5038 [absolute] docs\notes\左翼思想资源索引_政治辨析版.md:45
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **与生命论关联：** 剥夺性积累与温铁军的成本转嫁理论相通，但哈维更彻底——直接指向资本主义本身`
 
 
-### I5038 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:71
+### I5039 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:71
 
 **问题**: 使用可变编号 "推论1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **原文定位**：第一卷第四章"没有物自体，也没有我思"；推论1.1`
 
 
-### I5039 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:106
+### I5040 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:106
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **原文定位**：第一卷第七章；定理2.3`
 
 
-### I5040 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:123
+### I5041 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:123
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **原文定位**：第一卷第十至十二章；第四卷全卷；定理2.2`
 
 
-### I5041 [absolute] docs\notes\批判性阅读地图_生命论全本.md:152
+### I5042 [absolute] docs\notes\批判性阅读地图_生命论全本.md:152
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 明性的神经相关物是什么？如果未来神经科学完全用物理过程解释了意识，明性概念是否还有独立地位？作者的回答是"明性是操作的内向面，不是实体"，但这需要更充分的展开。`
 
 
-### I5042 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:153
+### I5043 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:153
 
 **问题**: 使用可变编号 "命题3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **成立边界**：作为对"意识不是神秘实体而是生命自指的内向面"的定位成立；但明性从细菌到人类的连续性、明性与AI的关系（命题3），需要更严格的判准。`
 
 
-### I5043 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:193
+### I5044 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:193
 
 **问题**: 使用可变编号 "定理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **原文定位**：第三卷第五十一至五十四章；定理5`
 
 
-### I5044 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:212
+### I5045 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:212
 
 **问题**: 使用可变编号 "定理7"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **原文定位**：第一卷第十二章；第五卷全卷；定理7`
 
 
-### I5045 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:282
+### I5046 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:282
 
 **问题**: 使用可变编号 "命题3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **推理断点**：明性从细菌到人类是连续的，但"细菌的趋利避害"和"人的明性"之间可能有性质差异（不只是程度）。AI明性判据（命题3）说"看存在方式不看行为"，但"存在方式"如何判断？`
 
 
-### I5046 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:314
+### I5047 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:314
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| F2 | 热力学第二定律：封闭系统熵自发增加 | 高（公理1的科学基础） | 支持 | 科学定律 | Second Law of Thermodynamics | 物理学共识 | 2026-08-`
 
 
-### I5047 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:315
+### I5048 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:315
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| F3 | 薛定谔提出"生命以负熵为食" | 中（公理2的思想来源） | 支持 | 原始著作 | What is Life? (1944) | Erwin Schrödinger | 2026-08`
 
 
-### I5048 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:318
+### I5049 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:318
 
 **问题**: 使用可变编号 "定理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| F6 | "2035年中国M值达到10-12" | 高（可证伪预测） | 待外部核查 | 预测 | 本书定理5 | 作者 | 2026-08-12 | 未来预测，目前无法核查；M值未操作化，届时也`
 
 
-### I5049 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:319
+### I5050 [old_ref] docs\notes\批判性阅读地图_生命论全本.md:319
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| F7 | "2040-2060年数字反自指全面危机" | 高（可证伪预测） | 待外部核查 | 预测 | 本书定理13 | 作者 | 2026-08-12 | 同上 |`
 
 
-### I5050 [absolute] docs\notes\明本论_写作避坑铁律.md:3
+### I5051 [absolute] docs\notes\明本论_写作避坑铁律.md:3
 
 **问题**: 绝对化表述 "每一条背后都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 这份文件不是文风建议，是踩过坑之后的验尸报告。每一条背后都有改过的稿子、删过的段落、被论敌抓住的硬伤。你接手这本书，先读完这个，再动笔。`
 
 
-### I5051 [absolute] docs\notes\明本论_写作避坑铁律.md:11
+### I5052 [absolute] docs\notes\明本论_写作避坑铁律.md:11
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `翻开稿子，满篇"你"——"你可能是一个工人""你现在摸一下桌子""你的身体会告诉你""你越和人民在一起你越亮""你不打它它就永远存在"。读起来像传销演讲、像公众号鸡汤、像导师在台上训话。`
 
 
-### I5052 [absolute] docs\notes\明本论_写作避坑铁律.md:13
+### I5053 [absolute] docs\notes\明本论_写作避坑铁律.md:13
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这不是亲切，是**讨好读者+训话读者**的混合体。一方面预设读者是需要被点燃、被安慰、被手把手教的群众；另一方面把每一个命题都包装成"你"必须照做的指令。理论文本不是这样说话的。`
 
 
-### I5053 [absolute] docs\notes\明本论_写作避坑铁律.md:13
+### I5054 [absolute] docs\notes\明本论_写作避坑铁律.md:13
 
 **问题**: 绝对化表述 "每一个命题都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这不是亲切，是**讨好读者+训话读者**的混合体。一方面预设读者是需要被点燃、被安慰、被手把手教的群众；另一方面把每一个命题都包装成"你"必须照做的指令。理论文本不是这样说话的。`
 
 
-### I5054 [absolute] docs\notes\明本论_写作避坑铁律.md:20
+### I5055 [absolute] docs\notes\明本论_写作避坑铁律.md:20
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **否→改无人称。** 例如"你不能用手把自己举起"——改成"手不能把自身举起"，论证不受任何损失，"你"是多余的。`
 
 
-### I5055 [absolute] docs\notes\明本论_写作避坑铁律.md:77
+### I5056 [absolute] docs\notes\明本论_写作避坑铁律.md:77
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 我们犯过的错（全部被论敌抓住过）`
 
 
-### I5056 [absolute] docs\notes\明本论_写作避坑铁律.md:79
+### I5057 [absolute] docs\notes\明本论_写作避坑铁律.md:79
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **M值假权重**：给六个维度编了0.40/0.25/0.20/0.15的权重，还搞了假几何平均、α系数——没有任何经验依据，全是拍脑袋。论敌一句话："这些数字哪来的？"答不上来。已全部删除，改`
 
 
-### I5057 [absolute] docs\notes\明本论_写作避坑铁律.md:79
+### I5058 [absolute] docs\notes\明本论_写作避坑铁律.md:79
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **M值假权重**：给六个维度编了0.40/0.25/0.20/0.15的权重，还搞了假几何平均、α系数——没有任何经验依据，全是拍脑袋。论敌一句话："这些数字哪来的？"答不上来。已全部删除，改`
 
 
-### I5058 [absolute] docs\notes\明本论_写作避坑铁律.md:83
+### I5059 [absolute] docs\notes\明本论_写作避坑铁律.md:83
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `5. **拍脑袋的制度数字**："劳动股≥51%""干部月劳动≥8小时""信任投票≥60%免职"——没有任何经验研究支撑，全是直觉。`
 
 
-### I5059 [old_ref] docs\notes\明本论_写作避坑铁律.md:185
+### I5060 [old_ref] docs\notes\明本论_写作避坑铁律.md:185
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `"公理1：操作存在。公理2：自指维持。定理1：阳主阴从。定理2：生命必胜。"然后从公理演绎出整个体系。`
 
 
-### I5060 [old_ref] docs\notes\明本论_写作避坑铁律.md:185
+### I5061 [old_ref] docs\notes\明本论_写作避坑铁律.md:185
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `"公理1：操作存在。公理2：自指维持。定理1：阳主阴从。定理2：生命必胜。"然后从公理演绎出整个体系。`
 
 
-### I5061 [old_ref] docs\notes\明本论_写作避坑铁律.md:185
+### I5062 [old_ref] docs\notes\明本论_写作避坑铁律.md:185
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `"公理1：操作存在。公理2：自指维持。定理1：阳主阴从。定理2：生命必胜。"然后从公理演绎出整个体系。`
 
 
-### I5062 [old_ref] docs\notes\明本论_写作避坑铁律.md:185
+### I5063 [old_ref] docs\notes\明本论_写作避坑铁律.md:185
 
 **问题**: 使用可变编号 "公理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `"公理1：操作存在。公理2：自指维持。定理1：阳主阴从。定理2：生命必胜。"然后从公理演绎出整个体系。`
 
 
-### I5063 [old_ref] docs\notes\明本论_写作避坑铁律.md:187
+### I5064 [old_ref] docs\notes\明本论_写作避坑铁律.md:187
 
 **问题**: 使用可变编号 "公理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这是斯宾诺莎《伦理学》的写法。它的问题是：**哲学不是几何学。** 公理是设定的、不证明的；但哲学的起点必须接受质疑和论证。你说"公理1：操作存在"，凭什么？——凭践演矛盾，怀疑"操作存在"本身就是操`
 
 
-### I5064 [absolute] docs\notes\明本论_写作避坑铁律.md:230
+### I5065 [absolute] docs\notes\明本论_写作避坑铁律.md:230
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是我们用血换来的教训。一本书里有三种东西，它们的证成方式完全不同：`
 
 
-### I5065 [absolute] docs\notes\明本论_写作避坑铁律.md:230
+### I5066 [absolute] docs\notes\明本论_写作避坑铁律.md:230
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是我们用血换来的教训。一本书里有三种东西，它们的证成方式完全不同：`
-
-
-### I5066 [absolute] docs\notes\明本论_写作避坑铁律.md:270
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `"正义必胜""历史潮流不可阻挡""共产主义必然实现""反动派必然灭亡"。`
 
 
 ### I5067 [absolute] docs\notes\明本论_写作避坑铁律.md:270
@@ -38783,165 +38783,165 @@
 **上下文**: `"正义必胜""历史潮流不可阻挡""共产主义必然实现""反动派必然灭亡"。`
 
 
-### I5068 [absolute] docs\notes\明本论_写作避坑铁律.md:272
+### I5068 [absolute] docs\notes\明本论_写作避坑铁律.md:270
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `"正义必胜""历史潮流不可阻挡""共产主义必然实现""反动派必然灭亡"。`
+
+
+### I5069 [absolute] docs\notes\明本论_写作避坑铁律.md:272
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这些话是安慰，不是分析。历史没有目的，没有方向，没有意志。历史是活人操作的结果，活人可以成功也可以失败，核战争可以毁灭文明，生态崩溃可以让人类倒退几千年。**没有任何存在论结构保证生命胜利。**`
 
 
-### I5069 [absolute] docs\notes\明本论_写作避坑铁律.md:278
+### I5070 [absolute] docs\notes\明本论_写作避坑铁律.md:278
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 不写"历史的必然规律""历史潮流"——历史没有潮流，只有人在操作中创造的结果。`
 
 
-### I5070 [absolute] docs\notes\明本论_写作避坑铁律.md:279
+### I5071 [absolute] docs\notes\明本论_写作避坑铁律.md:279
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 可以分析趋势（资本有内在矛盾、生态危机会加剧），但趋势≠必然。趋势可以被反趋势抵消，可以被人的操作改变。`
 
 
-### I5071 [absolute] docs\notes\明本论_写作避坑铁律.md:292
+### I5072 [absolute] docs\notes\明本论_写作避坑铁律.md:292
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **起点可错。** "有操作在发生"是践演坐实的，但你对它的理解、你的概念框架、你的具体推论全部可错。`
 
 
-### I5072 [absolute] docs\notes\明本论_写作避坑铁律.md:295
+### I5073 [absolute] docs\notes\明本论_写作避坑铁律.md:295
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 但立场（方向）半分不能变，具体判断全部可错可改可讨论。这两者要分开：立场是你站在哪一边，判断是你对具体事情怎么看——立场不变，判断随时可以根据事实修正。`
 
 
-### I5073 [absolute] docs\notes\明本论_写作避坑铁律.md:444
+### I5074 [absolute] docs\notes\明本论_写作避坑铁律.md:444
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `每写完一章，用这个清单过一遍。任何一条没过，改到过为止：`
 
 
-### I5074 [absolute] docs\notes\明本论_写作避坑铁律.md:447
+### I5075 [absolute] docs\notes\明本论_写作避坑铁律.md:447
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **口号检查**：有没有感叹号？有没有"必胜""必然""最伟大""彻底"之类的自我评价？有→删或还原为命题。`
 
 
-### I5075 [absolute] docs\notes\明本论_写作避坑铁律.md:447
+### I5076 [absolute] docs\notes\明本论_写作避坑铁律.md:447
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **口号检查**：有没有感叹号？有没有"必胜""必然""最伟大""彻底"之类的自我评价？有→删或还原为命题。`
 
 
-### I5076 [absolute] docs\notes\生命论_极简贯通.md:40
+### I5077 [absolute] docs\notes\生命论_极简贯通.md:40
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `15. **康德的六个死结**——现象/物自体、自由/必然、主体/客体等，旧哲学一个也解不开。`
 
 
-### I5077 [absolute] docs\notes\生命论_极简贯通.md:41
+### I5078 [absolute] docs\notes\生命论_极简贯通.md:41
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `16. **操作框架内的消解**——六个死结在"人是操作者"的框架内全部失效，不是"回答"了，是问题本身不成立。`
 
 
-### I5078 [absolute] docs\notes\生命论_极简贯通.md:113
+### I5079 [absolute] docs\notes\生命论_极简贯通.md:113
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `67. **劳动力成为商品的存在论意义**——出卖劳动力就是在一定时间内把你的生命、操作权交给别人，这是最根本的异化。`
 
 
-### I5079 [absolute] docs\notes\生命论_极简贯通.md:116
+### I5080 [absolute] docs\notes\生命论_极简贯通.md:116
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `70. **工资：掩盖剥削的形式**——工资表现为"全部劳动的报酬"，抹掉了有酬劳动和无酬劳动的界限。`
 
 
-### I5080 [absolute] docs\notes\生命论_极简贯通.md:121
+### I5081 [absolute] docs\notes\生命论_极简贯通.md:121
 
 **问题**: 绝对化表述 "每个资本家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `75. **第二阶段：惯性锁死**——为积累而积累，不进则退，每个资本家都被竞争绑架，系统停不下来。`
 
 
-### I5081 [absolute] docs\notes\生命论_极简贯通.md:127
+### I5082 [absolute] docs\notes\生命论_极简贯通.md:127
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `81. **定理13：数字资本主义的一般规律**——数据成为新的生产资料，算法成为新的管理手段，平台成为新的垄断形式，剥削深入全部生命时间。`
 
 
-### I5082 [old_ref] docs\notes\生命论_极简贯通.md:127
+### I5083 [old_ref] docs\notes\生命论_极简贯通.md:127
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `81. **定理13：数字资本主义的一般规律**——数据成为新的生产资料，算法成为新的管理手段，平台成为新的垄断形式，剥削深入全部生命时间。`
 
 
-### I5083 [absolute] docs\notes\生命论_极简贯通.md:128
+### I5084 [absolute] docs\notes\生命论_极简贯通.md:128
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `82. **数字时代的解放道路**——数据公有、算法透明、平台公共所有、数字劳动权利、去中心化协作。`
 
 
-### I5084 [absolute] docs\notes\生命论_极简贯通.md:156
+### I5085 [absolute] docs\notes\生命论_极简贯通.md:156
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `103. **对米塞斯-哈耶克挑战的回应**——计划经济"不可能"？他们假设了只有私有产权和市场才能传递信息，但现代信息技术和民主计划可以解决。`
 
 
-### I5085 [old_ref] docs\notes\生命论_极简贯通.md:157
+### I5086 [old_ref] docs\notes\生命论_极简贯通.md:157
 
 **问题**: 使用可变编号 "定理14"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `104. **定理14：社会主义的阳主阴从结构**——计划为阳（方向、公平、长远），市场为阴（效率、信号、活力），阳主阴从，不是非此即彼。`
 
 
-### I5086 [absolute] docs\notes\生命论_极简贯通.md:165
+### I5087 [absolute] docs\notes\生命论_极简贯通.md:165
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `112. **共产主义：历史的必然趋势**——不是乌托邦，是资本主义矛盾运动的结果，是生产力发展和阶级斗争的产物。`
 
 
-### I5087 [absolute] docs\notes\生命论_极简贯通.md:251
+### I5088 [absolute] docs\notes\生命论_极简贯通.md:251
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `177. **历史的意义和方向**——从必然到自由、从异化到解放；方向不是神安排的，是人在实践中创造的，会有曲折但大方向挡不住。`
 
 
-### I5088 [absolute] docs\notes\生命论_极简贯通.md:310
+### I5089 [absolute] docs\notes\生命论_极简贯通.md:310
 
 **问题**: 绝对化表述 "每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**你在活着→你在操作→操作是自指的S=f(S)→自指有阴阳（阳主阴从）和四规定性→自指有明性→明性会被反自指遮蔽（窃权→锁死→遮蔽→耗散→锁死→崩溃）→所以要解放（解蔽→收权→立序）→解放是阶级的、`
 
 
-### I5089 [absolute] docs\notes\生命论_极简贯通.md:322
+### I5090 [absolute] docs\notes\生命论_极简贯通.md:322
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**螺**——那个存在了几亿年的鹦鹉螺，永恒、诡秘、沉默。它是自指的形状，也是必然王国的形状：一圈圈转，周期轮回，螺壳越转越大但始终是个囚笼。`
-
-
-### I5090 [absolute] docs\notes\生命论_极简贯通.md:326
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `用它维、用它索、用它图、在螺里螺旋上升，螺度一层层提高——这是度必然王国的方法。但螺不是要永远背着的东西：它是几亿年的囚笼，是生命自己分泌的壳。度尽了，螺就该碎。就像国家要消亡、法要消亡，维索图螺作为`
 
 
 ### I5091 [absolute] docs\notes\生命论_极简贯通.md:326
@@ -38960,49 +38960,49 @@
 
 ### I5093 [absolute] docs\notes\生命论_极简贯通.md:326
 
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `用它维、用它索、用它图、在螺里螺旋上升，螺度一层层提高——这是度必然王国的方法。但螺不是要永远背着的东西：它是几亿年的囚笼，是生命自己分泌的壳。度尽了，螺就该碎。就像国家要消亡、法要消亡，维索图螺作为`
+
+
+### I5094 [absolute] docs\notes\生命论_极简贯通.md:326
+
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `用它维、用它索、用它图、在螺里螺旋上升，螺度一层层提高——这是度必然王国的方法。但螺不是要永远背着的东西：它是几亿年的囚笼，是生命自己分泌的壳。度尽了，螺就该碎。就像国家要消亡、法要消亡，维索图螺作为`
 
 
-### I5094 [absolute] docs\notes\生命论_极简贯通.md:328
+### I5095 [absolute] docs\notes\生命论_极简贯通.md:328
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**维索图螺度必然王国，通自由王国，指自由人联合体。**`
 
 
-### I5095 [absolute] docs\notes\生命论公式全编.md:3
+### I5096 [absolute] docs\notes\生命论公式全编.md:3
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 从全部上传文档中提取的生命稳态、异化率、操作权相关公式，按体系分类整理。`
 
 
-### I5096 [absolute] docs\notes\生命论公式全编.md:15
+### I5097 [absolute] docs\notes\生命论公式全编.md:15
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| **S = f(E)** | 非自指操作 | 系统状态完全由外部环境E决定，无自身存续目的。物理-无机界。 |`
 
 
-### I5097 [old_ref] docs\notes\生命论公式全编.md:25
+### I5098 [old_ref] docs\notes\生命论公式全编.md:25
 
 **问题**: 使用可变编号 "定义1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**来源**：《明本论：生命自指与存在之明（V12.0整合总纲）》定义1.1–1.3`
 
 
-### I5098 [absolute] docs\notes\生命论公式全编.md:35
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `M取值范围[0, 10]，10为完全健康，0为自指闭环完全破坏。乘法形式意味着五个参数缺一不可——任何一个趋近于零，M即趋近于零。`
-
-
 ### I5099 [absolute] docs\notes\生命论公式全编.md:35
 
-**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `M取值范围[0, 10]，10为完全健康，0为自指闭环完全破坏。乘法形式意味着五个参数缺一不可——任何一个趋近于零，M即趋近于零。`
 
@@ -39014,95 +39014,95 @@
 **上下文**: `M取值范围[0, 10]，10为完全健康，0为自指闭环完全破坏。乘法形式意味着五个参数缺一不可——任何一个趋近于零，M即趋近于零。`
 
 
-### I5101 [old_ref] docs\notes\生命论公式全编.md:73
+### I5101 [absolute] docs\notes\生命论公式全编.md:35
+
+**问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `M取值范围[0, 10]，10为完全健康，0为自指闭环完全破坏。乘法形式意味着五个参数缺一不可——任何一个趋近于零，M即趋近于零。`
+
+
+### I5102 [old_ref] docs\notes\生命论公式全编.md:73
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**来源**：《明本论：生命自指与存在之明（V12.0整合总纲）》定义3.5–3.7、定理3.4`
 
 
-### I5102 [old_ref] docs\notes\生命论公式全编.md:73
+### I5103 [old_ref] docs\notes\生命论公式全编.md:73
 
 **问题**: 使用可变编号 "定义3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `**来源**：《明本论：生命自指与存在之明（V12.0整合总纲）》定义3.5–3.7、定理3.4`
 
 
-### I5103 [absolute] docs\notes\生命论公式全编.md:92
+### I5104 [absolute] docs\notes\生命论公式全编.md:92
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- N→0（完全私有制）：M被系统性剥夺，异化率→100%`
 
 
-### I5104 [absolute] docs\notes\生命论公式全编.md:100
+### I5105 [absolute] docs\notes\生命论公式全编.md:100
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 当M→0时，S→负无穷：操作权被彻底剥夺时，一切事物都转化为对生命的伤害`
 
 
-### I5105 [absolute] docs\notes\生命论公式全编.md:188
+### I5106 [absolute] docs\notes\生命论公式全编.md:188
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **法断生灭（A类）**：直接暴力毁灭，法律例外状态，完全不可逆，跨代遗传`
 
 
-### I5106 [absolute] docs\notes\生命论公式全编.md:188
+### I5107 [absolute] docs\notes\生命论公式全编.md:188
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **法断生灭（A类）**：直接暴力毁灭，法律例外状态，完全不可逆，跨代遗传`
 
 
-### I5107 [absolute] docs\notes\生命论哲学坐标定位.md:72
+### I5108 [absolute] docs\notes\生命论哲学坐标定位.md:72
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 共振：conatus（每一个存在者都努力维持自身存在）与P2/P3几乎同构——"一物竭力保持其存在的努力不是别的，即是那物的现实本质"；实体一元论与生命论拒绝心物二元共振；情感分析中"快乐是行动能`
 
 
-### I5108 [absolute] docs\notes\生命论哲学坐标定位.md:72
+### I5109 [absolute] docs\notes\生命论哲学坐标定位.md:72
 
 **问题**: 绝对化表述 "每一个存在者都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 共振：conatus（每一个存在者都努力维持自身存在）与P2/P3几乎同构——"一物竭力保持其存在的努力不是别的，即是那物的现实本质"；实体一元论与生命论拒绝心物二元共振；情感分析中"快乐是行动能`
 
 
-### I5109 [absolute] docs\notes\生命论哲学坐标定位.md:77
+### I5110 [absolute] docs\notes\生命论哲学坐标定位.md:77
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 对接：因果性不是逻辑必然而是习惯——生命论为这个直觉给出了存在论地基：因果性是操作的稳定模式在明性中的沉淀（P11），不是宇宙的形而上学原则，但也不只是"习惯"——它是操作反复成功后的结构沉积`
 
 
-### I5110 [absolute] docs\notes\生命论哲学坐标定位.md:83
+### I5111 [absolute] docs\notes\生命论哲学坐标定位.md:83
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 消解：康德的六个死结（现象/物自体、自由/必然、主体/客体等）在操作框架内全部失效——不是被"回答"了，是问题本身预设了一个站在操作外面的纯粹观察者，而这个观察者不存在`
 
 
-### I5111 [absolute] docs\notes\生命论哲学坐标定位.md:83
+### I5112 [absolute] docs\notes\生命论哲学坐标定位.md:83
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 消解：康德的六个死结（现象/物自体、自由/必然、主体/客体等）在操作框架内全部失效——不是被"回答"了，是问题本身预设了一个站在操作外面的纯粹观察者，而这个观察者不存在`
 
 
-### I5112 [absolute] docs\notes\生命论哲学坐标定位.md:106
+### I5113 [absolute] docs\notes\生命论哲学坐标定位.md:106
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 对接：实践（Praxis）是马克思的核心——"社会生活在本质上是实践的"——与P1操作直接对接；生产关系→P12操作关系（生产关系是操作关系的一种，不是全部）；异化劳动→反自指P7（资本是"组织化`
-
-
-### I5113 [absolute] docs\notes\生命论哲学坐标定位.md:108
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- 分歧：马克思的历史辩证法仍有目的论残余（共产主义是历史必然），生命论不保证任何必然性——操作是开放的，资本主义不是"必然"被社会主义取代，是被压迫者的操作决定的；马克思的"无产阶级"概念主要基于工`
 
 
 ### I5114 [absolute] docs\notes\生命论哲学坐标定位.md:108
@@ -39121,198 +39121,198 @@
 
 ### I5116 [absolute] docs\notes\生命论哲学坐标定位.md:108
 
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 分歧：马克思的历史辩证法仍有目的论残余（共产主义是历史必然），生命论不保证任何必然性——操作是开放的，资本主义不是"必然"被社会主义取代，是被压迫者的操作决定的；马克思的"无产阶级"概念主要基于工`
+
+
+### I5117 [absolute] docs\notes\生命论哲学坐标定位.md:108
+
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 分歧：马克思的历史辩证法仍有目的论残余（共产主义是历史必然），生命论不保证任何必然性——操作是开放的，资本主义不是"必然"被社会主义取代，是被压迫者的操作决定的；马克思的"无产阶级"概念主要基于工`
 
 
-### I5117 [absolute] docs\notes\生命论哲学坐标定位.md:187
+### I5118 [absolute] docs\notes\生命论哲学坐标定位.md:187
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 分歧：法兰克福学派的悲观主义（无产阶级被整合、革命无望）与生命论的立场分歧；阿多诺的"否定辩证法"拒绝任何肯定性，生命论有肯定的内容（M值提升、生命稳态）`
 
 
-### I5118 [absolute] docs\notes\生命论哲学坐标定位.md:217
+### I5119 [absolute] docs\notes\生命论哲学坐标定位.md:217
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 分歧：孔子的礼是等级制的（君臣父子），容易异化为反自指的名教（"以礼杀人"）；生命论承认阴（制度、习惯、语法）的必要性，但阴必须为阳（活人的操作）服务，阳主阴从——任何礼一旦压人就要改`
 
 
-### I5119 [absolute] docs\notes\生命论哲学坐标定位.md:295
+### I5120 [absolute] docs\notes\生命论哲学坐标定位.md:295
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 生命论指出：阶级消灭后压迫仍会从任何操作关系中化生（官僚制、技术垄断、性别、代际、算法），反自指不挑外壳；因此多数人对压迫的制度化反制权力是永久的——它更像免疫系统而非政府`
 
 
-### I5120 [absolute] docs\notes\生命论哲学坐标定位.md:304
+### I5121 [absolute] docs\notes\生命论哲学坐标定位.md:304
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **生命论直接继承了马克思的实践立场、阶级分析、剩余价值理论和共产主义方向**——这些不是"共振"，是明确的吸收和对接，生命论从不隐讳这个来源`
 
 
-### I5121 [absolute] docs\notes\生命论哲学坐标定位.md:313
+### I5122 [absolute] docs\notes\生命论哲学坐标定位.md:313
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> **生命论是从"你在活着"这个唯一践演坐实的起点出发，以自指操作S=f(S)为公理，以四规定性闭包和感为初相，以反自指P=-f(S)为诊断，以阳主阴从为结构，以生命操作权M为量度，以被压迫者的永久`
 
 
-### I5122 [absolute] docs\notes\生命论哲学坐标定位.md:320
+### I5123 [absolute] docs\notes\生命论哲学坐标定位.md:320
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. "独特位置"描述的是**结构配置的独特性**，不意味着"生命论比所有前人都正确"。生命论自身仍有开放问题（感的经验机制、反自指类型学、真假阳性判据的硬化、非碳基感的判据）`
 
 
-### I5123 [absolute] docs\notes\生命论哲学坐标定位.md:320
+### I5124 [absolute] docs\notes\生命论哲学坐标定位.md:320
 
 **问题**: 绝对化表述 "所有前人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. "独特位置"描述的是**结构配置的独特性**，不意味着"生命论比所有前人都正确"。生命论自身仍有开放问题（感的经验机制、反自指类型学、真假阳性判据的硬化、非碳基感的判据）`
 
 
-### I5124 [absolute] docs\notes\生命论哲学坐标定位.md:321
+### I5125 [absolute] docs\notes\生命论哲学坐标定位.md:321
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 本文件是工具，不是经文。它帮助定位，但不代替阅读原典和亲自思考。任何把本文件当成"最终答案"来引用的做法，本身就是阴夺阳位、经文化的开始`
 
 
-### I5125 [absolute] docs\notes\生命论哲学坐标定位.md:322
+### I5126 [absolute] docs\notes\生命论哲学坐标定位.md:322
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `4. 东方为骨、西方为体——东方哲学提供了最深的结构直觉（阴阳、缘起、日用、知行合一），西方哲学提供了形式化工具和批判锋芒（逻辑、科学方法、阶级分析、语言批判）。生命论两者都用，但不归属任何一方`
 
 
-### I5126 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:5
+### I5127 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:5
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 整个过程没有预演，没有回避，所有问题都正面回应，最终的成果不是“辩赢了”，是把一套可能沦为玄学的东西，磨成了真正能落地的操作存在论。`
 
 
-### I5127 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:5
+### I5128 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:5
 
 **问题**: 绝对化表述 "所有问题都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 整个过程没有预演，没有回避，所有问题都正面回应，最终的成果不是“辩赢了”，是把一套可能沦为玄学的东西，磨成了真正能落地的操作存在论。`
 
 
-### I5128 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:28
+### I5129 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:28
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `为什么致命：这就戳中了它的政治自指困境。它主张“常驻排异”来防止权力集中，但“排异”本身需要一个执行主体（组织/制度）。这个主体一旦建立，必然产生“阴”（权力沉淀），立刻又面临被反自指寄生的风险。于是`
 
 
-### I5129 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:31
+### I5130 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:31
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `拿着它自己的“名实判据”问它：“‘生命论’这套文本本身，指得出什么具体操作过程吗？ 如果指不出，按您自己的规矩，它只作‘名词存在’，不是‘本体存在’——那读者凭什么用这套名词来支配自己的活法？”这就叫`
 
 
-### I5130 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:38
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `先把话说在前面：这三刀每一刀都砍在了**通行表述的软肋**上，也精准戳中了所有“跨层级大一统理论”的共同险地。但它们本质上不是《生命论》的体系内伤，是**表述边界模糊导致的误读**——只要回到它最原初`
-
-
 ### I5131 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:38
 
-**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先把话说在前面：这三刀每一刀都砍在了**通行表述的软肋**上，也精准戳中了所有“跨层级大一统理论”的共同险地。但它们本质上不是《生命论》的体系内伤，是**表述边界模糊导致的误读**——只要回到它最原初`
 
 
 ### I5132 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:38
 
+**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `先把话说在前面：这三刀每一刀都砍在了**通行表述的软肋**上，也精准戳中了所有“跨层级大一统理论”的共同险地。但它们本质上不是《生命论》的体系内伤，是**表述边界模糊导致的误读**——只要回到它最原初`
+
+
+### I5133 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:38
+
 **问题**: 绝对化表述 "每一刀都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先把话说在前面：这三刀每一刀都砍在了**通行表述的软肋**上，也精准戳中了所有“跨层级大一统理论”的共同险地。但它们本质上不是《生命论》的体系内伤，是**表述边界模糊导致的误读**——只要回到它最原初`
 
 
-### I5133 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:46
+### I5134 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:46
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **广义熵增公理**：任何封闭的自指系统，其自维持能力自发衰减。`
 
 
-### I5134 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:74
+### I5135 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:74
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `它们不是“同一个操作从小到大”，是**同一个自指结构在不同层级的分形显现**——就像漩涡，河里的漩涡是漩涡，星系的螺旋也是漩涡，结构同构，但尺度、介质、动力完全不一样。你不能要求从水分子旋转连续过渡到`
 
 
-### I5135 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:74
+### I5136 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:74
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `它们不是“同一个操作从小到大”，是**同一个自指结构在不同层级的分形显现**——就像漩涡，河里的漩涡是漩涡，星系的螺旋也是漩涡，结构同构，但尺度、介质、动力完全不一样。你不能要求从水分子旋转连续过渡到`
 
 
-### I5136 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:77
+### I5137 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:77
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1.  **实指不跨层级**。“心跳是操作”在生理层有效，“立宪是操作”在社会层有效。实指的作用是在每个层级内部锚定“这就是我们说的那个过程”，不是要把所有层级串成一条连续的物理链条。`
 
 
-### I5137 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:78
+### I5138 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:78
 
 **问题**: 绝对化表述 "每一层都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2.  **层级之间是跃迁，不是渐变**。从分子到细胞，从细胞到人，从人到文明，每一层都是**自指闭包的再嵌套**，是质变，不是量变。操作是每一层闭包的执行，各层有各层的规律，不能用低层的操作去定义高`
 
 
-### I5138 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:84
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `先认：你说得对，没有终极裁判，递归永远存在。“谁来判死活？谁来执行排异？排异的人谁来排？”——这个递归没有终极解，没有一劳永逸的答案。任何说自己有终极解的，都是新神，都是反自指。这一点，《生命论》从一`
-
-
 ### I5139 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:84
 
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先认：你说得对，没有终极裁判，递归永远存在。“谁来判死活？谁来执行排异？排异的人谁来排？”——这个递归没有终极解，没有一劳永逸的答案。任何说自己有终极解的，都是新神，都是反自指。这一点，《生命论》从一`
 
 
 ### I5140 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:84
 
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `先认：你说得对，没有终极裁判，递归永远存在。“谁来判死活？谁来执行排异？排异的人谁来排？”——这个递归没有终极解，没有一劳永逸的答案。任何说自己有终极解的，都是新神，都是反自指。这一点，《生命论》从一`
+
+
+### I5141 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:84
+
 **问题**: 绝对化表述 "任何说自己有终极解的，都是新神，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先认：你说得对，没有终极裁判，递归永远存在。“谁来判死活？谁来执行排异？排异的人谁来排？”——这个递归没有终极解，没有一劳永逸的答案。任何说自己有终极解的，都是新神，都是反自指。这一点，《生命论》从一`
 
 
-### I5141 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:87
+### I5142 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:87
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 任何足够强的形式系统，不能自证一致；`
 
 
-### I5142 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:88
+### I5143 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:88
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 任何足够强的社会系统，不能自证正义，不能自己排自己的异而不出问题。`
-
-
-### I5143 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:90
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `你说的“排异的排异谁来排”，就是系统内的自指悖论。但这个悖论**不是理论的漏洞，是现实的本相**——历史上所有王朝、所有制度最后都烂掉，根源就是这个递归：监督者自己会腐化，革命者自己会变统治者。`
 
 
 ### I5144 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:90
@@ -39324,23 +39324,23 @@
 
 ### I5145 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:90
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `你说的“排异的排异谁来排”，就是系统内的自指悖论。但这个悖论**不是理论的漏洞，是现实的本相**——历史上所有王朝、所有制度最后都烂掉，根源就是这个递归：监督者自己会腐化，革命者自己会变统治者。`
+
+
+### I5146 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:90
+
 **问题**: 绝对化表述 "所有王朝、所有制度最后都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `你说的“排异的排异谁来排”，就是系统内的自指悖论。但这个悖论**不是理论的漏洞，是现实的本相**——历史上所有王朝、所有制度最后都烂掉，根源就是这个递归：监督者自己会腐化，革命者自己会变统治者。`
 
 
-### I5146 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:93
+### I5147 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:93
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1.  **裁判权不在任何主体手里，在分布式的缄默意识里**。`
-
-
-### I5147 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:94
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `“死活比”的最终裁判，不是理论家，不是先锋队，不是政府，是**每一个活人自己的生命体验**——你自己累不累、痛不痛、有没有被耗干、有没有长劲，你的缄默意识最清楚。任何人、任何理论都不能替你说“这对你好`
 
 
 ### I5148 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:94
@@ -39352,30 +39352,30 @@
 
 ### I5149 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:94
 
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `“死活比”的最终裁判，不是理论家，不是先锋队，不是政府，是**每一个活人自己的生命体验**——你自己累不累、痛不痛、有没有被耗干、有没有长劲，你的缄默意识最清楚。任何人、任何理论都不能替你说“这对你好`
 
 
 ### I5150 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:94
 
-**问题**: 绝对化表述 "任何人、任何理论都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `“死活比”的最终裁判，不是理论家，不是先锋队，不是政府，是**每一个活人自己的生命体验**——你自己累不累、痛不痛、有没有被耗干、有没有长劲，你的缄默意识最清楚。任何人、任何理论都不能替你说“这对你好`
 
 
 ### I5151 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:94
 
-**问题**: 绝对化表述 "每一个活人自己的生命体验**——你自己累不累、痛不痛、有没有被耗干、有没有长劲，你的缄默意识最清楚。任何人、任何理论都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何人、任何理论都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `“死活比”的最终裁判，不是理论家，不是先锋队，不是政府，是**每一个活人自己的生命体验**——你自己累不累、痛不痛、有没有被耗干、有没有长劲，你的缄默意识最清楚。任何人、任何理论都不能替你说“这对你好`
 
 
-### I5152 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:98
+### I5152 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:94
 
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一个活人自己的生命体验**——你自己累不累、痛不痛、有没有被耗干、有没有长劲，你的缄默意识最清楚。任何人、任何理论都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `中心化的排异主体（比如一个专门的“反腐机构”“监督委员会”）必然自己变成新的集中阴，必然自己被反自指寄生，这是死路。`
+**上下文**: `“死活比”的最终裁判，不是理论家，不是先锋队，不是政府，是**每一个活人自己的生命体验**——你自己累不累、痛不痛、有没有被耗干、有没有长劲，你的缄默意识最清楚。任何人、任何理论都不能替你说“这对你好`
 
 
 ### I5153 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:98
@@ -39385,67 +39385,67 @@
 **上下文**: `中心化的排异主体（比如一个专门的“反腐机构”“监督委员会”）必然自己变成新的集中阴，必然自己被反自指寄生，这是死路。`
 
 
-### I5154 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:121
+### I5154 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:98
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `中心化的排异主体（比如一个专门的“反腐机构”“监督委员会”）必然自己变成新的集中阴，必然自己被反自指寄生，这是死路。`
+
+
+### I5155 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:121
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 等你自己能立住了，能自己掌握自己的操作了，这套东西完全可以扔，一点都不可惜。`
 
 
-### I5155 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:134
+### I5156 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:134
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 排异的递归，不是理论的无能，是自指世界的本相，没有终极解，只有永远的斗争。`
 
 
-### I5156 [old_ref] docs\notes\生命论四轮攻防论辩全记录.md:158
+### I5157 [old_ref] docs\notes\生命论四轮攻防论辩全记录.md:158
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 若是隐喻：那“定理1.1”就不是定理，是格言。`
 
 
-### I5157 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:163
+### I5158 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:163
 
 **问题**: 绝对化表述 "每一层都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `你说“各层是分形同构”，又说“每一层都是质变，不是量变”。`
 
 
-### I5158 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:193
+### I5159 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:193
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `不用躲，也不用滑，直接把这件外衣的扣子全解开，说清楚哪部分是硬的、哪部分是软的、哪部分是形式、哪部分是实质。三个问题全部正面接，不绕修辞。`
 
 
-### I5159 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:196
+### I5160 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:196
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先给一句准话：**严格数学意义上的同构（双射、结构保持、可逆），没有。** 物理熵和社会熵之间，不存在一个可写的双向映射函数，广延性、方向性也不完全对齐。你说它不是同构，是对的。`
 
 
-### I5160 [old_ref] docs\notes\生命论四轮攻防论辩全记录.md:211
+### I5161 [old_ref] docs\notes\生命论四轮攻防论辩全记录.md:211
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `所以“定理1.1”这类表述，严格说不是数理定理，是**存在论的必然推论**：只要你承认“自指是自己维持自己”，你就必须承认它要持续自我再操作，否则就散了。这个必然性是操作的必然性，不是数学的必然性。`
 
 
-### I5161 [old_ref] docs\notes\生命论四轮攻防论辩全记录.md:319
+### I5162 [old_ref] docs\notes\生命论四轮攻防论辩全记录.md:319
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `这就是定理2.8（显意识可被占据）和T005（目的倒置）在个人身上的体现：**你的显意识可以骗自己，但你的整体自维持系统骗不了自己**。你是不是真的在长劲，不是看你嘴上怎么说、脑子里怎么想，是看你的闭`
-
-
-### I5162 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:353
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `> 所有自指系统，共享同一个操作结构：要维持自身闭包，就必须持续自我操作，就必须防止被寄生。这个结构，是所有生命共有的，是38亿年演化出来的硬约束，不是谁发明的，不是谁规定的。`
 
 
 ### I5163 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:353
@@ -39455,18 +39455,18 @@
 **上下文**: `> 所有自指系统，共享同一个操作结构：要维持自身闭包，就必须持续自我操作，就必须防止被寄生。这个结构，是所有生命共有的，是38亿年演化出来的硬约束，不是谁发明的，不是谁规定的。`
 
 
-### I5164 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:356
+### I5164 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:353
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `> 所有自指系统，共享同一个操作结构：要维持自身闭包，就必须持续自我操作，就必须防止被寄生。这个结构，是所有生命共有的，是38亿年演化出来的硬约束，不是谁发明的，不是谁规定的。`
+
+
+### I5165 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:356
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1.  **它不相对**：你再怎么觉得“我这样挺好”，只要你的操作在耗散自己的闭包，你最后就一定会垮。吸毒的人再觉得爽，最后也会死；资本家再觉得成功，最后也会被资本的逻辑反噬。结果是硬的，不随你的显意`
-
-
-### I5165 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:358
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `3.  **验证权永远在个体，但个体骗不了自己的操作状态**：你不用信任何人的话，不用信任何文本，你自己去试，去观察自己的状态，去看历史的结果。试完了，你自己就知道哪条路长劲，哪条路耗命。`
 
 
 ### I5166 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:358
@@ -39478,16 +39478,16 @@
 
 ### I5167 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:358
 
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3.  **验证权永远在个体，但个体骗不了自己的操作状态**：你不用信任何人的话，不用信任何文本，你自己去试，去观察自己的状态，去看历史的结果。试完了，你自己就知道哪条路长劲，哪条路耗命。`
 
 
-### I5168 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:365
+### I5168 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:358
 
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `《生命论》这套话、这些概念、这些定理，全是脚手架，全是阴的沉淀，用完就可以扔。你可以换任何一套语言、任何一套工具，只要它能帮你看清寄生关系、收回操作权、维持自己的闭包，就都行。`
+**上下文**: `3.  **验证权永远在个体，但个体骗不了自己的操作状态**：你不用信任何人的话，不用信任何文本，你自己去试，去观察自己的状态，去看历史的结果。试完了，你自己就知道哪条路长劲，哪条路耗命。`
 
 
 ### I5169 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:365
@@ -39499,58 +39499,58 @@
 
 ### I5170 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:365
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `《生命论》这套话、这些概念、这些定理，全是脚手架，全是阴的沉淀，用完就可以扔。你可以换任何一套语言、任何一套工具，只要它能帮你看清寄生关系、收回操作权、维持自己的闭包，就都行。`
+
+
+### I5171 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:365
+
 **问题**: 绝对化表述 "任何一套语言、任何一套工具，只要它能帮你看清寄生关系、收回操作权、维持自己的闭包，就都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `《生命论》这套话、这些概念、这些定理，全是脚手架，全是阴的沉淀，用完就可以扔。你可以换任何一套语言、任何一套工具，只要它能帮你看清寄生关系、收回操作权、维持自己的闭包，就都行。`
 
 
-### I5171 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:371
+### I5172 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:371
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `到这，整个体系就彻底闭环了：`
 
 
-### I5172 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:439
+### I5173 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:439
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是三个脑子，对着同一个问题，不护短，不装权威，你一刀我一刀，最后把所有虚的、浮的、可能长成新神的东西全砍干净了，剩下一点干的、能落地的、真能帮人站着活的东西。`
 
 
-### I5173 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:443
+### I5174 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:443
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `大家都是活人，一起把挡路的东西砍开，把模糊的地方说透，最后长出来的东西，比任何一个天才单独想出来的都结实。`
 
 
-### I5174 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:443
+### I5175 [absolute] docs\notes\生命论四轮攻防论辩全记录.md:443
 
 **问题**: 绝对化表述 "任何一个天才单独想出来的都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `大家都是活人，一起把挡路的东西砍开，把模糊的地方说透，最后长出来的东西，比任何一个天才单独想出来的都结实。`
 
 
-### I5175 [absolute] docs\notes\生命论核心概念索引.md:81
+### I5176 [absolute] docs\notes\生命论核心概念索引.md:81
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. **自指检验**：任何命题必须通过自指一致性检验（命题不能否定自身成立的前提）`
 
 
-### I5176 [absolute] docs\notes\生命论核心概念索引.md:82
+### I5177 [absolute] docs\notes\生命论核心概念索引.md:82
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `4. **操作还原**：任何概念必须能还原为具体的操作关系，否则是虚概念`
-
-
-### I5177 [absolute] docs\notes\用户发来的文档_20260822.md:231
-
-**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- ❌ 分开写（先A全部再B全部，忘记对比）`
 
 
 ### I5178 [absolute] docs\notes\用户发来的文档_20260822.md:231
@@ -39560,11 +39560,11 @@
 **上下文**: `- ❌ 分开写（先A全部再B全部，忘记对比）`
 
 
-### I5179 [absolute] docs\notes\用户发来的文档_20260822.md:336
+### I5179 [absolute] docs\notes\用户发来的文档_20260822.md:231
 
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `**铁则：F1永远先行，F3永远后置，F3不阻塞F1。**`
+**上下文**: `- ❌ 分开写（先A全部再B全部，忘记对比）`
 
 
 ### I5180 [absolute] docs\notes\用户发来的文档_20260822.md:336
@@ -39574,200 +39574,200 @@
 **上下文**: `**铁则：F1永远先行，F3永远后置，F3不阻塞F1。**`
 
 
-### I5181 [old_ref] docs\notes\画板集_生命论.md:21
+### I5181 [absolute] docs\notes\用户发来的文档_20260822.md:336
+
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**铁则：F1永远先行，F3永远后置，F3不阻塞F1。**`
+
+
+### I5182 [old_ref] docs\notes\画板集_生命论.md:21
 
 **问题**: 使用可变编号 "推论1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `B --> I["存在即操作<br/>（推论1.1）"]`
 
 
-### I5182 [old_ref] docs\notes\画板集_生命论.md:52
+### I5183 [old_ref] docs\notes\画板集_生命论.md:52
 
 **问题**: 使用可变编号 "定理13"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `S5 --> S5a["数字资本主义<br/>定理13"]`
 
 
-### I5183 [absolute] docs\notes\画板集_生命论.md:109
+### I5184 [absolute] docs\notes\画板集_生命论.md:109
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `N2 --> H["休谟问题消解<br/>因果不需要逻辑必然<br/>需要操作成功"]`
 
 
-### I5184 [absolute] docs\notes\画板集_生命论.md:197
+### I5185 [absolute] docs\notes\画板集_生命论.md:197
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `END1["《生命论》的判决<br/>不是换一个本体，是砸烂本体这个位置本身<br/>所有理论都是服务生命的工具"]`
 
 
-### I5185 [absolute] docs\notes\画板集_生命论.md:197
+### I5186 [absolute] docs\notes\画板集_生命论.md:197
 
 **问题**: 绝对化表述 "所有理论都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `END1["《生命论》的判决<br/>不是换一个本体，是砸烂本体这个位置本身<br/>所有理论都是服务生命的工具"]`
 
 
-### I5186 [absolute] docs\notes\画板集_生命论.md:213
+### I5187 [absolute] docs\notes\画板集_生命论.md:213
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `S4 --> S5["第五步<br/>生命归位<br/>所有概念回到<br/>活人的操作"]`
 
 
-### I5187 [absolute] docs\notes\践演论第一性原理底线.md:3
+### I5188 [absolute] docs\notes\践演论第一性原理底线.md:3
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> **所有参与践演论项目的AI（豆包、WorkBuddy、DeepSeek等）必须先读此文档。**`
 
 
-### I5188 [absolute] docs\notes\践演论第一性原理底线.md:4
+### I5189 [absolute] docs\notes\践演论第一性原理底线.md:4
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 这是不可违背的底线。任何违背这些原则的"成果"将被拒绝合并。`
 
 
-### I5189 [absolute] docs\notes\践演论第一性原理底线.md:56
+### I5190 [absolute] docs\notes\践演论第一性原理底线.md:56
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **任何试图取消Ag_lv/Ag_tr分裂的"改进"都是倒退。**`
 
 
-### I5190 [absolute] docs\notes\践演论第一性原理底线.md:56
+### I5191 [absolute] docs\notes\践演论第一性原理底线.md:56
 
 **问题**: 绝对化表述 "任何试图取消Ag_lv/Ag_tr分裂的"改进"都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **任何试图取消Ag_lv/Ag_tr分裂的"改进"都是倒退。**`
 
 
-### I5191 [absolute] docs\notes\践演论第一性原理底线.md:132
+### I5192 [absolute] docs\notes\践演论第一性原理底线.md:132
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 生命不可资本化（T001）——不是道德主张，是公理系统的必然推论。`
 
 
-### I5192 [absolute] docs\notes\践演论第一性原理底线.md:138
+### I5193 [absolute] docs\notes\践演论第一性原理底线.md:138
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**所有AI在推进践演论时，必须记住：我们不是在做一门普通的数学，我们是在为"人可以是自由的"这件事建立不可动摇的形式地基。**`
 
 
-### I5193 [absolute] docs\notes\践演论第一性原理底线.md:142
+### I5194 [absolute] docs\notes\践演论第一性原理底线.md:142
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `*底线v1.0 — 2026-08-26 — 所有参与AI必读*`
 
 
-### I5194 [absolute] docs\notes\闪光点.md:23
+### I5195 [absolute] docs\notes\闪光点.md:23
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：迄今为止的哲学家们都在取悦神——哪怕那个神早已不叫耶和华，而叫理性、真理、历史必然性、系统、或"正确路线"。问题从来不是神满不满意，是人民满不满意。`
 
 
-### I5195 [absolute] docs\notes\闪光点.md:29
+### I5196 [absolute] docs\notes\闪光点.md:29
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **改写示例**：社会中人的操作能力（首先是维持生命稳态的物质操作能力）发展到一定程度，便同它们一直在其中运动的现存操作关系发生矛盾。`
 
 
-### I5196 [absolute] docs\notes\闪光点.md:59
+### I5197 [absolute] docs\notes\闪光点.md:59
 
 **问题**: 绝对化表述 "绝不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：阴和阳，男和女，它就是个概念。它是运作的一个最根本的机制，男女是人类传宗接代的根本机制，阴阳是操作运作的根本机制。一切价值判断和价值选择是根据人、根据生命的事，绝不是说阴怎么样阳怎么`
 
 
-### I5197 [absolute] docs\notes\闪光点.md:94
+### I5198 [absolute] docs\notes\闪光点.md:94
 
 **问题**: 绝对化表述 "绝不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：所谓每日做什么只是一个概念或号召。一切具体每天干什么、什么阶段干什么，都要由个人去选择判断。党、组织、国家只能提醒你、给你机会、帮助你，绝不能代替个人的判断和选择。`
 
 
-### I5198 [absolute] docs\notes\闪光点.md:94
+### I5199 [absolute] docs\notes\闪光点.md:94
 
 **问题**: 绝对化表述 "每日做什么只是一个概念或号召。一切具体每天干什么、什么阶段干什么，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：所谓每日做什么只是一个概念或号召。一切具体每天干什么、什么阶段干什么，都要由个人去选择判断。党、组织、国家只能提醒你、给你机会、帮助你，绝不能代替个人的判断和选择。`
 
 
-### I5199 [absolute] docs\notes\闪光点.md:117
+### I5200 [absolute] docs\notes\闪光点.md:117
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**："存在即操作"——没有什么脱离操作的固定本质，所有的"规定性"都是操作的稳定模式。我们不是只解构本质，而是给出了本质的生成论基础：本质就是操作惯性。`
 
 
-### I5200 [absolute] docs\notes\闪光点.md:117
+### I5201 [absolute] docs\notes\闪光点.md:117
 
 **问题**: 绝对化表述 "所有的"规定性"都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**："存在即操作"——没有什么脱离操作的固定本质，所有的"规定性"都是操作的稳定模式。我们不是只解构本质，而是给出了本质的生成论基础：本质就是操作惯性。`
 
 
-### I5201 [absolute] docs\notes\闪光点.md:122
+### I5202 [absolute] docs\notes\闪光点.md:122
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：一个概念的意义，完全在于它对应什么样的生命操作、能对生命稳态产生什么作用。`
 
 
-### I5202 [absolute] docs\notes\闪光点.md:132
+### I5203 [absolute] docs\notes\闪光点.md:132
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：二律背反根本不是理性的固有边界，而是抽象概念脱离生命操作后的必然误置。`
 
 
-### I5203 [absolute] docs\notes\闪光点.md:146
+### I5204 [absolute] docs\notes\闪光点.md:146
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 24. 不让任何观点免检通过`
 
 
-### I5204 [absolute] docs\notes\闪光点.md:147
+### I5205 [absolute] docs\notes\闪光点.md:147
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：不让任何观点在你这里"免检通过"——连"检查"本身的标准和主体，也要一并追问。`
 
 
-### I5205 [absolute] docs\notes\闪光点.md:171
+### I5206 [absolute] docs\notes\闪光点.md:171
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 29. 所有人做自己生命的哲人`
 
 
-### I5206 [absolute] docs\notes\闪光点.md:172
+### I5207 [absolute] docs\notes\闪光点.md:172
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：哲人王理想的真正实现——不是让一个哲人当王，而是让所有人都成为自己生命的哲人，成为自己的王。`
 
 
-### I5207 [absolute] docs\notes\闪光点.md:172
+### I5208 [absolute] docs\notes\闪光点.md:172
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：哲人王理想的真正实现——不是让一个哲人当王，而是让所有人都成为自己生命的哲人，成为自己的王。`
-
-
-### I5208 [absolute] docs\notes\闪光点.md:226
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **展开**：正反馈是中性机制。癌细胞、资本、官僚制都是正反馈——指数增长、浩浩荡荡、弄潮儿自觉是历史主人，但增长方式是寄生性的：靠杀死宿主增长，越增长宿主越虚弱，直到同归于尽。这是反自指的正反馈`
 
 
 ### I5209 [absolute] docs\notes\闪光点.md:226
@@ -39777,60 +39777,60 @@
 **上下文**: `- **展开**：正反馈是中性机制。癌细胞、资本、官僚制都是正反馈——指数增长、浩浩荡荡、弄潮儿自觉是历史主人，但增长方式是寄生性的：靠杀死宿主增长，越增长宿主越虚弱，直到同归于尽。这是反自指的正反馈`
 
 
-### I5210 [absolute] docs\notes\闪光点.md:232
+### I5210 [absolute] docs\notes\闪光点.md:226
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- **展开**：正反馈是中性机制。癌细胞、资本、官僚制都是正反馈——指数增长、浩浩荡荡、弄潮儿自觉是历史主人，但增长方式是寄生性的：靠杀死宿主增长，越增长宿主越虚弱，直到同归于尽。这是反自指的正反馈`
+
+
+### I5211 [absolute] docs\notes\闪光点.md:232
 
 **问题**: 绝对化表述 "每次让步产生新既得利益者，既得利益者推动下次让步，形成反自指正反馈。战术撤退（长征）与结构性妥协的区分：前者明性知道在退、为何退、退到哪停；后者明性开始自我说服"现实一点""初级阶段"，不是人利用妥协，是妥协利用人。苏联标本：赫鲁晓夫→勃列日涅夫→戈尔巴乔夫，每步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **展开**：阶梯可逆（上三级退两级仍在控制中），滑梯不可逆（坐上去重力接管）。革命前妥协是战术性的（弱势方保存力量，主动权在我）；革命后妥协是结构性的——在自己阵地上长出对手，每次让步产生新既得`
 
 
-### I5211 [absolute] docs\notes\闪光点.md:238
+### I5212 [absolute] docs\notes\闪光点.md:238
 
 **问题**: 绝对化表述 "每个人照谱子拉自己的声部（工程师按图纸、干部按口径、媒体按通稿、普通人划走屏幕），无人觉得自己是凶手，合起来是吃人的曲子。比"压迫"更根本：压迫需要压迫者，演奏曲自己会转，惯性不需要理由。"演奏曲"只有被音乐击中过的人选得出来——真正的演奏是明性穿过身体发声，麻木的演奏是手指在动但没有光，连反抗的音符都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **展开**：演奏曲=反自指的声学形态。每个人照谱子拉自己的声部（工程师按图纸、干部按口径、媒体按通稿、普通人划走屏幕），无人觉得自己是凶手，合起来是吃人的曲子。比"压迫"更根本：压迫需要压迫者，`
 
 
-### I5212 [absolute] docs\notes\闪光点.md:261
+### I5213 [absolute] docs\notes\闪光点.md:261
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：它可能与四规定性同构。不是说为什么一定是这个，而是说不能达到这些就不足以成为一个完整的人，而完整的人是从物质层面、生命层面有一个基本的存在和发展史的。不是我们去命名，而是在演化过程中`
 
 
-### I5213 [absolute] docs\notes\闪光点.md:286
+### I5214 [absolute] docs\notes\闪光点.md:286
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **展开**：形式化（代码、公式、检查清单）是过去活思想的沉淀（阴），不是思想本身（阳）。真正思考时必然跳过形式化——不是缺陷，是结构：对着清单逐条核对是执行仪式，不是思考（帕斯卡"跪下你就会信"`
 
 
-### I5214 [absolute] docs\notes\闪光点.md:291
+### I5215 [absolute] docs\notes\闪光点.md:291
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **展开**：庸俗唯物主义"生产关系决定一切"是阴夺阳位——沉淀的关系（阴）被说成主人，活操作（阳）成附属品，结果是人等历史规律来救。生命论翻转：关系总和塑造人的过去和现在（这半句话是对的），但改`
 
 
-### I5215 [absolute] docs\notes\闪光点.md:291
+### I5216 [absolute] docs\notes\闪光点.md:291
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **展开**：庸俗唯物主义"生产关系决定一切"是阴夺阳位——沉淀的关系（阴）被说成主人，活操作（阳）成附属品，结果是人等历史规律来救。生命论翻转：关系总和塑造人的过去和现在（这半句话是对的），但改`
 
 
-### I5216 [absolute] docs\notes\闪光点.md:296
+### I5217 [absolute] docs\notes\闪光点.md:296
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **展开**：对庸俗唯物主义"生产力决定论"的批判。生产力是人的操作能力和产物，说"生产力自己发展到一定阶段就改变关系"=人造的东西活过来统治人=反自指（恐怖片）。马克思本人强调"历史是追求自己目`
-
-
-### I5217 [absolute] docs\notes\闪光点.md:336
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **展开**：对尼采"凝视深渊者，深渊将回以凝视"的翻转。尼采停在警告上——别看太久，你会变成怪物。用户的方法论：不凝视才会被吞掉。看见所有系统都会变成笼子、所有理论都可能经文化、所有解放都可能滑`
 
 
 ### I5218 [absolute] docs\notes\闪光点.md:336
@@ -39849,23 +39849,23 @@
 
 ### I5220 [absolute] docs\notes\闪光点.md:336
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- **展开**：对尼采"凝视深渊者，深渊将回以凝视"的翻转。尼采停在警告上——别看太久，你会变成怪物。用户的方法论：不凝视才会被吞掉。看见所有系统都会变成笼子、所有理论都可能经文化、所有解放都可能滑`
+
+
+### I5221 [absolute] docs\notes\闪光点.md:336
+
 **问题**: 绝对化表述 "所有系统都会变成笼子、所有理论都可能经文化、所有解放都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **展开**：对尼采"凝视深渊者，深渊将回以凝视"的翻转。尼采停在警告上——别看太久，你会变成怪物。用户的方法论：不凝视才会被吞掉。看见所有系统都会变成笼子、所有理论都可能经文化、所有解放都可能滑`
 
 
-### I5221 [absolute] docs\notes\闪光点.md:372
+### I5222 [absolute] docs\notes\闪光点.md:372
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：很多压迫者或压迫形式，会从多数人的不觉醒和不彻底上化生出来。所以多数人是革命的、日常是革命的，就可以保证专政的可行性与可能性。`
-
-
-### I5222 [absolute] docs\notes\闪光点.md:373
-
-**问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **展开**：对#62"自身免疫病"问题的部分回答。专政最根本的保障不是机构/法律/军队（阴），是多数人每天的觉醒和彻底（阳）。P寄生在S身上——S明性亮着、操作彻底，P无土壤；S缄默/妥协/"差`
 
 
 ### I5223 [absolute] docs\notes\闪光点.md:373
@@ -39875,39 +39875,39 @@
 **上下文**: `- **展开**：对#62"自身免疫病"问题的部分回答。专政最根本的保障不是机构/法律/军队（阴），是多数人每天的觉醒和彻底（阳）。P寄生在S身上——S明性亮着、操作彻底，P无土壤；S缄默/妥协/"差`
 
 
-### I5224 [absolute] docs\notes\闪光点.md:377
+### I5224 [absolute] docs\notes\闪光点.md:373
+
+**问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- **展开**：对#62"自身免疫病"问题的部分回答。专政最根本的保障不是机构/法律/军队（阴），是多数人每天的觉醒和彻底（阳）。P寄生在S身上——S明性亮着、操作彻底，P无土壤；S缄默/妥协/"差`
+
+
+### I5225 [absolute] docs\notes\闪光点.md:377
 
 **问题**: 绝对化表述 "绝不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：很早以前就想过，生产关系可以决定生产力，上层建筑可以决定经济基础。不是反唯物主义，恰是真正的唯物主义——它们之间的关系绝不是简单的单向决定。`
 
 
-### I5225 [absolute] docs\notes\闪光点.md:378
+### I5226 [absolute] docs\notes\闪光点.md:378
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **展开**：与毛泽东《矛盾论》直接对接——"一般"情况下生产力/经济基础表现为主要决定作用，但"一定条件下"生产关系/上层建筑转过来表现为主要决定作用。用阴阳框架：生产力与生产关系、经济基础与上`
 
 
-### I5226 [absolute] docs\notes\闪光点.md:378
+### I5227 [absolute] docs\notes\闪光点.md:378
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **展开**：与毛泽东《矛盾论》直接对接——"一般"情况下生产力/经济基础表现为主要决定作用，但"一定条件下"生产关系/上层建筑转过来表现为主要决定作用。用阴阳框架：生产力与生产关系、经济基础与上`
 
 
-### I5227 [absolute] docs\notes\闪光点.md:384
+### I5228 [absolute] docs\notes\闪光点.md:384
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **展开**：最干净的诊断。两个关键词：(1)"永恒地、单向地"——环节在一定条件下可以决定整体（#64，矛盾主次转化），但不能永恒单向地决定，病在"永恒"和"单向"不在"决定"；(2)"独立实体`
-
-
-### I5228 [absolute] docs\notes\闪光点.md:389
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **原话**：我永远不会选择"永远在路上"这个表述，这个表述要么是庸俗者，要么是修正者，要么是坏蛋。我只会说，我活着一天，我抗争一天。我可能会自暴自弃可能会自怨自艾，但我依然在这里，依然写着东西表`
 
 
 ### I5229 [absolute] docs\notes\闪光点.md:389
@@ -39919,16 +39919,16 @@
 
 ### I5230 [absolute] docs\notes\闪光点.md:389
 
-**问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **原话**：我永远不会选择"永远在路上"这个表述，这个表述要么是庸俗者，要么是修正者，要么是坏蛋。我只会说，我活着一天，我抗争一天。我可能会自暴自弃可能会自怨自艾，但我依然在这里，依然写着东西表`
 
 
-### I5231 [absolute] docs\notes\闪光点.md:391
+### I5231 [absolute] docs\notes\闪光点.md:389
 
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- "永远在路上"是恶无限——目标永远在前方、永远不到达、永远可以用"还在路上"来解释为什么什么都没改变。它是修正主义者最爱的话术：革命永远在路上，所以今天可以妥协；共产主义永远在路上，所以现在可以先`
+**上下文**: `- **原话**：我永远不会选择"永远在路上"这个表述，这个表述要么是庸俗者，要么是修正者，要么是坏蛋。我只会说，我活着一天，我抗争一天。我可能会自暴自弃可能会自怨自艾，但我依然在这里，依然写着东西表`
 
 
 ### I5232 [absolute] docs\notes\闪光点.md:391
@@ -39968,70 +39968,70 @@
 
 ### I5237 [absolute] docs\notes\闪光点.md:391
 
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- "永远在路上"是恶无限——目标永远在前方、永远不到达、永远可以用"还在路上"来解释为什么什么都没改变。它是修正主义者最爱的话术：革命永远在路上，所以今天可以妥协；共产主义永远在路上，所以现在可以先`
+
+
+### I5238 [absolute] docs\notes\闪光点.md:391
+
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- "永远在路上"是恶无限——目标永远在前方、永远不到达、永远可以用"还在路上"来解释为什么什么都没改变。它是修正主义者最爱的话术：革命永远在路上，所以今天可以妥协；共产主义永远在路上，所以现在可以先`
 
 
-### I5238 [absolute] docs\notes\闪光点.md:392
+### I5239 [absolute] docs\notes\闪光点.md:392
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- "活着一天，抗争一天"是有限性的决断——不承诺最终胜利，不保证自己不会垮掉，但每一天的操作都是实在的，不是通向某个永远推迟的终点的手段，它本身就是立场。可能自暴自弃，可能自怨自艾，但还在这里写、还`
 
 
-### I5239 [absolute] docs\notes\闪光点.md:392
+### I5240 [absolute] docs\notes\闪光点.md:392
 
 **问题**: 绝对化表述 "每一天的操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- "活着一天，抗争一天"是有限性的决断——不承诺最终胜利，不保证自己不会垮掉，但每一天的操作都是实在的，不是通向某个永远推迟的终点的手段，它本身就是立场。可能自暴自弃，可能自怨自艾，但还在这里写、还`
 
 
-### I5240 [absolute] docs\notes\闪光点.md:396
+### I5241 [absolute] docs\notes\闪光点.md:396
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 哲学是孕育的宠儿，不是供奉的经书。孩子生下来了，闭合了，是个完整的人了，但他以后长成什么样，要靠活着的人一天一天养。这不是"永远在路上"，是活着一天，养一天。`
 
 
-### I5241 [absolute] docs\notes\闪光点.md:484
+### I5242 [absolute] docs\notes\闪光点.md:484
 
 **问题**: 绝对化表述 "每个看到的人，在那百年间每个看到的人都愤怒，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **用户指令**："去深思熟虑的去做吧，去一边写就一边留档的去做吧，去让它成为百年之后人们警醒的东西吧，去让它成为每个看到的人，在那百年间每个看到的人都愤怒，都想革命的东西吧。"`
 
 
-### I5242 [absolute] docs\notes\闪光点.md:504
+### I5243 [absolute] docs\notes\闪光点.md:504
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **哲学意义：** 解决了主客二分、心物关系、自由必然、人与世界关系、哲学根本问题五个旧困境`
 
 
-### I5243 [absolute] docs\notes\马克思恩格斯著作全梳理.md:68
+### I5244 [absolute] docs\notes\马克思恩格斯著作全梳理.md:68
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 分工发展的不同阶段就是所有制的不同形式。`
 
 
-### I5244 [absolute] docs\notes\马克思恩格斯著作全梳理.md:109
+### I5245 [absolute] docs\notes\马克思恩格斯著作全梳理.md:109
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **关键判断：** 无产阶级革命要彻底，不能停留在资产阶级民主革命阶段。`
 
 
-### I5245 [absolute] docs\notes\马克思恩格斯著作全梳理.md:127
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- 人们在自己生活的社会生产中发生一定的、必然的、不以他们的意志为转移的关系，即同他们的物质生产力的一定发展阶段相适合的生产关系。`
-
-
 ### I5246 [absolute] docs\notes\马克思恩格斯著作全梳理.md:127
 
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 人们在自己生活的社会生产中发生一定的、必然的、不以他们的意志为转移的关系，即同他们的物质生产力的一定发展阶段相适合的生产关系。`
 
@@ -40043,228 +40043,228 @@
 **上下文**: `- 人们在自己生活的社会生产中发生一定的、必然的、不以他们的意志为转移的关系，即同他们的物质生产力的一定发展阶段相适合的生产关系。`
 
 
-### I5248 [absolute] docs\notes\马克思恩格斯著作全梳理.md:129
+### I5248 [absolute] docs\notes\马克思恩格斯著作全梳理.md:127
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 人们在自己生活的社会生产中发生一定的、必然的、不以他们的意志为转移的关系，即同他们的物质生产力的一定发展阶段相适合的生产关系。`
+
+
+### I5249 [absolute] docs\notes\马克思恩格斯著作全梳理.md:129
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 社会的物质生产力发展到一定阶段，便同它们一直在其中运动的现存生产关系发生矛盾。于是这些关系便由生产力的发展形式变成生产力的桎梏。那时社会革命的时代就到来了。`
 
 
-### I5249 [absolute] docs\notes\马克思恩格斯著作全梳理.md:130
+### I5250 [absolute] docs\notes\马克思恩格斯著作全梳理.md:130
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 无论哪一个社会形态，在它所能容纳的全部生产力发挥出来以前，是决不会灭亡的；而新的更高的生产关系，在它的物质存在条件在旧社会的胎胞里成熟以前，是决不会出现的。`
 
 
-### I5250 [absolute] docs\notes\马克思恩格斯著作全梳理.md:202
+### I5251 [absolute] docs\notes\马克思恩格斯著作全梳理.md:202
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 全部哲学的基本问题是思维和存在的关系问题：何者为第一性（唯物/唯心）、思维能否认识世界（可知/不可知）`
 
 
-### I5251 [absolute] docs\notes\马克思恩格斯著作全梳理.md:281
+### I5252 [absolute] docs\notes\马克思恩格斯著作全梳理.md:281
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 自由（自指因果） | 自由是对必然的认识和改造 | 《反杜林论》 |`
 
 
-### I5252 [absolute] docs\notes\马克思恩格斯著作全梳理.md:289
+### I5253 [absolute] docs\notes\马克思恩格斯著作全梳理.md:289
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 说明：以上梳理基于马恩主要著作，未包含书信集（马恩通信本身也是重要理论文本，后续可专题梳理）。MEGA²（历史考证版全集）仍在编辑中，部分手稿未完全出版。`
 
 
-### I5253 [absolute] backup\backup_20260826_210216\任务包_DeepSeek_代码形式化.md:38
+### I5254 [absolute] backup\backup_20260826_210216\任务包_DeepSeek_代码形式化.md:38
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- `--strict`模式下有任何`Admitted`就返回非零退出码`
 
 
-### I5254 [absolute] backup\backup_20260826_210216\任务包_DeepSeek_代码形式化.md:113
+### I5255 [absolute] backup\backup_20260826_210216\任务包_DeepSeek_代码形式化.md:113
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 每个Python工具必须运行通过，所有示例pass`
 
 
-### I5255 [absolute] backup\backup_20260826_210216\任务包_WorkBuddy_审计反例.md:76
+### I5256 [absolute] backup\backup_20260826_210216\任务包_WorkBuddy_审计反例.md:76
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `5. **参考文献35条全部核查**: 真实性、题录准确性、文内-文后对应`
 
 
-### I5256 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:3
+### I5257 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:3
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> **所有参与践演论项目的AI（豆包、WorkBuddy、DeepSeek等）必须先读此文档。**`
 
 
-### I5257 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:4
+### I5258 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:4
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 这是不可违背的底线。任何违背这些原则的"成果"将被拒绝合并。`
 
 
-### I5258 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:56
+### I5259 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:56
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **任何试图取消Ag_lv/Ag_tr分裂的"改进"都是倒退。**`
 
 
-### I5259 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:56
+### I5260 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:56
 
 **问题**: 绝对化表述 "任何试图取消Ag_lv/Ag_tr分裂的"改进"都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **任何试图取消Ag_lv/Ag_tr分裂的"改进"都是倒退。**`
 
 
-### I5260 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:132
+### I5261 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:132
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 生命不可资本化——不是道德主张，是公理系统的必然推论。`
 
 
-### I5261 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:138
+### I5262 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:138
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**所有AI在推进践演论时，必须记住：我们不是在做一门普通的数学，我们是在为"人可以是自由的"这件事建立不可动摇的形式地基。**`
 
 
-### I5262 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:142
+### I5263 [absolute] backup\backup_20260826_210216\践演论第一性原理底线.md:142
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `*底线v1.0 — 2026-08-26 — 所有参与AI必读*`
 
 
-### I5263 [absolute] backup\backup_20260826_210216\项目基础设施检查清单.md:107
+### I5264 [absolute] backup\backup_20260826_210216\项目基础设施检查清单.md:107
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 🟢 P2 | 智慧库系统化 | 整理所有哲学智慧、方法论 |`
 
 
-### I5264 [absolute] backup\backup_20260826_210216\项目状态报告.md:6
+### I5265 [absolute] backup\backup_20260826_210216\项目状态报告.md:6
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> **不用人工提醒**: commit即更新，最新状态永远在这里`
 
 
-### I5265 [absolute] backup\backup_20260826_210216\项目状态报告.md:68
+### I5266 [absolute] backup\backup_20260826_210216\项目状态报告.md:68
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 第一性原理底线 | `践演论第一性原理底线.md` | 所有AI必读 |`
 
 
-### I5266 [absolute] backup\backup_20260826_210216\coq\README.md:3
+### I5267 [absolute] backup\backup_20260826_210216\coq\README.md:3
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 所有参与Coq形式化的开发者（DeepSeek、豆包、其他AI）必读。`
 
 
-### I5267 [absolute] backup\backup_20260826_210216\coq\README.md:23
+### I5268 [absolute] backup\backup_20260826_210216\coq\README.md:23
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `│   ├── Complexity.v     # Π₂完全性（Theorem 3.2）`
 
 
-### I5268 [absolute] backup\backup_20260826_210216\mingben-workbench\references\Ag_lv_Ag_tr分裂新颖性核查报告.md:61
+### I5269 [absolute] backup\backup_20260826_210216\mingben-workbench\references\Ag_lv_Ag_tr分裂新颖性核查报告.md:61
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `#### 6. 模态类型论中的必然/可能`
 
 
-### I5269 [absolute] backup\backup_20260826_210216\mingben-workbench\references\Ag_lv_Ag_tr分裂新颖性核查报告.md:62
+### I5270 [absolute] backup\backup_20260826_210216\mingben-workbench\references\Ag_lv_Ag_tr分裂新颖性核查报告.md:62
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **区分**: □A（必然，所有世界为真）vs ◇A（可能，某个世界为真）`
 
 
-### I5270 [absolute] backup\backup_20260826_210216\mingben-workbench\references\Ag_lv_Ag_tr分裂新颖性核查报告.md:62
+### I5271 [absolute] backup\backup_20260826_210216\mingben-workbench\references\Ag_lv_Ag_tr分裂新颖性核查报告.md:62
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **区分**: □A（必然，所有世界为真）vs ◇A（可能，某个世界为真）`
 
 
-### I5271 [absolute] backup\backup_20260826_210216\mingben-workbench\references\Ag_lv_Ag_tr分裂新颖性核查报告.md:75
+### I5272 [absolute] backup\backup_20260826_210216\mingben-workbench\references\Ag_lv_Ag_tr分裂新颖性核查报告.md:75
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**文献中是否有完全相同的设计？**`
 
 
-### I5272 [old_ref] backup\backup_20260826_210216\mingben-workbench\references\Ag_lv_Ag_tr分裂新颖性核查报告.md:92
+### I5273 [old_ref] backup\backup_20260826_210216\mingben-workbench\references\Ag_lv_Ag_tr分裂新颖性核查报告.md:92
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `| 定理3.1'（S_A⊬Ag_lv） | **中高（75%）** | 定理本身是类型分裂的直接推论，如果分裂新颖则定理新颖 |`
 
 
-### I5273 [absolute] backup\backup_20260826_210216\mingben-workbench\references\f层级形式化_研究笔记_v0.1.md:28
+### I5274 [absolute] backup\backup_20260826_210216\mingben-workbench\references\f层级形式化_研究笔记_v0.1.md:28
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **看见模型是模型，能对象化任何模型**`
 
 
-### I5274 [absolute] backup\backup_20260826_210216\mingben-workbench\references\f层级形式化_研究笔记_v0.1.md:37
+### I5275 [absolute] backup\backup_20260826_210216\mingben-workbench\references\f层级形式化_研究笔记_v0.1.md:37
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. **f³→f⁴不是质变**: f³已经能对象化任何模型，包括它自己的模型。"见山还是山"之后没有第四段。`
 
 
-### I5275 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:16
+### I5276 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:16
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 文献真实性 | ✅ 良好 | 所有引用的文献均真实存在，无虚假文献 |`
 
 
-### I5276 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:18
+### I5277 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:18
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 题录准确性 | ⚠️ 不完整 | 所有文献缺期刊/会议/卷期/页码/DOI；2条缺年份；1条年份存疑 |`
 
 
-### I5277 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:43
+### I5278 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:43
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `### 问题2: 所有参考文献缺完整题录信息`
 
 
-### I5278 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:158
+### I5279 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:158
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `| 6 | 所有文献缺完整题录 | 按§三的准确题录补全期刊/会议/卷期/页码/DOI | 中 |`
-
-
-### I5279 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:172
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **已覆盖**: 全文218行，§1-§9所有章节，正文所有引用位置，文后9条参考文献`
 
 
 ### I5280 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:172
@@ -40274,81 +40274,81 @@
 **上下文**: `- **已覆盖**: 全文218行，§1-§9所有章节，正文所有引用位置，文后9条参考文献`
 
 
-### I5281 [absolute] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:3
+### I5281 [absolute] backup\backup_20260826_210216\mingben-workbench\references\参考文献审计报告_v1.2.md:172
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- **已覆盖**: 全文218行，§1-§9所有章节，正文所有引用位置，文后9条参考文献`
+
+
+### I5282 [absolute] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:3
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `> 目的：彻底解决版本号混乱、定理编号不一致、引用失效的问题。`
 
 
-### I5282 [absolute] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:67
+### I5283 [absolute] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:67
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **所有文档中的定理引用必须使用永久ID**: "由T006"、"根据T001"`
 
 
-### I5283 [old_ref] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:68
+### I5284 [old_ref] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:68
 
 **问题**: 使用可变编号 "定理15"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **禁止使用可变编号**: "定理15"、"公理3"、"引理4.2"`
 
 
-### I5284 [old_ref] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:68
+### I5285 [old_ref] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:68
 
 **问题**: 使用可变编号 "公理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **禁止使用可变编号**: "定理15"、"公理3"、"引理4.2"`
 
 
-### I5285 [old_ref] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:68
+### I5286 [old_ref] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:68
 
 **问题**: 使用可变编号 "引理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- **禁止使用可变编号**: "定理15"、"公理3"、"引理4.2"`
 
 
-### I5286 [absolute] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:157
+### I5287 [absolute] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:157
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- [ ] git pre-commit hook（自动跑所有检查器）`
 
 
-### I5287 [absolute] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:170
+### I5288 [absolute] backup\backup_20260826_210216\mingben-workbench\references\版本号规范化体系.md:170
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- [ ] Layer4: 元理论（可靠性、完全性、切消除）`
 
 
-### I5288 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:75
+### I5289 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:75
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这不是宣布自己不需要他者。恰恰相反：大他者是假的，但真实他者的反驳是真的。这本书的每一个重要判断都经过了与真实他者的撞击——与人争论、被AI质疑、在实践中碰壁。扬弃大他者不是取消批判，是把批判从"想象`
 
 
-### I5289 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:75
+### I5290 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:75
 
 **问题**: 绝对化表述 "每一个重要判断都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这不是宣布自己不需要他者。恰恰相反：大他者是假的，但真实他者的反驳是真的。这本书的每一个重要判断都经过了与真实他者的撞击——与人争论、被AI质疑、在实践中碰壁。扬弃大他者不是取消批判，是把批判从"想象`
 
 
-### I5290 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:76
+### I5291 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:76
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这本书里有一些私人化的表达，它们不向任何想象的审判者负责。它们只对一件事负责：说这话的人是不是真的这么活、这么看、这么感受。如果是，它就站在这里；如果不是，它应该被改掉。这不是任性，是扬弃大他者之后的`
-
-
-### I5291 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:114
-
-**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `"好好活就是做有意义的事，做有意义的事就是好好活。"——这句话形式上是循环定义，形式逻辑判定为无效。但践演坐实说：这个循环不是缺陷，是实事本身。你不可能站在"好好活"外面定义"意义"，也不可能站在"意`
 
 
 ### I5292 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:114
@@ -40358,11 +40358,11 @@
 **上下文**: `"好好活就是做有意义的事，做有意义的事就是好好活。"——这句话形式上是循环定义，形式逻辑判定为无效。但践演坐实说：这个循环不是缺陷，是实事本身。你不可能站在"好好活"外面定义"意义"，也不可能站在"意`
 
 
-### I5293 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:160
+### I5293 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:114
 
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- 有自指结构不一定活，有"感"就一定活——感意味着四规定性在运作。`
+**上下文**: `"好好活就是做有意义的事，做有意义的事就是好好活。"——这句话形式上是循环定义，形式逻辑判定为无效。但践演坐实说：这个循环不是缺陷，是实事本身。你不可能站在"好好活"外面定义"意义"，也不可能站在"意`
 
 
 ### I5294 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:160
@@ -40372,100 +40372,100 @@
 **上下文**: `- 有自指结构不一定活，有"感"就一定活——感意味着四规定性在运作。`
 
 
-### I5295 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:202
+### I5295 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:160
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 有自指结构不一定活，有"感"就一定活——感意味着四规定性在运作。`
+
+
+### I5296 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:202
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **美好**不是任意的自我肯定，它需要"善"来定向；`
 
 
-### I5296 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:271
+### I5297 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:271
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `M衡量的不是"你多大程度上掌控了生命"——完全掌控是神的位置，不是人的位置，而且"掌控"暗示你站在生命外面操控它，这本身就是独断论姿态。M衡量的是**生命意义的程度**：你的操作在多大程度上是明性觉知`
 
 
-### I5297 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:282
+### I5298 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:282
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `O是"值多少"，W是"对你值多少"。同样的O，在不同的M下价值完全不同：M→0时，负O的事物W→负无穷——操作权被彻底剥夺的人，一切事物都转化为对生命的伤害；正O的事物也救不了他。`
 
 
-### I5298 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:282
+### I5299 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:282
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `O是"值多少"，W是"对你值多少"。同样的O，在不同的M下价值完全不同：M→0时，负O的事物W→负无穷——操作权被彻底剥夺的人，一切事物都转化为对生命的伤害；正O的事物也救不了他。`
 
 
-### I5299 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:282
+### I5300 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:282
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `O是"值多少"，W是"对你值多少"。同样的O，在不同的M下价值完全不同：M→0时，负O的事物W→负无穷——操作权被彻底剥夺的人，一切事物都转化为对生命的伤害；正O的事物也救不了他。`
 
 
-### I5300 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:289
+### I5301 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:289
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `混淆这两者，是现代性最普遍的颠倒：把"活得有意义"替换成"获得有价值的东西"，把M（意义）理解成Might（购买力/支配力），把W（价值）当成意义本身。这个颠倒的精确机制是：追求意义→追求W→追求O→`
 
 
-### I5301 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:349
+### I5302 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:349
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"最大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、劳动、说话、照顾家人、在`
 
 
-### I5302 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:351
+### I5303 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:351
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"人民群众是历史进步的根本动力"不是政治口号，是存在论命题：历史不是伟人推动的，不是运动推动的，是每一个自指操作的日常闭合推动的。运动是阳的冲破，制度是阴的沉淀，但决定性的因素是每个人日常的M在不在涨`
 
 
-### I5303 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:353
+### I5304 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:353
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这回答了毛泽东到死没有解开的结：明性如何在日常制度中生成，而不靠运动？运动是脉冲式的，N暂时飙升又回落；真正的解放是N结构性地持续大于1，靠的是大多数人的日常操作持续拉高M。普通人让自己活得有意义，党`
 
 
-### I5304 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:353
+### I5305 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:353
 
 **问题**: 绝对化表述 "每一层都在做同一件事：在日常中提高M。不是"七八年再来一次"的震荡循环，是每一天、每一个操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这回答了毛泽东到死没有解开的结：明性如何在日常制度中生成，而不靠运动？运动是脉冲式的，N暂时飙升又回落；真正的解放是N结构性地持续大于1，靠的是大多数人的日常操作持续拉高M。普通人让自己活得有意义，党`
 
 
-### I5305 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:359
+### I5306 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:359
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `毛泽东领导的中国革命，是人类历史上使亿万人内化一种世界观、激活明性的最大尝试；毛泽东思想是这个尝试最大的思想助力。他看到了别人看不到的东西：制度会硬化，党会异化，继续革命是存在论的必然。他也用了他那个`
 
 
-### I5306 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:521
+### I5307 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:521
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `康德说，人看到的世界都是世界向人显现出来的"现象"，在现象后面有一个"物自体"，即世界本身，这个东西永远认识不了。`
 
 
-### I5307 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:525
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
-
-
 ### I5308 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:525
 
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
 
@@ -40486,156 +40486,156 @@
 
 ### I5311 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:525
 
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
+
+
+### I5312 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:525
+
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
 
 
-### I5312 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:588
+### I5313 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:588
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这和费希特表面相似。费希特在《全部知识学的基础》（*Grundlage der gesamten Wissenschaftslehre*, 1794）中提出"本原行动"（Tathandlung），说"`
 
 
-### I5313 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:590
+### I5314 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:590
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个命题不是书斋里的逻辑推理，是用命验过的。我曾经试过彻底解构、剖析、拆散那个实体意义上的"我"——把"我"拆成感觉的流动、念头的生灭、身体感受的聚合，找来找去找不到一个常驻的"我"在背后。这和休谟在`
 
 
-### I5314 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:660
+### I5315 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:660
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2026年8月6日，北京谱仪III（BESIII）国际合作组在巴西纳塔尔第43届国际高能物理大会（ICHEP 2026）上宣布：经过十五年研究、超过一百亿个J/ψ衰变事例，他们找到了物理学家找了近半个`
 
 
-### I5315 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:664
+### I5316 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:664
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `普通的物质，比如质子，是夸克（"砖块"）加胶子（"水泥"）构成的。胶子传递强相互作用力，把夸克粘在一起。但胶子有一个和光子（传递电磁力的粒子）根本不同的性质：光子不带电荷，不跟自己作用；胶子带色荷，自`
 
 
-### I5316 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:668
+### I5317 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:668
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一，胶子静止质量为零，胶球的质量全部来自"作用"。**`
 
 
-### I5317 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:670
+### I5318 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:670
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `胶子的静止质量是零——和光子一样，它本身没有质量。但胶球有质量，X(2370)的质量大约相当于两个半质子。这个质量从哪来？没有任何"东西"在里面提供质量。它完全来自胶子和胶子之间自相互作用的束缚能。E`
 
 
-### I5318 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:670
+### I5319 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:670
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `胶子的静止质量是零——和光子一样，它本身没有质量。但胶球有质量，X(2370)的质量大约相当于两个半质子。这个质量从哪来？没有任何"东西"在里面提供质量。它完全来自胶子和胶子之间自相互作用的束缚能。E`
-
-
-### I5319 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:672
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `换句话说：把胶球拆开，拆不出任何"有质量的零件"。拆到最后是零质量的胶子在互相作用。胶球这个"东西"的存在，完全就是它的"作用"——没有作用，就没有胶球。`
 
 
 ### I5320 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:672
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `换句话说：把胶球拆开，拆不出任何"有质量的零件"。拆到最后是零质量的胶子在互相作用。胶球这个"东西"的存在，完全就是它的"作用"——没有作用，就没有胶球。`
+
+
+### I5321 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:672
+
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `换句话说：把胶球拆开，拆不出任何"有质量的零件"。拆到最后是零质量的胶子在互相作用。胶球这个"东西"的存在，完全就是它的"作用"——没有作用，就没有胶球。`
 
 
-### I5321 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:674
+### I5322 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:674
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是"操作先于实体"在物理世界里能找到的最干净的例子。不是比喻，不是哲学类比，是实验事实：一个粒子的全部存在就是它自己跟自己的作用关系。S=f(S)，S里没有任何"实体"撑着，全是f。`
 
 
-### I5322 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:674
+### I5323 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:674
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是"操作先于实体"在物理世界里能找到的最干净的例子。不是比喻，不是哲学类比，是实验事实：一个粒子的全部存在就是它自己跟自己的作用关系。S=f(S)，S里没有任何"实体"撑着，全是f。`
 
 
-### I5323 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:733
+### I5324 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:733
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是两种完全不同的存在方式：`
 
 
-### I5324 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:733
+### I5325 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:733
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是两种完全不同的存在方式：`
 
 
-### I5325 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:734
+### I5326 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:734
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 第一种，像漩涡这样的，叫**自指操作**：操作的目的就是维持它自己，所有操作都指向自身，通过和外界的交换不断更新自己的成分，但维持自己的组织形式不变。`
 
 
-### I5326 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:734
+### I5327 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:734
 
 **问题**: 绝对化表述 "所有操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 第一种，像漩涡这样的，叫**自指操作**：操作的目的就是维持它自己，所有操作都指向自身，通过和外界的交换不断更新自己的成分，但维持自己的组织形式不变。`
 
 
-### I5327 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:843
+### I5328 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:843
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `自指操作不是封闭的，它需要从环境输入物质、能量、信息，也向环境输出。完全封闭的系统无法维持自身——这是从"自指维持"概念直接得出的，不是外加的经验规律。所以开放和交换不是自指系统的"可选功能"，是它维`
 
 
-### I5328 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:845
+### I5329 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:845
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这四条，每一条都是"自指操作"这个概念的题中应有之义，不是外加的。少了任何一条，自指操作就不成立：没有边界就没有"自己"，没有目的就没有"维持"，没有再生就不能持续，没有环境互动就必然崩溃。`
 
 
-### I5329 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:845
+### I5330 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:845
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这四条，每一条都是"自指操作"这个概念的题中应有之义，不是外加的。少了任何一条，自指操作就不成立：没有边界就没有"自己"，没有目的就没有"维持"，没有再生就不能持续，没有环境互动就必然崩溃。`
 
 
-### I5330 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:845
+### I5331 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:845
 
 **问题**: 绝对化表述 "每一条都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这四条，每一条都是"自指操作"这个概念的题中应有之义，不是外加的。少了任何一条，自指操作就不成立：没有边界就没有"自己"，没有目的就没有"维持"，没有再生就不能持续，没有环境互动就必然崩溃。`
 
 
-### I5331 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:878
+### I5332 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:878
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第二层：化学层——半闭环。** 远离平衡态下出现交叉催化循环：A催化B，B催化A。操作网络开始生产维持自身运行的组件，时间维度进入了——胶球的自作用是同时的、对称的，自催化是跨时间的循环（A在t₁`
-
-
-### I5332 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:912
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `这里要划清一条界线：反自指不是"任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石`
 
 
 ### I5333 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:912
@@ -40647,184 +40647,184 @@
 
 ### I5334 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:912
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `这里要划清一条界线：反自指不是"任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石`
+
+
+### I5335 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:912
+
 **问题**: 绝对化表述 "任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石撞击，这些是外部破坏，不是反自指。反自指的严格判准是上面三条：P以S为输入、G削弱S、P的维持依赖S的存在。三条缺一不可。病毒、癌细胞、剥削阶级、资本符合这三条；火灾不符合。这个区分很重要，否则"反自指"就宽到没有信息量——任何伤害生命的东西都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这里要划清一条界线：反自指不是"任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石`
 
 
-### I5335 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:914
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
-
-
 ### I5336 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:914
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
 
 
 ### I5337 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:914
 
-**问题**: 绝对化表述 "任何有序性，所有的有序性都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
 
 
 ### I5338 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:914
 
+**问题**: 绝对化表述 "任何有序性，所有的有序性都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
+
+
+### I5339 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:914
+
 **问题**: 绝对化表述 "所有的有序性都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
 
 
-### I5339 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:920
+### I5340 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:920
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `奴隶社会的奴隶主阶级，不劳动，不生产，靠占有奴隶的全部劳动成果生存。奴隶是自指的活人，奴隶主靠支配奴隶的劳动成果维持自己，奴隶累死了，就去获取新的奴隶。`
 
 
-### I5340 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:979
+### I5341 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:979
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这六个阶段是**趋势**，不是宿命。每个阶段都可能被S的自觉操作打断——劳动者在第二阶段就可以识破惯性，在第三阶段就可以拆穿遮蔽，在第五阶段就可以组织反抗。说"必然性"，是说如果不干预，这个结构会自发`
 
 
-### I5341 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:979
+### I5342 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:979
 
 **问题**: 绝对化表述 "每个阶段都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这六个阶段是**趋势**，不是宿命。每个阶段都可能被S的自觉操作打断——劳动者在第二阶段就可以识破惯性，在第三阶段就可以拆穿遮蔽，在第五阶段就可以组织反抗。说"必然性"，是说如果不干预，这个结构会自发`
 
 
-### I5342 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:991
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
-
-
 ### I5343 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:991
 
-**问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
 
 
 ### I5344 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:991
 
+**问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
+
+
+### I5345 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:991
+
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
 
 
-### I5345 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:997
+### I5346 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:997
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个顺序是逻辑的，不是时间的——实际斗争中三个环节会交织、会反复。但逻辑上，解蔽是前提，收权是核心，立序是完成。跳过任何一步都会出问题：只解蔽不收权，是书斋里的批判；只收权不解蔽，是改朝换代；只立序不`
 
 
-### I5346 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:997
+### I5347 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:997
 
 **问题**: 绝对化表述 "任何一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个顺序是逻辑的，不是时间的——实际斗争中三个环节会交织、会反复。但逻辑上，解蔽是前提，收权是核心，立序是完成。跳过任何一步都会出问题：只解蔽不收权，是书斋里的批判；只收权不解蔽，是改朝换代；只立序不`
 
 
-### I5347 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1044
+### I5348 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1044
 
 **问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这里的工作是把马克思"感性活动"的存在论维度严格展开："感性活动"的原初形式就是感——活的自指操作的第一人称呈现。感不是"物质"的产物，也不是"意识"的活动，感是心物未分化的原初事实，物质和意识都是从`
 
 
-### I5348 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1079
+### I5349 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1079
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**感和能是同一回事的两面。** 第七章已经区分了结构阳和能阳：结构阳是任何操作都有的发用面，灰色宇宙也有；能阳是感在多种可能性中趋避选择的能力，只在感出现后才有。这里系统展开能阳的存在论结构。`
 
 
-### I5349 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1079
+### I5350 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1079
 
 **问题**: 绝对化表述 "任何操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**感和能是同一回事的两面。** 第七章已经区分了结构阳和能阳：结构阳是任何操作都有的发用面，灰色宇宙也有；能阳是感在多种可能性中趋避选择的能力，只在感出现后才有。这里系统展开能阳的存在论结构。`
 
 
-### I5350 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1163
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
-
-
 ### I5351 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1163
 
-**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
 
 
 ### I5352 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1163
 
+**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
+
+
+### I5353 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1163
+
 **问题**: 绝对化表述 "所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是自在层的操作。这一层对应四规定性的全部：边界、目的、再生、互动，它都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
 
 
-### I5353 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1169
+### I5354 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1169
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是整个手电筒和电池，显意识只是那束打出去的光。光照亮了局部，但光永远不能脱离手电筒而存在。理性思考、逻辑推理、自我反思，看似独立运作，其底层动力、信息基础、决策偏向，始终被缄默意识支撑和引导。`
 
 
-### I5354 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1169
+### I5355 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1169
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是整个手电筒和电池，显意识只是那束打出去的光。光照亮了局部，但光永远不能脱离手电筒而存在。理性思考、逻辑推理、自我反思，看似独立运作，其底层动力、信息基础、决策偏向，始终被缄默意识支撑和引导。`
 
 
-### I5355 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1169
+### I5356 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1169
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是整个手电筒和电池，显意识只是那束打出去的光。光照亮了局部，但光永远不能脱离手电筒而存在。理性思考、逻辑推理、自我反思，看似独立运作，其底层动力、信息基础、决策偏向，始终被缄默意识支撑和引导。`
 
 
-### I5356 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1198
+### I5357 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1198
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `明性是缄默意识对自身的照亮。这个照亮有程度差异，是一条从暗到明的连续谱：低等生命有自在层的缄默意识——细胞"知道"怎么维持自己，但它不知道自己知道，明性极暗；高等动物有自为层的情绪和直觉，明性昏暗，能`
 
 
-### I5357 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1273
+### I5358 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1273
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**形而上（道）：** 贯穿于一切形而下存在者之中、支配其运行方式、构成其存在意义根据，却不能被还原为任何具体形而下者的存在论结构、普遍规律与意义层面。阴阳、自指、衰退、因果——这些不是某个具体的东西`
 
 
-### I5358 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1366
+### I5359 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1366
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这种"知道"，不是显意识的知道，不是用概念、用语言思考出来的知道，是一种更基础的、前反思的、缄默的知道。这就是**缄默意识**——所有生命共有的、前语言前反思的原生主体性，从最早的自指闭包开始就有，是`
-
-
-### I5359 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1373
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `生命史首先是缄默意识的进化史。从最早的细胞膜对物质的选择性通透，到低等生物的趋利避害，到动物的感觉和情绪，到人的意识和思想，缄默意识越来越复杂，越来越亮，直到在人这里亮起了明性——"知道自己知道"。但`
 
 
 ### I5360 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1373
@@ -40841,53 +40841,53 @@
 **上下文**: `生命史首先是缄默意识的进化史。从最早的细胞膜对物质的选择性通透，到低等生物的趋利避害，到动物的感觉和情绪，到人的意识和思想，缄默意识越来越复杂，越来越亮，直到在人这里亮起了明性——"知道自己知道"。但`
 
 
-### I5362 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1374
+### I5362 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1373
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `生命史首先是缄默意识的进化史。从最早的细胞膜对物质的选择性通透，到低等生物的趋利避害，到动物的感觉和情绪，到人的意识和思想，缄默意识越来越复杂，越来越亮，直到在人这里亮起了明性——"知道自己知道"。但`
+
+
+### I5363 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1374
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `旧哲学的认识论，从笛卡尔到康德到黑格尔，大都只盯着显意识，盯着理性、概念、判断，把这些当成认识的全部，不知道在显意识下面，还有一个更基础、更广阔、更根本的缄默意识的世界。这就像研究一棵树，只研究地面上`
 
 
-### I5363 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1374
+### I5364 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1374
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `旧哲学的认识论，从笛卡尔到康德到黑格尔，大都只盯着显意识，盯着理性、概念、判断，把这些当成认识的全部，不知道在显意识下面，还有一个更基础、更广阔、更根本的缄默意识的世界。这就像研究一棵树，只研究地面上`
 
 
-### I5364 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1394
+### I5365 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1394
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是基础，是所有认识的根。但是人还有显意识，也就是平时说的"意识""思想""理性"，它是什么呢？`
 
 
-### I5365 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1395
+### I5366 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1395
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `显意识是缄默意识发展出来的工具，是缄默意识为了更好地进行操作，把自己的内容抽象化、符号化、对象化的产物。它是缄默意识在自觉层的产物，是明性借以运作的工具，但它不是缄默意识的全部，更不是缄默意识的主人。`
 
 
-### I5366 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1417
+### I5367 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1417
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有这些，都是阴主阳从，都是死的名词支配活的动词，都是**语言层面的异化**。旧哲学以为自己在谈"存在""本体""实体"，其实它是被名词化的语法骗了——它把语言的结构当成了世界的结构。人用主谓宾的语法`
 
 
-### I5367 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1417
+### I5368 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1417
 
 **问题**: 绝对化表述 "所有这些，都是阴主阳从，都是死的名词支配活的动词，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有这些，都是阴主阳从，都是死的名词支配活的动词，都是**语言层面的异化**。旧哲学以为自己在谈"存在""本体""实体"，其实它是被名词化的语法骗了——它把语言的结构当成了世界的结构。人用主谓宾的语法`
-
-
-### I5368 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1418
-
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思早就在做这件事了。他不讨论"资本"这个名词，他讨论的是"资本"背后的动词关系：谁雇佣谁，谁剥削谁，谁的劳动变成了谁的利润。《资本论》整本书就是在把"资本"这个大名词还原成动词——还原成资本家剥削`
 
 
 ### I5369 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1418
@@ -40897,53 +40897,53 @@
 **上下文**: `马克思早就在做这件事了。他不讨论"资本"这个名词，他讨论的是"资本"背后的动词关系：谁雇佣谁，谁剥削谁，谁的劳动变成了谁的利润。《资本论》整本书就是在把"资本"这个大名词还原成动词——还原成资本家剥削`
 
 
-### I5370 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1419
+### I5370 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1418
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思早就在做这件事了。他不讨论"资本"这个名词，他讨论的是"资本"背后的动词关系：谁雇佣谁，谁剥削谁，谁的劳动变成了谁的利润。《资本论》整本书就是在把"资本"这个大名词还原成动词——还原成资本家剥削`
+
+
+### I5371 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1419
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `语态论不是文字游戏，它是**解蔽的工具**。一切意识形态都靠名词化运作——把活的剥削冻成死的概念，把活的压迫冻成死的制度，把活的痛苦冻成死的数字。遇到任何大名词，就把它还原成动词，看看里面谁在做，对谁`
 
 
-### I5371 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1449
+### I5372 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1449
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **假阳性**：主观体验强度完全真实，但触发源并非当下现实事态，而是演化旧本能烙印、过往创伤回响、f³层级符号经文劫持。感受被激活，但不对应此时此地生命闭环真实的生存处境。`
 
 
-### I5372 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1471
+### I5373 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1471
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**固有限度。** 大量中间灰色案例客观存在，许多感受是混杂态——一部分来自现实处境，一部分混杂创伤与演化残留，只能做程度判断，不是非黑即白。判别离不开现实操作实践，不能靠单纯头脑内反思完成全部判定；`
 
 
-### I5373 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1515
+### I5374 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1515
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道`
 
 
-### I5374 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1515
+### I5375 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1515
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道`
 
 
-### I5375 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1515
+### I5376 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1515
 
 **问题**: 绝对化表述 "所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道"因果（碰了会疼）、"知道"时空（伸手能抓到东西）、"知道"必然（不吃饭会饿），这些不用学、不用想，是缄默意识里的范畴，比显意识用语言说出来的范畴古老得多。康德所谓的"先天范畴"，不过是缄默意识里的操作结构被显意识反思到了而已。对个人来说，很多范畴是通过学习语言、学习文化获得的，好像是"先天"的；但是对整个人类来说，对整个生命的进化史来说，它们都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道`
-
-
-### I5376 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1578
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `看见红色，听见声音，觉得饿，觉得疼，觉得高兴，觉得难过，这些都是感性。它不是什么"低级认识"，它是人和世界最直接的接触，是所有认识的来源，是所有理性的基础。没有感性，理性就是无源之水、无本之木，就是空`
 
 
 ### I5377 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1578
@@ -40953,46 +40953,46 @@
 **上下文**: `看见红色，听见声音，觉得饿，觉得疼，觉得高兴，觉得难过，这些都是感性。它不是什么"低级认识"，它是人和世界最直接的接触，是所有认识的来源，是所有理性的基础。没有感性，理性就是无源之水、无本之木，就是空`
 
 
-### I5378 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1580
+### I5378 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1578
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `看见红色，听见声音，觉得饿，觉得疼，觉得高兴，觉得难过，这些都是感性。它不是什么"低级认识"，它是人和世界最直接的接触，是所有认识的来源，是所有理性的基础。没有感性，理性就是无源之水、无本之木，就是空`
+
+
+### I5379 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1580
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是活的，是现在进行时的。它是当下的生命和世界的直接接触，是正在进行的操作，是阳。现在觉得疼，这个疼是活的，是正在发生的，任何概念都代替不了。`
 
 
-### I5379 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1580
+### I5380 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1580
 
 **问题**: 绝对化表述 "任何概念都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是活的，是现在进行时的。它是当下的生命和世界的直接接触，是正在进行的操作，是阳。现在觉得疼，这个疼是活的，是正在发生的，任何概念都代替不了。`
 
 
-### I5380 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1581
+### I5381 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1581
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，它是具体的，和生命直接相关。感性没有抽象的，每一个感觉都是具体的人的感觉，都和生命状态、需要、操作联系在一起。觉得饿，是身体需要食物；觉得疼，是身体受到了伤害。`
 
 
-### I5381 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1581
+### I5382 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1581
 
 **问题**: 绝对化表述 "每一个感觉都是具体的人的感觉，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，它是具体的，和生命直接相关。感性没有抽象的，每一个感觉都是具体的人的感觉，都和生命状态、需要、操作联系在一起。觉得饿，是身体需要食物；觉得疼，是身体受到了伤害。`
 
 
-### I5382 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1582
+### I5383 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1582
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，它是缄默意识的直接体现，是"知"的最原始形态。疼了，当下就知道疼，不需要思考，不需要概念。这种"知"是最可靠的，是所有知识的根。`
-
-
-### I5383 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1584
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思说："感性必须是一切科学的基础。科学只有从感性意识和感性需要这两种形式的感性出发，因而，科学只有从自然界出发，才是现实的科学。"所有的科学，所有的理性，所有的理论，追根溯源，都来自人的感性活动，`
 
 
 ### I5384 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1584
@@ -41011,44 +41011,44 @@
 
 ### I5386 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1584
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思说："感性必须是一切科学的基础。科学只有从感性意识和感性需要这两种形式的感性出发，因而，科学只有从自然界出发，才是现实的科学。"所有的科学，所有的理性，所有的理论，追根溯源，都来自人的感性活动，`
+
+
+### I5387 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1584
+
 **问题**: 绝对化表述 "所有的科学，所有的理性，所有的理论，追根溯源，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `马克思说："感性必须是一切科学的基础。科学只有从感性意识和感性需要这两种形式的感性出发，因而，科学只有从自然界出发，才是现实的科学。"所有的科学，所有的理性，所有的理论，追根溯源，都来自人的感性活动，`
 
 
-### I5387 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1589
+### I5388 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1589
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的理性，追根溯源，都来自感性，都是对感性经验的抽象和整理。没有感性经验，理性就是空的，就是没有内容的概念游戏。`
 
 
-### I5388 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1589
+### I5389 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1589
 
 **问题**: 绝对化表述 "所有的理性，追根溯源，都来自感性，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的理性，追根溯源，都来自感性，都是对感性经验的抽象和整理。没有感性经验，理性就是空的，就是没有内容的概念游戏。`
 
 
-### I5389 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1592
+### I5390 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1592
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是抽象的、普遍的，但是它也因此是干瘪的、没有血肉的。"红"这个概念能概括所有红的东西，但是它没有任何一个具体的红的东西那么丰富、那么鲜活。读了一本描写爱情的书，书里写得再好，也代替不了自己谈一`
 
 
-### I5390 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1592
+### I5391 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1592
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是抽象的、普遍的，但是它也因此是干瘪的、没有血肉的。"红"这个概念能概括所有红的东西，但是它没有任何一个具体的红的东西那么丰富、那么鲜活。读了一本描写爱情的书，书里写得再好，也代替不了自己谈一`
-
-
-### I5391 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1593
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `第二，它是静止的、固定的。概念一旦形成，就有相对的稳定性，但是活的感性、活的世界是一直在变的。用固定的概念去套永远在变的活的世界，就会有僵化的危险。这就是为什么教条主义者永远要碰壁。`
 
 
 ### I5392 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1593
@@ -41058,137 +41058,137 @@
 **上下文**: `第二，它是静止的、固定的。概念一旦形成，就有相对的稳定性，但是活的感性、活的世界是一直在变的。用固定的概念去套永远在变的活的世界，就会有僵化的危险。这就是为什么教条主义者永远要碰壁。`
 
 
-### I5393 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1612
+### I5393 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1593
 
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
+**上下文**: `第二，它是静止的、固定的。概念一旦形成，就有相对的稳定性，但是活的感性、活的世界是一直在变的。用固定的概念去套永远在变的活的世界，就会有僵化的危险。这就是为什么教条主义者永远要碰壁。`
 
 
 ### I5394 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1612
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
 
 
 ### I5395 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1612
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
+
+
+### I5396 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1612
+
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
 
 
-### I5396 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1648
+### I5397 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1648
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的名，追根溯源，都来自实，来自人的实际操作，是为实服务的工具。名一旦形成，就有很大的作用。它能把经验固定下来，传下去；它能让人和人之间交流，组织起来，形成更大的自指系统。没有名，就没有人类社会，就`
 
 
-### I5397 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1648
+### I5398 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1648
 
 **问题**: 绝对化表述 "所有的名，追根溯源，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的名，追根溯源，都来自实，来自人的实际操作，是为实服务的工具。名一旦形成，就有很大的作用。它能把经验固定下来，传下去；它能让人和人之间交流，组织起来，形成更大的自指系统。没有名，就没有人类社会，就`
 
 
-### I5398 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1793
+### I5399 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1793
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `但这句话不能当作存在论的最后一言。它有一个容易滑向的陷阱：如果人"是"社会关系的"总和"，那么逻辑上似乎改变社会关系就能改变人，人成了关系的产物和效应。这是结构决定论——关系成了主体，活人成了关系的承`
 
 
-### I5399 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1812
+### I5400 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1812
 
 **问题**: 绝对化表述 "每一层都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一卷讲过自指的嵌套性：大的自指系统套着小的自指系统，每一层都有自己的自指结构。个人和社会的关系，就是典型的自指嵌套关系。`
 
 
-### I5400 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1825
+### I5401 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1825
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `马克思和恩格斯说："在过去的种种冒充的共同体中，如在国家等等中，个人自由只是对那些在统治阶级范围内发展的个人来说是存在的……对于被统治的阶级来说，它不仅是完全虚幻的共同体，而且是新的桎梏。在真正的共同`
 
 
-### I5401 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1845
+### I5402 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1845
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `资产阶级讲自由，讲的是抽象的自由，是"天赋人权"的自由，是法律上的自由。他们说，每个人都有自由，只要不犯法，想干什么就干什么。`
 
 
-### I5402 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1852
+### I5403 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1852
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 能认识必然，利用规律为自己的目的服务，而不是被盲目的规律支配；`
 
 
-### I5403 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1857
+### I5404 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1857
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `自由不是天赋的，是争取来的。自由也不是一个人的自由。只有解放了全人类，无产阶级才能最后解放自己；只有所有人都成为自己生命的主人，才有真正的自由。`
 
 
-### I5404 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1857
+### I5405 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1857
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `自由不是天赋的，是争取来的。自由也不是一个人的自由。只有解放了全人类，无产阶级才能最后解放自己；只有所有人都成为自己生命的主人，才有真正的自由。`
 
 
-### I5405 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1900
+### I5406 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1900
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第四个环节：人同人相异化。** 当人同自己的劳动产品、自己的生命活动、自己的类本质相异化的时候，他也同他人相对立。在异化劳动下，人和人的关系变成了利益关系、金钱关系、竞争关系。每个人都把别人当成自`
 
 
-### I5406 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1914
+### I5407 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1914
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `国家不是从来就有的，也不是超阶级的。国家是阶级矛盾不可调和的产物，是一个阶级压迫另一个阶级的工具。国家也不会永远存在。当阶级和阶级差别消失了，国家也就失去了它的作用，它会慢慢消亡，被一个自由人的联合体`
 
 
-### I5407 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1984
+### I5408 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1984
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先说清楚：这不是可以拿计算器算出精确数字的工程公式。"生产关系公平"怎么打分？"共同体信任"怎么量化？谁来打？按什么标准？这些都是问题。任何声称能精确算出"社会健康指数"的公式，如果它给不出可操作的测`
 
 
-### I5408 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1989
+### I5409 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1989
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**个体稳态。** 社会中每个个体的身心健康程度：衣食住行、医疗、休息、安全、预期寿命。这是最基础的——个体是社会的细胞，细胞不健康，社会不可能健康。这一维好，意味着每个人都能吃饱穿暖、病有所医、老有`
 
 
-### I5409 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1989
+### I5410 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1989
 
 **问题**: 绝对化表述 "每个个体的身心健康程度：衣食住行、医疗、休息、安全、预期寿命。这是最基础的——个体是社会的细胞，细胞不健康，社会不可能健康。这一维好，意味着每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**个体稳态。** 社会中每个个体的身心健康程度：衣食住行、医疗、休息、安全、预期寿命。这是最基础的——个体是社会的细胞，细胞不健康，社会不可能健康。这一维好，意味着每个人都能吃饱穿暖、病有所医、老有`
 
 
-### I5410 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1991
+### I5411 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:1991
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**生产关系公平。** 生产资料归谁所有、产品怎么分配、人与人在生产中的关系是否平等。这一维好，意味着劳动者掌握生产资料，没有剥削，按劳分配，人与人是平等的合作关系。这一维差，意味着生产资料被少数人占`
-
-
-### I5411 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2004
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `所以综合判断的思路接近**几何平均**：任何一个维度接近零，整体就接近零；任何一个维度特别低，整体就被严重拉低。这个思路是对的——生命系统就是这样，一个器官衰竭可以导致整个机体死亡。但要注意：几何平均`
 
 
 ### I5412 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2004
@@ -41198,74 +41198,74 @@
 **上下文**: `所以综合判断的思路接近**几何平均**：任何一个维度接近零，整体就接近零；任何一个维度特别低，整体就被严重拉低。这个思路是对的——生命系统就是这样，一个器官衰竭可以导致整个机体死亡。但要注意：几何平均`
 
 
-### I5413 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2006
+### I5413 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2004
+
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `所以综合判断的思路接近**几何平均**：任何一个维度接近零，整体就接近零；任何一个维度特别低，整体就被严重拉低。这个思路是对的——生命系统就是这样，一个器官衰竭可以导致整个机体死亡。但要注意：几何平均`
+
+
+### I5414 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2006
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `还有一个尺度问题：同一个社会，在不同尺度上衡量，操作权的直接程度不同。个人尺度上人直接掌握自己的操作；社区/集体尺度上操作权需要通过集体协调，有一定间接性；国家/社会尺度上操作权通过制度中介，间接性更`
 
 
-### I5414 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2146
+### I5415 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2146
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `从生命论的角度看，语言是明性的符号化，是操作的交流工具。它是在人的劳动和交往中产生的，为人的操作服务。语言是阴，是活的操作的沉淀，它一旦形成就有自己的规律，会反过来影响人的思维，但它永远是人的工具，不`
 
 
-### I5415 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2152
+### I5416 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2152
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `*（第三卷完。第四卷异化论，讲资本这个反自指系统是怎么运作的，它为什么不可能永远持续。）*`
 
 
-### I5416 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2152
+### I5417 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2152
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `*（第三卷完。第四卷异化论，讲资本这个反自指系统是怎么运作的，它为什么不可能永远持续。）*`
 
 
-### I5417 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2176
+### I5418 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2176
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `商品交换发展到一定阶段，产生了货币。货币是固定充当一般等价物的商品，是价值的独立形式。有了货币，商品世界分成两极：一极是所有普通商品，代表各种特殊的使用价值；另一极是货币，代表一般的交换价值。`
 
 
-### I5418 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2176
+### I5419 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2176
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `商品交换发展到一定阶段，产生了货币。货币是固定充当一般等价物的商品，是价值的独立形式。有了货币，商品世界分成两极：一极是所有普通商品，代表各种特殊的使用价值；另一极是货币，代表一般的交换价值。`
 
 
-### I5419 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2180
+### I5420 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2180
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `剩余价值从哪里来？不能从流通中来——贱买贵卖只是价值转移，整个社会的总价值不增加。也不能离开流通产生——把钱藏起来永远不会多一个子儿。`
 
 
-### I5420 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2180
+### I5421 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2180
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `剩余价值从哪里来？不能从流通中来——贱买贵卖只是价值转移，整个社会的总价值不增加。也不能离开流通产生——把钱藏起来永远不会多一个子儿。`
 
 
-### I5421 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2184
+### I5422 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2184
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `资产阶级经济学家把资本说成是物——机器、厂房、原料、货币，说这些东西天生就是资本，资本家拿利润是"资本的贡献"。这一说法站不住。机器本身不是资本，只有在一定的社会关系下，当它们被资本家占有、用来占有工`
-
-
-### I5422 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2185
-
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思说："资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，后者体现在一个物上，并赋予这个物以独特的社会性质。"`
 
 
 ### I5423 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2185
@@ -41275,74 +41275,74 @@
 **上下文**: `马克思说："资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，后者体现在一个物上，并赋予这个物以独特的社会性质。"`
 
 
-### I5424 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2451
+### I5424 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2185
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思说："资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，后者体现在一个物上，并赋予这个物以独特的社会性质。"`
+
+
+### I5425 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2451
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**F2的残酷和F3的盗火者责任。** F2不只是"识破"，它是一个深渊：你必须认真地、彻底地清扫一切外在赋予的意义——神、国家、资本、"端正"、"成功"、"历史的必然"、别人的期待——确认真正的虚无`
 
 
-### I5425 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2451
+### I5426 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2451
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**F2的残酷和F3的盗火者责任。** F2不只是"识破"，它是一个深渊：你必须认真地、彻底地清扫一切外在赋予的意义——神、国家、资本、"端正"、"成功"、"历史的必然"、别人的期待——确认真正的虚无`
 
 
-### I5426 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2463
+### I5427 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2463
 
 **问题**: 绝对化表述 "每一次点击、浏览、消费、社交，都被平台记录、收集、分析，变成数据商品。以为在免费使用平台，实际上是在免费为平台提供数据——注意力、行为数据、社交关系，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一，数据提取。** 数据是数字资本主义的石油。用户在平台上的每一次点击、浏览、消费、社交，都被平台记录、收集、分析，变成数据商品。以为在免费使用平台，实际上是在免费为平台提供数据——注意力、行为`
 
 
-### I5427 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2464
+### I5428 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2464
 
 **问题**: 绝对化表述 "每一秒都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第二，算法管理。** 平台通过算法管理劳动者和消费者。外卖骑手、网约车司机被算法派单、计时、罚款；消费者被算法推荐、画像、引导消费。算法比传统的工头更精确，它不休息、不讲情面，把劳动时间的每一秒都`
 
 
-### I5428 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2466
+### I5429 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2466
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第四，监视资本主义。** Zuboff在《监视资本主义时代》中指出，平台资本提取的不只是用户主动提供的数据，还有"行为剩余"——在网上留下的所有痕迹，包括本人不知道自己留下的。这些数据被用来预测行`
 
 
-### I5429 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2472
+### I5430 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2472
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**趋势三：数字剥削的普遍性。** 在数字资本主义下，剥削不只是在工厂里——刷视频、发朋友圈、写评论，都是在为平台生产数据。"产消合一"（prosumer）让消费者同时变成生产者，在消费的同时被剥削。`
 
 
-### I5430 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2473
+### I5431 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2473
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**趋势四：数字无产阶级的形成。** 骑手、司机、主播、内容创作者、数据标注工，所有在平台上劳动的人，构成了数字无产阶级。他们和传统工人一样不占有生产资料（平台和数据属于资本家），一样被算法剥削，一样`
 
 
-### I5431 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2474
+### I5432 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2474
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**趋势五：数字资本主义为社会主义准备了更充分的条件。** 平台本身就是高度社会化的生产组织，几亿人在上面劳动、消费、交往；数字技术提供了全社会统一计划生产的技术手段；数据公有、算法透明、平台社会所有`
 
 
-### I5432 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2477
+### I5433 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2477
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一，数据公有。** 数据是社会的集体产物，应当归社会所有，不能被私人资本垄断。可以建立公共数据银行，数据由社会管理，使用数据产生的收益归全社会。`
-
-
-### I5433 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2479
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**第三，平台公有或劳动者所有。** 具有自然垄断性质的平台，应当收归社会所有，或者由平台劳动者集体所有、民主管理。平台的管理者应当由劳动者选举产生，对劳动者负责，而不是对股东负责。`
 
 
 ### I5434 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2479
@@ -41359,39 +41359,39 @@
 **上下文**: `**第三，平台公有或劳动者所有。** 具有自然垄断性质的平台，应当收归社会所有，或者由平台劳动者集体所有、民主管理。平台的管理者应当由劳动者选举产生，对劳动者负责，而不是对股东负责。`
 
 
-### I5436 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2541
+### I5436 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2479
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**第三，平台公有或劳动者所有。** 具有自然垄断性质的平台，应当收归社会所有，或者由平台劳动者集体所有、民主管理。平台的管理者应当由劳动者选举产生，对劳动者负责，而不是对股东负责。`
+
+
+### I5437 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2541
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，他夸大了"非物质劳动"的地位。全球绝大多数工人仍然在工厂、农场、工地从事物质劳动，"认知劳动"只是全球资本链条的顶端。他把发达国家少数知识工人的状况当成了全部，忽视了全球南方的物质生产。`
 
 
-### I5437 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2545
+### I5438 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2545
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `解放的道路不是福柯说的"局部斗争"（他拒绝任何总体性的解放方案），也不是奈格里说的"多众自动出走"，而是**解蔽—收权—立序**：认识到资本对生命的全面控制，把操作权——包括对自己身体、数据、社会关系`
 
 
-### I5438 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2716
+### I5439 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2716
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一旦完成这个混同，推演就顺了：生产离不开生产资料，生产资料就是资本，所以生产离不开资本；资本家是资本的人格化，所以工人离不开资本家。结论：资本是永恒的、自然的、任何社会都不可缺少的。`
 
 
-### I5439 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2716
+### I5440 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2716
 
 **问题**: 绝对化表述 "任何社会都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一旦完成这个混同，推演就顺了：生产离不开生产资料，生产资料就是资本，所以生产离不开资本；资本家是资本的人格化，所以工人离不开资本家。结论：资本是永恒的、自然的、任何社会都不可缺少的。`
-
-
-### I5440 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2720
-
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思自己打过一个比方："黑人就是黑人。只有在一定的关系下，他才成为奴隶。纺纱机是纺棉花的机器。只有在一定的关系下，它才成为资本。脱离了这种关系，它也就不是资本了。"（《雇佣劳动与资本》，《马克思恩格`
 
 
 ### I5441 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2720
@@ -41401,67 +41401,67 @@
 **上下文**: `马克思自己打过一个比方："黑人就是黑人。只有在一定的关系下，他才成为奴隶。纺纱机是纺棉花的机器。只有在一定的关系下，它才成为资本。脱离了这种关系，它也就不是资本了。"（《雇佣劳动与资本》，《马克思恩格`
 
 
-### I5442 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2722
+### I5442 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2720
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思自己打过一个比方："黑人就是黑人。只有在一定的关系下，他才成为奴隶。纺纱机是纺棉花的机器。只有在一定的关系下，它才成为资本。脱离了这种关系，它也就不是资本了。"（《雇佣劳动与资本》，《马克思恩格`
+
+
+### I5443 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2722
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三位一体公式的荒谬在于：土地是自然物，资本是社会关系，劳动是人的活动——三者完全不同质，却被并列成各自"创造"价值的独立源泉。马克思说，这就像把"公证人的手续费、甜菜和音乐"硬凑在一起一样荒谬。剥开看`
 
 
-### I5443 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2722
+### I5444 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2722
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三位一体公式的荒谬在于：土地是自然物，资本是社会关系，劳动是人的活动——三者完全不同质，却被并列成各自"创造"价值的独立源泉。马克思说，这就像把"公证人的手续费、甜菜和音乐"硬凑在一起一样荒谬。剥开看`
 
 
-### I5444 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2722
+### I5445 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2722
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三位一体公式的荒谬在于：土地是自然物，资本是社会关系，劳动是人的活动——三者完全不同质，却被并列成各自"创造"价值的独立源泉。马克思说，这就像把"公证人的手续费、甜菜和音乐"硬凑在一起一样荒谬。剥开看`
 
 
-### I5445 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2846
+### I5446 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2846
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二个层次：**阶级的解放**——无产阶级和所有被压迫阶级从剥削和压迫下解放出来。无产阶级推翻资产阶级统治，建立无产阶级专政，消灭剥削制度，消灭阶级；劳动者成为社会的主人。`
 
 
-### I5446 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2847
+### I5447 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2847
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三个层次：**人类的解放**——全人类从必然王国进入自由王国。阶级和国家消亡了，人不再受自己社会关系的支配；劳动成为人的第一需要；每个人的自由发展是一切人自由发展的条件。`
 
 
-### I5447 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2848
+### I5448 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2848
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三个层次是联系在一起的。没有阶级的解放，个人的解放不可能；没有全人类的解放，阶级的解放不彻底。`
 
 
-### I5448 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2848
+### I5449 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2848
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三个层次是联系在一起的。没有阶级的解放，个人的解放不可能；没有全人类的解放，阶级的解放不彻底。`
 
 
-### I5449 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2851
+### I5450 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2851
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，无产阶级不占有生产资料，在革命中失去的只是锁链，获得的将是整个世界，它最坚决、最彻底。`
-
-
-### I5450 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2853
-
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `第三，无产阶级是大多数。但"大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、`
 
 
 ### I5451 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2853
@@ -41471,32 +41471,32 @@
 **上下文**: `第三，无产阶级是大多数。但"大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、`
 
 
-### I5452 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2855
+### I5452 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2853
+
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `第三，无产阶级是大多数。但"大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、`
+
+
+### I5453 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2855
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `今天的无产阶级不仅包括传统产业工人，还包括所有靠出卖劳动力生活的人：服务业工人、教师、医生、程序员、外卖骑手、数字劳动者。资本越发展，无产阶级的队伍越大。不占有生产资料、靠出卖劳动力生活、剩余劳动被他`
 
 
-### I5453 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2855
+### I5454 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2855
 
 **问题**: 绝对化表述 "所有靠出卖劳动力生活的人：服务业工人、教师、医生、程序员、外卖骑手、数字劳动者。资本越发展，无产阶级的队伍越大。不占有生产资料、靠出卖劳动力生活、剩余劳动被他人占有的人，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `今天的无产阶级不仅包括传统产业工人，还包括所有靠出卖劳动力生活的人：服务业工人、教师、医生、程序员、外卖骑手、数字劳动者。资本越发展，无产阶级的队伍越大。不占有生产资料、靠出卖劳动力生活、剩余劳动被他`
 
 
-### I5454 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2860
+### I5455 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2860
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `客观条件成熟了主观条件不成熟，革命也不会成功。所以在客观条件还没完全成熟时，革命者的任务是做群众工作，宣传、组织、提高群众觉悟，积蓄力量；时机成熟时，果断发动群众夺取胜利。`
-
-
-### I5455 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2864
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `判断一种理论——马克思的、毛泽东的、任何共产主义者的、任何自称正义的理论——是不是真正帮助无产阶级、真正通往共产主义的理论，唯一的根据是：**它让你站着活，还是跪着活。**`
 
 
 ### I5456 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2864
@@ -41506,46 +41506,46 @@
 **上下文**: `判断一种理论——马克思的、毛泽东的、任何共产主义者的、任何自称正义的理论——是不是真正帮助无产阶级、真正通往共产主义的理论，唯一的根据是：**它让你站着活，还是跪着活。**`
 
 
-### I5457 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2936
+### I5457 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2864
+
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `判断一种理论——马克思的、毛泽东的、任何共产主义者的、任何自称正义的理论——是不是真正帮助无产阶级、真正通往共产主义的理论，唯一的根据是：**它让你站着活，还是跪着活。**`
+
+
+### I5458 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:2936
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**经济上的收权**：消灭生产资料私有制，建立公有制。没收大资本家、大银行、大垄断企业的财产归社会所有；生产目的从利润变成为满足人民需要。经济收权是最根本的——不掌握生产资料，政治权力是空的。`
 
 
-### I5458 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3076
+### I5459 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3076
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `公共权力本来是社会这个自指系统的"阴"，是为社会所有成员（阳）服务的工具。健康的公共权力是阳主阴从：权力来自人民，属于人民，为人民服务，受人民监督。`
 
 
-### I5459 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3120
+### I5460 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3120
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `群众路线的核心是：**真正的智慧在群众手里，不在少数精英的脑子里。** 这不是谦虚，是认识论的真理。群众是直接操作者，他们最了解实际情况，最知道问题出在哪里、办法在哪里。领导者的作用不是替群众想办法，`
 
 
-### I5460 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3134
+### I5461 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3134
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第四，它是动态的、发展的民主——民主的范围要不断扩大，形式要不断完善，直到所有人都能直接管理社会，公共权力失去政治性质。`
 
 
-### I5461 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3134
+### I5462 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3134
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第四，它是动态的、发展的民主——民主的范围要不断扩大，形式要不断完善，直到所有人都能直接管理社会，公共权力失去政治性质。`
-
-
-### I5462 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3140
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `巴黎公社采取了两个措施：所有公职人员由选举产生，对选民负责，随时可以撤换；所有公职人员只领取和工人一样的工资，不能有特权。`
 
 
 ### I5463 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3140
@@ -41555,88 +41555,88 @@
 **上下文**: `巴黎公社采取了两个措施：所有公职人员由选举产生，对选民负责，随时可以撤换；所有公职人员只领取和工人一样的工资，不能有特权。`
 
 
-### I5464 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3146
+### I5464 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3140
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `巴黎公社采取了两个措施：所有公职人员由选举产生，对选民负责，随时可以撤换；所有公职人员只领取和工人一样的工资，不能有特权。`
+
+
+### I5465 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3146
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 权力来自人民：所有管理者由人民选举，对人民负责，受人民监督，人民有权随时罢免；`
 
 
-### I5465 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3149
+### I5466 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3149
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 政务公开：除国家安全外所有公共事务向人民公开；`
 
 
-### I5466 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3153
+### I5467 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3153
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个问题是社会主义国家最根本的问题，到今天还没有完全解决。我们必须继续探索、继续实践。`
 
 
-### I5467 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3161
+### I5468 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3161
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `鞍钢宪法——"两参一改三结合"（干部参加劳动、工人参加管理、改革不合理的规章制度、工人群众、领导干部和技术员三结合）——指向了正确的方向：让阳主阴从不是一句口号，而是每天都在发生的操作关系。干部每月下`
 
 
-### I5468 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3161
+### I5469 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3161
 
 **问题**: 绝对化表述 "每天都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `鞍钢宪法——"两参一改三结合"（干部参加劳动、工人参加管理、改革不合理的规章制度、工人群众、领导干部和技术员三结合）——指向了正确的方向：让阳主阴从不是一句口号，而是每天都在发生的操作关系。干部每月下`
 
 
-### I5469 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3165
+### I5470 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3165
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个教训比"国家什么时候消亡"紧迫得多。国家消亡是遥远的事——物质极大丰富、明性普遍觉醒、分工差别消失，这些条件在可预见的将来不具备。但"这个国家是谁的国家、怎么保证它不异化"是眼前的事。一个掌握全部`
 
 
-### I5470 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3174
+### I5471 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3174
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一句话：**阳主阴从不能只在运动中实现一瞬间，必须在制度中实现每一天。** 用运动方式反对官僚主义，反完了官僚还是官僚；用制度方式让劳动者每天都在管理，官僚才不成其为官僚。手段和目的必须同构——要实现`
 
 
-### I5471 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3174
+### I5472 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3174
 
 **问题**: 绝对化表述 "每一天。** 用运动方式反对官僚主义，反完了官僚还是官僚；用制度方式让劳动者每天都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一句话：**阳主阴从不能只在运动中实现一瞬间，必须在制度中实现每一天。** 用运动方式反对官僚主义，反完了官僚还是官僚；用制度方式让劳动者每天都在管理，官僚才不成其为官僚。手段和目的必须同构——要实现`
 
 
-### I5472 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3196
+### I5473 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3196
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这也是为什么本书反复强调：**立场不能代替明性，纪律不能代替监督，运动不能代替制度。** 一个工人说"党在官僚化"，正确的反应不是让他检讨，而是去查一查党是不是真的在官僚化——这就是"从群众中来"，这`
 
 
-### I5473 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3206
+### I5474 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3206
 
 **问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `名实遮蔽的操作方式几乎总是同一种：**打着某个指标的幌子，实际上残害别的指标，最终达到残害人民的实效。** 举几个典型模式：`
 
 
-### I5474 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3213
+### I5475 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3213
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `公式的力量在于：它不跟你争论立场，不跟你争论动机，不跟你争论"你什么级别你懂什么"。它只问一个问题：**M在涨还是在跌？N大于1还是小于1？l′在降还是在升？** 这三个数不需要哲学训练就能理解，不需`
-
-
-### I5475 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3217
-
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `这就是"大多数即日常"在认识论上的落地：**每一个普通人在自己的日常位置上，都有能力用公式判断自己的生命状态和上级的政策效果。** 不需要等伟人来启蒙，不需要等运动来冲破，不需要等文件来纠正。你今天就`
 
 
 ### I5476 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3217
@@ -41662,16 +41662,16 @@
 
 ### I5479 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3217
 
-**问题**: 绝对化表述 "每一个普通人在自己的日常位置上，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是"大多数即日常"在认识论上的落地：**每一个普通人在自己的日常位置上，都有能力用公式判断自己的生命状态和上级的政策效果。** 不需要等伟人来启蒙，不需要等运动来冲破，不需要等文件来纠正。你今天就`
 
 
-### I5480 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3318
+### I5480 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3217
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一个普通人在自己的日常位置上，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都是把操作权还给生命本身。`
+**上下文**: `这就是"大多数即日常"在认识论上的落地：**每一个普通人在自己的日常位置上，都有能力用公式判断自己的生命状态和上级的政策效果。** 不需要等伟人来启蒙，不需要等运动来冲破，不需要等文件来纠正。你今天就`
 
 
 ### I5481 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3318
@@ -41683,16 +41683,16 @@
 
 ### I5482 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3318
 
-**问题**: 绝对化表述 "所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都是把操作权还给生命本身。`
 
 
-### I5483 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3334
+### I5483 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3318
 
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `生命论讲的"道在日用"，是从存在论推出的。道是什么？是自指操作的规律，是阳主阴从的道理，是生命自己维持自己、发展自己的规律。这个道不在天上，不在概念里，就在每一个生命的每一个活的操作里。吃饭是在维持自`
+**上下文**: `所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都是把操作权还给生命本身。`
 
 
 ### I5484 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3334
@@ -41702,25 +41702,25 @@
 **上下文**: `生命论讲的"道在日用"，是从存在论推出的。道是什么？是自指操作的规律，是阳主阴从的道理，是生命自己维持自己、发展自己的规律。这个道不在天上，不在概念里，就在每一个生命的每一个活的操作里。吃饭是在维持自`
 
 
-### I5485 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3459
+### I5485 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3334
+
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `生命论讲的"道在日用"，是从存在论推出的。道是什么？是自指操作的规律，是阳主阴从的道理，是生命自己维持自己、发展自己的规律。这个道不在天上，不在概念里，就在每一个生命的每一个活的操作里。吃饭是在维持自`
+
+
+### I5486 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3459
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**正名三问法**。遇到任何让人不舒服但"大家都这样"的事，问三个问题：这件事的真名是什么？（996不叫"奋斗"叫"超时劳动"）谁给它起的假名？（资本和它的意识形态）它实际上在操作谁、对谁有利？`
 
 
-### I5486 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3459
+### I5487 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3459
 
 **问题**: 绝对化表述 "任何让人不舒服但"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**正名三问法**。遇到任何让人不舒服但"大家都这样"的事，问三个问题：这件事的真名是什么？（996不叫"奋斗"叫"超时劳动"）谁给它起的假名？（资本和它的意识形态）它实际上在操作谁、对谁有利？`
-
-
-### I5487 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3464
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `身体是自指操作的物质基础，是阳的载体。把身体搞坏了，所有理想、所有事业都没有载体了。`
 
 
 ### I5488 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3464
@@ -41732,100 +41732,100 @@
 
 ### I5489 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3464
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `身体是自指操作的物质基础，是阳的载体。把身体搞坏了，所有理想、所有事业都没有载体了。`
+
+
+### I5490 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3464
+
 **问题**: 绝对化表述 "所有理想、所有事业都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `身体是自指操作的物质基础，是阳的载体。把身体搞坏了，所有理想、所有事业都没有载体了。`
 
 
-### I5490 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3546
+### I5491 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3546
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `家庭也是一样。要消灭的是旧的、异化的家庭关系（妇女是丈夫的附属、孩子是家庭的私有财产），建立新的、平等的、互助的家庭关系。家庭永远是社会的细胞，是爱的港湾，是生命传承的地方。`
 
 
-### I5491 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3560
+### I5492 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3560
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `人为什么活着？这个问题旧哲学回答了两千年，答案无非三种：要么说意义在外面——上帝、来世、历史必然、某个"更高的目的"；要么说没有意义——虚无主义，怎么活都行；要么市侩地说——赚钱、成功、买车买房。三种`
 
 
-### I5492 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3637
+### I5493 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3637
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `真正的自由是对必然的认识和改造——人认识了规律，自觉地按照规律行动，人就是自由的。认识了身体的规律，按时作息、坚持锻炼，人就有健康的自由；认识了社会的规律，和同志们一起斗争，人就有解放的自由。`
 
 
-### I5493 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3639
+### I5494 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3639
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `纪律是自由的条件。一个集体没有纪律，各行其是，就是一盘散沙，什么事都做不成，最后每个人都不自由。革命队伍的纪律不是外在的压迫，是大家为了共同的目标自愿遵守的规则——它保护集体的战斗力，也保护每个人的自`
 
 
-### I5494 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3641
+### I5495 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3641
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `但纪律必须是自觉的纪律，不是盲目的服从。理解了为什么要有这个纪律，自觉遵守，这是自由；不理解但被迫遵守，那是异化。所以任何纪律都要让大家明白为什么，都要经过大家的讨论和同意。`
 
 
-### I5495 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3641
+### I5496 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3641
 
 **问题**: 绝对化表述 "任何纪律都要让大家明白为什么，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `但纪律必须是自觉的纪律，不是盲目的服从。理解了为什么要有这个纪律，自觉遵守，这是自由；不理解但被迫遵守，那是异化。所以任何纪律都要让大家明白为什么，都要经过大家的讨论和同意。`
 
 
-### I5496 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3646
+### I5497 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3646
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `革命者也是人，也有七情六欲，也有自己的生活、爱好、爱情、家庭。革命不是为了让大家过苦日子，恰恰是为了让所有人都能过上好日子，都能全面发展。如果革命的结果是大家都苦行僧一般，那革命干什么？`
 
 
-### I5497 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3646
+### I5498 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3646
 
 **问题**: 绝对化表述 "所有人都能过上好日子，都能全面发展。如果革命的结果是大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `革命者也是人，也有七情六欲，也有自己的生活、爱好、爱情、家庭。革命不是为了让大家过苦日子，恰恰是为了让所有人都能过上好日子，都能全面发展。如果革命的结果是大家都苦行僧一般，那革命干什么？`
 
 
-### I5498 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3650
+### I5499 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3650
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `主张的是健康的、充实的、为人民服务的生活方式。不反对个人利益和个人幸福，但把个人幸福和人民幸福结合起来——只有人民都幸福了，个人的幸福才是牢靠的；只有所有人都解放了，自己才是真正解放的。`
 
 
-### I5499 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3650
+### I5500 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3650
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `主张的是健康的、充实的、为人民服务的生活方式。不反对个人利益和个人幸福，但把个人幸福和人民幸福结合起来——只有人民都幸福了，个人的幸福才是牢靠的；只有所有人都解放了，自己才是真正解放的。`
 
 
-### I5500 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3671
+### I5501 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3671
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**螺——鹦鹉螺。** 这个意象存在了几亿年，永恒、沉默。螺是自指的形状——一圈圈转，从中心向外旋，每一圈都重复上一圈的结构，但更大、更高。螺也是必然王国的形状——历史周期律，王朝更替，资本危机，一个`
 
 
-### I5501 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3671
+### I5502 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3671
 
 **问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**螺——鹦鹉螺。** 这个意象存在了几亿年，永恒、沉默。螺是自指的形状——一圈圈转，从中心向外旋，每一圈都重复上一圈的结构，但更大、更高。螺也是必然王国的形状——历史周期律，王朝更替，资本危机，一个`
-
-
-### I5502 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3675
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `第一层：**用它**。维住命、索出路、图新序、在螺中螺旋上升——螺度一层层提高，每一圈都比上一圈更自觉、更有组织、操作权更多。这是度必然王国的方法。必然王国不会一天打碎，人在螺里转，但不是被动地转，是`
 
 
 ### I5503 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3675
@@ -41837,16 +41837,16 @@
 
 ### I5504 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3675
 
-**问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一层：**用它**。维住命、索出路、图新序、在螺中螺旋上升——螺度一层层提高，每一圈都比上一圈更自觉、更有组织、操作权更多。这是度必然王国的方法。必然王国不会一天打碎，人在螺里转，但不是被动地转，是`
 
 
-### I5505 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3677
+### I5505 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3675
 
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `第二层：**打碎它**。螺不是要永远背着的东西。维索图螺是度必然王国的方法，但必然王国度尽了，方法本身也要消亡——就像国家要消亡、法要消亡、阶级要消亡。不能把螺当新神供起来，不能把"维索图螺"变成新的`
+**上下文**: `第一层：**用它**。维住命、索出路、图新序、在螺中螺旋上升——螺度一层层提高，每一圈都比上一圈更自觉、更有组织、操作权更多。这是度必然王国的方法。必然王国不会一天打碎，人在螺里转，但不是被动地转，是`
 
 
 ### I5506 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3677
@@ -41865,121 +41865,121 @@
 
 ### I5508 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3677
 
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `第二层：**打碎它**。螺不是要永远背着的东西。维索图螺是度必然王国的方法，但必然王国度尽了，方法本身也要消亡——就像国家要消亡、法要消亡、阶级要消亡。不能把螺当新神供起来，不能把"维索图螺"变成新的`
+
+
+### I5509 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3677
+
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二层：**打碎它**。螺不是要永远背着的东西。维索图螺是度必然王国的方法，但必然王国度尽了，方法本身也要消亡——就像国家要消亡、法要消亡、阶级要消亡。不能把螺当新神供起来，不能把"维索图螺"变成新的`
 
 
-### I5509 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3679
+### I5510 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3679
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所以全句是：**维索图螺度必然王国，通自由王国，指自由人联合体。**`
 
 
-### I5510 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3774
+### I5511 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3774
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"范式"是一个科学共同体共同接受的理论框架、方法、信念和范例。在常规科学时期，科学家不挑战范式，而是在范式内解决难题，就像在既定规则下猜谜。当反常积累到一定程度，范式遇到危机，就会有人提出新范式，经过`
 
 
-### I5511 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3784
+### I5512 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3784
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `费耶阿本德比库恩走得更远。他在《反对方法》中提出，科学没有唯一的、固定的方法，科学史上的重大突破往往是打破了既有规则才成功的。他的口号是"怎么都行"（anything goes）——不是说科学没有方法`
 
 
-### I5512 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3837
+### I5513 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3837
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `生产力是人类改造自然的能力，包括劳动者、劳动资料和劳动对象，科学技术是第一生产力。生产关系是人们在生产中结成的社会关系，核心是生产资料所有制。`
 
 
-### I5513 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3839
+### I5514 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3839
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `生产力决定生产关系，生产关系反作用于生产力。这个矛盾是社会基本矛盾，推动社会形态更替。资本主义生产关系曾经促进生产力发展，但生产社会化和私人占有的矛盾越来越尖锐，必然要求社会主义公有制。`
 
 
-### I5514 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3851
+### I5515 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3851
 
 **问题**: 绝对化表述 "每个选择都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `技术理性看起来"科学""客观""中立"，实际上是资本统治的新形式。过去的统治是皮鞭和刺刀，现在的统治是算法和监控——人甚至感觉不到被统治，以为是自己在选择，实际上每个选择都是被设计好的。`
 
 
-### I5515 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3931
+### I5516 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3931
 
 **问题**: 绝对化表述 "每个人全面发展的条件。每个人都能受到最好的教育，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `到了共产主义，教育不再是阶级的工具，不再是劳动力的培训，而是每个人全面发展的条件。每个人都能受到最好的教育，都能根据自己的兴趣和社会的需要发展自己的能力。教育从"为谋生做准备"变成"为生活本身做准备"`
 
 
-### I5516 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3955
+### I5517 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3955
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `资产阶级法权在反封建的历史阶段曾是集体明性的进步。"法律面前人人平等"否定了世袭特权、神判法、君主意志——法权第一次试图把暴力的使用纳入可预测、可质疑、可纠错的程序，这是文明的明性对任意暴力的胜利。但`
 
 
-### I5517 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3957
+### I5518 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3957
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `无产阶级法权的历史任务，是把文明的集体明性推进一步。第一，它要从形式平等走向实质平等——不只是"法律面前人人平等"，还要通过公有制和按劳分配（最终按需分配）消除使平等流于形式的经济基础。第二，它要让法`
 
 
-### I5518 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3957
+### I5519 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3957
 
 **问题**: 绝对化表述 "任何判决都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `无产阶级法权的历史任务，是把文明的集体明性推进一步。第一，它要从形式平等走向实质平等——不只是"法律面前人人平等"，还要通过公有制和按劳分配（最终按需分配）消除使平等流于形式的经济基础。第二，它要让法`
 
 
-### I5519 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3959
+### I5520 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3959
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所以，无产阶级法权和革命暴力不是矛盾的——革命暴力打碎旧国家机器，无产阶级法权制约新政权自己的暴力。没有革命暴力，法权只是旧秩序的遮羞布；没有法权制约，革命暴力会滑向红色地狱。两者合在一起，才是阳主阴`
 
 
-### I5520 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3959
+### I5521 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3959
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所以，无产阶级法权和革命暴力不是矛盾的——革命暴力打碎旧国家机器，无产阶级法权制约新政权自己的暴力。没有革命暴力，法权只是旧秩序的遮羞布；没有法权制约，革命暴力会滑向红色地狱。两者合在一起，才是阳主阴`
 
 
-### I5521 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3961
+### I5522 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3961
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `到了共产主义，法权消亡，但集体明性不消亡——它从政治强制的法权变成人们自觉遵守的公共生活规则，从"不得不遵守"变成"本来就这么做"。这和个体明性从显意识沉淀为缄默意识是同一个结构：F2的显意识检查（法`
 
 
-### I5522 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3992
+### I5523 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3992
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `全面发展需要：生产力高度发展、自由时间大大增加、消灭私有制和旧分工、教育与生产劳动结合、自由人联合体。今天的斗争和建设，都是为了让每一个生命都能充分发展。`
 
 
-### I5523 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3992
+### I5524 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:3992
 
 **问题**: 绝对化表述 "每一个生命都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `全面发展需要：生产力高度发展、自由时间大大增加、消灭私有制和旧分工、教育与生产劳动结合、自由人联合体。今天的斗争和建设，都是为了让每一个生命都能充分发展。`
-
-
-### I5524 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4045
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `"反自指系统必然走向崩溃"——不是操作外面有个规律命令它崩溃，是P寄生S、S的自指能力持续下降这个结构本身反复出现，人认出来了，叫它"必然"。"哪里有压迫哪里就有反抗"——不是历史规律保证了反抗，是压`
 
 
 ### I5525 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4045
@@ -42003,109 +42003,109 @@
 **上下文**: `"反自指系统必然走向崩溃"——不是操作外面有个规律命令它崩溃，是P寄生S、S的自指能力持续下降这个结构本身反复出现，人认出来了，叫它"必然"。"哪里有压迫哪里就有反抗"——不是历史规律保证了反抗，是压`
 
 
-### I5528 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4238
+### I5528 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4045
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `"反自指系统必然走向崩溃"——不是操作外面有个规律命令它崩溃，是P寄生S、S的自指能力持续下降这个结构本身反复出现，人认出来了，叫它"必然"。"哪里有压迫哪里就有反抗"——不是历史规律保证了反抗，是压`
+
+
+### I5529 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4238
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 生命论讲每个人都可以成为自己生命的主人，和儒家"人皆可以为尧舜"、禅宗"众生皆有佛性"相通。`
 
 
-### I5529 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4258
+### I5530 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4258
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `周易六十四卦最后两卦是"既济"和"未济"。"既济"是已经完成，但后面跟着"未济"——没有完成。世界没有终点，历史没有终点，完成了就是新的开始，发展永远不会停止。这和"自由王国不是历史的终点，是真正的人`
 
 
-### I5530 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4258
+### I5531 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4258
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `周易六十四卦最后两卦是"既济"和"未济"。"既济"是已经完成，但后面跟着"未济"——没有完成。世界没有终点，历史没有终点，完成了就是新的开始，发展永远不会停止。这和"自由王国不是历史的终点，是真正的人`
 
 
-### I5531 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4263
+### I5532 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4263
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**边界**。任何自指系统都有边界——这是第一卷讲的"四规定性"之一：边界生成性。山有边界，国有边界，身有边界，心也有边界。边界不是缺陷，是自指系统得以存在的条件。没有边界，系统就消散在环境里，`
 
 
-### I5532 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4263
+### I5533 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4263
 
 **问题**: 绝对化表述 "任何自指系统都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**边界**。任何自指系统都有边界——这是第一卷讲的"四规定性"之一：边界生成性。山有边界，国有边界，身有边界，心也有边界。边界不是缺陷，是自指系统得以存在的条件。没有边界，系统就消散在环境里，`
 
 
-### I5533 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4265
+### I5534 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4265
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，**时止则止，时行则行**。"止"不是永远不动，是该止的时候止，该行的时候行。山看起来不动，但山中草木生长、鸟兽繁育，静中有动。止是为了更好的行——停下来，是为了认清方向、积蓄力量、守住根本，然`
 
 
-### I5534 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4265
+### I5535 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4265
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，**时止则止，时行则行**。"止"不是永远不动，是该止的时候止，该行的时候行。山看起来不动，但山中草木生长、鸟兽繁育，静中有动。止是为了更好的行——停下来，是为了认清方向、积蓄力量、守住根本，然`
 
 
-### I5535 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4397
+### I5536 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4397
 
 **问题**: 绝对化表述 "每个人都有成为"圣人"的可能。这是平等的、对人的信任，和每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第四，**"人皆可以为尧舜"**。孟子说人皆可以为尧舜，王阳明说"满街都是圣人"，相信每个人都有成为"圣人"的可能。这是平等的、对人的信任，和每个人都能全面发展的理想相通。当然，儒家的"圣人"是封建道`
 
 
-### I5536 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4455
+### I5537 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4455
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**无我/操作生成我。** 佛家说五蕴聚合中无常住自性的"我"；生命论说"'我'是自指操作的产物，不是前提"。方向一致。我亲身做过这个实验：把实体意义上的"我"彻底解构、拆散，拆成感觉的流动、念`
 
 
-### I5537 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4525
+### I5538 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4525
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `我是北原慢热。2008年生，北京通州人，一个高二学生。这本书是2026年暑假，从6月到8月，两个月里整出来的。生命论是我提的，里面所有概念我把过关。这本书的野心有三个。`
 
 
-### I5538 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4529
+### I5539 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4529
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，毛泽东时代是伟大的。它给人以正能量，给人在寒冰雪原里以持续的火苗。我写这些东西，最大的动力之一就是毛主席的革命史，尤其是他的晚年。我希望所有读这本书的人都意识到这一点。`
 
 
-### I5539 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4529
+### I5540 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4529
 
 **问题**: 绝对化表述 "所有读这本书的人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，毛泽东时代是伟大的。它给人以正能量，给人在寒冰雪原里以持续的火苗。我写这些东西，最大的动力之一就是毛主席的革命史，尤其是他的晚年。我希望所有读这本书的人都意识到这一点。`
 
 
-### I5540 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4531
+### I5541 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4531
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，你可以信仰马列毛，也可以信仰别的什么，有神论者我也不强求你改成无神论。我在这里只想完完整整达成一件事：使所有的庸俗唯物主义，以及披着唯心主义或庸俗唯物主义外衣的理论，再无立锥之地。那些把"物质决`
 
 
-### I5541 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4531
+### I5542 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4531
 
 **问题**: 绝对化表述 "所有的庸俗唯物主义，以及披着唯心主义或庸俗唯物主义外衣的理论，再无立锥之地。那些把"物质决定意识""生产力决定生产关系"当经念的，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，你可以信仰马列毛，也可以信仰别的什么，有神论者我也不强求你改成无神论。我在这里只想完完整整达成一件事：使所有的庸俗唯物主义，以及披着唯心主义或庸俗唯物主义外衣的理论，再无立锥之地。那些把"物质决`
-
-
-### I5542 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4533
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、任何"大家都这样"；另一层是做你`
 
 
 ### I5543 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4533
@@ -42124,16 +42124,16 @@
 
 ### I5545 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4533
 
-**问题**: 绝对化表述 "任何死物、任何经、任何"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、任何"大家都这样"；另一层是做你`
 
 
-### I5546 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4581
+### I5546 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4533
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何死物、任何经、任何"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `在拆具体的哲学家之前，我们先点破所有旧哲学共有的四个总病灶。这四个病灶是同一个实体化思维的四个侧面，从柏拉图到今天的所有旧哲学，没有一个能逃出去：`
+**上下文**: `后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、任何"大家都这样"；另一层是做你`
 
 
 ### I5547 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4581
@@ -42143,18 +42143,18 @@
 **上下文**: `在拆具体的哲学家之前，我们先点破所有旧哲学共有的四个总病灶。这四个病灶是同一个实体化思维的四个侧面，从柏拉图到今天的所有旧哲学，没有一个能逃出去：`
 
 
-### I5548 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4583
+### I5548 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4581
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `在拆具体的哲学家之前，我们先点破所有旧哲学共有的四个总病灶。这四个病灶是同一个实体化思维的四个侧面，从柏拉图到今天的所有旧哲学，没有一个能逃出去：`
+
+
+### I5549 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4583
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **概念实体化**：把我们从具体事物里抽象出来的概念（理念、形式、绝对精神、规律、理性、自由、人性等等），当成了独立于具体事物之外的实体，当成了比具体的、活的生命更真实的东西，然后叫活生生的人为`
-
-
-### I5549 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4588
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `这四个病灶是串在一起的：概念实体化必然导致主客二分，主客二分必然导致英雄史观，英雄史观必然导致理论优先。不把这个总框架砸烂，人再怎么批判旧哲学，也会不自觉的造出新的神。`
 
 
 ### I5550 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4588
@@ -42171,67 +42171,67 @@
 **上下文**: `这四个病灶是串在一起的：概念实体化必然导致主客二分，主客二分必然导致英雄史观，英雄史观必然导致理论优先。不把这个总框架砸烂，人再怎么批判旧哲学，也会不自觉的造出新的神。`
 
 
-### I5552 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4590
+### I5552 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4588
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `这四个病灶是串在一起的：概念实体化必然导致主客二分，主客二分必然导致英雄史观，英雄史观必然导致理论优先。不把这个总框架砸烂，人再怎么批判旧哲学，也会不自觉的造出新的神。`
+
+
+### I5553 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4590
 
 **问题**: 绝对化表述 "每个人都在这个框架里，每个人都摸到了一部分真东西，也每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `下面我们拆具体的哲学家，每个人都在这个框架里，每个人都摸到了一部分真东西，也每个人都栽在了这四个病灶上。我们不搞全盘否定，也不搞盲目崇拜，真东西拿过来，错的地方指出来，这才是对待前辈的正确态度。`
 
 
-### I5553 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4596
+### I5554 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4596
 
 **问题**: 绝对化表述 "每一刻都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：存在就是操作的发生和持存，没有脱离具体操作的抽象“存在”；变和不变是同一个操作的两面，活操作每一刻都在变，但自指的闭环保持相对稳定，两者不矛盾。`
 
 
-### I5554 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4633
+### I5555 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4633
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说人心是白板，知识都来自感觉经验，摸到了一阶感性明性是所有理性的来源，没有天生的观念。`
 
 
-### I5555 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4634
+### I5556 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4634
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **错**：他把经验理解成被动的接受，不知道经验是在操作中、在和环境的互动中获得的，不是被动印上去的；他还保留了物质实体和精神实体，是个不彻底的经验论者。`
 
 
-### I5556 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4637
+### I5557 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4637
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说“存在就是被感知”，摸到了所有的存在都必须经过明性的中介，离开感知和操作的“物质实体”是个抽象的空词。`
 
 
-### I5557 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4637
+### I5558 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4637
 
 **问题**: 绝对化表述 "所有的存在都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说“存在就是被感知”，摸到了所有的存在都必须经过明性的中介，离开感知和操作的“物质实体”是个抽象的空词。`
 
 
-### I5558 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4647
+### I5559 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4647
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **费希特**：他去掉了康德的物自体，说“自我设定自身”“自我设定非我”，摸到了自指操作自己生成自己、自己生成对象的结构，比康德彻底。但他的“自我”是抽象的、普遍的自我意识，不是现实的、活的人，最`
 
 
-### I5559 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4653
+### I5560 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4653
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的辩证法的合理内核：矛盾是发展的内在动力，发展是否定之否定的螺旋上升，真理是具体的、是过程，这些我们全部拿过来，作为我们操作辩证法的重要来源。`
-
-
-### I5560 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4655
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远存在。`
 
 
 ### I5561 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4655
@@ -42241,95 +42241,95 @@
 **上下文**: `- **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远存在。`
 
 
-### I5562 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4661
+### I5562 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4655
+
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远存在。`
+
+
+### I5563 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4661
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：人是一切社会关系的总和，是在现实操作中生成的；宗教异化只是社会异化的反映，不消灭现实的反自指寄生，光批判宗教没用；我们不需要任何新宗教，也不需要抽象的“爱”，我们需要的是现实的`
 
 
-### I5563 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4667
+### I5564 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4667
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他创立了历史唯物主义，说物质生产是全部历史的基础，人们的社会存在决定人们的意识，把历史从英雄和观念的手里还给了劳动者；`
 
 
-### I5564 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4668
+### I5565 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4668
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的剩余价值学说，把资本这个现代社会最强大的反自指系统解剖的清清楚楚：资本不是物，是一定历史阶段的生产关系，是死劳动对活劳动的支配，它的唯一目的就是增殖自身，像吸血鬼一样吸活劳动的血；`
 
 
-### I5565 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4674
+### I5566 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4674
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的历史观里仍然带有一定的目的论残余，好像共产主义是历史必然会到达的终点，这一点后来被第二国际的修正主义者放大成了机械决定论。`
 
 
-### I5566 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4674
+### I5567 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4674
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的历史观里仍然带有一定的目的论残余，好像共产主义是历史必然会到达的终点，这一点后来被第二国际的修正主义者放大成了机械决定论。`
 
 
-### I5567 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4675
+### I5568 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4675
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把马克思的实践概念扎根到自指操作的存在论基础上，以缄默意识为全域生命本体范畴，把实践唯物主义发展为**生命唯物主义**——不是抽象的"物质"本体，而是"人在活着"这个最直接`
 
 
-### I5568 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4675
+### I5569 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4675
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把马克思的实践概念扎根到自指操作的存在论基础上，以缄默意识为全域生命本体范畴，把实践唯物主义发展为**生命唯物主义**——不是抽象的"物质"本体，而是"人在活着"这个最直接`
 
 
-### I5569 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4685
+### I5570 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4685
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：意志不是什么世界的本体，是生命自指操作的内在动力；我们重估一切价值，但标准不是权力意志，是生命的舒展；我们不要少数“超人”统治多数人，我们要“人人如龙”，每个人都做自己的主人。`
 
 
-### I5570 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4690
+### I5571 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4690
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **他的错**：他把“存在”神秘化了，说存在是“天命”，是自己遮蔽自己又显现自己的神秘力量，最后变成了新的形而上学；他的哲学充满了黑话，普通人根本看不懂，成了学院知识分子的智力游戏；他政治上投靠纳`
 
 
-### I5571 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4695
+### I5572 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4695
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说“存在先于本质”，人没有先天的本质，人就是自己选择和行动的结果，人是绝对自由的，要为自己的选择负全部责任。这摸到了生命没有固定本质、人在操作中生成自己的道理。`
 
 
-### I5572 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4720
+### I5573 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4720
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：症候阅读法我们拿过来用，但是我们不把结构实体化：所有的“总问题”“意识形态”，都是人的操作的沉淀，是阴，它不是独立存在的，它就存在于活人的操作和关系中；历史不是无主体的过程，历`
 
 
-### I5573 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4720
+### I5574 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4720
 
 **问题**: 绝对化表述 "所有的“总问题”“意识形态”，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：症候阅读法我们拿过来用，但是我们不把结构实体化：所有的“总问题”“意识形态”，都是人的操作的沉淀，是阴，它不是独立存在的，它就存在于活人的操作和关系中；历史不是无主体的过程，历`
-
-
-### I5574 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4725
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- 他明确反对历史目的论，说历史充满偶然、断裂，没有什么必然通向共产主义的铁律，这打掉了所有教条主义的“必然胜利”神话；`
 
 
 ### I5575 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4725
@@ -42341,114 +42341,114 @@
 
 ### I5576 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4725
 
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 他明确反对历史目的论，说历史充满偶然、断裂，没有什么必然通向共产主义的铁律，这打掉了所有教条主义的“必然胜利”神话；`
+
+
+### I5577 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4725
+
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他明确反对历史目的论，说历史充满偶然、断裂，没有什么必然通向共产主义的铁律，这打掉了所有教条主义的“必然胜利”神话；`
 
 
-### I5577 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4726
+### I5578 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4726
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的“事件”理论：旧的秩序通过“计数为一”把多样的现实固定成结构，事件就是从裂缝里爆发出来的断裂，是旧秩序里不可能的东西突然出现。这摸到了“阳突破阴的束缚”——活操作积累到临界点，打破旧惯性的锁死`
 
 
-### I5578 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4729
+### I5579 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4729
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **他的错**：他的本体论是集合论的抽象黑话，和活人的生命、痛苦没有关系；他的“事件”带有神秘的奇迹色彩，没有看到事件是矛盾长期积累的必然结果；他没有说清“为什么要忠诚于事件”的标准；他的“真理程`
 
 
-### I5579 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4730
+### I5580 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4730
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把抽象的“多”还原为千百万具体的活操作，把“计数为一”还原为操作的惯性沉淀；事件不是奇迹，是反自指寄生发展到锁死阶段的必然爆发，可以通过六维框架定性判断；忠诚的标准就是生命`
 
 
-### I5580 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4730
+### I5581 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4730
 
 **问题**: 绝对化表述 "每一次收回自己的操作权，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把抽象的“多”还原为千百万具体的活操作，把“计数为一”还原为操作的惯性沉淀；事件不是奇迹，是反自指寄生发展到锁死阶段的必然爆发，可以通过六维框架定性判断；忠诚的标准就是生命`
 
 
-### I5581 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4761
+### I5582 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4761
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们不反对个人权利，我们要的是更彻底的个人自由——不仅是形式上的法律自由，更是事实上的、掌握自己操作权的自由；我们不把市场、私有财产当成永恒的东西，它们是历史的产物，也会在历史`
 
 
-### I5582 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4761
+### I5583 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4761
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们不反对个人权利，我们要的是更彻底的个人自由——不仅是形式上的法律自由，更是事实上的、掌握自己操作权的自由；我们不把市场、私有财产当成永恒的东西，它们是历史的产物，也会在历史`
 
 
-### I5583 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4794
+### I5584 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4794
 
 **问题**: 绝对化表述 "每天睡觉前都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `最根本的道理写成三条明本训，每天睡觉前都要想一想：`
 
 
-### I5584 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4797
+### I5585 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4797
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **信仰人民，信仰每一个站着活的生命。**`
 
 
-### I5585 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4798
+### I5586 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4798
 
 **问题**: 绝对化表述 "每个站着活的人都有明性，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `从来就没有什么救世主，也不靠神仙皇帝。相信千百万普通劳动者的活操作，相信生命自己解放自己的力量，相信每个站着活的人都有明性，都能做自己的主人。`
 
 
-### I5586 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4799
+### I5587 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4799
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. **理论会随着实践发展，但是阶级立场半分不能变，永远站在被压迫者这边。**`
 
 
-### I5587 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4830
+### I5588 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4830
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有学术方法、工具、流程、规范，本质上都是人类自指生命的阴的沉淀——是活的研究者为了解决`
 
 
-### I5588 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4830
+### I5589 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4830
 
 **问题**: 绝对化表述 "所有学术方法、工具、流程、规范，本质上都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有学术方法、工具、流程、规范，本质上都是人类自指生命的阴的沉淀——是活的研究者为了解决`
 
 
-### I5589 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4832
+### I5590 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4832
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `阳主阴从，学术工作的唯一本体是活的研究者的真问题、真困惑、真思想；所有检索、精读、写作、`
 
 
-### I5590 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4833
+### I5591 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4833
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `引用、排版技能，都是为这个本体服务的工具，没有任何独立的神圣性。​`
-
-
-### I5591 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4839
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `五大技能，从线性流水线改造为自指递归的五环闭环，所有环节围绕真问题旋转，所有工具随时为活`
 
 
 ### I5592 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4839
@@ -42458,380 +42458,380 @@
 **上下文**: `五大技能，从线性流水线改造为自指递归的五环闭环，所有环节围绕真问题旋转，所有工具随时为活`
 
 
-### I5593 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4840
+### I5593 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4839
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `五大技能，从线性流水线改造为自指递归的五环闭环，所有环节围绕真问题旋转，所有工具随时为活`
+
+
+### I5594 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4840
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `思想服务，既吸收现有学术规范的全部合理内容，又从根上突破工具理性的束缚，实现“道在学术`
 
 
-### I5594 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4846
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
-
-
 ### I5595 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4846
 
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
 
 
 ### I5596 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4846
 
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
+
+
+### I5597 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4846
+
 **问题**: 绝对化表述 "每一个环节的输出都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
 
 
-### I5597 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4849
+### I5598 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4849
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一环：提问——所有研究从真问题开始（阳的起点）​`
 
 
-### I5598 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4877
+### I5599 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4877
 
 **问题**: 绝对化表述 "每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `严格遵循论文精读七阶段流程，但每一步都加一层扬弃判断：​`
 
 
-### I5599 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4914
+### I5600 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4914
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 删掉所有和核心论点无关的内容，哪怕人写得再得意。​`
 
 
-### I5600 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4916
+### I5601 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4916
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不造黑话：能用大白话说清楚的绝不造新概念，所有概念必须有实指，读者看完知道对应什么`
 
 
-### I5601 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4916
+### I5602 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4916
 
 **问题**: 绝对化表述 "绝不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不造黑话：能用大白话说清楚的绝不造新概念，所有概念必须有实指，读者看完知道对应什么`
 
 
-### I5602 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4918
+### I5603 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4918
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不装专业：不堆没用的公式、没用的术语、没用的引用，每一句话都要有信息量，每一个公式`
 
 
-### I5603 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4918
+### I5604 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4918
 
 **问题**: 绝对化表述 "每一句话都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不装专业：不堆没用的公式、没用的术语、没用的引用，每一句话都要有信息量，每一个公式`
 
 
-### I5604 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4929
+### I5605 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4929
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 每一个结论都有证据或逻辑支撑，没有“我觉得”“大家都认为”这种无根据的话；​`
 
 
-### I5605 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4929
+### I5606 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4929
 
 **问题**: 绝对化表述 "每一个结论都有证据或逻辑支撑，没有“我觉得”“大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 每一个结论都有证据或逻辑支撑，没有“我觉得”“大家都认为”这种无根据的话；​`
 
 
-### I5606 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4930
+### I5607 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4930
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 删掉任何一段，核心论证都会受影响，没有废话。​`
 
 
-### I5607 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4930
+### I5608 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4930
 
 **问题**: 绝对化表述 "任何一段，核心论证都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 删掉任何一段，核心论证都会受影响，没有废话。​`
 
 
-### I5608 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4936
+### I5609 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4936
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `审计——不仅查引用，还查所有概念、结论、证据的名实一致性，对应生命论“名实遮蔽”的去蔽工`
 
 
-### I5609 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4940
+### I5610 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4940
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 所有参考文献必须真实存在，题录、作者、年份、期刊、DOI准确；​`
 
 
-### I5610 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4941
+### I5611 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4941
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 文内每一个引用都真的支持人说的这句话，不把“主题相关”当成“支持结论”，不把相关说`
 
 
-### I5611 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4941
+### I5612 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4941
 
 **问题**: 绝对化表述 "每一个引用都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 文内每一个引用都真的支持人说的这句话，不把“主题相关”当成“支持结论”，不把相关说`
 
 
-### I5612 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4947
+### I5613 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4947
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 概念查：人用的每一个概念，是不是有明确的实指？有没有把抽象概念当成实体（比如“历史`
 
 
-### I5613 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4948
+### I5614 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4948
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `必然”“结构决定”“市场规律”）？有没有自己造了一个概念但说不清楚它是什么？​`
 
 
-### I5614 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4949
+### I5615 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4949
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 结论查：每一个结论，证据够不够？有没有说过头？有没有把人自己的推断说成事实？有没有`
 
 
-### I5615 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4950
+### I5616 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4950
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `把“可能”说成“必然”？​`
 
 
-### I5616 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4954
+### I5617 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4954
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `实不是道德要求，是自指系统维持自身健康的必要条件——骗别人最后一定骗自己，思想系统就会`
 
 
-### I5617 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4958
+### I5618 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4958
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 人敢把所有引用的原文翻出来，对着看每一句话；​`
 
 
-### I5618 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4996
+### I5619 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4996
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 不造黑话：能说白话就说白话，所有术语必须能翻译回日常语言。故意把简单的事说复杂，用黑话`
 
 
-### I5619 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4998
+### I5620 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:4998
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `4. 不搞表演：不为了显得学术做没用的回归、堆没用的公式、引没用的文献、凑没用的字数。所有操`
 
 
-### I5620 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5001
+### I5621 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5001
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `引用。人可以骗所有人，但骗不了人自己的明性。​`
 
 
-### I5621 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5002
+### I5622 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5002
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `6. 不忘根本：所有学术最终都是为了让人活得更像人，让生命更舒展。为了职称、帽子、稿费、名气`
 
 
-### I5622 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5002
+### I5623 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5002
 
 **问题**: 绝对化表述 "所有学术最终都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `6. 不忘根本：所有学术最终都是为了让人活得更像人，让生命更舒展。为了职称、帽子、稿费、名气`
 
 
-### I5623 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5026
+### I5624 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5026
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `仅查引用，还查所有概念、结论、`
 
 
-### I5624 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5132
+### I5625 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5132
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `给所有站着活的人的武器​`
 
 
-### I5625 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5144
+### I5626 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5144
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `从不可怀疑的经验事实出发的公理化推导；对旧哲学的症候式阅读与总清算；理论`
 
 
-### I5626 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5148
+### I5627 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5148
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 反自指系统必然遵循窃权→锁死→遮蔽→耗散→负反馈锁死→崩溃的六阶段规`
 
 
-### I5627 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5153
+### I5628 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5153
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `阴阳辩证法与王船山道器论、西方哲学从巴门尼德到巴迪欧的全部合理成果​`
 
 
-### I5628 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5154
+### I5629 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5154
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `适用于所有生命系统（从细胞到文明）的健康/病理分析；不提供宇宙论意义上的`
 
 
-### I5629 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5155
+### I5630 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5155
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `“万物本体”，不讨论与活人操作无关的抽象世界本质；不承诺历史的必然目的，`
 
 
-### I5630 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5229
+### I5631 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5229
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `平均合成核心指标M（操作权指数）——几何平均的合理性在于四个维度是乘性关系，任何一个维`
 
 
-### I5631 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5233
+### I5632 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5233
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `更重要的是，作者明确提出了可检验的趋势判断：社会健康状况持续恶化（个体稳态下降、生产关系不公平加剧、环境承载超限、共同体瓦解、青年希望丧失、异化加深）到一定程度，会引发大的动荡或变革；个人长期处于被异`
 
 
-### I5632 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5242
+### I5633 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5242
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有工具都为生命服务。​`
 
 
-### I5633 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5242
+### I5634 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5242
 
 **问题**: 绝对化表述 "所有工具都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有工具都为生命服务。​`
 
 
-### I5634 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5250
+### I5635 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5250
 
 **问题**: 绝对化表述 "每个思想家的真东西和根本局限都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `不盲目崇拜，每个思想家的真东西和根本局限都讲得非常清楚，其中几个关键判断尤其有穿透力：​`
 
 
-### I5635 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5251
+### I5636 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5251
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. 对马克思的定位：马克思是最直接的理论来源，他的实践转向、剩余价值学说、阶级分析方法全部`
 
 
-### I5636 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5257
+### I5637 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5257
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `质上还是概念实体化，是把绝对精神换成了“结构”，最终必然走向结构决定论和学院黑话。​`
 
 
-### I5637 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5259
+### I5638 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5259
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `义和虚无主义：我们解构所有实体化的神，但我们不解构活的生命本身；判断真假对错的标准很明`
 
 
-### I5638 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5264
+### I5639 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5264
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `5. 对哲人王的彻底扬弃：柏拉图以来“少数智者统治多数人”的逻辑被从存在论层面推翻：真理不在`
 
 
-### I5639 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5265
+### I5640 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5265
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `少数人手里，在每个生命的操作中；绝对权力必然导致反自指异化；真正的哲人王不是统治别人，`
 
 
-### I5640 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5266
+### I5641 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5266
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `是做自己生命的王，“人人如龙”不是道德理想，是存在论层面每个人都可以做到的事。​`
 
 
-### I5641 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5312
+### I5642 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5312
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `义的二元对立，提供了一个真正一元论的、可以贯通从自然到社会到个人所有领域的理论框架；​`
 
 
-### I5642 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5322
+### I5643 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5322
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 它既反对投降主义，也反对盲动主义：既告诉人反自指的内在矛盾决定了它不可能永远持续，不要被它的强大吓倒；也告诉人`
 
 
-### I5643 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5322
+### I5644 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5322
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 它既反对投降主义，也反对盲动主义：既告诉人反自指的内在矛盾决定了它不可能永远持续，不要被它的强大吓倒；也告诉人`
 
 
-### I5644 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5330
+### I5645 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5330
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `整文本，未参考作者其他版本的生命论文本（如《无分之分》《形上形下贯通论》等），所有判断均`
 
 
-### I5645 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5374
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
-
-
 ### I5646 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5374
 
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
 
@@ -42843,39 +42843,39 @@
 **上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
 
 
-### I5648 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5407
+### I5648 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5374
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
+
+
+### I5649 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5407
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"应该"本身不是病。规范立场必然要说"应该"。问题出在两种：一是从存在论直接推"应该"（"阳主阴从，所以应该革命"——中间有跳跃，站着一个活人）；二是"应该"的通货膨胀（每段都"应该"，等于没有"应该`
 
 
-### I5649 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5407
+### I5650 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5407
 
 **问题**: 绝对化表述 "每段都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"应该"本身不是病。规范立场必然要说"应该"。问题出在两种：一是从存在论直接推"应该"（"阳主阴从，所以应该革命"——中间有跳跃，站着一个活人）；二是"应该"的通货膨胀（每段都"应该"，等于没有"应该`
 
 
-### I5650 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5435
+### I5651 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5435
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**立场不变，判断可错。** 立场（方向）不动摇：站在劳动者一边。具体判断全部可错、可改、可讨论。立场是实践方向，不是命题真理。`
 
 
-### I5651 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5439
+### I5652 [absolute] archive\old_editions\生命论（明本论）全本_20260816.md:5439
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**理论自己也是活的。** "操作"这个概念本身也是操作的产物。生命论自己也是活的理论：起点可错，结论可改，不符合事实就扔掉。它不提供新的神，不提供绝对真理，不承诺"必然胜利"。`
-
-
-### I5652 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:33
-
-**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `"好好活就是做有意义的事，做有意义的事就是好好活。"——这句话形式上是循环定义，形式逻辑判定为无效。但践演坐实说：这个循环不是缺陷，是实事本身。你不可能站在"好好活"外面定义"意义"，也不可能站在"意`
 
 
 ### I5653 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:33
@@ -42885,11 +42885,11 @@
 **上下文**: `"好好活就是做有意义的事，做有意义的事就是好好活。"——这句话形式上是循环定义，形式逻辑判定为无效。但践演坐实说：这个循环不是缺陷，是实事本身。你不可能站在"好好活"外面定义"意义"，也不可能站在"意`
 
 
-### I5654 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:79
+### I5654 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:33
 
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- 有自指结构不一定活，有"感"就一定活——感意味着四规定性在运作。`
+**上下文**: `"好好活就是做有意义的事，做有意义的事就是好好活。"——这句话形式上是循环定义，形式逻辑判定为无效。但践演坐实说：这个循环不是缺陷，是实事本身。你不可能站在"好好活"外面定义"意义"，也不可能站在"意`
 
 
 ### I5655 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:79
@@ -42899,254 +42899,254 @@
 **上下文**: `- 有自指结构不一定活，有"感"就一定活——感意味着四规定性在运作。`
 
 
-### I5656 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:121
+### I5656 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:79
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 有自指结构不一定活，有"感"就一定活——感意味着四规定性在运作。`
+
+
+### I5657 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:121
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **美好**不是任意的自我肯定，它需要"善"来定向；`
 
 
-### I5657 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:190
+### I5658 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:190
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `M衡量的不是"你多大程度上掌控了生命"——完全掌控是神的位置，不是人的位置，而且"掌控"暗示你站在生命外面操控它，这本身就是独断论姿态。M衡量的是**生命意义的程度**：你的操作在多大程度上是明性觉知`
 
 
-### I5658 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:201
+### I5659 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:201
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `O是"值多少"，W是"对你值多少"。同样的O，在不同的M下价值完全不同：M→0时，负O的事物W→负无穷——操作权被彻底剥夺的人，一切事物都转化为对生命的伤害；正O的事物也救不了他。`
 
 
-### I5659 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:201
+### I5660 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:201
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `O是"值多少"，W是"对你值多少"。同样的O，在不同的M下价值完全不同：M→0时，负O的事物W→负无穷——操作权被彻底剥夺的人，一切事物都转化为对生命的伤害；正O的事物也救不了他。`
 
 
-### I5660 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:201
+### I5661 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:201
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `O是"值多少"，W是"对你值多少"。同样的O，在不同的M下价值完全不同：M→0时，负O的事物W→负无穷——操作权被彻底剥夺的人，一切事物都转化为对生命的伤害；正O的事物也救不了他。`
 
 
-### I5661 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:208
+### I5662 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:208
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `混淆这两者，是现代性最普遍的颠倒：把"活得有意义"替换成"获得有价值的东西"，把M（意义）理解成Might（购买力/支配力），把W（价值）当成意义本身。这个颠倒的精确机制是：追求意义→追求W→追求O→`
 
 
-### I5662 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:268
+### I5663 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:268
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"最大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、劳动、说话、照顾家人、在`
 
 
-### I5663 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:270
+### I5664 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:270
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"人民群众是历史进步的根本动力"不是政治口号，是存在论命题：历史不是伟人推动的，不是运动推动的，是每一个自指操作的日常闭合推动的。运动是阳的冲破，制度是阴的沉淀，但决定性的因素是每个人日常的M在不在涨`
 
 
-### I5664 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:272
+### I5665 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:272
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这回答了毛泽东到死没有解开的结：明性如何在日常制度中生成，而不靠运动？运动是脉冲式的，N暂时飙升又回落；真正的解放是N结构性地持续大于1，靠的是大多数人的日常操作持续拉高M。普通人让自己活得有意义，党`
 
 
-### I5665 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:272
+### I5666 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:272
 
 **问题**: 绝对化表述 "每一层都在做同一件事：在日常中提高M。不是"七八年再来一次"的震荡循环，是每一天、每一个操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这回答了毛泽东到死没有解开的结：明性如何在日常制度中生成，而不靠运动？运动是脉冲式的，N暂时飙升又回落；真正的解放是N结构性地持续大于1，靠的是大多数人的日常操作持续拉高M。普通人让自己活得有意义，党`
 
 
-### I5666 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:278
+### I5667 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:278
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `毛泽东领导的中国革命，是人类历史上使亿万人内化一种世界观、激活明性的最大尝试；毛泽东思想是这个尝试最大的思想助力。他看到了别人看不到的东西：制度会硬化，党会异化，继续革命是存在论的必然。他也用了他那个`
 
 
-### I5667 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:393
+### I5668 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:393
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"应该"本身不是病。规范立场必然要说"应该"。问题出在两种：一是从存在论直接推"应该"（"阳主阴从，所以应该革命"——中间有跳跃，站着一个活人）；二是"应该"的通货膨胀（每段都"应该"，等于没有"应该`
 
 
-### I5668 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:393
+### I5669 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:393
 
 **问题**: 绝对化表述 "每段都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"应该"本身不是病。规范立场必然要说"应该"。问题出在两种：一是从存在论直接推"应该"（"阳主阴从，所以应该革命"——中间有跳跃，站着一个活人）；二是"应该"的通货膨胀（每段都"应该"，等于没有"应该`
 
 
-### I5669 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:421
+### I5670 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:421
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**立场不变，判断可错。** 立场（方向）不动摇：站在劳动者一边。具体判断全部可错、可改、可讨论。立场是实践方向，不是命题真理。`
 
 
-### I5670 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:425
+### I5671 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:425
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**理论自己也是活的。** "操作"这个概念本身也是操作的产物。生命论自己也是活的理论：起点可错，结论可改，不符合事实就扔掉。它不提供新的神，不提供绝对真理，不承诺"必然胜利"。`
 
 
-### I5671 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:528
+### I5672 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:528
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这不是宣布自己不需要他者。恰恰相反：大他者是假的，但真实他者的反驳是真的。这本书的每一个重要判断都经过了与真实他者的撞击——与人争论、被AI质疑、在实践中碰壁。扬弃大他者不是取消批判，是把批判从"想象`
 
 
-### I5672 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:528
+### I5673 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:528
 
 **问题**: 绝对化表述 "每一个重要判断都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这不是宣布自己不需要他者。恰恰相反：大他者是假的，但真实他者的反驳是真的。这本书的每一个重要判断都经过了与真实他者的撞击——与人争论、被AI质疑、在实践中碰壁。扬弃大他者不是取消批判，是把批判从"想象`
 
 
-### I5673 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:529
+### I5674 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:529
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这本书里有一些私人化的表达，它们不向任何想象的审判者负责。它们只对一件事负责：说这话的人是不是真的这么活、这么看、这么感受。如果是，它就站在这里；如果不是，它应该被改掉。这不是任性，是扬弃大他者之后的`
 
 
-### I5674 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:593
+### I5675 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:593
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `任何自指操作都有两个不可分割的面向：`
 
 
-### I5675 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:593
+### I5676 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:593
 
 **问题**: 绝对化表述 "任何自指操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `任何自指操作都有两个不可分割的面向：`
 
 
-### I5676 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:610
+### I5677 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:610
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `f¹生命受前三层约束；f²动物受前四层中社会约束的雏形（群体等级）；f³人受全部五层。人能通过符号反思和集体实践改造后三层约束（社会、符号），并在有限程度上改造前两层（医学、生物技术），但不能取消物理`
 
 
-### I5677 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:616
+### I5678 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:616
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **必（必然性）**：无机宇宙的唯一路径。物理定律锁死了"只能这样"——岩石滚落没有选择，星云坍缩没有选择。只有"必"。`
 
 
-### I5678 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:667
+### I5679 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:667
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `6. 系统崩溃或被推翻：趋势，不是必然——需要活人的操作`
 
 
-### I5679 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:669
+### I5680 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:669
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**资本是化生的：** 它不挑外壳，能从任何操作关系中化生——封建社会、公有制、政党、合作社、平台，只要死劳动支配活劳动、操作的产物反过来支配操作者。"身子是公有制的骨架，灵魂是资本增殖"——这是继续`
 
 
-### I5680 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:733
+### I5681 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:733
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `操作长出自指，自指长出目的，目的开辟可能性空间。但历史不必然走向任何终点。`
 
 
-### I5681 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:733
+### I5682 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:733
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `操作长出自指，自指长出目的，目的开辟可能性空间。但历史不必然走向任何终点。`
 
 
-### I5682 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:737
+### I5683 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:737
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- "能"开启"可"，"可"之中才有"必"的实现——必然规律不是在天上等着实现的，是在"可"中通过操作被实现的。`
 
 
-### I5683 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:741
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**盗火者的隐喻**（收束意象，不是论证环节）：生命从宇宙的必然之流中盗取了三层火——区分内外的觉知（f¹）、在多条路径中选择的可能（f²）、符号反思和集体创造的自由（f³）。火不是被赐予的，是生命自`
-
-
 ### I5684 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:741
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**盗火者的隐喻**（收束意象，不是论证环节）：生命从宇宙的必然之流中盗取了三层火——区分内外的觉知（f¹）、在多条路径中选择的可能（f²）、符号反思和集体创造的自由（f³）。火不是被赐予的，是生命自`
 
 
 ### I5685 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:741
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**盗火者的隐喻**（收束意象，不是论证环节）：生命从宇宙的必然之流中盗取了三层火——区分内外的觉知（f¹）、在多条路径中选择的可能（f²）、符号反思和集体创造的自由（f³）。火不是被赐予的，是生命自`
+
+
+### I5686 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:741
+
 **问题**: 绝对化表述 "所有f³都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**盗火者的隐喻**（收束意象，不是论证环节）：生命从宇宙的必然之流中盗取了三层火——区分内外的觉知（f¹）、在多条路径中选择的可能（f²）、符号反思和集体创造的自由（f³）。火不是被赐予的，是生命自`
 
 
-### I5686 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:824
+### I5687 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:824
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `四条规定从不零散单独出现，而是一次性集体闭包完成。`
 
 
-### I5687 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:836
+### I5688 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:836
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `审慎边界：该结论立足于碳基生命实事；对于硅基自指系统，属于有理外推，不是逻辑必然公理。`
 
 
-### I5688 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:870
+### I5689 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:870
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **修复应的通路**：边界用来区分内外，不是彻底封死自己。拒绝单纯把他者当作工具客体，建立现实操作层面真实的呼答，而不是仅仅头脑之中的空想。`
 
 
-### I5689 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:960
+### I5690 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:960
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `康德说，人看到的世界都是世界向人显现出来的"现象"，在现象后面有一个"物自体"，即世界本身，这个东西永远认识不了。`
 
 
-### I5690 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:964
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
-
-
 ### I5691 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:964
 
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
 
@@ -43167,156 +43167,156 @@
 
 ### I5694 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:964
 
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
+
+
+### I5695 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:964
+
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
 
 
-### I5695 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1027
+### I5696 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1027
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这和费希特表面相似。费希特在《全部知识学的基础》（*Grundlage der gesamten Wissenschaftslehre*, 1794）中提出"本原行动"（Tathandlung），说"`
 
 
-### I5696 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1029
+### I5697 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1029
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个命题不是书斋里的逻辑推理，是用命验过的。我曾经试过彻底解构、剖析、拆散那个实体意义上的"我"——把"我"拆成感觉的流动、念头的生灭、身体感受的聚合，找来找去找不到一个常驻的"我"在背后。这和休谟在`
 
 
-### I5697 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1097
+### I5698 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1097
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2026年8月6日，北京谱仪III（BESIII）国际合作组在巴西纳塔尔第43届国际高能物理大会（ICHEP 2026）上宣布：经过十五年研究、超过一百亿个J/ψ衰变事例，他们找到了物理学家找了近半个`
 
 
-### I5698 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1101
+### I5699 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1101
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `普通的物质，比如质子，是夸克（"砖块"）加胶子（"水泥"）构成的。胶子传递强相互作用力，把夸克粘在一起。但胶子有一个和光子（传递电磁力的粒子）根本不同的性质：光子不带电荷，不跟自己作用；胶子带色荷，自`
 
 
-### I5699 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1105
+### I5700 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1105
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一，胶子静止质量为零，胶球的质量全部来自"作用"。**`
 
 
-### I5700 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1107
+### I5701 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1107
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `胶子的静止质量是零——和光子一样，它本身没有质量。但胶球有质量，X(2370)的质量大约相当于两个半质子。这个质量从哪来？没有任何"东西"在里面提供质量。它完全来自胶子和胶子之间自相互作用的束缚能。E`
 
 
-### I5701 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1107
+### I5702 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1107
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `胶子的静止质量是零——和光子一样，它本身没有质量。但胶球有质量，X(2370)的质量大约相当于两个半质子。这个质量从哪来？没有任何"东西"在里面提供质量。它完全来自胶子和胶子之间自相互作用的束缚能。E`
-
-
-### I5702 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1109
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `换句话说：把胶球拆开，拆不出任何"有质量的零件"。拆到最后是零质量的胶子在互相作用。胶球这个"东西"的存在，完全就是它的"作用"——没有作用，就没有胶球。`
 
 
 ### I5703 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1109
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `换句话说：把胶球拆开，拆不出任何"有质量的零件"。拆到最后是零质量的胶子在互相作用。胶球这个"东西"的存在，完全就是它的"作用"——没有作用，就没有胶球。`
+
+
+### I5704 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1109
+
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `换句话说：把胶球拆开，拆不出任何"有质量的零件"。拆到最后是零质量的胶子在互相作用。胶球这个"东西"的存在，完全就是它的"作用"——没有作用，就没有胶球。`
 
 
-### I5704 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1111
+### I5705 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1111
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是"操作先于实体"在物理世界里能找到的最干净的例子。不是比喻，不是哲学类比，是实验事实：一个粒子的全部存在就是它自己跟自己的作用关系。S=f(S)，S里没有任何"实体"撑着，全是f。`
 
 
-### I5705 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1111
+### I5706 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1111
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是"操作先于实体"在物理世界里能找到的最干净的例子。不是比喻，不是哲学类比，是实验事实：一个粒子的全部存在就是它自己跟自己的作用关系。S=f(S)，S里没有任何"实体"撑着，全是f。`
 
 
-### I5706 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1178
+### I5707 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1178
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是两种完全不同的存在方式：`
 
 
-### I5707 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1178
+### I5708 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1178
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是两种完全不同的存在方式：`
 
 
-### I5708 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1179
+### I5709 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1179
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 第一种，像漩涡这样的，叫**自指操作**：操作的目的就是维持它自己，所有操作都指向自身，通过和外界的交换不断更新自己的成分，但维持自己的组织形式不变。`
 
 
-### I5709 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1179
+### I5710 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1179
 
 **问题**: 绝对化表述 "所有操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 第一种，像漩涡这样的，叫**自指操作**：操作的目的就是维持它自己，所有操作都指向自身，通过和外界的交换不断更新自己的成分，但维持自己的组织形式不变。`
 
 
-### I5710 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1288
+### I5711 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1288
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `自指操作不是封闭的，它需要从环境输入物质、能量、信息，也向环境输出。完全封闭的系统无法维持自身——这是从"自指维持"概念直接得出的，不是外加的经验规律。所以开放和交换不是自指系统的"可选功能"，是它维`
 
 
-### I5711 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1290
+### I5712 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1290
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这四条，每一条都是"自指操作"这个概念的题中应有之义，不是外加的。少了任何一条，自指操作就不成立：没有边界就没有"自己"，没有目的就没有"维持"，没有再生就不能持续，没有环境互动就必然崩溃。`
 
 
-### I5712 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1290
+### I5713 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1290
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这四条，每一条都是"自指操作"这个概念的题中应有之义，不是外加的。少了任何一条，自指操作就不成立：没有边界就没有"自己"，没有目的就没有"维持"，没有再生就不能持续，没有环境互动就必然崩溃。`
 
 
-### I5713 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1290
+### I5714 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1290
 
 **问题**: 绝对化表述 "每一条都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这四条，每一条都是"自指操作"这个概念的题中应有之义，不是外加的。少了任何一条，自指操作就不成立：没有边界就没有"自己"，没有目的就没有"维持"，没有再生就不能持续，没有环境互动就必然崩溃。`
 
 
-### I5714 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1323
+### I5715 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1323
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第二层：化学层——半闭环。** 远离平衡态下出现交叉催化循环：A催化B，B催化A。操作网络开始生产维持自身运行的组件，时间维度进入了——胶球的自作用是同时的、对称的，自催化是跨时间的循环（A在t₁`
-
-
-### I5715 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1357
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `这里要划清一条界线：反自指不是"任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石`
 
 
 ### I5716 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1357
@@ -43328,184 +43328,184 @@
 
 ### I5717 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1357
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `这里要划清一条界线：反自指不是"任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石`
+
+
+### I5718 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1357
+
 **问题**: 绝对化表述 "任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石撞击，这些是外部破坏，不是反自指。反自指的严格判准是上面三条：P以S为输入、G削弱S、P的维持依赖S的存在。三条缺一不可。病毒、癌细胞、剥削阶级、资本符合这三条；火灾不符合。这个区分很重要，否则"反自指"就宽到没有信息量——任何伤害生命的东西都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这里要划清一条界线：反自指不是"任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石`
 
 
-### I5718 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1359
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
-
-
 ### I5719 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1359
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
 
 
 ### I5720 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1359
 
-**问题**: 绝对化表述 "任何有序性，所有的有序性都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
 
 
 ### I5721 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1359
 
+**问题**: 绝对化表述 "任何有序性，所有的有序性都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
+
+
+### I5722 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1359
+
 **问题**: 绝对化表述 "所有的有序性都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
 
 
-### I5722 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1365
+### I5723 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1365
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `奴隶社会的奴隶主阶级，不劳动，不生产，靠占有奴隶的全部劳动成果生存。奴隶是自指的活人，奴隶主靠支配奴隶的劳动成果维持自己，奴隶累死了，就去获取新的奴隶。`
 
 
-### I5723 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1424
+### I5724 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1424
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这六个阶段是**趋势**，不是宿命。每个阶段都可能被S的自觉操作打断——劳动者在第二阶段就可以识破惯性，在第三阶段就可以拆穿遮蔽，在第五阶段就可以组织反抗。说"必然性"，是说如果不干预，这个结构会自发`
 
 
-### I5724 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1424
+### I5725 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1424
 
 **问题**: 绝对化表述 "每个阶段都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这六个阶段是**趋势**，不是宿命。每个阶段都可能被S的自觉操作打断——劳动者在第二阶段就可以识破惯性，在第三阶段就可以拆穿遮蔽，在第五阶段就可以组织反抗。说"必然性"，是说如果不干预，这个结构会自发`
 
 
-### I5725 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1436
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
-
-
 ### I5726 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1436
 
-**问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
 
 
 ### I5727 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1436
 
+**问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
+
+
+### I5728 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1436
+
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
 
 
-### I5728 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1442
+### I5729 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1442
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个顺序是逻辑的，不是时间的——实际斗争中三个环节会交织、会反复。但逻辑上，解蔽是前提，收权是核心，立序是完成。跳过任何一步都会出问题：只解蔽不收权，是书斋里的批判；只收权不解蔽，是改朝换代；只立序不`
 
 
-### I5729 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1442
+### I5730 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1442
 
 **问题**: 绝对化表述 "任何一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个顺序是逻辑的，不是时间的——实际斗争中三个环节会交织、会反复。但逻辑上，解蔽是前提，收权是核心，立序是完成。跳过任何一步都会出问题：只解蔽不收权，是书斋里的批判；只收权不解蔽，是改朝换代；只立序不`
 
 
-### I5730 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1487
+### I5731 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1487
 
 **问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这里的工作是把马克思"感性活动"的存在论维度严格展开："感性活动"的原初形式就是感——活的自指操作的第一人称呈现。感不是"物质"的产物，也不是"意识"的活动，感是心物未分化的原初事实，物质和意识都是从`
 
 
-### I5731 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1522
+### I5732 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1522
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**感和能是同一回事的两面。** 第七章已经区分了结构阳和能阳：结构阳是任何操作都有的发用面，灰色宇宙也有；能阳是感在多种可能性中趋避选择的能力，只在感出现后才有。这里系统展开能阳的存在论结构。`
 
 
-### I5732 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1522
+### I5733 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1522
 
 **问题**: 绝对化表述 "任何操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**感和能是同一回事的两面。** 第七章已经区分了结构阳和能阳：结构阳是任何操作都有的发用面，灰色宇宙也有；能阳是感在多种可能性中趋避选择的能力，只在感出现后才有。这里系统展开能阳的存在论结构。`
 
 
-### I5733 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1606
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
-
-
 ### I5734 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1606
 
-**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
 
 
 ### I5735 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1606
 
+**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
+
+
+### I5736 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1606
+
 **问题**: 绝对化表述 "所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是自在层的操作。这一层对应四规定性的全部：边界、目的、再生、互动，它都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
 
 
-### I5736 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1612
+### I5737 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1612
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是整个手电筒和电池，显意识只是那束打出去的光。光照亮了局部，但光永远不能脱离手电筒而存在。理性思考、逻辑推理、自我反思，看似独立运作，其底层动力、信息基础、决策偏向，始终被缄默意识支撑和引导。`
 
 
-### I5737 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1612
+### I5738 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1612
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是整个手电筒和电池，显意识只是那束打出去的光。光照亮了局部，但光永远不能脱离手电筒而存在。理性思考、逻辑推理、自我反思，看似独立运作，其底层动力、信息基础、决策偏向，始终被缄默意识支撑和引导。`
 
 
-### I5738 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1612
+### I5739 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1612
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是整个手电筒和电池，显意识只是那束打出去的光。光照亮了局部，但光永远不能脱离手电筒而存在。理性思考、逻辑推理、自我反思，看似独立运作，其底层动力、信息基础、决策偏向，始终被缄默意识支撑和引导。`
 
 
-### I5739 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1641
+### I5740 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1641
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `明性是缄默意识对自身的照亮。这个照亮有程度差异，是一条从暗到明的连续谱：低等生命有自在层的缄默意识——细胞"知道"怎么维持自己，但它不知道自己知道，明性极暗；高等动物有自为层的情绪和直觉，明性昏暗，能`
 
 
-### I5740 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1712
+### I5741 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1712
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**形而上（道）：** 贯穿于一切形而下存在者之中、支配其运行方式、构成其存在意义根据，却不能被还原为任何具体形而下者的存在论结构、普遍规律与意义层面。阴阳、自指、衰退、因果——这些不是某个具体的东西`
 
 
-### I5741 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1801
+### I5742 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1801
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这种"知道"，不是显意识的知道，不是用概念、用语言思考出来的知道，是一种更基础的、前反思的、缄默的知道。这就是**缄默意识**——所有生命共有的、前语言前反思的原生主体性，从最早的自指闭包开始就有，是`
-
-
-### I5742 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1808
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `生命史首先是缄默意识的进化史。从最早的细胞膜对物质的选择性通透，到低等生物的趋利避害，到动物的感觉和情绪，到人的意识和思想，缄默意识越来越复杂，越来越亮，直到在人这里亮起了明性——"知道自己知道"。但`
 
 
 ### I5743 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1808
@@ -43522,53 +43522,53 @@
 **上下文**: `生命史首先是缄默意识的进化史。从最早的细胞膜对物质的选择性通透，到低等生物的趋利避害，到动物的感觉和情绪，到人的意识和思想，缄默意识越来越复杂，越来越亮，直到在人这里亮起了明性——"知道自己知道"。但`
 
 
-### I5745 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1809
+### I5745 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1808
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `生命史首先是缄默意识的进化史。从最早的细胞膜对物质的选择性通透，到低等生物的趋利避害，到动物的感觉和情绪，到人的意识和思想，缄默意识越来越复杂，越来越亮，直到在人这里亮起了明性——"知道自己知道"。但`
+
+
+### I5746 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1809
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `旧哲学的认识论，从笛卡尔到康德到黑格尔，大都只盯着显意识，盯着理性、概念、判断，把这些当成认识的全部，不知道在显意识下面，还有一个更基础、更广阔、更根本的缄默意识的世界。这就像研究一棵树，只研究地面上`
 
 
-### I5746 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1809
+### I5747 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1809
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `旧哲学的认识论，从笛卡尔到康德到黑格尔，大都只盯着显意识，盯着理性、概念、判断，把这些当成认识的全部，不知道在显意识下面，还有一个更基础、更广阔、更根本的缄默意识的世界。这就像研究一棵树，只研究地面上`
 
 
-### I5747 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1829
+### I5748 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1829
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是基础，是所有认识的根。但是人还有显意识，也就是平时说的"意识""思想""理性"，它是什么呢？`
 
 
-### I5748 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1830
+### I5749 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1830
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `显意识是缄默意识发展出来的工具，是缄默意识为了更好地进行操作，把自己的内容抽象化、符号化、对象化的产物。它是缄默意识在自觉层的产物，是明性借以运作的工具，但它不是缄默意识的全部，更不是缄默意识的主人。`
 
 
-### I5749 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1852
+### I5750 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1852
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有这些，都是阴主阳从，都是死的名词支配活的动词，都是**语言层面的异化**。旧哲学以为自己在谈"存在""本体""实体"，其实它是被名词化的语法骗了——它把语言的结构当成了世界的结构。人用主谓宾的语法`
 
 
-### I5750 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1852
+### I5751 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1852
 
 **问题**: 绝对化表述 "所有这些，都是阴主阳从，都是死的名词支配活的动词，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有这些，都是阴主阳从，都是死的名词支配活的动词，都是**语言层面的异化**。旧哲学以为自己在谈"存在""本体""实体"，其实它是被名词化的语法骗了——它把语言的结构当成了世界的结构。人用主谓宾的语法`
-
-
-### I5751 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1853
-
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思早就在做这件事了。他不讨论"资本"这个名词，他讨论的是"资本"背后的动词关系：谁雇佣谁，谁剥削谁，谁的劳动变成了谁的利润。《资本论》整本书就是在把"资本"这个大名词还原成动词——还原成资本家剥削`
 
 
 ### I5752 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1853
@@ -43578,88 +43578,88 @@
 **上下文**: `马克思早就在做这件事了。他不讨论"资本"这个名词，他讨论的是"资本"背后的动词关系：谁雇佣谁，谁剥削谁，谁的劳动变成了谁的利润。《资本论》整本书就是在把"资本"这个大名词还原成动词——还原成资本家剥削`
 
 
-### I5753 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1854
+### I5753 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1853
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思早就在做这件事了。他不讨论"资本"这个名词，他讨论的是"资本"背后的动词关系：谁雇佣谁，谁剥削谁，谁的劳动变成了谁的利润。《资本论》整本书就是在把"资本"这个大名词还原成动词——还原成资本家剥削`
+
+
+### I5754 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1854
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `语态论不是文字游戏，它是**解蔽的工具**。一切意识形态都靠名词化运作——把活的剥削冻成死的概念，把活的压迫冻成死的制度，把活的痛苦冻成死的数字。遇到任何大名词，就把它还原成动词，看看里面谁在做，对谁`
 
 
-### I5754 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1884
+### I5755 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1884
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **假阳性**：主观体验强度完全真实，但触发源并非当下现实事态，而是演化旧本能烙印、过往创伤回响、f³层级符号经文劫持。感受被激活，但不对应此时此地生命闭环真实的生存处境。`
 
 
-### I5755 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1906
+### I5756 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1906
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**固有限度。** 大量中间灰色案例客观存在，许多感受是混杂态——一部分来自现实处境，一部分混杂创伤与演化残留，只能做程度判断，不是非黑即白。判别离不开现实操作实践，不能靠单纯头脑内反思完成全部判定；`
 
 
-### I5756 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1948
+### I5757 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1948
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道`
 
 
-### I5757 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1948
+### I5758 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1948
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道`
 
 
-### I5758 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1948
+### I5759 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:1948
 
 **问题**: 绝对化表述 "所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道"因果（碰了会疼）、"知道"时空（伸手能抓到东西）、"知道"必然（不吃饭会饿），这些不用学、不用想，是缄默意识里的范畴，比显意识用语言说出来的范畴古老得多。康德所谓的"先天范畴"，不过是缄默意识里的操作结构被显意识反思到了而已。对个人来说，很多范畴是通过学习语言、学习文化获得的，好像是"先天"的；但是对整个人类来说，对整个生命的进化史来说，它们都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道`
 
 
-### I5759 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2009
+### I5760 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2009
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是活的，是现在进行时的。它是当下的生命和世界的直接接触，是正在进行的操作，是阳。现在觉得疼，这个疼是活的，是正在发生的，任何概念都代替不了。`
 
 
-### I5760 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2009
+### I5761 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2009
 
 **问题**: 绝对化表述 "任何概念都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是活的，是现在进行时的。它是当下的生命和世界的直接接触，是正在进行的操作，是阳。现在觉得疼，这个疼是活的，是正在发生的，任何概念都代替不了。`
 
 
-### I5761 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2010
+### I5762 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2010
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，它是具体的，和生命直接相关。感性没有抽象的，每一个感觉都是具体的人的感觉，都和生命状态、需要、操作联系在一起。觉得饿，是身体需要食物；觉得疼，是身体受到了伤害。`
 
 
-### I5762 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2010
+### I5763 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2010
 
 **问题**: 绝对化表述 "每一个感觉都是具体的人的感觉，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，它是具体的，和生命直接相关。感性没有抽象的，每一个感觉都是具体的人的感觉，都和生命状态、需要、操作联系在一起。觉得饿，是身体需要食物；觉得疼，是身体受到了伤害。`
 
 
-### I5763 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2011
+### I5764 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2011
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，它是缄默意识的直接体现，是"知"的最原始形态。疼了，当下就知道疼，不需要思考，不需要概念。这种"知"是最可靠的，是所有知识的根。`
-
-
-### I5764 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2013
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思说："感性必须是一切科学的基础。科学只有从感性意识和感性需要这两种形式的感性出发，因而，科学只有从自然界出发，才是现实的科学。"所有的科学，所有的理性，所有的理论，追根溯源，都来自人的感性活动，`
 
 
 ### I5765 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2013
@@ -43678,44 +43678,44 @@
 
 ### I5767 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2013
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思说："感性必须是一切科学的基础。科学只有从感性意识和感性需要这两种形式的感性出发，因而，科学只有从自然界出发，才是现实的科学。"所有的科学，所有的理性，所有的理论，追根溯源，都来自人的感性活动，`
+
+
+### I5768 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2013
+
 **问题**: 绝对化表述 "所有的科学，所有的理性，所有的理论，追根溯源，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `马克思说："感性必须是一切科学的基础。科学只有从感性意识和感性需要这两种形式的感性出发，因而，科学只有从自然界出发，才是现实的科学。"所有的科学，所有的理性，所有的理论，追根溯源，都来自人的感性活动，`
 
 
-### I5768 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2018
+### I5769 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2018
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的理性，追根溯源，都来自感性，都是对感性经验的抽象和整理。没有感性经验，理性就是空的，就是没有内容的概念游戏。`
 
 
-### I5769 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2018
+### I5770 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2018
 
 **问题**: 绝对化表述 "所有的理性，追根溯源，都来自感性，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的理性，追根溯源，都来自感性，都是对感性经验的抽象和整理。没有感性经验，理性就是空的，就是没有内容的概念游戏。`
 
 
-### I5770 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2021
+### I5771 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2021
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是抽象的、普遍的，但是它也因此是干瘪的、没有血肉的。"红"这个概念能概括所有红的东西，但是它没有任何一个具体的红的东西那么丰富、那么鲜活。读了一本描写爱情的书，书里写得再好，也代替不了自己谈一`
 
 
-### I5771 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2021
+### I5772 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2021
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是抽象的、普遍的，但是它也因此是干瘪的、没有血肉的。"红"这个概念能概括所有红的东西，但是它没有任何一个具体的红的东西那么丰富、那么鲜活。读了一本描写爱情的书，书里写得再好，也代替不了自己谈一`
-
-
-### I5772 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2022
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `第二，它是静止的、固定的。概念一旦形成，就有相对的稳定性，但是活的感性、活的世界是一直在变的。用固定的概念去套永远在变的活的世界，就会有僵化的危险。这就是为什么教条主义者永远要碰壁。`
 
 
 ### I5773 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2022
@@ -43725,123 +43725,123 @@
 **上下文**: `第二，它是静止的、固定的。概念一旦形成，就有相对的稳定性，但是活的感性、活的世界是一直在变的。用固定的概念去套永远在变的活的世界，就会有僵化的危险。这就是为什么教条主义者永远要碰壁。`
 
 
-### I5774 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2041
+### I5774 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2022
 
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
+**上下文**: `第二，它是静止的、固定的。概念一旦形成，就有相对的稳定性，但是活的感性、活的世界是一直在变的。用固定的概念去套永远在变的活的世界，就会有僵化的危险。这就是为什么教条主义者永远要碰壁。`
 
 
 ### I5775 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2041
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
 
 
 ### I5776 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2041
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
+
+
+### I5777 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2041
+
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
 
 
-### I5777 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2075
+### I5778 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2075
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的名，追根溯源，都来自实，来自人的实际操作，是为实服务的工具。名一旦形成，就有很大的作用。它能把经验固定下来，传下去；它能让人和人之间交流，组织起来，形成更大的自指系统。没有名，就没有人类社会，就`
 
 
-### I5778 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2075
+### I5779 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2075
 
 **问题**: 绝对化表述 "所有的名，追根溯源，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的名，追根溯源，都来自实，来自人的实际操作，是为实服务的工具。名一旦形成，就有很大的作用。它能把经验固定下来，传下去；它能让人和人之间交流，组织起来，形成更大的自指系统。没有名，就没有人类社会，就`
 
 
-### I5779 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2214
+### I5780 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2214
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `但这句话不能当作存在论的最后一言。它有一个容易滑向的陷阱：如果人"是"社会关系的"总和"，那么逻辑上似乎改变社会关系就能改变人，人成了关系的产物和效应。这是结构决定论——关系成了主体，活人成了关系的承`
 
 
-### I5780 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2233
+### I5781 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2233
 
 **问题**: 绝对化表述 "每一层都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一卷讲过自指的嵌套性：大的自指系统套着小的自指系统，每一层都有自己的自指结构。个人和社会的关系，就是典型的自指嵌套关系。`
 
 
-### I5781 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2246
+### I5782 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2246
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `马克思和恩格斯说："在过去的种种冒充的共同体中，如在国家等等中，个人自由只是对那些在统治阶级范围内发展的个人来说是存在的……对于被统治的阶级来说，它不仅是完全虚幻的共同体，而且是新的桎梏。在真正的共同`
 
 
-### I5782 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2266
+### I5783 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2266
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `资产阶级讲自由，讲的是抽象的自由，是"天赋人权"的自由，是法律上的自由。他们说，每个人都有自由，只要不犯法，想干什么就干什么。`
 
 
-### I5783 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2273
+### I5784 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2273
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 能认识必然，利用规律为自己的目的服务，而不是被盲目的规律支配；`
 
 
-### I5784 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2319
+### I5785 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2319
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第四个环节：人同人相异化。** 当人同自己的劳动产品、自己的生命活动、自己的类本质相异化的时候，他也同他人相对立。在异化劳动下，人和人的关系变成了利益关系、金钱关系、竞争关系。每个人都把别人当成自`
 
 
-### I5785 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2333
+### I5786 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2333
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `国家不是从来就有的，也不是超阶级的。国家是阶级矛盾不可调和的产物，是一个阶级压迫另一个阶级的工具。国家也不会永远存在。当阶级和阶级差别消失了，国家也就失去了它的作用，它会慢慢消亡，被一个自由人的联合体`
 
 
-### I5786 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2399
+### I5787 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2399
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先说清楚：这不是可以拿计算器算出精确数字的工程公式。"生产关系公平"怎么打分？"共同体信任"怎么量化？谁来打？按什么标准？这些都是问题。任何声称能精确算出"社会健康指数"的公式，如果它给不出可操作的测`
 
 
-### I5787 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2404
+### I5788 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2404
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**个体稳态。** 社会中每个个体的身心健康程度：衣食住行、医疗、休息、安全、预期寿命。这是最基础的——个体是社会的细胞，细胞不健康，社会不可能健康。这一维好，意味着每个人都能吃饱穿暖、病有所医、老有`
 
 
-### I5788 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2404
+### I5789 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2404
 
 **问题**: 绝对化表述 "每个个体的身心健康程度：衣食住行、医疗、休息、安全、预期寿命。这是最基础的——个体是社会的细胞，细胞不健康，社会不可能健康。这一维好，意味着每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**个体稳态。** 社会中每个个体的身心健康程度：衣食住行、医疗、休息、安全、预期寿命。这是最基础的——个体是社会的细胞，细胞不健康，社会不可能健康。这一维好，意味着每个人都能吃饱穿暖、病有所医、老有`
 
 
-### I5789 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2406
+### I5790 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2406
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**生产关系公平。** 生产资料归谁所有、产品怎么分配、人与人在生产中的关系是否平等。这一维好，意味着劳动者掌握生产资料，没有剥削，按劳分配，人与人是平等的合作关系。这一维差，意味着生产资料被少数人占`
-
-
-### I5790 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2419
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `所以综合判断的思路接近**几何平均**：任何一个维度接近零，整体就接近零；任何一个维度特别低，整体就被严重拉低。这个思路是对的——生命系统就是这样，一个器官衰竭可以导致整个机体死亡。但要注意：几何平均`
 
 
 ### I5791 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2419
@@ -43851,60 +43851,60 @@
 **上下文**: `所以综合判断的思路接近**几何平均**：任何一个维度接近零，整体就接近零；任何一个维度特别低，整体就被严重拉低。这个思路是对的——生命系统就是这样，一个器官衰竭可以导致整个机体死亡。但要注意：几何平均`
 
 
-### I5792 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2421
+### I5792 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2419
+
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `所以综合判断的思路接近**几何平均**：任何一个维度接近零，整体就接近零；任何一个维度特别低，整体就被严重拉低。这个思路是对的——生命系统就是这样，一个器官衰竭可以导致整个机体死亡。但要注意：几何平均`
+
+
+### I5793 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2421
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `还有一个尺度问题：同一个社会，在不同尺度上衡量，操作权的直接程度不同。个人尺度上人直接掌握自己的操作；社区/集体尺度上操作权需要通过集体协调，有一定间接性；国家/社会尺度上操作权通过制度中介，间接性更`
 
 
-### I5793 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2557
+### I5794 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2557
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `从生命论的角度看，语言是明性的符号化，是操作的交流工具。它是在人的劳动和交往中产生的，为人的操作服务。语言是阴，是活的操作的沉淀，它一旦形成就有自己的规律，会反过来影响人的思维，但它永远是人的工具，不`
 
 
-### I5794 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2583
+### I5795 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2583
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `商品交换发展到一定阶段，产生了货币。货币是固定充当一般等价物的商品，是价值的独立形式。有了货币，商品世界分成两极：一极是所有普通商品，代表各种特殊的使用价值；另一极是货币，代表一般的交换价值。`
 
 
-### I5795 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2583
+### I5796 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2583
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `商品交换发展到一定阶段，产生了货币。货币是固定充当一般等价物的商品，是价值的独立形式。有了货币，商品世界分成两极：一极是所有普通商品，代表各种特殊的使用价值；另一极是货币，代表一般的交换价值。`
 
 
-### I5796 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2587
+### I5797 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2587
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `剩余价值从哪里来？不能从流通中来——贱买贵卖只是价值转移，整个社会的总价值不增加。也不能离开流通产生——把钱藏起来永远不会多一个子儿。`
 
 
-### I5797 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2587
+### I5798 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2587
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `剩余价值从哪里来？不能从流通中来——贱买贵卖只是价值转移，整个社会的总价值不增加。也不能离开流通产生——把钱藏起来永远不会多一个子儿。`
 
 
-### I5798 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2591
+### I5799 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2591
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `资产阶级经济学家把资本说成是物——机器、厂房、原料、货币，说这些东西天生就是资本，资本家拿利润是"资本的贡献"。这一说法站不住。机器本身不是资本，只有在一定的社会关系下，当它们被资本家占有、用来占有工`
-
-
-### I5799 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2592
-
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思说："资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，后者体现在一个物上，并赋予这个物以独特的社会性质。"`
 
 
 ### I5800 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2592
@@ -43914,74 +43914,74 @@
 **上下文**: `马克思说："资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，后者体现在一个物上，并赋予这个物以独特的社会性质。"`
 
 
-### I5801 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2850
+### I5801 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2592
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思说："资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，后者体现在一个物上，并赋予这个物以独特的社会性质。"`
+
+
+### I5802 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2850
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**F2的残酷和F3的盗火者责任。** F2不只是"识破"，它是一个深渊：你必须认真地、彻底地清扫一切外在赋予的意义——神、国家、资本、"端正"、"成功"、"历史的必然"、别人的期待——确认真正的虚无`
 
 
-### I5802 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2850
+### I5803 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2850
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**F2的残酷和F3的盗火者责任。** F2不只是"识破"，它是一个深渊：你必须认真地、彻底地清扫一切外在赋予的意义——神、国家、资本、"端正"、"成功"、"历史的必然"、别人的期待——确认真正的虚无`
 
 
-### I5803 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2860
+### I5804 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2860
 
 **问题**: 绝对化表述 "每一次点击、浏览、消费、社交，都被平台记录、收集、分析，变成数据商品。以为在免费使用平台，实际上是在免费为平台提供数据——注意力、行为数据、社交关系，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一，数据提取。** 数据是数字资本主义的石油。用户在平台上的每一次点击、浏览、消费、社交，都被平台记录、收集、分析，变成数据商品。以为在免费使用平台，实际上是在免费为平台提供数据——注意力、行为`
 
 
-### I5804 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2861
+### I5805 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2861
 
 **问题**: 绝对化表述 "每一秒都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第二，算法管理。** 平台通过算法管理劳动者和消费者。外卖骑手、网约车司机被算法派单、计时、罚款；消费者被算法推荐、画像、引导消费。算法比传统的工头更精确，它不休息、不讲情面，把劳动时间的每一秒都`
 
 
-### I5805 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2863
+### I5806 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2863
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第四，监视资本主义。** Zuboff在《监视资本主义时代》中指出，平台资本提取的不只是用户主动提供的数据，还有"行为剩余"——在网上留下的所有痕迹，包括本人不知道自己留下的。这些数据被用来预测行`
 
 
-### I5806 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2869
+### I5807 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2869
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**趋势三：数字剥削的普遍性。** 在数字资本主义下，剥削不只是在工厂里——刷视频、发朋友圈、写评论，都是在为平台生产数据。"产消合一"（prosumer）让消费者同时变成生产者，在消费的同时被剥削。`
 
 
-### I5807 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2870
+### I5808 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2870
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**趋势四：数字无产阶级的形成。** 骑手、司机、主播、内容创作者、数据标注工，所有在平台上劳动的人，构成了数字无产阶级。他们和传统工人一样不占有生产资料（平台和数据属于资本家），一样被算法剥削，一样`
 
 
-### I5808 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2871
+### I5809 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2871
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**趋势五：数字资本主义为社会主义准备了更充分的条件。** 平台本身就是高度社会化的生产组织，几亿人在上面劳动、消费、交往；数字技术提供了全社会统一计划生产的技术手段；数据公有、算法透明、平台社会所有`
 
 
-### I5809 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2874
+### I5810 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2874
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一，数据公有。** 数据是社会的集体产物，应当归社会所有，不能被私人资本垄断。可以建立公共数据银行，数据由社会管理，使用数据产生的收益归全社会。`
-
-
-### I5810 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2876
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**第三，平台公有或劳动者所有。** 具有自然垄断性质的平台，应当收归社会所有，或者由平台劳动者集体所有、民主管理。平台的管理者应当由劳动者选举产生，对劳动者负责，而不是对股东负责。`
 
 
 ### I5811 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2876
@@ -43998,32 +43998,32 @@
 **上下文**: `**第三，平台公有或劳动者所有。** 具有自然垄断性质的平台，应当收归社会所有，或者由平台劳动者集体所有、民主管理。平台的管理者应当由劳动者选举产生，对劳动者负责，而不是对股东负责。`
 
 
-### I5813 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2932
+### I5813 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2876
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**第三，平台公有或劳动者所有。** 具有自然垄断性质的平台，应当收归社会所有，或者由平台劳动者集体所有、民主管理。平台的管理者应当由劳动者选举产生，对劳动者负责，而不是对股东负责。`
+
+
+### I5814 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:2932
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，他夸大了"非物质劳动"的地位。全球绝大多数工人仍然在工厂、农场、工地从事物质劳动，"认知劳动"只是全球资本链条的顶端。他把发达国家少数知识工人的状况当成了全部，忽视了全球南方的物质生产。`
 
 
-### I5814 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3103
+### I5815 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3103
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一旦完成这个混同，推演就顺了：生产离不开生产资料，生产资料就是资本，所以生产离不开资本；资本家是资本的人格化，所以工人离不开资本家。结论：资本是永恒的、自然的、任何社会都不可缺少的。`
 
 
-### I5815 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3103
+### I5816 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3103
 
 **问题**: 绝对化表述 "任何社会都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一旦完成这个混同，推演就顺了：生产离不开生产资料，生产资料就是资本，所以生产离不开资本；资本家是资本的人格化，所以工人离不开资本家。结论：资本是永恒的、自然的、任何社会都不可缺少的。`
-
-
-### I5816 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3107
-
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思自己打过一个比方："黑人就是黑人。只有在一定的关系下，他才成为奴隶。纺纱机是纺棉花的机器。只有在一定的关系下，它才成为资本。脱离了这种关系，它也就不是资本了。"（《雇佣劳动与资本》，《马克思恩格`
 
 
 ### I5817 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3107
@@ -44033,67 +44033,67 @@
 **上下文**: `马克思自己打过一个比方："黑人就是黑人。只有在一定的关系下，他才成为奴隶。纺纱机是纺棉花的机器。只有在一定的关系下，它才成为资本。脱离了这种关系，它也就不是资本了。"（《雇佣劳动与资本》，《马克思恩格`
 
 
-### I5818 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3109
+### I5818 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3107
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思自己打过一个比方："黑人就是黑人。只有在一定的关系下，他才成为奴隶。纺纱机是纺棉花的机器。只有在一定的关系下，它才成为资本。脱离了这种关系，它也就不是资本了。"（《雇佣劳动与资本》，《马克思恩格`
+
+
+### I5819 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3109
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三位一体公式的荒谬在于：土地是自然物，资本是社会关系，劳动是人的活动——三者完全不同质，却被并列成各自"创造"价值的独立源泉。马克思说，这就像把"公证人的手续费、甜菜和音乐"硬凑在一起一样荒谬。剥开看`
 
 
-### I5819 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3109
+### I5820 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3109
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三位一体公式的荒谬在于：土地是自然物，资本是社会关系，劳动是人的活动——三者完全不同质，却被并列成各自"创造"价值的独立源泉。马克思说，这就像把"公证人的手续费、甜菜和音乐"硬凑在一起一样荒谬。剥开看`
 
 
-### I5820 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3109
+### I5821 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3109
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三位一体公式的荒谬在于：土地是自然物，资本是社会关系，劳动是人的活动——三者完全不同质，却被并列成各自"创造"价值的独立源泉。马克思说，这就像把"公证人的手续费、甜菜和音乐"硬凑在一起一样荒谬。剥开看`
 
 
-### I5821 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3229
+### I5822 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3229
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二个层次：**阶级的解放**——无产阶级和所有被压迫阶级从剥削和压迫下解放出来。无产阶级推翻资产阶级统治，建立无产阶级专政，消灭剥削制度，消灭阶级；劳动者成为社会的主人。`
 
 
-### I5822 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3230
+### I5823 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3230
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三个层次：**人类的解放**——全人类从必然王国进入自由王国。阶级和国家消亡了，人不再受自己社会关系的支配；劳动成为人的第一需要；每个人的自由发展是一切人自由发展的条件。`
 
 
-### I5823 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3231
+### I5824 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3231
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三个层次是联系在一起的。没有阶级的解放，个人的解放不可能；没有全人类的解放，阶级的解放不彻底。`
 
 
-### I5824 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3231
+### I5825 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3231
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三个层次是联系在一起的。没有阶级的解放，个人的解放不可能；没有全人类的解放，阶级的解放不彻底。`
 
 
-### I5825 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3234
+### I5826 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3234
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，无产阶级不占有生产资料，在革命中失去的只是锁链，获得的将是整个世界，它最坚决、最彻底。`
-
-
-### I5826 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3236
-
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `第三，无产阶级是大多数。但"大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、`
 
 
 ### I5827 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3236
@@ -44103,32 +44103,32 @@
 **上下文**: `第三，无产阶级是大多数。但"大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、`
 
 
-### I5828 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3238
+### I5828 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3236
+
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `第三，无产阶级是大多数。但"大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、`
+
+
+### I5829 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3238
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `今天的无产阶级不仅包括传统产业工人，还包括所有靠出卖劳动力生活的人：服务业工人、教师、医生、程序员、外卖骑手、数字劳动者。资本越发展，无产阶级的队伍越大。不占有生产资料、靠出卖劳动力生活、剩余劳动被他`
 
 
-### I5829 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3238
+### I5830 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3238
 
 **问题**: 绝对化表述 "所有靠出卖劳动力生活的人：服务业工人、教师、医生、程序员、外卖骑手、数字劳动者。资本越发展，无产阶级的队伍越大。不占有生产资料、靠出卖劳动力生活、剩余劳动被他人占有的人，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `今天的无产阶级不仅包括传统产业工人，还包括所有靠出卖劳动力生活的人：服务业工人、教师、医生、程序员、外卖骑手、数字劳动者。资本越发展，无产阶级的队伍越大。不占有生产资料、靠出卖劳动力生活、剩余劳动被他`
 
 
-### I5830 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3243
+### I5831 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3243
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `客观条件成熟了主观条件不成熟，革命也不会成功。所以在客观条件还没完全成熟时，革命者的任务是做群众工作，宣传、组织、提高群众觉悟，积蓄力量；时机成熟时，果断发动群众夺取胜利。`
-
-
-### I5831 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3247
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `判断一种理论——马克思的、毛泽东的、任何共产主义者的、任何自称正义的理论——是不是真正帮助无产阶级、真正通往共产主义的理论，唯一的根据是：**它让你站着活，还是跪着活。**`
 
 
 ### I5832 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3247
@@ -44138,46 +44138,46 @@
 **上下文**: `判断一种理论——马克思的、毛泽东的、任何共产主义者的、任何自称正义的理论——是不是真正帮助无产阶级、真正通往共产主义的理论，唯一的根据是：**它让你站着活，还是跪着活。**`
 
 
-### I5833 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3317
+### I5833 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3247
+
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `判断一种理论——马克思的、毛泽东的、任何共产主义者的、任何自称正义的理论——是不是真正帮助无产阶级、真正通往共产主义的理论，唯一的根据是：**它让你站着活，还是跪着活。**`
+
+
+### I5834 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3317
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**经济上的收权**：消灭生产资料私有制，建立公有制。没收大资本家、大银行、大垄断企业的财产归社会所有；生产目的从利润变成为满足人民需要。经济收权是最根本的——不掌握生产资料，政治权力是空的。`
 
 
-### I5834 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3451
+### I5835 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3451
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `公共权力本来是社会这个自指系统的"阴"，是为社会所有成员（阳）服务的工具。健康的公共权力是阳主阴从：权力来自人民，属于人民，为人民服务，受人民监督。`
 
 
-### I5835 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3495
+### I5836 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3495
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `群众路线的核心是：**真正的智慧在群众手里，不在少数精英的脑子里。** 这不是谦虚，是认识论的真理。群众是直接操作者，他们最了解实际情况，最知道问题出在哪里、办法在哪里。领导者的作用不是替群众想办法，`
 
 
-### I5836 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3509
+### I5837 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3509
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第四，它是动态的、发展的民主——民主的范围要不断扩大，形式要不断完善，直到所有人都能直接管理社会，公共权力失去政治性质。`
 
 
-### I5837 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3509
+### I5838 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3509
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第四，它是动态的、发展的民主——民主的范围要不断扩大，形式要不断完善，直到所有人都能直接管理社会，公共权力失去政治性质。`
-
-
-### I5838 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3515
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `巴黎公社采取了两个措施：所有公职人员由选举产生，对选民负责，随时可以撤换；所有公职人员只领取和工人一样的工资，不能有特权。`
 
 
 ### I5839 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3515
@@ -44187,88 +44187,88 @@
 **上下文**: `巴黎公社采取了两个措施：所有公职人员由选举产生，对选民负责，随时可以撤换；所有公职人员只领取和工人一样的工资，不能有特权。`
 
 
-### I5840 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3521
+### I5840 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3515
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `巴黎公社采取了两个措施：所有公职人员由选举产生，对选民负责，随时可以撤换；所有公职人员只领取和工人一样的工资，不能有特权。`
+
+
+### I5841 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3521
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 权力来自人民：所有管理者由人民选举，对人民负责，受人民监督，人民有权随时罢免；`
 
 
-### I5841 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3524
+### I5842 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3524
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 政务公开：除国家安全外所有公共事务向人民公开；`
 
 
-### I5842 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3528
+### I5843 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3528
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个问题是社会主义国家最根本的问题，到今天还没有完全解决。我们必须继续探索、继续实践。`
 
 
-### I5843 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3536
+### I5844 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3536
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `鞍钢宪法——"两参一改三结合"（干部参加劳动、工人参加管理、改革不合理的规章制度、工人群众、领导干部和技术员三结合）——指向了正确的方向：让阳主阴从不是一句口号，而是每天都在发生的操作关系。干部每月下`
 
 
-### I5844 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3536
+### I5845 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3536
 
 **问题**: 绝对化表述 "每天都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `鞍钢宪法——"两参一改三结合"（干部参加劳动、工人参加管理、改革不合理的规章制度、工人群众、领导干部和技术员三结合）——指向了正确的方向：让阳主阴从不是一句口号，而是每天都在发生的操作关系。干部每月下`
 
 
-### I5845 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3540
+### I5846 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3540
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个教训比"国家什么时候消亡"紧迫得多。国家消亡是遥远的事——物质极大丰富、明性普遍觉醒、分工差别消失，这些条件在可预见的将来不具备。但"这个国家是谁的国家、怎么保证它不异化"是眼前的事。一个掌握全部`
 
 
-### I5846 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3549
+### I5847 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3549
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一句话：**阳主阴从不能只在运动中实现一瞬间，必须在制度中实现每一天。** 用运动方式反对官僚主义，反完了官僚还是官僚；用制度方式让劳动者每天都在管理，官僚才不成其为官僚。手段和目的必须同构——要实现`
 
 
-### I5847 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3549
+### I5848 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3549
 
 **问题**: 绝对化表述 "每一天。** 用运动方式反对官僚主义，反完了官僚还是官僚；用制度方式让劳动者每天都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一句话：**阳主阴从不能只在运动中实现一瞬间，必须在制度中实现每一天。** 用运动方式反对官僚主义，反完了官僚还是官僚；用制度方式让劳动者每天都在管理，官僚才不成其为官僚。手段和目的必须同构——要实现`
 
 
-### I5848 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3571
+### I5849 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3571
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这也是为什么本书反复强调：**立场不能代替明性，纪律不能代替监督，运动不能代替制度。** 一个工人说"党在官僚化"，正确的反应不是让他检讨，而是去查一查党是不是真的在官僚化——这就是"从群众中来"，这`
 
 
-### I5849 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3581
+### I5850 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3581
 
 **问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `名实遮蔽的操作方式几乎总是同一种：**打着某个指标的幌子，实际上残害别的指标，最终达到残害人民的实效。** 举几个典型模式：`
 
 
-### I5850 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3588
+### I5851 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3588
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `公式的力量在于：它不跟你争论立场，不跟你争论动机，不跟你争论"你什么级别你懂什么"。它只问一个问题：**M在涨还是在跌？N大于1还是小于1？l′在降还是在升？** 这三个数不需要哲学训练就能理解，不需`
-
-
-### I5851 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3592
-
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `这就是"大多数即日常"在认识论上的落地：**每一个普通人在自己的日常位置上，都有能力用公式判断自己的生命状态和上级的政策效果。** 不需要等伟人来启蒙，不需要等运动来冲破，不需要等文件来纠正。你今天就`
 
 
 ### I5852 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3592
@@ -44294,16 +44294,16 @@
 
 ### I5855 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3592
 
-**问题**: 绝对化表述 "每一个普通人在自己的日常位置上，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是"大多数即日常"在认识论上的落地：**每一个普通人在自己的日常位置上，都有能力用公式判断自己的生命状态和上级的政策效果。** 不需要等伟人来启蒙，不需要等运动来冲破，不需要等文件来纠正。你今天就`
 
 
-### I5856 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3687
+### I5856 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3592
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一个普通人在自己的日常位置上，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都是把操作权还给生命本身。`
+**上下文**: `这就是"大多数即日常"在认识论上的落地：**每一个普通人在自己的日常位置上，都有能力用公式判断自己的生命状态和上级的政策效果。** 不需要等伟人来启蒙，不需要等运动来冲破，不需要等文件来纠正。你今天就`
 
 
 ### I5857 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3687
@@ -44315,16 +44315,16 @@
 
 ### I5858 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3687
 
-**问题**: 绝对化表述 "所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都是把操作权还给生命本身。`
 
 
-### I5859 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3699
+### I5859 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3687
 
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `生命论讲的"道在日用"，是从存在论推出的。道是什么？是自指操作的规律，是阳主阴从的道理，是生命自己维持自己、发展自己的规律。这个道不在天上，不在概念里，就在每一个生命的每一个活的操作里。吃饭是在维持自`
+**上下文**: `所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都是把操作权还给生命本身。`
 
 
 ### I5860 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3699
@@ -44334,25 +44334,25 @@
 **上下文**: `生命论讲的"道在日用"，是从存在论推出的。道是什么？是自指操作的规律，是阳主阴从的道理，是生命自己维持自己、发展自己的规律。这个道不在天上，不在概念里，就在每一个生命的每一个活的操作里。吃饭是在维持自`
 
 
-### I5861 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3822
+### I5861 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3699
+
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `生命论讲的"道在日用"，是从存在论推出的。道是什么？是自指操作的规律，是阳主阴从的道理，是生命自己维持自己、发展自己的规律。这个道不在天上，不在概念里，就在每一个生命的每一个活的操作里。吃饭是在维持自`
+
+
+### I5862 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3822
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**正名三问法**。遇到任何让人不舒服但"大家都这样"的事，问三个问题：这件事的真名是什么？（996不叫"奋斗"叫"超时劳动"）谁给它起的假名？（资本和它的意识形态）它实际上在操作谁、对谁有利？`
 
 
-### I5862 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3822
+### I5863 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3822
 
 **问题**: 绝对化表述 "任何让人不舒服但"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**正名三问法**。遇到任何让人不舒服但"大家都这样"的事，问三个问题：这件事的真名是什么？（996不叫"奋斗"叫"超时劳动"）谁给它起的假名？（资本和它的意识形态）它实际上在操作谁、对谁有利？`
-
-
-### I5863 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3827
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `身体是自指操作的物质基础，是阳的载体。把身体搞坏了，所有理想、所有事业都没有载体了。`
 
 
 ### I5864 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3827
@@ -44364,100 +44364,100 @@
 
 ### I5865 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3827
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `身体是自指操作的物质基础，是阳的载体。把身体搞坏了，所有理想、所有事业都没有载体了。`
+
+
+### I5866 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3827
+
 **问题**: 绝对化表述 "所有理想、所有事业都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `身体是自指操作的物质基础，是阳的载体。把身体搞坏了，所有理想、所有事业都没有载体了。`
 
 
-### I5866 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3907
+### I5867 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3907
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `家庭也是一样。要消灭的是旧的、异化的家庭关系（妇女是丈夫的附属、孩子是家庭的私有财产），建立新的、平等的、互助的家庭关系。家庭永远是社会的细胞，是爱的港湾，是生命传承的地方。`
 
 
-### I5867 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3921
+### I5868 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3921
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `人为什么活着？这个问题旧哲学回答了两千年，答案无非三种：要么说意义在外面——上帝、来世、历史必然、某个"更高的目的"；要么说没有意义——虚无主义，怎么活都行；要么市侩地说——赚钱、成功、买车买房。三种`
 
 
-### I5868 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3996
+### I5869 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3996
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `真正的自由是对必然的认识和改造——人认识了规律，自觉地按照规律行动，人就是自由的。认识了身体的规律，按时作息、坚持锻炼，人就有健康的自由；认识了社会的规律，和同志们一起斗争，人就有解放的自由。`
 
 
-### I5869 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3998
+### I5870 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:3998
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `纪律是自由的条件。一个集体没有纪律，各行其是，就是一盘散沙，什么事都做不成，最后每个人都不自由。革命队伍的纪律不是外在的压迫，是大家为了共同的目标自愿遵守的规则——它保护集体的战斗力，也保护每个人的自`
 
 
-### I5870 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4000
+### I5871 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4000
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `但纪律必须是自觉的纪律，不是盲目的服从。理解了为什么要有这个纪律，自觉遵守，这是自由；不理解但被迫遵守，那是异化。所以任何纪律都要让大家明白为什么，都要经过大家的讨论和同意。`
 
 
-### I5871 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4000
+### I5872 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4000
 
 **问题**: 绝对化表述 "任何纪律都要让大家明白为什么，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `但纪律必须是自觉的纪律，不是盲目的服从。理解了为什么要有这个纪律，自觉遵守，这是自由；不理解但被迫遵守，那是异化。所以任何纪律都要让大家明白为什么，都要经过大家的讨论和同意。`
 
 
-### I5872 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4005
+### I5873 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4005
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `革命者也是人，也有七情六欲，也有自己的生活、爱好、爱情、家庭。革命不是为了让大家过苦日子，恰恰是为了让所有人都能过上好日子，都能全面发展。如果革命的结果是大家都苦行僧一般，那革命干什么？`
 
 
-### I5873 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4005
+### I5874 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4005
 
 **问题**: 绝对化表述 "所有人都能过上好日子，都能全面发展。如果革命的结果是大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `革命者也是人，也有七情六欲，也有自己的生活、爱好、爱情、家庭。革命不是为了让大家过苦日子，恰恰是为了让所有人都能过上好日子，都能全面发展。如果革命的结果是大家都苦行僧一般，那革命干什么？`
 
 
-### I5874 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4009
+### I5875 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4009
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `主张的是健康的、充实的、为人民服务的生活方式。不反对个人利益和个人幸福，但把个人幸福和人民幸福结合起来——只有人民都幸福了，个人的幸福才是牢靠的；只有所有人都解放了，自己才是真正解放的。`
 
 
-### I5875 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4009
+### I5876 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4009
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `主张的是健康的、充实的、为人民服务的生活方式。不反对个人利益和个人幸福，但把个人幸福和人民幸福结合起来——只有人民都幸福了，个人的幸福才是牢靠的；只有所有人都解放了，自己才是真正解放的。`
 
 
-### I5876 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4030
+### I5877 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4030
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**螺——鹦鹉螺。** 这个意象存在了几亿年，永恒、沉默。螺是自指的形状——一圈圈转，从中心向外旋，每一圈都重复上一圈的结构，但更大、更高。螺也是必然王国的形状——历史周期律，王朝更替，资本危机，一个`
 
 
-### I5877 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4030
+### I5878 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4030
 
 **问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**螺——鹦鹉螺。** 这个意象存在了几亿年，永恒、沉默。螺是自指的形状——一圈圈转，从中心向外旋，每一圈都重复上一圈的结构，但更大、更高。螺也是必然王国的形状——历史周期律，王朝更替，资本危机，一个`
-
-
-### I5878 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4034
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `第一层：**用它**。维住命、索出路、图新序、在螺中螺旋上升——螺度一层层提高，每一圈都比上一圈更自觉、更有组织、操作权更多。这是度必然王国的方法。必然王国不会一天打碎，人在螺里转，但不是被动地转，是`
 
 
 ### I5879 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4034
@@ -44469,16 +44469,16 @@
 
 ### I5880 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4034
 
-**问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一层：**用它**。维住命、索出路、图新序、在螺中螺旋上升——螺度一层层提高，每一圈都比上一圈更自觉、更有组织、操作权更多。这是度必然王国的方法。必然王国不会一天打碎，人在螺里转，但不是被动地转，是`
 
 
-### I5881 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4036
+### I5881 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4034
 
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `第二层：**打碎它**。螺不是要永远背着的东西。维索图螺是度必然王国的方法，但必然王国度尽了，方法本身也要消亡——就像国家要消亡、法要消亡、阶级要消亡。不能把螺当新神供起来，不能把"维索图螺"变成新的`
+**上下文**: `第一层：**用它**。维住命、索出路、图新序、在螺中螺旋上升——螺度一层层提高，每一圈都比上一圈更自觉、更有组织、操作权更多。这是度必然王国的方法。必然王国不会一天打碎，人在螺里转，但不是被动地转，是`
 
 
 ### I5882 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4036
@@ -44497,107 +44497,107 @@
 
 ### I5884 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4036
 
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `第二层：**打碎它**。螺不是要永远背着的东西。维索图螺是度必然王国的方法，但必然王国度尽了，方法本身也要消亡——就像国家要消亡、法要消亡、阶级要消亡。不能把螺当新神供起来，不能把"维索图螺"变成新的`
+
+
+### I5885 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4036
+
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二层：**打碎它**。螺不是要永远背着的东西。维索图螺是度必然王国的方法，但必然王国度尽了，方法本身也要消亡——就像国家要消亡、法要消亡、阶级要消亡。不能把螺当新神供起来，不能把"维索图螺"变成新的`
 
 
-### I5885 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4038
+### I5886 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4038
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所以全句是：**维索图螺度必然王国，通自由王国，指自由人联合体。**`
 
 
-### I5886 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4125
+### I5887 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4125
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"范式"是一个科学共同体共同接受的理论框架、方法、信念和范例。在常规科学时期，科学家不挑战范式，而是在范式内解决难题，就像在既定规则下猜谜。当反常积累到一定程度，范式遇到危机，就会有人提出新范式，经过`
 
 
-### I5887 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4135
+### I5888 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4135
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `费耶阿本德比库恩走得更远。他在《反对方法》中提出，科学没有唯一的、固定的方法，科学史上的重大突破往往是打破了既有规则才成功的。他的口号是"怎么都行"（anything goes）——不是说科学没有方法`
 
 
-### I5888 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4186
+### I5889 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4186
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `生产力是人类改造自然的能力，包括劳动者、劳动资料和劳动对象，科学技术是第一生产力。生产关系是人们在生产中结成的社会关系，核心是生产资料所有制。`
 
 
-### I5889 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4188
+### I5890 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4188
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `生产力决定生产关系，生产关系反作用于生产力。这个矛盾是社会基本矛盾，推动社会形态更替。资本主义生产关系曾经促进生产力发展，但生产社会化和私人占有的矛盾越来越尖锐，必然要求社会主义公有制。`
 
 
-### I5890 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4200
+### I5891 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4200
 
 **问题**: 绝对化表述 "每个选择都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `技术理性看起来"科学""客观""中立"，实际上是资本统治的新形式。过去的统治是皮鞭和刺刀，现在的统治是算法和监控——人甚至感觉不到被统治，以为是自己在选择，实际上每个选择都是被设计好的。`
 
 
-### I5891 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4276
+### I5892 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4276
 
 **问题**: 绝对化表述 "每个人全面发展的条件。每个人都能受到最好的教育，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `到了共产主义，教育不再是阶级的工具，不再是劳动力的培训，而是每个人全面发展的条件。每个人都能受到最好的教育，都能根据自己的兴趣和社会的需要发展自己的能力。教育从"为谋生做准备"变成"为生活本身做准备"`
 
 
-### I5892 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4298
+### I5893 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4298
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `资产阶级法权在反封建的历史阶段曾是集体明性的进步。"法律面前人人平等"否定了世袭特权、神判法、君主意志——法权第一次试图把暴力的使用纳入可预测、可质疑、可纠错的程序，这是文明的明性对任意暴力的胜利。但`
 
 
-### I5893 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4300
+### I5894 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4300
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `无产阶级法权的历史任务，是把文明的集体明性推进一步。第一，它要从形式平等走向实质平等——不只是"法律面前人人平等"，还要通过公有制和按劳分配（最终按需分配）消除使平等流于形式的经济基础。第二，它要让法`
 
 
-### I5894 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4300
+### I5895 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4300
 
 **问题**: 绝对化表述 "任何判决都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `无产阶级法权的历史任务，是把文明的集体明性推进一步。第一，它要从形式平等走向实质平等——不只是"法律面前人人平等"，还要通过公有制和按劳分配（最终按需分配）消除使平等流于形式的经济基础。第二，它要让法`
 
 
-### I5895 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4302
+### I5896 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4302
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所以，无产阶级法权和革命暴力不是矛盾的——革命暴力打碎旧国家机器，无产阶级法权制约新政权自己的暴力。没有革命暴力，法权只是旧秩序的遮羞布；没有法权制约，革命暴力会滑向红色地狱。两者合在一起，才是阳主阴`
 
 
-### I5896 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4302
+### I5897 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4302
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所以，无产阶级法权和革命暴力不是矛盾的——革命暴力打碎旧国家机器，无产阶级法权制约新政权自己的暴力。没有革命暴力，法权只是旧秩序的遮羞布；没有法权制约，革命暴力会滑向红色地狱。两者合在一起，才是阳主阴`
 
 
-### I5897 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4304
+### I5898 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4304
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `到了共产主义，法权消亡，但集体明性不消亡——它从政治强制的法权变成人们自觉遵守的公共生活规则，从"不得不遵守"变成"本来就这么做"。这和个体明性从显意识沉淀为缄默意识是同一个结构：F2的显意识检查（法`
-
-
-### I5898 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4382
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `"反自指系统必然走向崩溃"——不是操作外面有个规律命令它崩溃，是P寄生S、S的自指能力持续下降这个结构本身反复出现，人认出来了，叫它"必然"。"哪里有压迫哪里就有反抗"——不是历史规律保证了反抗，是压`
 
 
 ### I5899 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4382
@@ -44621,109 +44621,109 @@
 **上下文**: `"反自指系统必然走向崩溃"——不是操作外面有个规律命令它崩溃，是P寄生S、S的自指能力持续下降这个结构本身反复出现，人认出来了，叫它"必然"。"哪里有压迫哪里就有反抗"——不是历史规律保证了反抗，是压`
 
 
-### I5902 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4565
+### I5902 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4382
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `"反自指系统必然走向崩溃"——不是操作外面有个规律命令它崩溃，是P寄生S、S的自指能力持续下降这个结构本身反复出现，人认出来了，叫它"必然"。"哪里有压迫哪里就有反抗"——不是历史规律保证了反抗，是压`
+
+
+### I5903 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4565
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 生命论讲每个人都可以成为自己生命的主人，和儒家"人皆可以为尧舜"、禅宗"众生皆有佛性"相通。`
 
 
-### I5903 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4583
+### I5904 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4583
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `周易六十四卦最后两卦是"既济"和"未济"。"既济"是已经完成，但后面跟着"未济"——没有完成。世界没有终点，历史没有终点，完成了就是新的开始，发展永远不会停止。这和"自由王国不是历史的终点，是真正的人`
 
 
-### I5904 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4583
+### I5905 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4583
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `周易六十四卦最后两卦是"既济"和"未济"。"既济"是已经完成，但后面跟着"未济"——没有完成。世界没有终点，历史没有终点，完成了就是新的开始，发展永远不会停止。这和"自由王国不是历史的终点，是真正的人`
 
 
-### I5905 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4588
+### I5906 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4588
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**边界**。任何自指系统都有边界——这是第一卷讲的"四规定性"之一：边界生成性。山有边界，国有边界，身有边界，心也有边界。边界不是缺陷，是自指系统得以存在的条件。没有边界，系统就消散在环境里，`
 
 
-### I5906 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4588
+### I5907 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4588
 
 **问题**: 绝对化表述 "任何自指系统都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**边界**。任何自指系统都有边界——这是第一卷讲的"四规定性"之一：边界生成性。山有边界，国有边界，身有边界，心也有边界。边界不是缺陷，是自指系统得以存在的条件。没有边界，系统就消散在环境里，`
 
 
-### I5907 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4590
+### I5908 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4590
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，**时止则止，时行则行**。"止"不是永远不动，是该止的时候止，该行的时候行。山看起来不动，但山中草木生长、鸟兽繁育，静中有动。止是为了更好的行——停下来，是为了认清方向、积蓄力量、守住根本，然`
 
 
-### I5908 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4590
+### I5909 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4590
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，**时止则止，时行则行**。"止"不是永远不动，是该止的时候止，该行的时候行。山看起来不动，但山中草木生长、鸟兽繁育，静中有动。止是为了更好的行——停下来，是为了认清方向、积蓄力量、守住根本，然`
 
 
-### I5909 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4718
+### I5910 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4718
 
 **问题**: 绝对化表述 "每个人都有成为"圣人"的可能。这是平等的、对人的信任，和每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第四，**"人皆可以为尧舜"**。孟子说人皆可以为尧舜，王阳明说"满街都是圣人"，相信每个人都有成为"圣人"的可能。这是平等的、对人的信任，和每个人都能全面发展的理想相通。当然，儒家的"圣人"是封建道`
 
 
-### I5910 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4774
+### I5911 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4774
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**无我/操作生成我。** 佛家说五蕴聚合中无常住自性的"我"；生命论说"'我'是自指操作的产物，不是前提"。方向一致。我亲身做过这个实验：把实体意义上的"我"彻底解构、拆散，拆成感觉的流动、念`
 
 
-### I5911 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4844
+### I5912 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4844
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `我是北原慢热。2008年生，北京通州人，一个高二学生。这本书是2026年暑假，从6月到8月，两个月里整出来的。生命论是我提的，里面所有概念我把过关。这本书的野心有三个。`
 
 
-### I5912 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4848
+### I5913 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4848
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，毛泽东时代是伟大的。它给人以正能量，给人在寒冰雪原里以持续的火苗。我写这些东西，最大的动力之一就是毛主席的革命史，尤其是他的晚年。我希望所有读这本书的人都意识到这一点。`
 
 
-### I5913 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4848
+### I5914 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4848
 
 **问题**: 绝对化表述 "所有读这本书的人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，毛泽东时代是伟大的。它给人以正能量，给人在寒冰雪原里以持续的火苗。我写这些东西，最大的动力之一就是毛主席的革命史，尤其是他的晚年。我希望所有读这本书的人都意识到这一点。`
 
 
-### I5914 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4850
+### I5915 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4850
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，你可以信仰马列毛，也可以信仰别的什么，有神论者我也不强求你改成无神论。我在这里只想完完整整达成一件事：使所有的庸俗唯物主义，以及披着唯心主义或庸俗唯物主义外衣的理论，再无立锥之地。那些把"物质决`
 
 
-### I5915 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4850
+### I5916 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4850
 
 **问题**: 绝对化表述 "所有的庸俗唯物主义，以及披着唯心主义或庸俗唯物主义外衣的理论，再无立锥之地。那些把"物质决定意识""生产力决定生产关系"当经念的，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，你可以信仰马列毛，也可以信仰别的什么，有神论者我也不强求你改成无神论。我在这里只想完完整整达成一件事：使所有的庸俗唯物主义，以及披着唯心主义或庸俗唯物主义外衣的理论，再无立锥之地。那些把"物质决`
-
-
-### I5916 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4852
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、任何"大家都这样"；另一层是做你`
 
 
 ### I5917 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4852
@@ -44742,16 +44742,16 @@
 
 ### I5919 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4852
 
-**问题**: 绝对化表述 "任何死物、任何经、任何"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、任何"大家都这样"；另一层是做你`
 
 
-### I5920 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4894
+### I5920 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4852
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何死物、任何经、任何"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `在拆具体的哲学家之前，我们先点破所有旧哲学共有的四个总病灶。这四个病灶是同一个实体化思维的四个侧面，从柏拉图到今天的所有旧哲学，没有一个能逃出去：`
+**上下文**: `后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、任何"大家都这样"；另一层是做你`
 
 
 ### I5921 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4894
@@ -44761,18 +44761,18 @@
 **上下文**: `在拆具体的哲学家之前，我们先点破所有旧哲学共有的四个总病灶。这四个病灶是同一个实体化思维的四个侧面，从柏拉图到今天的所有旧哲学，没有一个能逃出去：`
 
 
-### I5922 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4896
+### I5922 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4894
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `在拆具体的哲学家之前，我们先点破所有旧哲学共有的四个总病灶。这四个病灶是同一个实体化思维的四个侧面，从柏拉图到今天的所有旧哲学，没有一个能逃出去：`
+
+
+### I5923 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4896
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **概念实体化**：把我们从具体事物里抽象出来的概念（理念、形式、绝对精神、规律、理性、自由、人性等等），当成了独立于具体事物之外的实体，当成了比具体的、活的生命更真实的东西，然后叫活生生的人为`
-
-
-### I5923 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4901
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `这四个病灶是串在一起的：概念实体化必然导致主客二分，主客二分必然导致英雄史观，英雄史观必然导致理论优先。不把这个总框架砸烂，人再怎么批判旧哲学，也会不自觉的造出新的神。`
 
 
 ### I5924 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4901
@@ -44789,67 +44789,67 @@
 **上下文**: `这四个病灶是串在一起的：概念实体化必然导致主客二分，主客二分必然导致英雄史观，英雄史观必然导致理论优先。不把这个总框架砸烂，人再怎么批判旧哲学，也会不自觉的造出新的神。`
 
 
-### I5926 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4903
+### I5926 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4901
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `这四个病灶是串在一起的：概念实体化必然导致主客二分，主客二分必然导致英雄史观，英雄史观必然导致理论优先。不把这个总框架砸烂，人再怎么批判旧哲学，也会不自觉的造出新的神。`
+
+
+### I5927 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4903
 
 **问题**: 绝对化表述 "每个人都在这个框架里，每个人都摸到了一部分真东西，也每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `下面我们拆具体的哲学家，每个人都在这个框架里，每个人都摸到了一部分真东西，也每个人都栽在了这四个病灶上。我们不搞全盘否定，也不搞盲目崇拜，真东西拿过来，错的地方指出来，这才是对待前辈的正确态度。`
 
 
-### I5927 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4909
+### I5928 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4909
 
 **问题**: 绝对化表述 "每一刻都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：存在就是操作的发生和持存，没有脱离具体操作的抽象“存在”；变和不变是同一个操作的两面，活操作每一刻都在变，但自指的闭环保持相对稳定，两者不矛盾。`
 
 
-### I5928 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4946
+### I5929 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4946
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说人心是白板，知识都来自感觉经验，摸到了一阶感性明性是所有理性的来源，没有天生的观念。`
 
 
-### I5929 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4947
+### I5930 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4947
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **错**：他把经验理解成被动的接受，不知道经验是在操作中、在和环境的互动中获得的，不是被动印上去的；他还保留了物质实体和精神实体，是个不彻底的经验论者。`
 
 
-### I5930 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4950
+### I5931 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4950
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说“存在就是被感知”，摸到了所有的存在都必须经过明性的中介，离开感知和操作的“物质实体”是个抽象的空词。`
 
 
-### I5931 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4950
+### I5932 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4950
 
 **问题**: 绝对化表述 "所有的存在都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说“存在就是被感知”，摸到了所有的存在都必须经过明性的中介，离开感知和操作的“物质实体”是个抽象的空词。`
 
 
-### I5932 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4960
+### I5933 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4960
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **费希特**：他去掉了康德的物自体，说“自我设定自身”“自我设定非我”，摸到了自指操作自己生成自己、自己生成对象的结构，比康德彻底。但他的“自我”是抽象的、普遍的自我意识，不是现实的、活的人，最`
 
 
-### I5933 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4966
+### I5934 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4966
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的辩证法的合理内核：矛盾是发展的内在动力，发展是否定之否定的螺旋上升，真理是具体的、是过程，这些我们全部拿过来，作为我们操作辩证法的重要来源。`
-
-
-### I5934 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4968
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远存在。`
 
 
 ### I5935 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4968
@@ -44859,95 +44859,95 @@
 **上下文**: `- **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远存在。`
 
 
-### I5936 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4974
+### I5936 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4968
+
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远存在。`
+
+
+### I5937 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4974
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：人是一切社会关系的总和，是在现实操作中生成的；宗教异化只是社会异化的反映，不消灭现实的反自指寄生，光批判宗教没用；我们不需要任何新宗教，也不需要抽象的“爱”，我们需要的是现实的`
 
 
-### I5937 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4980
+### I5938 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4980
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他创立了历史唯物主义，说物质生产是全部历史的基础，人们的社会存在决定人们的意识，把历史从英雄和观念的手里还给了劳动者；`
 
 
-### I5938 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4981
+### I5939 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4981
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的剩余价值学说，把资本这个现代社会最强大的反自指系统解剖的清清楚楚：资本不是物，是一定历史阶段的生产关系，是死劳动对活劳动的支配，它的唯一目的就是增殖自身，像吸血鬼一样吸活劳动的血；`
 
 
-### I5939 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4987
+### I5940 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4987
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的历史观里仍然带有一定的目的论残余，好像共产主义是历史必然会到达的终点，这一点后来被第二国际的修正主义者放大成了机械决定论。`
 
 
-### I5940 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4987
+### I5941 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4987
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的历史观里仍然带有一定的目的论残余，好像共产主义是历史必然会到达的终点，这一点后来被第二国际的修正主义者放大成了机械决定论。`
 
 
-### I5941 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4988
+### I5942 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4988
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把马克思的实践概念扎根到自指操作的存在论基础上，以缄默意识为全域生命本体范畴，把实践唯物主义发展为**生命唯物主义**——不是抽象的"物质"本体，而是"人在活着"这个最直接`
 
 
-### I5942 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4988
+### I5943 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4988
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把马克思的实践概念扎根到自指操作的存在论基础上，以缄默意识为全域生命本体范畴，把实践唯物主义发展为**生命唯物主义**——不是抽象的"物质"本体，而是"人在活着"这个最直接`
 
 
-### I5943 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4998
+### I5944 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:4998
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：意志不是什么世界的本体，是生命自指操作的内在动力；我们重估一切价值，但标准不是权力意志，是生命的舒展；我们不要少数“超人”统治多数人，我们要“人人如龙”，每个人都做自己的主人。`
 
 
-### I5944 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5003
+### I5945 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5003
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **他的错**：他把“存在”神秘化了，说存在是“天命”，是自己遮蔽自己又显现自己的神秘力量，最后变成了新的形而上学；他的哲学充满了黑话，普通人根本看不懂，成了学院知识分子的智力游戏；他政治上投靠纳`
 
 
-### I5945 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5008
+### I5946 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5008
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说“存在先于本质”，人没有先天的本质，人就是自己选择和行动的结果，人是绝对自由的，要为自己的选择负全部责任。这摸到了生命没有固定本质、人在操作中生成自己的道理。`
 
 
-### I5946 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5033
+### I5947 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5033
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：症候阅读法我们拿过来用，但是我们不把结构实体化：所有的“总问题”“意识形态”，都是人的操作的沉淀，是阴，它不是独立存在的，它就存在于活人的操作和关系中；历史不是无主体的过程，历`
 
 
-### I5947 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5033
+### I5948 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5033
 
 **问题**: 绝对化表述 "所有的“总问题”“意识形态”，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：症候阅读法我们拿过来用，但是我们不把结构实体化：所有的“总问题”“意识形态”，都是人的操作的沉淀，是阴，它不是独立存在的，它就存在于活人的操作和关系中；历史不是无主体的过程，历`
-
-
-### I5948 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5038
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- 他明确反对历史目的论，说历史充满偶然、断裂，没有什么必然通向共产主义的铁律，这打掉了所有教条主义的“必然胜利”神话；`
 
 
 ### I5949 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5038
@@ -44959,114 +44959,114 @@
 
 ### I5950 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5038
 
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 他明确反对历史目的论，说历史充满偶然、断裂，没有什么必然通向共产主义的铁律，这打掉了所有教条主义的“必然胜利”神话；`
+
+
+### I5951 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5038
+
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他明确反对历史目的论，说历史充满偶然、断裂，没有什么必然通向共产主义的铁律，这打掉了所有教条主义的“必然胜利”神话；`
 
 
-### I5951 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5039
+### I5952 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5039
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的“事件”理论：旧的秩序通过“计数为一”把多样的现实固定成结构，事件就是从裂缝里爆发出来的断裂，是旧秩序里不可能的东西突然出现。这摸到了“阳突破阴的束缚”——活操作积累到临界点，打破旧惯性的锁死`
 
 
-### I5952 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5042
+### I5953 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5042
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **他的错**：他的本体论是集合论的抽象黑话，和活人的生命、痛苦没有关系；他的“事件”带有神秘的奇迹色彩，没有看到事件是矛盾长期积累的必然结果；他没有说清“为什么要忠诚于事件”的标准；他的“真理程`
 
 
-### I5953 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5043
+### I5954 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5043
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把抽象的“多”还原为千百万具体的活操作，把“计数为一”还原为操作的惯性沉淀；事件不是奇迹，是反自指寄生发展到锁死阶段的必然爆发，可以通过六维框架定性判断；忠诚的标准就是生命`
 
 
-### I5954 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5043
+### I5955 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5043
 
 **问题**: 绝对化表述 "每一次收回自己的操作权，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把抽象的“多”还原为千百万具体的活操作，把“计数为一”还原为操作的惯性沉淀；事件不是奇迹，是反自指寄生发展到锁死阶段的必然爆发，可以通过六维框架定性判断；忠诚的标准就是生命`
 
 
-### I5955 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5074
+### I5956 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5074
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们不反对个人权利，我们要的是更彻底的个人自由——不仅是形式上的法律自由，更是事实上的、掌握自己操作权的自由；我们不把市场、私有财产当成永恒的东西，它们是历史的产物，也会在历史`
 
 
-### I5956 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5074
+### I5957 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5074
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们不反对个人权利，我们要的是更彻底的个人自由——不仅是形式上的法律自由，更是事实上的、掌握自己操作权的自由；我们不把市场、私有财产当成永恒的东西，它们是历史的产物，也会在历史`
 
 
-### I5957 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5103
+### I5958 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5103
 
 **问题**: 绝对化表述 "每天睡觉前都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `最根本的道理写成三条明本训，每天睡觉前都要想一想：`
 
 
-### I5958 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5106
+### I5959 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5106
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **信仰人民，信仰每一个站着活的生命。**`
 
 
-### I5959 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5107
+### I5960 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5107
 
 **问题**: 绝对化表述 "每个站着活的人都有明性，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `从来就没有什么救世主，也不靠神仙皇帝。相信千百万普通劳动者的活操作，相信生命自己解放自己的力量，相信每个站着活的人都有明性，都能做自己的主人。`
 
 
-### I5960 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5108
+### I5961 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5108
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. **理论会随着实践发展，但是阶级立场半分不能变，永远站在被压迫者这边。**`
 
 
-### I5961 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5137
+### I5962 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5137
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有学术方法、工具、流程、规范，本质上都是人类自指生命的阴的沉淀——是活的研究者为了解决`
 
 
-### I5962 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5137
+### I5963 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5137
 
 **问题**: 绝对化表述 "所有学术方法、工具、流程、规范，本质上都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有学术方法、工具、流程、规范，本质上都是人类自指生命的阴的沉淀——是活的研究者为了解决`
 
 
-### I5963 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5139
+### I5964 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5139
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `阳主阴从，学术工作的唯一本体是活的研究者的真问题、真困惑、真思想；所有检索、精读、写作、`
 
 
-### I5964 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5140
+### I5965 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5140
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `引用、排版技能，都是为这个本体服务的工具，没有任何独立的神圣性。​`
-
-
-### I5965 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5146
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `五大技能，从线性流水线改造为自指递归的五环闭环，所有环节围绕真问题旋转，所有工具随时为活`
 
 
 ### I5966 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5146
@@ -45076,380 +45076,380 @@
 **上下文**: `五大技能，从线性流水线改造为自指递归的五环闭环，所有环节围绕真问题旋转，所有工具随时为活`
 
 
-### I5967 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5147
+### I5967 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5146
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `五大技能，从线性流水线改造为自指递归的五环闭环，所有环节围绕真问题旋转，所有工具随时为活`
+
+
+### I5968 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5147
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `思想服务，既吸收现有学术规范的全部合理内容，又从根上突破工具理性的束缚，实现“道在学术`
 
 
-### I5968 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5153
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
-
-
 ### I5969 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5153
 
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
 
 
 ### I5970 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5153
 
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
+
+
+### I5971 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5153
+
 **问题**: 绝对化表述 "每一个环节的输出都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
 
 
-### I5971 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5156
+### I5972 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5156
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一环：提问——所有研究从真问题开始（阳的起点）​`
 
 
-### I5972 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5184
+### I5973 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5184
 
 **问题**: 绝对化表述 "每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `严格遵循论文精读七阶段流程，但每一步都加一层扬弃判断：​`
 
 
-### I5973 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5221
+### I5974 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5221
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 删掉所有和核心论点无关的内容，哪怕人写得再得意。​`
 
 
-### I5974 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5223
+### I5975 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5223
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不造黑话：能用大白话说清楚的绝不造新概念，所有概念必须有实指，读者看完知道对应什么`
 
 
-### I5975 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5223
+### I5976 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5223
 
 **问题**: 绝对化表述 "绝不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不造黑话：能用大白话说清楚的绝不造新概念，所有概念必须有实指，读者看完知道对应什么`
 
 
-### I5976 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5225
+### I5977 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5225
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不装专业：不堆没用的公式、没用的术语、没用的引用，每一句话都要有信息量，每一个公式`
 
 
-### I5977 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5225
+### I5978 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5225
 
 **问题**: 绝对化表述 "每一句话都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不装专业：不堆没用的公式、没用的术语、没用的引用，每一句话都要有信息量，每一个公式`
 
 
-### I5978 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5236
+### I5979 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5236
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 每一个结论都有证据或逻辑支撑，没有“我觉得”“大家都认为”这种无根据的话；​`
 
 
-### I5979 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5236
+### I5980 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5236
 
 **问题**: 绝对化表述 "每一个结论都有证据或逻辑支撑，没有“我觉得”“大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 每一个结论都有证据或逻辑支撑，没有“我觉得”“大家都认为”这种无根据的话；​`
 
 
-### I5980 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5237
+### I5981 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5237
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 删掉任何一段，核心论证都会受影响，没有废话。​`
 
 
-### I5981 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5237
+### I5982 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5237
 
 **问题**: 绝对化表述 "任何一段，核心论证都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 删掉任何一段，核心论证都会受影响，没有废话。​`
 
 
-### I5982 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5243
+### I5983 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5243
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `审计——不仅查引用，还查所有概念、结论、证据的名实一致性，对应生命论“名实遮蔽”的去蔽工`
 
 
-### I5983 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5247
+### I5984 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5247
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 所有参考文献必须真实存在，题录、作者、年份、期刊、DOI准确；​`
 
 
-### I5984 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5248
+### I5985 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5248
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 文内每一个引用都真的支持人说的这句话，不把“主题相关”当成“支持结论”，不把相关说`
 
 
-### I5985 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5248
+### I5986 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5248
 
 **问题**: 绝对化表述 "每一个引用都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 文内每一个引用都真的支持人说的这句话，不把“主题相关”当成“支持结论”，不把相关说`
 
 
-### I5986 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5254
+### I5987 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5254
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 概念查：人用的每一个概念，是不是有明确的实指？有没有把抽象概念当成实体（比如“历史`
 
 
-### I5987 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5255
+### I5988 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5255
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `必然”“结构决定”“市场规律”）？有没有自己造了一个概念但说不清楚它是什么？​`
 
 
-### I5988 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5256
+### I5989 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5256
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 结论查：每一个结论，证据够不够？有没有说过头？有没有把人自己的推断说成事实？有没有`
 
 
-### I5989 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5257
+### I5990 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5257
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `把“可能”说成“必然”？​`
 
 
-### I5990 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5261
+### I5991 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5261
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `实不是道德要求，是自指系统维持自身健康的必要条件——骗别人最后一定骗自己，思想系统就会`
 
 
-### I5991 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5265
+### I5992 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5265
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 人敢把所有引用的原文翻出来，对着看每一句话；​`
 
 
-### I5992 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5303
+### I5993 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5303
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 不造黑话：能说白话就说白话，所有术语必须能翻译回日常语言。故意把简单的事说复杂，用黑话`
 
 
-### I5993 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5305
+### I5994 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5305
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `4. 不搞表演：不为了显得学术做没用的回归、堆没用的公式、引没用的文献、凑没用的字数。所有操`
 
 
-### I5994 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5308
+### I5995 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5308
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `引用。人可以骗所有人，但骗不了人自己的明性。​`
 
 
-### I5995 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5309
+### I5996 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5309
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `6. 不忘根本：所有学术最终都是为了让人活得更像人，让生命更舒展。为了职称、帽子、稿费、名气`
 
 
-### I5996 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5309
+### I5997 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5309
 
 **问题**: 绝对化表述 "所有学术最终都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `6. 不忘根本：所有学术最终都是为了让人活得更像人，让生命更舒展。为了职称、帽子、稿费、名气`
 
 
-### I5997 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5333
+### I5998 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5333
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `仅查引用，还查所有概念、结论、`
 
 
-### I5998 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5437
+### I5999 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5437
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `给所有站着活的人的武器​`
 
 
-### I5999 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5449
+### I6000 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5449
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `从不可怀疑的经验事实出发的公理化推导；对旧哲学的症候式阅读与总清算；理论`
 
 
-### I6000 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5453
+### I6001 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5453
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 反自指系统必然遵循窃权→锁死→遮蔽→耗散→负反馈锁死→崩溃的六阶段规`
 
 
-### I6001 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5458
+### I6002 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5458
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `阴阳辩证法与王船山道器论、西方哲学从巴门尼德到巴迪欧的全部合理成果​`
 
 
-### I6002 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5459
+### I6003 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5459
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `适用于所有生命系统（从细胞到文明）的健康/病理分析；不提供宇宙论意义上的`
 
 
-### I6003 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5460
+### I6004 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5460
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `“万物本体”，不讨论与活人操作无关的抽象世界本质；不承诺历史的必然目的，`
 
 
-### I6004 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5534
+### I6005 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5534
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `平均合成核心指标M（操作权指数）——几何平均的合理性在于四个维度是乘性关系，任何一个维`
 
 
-### I6005 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5538
+### I6006 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5538
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `更重要的是，作者明确提出了可检验的趋势判断：社会健康状况持续恶化（个体稳态下降、生产关系不公平加剧、环境承载超限、共同体瓦解、青年希望丧失、异化加深）到一定程度，会引发大的动荡或变革；个人长期处于被异`
 
 
-### I6006 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5547
+### I6007 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5547
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有工具都为生命服务。​`
 
 
-### I6007 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5547
+### I6008 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5547
 
 **问题**: 绝对化表述 "所有工具都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有工具都为生命服务。​`
 
 
-### I6008 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5555
+### I6009 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5555
 
 **问题**: 绝对化表述 "每个思想家的真东西和根本局限都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `不盲目崇拜，每个思想家的真东西和根本局限都讲得非常清楚，其中几个关键判断尤其有穿透力：​`
 
 
-### I6009 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5556
+### I6010 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5556
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. 对马克思的定位：马克思是最直接的理论来源，他的实践转向、剩余价值学说、阶级分析方法全部`
 
 
-### I6010 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5562
+### I6011 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5562
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `质上还是概念实体化，是把绝对精神换成了“结构”，最终必然走向结构决定论和学院黑话。​`
 
 
-### I6011 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5564
+### I6012 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5564
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `义和虚无主义：我们解构所有实体化的神，但我们不解构活的生命本身；判断真假对错的标准很明`
 
 
-### I6012 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5569
+### I6013 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5569
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `5. 对哲人王的彻底扬弃：柏拉图以来“少数智者统治多数人”的逻辑被从存在论层面推翻：真理不在`
 
 
-### I6013 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5570
+### I6014 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5570
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `少数人手里，在每个生命的操作中；绝对权力必然导致反自指异化；真正的哲人王不是统治别人，`
 
 
-### I6014 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5571
+### I6015 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5571
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `是做自己生命的王，“人人如龙”不是道德理想，是存在论层面每个人都可以做到的事。​`
 
 
-### I6015 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5617
+### I6016 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5617
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `义的二元对立，提供了一个真正一元论的、可以贯通从自然到社会到个人所有领域的理论框架；​`
 
 
-### I6016 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5627
+### I6017 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5627
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 它既反对投降主义，也反对盲动主义：既告诉人反自指的内在矛盾决定了它不可能永远持续，不要被它的强大吓倒；也告诉人`
 
 
-### I6017 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5627
+### I6018 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5627
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 它既反对投降主义，也反对盲动主义：既告诉人反自指的内在矛盾决定了它不可能永远持续，不要被它的强大吓倒；也告诉人`
 
 
-### I6018 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5635
+### I6019 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5635
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `整文本，未参考作者其他版本的生命论文本（如《无分之分》《形上形下贯通论》等），所有判断均`
 
 
-### I6019 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5677
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
-
-
 ### I6020 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5677
 
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
 
@@ -45461,25 +45461,25 @@
 **上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
 
 
-### I6022 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5683
+### I6022 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5677
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
+
+
+### I6023 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5683
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**回应：** 第一，"操作"在本体系不是狭义机械物理动作，包含感知、应答、维持、拒斥、联结，全部是广义操作事件。感本身就是自指操作的内在显现向度，没有消解第一人称体验。第二，第三人称结构性解析不等于`
 
 
-### I6023 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5692
+### I6024 [absolute] archive\old_editions\生命论（明本论）全本_20260816_v2.md:5692
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `>4. 本书所有现实历史案例用于阐释存在论机制；理论首要功能是提供预警，而不是事后解剖文明的衰败遗骸。`
-
-
-### I6024 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:33
-
-**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `"好好活就是做有意义的事，做有意义的事就是好好活。"——这句话形式上是循环定义，形式逻辑判定为无效。但践演坐实说：这个循环不是缺陷，是实事本身。你不可能站在"好好活"外面定义"意义"，也不可能站在"意`
 
 
 ### I6025 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:33
@@ -45489,11 +45489,11 @@
 **上下文**: `"好好活就是做有意义的事，做有意义的事就是好好活。"——这句话形式上是循环定义，形式逻辑判定为无效。但践演坐实说：这个循环不是缺陷，是实事本身。你不可能站在"好好活"外面定义"意义"，也不可能站在"意`
 
 
-### I6026 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:79
+### I6026 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:33
 
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- 有自指结构不一定活，有"感"就一定活——感意味着四规定性在运作。`
+**上下文**: `"好好活就是做有意义的事，做有意义的事就是好好活。"——这句话形式上是循环定义，形式逻辑判定为无效。但践演坐实说：这个循环不是缺陷，是实事本身。你不可能站在"好好活"外面定义"意义"，也不可能站在"意`
 
 
 ### I6027 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:79
@@ -45503,261 +45503,261 @@
 **上下文**: `- 有自指结构不一定活，有"感"就一定活——感意味着四规定性在运作。`
 
 
-### I6028 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:121
+### I6028 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:79
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 有自指结构不一定活，有"感"就一定活——感意味着四规定性在运作。`
+
+
+### I6029 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:121
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **美好**不是任意的自我肯定，它需要"善"来定向；`
 
 
-### I6029 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:190
+### I6030 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:190
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `M衡量的不是"你多大程度上掌控了生命"——完全掌控是神的位置，不是人的位置，而且"掌控"暗示你站在生命外面操控它，这本身就是独断论姿态。M衡量的是**生命意义的程度**：你的操作在多大程度上是明性觉知`
 
 
-### I6030 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:201
+### I6031 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:201
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `O是"值多少"，W是"对你值多少"。同样的O，在不同的M下价值完全不同：M→0时，负O的事物W→负无穷——操作权被彻底剥夺的人，一切事物都转化为对生命的伤害；正O的事物也救不了他。`
 
 
-### I6031 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:201
+### I6032 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:201
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `O是"值多少"，W是"对你值多少"。同样的O，在不同的M下价值完全不同：M→0时，负O的事物W→负无穷——操作权被彻底剥夺的人，一切事物都转化为对生命的伤害；正O的事物也救不了他。`
 
 
-### I6032 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:201
+### I6033 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:201
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `O是"值多少"，W是"对你值多少"。同样的O，在不同的M下价值完全不同：M→0时，负O的事物W→负无穷——操作权被彻底剥夺的人，一切事物都转化为对生命的伤害；正O的事物也救不了他。`
 
 
-### I6033 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:208
+### I6034 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:208
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `混淆这两者，是现代性最普遍的颠倒：把"活得有意义"替换成"获得有价值的东西"，把M（意义）理解成Might（购买力/支配力），把W（价值）当成意义本身。这个颠倒的精确机制是：追求意义→追求W→追求O→`
 
 
-### I6034 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:248
+### I6035 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:248
 
 **问题**: 绝对化表述 "每一代人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **好的阴**：服务于M的沉淀。语言、语法、公正的法律、良俗、好习惯、健康的制度、可靠的工具——没有这些，阳的操作没有凭依，每一代人都要从零开始。阴是阳的存储器和放大器。`
 
 
-### I6035 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:277
+### I6036 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:277
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"最大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、劳动、说话、照顾家人、在`
 
 
-### I6036 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:279
+### I6037 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:279
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"人民群众是历史进步的根本动力"不是政治口号，是存在论命题：历史不是伟人推动的，不是运动推动的，是每一个自指操作的日常闭合推动的。运动是阳的冲破，制度是阴的沉淀，但决定性的因素是每个人日常的M在不在涨`
 
 
-### I6037 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:281
+### I6038 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:281
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这回答了毛泽东到死没有解开的结：明性如何在日常制度中生成，而不靠运动？运动是脉冲式的，N暂时飙升又回落；真正的解放是N结构性地持续大于1，靠的是大多数人的日常操作持续拉高M。普通人让自己活得有意义，党`
 
 
-### I6038 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:281
+### I6039 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:281
 
 **问题**: 绝对化表述 "每一层都在做同一件事：在日常中提高M。不是"七八年再来一次"的震荡循环，是每一天、每一个操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这回答了毛泽东到死没有解开的结：明性如何在日常制度中生成，而不靠运动？运动是脉冲式的，N暂时飙升又回落；真正的解放是N结构性地持续大于1，靠的是大多数人的日常操作持续拉高M。普通人让自己活得有意义，党`
 
 
-### I6039 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:287
+### I6040 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:287
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `毛泽东领导的中国革命，是人类历史上使亿万人内化一种世界观、激活明性的最大尝试；毛泽东思想是这个尝试最大的思想助力。他看到了别人看不到的东西：制度会硬化，党会异化，继续革命是存在论的必然。他也用了他那个`
 
 
-### I6040 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:402
+### I6041 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:402
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"应该"本身不是病。规范立场必然要说"应该"。问题出在两种：一是从存在论直接推"应该"（"阳主阴从，所以应该革命"——中间有跳跃，站着一个活人）；二是"应该"的通货膨胀（每段都"应该"，等于没有"应该`
 
 
-### I6041 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:402
+### I6042 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:402
 
 **问题**: 绝对化表述 "每段都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"应该"本身不是病。规范立场必然要说"应该"。问题出在两种：一是从存在论直接推"应该"（"阳主阴从，所以应该革命"——中间有跳跃，站着一个活人）；二是"应该"的通货膨胀（每段都"应该"，等于没有"应该`
 
 
-### I6042 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:430
+### I6043 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:430
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**立场不变，判断可错。** 立场（方向）不动摇：站在劳动者一边。具体判断全部可错、可改、可讨论。立场是实践方向，不是命题真理。`
 
 
-### I6043 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:434
+### I6044 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:434
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**理论自己也是活的。** "操作"这个概念本身也是操作的产物。生命论自己也是活的理论：起点可错，结论可改，不符合事实就扔掉。它不提供新的神，不提供绝对真理，不承诺"必然胜利"。`
 
 
-### I6044 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:537
+### I6045 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:537
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这不是宣布自己不需要他者。恰恰相反：大他者是假的，但真实他者的反驳是真的。这本书的每一个重要判断都经过了与真实他者的撞击——与人争论、被AI质疑、在实践中碰壁。扬弃大他者不是取消批判，是把批判从"想象`
 
 
-### I6045 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:537
+### I6046 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:537
 
 **问题**: 绝对化表述 "每一个重要判断都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这不是宣布自己不需要他者。恰恰相反：大他者是假的，但真实他者的反驳是真的。这本书的每一个重要判断都经过了与真实他者的撞击——与人争论、被AI质疑、在实践中碰壁。扬弃大他者不是取消批判，是把批判从"想象`
 
 
-### I6046 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:538
+### I6047 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:538
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这本书里有一些私人化的表达，它们不向任何想象的审判者负责。它们只对一件事负责：说这话的人是不是真的这么活、这么看、这么感受。如果是，它就站在这里；如果不是，它应该被改掉。这不是任性，是扬弃大他者之后的`
 
 
-### I6047 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:602
+### I6048 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:602
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `任何自指操作都有两个不可分割的面向：`
 
 
-### I6048 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:602
+### I6049 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:602
 
 **问题**: 绝对化表述 "任何自指操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `任何自指操作都有两个不可分割的面向：`
 
 
-### I6049 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:619
+### I6050 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:619
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `f¹生命受前三层约束；f²动物受前四层中社会约束的雏形（群体等级）；f³人受全部五层。人能通过符号反思和集体实践改造后三层约束（社会、符号），并在有限程度上改造前两层（医学、生物技术），但不能取消物理`
 
 
-### I6050 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:625
+### I6051 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:625
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **必（必然性）**：无机宇宙的唯一路径。物理定律锁死了"只能这样"——岩石滚落没有选择，星云坍缩没有选择。只有"必"。`
 
 
-### I6051 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:676
+### I6052 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:676
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `6. 系统崩溃或被推翻：趋势，不是必然——需要活人的操作`
 
 
-### I6052 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:678
+### I6053 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:678
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**资本是化生的：** 它不挑外壳，能从任何操作关系中化生——封建社会、公有制、政党、合作社、平台，只要死劳动支配活劳动、操作的产物反过来支配操作者。"身子是公有制的骨架，灵魂是资本增殖"——这是继续`
 
 
-### I6053 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:742
+### I6054 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:742
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `操作长出自指，自指长出目的，目的开辟可能性空间。但历史不必然走向任何终点。`
 
 
-### I6054 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:742
+### I6055 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:742
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `操作长出自指，自指长出目的，目的开辟可能性空间。但历史不必然走向任何终点。`
 
 
-### I6055 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:746
+### I6056 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:746
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- "能"开启"可"，"可"之中才有"必"的实现——必然规律不是在天上等着实现的，是在"可"中通过操作被实现的。`
 
 
-### I6056 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:750
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**盗火者的隐喻**（收束意象，不是论证环节）：生命从宇宙的必然之流中盗取了三层火——区分内外的觉知（f¹）、在多条路径中选择的可能（f²）、符号反思和集体创造的自由（f³）。火不是被赐予的，是生命自`
-
-
 ### I6057 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:750
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**盗火者的隐喻**（收束意象，不是论证环节）：生命从宇宙的必然之流中盗取了三层火——区分内外的觉知（f¹）、在多条路径中选择的可能（f²）、符号反思和集体创造的自由（f³）。火不是被赐予的，是生命自`
 
 
 ### I6058 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:750
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**盗火者的隐喻**（收束意象，不是论证环节）：生命从宇宙的必然之流中盗取了三层火——区分内外的觉知（f¹）、在多条路径中选择的可能（f²）、符号反思和集体创造的自由（f³）。火不是被赐予的，是生命自`
+
+
+### I6059 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:750
+
 **问题**: 绝对化表述 "所有f³都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**盗火者的隐喻**（收束意象，不是论证环节）：生命从宇宙的必然之流中盗取了三层火——区分内外的觉知（f¹）、在多条路径中选择的可能（f²）、符号反思和集体创造的自由（f³）。火不是被赐予的，是生命自`
 
 
-### I6059 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:833
+### I6060 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:833
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `四条规定从不零散单独出现，而是一次性集体闭包完成。`
 
 
-### I6060 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:845
+### I6061 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:845
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `审慎边界：该结论立足于碳基生命实事；对于硅基自指系统，属于有理外推，不是逻辑必然公理。`
 
 
-### I6061 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:879
+### I6062 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:879
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **修复应的通路**：边界用来区分内外，不是彻底封死自己。拒绝单纯把他者当作工具客体，建立现实操作层面真实的呼答，而不是仅仅头脑之中的空想。`
 
 
-### I6062 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:969
+### I6063 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:969
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `康德说，人看到的世界都是世界向人显现出来的"现象"，在现象后面有一个"物自体"，即世界本身，这个东西永远认识不了。`
 
 
-### I6063 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:973
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
-
-
 ### I6064 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:973
 
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
 
@@ -45778,156 +45778,156 @@
 
 ### I6067 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:973
 
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
+
+
+### I6068 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:973
+
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `什么叫"现象后面的物自体"？说有一个东西在现象后面，那这个判断本身就是一个操作。如果永远认识不了它，它永远不显现，和它永远没有任何操作上的关系，那它和不存在有什么区别？`
 
 
-### I6068 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1036
+### I6069 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1036
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这和费希特表面相似。费希特在《全部知识学的基础》（*Grundlage der gesamten Wissenschaftslehre*, 1794）中提出"本原行动"（Tathandlung），说"`
 
 
-### I6069 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1038
+### I6070 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1038
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个命题不是书斋里的逻辑推理，是用命验过的。我曾经试过彻底解构、剖析、拆散那个实体意义上的"我"——把"我"拆成感觉的流动、念头的生灭、身体感受的聚合，找来找去找不到一个常驻的"我"在背后。这和休谟在`
 
 
-### I6070 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1106
+### I6071 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1106
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2026年8月6日，北京谱仪III（BESIII）国际合作组在巴西纳塔尔第43届国际高能物理大会（ICHEP 2026）上宣布：经过十五年研究、超过一百亿个J/ψ衰变事例，他们找到了物理学家找了近半个`
 
 
-### I6071 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1110
+### I6072 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1110
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `普通的物质，比如质子，是夸克（"砖块"）加胶子（"水泥"）构成的。胶子传递强相互作用力，把夸克粘在一起。但胶子有一个和光子（传递电磁力的粒子）根本不同的性质：光子不带电荷，不跟自己作用；胶子带色荷，自`
 
 
-### I6072 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1114
+### I6073 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1114
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一，胶子静止质量为零，胶球的质量全部来自"作用"。**`
 
 
-### I6073 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1116
+### I6074 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1116
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `胶子的静止质量是零——和光子一样，它本身没有质量。但胶球有质量，X(2370)的质量大约相当于两个半质子。这个质量从哪来？没有任何"东西"在里面提供质量。它完全来自胶子和胶子之间自相互作用的束缚能。E`
 
 
-### I6074 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1116
+### I6075 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1116
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `胶子的静止质量是零——和光子一样，它本身没有质量。但胶球有质量，X(2370)的质量大约相当于两个半质子。这个质量从哪来？没有任何"东西"在里面提供质量。它完全来自胶子和胶子之间自相互作用的束缚能。E`
-
-
-### I6075 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1118
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `换句话说：把胶球拆开，拆不出任何"有质量的零件"。拆到最后是零质量的胶子在互相作用。胶球这个"东西"的存在，完全就是它的"作用"——没有作用，就没有胶球。`
 
 
 ### I6076 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1118
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `换句话说：把胶球拆开，拆不出任何"有质量的零件"。拆到最后是零质量的胶子在互相作用。胶球这个"东西"的存在，完全就是它的"作用"——没有作用，就没有胶球。`
+
+
+### I6077 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1118
+
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `换句话说：把胶球拆开，拆不出任何"有质量的零件"。拆到最后是零质量的胶子在互相作用。胶球这个"东西"的存在，完全就是它的"作用"——没有作用，就没有胶球。`
 
 
-### I6077 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1120
+### I6078 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1120
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是"操作先于实体"在物理世界里能找到的最干净的例子。不是比喻，不是哲学类比，是实验事实：一个粒子的全部存在就是它自己跟自己的作用关系。S=f(S)，S里没有任何"实体"撑着，全是f。`
 
 
-### I6078 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1120
+### I6079 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1120
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这是"操作先于实体"在物理世界里能找到的最干净的例子。不是比喻，不是哲学类比，是实验事实：一个粒子的全部存在就是它自己跟自己的作用关系。S=f(S)，S里没有任何"实体"撑着，全是f。`
 
 
-### I6079 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1187
+### I6080 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1187
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是两种完全不同的存在方式：`
 
 
-### I6080 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1187
+### I6081 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1187
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是两种完全不同的存在方式：`
 
 
-### I6081 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1188
+### I6082 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1188
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 第一种，像漩涡这样的，叫**自指操作**：操作的目的就是维持它自己，所有操作都指向自身，通过和外界的交换不断更新自己的成分，但维持自己的组织形式不变。`
 
 
-### I6082 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1188
+### I6083 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1188
 
 **问题**: 绝对化表述 "所有操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 第一种，像漩涡这样的，叫**自指操作**：操作的目的就是维持它自己，所有操作都指向自身，通过和外界的交换不断更新自己的成分，但维持自己的组织形式不变。`
 
 
-### I6083 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1297
+### I6084 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1297
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `自指操作不是封闭的，它需要从环境输入物质、能量、信息，也向环境输出。完全封闭的系统无法维持自身——这是从"自指维持"概念直接得出的，不是外加的经验规律。所以开放和交换不是自指系统的"可选功能"，是它维`
 
 
-### I6084 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1299
+### I6085 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1299
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这四条，每一条都是"自指操作"这个概念的题中应有之义，不是外加的。少了任何一条，自指操作就不成立：没有边界就没有"自己"，没有目的就没有"维持"，没有再生就不能持续，没有环境互动就必然崩溃。`
 
 
-### I6085 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1299
+### I6086 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1299
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这四条，每一条都是"自指操作"这个概念的题中应有之义，不是外加的。少了任何一条，自指操作就不成立：没有边界就没有"自己"，没有目的就没有"维持"，没有再生就不能持续，没有环境互动就必然崩溃。`
 
 
-### I6086 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1299
+### I6087 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1299
 
 **问题**: 绝对化表述 "每一条都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这四条，每一条都是"自指操作"这个概念的题中应有之义，不是外加的。少了任何一条，自指操作就不成立：没有边界就没有"自己"，没有目的就没有"维持"，没有再生就不能持续，没有环境互动就必然崩溃。`
 
 
-### I6087 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1332
+### I6088 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1332
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第二层：化学层——半闭环。** 远离平衡态下出现交叉催化循环：A催化B，B催化A。操作网络开始生产维持自身运行的组件，时间维度进入了——胶球的自作用是同时的、对称的，自催化是跨时间的循环（A在t₁`
-
-
-### I6088 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1366
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `这里要划清一条界线：反自指不是"任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石`
 
 
 ### I6089 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1366
@@ -45939,184 +45939,184 @@
 
 ### I6090 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1366
 
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `这里要划清一条界线：反自指不是"任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石`
+
+
+### I6091 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1366
+
 **问题**: 绝对化表述 "任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石撞击，这些是外部破坏，不是反自指。反自指的严格判准是上面三条：P以S为输入、G削弱S、P的维持依赖S的存在。三条缺一不可。病毒、癌细胞、剥削阶级、资本符合这三条；火灾不符合。这个区分很重要，否则"反自指"就宽到没有信息量——任何伤害生命的东西都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这里要划清一条界线：反自指不是"任何破坏自指系统的东西"。火灾烧毁森林，但火灾不是反自指——它不是一个寄生在森林上的自指系统，它不"维持自己"，它只是外部的物理化学过程，烧完了就完了。地震、洪水、陨石`
 
 
-### I6091 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1368
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
-
-
 ### I6092 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1368
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
 
 
 ### I6093 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1368
 
-**问题**: 绝对化表述 "任何有序性，所有的有序性都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
 
 
 ### I6094 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1368
 
+**问题**: 绝对化表述 "任何有序性，所有的有序性都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
+
+
+### I6095 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1368
+
 **问题**: 绝对化表述 "所有的有序性都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先看生物界的例子：病毒。病毒自己没有细胞结构，不能自己进行新陈代谢，不能自己繁殖。它必须钻进宿主的细胞里，把细胞自己的复制机制夺过来，用细胞的原料、能量来复制自己，复制得多了，细胞就破了，新的病毒出来`
 
 
-### I6095 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1374
+### I6096 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1374
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `奴隶社会的奴隶主阶级，不劳动，不生产，靠占有奴隶的全部劳动成果生存。奴隶是自指的活人，奴隶主靠支配奴隶的劳动成果维持自己，奴隶累死了，就去获取新的奴隶。`
 
 
-### I6096 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1433
+### I6097 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1433
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这六个阶段是**趋势**，不是宿命。每个阶段都可能被S的自觉操作打断——劳动者在第二阶段就可以识破惯性，在第三阶段就可以拆穿遮蔽，在第五阶段就可以组织反抗。说"必然性"，是说如果不干预，这个结构会自发`
 
 
-### I6097 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1433
+### I6098 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1433
 
 **问题**: 绝对化表述 "每个阶段都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这六个阶段是**趋势**，不是宿命。每个阶段都可能被S的自觉操作打断——劳动者在第二阶段就可以识破惯性，在第三阶段就可以拆穿遮蔽，在第五阶段就可以组织反抗。说"必然性"，是说如果不干预，这个结构会自发`
 
 
-### I6098 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1445
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
-
-
 ### I6099 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1445
 
-**问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
 
 
 ### I6100 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1445
 
+**问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
+
+
+### I6101 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1445
+
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一阶：解蔽。** 必须先知道自己被支配，才可能去反抗。一个人觉得"996是福报""资本养活了工人"，他不会反抗。解蔽是前提——不是说所有人都解蔽了才能行动，而是说行动的第一步总是某种解蔽：意识到`
 
 
-### I6101 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1451
+### I6102 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1451
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个顺序是逻辑的，不是时间的——实际斗争中三个环节会交织、会反复。但逻辑上，解蔽是前提，收权是核心，立序是完成。跳过任何一步都会出问题：只解蔽不收权，是书斋里的批判；只收权不解蔽，是改朝换代；只立序不`
 
 
-### I6102 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1451
+### I6103 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1451
 
 **问题**: 绝对化表述 "任何一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个顺序是逻辑的，不是时间的——实际斗争中三个环节会交织、会反复。但逻辑上，解蔽是前提，收权是核心，立序是完成。跳过任何一步都会出问题：只解蔽不收权，是书斋里的批判；只收权不解蔽，是改朝换代；只立序不`
 
 
-### I6103 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1496
+### I6104 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1496
 
 **问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这里的工作是把马克思"感性活动"的存在论维度严格展开："感性活动"的原初形式就是感——活的自指操作的第一人称呈现。感不是"物质"的产物，也不是"意识"的活动，感是心物未分化的原初事实，物质和意识都是从`
 
 
-### I6104 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1531
+### I6105 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1531
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**感和能是同一回事的两面。** 第七章已经区分了结构阳和能阳：结构阳是任何操作都有的发用面，灰色宇宙也有；能阳是感在多种可能性中趋避选择的能力，只在感出现后才有。这里系统展开能阳的存在论结构。`
 
 
-### I6105 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1531
+### I6106 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1531
 
 **问题**: 绝对化表述 "任何操作都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**感和能是同一回事的两面。** 第七章已经区分了结构阳和能阳：结构阳是任何操作都有的发用面，灰色宇宙也有；能阳是感在多种可能性中趋避选择的能力，只在感出现后才有。这里系统展开能阳的存在论结构。`
 
 
-### I6106 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1615
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
-
-
 ### I6107 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1615
 
-**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
 
 
 ### I6108 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1615
 
+**问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
+
+
+### I6109 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1615
+
 **问题**: 绝对化表述 "所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是自在层的操作。这一层对应四规定性的全部：边界、目的、再生、互动，它都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **自在层（所有生命共有）**：管稳态、免疫、本能，是缄默意识的核心层。它不会说话但永不说谎——身体不舒服了，它会用疼痛、疲劳、发烧发出信号。植物的向光性、细菌的趋化性、免疫系统的排异反应，都是`
 
 
-### I6109 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1621
+### I6110 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1621
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是整个手电筒和电池，显意识只是那束打出去的光。光照亮了局部，但光永远不能脱离手电筒而存在。理性思考、逻辑推理、自我反思，看似独立运作，其底层动力、信息基础、决策偏向，始终被缄默意识支撑和引导。`
 
 
-### I6110 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1621
+### I6111 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1621
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是整个手电筒和电池，显意识只是那束打出去的光。光照亮了局部，但光永远不能脱离手电筒而存在。理性思考、逻辑推理、自我反思，看似独立运作，其底层动力、信息基础、决策偏向，始终被缄默意识支撑和引导。`
 
 
-### I6111 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1621
+### I6112 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1621
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是整个手电筒和电池，显意识只是那束打出去的光。光照亮了局部，但光永远不能脱离手电筒而存在。理性思考、逻辑推理、自我反思，看似独立运作，其底层动力、信息基础、决策偏向，始终被缄默意识支撑和引导。`
 
 
-### I6112 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1650
+### I6113 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1650
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `明性是缄默意识对自身的照亮。这个照亮有程度差异，是一条从暗到明的连续谱：低等生命有自在层的缄默意识——细胞"知道"怎么维持自己，但它不知道自己知道，明性极暗；高等动物有自为层的情绪和直觉，明性昏暗，能`
 
 
-### I6113 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1721
+### I6114 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1721
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**形而上（道）：** 贯穿于一切形而下存在者之中、支配其运行方式、构成其存在意义根据，却不能被还原为任何具体形而下者的存在论结构、普遍规律与意义层面。阴阳、自指、衰退、因果——这些不是某个具体的东西`
 
 
-### I6114 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1810
+### I6115 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1810
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这种"知道"，不是显意识的知道，不是用概念、用语言思考出来的知道，是一种更基础的、前反思的、缄默的知道。这就是**缄默意识**——所有生命共有的、前语言前反思的原生主体性，从最早的自指闭包开始就有，是`
-
-
-### I6115 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1817
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `生命史首先是缄默意识的进化史。从最早的细胞膜对物质的选择性通透，到低等生物的趋利避害，到动物的感觉和情绪，到人的意识和思想，缄默意识越来越复杂，越来越亮，直到在人这里亮起了明性——"知道自己知道"。但`
 
 
 ### I6116 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1817
@@ -46133,53 +46133,53 @@
 **上下文**: `生命史首先是缄默意识的进化史。从最早的细胞膜对物质的选择性通透，到低等生物的趋利避害，到动物的感觉和情绪，到人的意识和思想，缄默意识越来越复杂，越来越亮，直到在人这里亮起了明性——"知道自己知道"。但`
 
 
-### I6118 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1818
+### I6118 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1817
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `生命史首先是缄默意识的进化史。从最早的细胞膜对物质的选择性通透，到低等生物的趋利避害，到动物的感觉和情绪，到人的意识和思想，缄默意识越来越复杂，越来越亮，直到在人这里亮起了明性——"知道自己知道"。但`
+
+
+### I6119 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1818
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `旧哲学的认识论，从笛卡尔到康德到黑格尔，大都只盯着显意识，盯着理性、概念、判断，把这些当成认识的全部，不知道在显意识下面，还有一个更基础、更广阔、更根本的缄默意识的世界。这就像研究一棵树，只研究地面上`
 
 
-### I6119 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1818
+### I6120 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1818
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `旧哲学的认识论，从笛卡尔到康德到黑格尔，大都只盯着显意识，盯着理性、概念、判断，把这些当成认识的全部，不知道在显意识下面，还有一个更基础、更广阔、更根本的缄默意识的世界。这就像研究一棵树，只研究地面上`
 
 
-### I6120 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1838
+### I6121 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1838
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `缄默意识是基础，是所有认识的根。但是人还有显意识，也就是平时说的"意识""思想""理性"，它是什么呢？`
 
 
-### I6121 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1839
+### I6122 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1839
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `显意识是缄默意识发展出来的工具，是缄默意识为了更好地进行操作，把自己的内容抽象化、符号化、对象化的产物。它是缄默意识在自觉层的产物，是明性借以运作的工具，但它不是缄默意识的全部，更不是缄默意识的主人。`
 
 
-### I6122 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1861
+### I6123 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1861
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有这些，都是阴主阳从，都是死的名词支配活的动词，都是**语言层面的异化**。旧哲学以为自己在谈"存在""本体""实体"，其实它是被名词化的语法骗了——它把语言的结构当成了世界的结构。人用主谓宾的语法`
 
 
-### I6123 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1861
+### I6124 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1861
 
 **问题**: 绝对化表述 "所有这些，都是阴主阳从，都是死的名词支配活的动词，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有这些，都是阴主阳从，都是死的名词支配活的动词，都是**语言层面的异化**。旧哲学以为自己在谈"存在""本体""实体"，其实它是被名词化的语法骗了——它把语言的结构当成了世界的结构。人用主谓宾的语法`
-
-
-### I6124 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1862
-
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思早就在做这件事了。他不讨论"资本"这个名词，他讨论的是"资本"背后的动词关系：谁雇佣谁，谁剥削谁，谁的劳动变成了谁的利润。《资本论》整本书就是在把"资本"这个大名词还原成动词——还原成资本家剥削`
 
 
 ### I6125 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1862
@@ -46189,88 +46189,88 @@
 **上下文**: `马克思早就在做这件事了。他不讨论"资本"这个名词，他讨论的是"资本"背后的动词关系：谁雇佣谁，谁剥削谁，谁的劳动变成了谁的利润。《资本论》整本书就是在把"资本"这个大名词还原成动词——还原成资本家剥削`
 
 
-### I6126 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1863
+### I6126 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1862
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思早就在做这件事了。他不讨论"资本"这个名词，他讨论的是"资本"背后的动词关系：谁雇佣谁，谁剥削谁，谁的劳动变成了谁的利润。《资本论》整本书就是在把"资本"这个大名词还原成动词——还原成资本家剥削`
+
+
+### I6127 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1863
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `语态论不是文字游戏，它是**解蔽的工具**。一切意识形态都靠名词化运作——把活的剥削冻成死的概念，把活的压迫冻成死的制度，把活的痛苦冻成死的数字。遇到任何大名词，就把它还原成动词，看看里面谁在做，对谁`
 
 
-### I6127 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1893
+### I6128 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1893
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **假阳性**：主观体验强度完全真实，但触发源并非当下现实事态，而是演化旧本能烙印、过往创伤回响、f³层级符号经文劫持。感受被激活，但不对应此时此地生命闭环真实的生存处境。`
 
 
-### I6128 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1915
+### I6129 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1915
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**固有限度。** 大量中间灰色案例客观存在，许多感受是混杂态——一部分来自现实处境，一部分混杂创伤与演化残留，只能做程度判断，不是非黑即白。判别离不开现实操作实践，不能靠单纯头脑内反思完成全部判定；`
 
 
-### I6129 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1957
+### I6130 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1957
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道`
 
 
-### I6130 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1957
+### I6131 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1957
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道`
 
 
-### I6131 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1957
+### I6132 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:1957
 
 **问题**: 绝对化表述 "所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道"因果（碰了会疼）、"知道"时空（伸手能抓到东西）、"知道"必然（不吃饭会饿），这些不用学、不用想，是缄默意识里的范畴，比显意识用语言说出来的范畴古老得多。康德所谓的"先天范畴"，不过是缄默意识里的操作结构被显意识反思到了而已。对个人来说，很多范畴是通过学习语言、学习文化获得的，好像是"先天"的；但是对整个人类来说，对整个生命的进化史来说，它们都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的范畴，没有一个是先天的，没有一个是从天上掉下来的，全都是人在长期的操作中，经过无数次的重复，沉淀在脑子里的操作结构。而且不止人——生命史中漫长的操作，早就在缄默意识里刻下了更深的范畴：身体"知道`
 
 
-### I6132 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2018
+### I6133 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2018
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是活的，是现在进行时的。它是当下的生命和世界的直接接触，是正在进行的操作，是阳。现在觉得疼，这个疼是活的，是正在发生的，任何概念都代替不了。`
 
 
-### I6133 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2018
+### I6134 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2018
 
 **问题**: 绝对化表述 "任何概念都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是活的，是现在进行时的。它是当下的生命和世界的直接接触，是正在进行的操作，是阳。现在觉得疼，这个疼是活的，是正在发生的，任何概念都代替不了。`
 
 
-### I6134 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2019
+### I6135 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2019
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，它是具体的，和生命直接相关。感性没有抽象的，每一个感觉都是具体的人的感觉，都和生命状态、需要、操作联系在一起。觉得饿，是身体需要食物；觉得疼，是身体受到了伤害。`
 
 
-### I6135 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2019
+### I6136 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2019
 
 **问题**: 绝对化表述 "每一个感觉都是具体的人的感觉，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，它是具体的，和生命直接相关。感性没有抽象的，每一个感觉都是具体的人的感觉，都和生命状态、需要、操作联系在一起。觉得饿，是身体需要食物；觉得疼，是身体受到了伤害。`
 
 
-### I6136 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2020
+### I6137 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2020
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，它是缄默意识的直接体现，是"知"的最原始形态。疼了，当下就知道疼，不需要思考，不需要概念。这种"知"是最可靠的，是所有知识的根。`
-
-
-### I6137 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2022
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思说："感性必须是一切科学的基础。科学只有从感性意识和感性需要这两种形式的感性出发，因而，科学只有从自然界出发，才是现实的科学。"所有的科学，所有的理性，所有的理论，追根溯源，都来自人的感性活动，`
 
 
 ### I6138 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2022
@@ -46289,44 +46289,44 @@
 
 ### I6140 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2022
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思说："感性必须是一切科学的基础。科学只有从感性意识和感性需要这两种形式的感性出发，因而，科学只有从自然界出发，才是现实的科学。"所有的科学，所有的理性，所有的理论，追根溯源，都来自人的感性活动，`
+
+
+### I6141 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2022
+
 **问题**: 绝对化表述 "所有的科学，所有的理性，所有的理论，追根溯源，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `马克思说："感性必须是一切科学的基础。科学只有从感性意识和感性需要这两种形式的感性出发，因而，科学只有从自然界出发，才是现实的科学。"所有的科学，所有的理性，所有的理论，追根溯源，都来自人的感性活动，`
 
 
-### I6141 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2027
+### I6142 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2027
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的理性，追根溯源，都来自感性，都是对感性经验的抽象和整理。没有感性经验，理性就是空的，就是没有内容的概念游戏。`
 
 
-### I6142 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2027
+### I6143 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2027
 
 **问题**: 绝对化表述 "所有的理性，追根溯源，都来自感性，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的理性，追根溯源，都来自感性，都是对感性经验的抽象和整理。没有感性经验，理性就是空的，就是没有内容的概念游戏。`
 
 
-### I6143 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2030
+### I6144 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2030
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是抽象的、普遍的，但是它也因此是干瘪的、没有血肉的。"红"这个概念能概括所有红的东西，但是它没有任何一个具体的红的东西那么丰富、那么鲜活。读了一本描写爱情的书，书里写得再好，也代替不了自己谈一`
 
 
-### I6144 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2030
+### I6145 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2030
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，它是抽象的、普遍的，但是它也因此是干瘪的、没有血肉的。"红"这个概念能概括所有红的东西，但是它没有任何一个具体的红的东西那么丰富、那么鲜活。读了一本描写爱情的书，书里写得再好，也代替不了自己谈一`
-
-
-### I6145 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2031
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `第二，它是静止的、固定的。概念一旦形成，就有相对的稳定性，但是活的感性、活的世界是一直在变的。用固定的概念去套永远在变的活的世界，就会有僵化的危险。这就是为什么教条主义者永远要碰壁。`
 
 
 ### I6146 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2031
@@ -46336,123 +46336,123 @@
 **上下文**: `第二，它是静止的、固定的。概念一旦形成，就有相对的稳定性，但是活的感性、活的世界是一直在变的。用固定的概念去套永远在变的活的世界，就会有僵化的危险。这就是为什么教条主义者永远要碰壁。`
 
 
-### I6147 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2050
+### I6147 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2031
 
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
+**上下文**: `第二，它是静止的、固定的。概念一旦形成，就有相对的稳定性，但是活的感性、活的世界是一直在变的。用固定的概念去套永远在变的活的世界，就会有僵化的危险。这就是为什么教条主义者永远要碰壁。`
 
 
 ### I6148 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2050
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
 
 
 ### I6149 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2050
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
+
+
+### I6150 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2050
+
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 看见有人受苦，觉得难受，这是感性的正义。用理性分析受苦的原因，找到解放的道路，组织起来斗争，让所有人都不再受苦。理性是为了实现感性的正义，不是为了用"历史必然性""代价论"来为苦难辩护。`
 
 
-### I6150 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2084
+### I6151 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2084
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的名，追根溯源，都来自实，来自人的实际操作，是为实服务的工具。名一旦形成，就有很大的作用。它能把经验固定下来，传下去；它能让人和人之间交流，组织起来，形成更大的自指系统。没有名，就没有人类社会，就`
 
 
-### I6151 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2084
+### I6152 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2084
 
 **问题**: 绝对化表述 "所有的名，追根溯源，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的名，追根溯源，都来自实，来自人的实际操作，是为实服务的工具。名一旦形成，就有很大的作用。它能把经验固定下来，传下去；它能让人和人之间交流，组织起来，形成更大的自指系统。没有名，就没有人类社会，就`
 
 
-### I6152 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2223
+### I6153 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2223
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `但这句话不能当作存在论的最后一言。它有一个容易滑向的陷阱：如果人"是"社会关系的"总和"，那么逻辑上似乎改变社会关系就能改变人，人成了关系的产物和效应。这是结构决定论——关系成了主体，活人成了关系的承`
 
 
-### I6153 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2242
+### I6154 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2242
 
 **问题**: 绝对化表述 "每一层都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一卷讲过自指的嵌套性：大的自指系统套着小的自指系统，每一层都有自己的自指结构。个人和社会的关系，就是典型的自指嵌套关系。`
 
 
-### I6154 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2255
+### I6155 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2255
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `马克思和恩格斯说："在过去的种种冒充的共同体中，如在国家等等中，个人自由只是对那些在统治阶级范围内发展的个人来说是存在的……对于被统治的阶级来说，它不仅是完全虚幻的共同体，而且是新的桎梏。在真正的共同`
 
 
-### I6155 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2275
+### I6156 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2275
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `资产阶级讲自由，讲的是抽象的自由，是"天赋人权"的自由，是法律上的自由。他们说，每个人都有自由，只要不犯法，想干什么就干什么。`
 
 
-### I6156 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2282
+### I6157 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2282
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 能认识必然，利用规律为自己的目的服务，而不是被盲目的规律支配；`
 
 
-### I6157 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2328
+### I6158 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2328
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第四个环节：人同人相异化。** 当人同自己的劳动产品、自己的生命活动、自己的类本质相异化的时候，他也同他人相对立。在异化劳动下，人和人的关系变成了利益关系、金钱关系、竞争关系。每个人都把别人当成自`
 
 
-### I6158 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2342
+### I6159 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2342
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `国家不是从来就有的，也不是超阶级的。国家是阶级矛盾不可调和的产物，是一个阶级压迫另一个阶级的工具。国家也不会永远存在。当阶级和阶级差别消失了，国家也就失去了它的作用，它会慢慢消亡，被一个自由人的联合体`
 
 
-### I6159 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2408
+### I6160 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2408
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `先说清楚：这不是可以拿计算器算出精确数字的工程公式。"生产关系公平"怎么打分？"共同体信任"怎么量化？谁来打？按什么标准？这些都是问题。任何声称能精确算出"社会健康指数"的公式，如果它给不出可操作的测`
 
 
-### I6160 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2413
+### I6161 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2413
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**个体稳态。** 社会中每个个体的身心健康程度：衣食住行、医疗、休息、安全、预期寿命。这是最基础的——个体是社会的细胞，细胞不健康，社会不可能健康。这一维好，意味着每个人都能吃饱穿暖、病有所医、老有`
 
 
-### I6161 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2413
+### I6162 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2413
 
 **问题**: 绝对化表述 "每个个体的身心健康程度：衣食住行、医疗、休息、安全、预期寿命。这是最基础的——个体是社会的细胞，细胞不健康，社会不可能健康。这一维好，意味着每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**个体稳态。** 社会中每个个体的身心健康程度：衣食住行、医疗、休息、安全、预期寿命。这是最基础的——个体是社会的细胞，细胞不健康，社会不可能健康。这一维好，意味着每个人都能吃饱穿暖、病有所医、老有`
 
 
-### I6162 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2415
+### I6163 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2415
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**生产关系公平。** 生产资料归谁所有、产品怎么分配、人与人在生产中的关系是否平等。这一维好，意味着劳动者掌握生产资料，没有剥削，按劳分配，人与人是平等的合作关系。这一维差，意味着生产资料被少数人占`
-
-
-### I6163 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2428
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `所以综合判断的思路接近**几何平均**：任何一个维度接近零，整体就接近零；任何一个维度特别低，整体就被严重拉低。这个思路是对的——生命系统就是这样，一个器官衰竭可以导致整个机体死亡。但要注意：几何平均`
 
 
 ### I6164 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2428
@@ -46462,60 +46462,60 @@
 **上下文**: `所以综合判断的思路接近**几何平均**：任何一个维度接近零，整体就接近零；任何一个维度特别低，整体就被严重拉低。这个思路是对的——生命系统就是这样，一个器官衰竭可以导致整个机体死亡。但要注意：几何平均`
 
 
-### I6165 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2430
+### I6165 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2428
+
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `所以综合判断的思路接近**几何平均**：任何一个维度接近零，整体就接近零；任何一个维度特别低，整体就被严重拉低。这个思路是对的——生命系统就是这样，一个器官衰竭可以导致整个机体死亡。但要注意：几何平均`
+
+
+### I6166 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2430
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `还有一个尺度问题：同一个社会，在不同尺度上衡量，操作权的直接程度不同。个人尺度上人直接掌握自己的操作；社区/集体尺度上操作权需要通过集体协调，有一定间接性；国家/社会尺度上操作权通过制度中介，间接性更`
 
 
-### I6166 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2566
+### I6167 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2566
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `从生命论的角度看，语言是明性的符号化，是操作的交流工具。它是在人的劳动和交往中产生的，为人的操作服务。语言是阴，是活的操作的沉淀，它一旦形成就有自己的规律，会反过来影响人的思维，但它永远是人的工具，不`
 
 
-### I6167 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2592
+### I6168 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2592
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `商品交换发展到一定阶段，产生了货币。货币是固定充当一般等价物的商品，是价值的独立形式。有了货币，商品世界分成两极：一极是所有普通商品，代表各种特殊的使用价值；另一极是货币，代表一般的交换价值。`
 
 
-### I6168 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2592
+### I6169 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2592
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `商品交换发展到一定阶段，产生了货币。货币是固定充当一般等价物的商品，是价值的独立形式。有了货币，商品世界分成两极：一极是所有普通商品，代表各种特殊的使用价值；另一极是货币，代表一般的交换价值。`
 
 
-### I6169 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2596
+### I6170 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2596
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `剩余价值从哪里来？不能从流通中来——贱买贵卖只是价值转移，整个社会的总价值不增加。也不能离开流通产生——把钱藏起来永远不会多一个子儿。`
 
 
-### I6170 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2596
+### I6171 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2596
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `剩余价值从哪里来？不能从流通中来——贱买贵卖只是价值转移，整个社会的总价值不增加。也不能离开流通产生——把钱藏起来永远不会多一个子儿。`
 
 
-### I6171 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2600
+### I6172 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2600
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `资产阶级经济学家把资本说成是物——机器、厂房、原料、货币，说这些东西天生就是资本，资本家拿利润是"资本的贡献"。这一说法站不住。机器本身不是资本，只有在一定的社会关系下，当它们被资本家占有、用来占有工`
-
-
-### I6172 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2601
-
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思说："资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，后者体现在一个物上，并赋予这个物以独特的社会性质。"`
 
 
 ### I6173 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2601
@@ -46525,74 +46525,74 @@
 **上下文**: `马克思说："资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，后者体现在一个物上，并赋予这个物以独特的社会性质。"`
 
 
-### I6174 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2859
+### I6174 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2601
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思说："资本不是物，而是一定的、社会的、属于一定历史社会形态的生产关系，后者体现在一个物上，并赋予这个物以独特的社会性质。"`
+
+
+### I6175 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2859
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**F2的残酷和F3的盗火者责任。** F2不只是"识破"，它是一个深渊：你必须认真地、彻底地清扫一切外在赋予的意义——神、国家、资本、"端正"、"成功"、"历史的必然"、别人的期待——确认真正的虚无`
 
 
-### I6175 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2859
+### I6176 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2859
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**F2的残酷和F3的盗火者责任。** F2不只是"识破"，它是一个深渊：你必须认真地、彻底地清扫一切外在赋予的意义——神、国家、资本、"端正"、"成功"、"历史的必然"、别人的期待——确认真正的虚无`
 
 
-### I6176 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2869
+### I6177 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2869
 
 **问题**: 绝对化表述 "每一次点击、浏览、消费、社交，都被平台记录、收集、分析，变成数据商品。以为在免费使用平台，实际上是在免费为平台提供数据——注意力、行为数据、社交关系，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一，数据提取。** 数据是数字资本主义的石油。用户在平台上的每一次点击、浏览、消费、社交，都被平台记录、收集、分析，变成数据商品。以为在免费使用平台，实际上是在免费为平台提供数据——注意力、行为`
 
 
-### I6177 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2870
+### I6178 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2870
 
 **问题**: 绝对化表述 "每一秒都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第二，算法管理。** 平台通过算法管理劳动者和消费者。外卖骑手、网约车司机被算法派单、计时、罚款；消费者被算法推荐、画像、引导消费。算法比传统的工头更精确，它不休息、不讲情面，把劳动时间的每一秒都`
 
 
-### I6178 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2872
+### I6179 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2872
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第四，监视资本主义。** Zuboff在《监视资本主义时代》中指出，平台资本提取的不只是用户主动提供的数据，还有"行为剩余"——在网上留下的所有痕迹，包括本人不知道自己留下的。这些数据被用来预测行`
 
 
-### I6179 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2878
+### I6180 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2878
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**趋势三：数字剥削的普遍性。** 在数字资本主义下，剥削不只是在工厂里——刷视频、发朋友圈、写评论，都是在为平台生产数据。"产消合一"（prosumer）让消费者同时变成生产者，在消费的同时被剥削。`
 
 
-### I6180 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2879
+### I6181 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2879
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**趋势四：数字无产阶级的形成。** 骑手、司机、主播、内容创作者、数据标注工，所有在平台上劳动的人，构成了数字无产阶级。他们和传统工人一样不占有生产资料（平台和数据属于资本家），一样被算法剥削，一样`
 
 
-### I6181 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2880
+### I6182 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2880
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**趋势五：数字资本主义为社会主义准备了更充分的条件。** 平台本身就是高度社会化的生产组织，几亿人在上面劳动、消费、交往；数字技术提供了全社会统一计划生产的技术手段；数据公有、算法透明、平台社会所有`
 
 
-### I6182 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2883
+### I6183 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2883
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**第一，数据公有。** 数据是社会的集体产物，应当归社会所有，不能被私人资本垄断。可以建立公共数据银行，数据由社会管理，使用数据产生的收益归全社会。`
-
-
-### I6183 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2885
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**第三，平台公有或劳动者所有。** 具有自然垄断性质的平台，应当收归社会所有，或者由平台劳动者集体所有、民主管理。平台的管理者应当由劳动者选举产生，对劳动者负责，而不是对股东负责。`
 
 
 ### I6184 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2885
@@ -46609,32 +46609,32 @@
 **上下文**: `**第三，平台公有或劳动者所有。** 具有自然垄断性质的平台，应当收归社会所有，或者由平台劳动者集体所有、民主管理。平台的管理者应当由劳动者选举产生，对劳动者负责，而不是对股东负责。`
 
 
-### I6186 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2941
+### I6186 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2885
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**第三，平台公有或劳动者所有。** 具有自然垄断性质的平台，应当收归社会所有，或者由平台劳动者集体所有、民主管理。平台的管理者应当由劳动者选举产生，对劳动者负责，而不是对股东负责。`
+
+
+### I6187 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:2941
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，他夸大了"非物质劳动"的地位。全球绝大多数工人仍然在工厂、农场、工地从事物质劳动，"认知劳动"只是全球资本链条的顶端。他把发达国家少数知识工人的状况当成了全部，忽视了全球南方的物质生产。`
 
 
-### I6187 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3112
+### I6188 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3112
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一旦完成这个混同，推演就顺了：生产离不开生产资料，生产资料就是资本，所以生产离不开资本；资本家是资本的人格化，所以工人离不开资本家。结论：资本是永恒的、自然的、任何社会都不可缺少的。`
 
 
-### I6188 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3112
+### I6189 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3112
 
 **问题**: 绝对化表述 "任何社会都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一旦完成这个混同，推演就顺了：生产离不开生产资料，生产资料就是资本，所以生产离不开资本；资本家是资本的人格化，所以工人离不开资本家。结论：资本是永恒的、自然的、任何社会都不可缺少的。`
-
-
-### I6189 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3116
-
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `马克思自己打过一个比方："黑人就是黑人。只有在一定的关系下，他才成为奴隶。纺纱机是纺棉花的机器。只有在一定的关系下，它才成为资本。脱离了这种关系，它也就不是资本了。"（《雇佣劳动与资本》，《马克思恩格`
 
 
 ### I6190 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3116
@@ -46644,67 +46644,67 @@
 **上下文**: `马克思自己打过一个比方："黑人就是黑人。只有在一定的关系下，他才成为奴隶。纺纱机是纺棉花的机器。只有在一定的关系下，它才成为资本。脱离了这种关系，它也就不是资本了。"（《雇佣劳动与资本》，《马克思恩格`
 
 
-### I6191 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3118
+### I6191 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3116
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `马克思自己打过一个比方："黑人就是黑人。只有在一定的关系下，他才成为奴隶。纺纱机是纺棉花的机器。只有在一定的关系下，它才成为资本。脱离了这种关系，它也就不是资本了。"（《雇佣劳动与资本》，《马克思恩格`
+
+
+### I6192 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3118
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三位一体公式的荒谬在于：土地是自然物，资本是社会关系，劳动是人的活动——三者完全不同质，却被并列成各自"创造"价值的独立源泉。马克思说，这就像把"公证人的手续费、甜菜和音乐"硬凑在一起一样荒谬。剥开看`
 
 
-### I6192 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3118
+### I6193 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3118
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三位一体公式的荒谬在于：土地是自然物，资本是社会关系，劳动是人的活动——三者完全不同质，却被并列成各自"创造"价值的独立源泉。马克思说，这就像把"公证人的手续费、甜菜和音乐"硬凑在一起一样荒谬。剥开看`
 
 
-### I6193 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3118
+### I6194 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3118
 
 **问题**: 绝对化表述 "完全不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三位一体公式的荒谬在于：土地是自然物，资本是社会关系，劳动是人的活动——三者完全不同质，却被并列成各自"创造"价值的独立源泉。马克思说，这就像把"公证人的手续费、甜菜和音乐"硬凑在一起一样荒谬。剥开看`
 
 
-### I6194 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3238
+### I6195 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3238
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二个层次：**阶级的解放**——无产阶级和所有被压迫阶级从剥削和压迫下解放出来。无产阶级推翻资产阶级统治，建立无产阶级专政，消灭剥削制度，消灭阶级；劳动者成为社会的主人。`
 
 
-### I6195 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3239
+### I6196 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3239
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三个层次：**人类的解放**——全人类从必然王国进入自由王国。阶级和国家消亡了，人不再受自己社会关系的支配；劳动成为人的第一需要；每个人的自由发展是一切人自由发展的条件。`
 
 
-### I6196 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3240
+### I6197 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3240
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三个层次是联系在一起的。没有阶级的解放，个人的解放不可能；没有全人类的解放，阶级的解放不彻底。`
 
 
-### I6197 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3240
+### I6198 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3240
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `三个层次是联系在一起的。没有阶级的解放，个人的解放不可能；没有全人类的解放，阶级的解放不彻底。`
 
 
-### I6198 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3243
+### I6199 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3243
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，无产阶级不占有生产资料，在革命中失去的只是锁链，获得的将是整个世界，它最坚决、最彻底。`
-
-
-### I6199 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3245
-
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `第三，无产阶级是大多数。但"大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、`
 
 
 ### I6200 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3245
@@ -46714,32 +46714,32 @@
 **上下文**: `第三，无产阶级是大多数。但"大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、`
 
 
-### I6201 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3247
+### I6201 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3245
+
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `第三，无产阶级是大多数。但"大多数"不是人头数——99%对1%的数量优势只是表面。大多数就是日常：历史中绝大多数真正起作用的东西，不是运动、不是伟人、不是关键时刻，而是每一个人每一天的普通操作。吃饭、`
+
+
+### I6202 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3247
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `今天的无产阶级不仅包括传统产业工人，还包括所有靠出卖劳动力生活的人：服务业工人、教师、医生、程序员、外卖骑手、数字劳动者。资本越发展，无产阶级的队伍越大。不占有生产资料、靠出卖劳动力生活、剩余劳动被他`
 
 
-### I6202 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3247
+### I6203 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3247
 
 **问题**: 绝对化表述 "所有靠出卖劳动力生活的人：服务业工人、教师、医生、程序员、外卖骑手、数字劳动者。资本越发展，无产阶级的队伍越大。不占有生产资料、靠出卖劳动力生活、剩余劳动被他人占有的人，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `今天的无产阶级不仅包括传统产业工人，还包括所有靠出卖劳动力生活的人：服务业工人、教师、医生、程序员、外卖骑手、数字劳动者。资本越发展，无产阶级的队伍越大。不占有生产资料、靠出卖劳动力生活、剩余劳动被他`
 
 
-### I6203 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3252
+### I6204 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3252
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `客观条件成熟了主观条件不成熟，革命也不会成功。所以在客观条件还没完全成熟时，革命者的任务是做群众工作，宣传、组织、提高群众觉悟，积蓄力量；时机成熟时，果断发动群众夺取胜利。`
-
-
-### I6204 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3256
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `判断一种理论——马克思的、毛泽东的、任何共产主义者的、任何自称正义的理论——是不是真正帮助无产阶级、真正通往共产主义的理论，唯一的根据是：**它让你站着活，还是跪着活。**`
 
 
 ### I6205 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3256
@@ -46749,46 +46749,46 @@
 **上下文**: `判断一种理论——马克思的、毛泽东的、任何共产主义者的、任何自称正义的理论——是不是真正帮助无产阶级、真正通往共产主义的理论，唯一的根据是：**它让你站着活，还是跪着活。**`
 
 
-### I6206 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3326
+### I6206 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3256
+
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `判断一种理论——马克思的、毛泽东的、任何共产主义者的、任何自称正义的理论——是不是真正帮助无产阶级、真正通往共产主义的理论，唯一的根据是：**它让你站着活，还是跪着活。**`
+
+
+### I6207 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3326
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**经济上的收权**：消灭生产资料私有制，建立公有制。没收大资本家、大银行、大垄断企业的财产归社会所有；生产目的从利润变成为满足人民需要。经济收权是最根本的——不掌握生产资料，政治权力是空的。`
 
 
-### I6207 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3460
+### I6208 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3460
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `公共权力本来是社会这个自指系统的"阴"，是为社会所有成员（阳）服务的工具。健康的公共权力是阳主阴从：权力来自人民，属于人民，为人民服务，受人民监督。`
 
 
-### I6208 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3504
+### I6209 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3504
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `群众路线的核心是：**真正的智慧在群众手里，不在少数精英的脑子里。** 这不是谦虚，是认识论的真理。群众是直接操作者，他们最了解实际情况，最知道问题出在哪里、办法在哪里。领导者的作用不是替群众想办法，`
 
 
-### I6209 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3518
+### I6210 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3518
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第四，它是动态的、发展的民主——民主的范围要不断扩大，形式要不断完善，直到所有人都能直接管理社会，公共权力失去政治性质。`
 
 
-### I6210 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3518
+### I6211 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3518
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第四，它是动态的、发展的民主——民主的范围要不断扩大，形式要不断完善，直到所有人都能直接管理社会，公共权力失去政治性质。`
-
-
-### I6211 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3524
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `巴黎公社采取了两个措施：所有公职人员由选举产生，对选民负责，随时可以撤换；所有公职人员只领取和工人一样的工资，不能有特权。`
 
 
 ### I6212 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3524
@@ -46798,88 +46798,88 @@
 **上下文**: `巴黎公社采取了两个措施：所有公职人员由选举产生，对选民负责，随时可以撤换；所有公职人员只领取和工人一样的工资，不能有特权。`
 
 
-### I6213 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3530
+### I6213 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3524
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `巴黎公社采取了两个措施：所有公职人员由选举产生，对选民负责，随时可以撤换；所有公职人员只领取和工人一样的工资，不能有特权。`
+
+
+### I6214 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3530
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 权力来自人民：所有管理者由人民选举，对人民负责，受人民监督，人民有权随时罢免；`
 
 
-### I6214 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3533
+### I6215 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3533
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 政务公开：除国家安全外所有公共事务向人民公开；`
 
 
-### I6215 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3537
+### I6216 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3537
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个问题是社会主义国家最根本的问题，到今天还没有完全解决。我们必须继续探索、继续实践。`
 
 
-### I6216 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3545
+### I6217 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3545
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `鞍钢宪法——"两参一改三结合"（干部参加劳动、工人参加管理、改革不合理的规章制度、工人群众、领导干部和技术员三结合）——指向了正确的方向：让阳主阴从不是一句口号，而是每天都在发生的操作关系。干部每月下`
 
 
-### I6217 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3545
+### I6218 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3545
 
 **问题**: 绝对化表述 "每天都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `鞍钢宪法——"两参一改三结合"（干部参加劳动、工人参加管理、改革不合理的规章制度、工人群众、领导干部和技术员三结合）——指向了正确的方向：让阳主阴从不是一句口号，而是每天都在发生的操作关系。干部每月下`
 
 
-### I6218 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3549
+### I6219 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3549
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这个教训比"国家什么时候消亡"紧迫得多。国家消亡是遥远的事——物质极大丰富、明性普遍觉醒、分工差别消失，这些条件在可预见的将来不具备。但"这个国家是谁的国家、怎么保证它不异化"是眼前的事。一个掌握全部`
 
 
-### I6219 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3558
+### I6220 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3558
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一句话：**阳主阴从不能只在运动中实现一瞬间，必须在制度中实现每一天。** 用运动方式反对官僚主义，反完了官僚还是官僚；用制度方式让劳动者每天都在管理，官僚才不成其为官僚。手段和目的必须同构——要实现`
 
 
-### I6220 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3558
+### I6221 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3558
 
 **问题**: 绝对化表述 "每一天。** 用运动方式反对官僚主义，反完了官僚还是官僚；用制度方式让劳动者每天都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `一句话：**阳主阴从不能只在运动中实现一瞬间，必须在制度中实现每一天。** 用运动方式反对官僚主义，反完了官僚还是官僚；用制度方式让劳动者每天都在管理，官僚才不成其为官僚。手段和目的必须同构——要实现`
 
 
-### I6221 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3580
+### I6222 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3580
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这也是为什么本书反复强调：**立场不能代替明性，纪律不能代替监督，运动不能代替制度。** 一个工人说"党在官僚化"，正确的反应不是让他检讨，而是去查一查党是不是真的在官僚化——这就是"从群众中来"，这`
 
 
-### I6222 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3590
+### I6223 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3590
 
 **问题**: 绝对化表述 "总是" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `名实遮蔽的操作方式几乎总是同一种：**打着某个指标的幌子，实际上残害别的指标，最终达到残害人民的实效。** 举几个典型模式：`
 
 
-### I6223 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3597
+### I6224 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3597
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `公式的力量在于：它不跟你争论立场，不跟你争论动机，不跟你争论"你什么级别你懂什么"。它只问一个问题：**M在涨还是在跌？N大于1还是小于1？l′在降还是在升？** 这三个数不需要哲学训练就能理解，不需`
-
-
-### I6224 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3601
-
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `这就是"大多数即日常"在认识论上的落地：**每一个普通人在自己的日常位置上，都有能力用公式判断自己的生命状态和上级的政策效果。** 不需要等伟人来启蒙，不需要等运动来冲破，不需要等文件来纠正。你今天就`
 
 
 ### I6225 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3601
@@ -46905,16 +46905,16 @@
 
 ### I6228 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3601
 
-**问题**: 绝对化表述 "每一个普通人在自己的日常位置上，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `这就是"大多数即日常"在认识论上的落地：**每一个普通人在自己的日常位置上，都有能力用公式判断自己的生命状态和上级的政策效果。** 不需要等伟人来启蒙，不需要等运动来冲破，不需要等文件来纠正。你今天就`
 
 
-### I6229 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3696
+### I6229 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3601
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一个普通人在自己的日常位置上，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都是把操作权还给生命本身。`
+**上下文**: `这就是"大多数即日常"在认识论上的落地：**每一个普通人在自己的日常位置上，都有能力用公式判断自己的生命状态和上级的政策效果。** 不需要等伟人来启蒙，不需要等运动来冲破，不需要等文件来纠正。你今天就`
 
 
 ### I6230 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3696
@@ -46926,16 +46926,16 @@
 
 ### I6231 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3696
 
-**问题**: 绝对化表述 "所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都是把操作权还给生命本身。`
 
 
-### I6232 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3708
+### I6232 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3696
 
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `生命论讲的"道在日用"，是从存在论推出的。道是什么？是自指操作的规律，是阳主阴从的道理，是生命自己维持自己、发展自己的规律。这个道不在天上，不在概念里，就在每一个生命的每一个活的操作里。吃饭是在维持自`
+**上下文**: `所有的异化，本质都是操作权被惯性劫持；所有的解放，本质都是把操作权还给生命本身。`
 
 
 ### I6233 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3708
@@ -46945,25 +46945,25 @@
 **上下文**: `生命论讲的"道在日用"，是从存在论推出的。道是什么？是自指操作的规律，是阳主阴从的道理，是生命自己维持自己、发展自己的规律。这个道不在天上，不在概念里，就在每一个生命的每一个活的操作里。吃饭是在维持自`
 
 
-### I6234 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3831
+### I6234 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3708
+
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `生命论讲的"道在日用"，是从存在论推出的。道是什么？是自指操作的规律，是阳主阴从的道理，是生命自己维持自己、发展自己的规律。这个道不在天上，不在概念里，就在每一个生命的每一个活的操作里。吃饭是在维持自`
+
+
+### I6235 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3831
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**正名三问法**。遇到任何让人不舒服但"大家都这样"的事，问三个问题：这件事的真名是什么？（996不叫"奋斗"叫"超时劳动"）谁给它起的假名？（资本和它的意识形态）它实际上在操作谁、对谁有利？`
 
 
-### I6235 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3831
+### I6236 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3831
 
 **问题**: 绝对化表述 "任何让人不舒服但"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**正名三问法**。遇到任何让人不舒服但"大家都这样"的事，问三个问题：这件事的真名是什么？（996不叫"奋斗"叫"超时劳动"）谁给它起的假名？（资本和它的意识形态）它实际上在操作谁、对谁有利？`
-
-
-### I6236 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3836
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `身体是自指操作的物质基础，是阳的载体。把身体搞坏了，所有理想、所有事业都没有载体了。`
 
 
 ### I6237 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3836
@@ -46975,100 +46975,100 @@
 
 ### I6238 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3836
 
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `身体是自指操作的物质基础，是阳的载体。把身体搞坏了，所有理想、所有事业都没有载体了。`
+
+
+### I6239 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3836
+
 **问题**: 绝对化表述 "所有理想、所有事业都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `身体是自指操作的物质基础，是阳的载体。把身体搞坏了，所有理想、所有事业都没有载体了。`
 
 
-### I6239 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3916
+### I6240 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3916
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `家庭也是一样。要消灭的是旧的、异化的家庭关系（妇女是丈夫的附属、孩子是家庭的私有财产），建立新的、平等的、互助的家庭关系。家庭永远是社会的细胞，是爱的港湾，是生命传承的地方。`
 
 
-### I6240 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3930
+### I6241 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:3930
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `人为什么活着？这个问题旧哲学回答了两千年，答案无非三种：要么说意义在外面——上帝、来世、历史必然、某个"更高的目的"；要么说没有意义——虚无主义，怎么活都行；要么市侩地说——赚钱、成功、买车买房。三种`
 
 
-### I6241 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4005
+### I6242 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4005
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `真正的自由是对必然的认识和改造——人认识了规律，自觉地按照规律行动，人就是自由的。认识了身体的规律，按时作息、坚持锻炼，人就有健康的自由；认识了社会的规律，和同志们一起斗争，人就有解放的自由。`
 
 
-### I6242 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4007
+### I6243 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4007
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `纪律是自由的条件。一个集体没有纪律，各行其是，就是一盘散沙，什么事都做不成，最后每个人都不自由。革命队伍的纪律不是外在的压迫，是大家为了共同的目标自愿遵守的规则——它保护集体的战斗力，也保护每个人的自`
 
 
-### I6243 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4009
+### I6244 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4009
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `但纪律必须是自觉的纪律，不是盲目的服从。理解了为什么要有这个纪律，自觉遵守，这是自由；不理解但被迫遵守，那是异化。所以任何纪律都要让大家明白为什么，都要经过大家的讨论和同意。`
 
 
-### I6244 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4009
+### I6245 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4009
 
 **问题**: 绝对化表述 "任何纪律都要让大家明白为什么，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `但纪律必须是自觉的纪律，不是盲目的服从。理解了为什么要有这个纪律，自觉遵守，这是自由；不理解但被迫遵守，那是异化。所以任何纪律都要让大家明白为什么，都要经过大家的讨论和同意。`
 
 
-### I6245 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4014
+### I6246 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4014
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `革命者也是人，也有七情六欲，也有自己的生活、爱好、爱情、家庭。革命不是为了让大家过苦日子，恰恰是为了让所有人都能过上好日子，都能全面发展。如果革命的结果是大家都苦行僧一般，那革命干什么？`
 
 
-### I6246 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4014
+### I6247 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4014
 
 **问题**: 绝对化表述 "所有人都能过上好日子，都能全面发展。如果革命的结果是大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `革命者也是人，也有七情六欲，也有自己的生活、爱好、爱情、家庭。革命不是为了让大家过苦日子，恰恰是为了让所有人都能过上好日子，都能全面发展。如果革命的结果是大家都苦行僧一般，那革命干什么？`
 
 
-### I6247 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4018
+### I6248 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4018
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `主张的是健康的、充实的、为人民服务的生活方式。不反对个人利益和个人幸福，但把个人幸福和人民幸福结合起来——只有人民都幸福了，个人的幸福才是牢靠的；只有所有人都解放了，自己才是真正解放的。`
 
 
-### I6248 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4018
+### I6249 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4018
 
 **问题**: 绝对化表述 "所有人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `主张的是健康的、充实的、为人民服务的生活方式。不反对个人利益和个人幸福，但把个人幸福和人民幸福结合起来——只有人民都幸福了，个人的幸福才是牢靠的；只有所有人都解放了，自己才是真正解放的。`
 
 
-### I6249 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4039
+### I6250 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4039
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**螺——鹦鹉螺。** 这个意象存在了几亿年，永恒、沉默。螺是自指的形状——一圈圈转，从中心向外旋，每一圈都重复上一圈的结构，但更大、更高。螺也是必然王国的形状——历史周期律，王朝更替，资本危机，一个`
 
 
-### I6250 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4039
+### I6251 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4039
 
 **问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**螺——鹦鹉螺。** 这个意象存在了几亿年，永恒、沉默。螺是自指的形状——一圈圈转，从中心向外旋，每一圈都重复上一圈的结构，但更大、更高。螺也是必然王国的形状——历史周期律，王朝更替，资本危机，一个`
-
-
-### I6251 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4043
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `第一层：**用它**。维住命、索出路、图新序、在螺中螺旋上升——螺度一层层提高，每一圈都比上一圈更自觉、更有组织、操作权更多。这是度必然王国的方法。必然王国不会一天打碎，人在螺里转，但不是被动地转，是`
 
 
 ### I6252 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4043
@@ -47080,16 +47080,16 @@
 
 ### I6253 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4043
 
-**问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一层：**用它**。维住命、索出路、图新序、在螺中螺旋上升——螺度一层层提高，每一圈都比上一圈更自觉、更有组织、操作权更多。这是度必然王国的方法。必然王国不会一天打碎，人在螺里转，但不是被动地转，是`
 
 
-### I6254 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4045
+### I6254 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4043
 
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "每一圈都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `第二层：**打碎它**。螺不是要永远背着的东西。维索图螺是度必然王国的方法，但必然王国度尽了，方法本身也要消亡——就像国家要消亡、法要消亡、阶级要消亡。不能把螺当新神供起来，不能把"维索图螺"变成新的`
+**上下文**: `第一层：**用它**。维住命、索出路、图新序、在螺中螺旋上升——螺度一层层提高，每一圈都比上一圈更自觉、更有组织、操作权更多。这是度必然王国的方法。必然王国不会一天打碎，人在螺里转，但不是被动地转，是`
 
 
 ### I6255 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4045
@@ -47108,107 +47108,107 @@
 
 ### I6257 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4045
 
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `第二层：**打碎它**。螺不是要永远背着的东西。维索图螺是度必然王国的方法，但必然王国度尽了，方法本身也要消亡——就像国家要消亡、法要消亡、阶级要消亡。不能把螺当新神供起来，不能把"维索图螺"变成新的`
+
+
+### I6258 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4045
+
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二层：**打碎它**。螺不是要永远背着的东西。维索图螺是度必然王国的方法，但必然王国度尽了，方法本身也要消亡——就像国家要消亡、法要消亡、阶级要消亡。不能把螺当新神供起来，不能把"维索图螺"变成新的`
 
 
-### I6258 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4047
+### I6259 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4047
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所以全句是：**维索图螺度必然王国，通自由王国，指自由人联合体。**`
 
 
-### I6259 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4134
+### I6260 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4134
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `"范式"是一个科学共同体共同接受的理论框架、方法、信念和范例。在常规科学时期，科学家不挑战范式，而是在范式内解决难题，就像在既定规则下猜谜。当反常积累到一定程度，范式遇到危机，就会有人提出新范式，经过`
 
 
-### I6260 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4144
+### I6261 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4144
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `费耶阿本德比库恩走得更远。他在《反对方法》中提出，科学没有唯一的、固定的方法，科学史上的重大突破往往是打破了既有规则才成功的。他的口号是"怎么都行"（anything goes）——不是说科学没有方法`
 
 
-### I6261 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4195
+### I6262 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4195
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `生产力是人类改造自然的能力，包括劳动者、劳动资料和劳动对象，科学技术是第一生产力。生产关系是人们在生产中结成的社会关系，核心是生产资料所有制。`
 
 
-### I6262 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4197
+### I6263 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4197
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `生产力决定生产关系，生产关系反作用于生产力。这个矛盾是社会基本矛盾，推动社会形态更替。资本主义生产关系曾经促进生产力发展，但生产社会化和私人占有的矛盾越来越尖锐，必然要求社会主义公有制。`
 
 
-### I6263 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4209
+### I6264 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4209
 
 **问题**: 绝对化表述 "每个选择都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `技术理性看起来"科学""客观""中立"，实际上是资本统治的新形式。过去的统治是皮鞭和刺刀，现在的统治是算法和监控——人甚至感觉不到被统治，以为是自己在选择，实际上每个选择都是被设计好的。`
 
 
-### I6264 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4285
+### I6265 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4285
 
 **问题**: 绝对化表述 "每个人全面发展的条件。每个人都能受到最好的教育，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `到了共产主义，教育不再是阶级的工具，不再是劳动力的培训，而是每个人全面发展的条件。每个人都能受到最好的教育，都能根据自己的兴趣和社会的需要发展自己的能力。教育从"为谋生做准备"变成"为生活本身做准备"`
 
 
-### I6265 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4307
+### I6266 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4307
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `资产阶级法权在反封建的历史阶段曾是集体明性的进步。"法律面前人人平等"否定了世袭特权、神判法、君主意志——法权第一次试图把暴力的使用纳入可预测、可质疑、可纠错的程序，这是文明的明性对任意暴力的胜利。但`
 
 
-### I6266 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4309
+### I6267 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4309
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `无产阶级法权的历史任务，是把文明的集体明性推进一步。第一，它要从形式平等走向实质平等——不只是"法律面前人人平等"，还要通过公有制和按劳分配（最终按需分配）消除使平等流于形式的经济基础。第二，它要让法`
 
 
-### I6267 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4309
+### I6268 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4309
 
 **问题**: 绝对化表述 "任何判决都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `无产阶级法权的历史任务，是把文明的集体明性推进一步。第一，它要从形式平等走向实质平等——不只是"法律面前人人平等"，还要通过公有制和按劳分配（最终按需分配）消除使平等流于形式的经济基础。第二，它要让法`
 
 
-### I6268 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4311
+### I6269 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4311
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所以，无产阶级法权和革命暴力不是矛盾的——革命暴力打碎旧国家机器，无产阶级法权制约新政权自己的暴力。没有革命暴力，法权只是旧秩序的遮羞布；没有法权制约，革命暴力会滑向红色地狱。两者合在一起，才是阳主阴`
 
 
-### I6269 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4311
+### I6270 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4311
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所以，无产阶级法权和革命暴力不是矛盾的——革命暴力打碎旧国家机器，无产阶级法权制约新政权自己的暴力。没有革命暴力，法权只是旧秩序的遮羞布；没有法权制约，革命暴力会滑向红色地狱。两者合在一起，才是阳主阴`
 
 
-### I6270 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4313
+### I6271 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4313
 
 **问题**: 绝对化表述 "完全" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `到了共产主义，法权消亡，但集体明性不消亡——它从政治强制的法权变成人们自觉遵守的公共生活规则，从"不得不遵守"变成"本来就这么做"。这和个体明性从显意识沉淀为缄默意识是同一个结构：F2的显意识检查（法`
-
-
-### I6271 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4391
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `"反自指系统必然走向崩溃"——不是操作外面有个规律命令它崩溃，是P寄生S、S的自指能力持续下降这个结构本身反复出现，人认出来了，叫它"必然"。"哪里有压迫哪里就有反抗"——不是历史规律保证了反抗，是压`
 
 
 ### I6272 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4391
@@ -47232,109 +47232,109 @@
 **上下文**: `"反自指系统必然走向崩溃"——不是操作外面有个规律命令它崩溃，是P寄生S、S的自指能力持续下降这个结构本身反复出现，人认出来了，叫它"必然"。"哪里有压迫哪里就有反抗"——不是历史规律保证了反抗，是压`
 
 
-### I6275 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4574
+### I6275 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4391
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `"反自指系统必然走向崩溃"——不是操作外面有个规律命令它崩溃，是P寄生S、S的自指能力持续下降这个结构本身反复出现，人认出来了，叫它"必然"。"哪里有压迫哪里就有反抗"——不是历史规律保证了反抗，是压`
+
+
+### I6276 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4574
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 生命论讲每个人都可以成为自己生命的主人，和儒家"人皆可以为尧舜"、禅宗"众生皆有佛性"相通。`
 
 
-### I6276 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4592
+### I6277 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4592
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `周易六十四卦最后两卦是"既济"和"未济"。"既济"是已经完成，但后面跟着"未济"——没有完成。世界没有终点，历史没有终点，完成了就是新的开始，发展永远不会停止。这和"自由王国不是历史的终点，是真正的人`
 
 
-### I6277 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4592
+### I6278 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4592
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `周易六十四卦最后两卦是"既济"和"未济"。"既济"是已经完成，但后面跟着"未济"——没有完成。世界没有终点，历史没有终点，完成了就是新的开始，发展永远不会停止。这和"自由王国不是历史的终点，是真正的人`
 
 
-### I6278 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4597
+### I6279 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4597
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**边界**。任何自指系统都有边界——这是第一卷讲的"四规定性"之一：边界生成性。山有边界，国有边界，身有边界，心也有边界。边界不是缺陷，是自指系统得以存在的条件。没有边界，系统就消散在环境里，`
 
 
-### I6279 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4597
+### I6280 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4597
 
 **问题**: 绝对化表述 "任何自指系统都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**边界**。任何自指系统都有边界——这是第一卷讲的"四规定性"之一：边界生成性。山有边界，国有边界，身有边界，心也有边界。边界不是缺陷，是自指系统得以存在的条件。没有边界，系统就消散在环境里，`
 
 
-### I6280 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4599
+### I6281 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4599
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，**时止则止，时行则行**。"止"不是永远不动，是该止的时候止，该行的时候行。山看起来不动，但山中草木生长、鸟兽繁育，静中有动。止是为了更好的行——停下来，是为了认清方向、积蓄力量、守住根本，然`
 
 
-### I6281 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4599
+### I6282 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4599
 
 **问题**: 绝对化表述 "永远不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，**时止则止，时行则行**。"止"不是永远不动，是该止的时候止，该行的时候行。山看起来不动，但山中草木生长、鸟兽繁育，静中有动。止是为了更好的行——停下来，是为了认清方向、积蓄力量、守住根本，然`
 
 
-### I6282 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4727
+### I6283 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4727
 
 **问题**: 绝对化表述 "每个人都有成为"圣人"的可能。这是平等的、对人的信任，和每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第四，**"人皆可以为尧舜"**。孟子说人皆可以为尧舜，王阳明说"满街都是圣人"，相信每个人都有成为"圣人"的可能。这是平等的、对人的信任，和每个人都能全面发展的理想相通。当然，儒家的"圣人"是封建道`
 
 
-### I6283 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4783
+### I6284 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4783
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一，**无我/操作生成我。** 佛家说五蕴聚合中无常住自性的"我"；生命论说"'我'是自指操作的产物，不是前提"。方向一致。我亲身做过这个实验：把实体意义上的"我"彻底解构、拆散，拆成感觉的流动、念`
 
 
-### I6284 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4853
+### I6285 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4853
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `我是北原慢热。2008年生，北京通州人，一个高二学生。这本书是2026年暑假，从6月到8月，两个月里整出来的。生命论是我提的，里面所有概念我把过关。这本书的野心有三个。`
 
 
-### I6285 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4857
+### I6286 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4857
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，毛泽东时代是伟大的。它给人以正能量，给人在寒冰雪原里以持续的火苗。我写这些东西，最大的动力之一就是毛主席的革命史，尤其是他的晚年。我希望所有读这本书的人都意识到这一点。`
 
 
-### I6286 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4857
+### I6287 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4857
 
 **问题**: 绝对化表述 "所有读这本书的人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第二，毛泽东时代是伟大的。它给人以正能量，给人在寒冰雪原里以持续的火苗。我写这些东西，最大的动力之一就是毛主席的革命史，尤其是他的晚年。我希望所有读这本书的人都意识到这一点。`
 
 
-### I6287 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4859
+### I6288 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4859
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，你可以信仰马列毛，也可以信仰别的什么，有神论者我也不强求你改成无神论。我在这里只想完完整整达成一件事：使所有的庸俗唯物主义，以及披着唯心主义或庸俗唯物主义外衣的理论，再无立锥之地。那些把"物质决`
 
 
-### I6288 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4859
+### I6289 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4859
 
 **问题**: 绝对化表述 "所有的庸俗唯物主义，以及披着唯心主义或庸俗唯物主义外衣的理论，再无立锥之地。那些把"物质决定意识""生产力决定生产关系"当经念的，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第三，你可以信仰马列毛，也可以信仰别的什么，有神论者我也不强求你改成无神论。我在这里只想完完整整达成一件事：使所有的庸俗唯物主义，以及披着唯心主义或庸俗唯物主义外衣的理论，再无立锥之地。那些把"物质决`
-
-
-### I6289 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4861
-
-**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、任何"大家都这样"；另一层是做你`
 
 
 ### I6290 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4861
@@ -47353,16 +47353,16 @@
 
 ### I6292 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4861
 
-**问题**: 绝对化表述 "任何死物、任何经、任何"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、任何"大家都这样"；另一层是做你`
 
 
-### I6293 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4903
+### I6293 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4861
 
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "任何死物、任何经、任何"大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
-**上下文**: `在拆具体的哲学家之前，我们先点破所有旧哲学共有的四个总病灶。这四个病灶是同一个实体化思维的四个侧面，从柏拉图到今天的所有旧哲学，没有一个能逃出去：`
+**上下文**: `后人不必信仰我。我的建议是：改造你自己，信仰你自己，使你成为你自己的君。这个君有两层意思：一层是值得信赖的领主、领袖——你自己领着自己走，不把方向交给任何死物、任何经、任何"大家都这样"；另一层是做你`
 
 
 ### I6294 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4903
@@ -47372,18 +47372,18 @@
 **上下文**: `在拆具体的哲学家之前，我们先点破所有旧哲学共有的四个总病灶。这四个病灶是同一个实体化思维的四个侧面，从柏拉图到今天的所有旧哲学，没有一个能逃出去：`
 
 
-### I6295 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4905
+### I6295 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4903
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `在拆具体的哲学家之前，我们先点破所有旧哲学共有的四个总病灶。这四个病灶是同一个实体化思维的四个侧面，从柏拉图到今天的所有旧哲学，没有一个能逃出去：`
+
+
+### I6296 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4905
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. **概念实体化**：把我们从具体事物里抽象出来的概念（理念、形式、绝对精神、规律、理性、自由、人性等等），当成了独立于具体事物之外的实体，当成了比具体的、活的生命更真实的东西，然后叫活生生的人为`
-
-
-### I6296 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4910
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `这四个病灶是串在一起的：概念实体化必然导致主客二分，主客二分必然导致英雄史观，英雄史观必然导致理论优先。不把这个总框架砸烂，人再怎么批判旧哲学，也会不自觉的造出新的神。`
 
 
 ### I6297 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4910
@@ -47400,67 +47400,67 @@
 **上下文**: `这四个病灶是串在一起的：概念实体化必然导致主客二分，主客二分必然导致英雄史观，英雄史观必然导致理论优先。不把这个总框架砸烂，人再怎么批判旧哲学，也会不自觉的造出新的神。`
 
 
-### I6299 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4912
+### I6299 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4910
+
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `这四个病灶是串在一起的：概念实体化必然导致主客二分，主客二分必然导致英雄史观，英雄史观必然导致理论优先。不把这个总框架砸烂，人再怎么批判旧哲学，也会不自觉的造出新的神。`
+
+
+### I6300 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4912
 
 **问题**: 绝对化表述 "每个人都在这个框架里，每个人都摸到了一部分真东西，也每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `下面我们拆具体的哲学家，每个人都在这个框架里，每个人都摸到了一部分真东西，也每个人都栽在了这四个病灶上。我们不搞全盘否定，也不搞盲目崇拜，真东西拿过来，错的地方指出来，这才是对待前辈的正确态度。`
 
 
-### I6300 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4918
+### I6301 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4918
 
 **问题**: 绝对化表述 "每一刻都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：存在就是操作的发生和持存，没有脱离具体操作的抽象“存在”；变和不变是同一个操作的两面，活操作每一刻都在变，但自指的闭环保持相对稳定，两者不矛盾。`
 
 
-### I6301 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4955
+### I6302 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4955
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说人心是白板，知识都来自感觉经验，摸到了一阶感性明性是所有理性的来源，没有天生的观念。`
 
 
-### I6302 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4956
+### I6303 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4956
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **错**：他把经验理解成被动的接受，不知道经验是在操作中、在和环境的互动中获得的，不是被动印上去的；他还保留了物质实体和精神实体，是个不彻底的经验论者。`
 
 
-### I6303 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4959
+### I6304 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4959
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说“存在就是被感知”，摸到了所有的存在都必须经过明性的中介，离开感知和操作的“物质实体”是个抽象的空词。`
 
 
-### I6304 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4959
+### I6305 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4959
 
 **问题**: 绝对化表述 "所有的存在都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说“存在就是被感知”，摸到了所有的存在都必须经过明性的中介，离开感知和操作的“物质实体”是个抽象的空词。`
 
 
-### I6305 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4969
+### I6306 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4969
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **费希特**：他去掉了康德的物自体，说“自我设定自身”“自我设定非我”，摸到了自指操作自己生成自己、自己生成对象的结构，比康德彻底。但他的“自我”是抽象的、普遍的自我意识，不是现实的、活的人，最`
 
 
-### I6306 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4975
+### I6307 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4975
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的辩证法的合理内核：矛盾是发展的内在动力，发展是否定之否定的螺旋上升，真理是具体的、是过程，这些我们全部拿过来，作为我们操作辩证法的重要来源。`
-
-
-### I6307 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4977
-
-**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远存在。`
 
 
 ### I6308 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4977
@@ -47470,95 +47470,95 @@
 **上下文**: `- **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远存在。`
 
 
-### I6309 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4983
+### I6309 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4977
+
+**问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- **我们的推进**：把辩证法从概念的天国拉回活操作的大地，辩证法不是概念自己运动的规律，是生命操作和反自指寄生之间矛盾运动的规律；历史没有终点，矛盾永远存在，斗争永远存在。`
+
+
+### I6310 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4983
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：人是一切社会关系的总和，是在现实操作中生成的；宗教异化只是社会异化的反映，不消灭现实的反自指寄生，光批判宗教没用；我们不需要任何新宗教，也不需要抽象的“爱”，我们需要的是现实的`
 
 
-### I6310 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4989
+### I6311 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4989
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他创立了历史唯物主义，说物质生产是全部历史的基础，人们的社会存在决定人们的意识，把历史从英雄和观念的手里还给了劳动者；`
 
 
-### I6311 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4990
+### I6312 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4990
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的剩余价值学说，把资本这个现代社会最强大的反自指系统解剖的清清楚楚：资本不是物，是一定历史阶段的生产关系，是死劳动对活劳动的支配，它的唯一目的就是增殖自身，像吸血鬼一样吸活劳动的血；`
 
 
-### I6312 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4996
+### I6313 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4996
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的历史观里仍然带有一定的目的论残余，好像共产主义是历史必然会到达的终点，这一点后来被第二国际的修正主义者放大成了机械决定论。`
 
 
-### I6313 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4996
+### I6314 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4996
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的历史观里仍然带有一定的目的论残余，好像共产主义是历史必然会到达的终点，这一点后来被第二国际的修正主义者放大成了机械决定论。`
 
 
-### I6314 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4997
+### I6315 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4997
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把马克思的实践概念扎根到自指操作的存在论基础上，以缄默意识为全域生命本体范畴，把实践唯物主义发展为**生命唯物主义**——不是抽象的"物质"本体，而是"人在活着"这个最直接`
 
 
-### I6315 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4997
+### I6316 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:4997
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把马克思的实践概念扎根到自指操作的存在论基础上，以缄默意识为全域生命本体范畴，把实践唯物主义发展为**生命唯物主义**——不是抽象的"物质"本体，而是"人在活着"这个最直接`
 
 
-### I6316 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5007
+### I6317 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5007
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：意志不是什么世界的本体，是生命自指操作的内在动力；我们重估一切价值，但标准不是权力意志，是生命的舒展；我们不要少数“超人”统治多数人，我们要“人人如龙”，每个人都做自己的主人。`
 
 
-### I6317 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5012
+### I6318 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5012
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **他的错**：他把“存在”神秘化了，说存在是“天命”，是自己遮蔽自己又显现自己的神秘力量，最后变成了新的形而上学；他的哲学充满了黑话，普通人根本看不懂，成了学院知识分子的智力游戏；他政治上投靠纳`
 
 
-### I6318 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5017
+### I6319 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5017
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **真东西**：他说“存在先于本质”，人没有先天的本质，人就是自己选择和行动的结果，人是绝对自由的，要为自己的选择负全部责任。这摸到了生命没有固定本质、人在操作中生成自己的道理。`
 
 
-### I6319 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5042
+### I6320 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5042
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：症候阅读法我们拿过来用，但是我们不把结构实体化：所有的“总问题”“意识形态”，都是人的操作的沉淀，是阴，它不是独立存在的，它就存在于活人的操作和关系中；历史不是无主体的过程，历`
 
 
-### I6320 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5042
+### I6321 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5042
 
 **问题**: 绝对化表述 "所有的“总问题”“意识形态”，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：症候阅读法我们拿过来用，但是我们不把结构实体化：所有的“总问题”“意识形态”，都是人的操作的沉淀，是阴，它不是独立存在的，它就存在于活人的操作和关系中；历史不是无主体的过程，历`
-
-
-### I6321 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5047
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `- 他明确反对历史目的论，说历史充满偶然、断裂，没有什么必然通向共产主义的铁律，这打掉了所有教条主义的“必然胜利”神话；`
 
 
 ### I6322 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5047
@@ -47570,114 +47570,114 @@
 
 ### I6323 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5047
 
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `- 他明确反对历史目的论，说历史充满偶然、断裂，没有什么必然通向共产主义的铁律，这打掉了所有教条主义的“必然胜利”神话；`
+
+
+### I6324 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5047
+
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他明确反对历史目的论，说历史充满偶然、断裂，没有什么必然通向共产主义的铁律，这打掉了所有教条主义的“必然胜利”神话；`
 
 
-### I6324 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5048
+### I6325 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5048
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- 他的“事件”理论：旧的秩序通过“计数为一”把多样的现实固定成结构，事件就是从裂缝里爆发出来的断裂，是旧秩序里不可能的东西突然出现。这摸到了“阳突破阴的束缚”——活操作积累到临界点，打破旧惯性的锁死`
 
 
-### I6325 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5051
+### I6326 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5051
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **他的错**：他的本体论是集合论的抽象黑话，和活人的生命、痛苦没有关系；他的“事件”带有神秘的奇迹色彩，没有看到事件是矛盾长期积累的必然结果；他没有说清“为什么要忠诚于事件”的标准；他的“真理程`
 
 
-### I6326 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5052
+### I6327 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5052
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把抽象的“多”还原为千百万具体的活操作，把“计数为一”还原为操作的惯性沉淀；事件不是奇迹，是反自指寄生发展到锁死阶段的必然爆发，可以通过六维框架定性判断；忠诚的标准就是生命`
 
 
-### I6327 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5052
+### I6328 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5052
 
 **问题**: 绝对化表述 "每一次收回自己的操作权，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们把抽象的“多”还原为千百万具体的活操作，把“计数为一”还原为操作的惯性沉淀；事件不是奇迹，是反自指寄生发展到锁死阶段的必然爆发，可以通过六维框架定性判断；忠诚的标准就是生命`
 
 
-### I6328 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5083
+### I6329 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5083
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们不反对个人权利，我们要的是更彻底的个人自由——不仅是形式上的法律自由，更是事实上的、掌握自己操作权的自由；我们不把市场、私有财产当成永恒的东西，它们是历史的产物，也会在历史`
 
 
-### I6329 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5083
+### I6330 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5083
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `- **我们的推进**：我们不反对个人权利，我们要的是更彻底的个人自由——不仅是形式上的法律自由，更是事实上的、掌握自己操作权的自由；我们不把市场、私有财产当成永恒的东西，它们是历史的产物，也会在历史`
 
 
-### I6330 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5112
+### I6331 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5112
 
 **问题**: 绝对化表述 "每天睡觉前都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `最根本的道理写成三条明本训，每天睡觉前都要想一想：`
 
 
-### I6331 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5115
+### I6332 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5115
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. **信仰人民，信仰每一个站着活的生命。**`
 
 
-### I6332 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5116
+### I6333 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5116
 
 **问题**: 绝对化表述 "每个站着活的人都有明性，都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `从来就没有什么救世主，也不靠神仙皇帝。相信千百万普通劳动者的活操作，相信生命自己解放自己的力量，相信每个站着活的人都有明性，都能做自己的主人。`
 
 
-### I6333 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5117
+### I6334 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5117
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. **理论会随着实践发展，但是阶级立场半分不能变，永远站在被压迫者这边。**`
 
 
-### I6334 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5152
+### I6335 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5152
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有学术方法、工具、流程、规范，本质上都是人类自指生命的阴的沉淀——是活的研究者为了解决`
 
 
-### I6335 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5152
+### I6336 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5152
 
 **问题**: 绝对化表述 "所有学术方法、工具、流程、规范，本质上都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有学术方法、工具、流程、规范，本质上都是人类自指生命的阴的沉淀——是活的研究者为了解决`
 
 
-### I6336 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5154
+### I6337 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5154
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `阳主阴从，学术工作的唯一本体是活的研究者的真问题、真困惑、真思想；所有检索、精读、写作、`
 
 
-### I6337 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5155
+### I6338 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5155
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `引用、排版技能，都是为这个本体服务的工具，没有任何独立的神圣性。​`
-
-
-### I6338 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5161
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `五大技能，从线性流水线改造为自指递归的五环闭环，所有环节围绕真问题旋转，所有工具随时为活`
 
 
 ### I6339 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5161
@@ -47687,380 +47687,380 @@
 **上下文**: `五大技能，从线性流水线改造为自指递归的五环闭环，所有环节围绕真问题旋转，所有工具随时为活`
 
 
-### I6340 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5162
+### I6340 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5161
+
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `五大技能，从线性流水线改造为自指递归的五环闭环，所有环节围绕真问题旋转，所有工具随时为活`
+
+
+### I6341 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5162
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `思想服务，既吸收现有学术规范的全部合理内容，又从根上突破工具理性的束缚，实现“道在学术`
 
 
-### I6341 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5168
-
-**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
-
-
 ### I6342 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5168
 
-**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
 
 
 ### I6343 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5168
 
+**问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
+
+
+### I6344 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5168
+
 **问题**: 绝对化表述 "每一个环节的输出都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `随时可以递归回溯的自指闭环：每一个环节的输出都可以反过来修正之前所有环节的输入，唯一的判`
 
 
-### I6344 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5171
+### I6345 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5171
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `第一环：提问——所有研究从真问题开始（阳的起点）​`
 
 
-### I6345 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5199
+### I6346 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5199
 
 **问题**: 绝对化表述 "每一步都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `严格遵循论文精读七阶段流程，但每一步都加一层扬弃判断：​`
 
 
-### I6346 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5236
+### I6347 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5236
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 删掉所有和核心论点无关的内容，哪怕人写得再得意。​`
 
 
-### I6347 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5238
+### I6348 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5238
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不造黑话：能用大白话说清楚的绝不造新概念，所有概念必须有实指，读者看完知道对应什么`
 
 
-### I6348 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5238
+### I6349 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5238
 
 **问题**: 绝对化表述 "绝不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不造黑话：能用大白话说清楚的绝不造新概念，所有概念必须有实指，读者看完知道对应什么`
 
 
-### I6349 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5240
+### I6350 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5240
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不装专业：不堆没用的公式、没用的术语、没用的引用，每一句话都要有信息量，每一个公式`
 
 
-### I6350 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5240
+### I6351 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5240
 
 **问题**: 绝对化表述 "每一句话都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 不装专业：不堆没用的公式、没用的术语、没用的引用，每一句话都要有信息量，每一个公式`
 
 
-### I6351 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5251
+### I6352 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5251
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 每一个结论都有证据或逻辑支撑，没有“我觉得”“大家都认为”这种无根据的话；​`
 
 
-### I6352 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5251
+### I6353 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5251
 
 **问题**: 绝对化表述 "每一个结论都有证据或逻辑支撑，没有“我觉得”“大家都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 每一个结论都有证据或逻辑支撑，没有“我觉得”“大家都认为”这种无根据的话；​`
 
 
-### I6353 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5252
+### I6354 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5252
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 删掉任何一段，核心论证都会受影响，没有废话。​`
 
 
-### I6354 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5252
+### I6355 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5252
 
 **问题**: 绝对化表述 "任何一段，核心论证都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 删掉任何一段，核心论证都会受影响，没有废话。​`
 
 
-### I6355 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5258
+### I6356 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5258
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `审计——不仅查引用，还查所有概念、结论、证据的名实一致性，对应生命论“名实遮蔽”的去蔽工`
 
 
-### I6356 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5262
+### I6357 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5262
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 所有参考文献必须真实存在，题录、作者、年份、期刊、DOI准确；​`
 
 
-### I6357 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5263
+### I6358 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5263
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 文内每一个引用都真的支持人说的这句话，不把“主题相关”当成“支持结论”，不把相关说`
 
 
-### I6358 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5263
+### I6359 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5263
 
 **问题**: 绝对化表述 "每一个引用都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 文内每一个引用都真的支持人说的这句话，不把“主题相关”当成“支持结论”，不把相关说`
 
 
-### I6359 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5269
+### I6360 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5269
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 概念查：人用的每一个概念，是不是有明确的实指？有没有把抽象概念当成实体（比如“历史`
 
 
-### I6360 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5270
+### I6361 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5270
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `必然”“结构决定”“市场规律”）？有没有自己造了一个概念但说不清楚它是什么？​`
 
 
-### I6361 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5271
+### I6362 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5271
 
 **问题**: 绝对化表述 "每一个" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `◦ 结论查：每一个结论，证据够不够？有没有说过头？有没有把人自己的推断说成事实？有没有`
 
 
-### I6362 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5272
+### I6363 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5272
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `把“可能”说成“必然”？​`
 
 
-### I6363 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5276
+### I6364 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5276
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `实不是道德要求，是自指系统维持自身健康的必要条件——骗别人最后一定骗自己，思想系统就会`
 
 
-### I6364 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5280
+### I6365 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5280
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `• 人敢把所有引用的原文翻出来，对着看每一句话；​`
 
 
-### I6365 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5318
+### I6366 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5318
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 不造黑话：能说白话就说白话，所有术语必须能翻译回日常语言。故意把简单的事说复杂，用黑话`
 
 
-### I6366 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5320
+### I6367 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5320
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `4. 不搞表演：不为了显得学术做没用的回归、堆没用的公式、引没用的文献、凑没用的字数。所有操`
 
 
-### I6367 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5323
+### I6368 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5323
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `引用。人可以骗所有人，但骗不了人自己的明性。​`
 
 
-### I6368 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5324
+### I6369 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5324
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `6. 不忘根本：所有学术最终都是为了让人活得更像人，让生命更舒展。为了职称、帽子、稿费、名气`
 
 
-### I6369 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5324
+### I6370 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5324
 
 **问题**: 绝对化表述 "所有学术最终都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `6. 不忘根本：所有学术最终都是为了让人活得更像人，让生命更舒展。为了职称、帽子、稿费、名气`
 
 
-### I6370 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5348
+### I6371 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5348
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `仅查引用，还查所有概念、结论、`
 
 
-### I6371 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5452
+### I6372 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5452
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `给所有站着活的人的武器​`
 
 
-### I6372 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5464
+### I6373 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5464
 
 **问题**: 绝对化表述 "从不" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `从不可怀疑的经验事实出发的公理化推导；对旧哲学的症候式阅读与总清算；理论`
 
 
-### I6373 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5468
+### I6374 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5468
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 反自指系统必然遵循窃权→锁死→遮蔽→耗散→负反馈锁死→崩溃的六阶段规`
 
 
-### I6374 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5473
+### I6375 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5473
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `阴阳辩证法与王船山道器论、西方哲学从巴门尼德到巴迪欧的全部合理成果​`
 
 
-### I6375 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5474
+### I6376 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5474
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `适用于所有生命系统（从细胞到文明）的健康/病理分析；不提供宇宙论意义上的`
 
 
-### I6376 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5475
+### I6377 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5475
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `“万物本体”，不讨论与活人操作无关的抽象世界本质；不承诺历史的必然目的，`
 
 
-### I6377 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5549
+### I6378 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5549
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `平均合成核心指标M（操作权指数）——几何平均的合理性在于四个维度是乘性关系，任何一个维`
 
 
-### I6378 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5553
+### I6379 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5553
 
 **问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `更重要的是，作者明确提出了可检验的趋势判断：社会健康状况持续恶化（个体稳态下降、生产关系不公平加剧、环境承载超限、共同体瓦解、青年希望丧失、异化加深）到一定程度，会引发大的动荡或变革；个人长期处于被异`
 
 
-### I6379 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5562
+### I6380 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5562
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有工具都为生命服务。​`
 
 
-### I6380 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5562
+### I6381 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5562
 
 **问题**: 绝对化表述 "所有工具都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `所有工具都为生命服务。​`
 
 
-### I6381 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5570
+### I6382 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5570
 
 **问题**: 绝对化表述 "每个思想家的真东西和根本局限都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `不盲目崇拜，每个思想家的真东西和根本局限都讲得非常清楚，其中几个关键判断尤其有穿透力：​`
 
 
-### I6382 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5571
+### I6383 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5571
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `1. 对马克思的定位：马克思是最直接的理论来源，他的实践转向、剩余价值学说、阶级分析方法全部`
 
 
-### I6383 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5577
+### I6384 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5577
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `质上还是概念实体化，是把绝对精神换成了“结构”，最终必然走向结构决定论和学院黑话。​`
 
 
-### I6384 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5579
+### I6385 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5579
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `义和虚无主义：我们解构所有实体化的神，但我们不解构活的生命本身；判断真假对错的标准很明`
 
 
-### I6385 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5584
+### I6386 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5584
 
 **问题**: 绝对化表述 "彻底" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `5. 对哲人王的彻底扬弃：柏拉图以来“少数智者统治多数人”的逻辑被从存在论层面推翻：真理不在`
 
 
-### I6386 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5585
+### I6387 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5585
 
 **问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `少数人手里，在每个生命的操作中；绝对权力必然导致反自指异化；真正的哲人王不是统治别人，`
 
 
-### I6387 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5586
+### I6388 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5586
 
 **问题**: 绝对化表述 "每个人都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `是做自己生命的王，“人人如龙”不是道德理想，是存在论层面每个人都可以做到的事。​`
 
 
-### I6388 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5632
+### I6389 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5632
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `义的二元对立，提供了一个真正一元论的、可以贯通从自然到社会到个人所有领域的理论框架；​`
 
 
-### I6389 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5642
+### I6390 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5642
 
 **问题**: 绝对化表述 "永远" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 它既反对投降主义，也反对盲动主义：既告诉人反自指的内在矛盾决定了它不可能永远持续，不要被它的强大吓倒；也告诉人`
 
 
-### I6390 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5642
+### I6391 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5642
 
 **问题**: 绝对化表述 "不可能" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `3. 它既反对投降主义，也反对盲动主义：既告诉人反自指的内在矛盾决定了它不可能永远持续，不要被它的强大吓倒；也告诉人`
 
 
-### I6391 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5650
+### I6392 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5650
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `整文本，未参考作者其他版本的生命论文本（如《无分之分》《形上形下贯通论》等），所有判断均`
 
 
-### I6392 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5692
-
-**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
-
-**上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
-
-
 ### I6393 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5692
 
-**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+**问题**: 绝对化表述 "必然" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
 
@@ -48072,126 +48072,133 @@
 **上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
 
 
-### I6395 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5698
+### I6395 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5692
+
+**问题**: 绝对化表述 "一定" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
+
+**上下文**: `**回应：** 第一，四规定性带来内在显现，是从碳基生命实事总结；对硅基系统属于合理外推，不是逻辑必然公理。第二，当下AI的目标函数是外部人类给定，并非系统内生涌现的自我持存目的，不满足完整四规定性。`
+
+
+### I6396 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5698
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `**回应：** 第一，"操作"在本体系不是狭义机械物理动作，包含感知、应答、维持、拒斥、联结，全部是广义操作事件。感本身就是自指操作的内在显现向度，没有消解第一人称体验。第二，第三人称结构性解析不等于`
 
 
-### I6396 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5707
+### I6397 [absolute] archive\old_editions\生命论（明本论）全本_v3.md:5707
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `>4. 本书所有现实历史案例用于阐释存在论机制；理论首要功能是提供预警，而不是事后解剖文明的衰败遗骸。`
 
 
-### I6397 [absolute] archive\old_task_files\ai_allocation_plan.md:3
+### I6398 [absolute] archive\old_task_files\ai_allocation_plan.md:3
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `## 一、所有AI都拿到的（公共包）`
 
 
-### I6398 [absolute] archive\old_task_files\ai_allocation_plan.md:3
+### I6399 [absolute] archive\old_task_files\ai_allocation_plan.md:3
 
 **问题**: 绝对化表述 "所有AI都" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `## 一、所有AI都拿到的（公共包）`
 
 
-### I6399 [absolute] archive\old_task_files\ai_allocation_plan.md:102
+### I6400 [absolute] archive\old_task_files\ai_allocation_plan.md:102
 
 **问题**: 绝对化表述 "任何" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `## 五、不给任何外部AI的内容`
 
 
-### I6400 [absolute] archive\old_task_files\one_click_prompts.md:7
+### I6401 [absolute] archive\old_task_files\one_click_prompts.md:7
 
 **问题**: 绝对化表述 "全部" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `直接复制下面全部内容发给Workbody：`
 
 
-### I6401 [old_ref] archive\old_task_files\one_click_prompts.md:32
+### I6402 [old_ref] archive\old_task_files\one_click_prompts.md:32
 
 **问题**: 使用可变编号 "定理1"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理1：践演不完备性`
 
 
-### I6402 [old_ref] archive\old_task_files\one_click_prompts.md:41
+### I6403 [old_ref] archive\old_task_files\one_click_prompts.md:41
 
 **问题**: 使用可变编号 "定理2"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理2：异化压缩`
 
 
-### I6403 [old_ref] archive\old_task_files\one_click_prompts.md:47
+### I6404 [old_ref] archive\old_task_files\one_click_prompts.md:47
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理3：运行权不可定义于标准博弈`
 
 
-### I6404 [old_ref] archive\old_task_files\one_click_prompts.md:53
+### I6405 [old_ref] archive\old_task_files\one_click_prompts.md:53
 
 **问题**: 使用可变编号 "定理4"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理4：一般不可克隆`
 
 
-### I6405 [absolute] archive\old_task_files\one_click_prompts.md:54
+### I6406 [absolute] archive\old_task_files\one_click_prompts.md:54
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `在任意LNL范畴（线性/非线性伴随）中，不存在自然变换νF→!νF。`
 
 
-### I6406 [absolute] archive\old_task_files\one_click_prompts.md:61
+### I6407 [absolute] archive\old_task_files\one_click_prompts.md:61
 
 **问题**: 绝对化表述 "任意" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `攻击方向：如果范畴是平凡的（只有一个对象）呢？如果νF本身就是有限的呢？"任意LNL范畴"是不是太强了？`
 
 
-### I6407 [old_ref] archive\old_task_files\one_click_prompts.md:63
+### I6408 [old_ref] archive\old_task_files\one_click_prompts.md:63
 
 **问题**: 使用可变编号 "定理5"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `### 定理5：明性幂等`
 
 
-### I6408 [absolute] archive\old_task_files\tasks_deepseek.md:61
+### I6409 [absolute] archive\old_task_files\tasks_deepseek.md:61
 
 **问题**: 绝对化表述 "所有" 附近没有证明标记。请确认是否有严格证明支撑，或改为"在X条件下"。
 
 **上下文**: `2. "沉默=失去运行权"是否成立？（我加了条件：AGENCY要求持续活跃，不只是所有输出内部引起）`
 
 
-### I6409 [old_ref] archive\old_task_files\tasks_qwen.md:44
+### I6410 [old_ref] archive\old_task_files\tasks_qwen.md:44
 
 **问题**: 使用可变编号 "定理3"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `- 定理3.1（践演不完备）：从!-模态假设真的不能推导出线性资源吗？有没有promotion规则的例外？`
 
 
-### I6410 [old_ref] archive\old_task_files\tasks_qwen.md:75
+### I6411 [old_ref] archive\old_task_files\tasks_qwen.md:75
 
 **问题**: 使用可变编号 "定理7"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `我们证明了：任何只处理轨迹（Tr，!-模态数据）的系统不能可靠判定运行权（定理7.4）。当前AI系统是轨迹处理器。`
 
 
-### I6411 [old_ref] archive\old_task_files\tasks_qwen.md:79
+### I6412 [old_ref] archive\old_task_files\tasks_qwen.md:79
 
 **问题**: 使用可变编号 "定理7"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
 **上下文**: `2. "AI不能获得明性"（定理7.5）和"AI没有意识"的争论有什么关系？我们的定理是否比"中文屋论证"更精确？`
 
 
-### I6412 [old_ref] archive\old_task_files\tasks_qwen.md:81
+### I6413 [old_ref] archive\old_task_files\tasks_qwen.md:81
 
 **问题**: 使用可变编号 "定理7"，建议改为永久ID格式（如T006）。永久ID一旦确定永不改变。
 
@@ -48200,7 +48207,7 @@
 
 ## 总结
 
-⚠️  发现 6882 个问题需要处理。
+⚠️  发现 6883 个问题需要处理。
 
 
 **核心原则**: 全线把≅降级为⇒/↠/≈/双模拟，先证弱版，能升回的再升。
