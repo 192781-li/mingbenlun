@@ -2374,25 +2374,25 @@
 **上下文**: `17. $I_n \approx 0 \iff N \approx 0 \land G \approx 0 \land A \approx 0 \implies M \approx 0$ — 完全悬置`
 
 
-### W337 [isomorphism] mingben-workbench\references\豆包快速响应流程规范.md:61
+### W337 [isomorphism] mingben-workbench\references\豆包快速响应流程规范.md:59
 
 **问题**: 同构≅ "≅" 附近没有证明标记。需要双向态射+互逆证明，否则应降级为⇒/↠/≈/retraction
 
-**上下文**: `| a*(νF)≅μF | trunc:νF↠μF（满射非同构） |`
+**上下文**: `- T7异化压缩：**trunc满射**非同构（≅版已证伪）`
 
 
-### W338 [isomorphism] mingben-workbench\references\豆包快速响应流程规范.md:62
-
-**问题**: 同构≅ "≅" 附近没有证明标记。需要双向态射+互逆证明，否则应降级为⇒/↠/≈/retraction
-
-**上下文**: `| Cl_self∘a*≅Id | barbed双模拟 |`
-
-
-### W339 [isomorphism] mingben-workbench\references\豆包快速响应流程规范.md:63
+### W338 [isomorphism] mingben-workbench\references\豆包快速响应流程规范.md:60
 
 **问题**: 同构≅ "≅" 附近没有证明标记。需要双向态射+互逆证明，否则应降级为⇒/↠/≈/retraction
 
-**上下文**: `| Cl²≅Cl | Cl²⇒Cl（retraction） |`
+**上下文**: `- T8明性反转：**barbed双模拟**（函子复合≅版ill-defined）`
+
+
+### W339 [isomorphism] mingben-workbench\references\豆包快速响应流程规范.md:61
+
+**问题**: 同构≅ "≅" 附近没有证明标记。需要双向态射+互逆证明，否则应降级为⇒/↠/≈/retraction
+
+**上下文**: `- T6明性幂等：**retraction Cl²⇒Cl**（≅版与定义矛盾）`
 
 
 ### W340 [isomorphism] mingben-workbench\references\超级智慧包_v2.0.md:350
