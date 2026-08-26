@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 践演论项目自动备份脚本
 用法: python backup_project.py [--full]

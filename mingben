@@ -1,7 +1,0 @@
-#!/bin/bash
-# 明本统一CLI便捷入口
-# 用法：./mingben <子命令> [参数]
-# 安装到PATH：sudo ln -s $(pwd)/mingben /usr/local/bin/mingben
-
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-exec python3 "$SCRIPT_DIR/mingben-workbench/mingben.py" "$@"

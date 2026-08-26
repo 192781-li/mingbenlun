@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """检查卷篇引用是否有效"""
 import os
 import re

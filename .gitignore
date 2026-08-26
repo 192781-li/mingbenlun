@@ -1,9 +1,6 @@
 # 备份目录（自动生成，不纳入版本控制）
 backup/
 
-# 状态报告（自动生成，但纳入版本控制以便三方查看）
-# 项目状态报告.md 不忽略，因为需要三方查看
-
 # Python缓存
 __pycache__/
 *.pyc
@@ -31,3 +28,8 @@ Thumbs.db
 *.glob
 *.aux
 .*.aux
+.lia.cache
+
+# 自动生成的输出（每次跑脚本重新生成）
+outputs/项目状态报告.md
+outputs/项目状态日报.md

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 旧格式引用迁移工具
 用法: python migrate_old_refs.py [--apply]

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """扫描核心定理的名称引用，迁移到T00X"""
 import os
 import re

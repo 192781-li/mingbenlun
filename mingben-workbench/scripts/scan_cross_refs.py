@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """扫描全书中的卷篇交叉引用"""
 import os
 import re

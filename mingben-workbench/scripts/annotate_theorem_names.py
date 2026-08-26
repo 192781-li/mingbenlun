@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """自动在核心定理名称引用后加T00X标注（修复版：从后往前替换）"""
 import os
 import re

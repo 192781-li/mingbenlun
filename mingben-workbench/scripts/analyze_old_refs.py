@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """分析旧引用分布：区分历史版本文件和当前活跃文件"""
 import os
 import re

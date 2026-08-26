@@ -12,8 +12,10 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 
-REPO_ROOT = Path(__file__).parent
-REPORT_FILE = REPO_ROOT / "项目状态报告.md"
+REPO_ROOT = Path(__file__).parent.parent.parent
+OUTPUT_DIR = REPO_ROOT / "outputs"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+REPORT_FILE = OUTPUT_DIR / "项目状态报告.md"
 
 def read_json(path):
     """安全读取JSON文件"""
