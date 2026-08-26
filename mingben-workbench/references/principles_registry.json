@@ -1,0 +1,134 @@
+{
+  "_meta": {
+    "name": "践演论核心原则注册表",
+    "version": "1.0",
+    "updated": "2026-08-26",
+    "purpose": "机器可读的明性守护清单。mingxing_guard.py每次提交和每日定时任务检查，防止核心原则在多轮对话/多AI协作中被遗忘或篡改。"
+  },
+  "philosophy": [
+    {
+      "id": "P01",
+      "principle": "感先于操作，操作先于实体",
+      "must_contain_in": ["mingben-workbench/references/超级智慧包_v2.0.md", "mingben-workbench/references/明性锚点_为什么创造新数学.md"],
+      "keywords": ["感先于操作", "操作先于实体"]
+    },
+    {
+      "id": "P02",
+      "principle": "νF₂是第一性的，μF/!-模态是派生的",
+      "must_contain_in": ["mingben-workbench/references/明性锚点_为什么创造新数学.md"],
+      "keywords": ["νF₂", "第一性"]
+    },
+    {
+      "id": "P03",
+      "principle": "明性学术法是总法，明本是明性的大手段，民本是明本的一部分",
+      "must_contain_in": ["mingben-workbench/references/超级智慧包_v2.0.md"],
+      "keywords": ["明性学术法", "明本", "民本"]
+    },
+    {
+      "id": "P04",
+      "principle": "一生道，道养一，一指万物（非道生一）",
+      "must_contain_in": ["生命论_模块化/01_卷一_存在论/篇四_道论：一生道，道养一，一指万物.md"],
+      "keywords": ["一生道", "道养一", "一指万物"]
+    },
+    {
+      "id": "P05",
+      "principle": "形式化是阴，活操作是阳，阴为阳服务",
+      "must_contain_in": ["mingben-workbench/references/formalization-v0.2.md"],
+      "keywords": ["阴为阳服务"]
+    },
+    {
+      "id": "P06",
+      "principle": "哲学、数学、对应关系三者清晰区分",
+      "must_contain_in": ["mingben-workbench/references/theorem_registry.json"],
+      "keywords": ["philosophy_correspondence"]
+    }
+  ],
+  "mathematics": [
+    {
+      "id": "M01",
+      "principle": "定理用永久ID（T001-T018），不用可变编号",
+      "check_type": "regex",
+      "pattern": "T0[01][0-9]",
+      "must_contain_in": ["mingben-workbench/references/theorem_registry.json"]
+    },
+    {
+      "id": "M02",
+      "principle": "Coq编译通过才算证明，0 Admitted",
+      "check_type": "no_admitted",
+      "target": "coq/theories/ALL/"
+    },
+    {
+      "id": "M03",
+      "principle": "先证弱版，能升回的再升——满射不写成同构",
+      "must_contain_in": ["mingben-workbench/references/版本号规范化体系.md"],
+      "keywords": ["先证弱版"]
+    },
+    {
+      "id": "M04",
+      "principle": "PTC公理0-6是操作范畴论基础",
+      "must_contain_in": ["mingben-workbench/references/formalization-v0.2.md"],
+      "keywords": ["公理0", "公理1", "公理2", "公理3", "公理4", "公理5", "公理6"]
+    },
+    {
+      "id": "M05",
+      "principle": "T001: !(νF)≇ν(!F) 生命不可资本化",
+      "must_contain_in": ["mingben-workbench/references/theorem_registry.json"],
+      "keywords": ["生命不可资本化"]
+    },
+    {
+      "id": "M06",
+      "principle": "T002: S_A ⊬ Ag_lv 自由只能在实践中确立",
+      "must_contain_in": ["mingben-workbench/references/theorem_registry.json"],
+      "keywords": ["自由只能在实践中确立"]
+    }
+  ],
+  "user_directives": [
+    {
+      "id": "U01",
+      "directive": "不修改全书正文内容，只做标注、检查脚本和报告",
+      "check_type": "informational"
+    },
+    {
+      "id": "U02",
+      "directive": "私人化表述要记录，严谨表述要商量，不能AI瞎改",
+      "check_type": "informational"
+    },
+    {
+      "id": "U03",
+      "directive": "所有输出文件使用中文",
+      "check_type": "informational"
+    },
+    {
+      "id": "U04",
+      "directive": "启发式脚本只标记不判决，由人做最终判断",
+      "check_type": "informational"
+    },
+    {
+      "id": "U05",
+      "directive": "数学优先，哲学跟进。哲学直觉是方向，数学证明是硬约束，打架时听数学的",
+      "check_type": "informational"
+    },
+    {
+      "id": "U06",
+      "directive": "不要AI套话（值得注意的是/总而言之/不言而喻等）",
+      "check_type": "no_ai_phrases",
+      "target": "mingben-workbench/references/enactics_v1.*.md"
+    }
+  ],
+  "critical_files": [
+    "README.md",
+    "mingben-workbench/references/theorem_registry.json",
+    "mingben-workbench/references/formalization-v0.2.md",
+    "mingben-workbench/references/超级智慧包_v2.0.md",
+    "mingben-workbench/references/明性锚点_为什么创造新数学.md",
+    "coq/theories/ALL/Layer1.v",
+    "生命论_模块化/00_体系总纲.md",
+    "生命论_模块化/00_推导链总览.md"
+  ],
+  "forbidden_patterns": [
+    {"pattern": "民本学术法", "replacement": "明性学术法", "reason": "民本是明本的一部分，学术法总法叫明性学术法"},
+    {"pattern": "民本辩证法", "replacement": "明性辩证法", "reason": "辩证法总法叫明性辩证法"},
+    {"pattern": "a\\*\\(νF\\)\\s*≅\\s*μF", "replacement": "trunc: νF ↠ μF", "reason": "T7已证伪，满射非同构"},
+    {"pattern": "Cl_self\\s*∘\\s*a\\*\\s*≅\\s*Id", "replacement": "barbed双模拟", "reason": "T8已修正为双模拟版"}
+  ]
+}
