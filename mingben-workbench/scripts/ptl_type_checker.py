@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-PTL（践演迹语言）类型检查器 v0.2
-基于形式化v0.2框架的PTL类型规则
+PTL（践演迹语言）类型检查器 v0.3
+基于形式化v0.3框架的PTL类型规则
 
 核心检查：
 1. 线性性检查：变量是否被用了多次（对应公理2——操作不可复制）
@@ -298,6 +298,9 @@ class PTLTypeChecker:
         lines = content.split('\n')
         self.report.lines_scanned += len(lines)
 
+        # 收集推导步骤用于多行链分析
+        derivation_steps_in_file = []
+
         for i, line in enumerate(lines, 1):
             # 跳过空行和标题
             if not line.strip() or line.strip().startswith('#'):
@@ -312,6 +315,9 @@ class PTLTypeChecker:
             # 检查生产性
             self.check_productivity(file_path, i, line)
 
+            # v0.3: 检查哲学压制数学
+            self.check_philosophy_overreach(file_path, i, line)
+
             # 如果是推导步骤，记录并推断类型和公理
             if self.is_derivation_step(line):
                 step = DerivationStep(
@@ -323,6 +329,93 @@ class PTLTypeChecker:
                 )
                 self.report.steps.append(step)
                 self.report.derivation_steps += 1
+                derivation_steps_in_file.append(step)
+
+        # v0.3: 多行推导链分析
+        self.check_derivation_chains(file_path, derivation_steps_in_file, lines)
+
+    def check_philosophy_overreach(self, file_path: Path, line_num: int, line: str):
+        """v0.3: 检查哲学压制数学——在数学证明语境中用哲学论断代替数学证明"""
+        if self.is_negation(line) or self.is_meta_discussion(line):
+            return
+
+        # 数学证明语境触发词
+        math_context = bool(re.search(r'证明|定理|引理|推论|Coq|形式化|类型检查|推导', line))
+        # 哲学压制模式
+        philosophy_overreach_patterns = [
+            (r'哲学上必然', '哲学上必然', '在数学证明中用"哲学上必然"代替形式证明'),
+            (r'本质上决定', '本质上决定', '用"本质上决定"跳过数学推导'),
+            (r'辩证法告诉我们', '辩证法告诉我们', '用辩证法结论代替数学证明'),
+            (r'显然.*?成立', '显然成立', '"显然"跳过证明步骤'),
+            (r'不难看出', '不难看出', '"不难看出"跳过证明步骤'),
+            (r'显而易见', '显而易见', '"显而易见"跳过证明步骤'),
+        ]
+
+        if math_context:
+            for pattern, matched, message in philosophy_overreach_patterns:
+                if re.search(pattern, line):
+                    self.report.violations.append(Violation(
+                        check_type="philosophy_overreach",
+                        severity="warning",
+                        file=str(file_path.relative_to(self.repo_root)),
+                        line=line_num,
+                        context=line.strip()[:200],
+                        message=f"{matched}: {message}",
+                        suggestion="哲学给方向，数学给硬约束。数学证明中每一步都要有形式依据，不能用哲学论断跳过。"
+                    ))
+
+    def check_derivation_chains(self, file_path: Path, steps: List[DerivationStep], all_lines: List[str]):
+        """v0.3: 多行推导链分析——检查公理依赖链的连贯性"""
+        if len(steps) < 2:
+            return
+
+        # 将连续的推导步骤（间隔不超过3行）组成链
+        chains = []
+        current_chain = [steps[0]]
+        for i in range(1, len(steps)):
+            if steps[i].line - current_chain[-1].line <= 3:
+                current_chain.append(steps[i])
+            else:
+                if len(current_chain) >= 2:
+                    chains.append(current_chain)
+                current_chain = [steps[i]]
+        if len(current_chain) >= 2:
+            chains.append(current_chain)
+
+        # 检查每条链
+        for chain in chains:
+            all_axioms = set()
+            for step in chain:
+                all_axioms.update(step.axioms_used)
+
+            # 检查1：从公理0（感）直接跳到经验事实，没有中间公理
+            has_axiom0 = "公理0" in all_axioms
+            has_empirical = any(re.search(r'实验|数据|统计|观察|实证|测量', s.content) for s in chain)
+            has_intermediate = bool(all_axioms & {"公理1", "公理2", "公理3", "公理4", "公理5"})
+
+            if has_axiom0 and has_empirical and not has_intermediate:
+                self.report.violations.append(Violation(
+                    check_type="axiom_chain",
+                    severity="warning",
+                    file=str(file_path.relative_to(self.repo_root)),
+                    line=chain[0].line,
+                    context=f"推导链（行{chain[0].line}-{chain[-1].line}）: {chain[0].content[:100]}",
+                    message="从公理0（感）直接跳到经验事实，缺少中间公理（公理1-5）的推导中介",
+                    suggestion="感是践演事实（公理0），从感到经验判断需要经过存在论（公理1-4）和量论的推导中介，不能直接跳。"
+                ))
+
+            # 检查2：推导链中只有决断（公理6）没有任何存在论公理
+            only_decision = all_axioms == {"公理6"} or (all_axioms and not (all_axioms - {"公理6"}))
+            if only_decision and len(chain) >= 3:
+                self.report.violations.append(Violation(
+                    check_type="axiom_chain",
+                    severity="info",
+                    file=str(file_path.relative_to(self.repo_root)),
+                    line=chain[0].line,
+                    context=f"推导链（行{chain[0].line}-{chain[-1].line}）: {chain[0].content[:100]}",
+                    message="推导链只引用决断（公理6），没有存在论公理支撑",
+                    suggestion="决断不是推导，是活操作的选择。决断需要存在论根基（公理1-5），不能只有决断没有推导。"
+                ))
 
     def run(self) -> CheckReport:
         """运行检查器"""
@@ -338,10 +431,10 @@ class PTLTypeChecker:
         """生成Markdown格式报告"""
         r = self.report
         lines = []
-        lines.append("# PTL类型检查器报告 v0.2")
+        lines.append("# PTL类型检查器报告 v0.3")
         lines.append("")
         lines.append(f"> 生成时间：{__import__('datetime').datetime.now().isoformat()}")
-        lines.append(f"> 检查器版本：v0.2（初版，模式匹配+启发式）")
+        lines.append(f"> 检查器版本：v0.3（初版，模式匹配+启发式）")
         lines.append("")
 
         # 总览
@@ -361,12 +454,14 @@ class PTLTypeChecker:
         # 按检查类型分类
         lines.append("## 二、违规详情（按检查类型）")
         lines.append("")
-        for check_type in ["bang_penetration", "linearity", "productivity"]:
+        for check_type in ["bang_penetration", "linearity", "productivity", "philosophy_overreach", "axiom_chain"]:
             violations = [v for v in r.violations if v.check_type == check_type]
             type_name = {
                 "bang_penetration": "!-穿透检查（定理20：生命不可资本化）",
                 "linearity": "线性性检查（公理2：操作不可复制）",
                 "productivity": "生产性检查（公理5：守护递归）",
+                "philosophy_overreach": "哲学压制数学检查（v0.3新增：哲学给方向，数学给硬约束）",
+                "axiom_chain": "公理依赖链检查（v0.3新增：推导链中公理依赖连贯性）",
             }[check_type]
             lines.append(f"### {type_name}")
             lines.append("")
@@ -471,7 +566,7 @@ def main():
     if not (repo_root / "生命论_模块化").exists():
         repo_root = Path.cwd()
 
-    print("=== PTL类型检查器 v0.2 ===")
+    print("=== PTL类型检查器 v0.3 ===")
     print()
     print(f"仓库根目录: {repo_root}")
     print()
