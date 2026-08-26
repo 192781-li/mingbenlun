@@ -39,10 +39,17 @@ def get_theorem_registry_status():
     if not data:
         return {"total": 0, "coq_verified": 0, "literature_checked": 0, "novelty": {}}
     
-    theorems = data if isinstance(data, list) else data.get("theorems", [])
+    # 支持两种格式：list或dict（dict中以T开头的键是定理）
+    if isinstance(data, list):
+        theorems = data
+    elif isinstance(data, dict):
+        theorems = [v for k, v in data.items() if k.startswith("T") and isinstance(v, dict)]
+    else:
+        theorems = []
+    
     total = len(theorems)
-    coq_verified = sum(1 for t in theorems if t.get("coq_verified") or t.get("coq_status") == "verified")
-    literature_checked = sum(1 for t in theorems if t.get("literature_checked") or t.get("literature_status") == "checked")
+    coq_verified = sum(1 for t in theorems if t.get("coq_verified") or t.get("coq_status") == "verified" or t.get("status") == "coq_verified")
+    literature_checked = sum(1 for t in theorems if t.get("literature_checked") or t.get("literature_status") == "checked" or t.get("status") == "literature_checked")
     
     novelty = {}
     for t in theorems:

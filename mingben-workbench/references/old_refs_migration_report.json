@@ -1,0 +1,4020 @@
+{
+  "generated_at": "2026-08-26T21:23:46.935021",
+  "summary": {
+    "total_types": 7,
+    "total_unique_refs": 447,
+    "total_occurrences": 7065
+  },
+  "refs": {
+    "Theorem": {
+      "1.1": {
+        "count": 4,
+        "files": [
+          "FOR_AI_COLLABORATORS.md",
+          "mingben-workbench\\references\\enactics_AI_collaboration_guide.md"
+        ]
+      },
+      "2.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\enactics_AI_collaboration_guide.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md",
+          "任务包_WorkBuddy_审计反例.md"
+        ]
+      },
+      "2.2": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\enactics_AI_collaboration_guide.md"
+        ]
+      },
+      "2.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\enactics_AI_collaboration_guide.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "2.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\enactics_AI_collaboration_guide.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "3.1": {
+        "count": 4,
+        "files": [
+          "coq\\README.md",
+          "mingben-workbench\\references\\enactics_AI_collaboration_guide.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "3.2": {
+        "count": 6,
+        "files": [
+          "coq\\README.md",
+          "mingben-workbench\\references\\enactics_AI_collaboration_guide.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "3.4": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "4.1": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "4.2": {
+        "count": 10,
+        "files": [
+          "coq\\README.md",
+          "mingben-workbench\\references\\enactics_AI_collaboration_guide.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md",
+          "mingben-workbench\\references\\f层级形式化_研究笔记_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "5.1": {
+        "count": 5,
+        "files": [
+          "coq\\README.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "5.3": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\enactics_paper_v1.0.md",
+          "mingben-workbench\\references\\f层级形式化_研究笔记_v0.1.md"
+        ]
+      },
+      "6.1": {
+        "count": 4,
+        "files": [
+          "coq\\README.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "6.2": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "7.1": {
+        "count": 2,
+        "files": [
+          "coq\\README.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "7.2": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\enactics_paper_v1.0.md",
+          "mingben-workbench\\references\\f层级形式化_研究笔记_v0.1.md"
+        ]
+      },
+      "7.3": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "7.4": {
+        "count": 2,
+        "files": [
+          "coq\\README.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "7.5": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\enactics_paper_v1.0.md"
+        ]
+      },
+      "7.6": {
+        "count": 5,
+        "files": [
+          "coq\\README.md",
+          "mingben-workbench\\references\\enactics_paper_v1.0.md",
+          "mingben-workbench\\references\\f层级形式化_研究笔记_v0.1.md"
+        ]
+      }
+    },
+    "公理": {
+      "0": {
+        "count": 242,
+        "files": [
+          "mingben-workbench\\references\\GLL新颖性核查.md",
+          "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\formalization_progress.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "生命论_模块化\\00_数学编码状态总览.md",
+          "生命论_模块化\\01_卷一_存在论\\篇三_感与应：第一人称与第二人称.md",
+          "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
+          "生命论_模块化\\02_卷二_认识论\\篇五_f-层级：自在、自为与自觉.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇五_PTL践演迹语言.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇四_f-层级的数学形式化.md",
+          "生命论_模块化\\11_附录\\全本结构审查与重组方案.md",
+          "生命论_模块化\\11_附录\\全本结构重组方案_最终版.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md"
+        ]
+      },
+      "1": {
+        "count": 179,
+        "files": [
+          "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "mingben-workbench\\references\\哲学数学双向映衬_历程与互校.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
+          "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "mingben-workbench\\references\\缄默操作重解数学.md",
+          "批判性阅读地图_生命论全本.md",
+          "明本论_写作避坑铁律.md",
+          "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
+          "生命论_模块化\\03_卷三_群己论\\篇四_社会健康的度量：六维框架.md",
+          "生命论_模块化\\06_卷六_实践论\\篇一_明性修养论.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇六_量子对应与前沿方向.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "2": {
+        "count": 220,
+        "files": [
+          "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
+          "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "批判性阅读地图_生命论全本.md",
+          "明本论_写作避坑铁律.md",
+          "生命论_模块化\\00_数学编码状态总览.md",
+          "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
+          "生命论_模块化\\02_卷二_认识论\\篇一_缄默意识与明性：认识的存在论基础.md",
+          "生命论_模块化\\02_卷二_认识论\\篇六_意识形态：名实遮蔽的机制.md",
+          "生命论_模块化\\03_卷三_群己论\\篇三_阶级：反自指的主体结构.md",
+          "生命论_模块化\\03_卷三_群己论\\篇四_社会健康的度量：六维框架.md",
+          "生命论_模块化\\04_卷四_异化论\\篇一_商品、货币与资本.md",
+          "生命论_模块化\\04_卷四_异化论\\篇二_剩余价值与剥削.md",
+          "生命论_模块化\\06_卷六_实践论\\篇一_明性修养论.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "3": {
+        "count": 138,
+        "files": [
+          "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
+          "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
+          "mingben-workbench\\references\\版本号规范化体系.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
+          "生命论_模块化\\02_卷二_认识论\\篇一_缄默意识与明性：认识的存在论基础.md",
+          "生命论_模块化\\02_卷二_认识论\\篇六_意识形态：名实遮蔽的机制.md",
+          "生命论_模块化\\03_卷三_群己论\\篇三_阶级：反自指的主体结构.md",
+          "生命论_模块化\\04_卷四_异化论\\篇二_剩余价值与剥削.md",
+          "生命论_模块化\\06_卷六_实践论\\篇一_明性修养论.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "4": {
+        "count": 163,
+        "files": [
+          "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
+          "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "生命论_模块化\\00_数学编码状态总览.md",
+          "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
+          "生命论_模块化\\03_卷三_群己论\\篇四_社会健康的度量：六维框架.md",
+          "生命论_模块化\\06_卷六_实践论\\篇一_明性修养论.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "5": {
+        "count": 112,
+        "files": [
+          "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
+          "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇五_PTL践演迹语言.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "5.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "6": {
+        "count": 97,
+        "files": [
+          "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
+          "生命论_模块化\\03_卷三_群己论\\篇四_社会健康的度量：六维框架.md",
+          "生命论_模块化\\05_卷五_解放论\\篇二_解放的三阶路径.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\11_附录\\全本结构重组方案_最终版.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md"
+        ]
+      },
+      "10": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      }
+    },
+    "命题": {
+      "1": {
+        "count": 14,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.5.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\一般刻画定理_数据与计算.md",
+          "mingben-workbench\\references\\不动点提升定理_生命流不可资本化.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\数学基础新路径_活自指与践演坐实.md",
+          "mingben-workbench\\references\\新定理_交互余代数不可资本化.md"
+        ]
+      },
+      "1.10": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "2": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "2.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "3": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "北原慢热实录\\红色左派毛派人物与网站挖掘_第十一期_1992年后学院毛派深度研究_20260824.md",
+          "批判性阅读地图_生命论全本.md",
+          "生命论_模块化\\10_参考资料\\北原慢热实录\\红色左派毛派人物与网站挖掘_第十一期_1992年后学院毛派深度研究_20260824.md"
+        ]
+      },
+      "3.4": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "3.7": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "4": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "4.3": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新定理_交互余代数不可资本化.md"
+        ]
+      },
+      "6": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "6.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md"
+        ]
+      },
+      "7": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "7.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md"
+        ]
+      },
+      "9": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "9.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "9.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "10": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "10.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "10.6": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "11": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "11.2": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "13": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "13.1": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "16": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "16.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md"
+        ]
+      },
+      "18": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "18.7": {
+        "count": 7,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "18.9": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "18.11": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "18.12": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "19": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "19.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "19.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "21": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "21.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "24": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "24.3": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md"
+        ]
+      },
+      "28": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "28.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "28.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "29": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "29.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "29.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "38": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "38.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "38.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "38.6": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "39": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "39.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "39.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "40": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "40.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "43": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "43.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "57": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "57.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "58": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "58.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "60": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "60.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "65": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "65.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十六卷_Fock空间与量子场论.md"
+        ]
+      }
+    },
+    "定义": {
+      "1": {
+        "count": 37,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "1.1": {
+        "count": 18,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "生命论公式全编.md"
+        ]
+      },
+      "1.2": {
+        "count": 11,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "1.3": {
+        "count": 17,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "1.4": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "1.5": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "1.6": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "1.7": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "1.11": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "2": {
+        "count": 46,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\enactics_v1.7.md",
+          "mingben-workbench\\references\\external_ai_processing.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "2.1": {
+        "count": 29,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\enactics_v1.4.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\quantum_audit_v1.13_v1.16.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md"
+        ]
+      },
+      "2.2": {
+        "count": 21,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.4.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md"
+        ]
+      },
+      "2.3": {
+        "count": 11,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "2.4": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md"
+        ]
+      },
+      "2.5": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md"
+        ]
+      },
+      "3": {
+        "count": 35,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "3.1": {
+        "count": 27,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\enactics_v1.9.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md"
+        ]
+      },
+      "3.2": {
+        "count": 20,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\quantum_audit_v1.13_v1.16.md",
+          "mingben-workbench\\references\\可靠性_余归纳GoI.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md"
+        ]
+      },
+      "3.3": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "3.5": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "生命论公式全编.md"
+        ]
+      },
+      "4": {
+        "count": 34,
+        "files": [
+          "mingben-workbench\\references\\GoI动态语义_操作的执行与生命流.md",
+          "mingben-workbench\\references\\formalization_progress.md",
+          "mingben-workbench\\references\\f层级形式化_研究笔记_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
+          "北原慢热实录\\生命论思想进化史_从怀疑到体系_20260824.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "生命论_模块化\\10_参考资料\\北原慢热实录\\生命论思想进化史_从怀疑到体系_20260824.md"
+        ]
+      },
+      "4.1": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md"
+        ]
+      },
+      "4.2": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md"
+        ]
+      },
+      "4.3": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "4.4": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "5": {
+        "count": 16,
+        "files": [
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "5.1": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "5.2": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "5.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "6": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "6.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "6.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md"
+        ]
+      },
+      "6.3": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "6.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md"
+        ]
+      },
+      "7": {
+        "count": 12,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "8": {
+        "count": 8,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "8.0": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "8.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "8.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "8.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "8.6": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "8.8": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "9": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "9.0": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "9.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "9.4": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "9.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "10": {
+        "count": 7,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "北原慢热实录\\卢麒元思想资料库_总览_20260824.md",
+          "生命论_模块化\\10_参考资料\\北原慢热实录\\卢麒元思想资料库_总览_20260824.md"
+        ]
+      },
+      "10.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "10.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "10.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "10.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "11": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "11.3": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新定理_交互余代数不可资本化.md"
+        ]
+      },
+      "13": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "13.3": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "14": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "14.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md"
+        ]
+      },
+      "15": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "15.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md"
+        ]
+      },
+      "15.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md"
+        ]
+      },
+      "18": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "18.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "18.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "18.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "18.6": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "18.8": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "18.10": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "27": {
+        "count": 8,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "27.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "27.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "27.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "27.5": {
+        "count": 11,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "27.7": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "38": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "38.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "38.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "39": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "39.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "39.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "43": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "43.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "43.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "44": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "44.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "44.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "44.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "45": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "45.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "50": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "50.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md"
+        ]
+      },
+      "51": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "51.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md"
+        ]
+      },
+      "58": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "58.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "60": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "60.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "63": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "63.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "63.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "68": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "68.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md"
+        ]
+      },
+      "69": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "69.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十八卷_社会N值测量论.md"
+        ]
+      }
+    },
+    "定理": {
+      "0": {
+        "count": 71,
+        "files": [
+          "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "生命论_模块化\\00_数学编码状态总览.md",
+          "生命论_模块化\\01_卷一_存在论\\篇三_感与应：第一人称与第二人称.md",
+          "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
+          "生命论_模块化\\02_卷二_认识论\\篇五_f-层级：自在、自为与自觉.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md"
+        ]
+      },
+      "1": {
+        "count": 374,
+        "files": [
+          "coq\\README.md",
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\enactics_v0.2.md",
+          "mingben-workbench\\references\\enactics_v0.3.md",
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.8.md",
+          "mingben-workbench\\references\\external_ai_processing.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\muF2_to_nuF2_生命起源的数学.md",
+          "mingben-workbench\\references\\one_click_prompts.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\增长线性逻辑_GLL.md",
+          "mingben-workbench\\references\\操作论数学_八个应用方向.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md",
+          "mingben-workbench\\references\\新数学概念研究_第八卷_操作度量学与新颖性评估.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md",
+          "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "mingben-workbench\\references\\研究方法论_通宵复盘.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md",
+          "明本论_写作避坑铁律.md",
+          "生命论_模块化\\00_体系总纲.md",
+          "生命论_模块化\\00_数学编码状态总览.md",
+          "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
+          "生命论_模块化\\02_卷二_认识论\\篇一_缄默意识与明性：认识的存在论基础.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "生命论_模块化\\03_卷三_群己论\\篇三_阶级：反自指的主体结构.md",
+          "生命论_模块化\\04_卷四_异化论\\篇一_商品、货币与资本.md",
+          "生命论_模块化\\04_卷四_异化论\\篇二_剩余价值与剥削.md",
+          "生命论_模块化\\04_卷四_异化论\\篇十二_大跃退：后毛泽东时代资本主义复辟的生命论清算.md",
+          "生命论_模块化\\04_卷四_异化论\\篇四_反自指展开的六个阶段.md",
+          "生命论_模块化\\06_卷六_实践论\\篇一_明性修养论.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇六_量子对应与前沿方向.md",
+          "生命论_模块化\\10_参考资料\\概念定义比较与资本主义主张的形式化反驳_20260825.md",
+          "生命论_模块化\\11_附录\\全本结构审查与重组方案.md",
+          "生命论_模块化\\11_附录\\全本结构重组方案_最终版.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "001": {
+        "count": 19,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "mingben-workbench\\references\\践演论定理哲学解读.md",
+          "双AI协作机制.md"
+        ]
+      },
+      "1.1": {
+        "count": 41,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.8.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.2.md",
+          "mingben-workbench\\references\\enactics_v1.4.md",
+          "mingben-workbench\\references\\enactics_v1.5.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\spark_candidates.md",
+          "生命论四轮攻防论辩全记录.md"
+        ]
+      },
+      "1.2": {
+        "count": 19,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.8.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.3.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "1.3": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "1.4": {
+        "count": 9,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "1.5": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "1.6": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\novelty_assessment.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "1.7": {
+        "count": 14,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\novelty_assessment.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "践演论_通宵研究总报告_20260826.md"
+        ]
+      },
+      "1.8": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "1.9": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "1.10": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "1.12": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "2": {
+        "count": 301,
+        "files": [
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\ai_allocation_plan.md",
+          "mingben-workbench\\references\\enactics_v0.2.md",
+          "mingben-workbench\\references\\enactics_v0.3.md",
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.8.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.2.md",
+          "mingben-workbench\\references\\enactics_v1.3.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\novelty_assessment.md",
+          "mingben-workbench\\references\\one_click_prompts.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\增长线性逻辑_GLL.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新定理_交互余代数不可资本化.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "明本论_写作避坑铁律.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "践演论_通宵研究总报告_20260826.md"
+        ]
+      },
+      "002": {
+        "count": 9,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\践演论定理哲学解读.md"
+        ]
+      },
+      "2.1": {
+        "count": 112,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.8.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.1.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\enactics_v1.17.md",
+          "mingben-workbench\\references\\enactics_v1.2.md",
+          "mingben-workbench\\references\\enactics_v1.4.md",
+          "mingben-workbench\\references\\enactics_v1.5.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\enactics_v1.7.md",
+          "mingben-workbench\\references\\enactics_v1.8.md",
+          "mingben-workbench\\references\\enactics_v1.9.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\novelty_assessment.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\quantum_audit_v1.13_v1.16.md",
+          "mingben-workbench\\references\\一般刻画定理_数据与计算.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md",
+          "践演论_通宵研究总报告_20260826.md"
+        ]
+      },
+      "2.2": {
+        "count": 72,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.8.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\enactics_v1.17.md",
+          "mingben-workbench\\references\\enactics_v1.7.md",
+          "mingben-workbench\\references\\enactics_v1.8.md",
+          "mingben-workbench\\references\\enactics_v1.9.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\quantum_audit_v1.13_v1.16.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\可靠性_余归纳GoI.md",
+          "实践论数学基础_自动化基础设施建设.md",
+          "批判性阅读地图_生命论全本.md"
+        ]
+      },
+      "2.3": {
+        "count": 29,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.8.md",
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\enactics_v1.17.md",
+          "mingben-workbench\\references\\enactics_v1.5.md",
+          "mingben-workbench\\references\\enactics_v1.7.md",
+          "mingben-workbench\\references\\enactics_v1.8.md",
+          "mingben-workbench\\references\\enactics_v1.9.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "批判性阅读地图_生命论全本.md"
+        ]
+      },
+      "2.4": {
+        "count": 14,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.7.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "2.5": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "2.6": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "2.8": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "生命论四轮攻防论辩全记录.md"
+        ]
+      },
+      "2.10": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "3": {
+        "count": 197,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.2.md",
+          "mingben-workbench\\references\\enactics_v0.3.md",
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.8.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\f层级形式化_研究笔记_v0.1.md",
+          "mingben-workbench\\references\\one_click_prompts.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\增长线性逻辑_GLL.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "003": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\践演论定理哲学解读.md"
+        ]
+      },
+      "3.1": {
+        "count": 143,
+        "files": [
+          "mingben-workbench\\references\\Ag_lv_Ag_tr分裂新颖性核查报告.md",
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.1.md",
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\enactics_v1.17.md",
+          "mingben-workbench\\references\\enactics_v1.2.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\enactics_v1.7.md",
+          "mingben-workbench\\references\\enactics_v1.8.md",
+          "mingben-workbench\\references\\enactics_v1.9.md",
+          "mingben-workbench\\references\\enactive_category_theory_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\quantum_audit_v1.13_v1.16.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "mingben-workbench\\references\\tasks_qwen.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md",
+          "mingben-workbench\\references\\超级智慧包_v2.0.md",
+          "mingben-workbench\\references\\践演论定理哲学解读.md",
+          "实践论数学基础_自动化基础设施建设.md"
+        ]
+      },
+      "3.2": {
+        "count": 82,
+        "files": [
+          "mingben-workbench\\references\\GoI动态语义_操作的执行与生命流.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\enactics_v1.17.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\enactics_v1.7.md",
+          "mingben-workbench\\references\\enactics_v1.8.md",
+          "mingben-workbench\\references\\enactics_v1.9.md",
+          "mingben-workbench\\references\\novelty_assessment.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\quantum_audit_v1.13_v1.16.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\资本与病毒_!寄生体形式化.md",
+          "践演论_通宵研究总报告_20260826.md"
+        ]
+      },
+      "3.3": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md"
+        ]
+      },
+      "3.4": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "生命论公式全编.md"
+        ]
+      },
+      "3.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "3.6": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "4": {
+        "count": 120,
+        "files": [
+          "mingben-workbench\\references\\GLL新颖性核查.md",
+          "mingben-workbench\\references\\enactics_v0.2.md",
+          "mingben-workbench\\references\\enactics_v0.3.md",
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\one_click_prompts.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\新数学概念研究_第八卷_操作度量学与新颖性评估.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md",
+          "数学题型全景图与提分路线.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "践演论_通宵研究总报告_20260826.md"
+        ]
+      },
+      "004": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\践演论定理哲学解读.md"
+        ]
+      },
+      "4.1": {
+        "count": 52,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.1.md",
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\enactics_v1.3.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\enactics_v1.8.md",
+          "mingben-workbench\\references\\enactics_v1.9.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md",
+          "实践论数学基础_自动化基础设施建设.md"
+        ]
+      },
+      "4.2": {
+        "count": 38,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\enactics_v1.3.md",
+          "mingben-workbench\\references\\enactics_v1.5.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\enactics_v1.9.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "生命论四轮攻防论辩全记录.md"
+        ]
+      },
+      "4.3": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v1.3.md",
+          "mingben-workbench\\references\\enactics_v1.9.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "4.4": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "4.6": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.12_fix_guarded.md"
+        ]
+      },
+      "5": {
+        "count": 106,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.2.md",
+          "mingben-workbench\\references\\enactics_v0.3.md",
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\one_click_prompts.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\超级智慧包_v2.0.md",
+          "批判性阅读地图_生命论全本.md",
+          "数学题型全景图与提分路线.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "生命论_模块化\\10_参考资料\\概念定义比较与资本主义主张的形式化反驳_20260825.md"
+        ]
+      },
+      "5.1": {
+        "count": 40,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\enactics_v1.3.md",
+          "mingben-workbench\\references\\enactics_v1.5.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\quantum_audit_v1.13_v1.16.md",
+          "mingben-workbench\\references\\tasks_qwen.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md",
+          "mingben-workbench\\references\\超级智慧包_v2.0.md"
+        ]
+      },
+      "5.2": {
+        "count": 8,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\spark_candidates.md"
+        ]
+      },
+      "5.3": {
+        "count": 27,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\enactics_v1.12.md",
+          "mingben-workbench\\references\\enactics_v1.14.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\践演论定理哲学解读.md"
+        ]
+      },
+      "5.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "5.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "5.6": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md"
+        ]
+      },
+      "6": {
+        "count": 140,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.2.md",
+          "mingben-workbench\\references\\enactics_v0.3.md",
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v1.8.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "mingben-workbench\\references\\tasks_workbody.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\缄默操作重解数学.md",
+          "mingben-workbench\\references\\践演不可编码性_研究纲领.md",
+          "实践论数学基础_自动化基础设施建设.md",
+          "数学题型全景图与提分路线.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md",
+          "生命论_模块化\\10_参考资料\\概念定义比较与资本主义主张的形式化反驳_20260825.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "6.1": {
+        "count": 51,
+        "files": [
+          "mingben-workbench\\references\\Guarded_recursion与公理独立性.md",
+          "mingben-workbench\\references\\Gω构造_范畴性质.md",
+          "mingben-workbench\\references\\PTC实例与f3不动点.md",
+          "mingben-workbench\\references\\enactics_v0.1.md",
+          "mingben-workbench\\references\\enactics_v1.13.md",
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\tasks_qwen.md",
+          "mingben-workbench\\references\\可靠性_余归纳GoI.md",
+          "mingben-workbench\\references\\完全性与Hilb验证.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md",
+          "mingben-workbench\\references\\相干空间PTC实例.md",
+          "mingben-workbench\\references\\超级智慧包_v2.0.md",
+          "mingben-workbench\\references\\践演论定理哲学解读.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md",
+          "mingben-workbench\\references\\量子对应与定理21修补.md"
+        ]
+      },
+      "6.2": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "7": {
+        "count": 68,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.2.md",
+          "mingben-workbench\\references\\enactics_v0.3.md",
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.8.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "批判性阅读地图_生命论全本.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "7.1": {
+        "count": 17,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\enactics_v1.12.md",
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\spark_candidates.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md"
+        ]
+      },
+      "7.2": {
+        "count": 33,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\enactics_v1.17.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "7.3": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "7.4": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.13.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\tasks_qwen.md"
+        ]
+      },
+      "7.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\tasks_qwen.md"
+        ]
+      },
+      "7.6": {
+        "count": 12,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\tasks_qwen.md",
+          "mingben-workbench\\references\\践演论定理哲学解读.md"
+        ]
+      },
+      "8": {
+        "count": 67,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.2.md",
+          "mingben-workbench\\references\\enactics_v0.3.md",
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md"
+        ]
+      },
+      "8.1": {
+        "count": 16,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\enactics_v1.16.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\生产性迹范畴_公理化.md"
+        ]
+      },
+      "8.2": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "8.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "8.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "8.7": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "8.9": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "8.10": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "9": {
+        "count": 122,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.8.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.3.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\enactics_v1.7.md",
+          "mingben-workbench\\references\\novelty_assessment.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "践演论_通宵研究总报告_20260826.md"
+        ]
+      },
+      "9.1": {
+        "count": 12,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "9.2": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "9.3": {
+        "count": 8,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md"
+        ]
+      },
+      "9.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "10": {
+        "count": 56,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v1.2.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "践演论_通宵研究总报告_20260826.md"
+        ]
+      },
+      "10.2": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "10.3": {
+        "count": 8,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\资本与病毒_!寄生体形式化.md"
+        ]
+      },
+      "10.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "11": {
+        "count": 35,
+        "files": [
+          "mingben-workbench\\references\\ai_allocation_plan.md",
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "11.1": {
+        "count": 11,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新定理_交互余代数不可资本化.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "11.2": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.10.md",
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "11.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md"
+        ]
+      },
+      "12": {
+        "count": 57,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "12.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "12.2": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md",
+          "mingben-workbench\\references\\新定理_交互余代数不可资本化.md"
+        ]
+      },
+      "12.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "13": {
+        "count": 113,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v0.7.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\novelty_assessment.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\一般刻画定理_数据与计算.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\可靠性_余归纳GoI.md",
+          "mingben-workbench\\references\\哲学数学双向映衬_历程与互校.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\量子对应与定理21修补.md",
+          "批判性阅读地图_生命论全本.md",
+          "生命论_极简贯通.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md",
+          "生命论_模块化\\11_附录\\全本结构审查与重组方案.md",
+          "生命论_模块化\\11_附录\\全本结构重组方案_最终版.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md",
+          "画板集_生命论.md",
+          "践演论_通宵研究总报告_20260826.md"
+        ]
+      },
+      "13.2": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "14": {
+        "count": 122,
+        "files": [
+          "mingben-workbench\\references\\GoI动态语义_操作的执行与生命流.md",
+          "mingben-workbench\\references\\enactics_v0.4.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\enactics_v1.1.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\novelty_assessment.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\不动点提升定理_生命流不可资本化.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\资本与病毒_!寄生体形式化.md",
+          "生命论_极简贯通.md",
+          "生命论_模块化\\00_体系总纲.md",
+          "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "生命论_模块化\\03_卷三_群己论\\篇三_阶级：反自指的主体结构.md",
+          "生命论_模块化\\10_参考资料\\概念定义比较与资本主义主张的形式化反驳_20260825.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "14.2": {
+        "count": 16,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "14.3": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "14.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md"
+        ]
+      },
+      "15": {
+        "count": 44,
+        "files": [
+          ".github\\PULL_REQUEST_TEMPLATE.md",
+          "AI_PARTICIPANT_AGREEMENT.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\版本号规范化体系.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "实践论数学基础_自动化基础设施建设.md"
+        ]
+      },
+      "15.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md"
+        ]
+      },
+      "16": {
+        "count": 52,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\一般刻画定理_数据与计算.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\00_体系总纲.md",
+          "生命论_模块化\\05_卷五_解放论\\篇一_解放的本质.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "16.1": {
+        "count": 11,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "16.2": {
+        "count": 11,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "17": {
+        "count": 19,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\一般刻画定理_数据与计算.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "18": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\一般刻画定理_数据与计算.md",
+          "mingben-workbench\\references\\不动点提升定理_生命流不可资本化.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "18.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "19": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\不动点提升定理_生命流不可资本化.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "19.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "19.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "20": {
+        "count": 431,
+        "files": [
+          "mingben-workbench\\references\\GLL新颖性核查.md",
+          "mingben-workbench\\references\\GoI动态语义_操作的执行与生命流.md",
+          "mingben-workbench\\references\\Gω构造_范畴性质.md",
+          "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
+          "mingben-workbench\\references\\PTC实例与f3不动点.md",
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.0.md",
+          "mingben-workbench\\references\\enactics_v1.1.md",
+          "mingben-workbench\\references\\enactics_v1.17.md",
+          "mingben-workbench\\references\\enactics_v1.2.md",
+          "mingben-workbench\\references\\enactics_v1.5.md",
+          "mingben-workbench\\references\\enactics_v1.6.md",
+          "mingben-workbench\\references\\enactics_v1.8.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\f层级形式化_明性的数学基础.md",
+          "mingben-workbench\\references\\muF2_to_nuF2_生命起源的数学.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\tasks_deepseek.md",
+          "mingben-workbench\\references\\不动点提升定理_生命流不可资本化.md",
+          "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
+          "mingben-workbench\\references\\可靠性_余归纳GoI.md",
+          "mingben-workbench\\references\\哲学数学双向映衬_历程与互校.md",
+          "mingben-workbench\\references\\增长线性逻辑_GLL.md",
+          "mingben-workbench\\references\\操作论数学_八个应用方向.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md",
+          "mingben-workbench\\references\\新数学概念研究_第八卷_操作度量学与新颖性评估.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "mingben-workbench\\references\\研究方法论_通宵复盘.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\缄默操作重解数学.md",
+          "mingben-workbench\\references\\资本与病毒_!寄生体形式化.md",
+          "mingben-workbench\\references\\超级智慧包_v2.0.md",
+          "mingben-workbench\\references\\践演论定理哲学解读.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md",
+          "mingben-workbench\\references\\量子对应与定理21修补.md",
+          "生命论_模块化\\00_体系总纲.md",
+          "生命论_模块化\\00_数学编码状态总览.md",
+          "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
+          "生命论_模块化\\03_卷三_群己论\\篇四_社会健康的度量：六维框架.md",
+          "生命论_模块化\\04_卷四_异化论\\篇一_商品、货币与资本.md",
+          "生命论_模块化\\04_卷四_异化论\\篇十二_大跃退：后毛泽东时代资本主义复辟的生命论清算.md",
+          "生命论_模块化\\04_卷四_异化论\\篇四_反自指展开的六个阶段.md",
+          "生命论_模块化\\05_卷五_解放论\\篇二_解放的三阶路径.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇六_量子对应与前沿方向.md",
+          "生命论_模块化\\11_附录\\全本结构审查与重组方案.md",
+          "生命论_模块化\\11_附录\\全本结构重组方案_最终版.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "20.1": {
+        "count": 7,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第八卷_操作度量学与新颖性评估.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "20.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "20.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "21": {
+        "count": 42,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\不动点提升定理_生命流不可资本化.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\量子对应与定理21修补.md"
+        ]
+      },
+      "21.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "21.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "22": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\06_卷六_实践论\\篇一_明性修养论.md"
+        ]
+      },
+      "23": {
+        "count": 41,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\资本与病毒_!寄生体形式化.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md"
+        ]
+      },
+      "23.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md"
+        ]
+      },
+      "23.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md"
+        ]
+      },
+      "23.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md"
+        ]
+      },
+      "23.4": {
+        "count": 11,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "23.5": {
+        "count": 12,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md",
+          "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "23.6": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md"
+        ]
+      },
+      "24": {
+        "count": 20,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\资本与病毒_!寄生体形式化.md"
+        ]
+      },
+      "24.1": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md"
+        ]
+      },
+      "24.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md"
+        ]
+      },
+      "25": {
+        "count": 11,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\资本与病毒_!寄生体形式化.md"
+        ]
+      },
+      "25.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md"
+        ]
+      },
+      "25.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md"
+        ]
+      },
+      "26": {
+        "count": 21,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\资本与病毒_!寄生体形式化.md"
+        ]
+      },
+      "27": {
+        "count": 27,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\资本与病毒_!寄生体形式化.md",
+          "生命论_模块化\\04_卷四_异化论\\篇一_商品、货币与资本.md",
+          "生命论_模块化\\10_参考资料\\概念定义比较与资本主义主张的形式化反驳_20260825.md"
+        ]
+      },
+      "27.4": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "27.6": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "27.8": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "27.9": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "28": {
+        "count": 139,
+        "files": [
+          "mingben-workbench\\references\\Gω构造_范畴性质.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\f层级形式化_明性的数学基础.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作论数学_八个应用方向.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md",
+          "mingben-workbench\\references\\新数学概念研究_第二卷_νF与多体耦合.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\00_体系总纲.md",
+          "生命论_模块化\\03_卷三_群己论\\篇三_阶级：反自指的主体结构.md",
+          "生命论_模块化\\04_卷四_异化论\\篇一_商品、货币与资本.md",
+          "生命论_模块化\\04_卷四_异化论\\篇二_剩余价值与剥削.md",
+          "生命论_模块化\\04_卷四_异化论\\篇十二_大跃退：后毛泽东时代资本主义复辟的生命论清算.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md",
+          "生命论_模块化\\10_参考资料\\概念定义比较与资本主义主张的形式化反驳_20260825.md",
+          "生命论_模块化\\11_附录\\全本结构审查与重组方案.md",
+          "生命论_模块化\\11_附录\\全本结构重组方案_最终版.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "28.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md"
+        ]
+      },
+      "29": {
+        "count": 18,
+        "files": [
+          "mingben-workbench\\references\\PTC实例与f3不动点.md",
+          "mingben-workbench\\references\\f层级形式化_明性的数学基础.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "30": {
+        "count": 25,
+        "files": [
+          "mingben-workbench\\references\\f层级形式化_明性的数学基础.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "31": {
+        "count": 25,
+        "files": [
+          "mingben-workbench\\references\\f层级形式化_明性的数学基础.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\00_体系总纲.md",
+          "生命论_模块化\\04_卷四_异化论\\篇四_反自指展开的六个阶段.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "31.1": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md"
+        ]
+      },
+      "32": {
+        "count": 22,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\可靠性_余归纳GoI.md",
+          "mingben-workbench\\references\\完全性与Hilb验证.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md",
+          "生命论_模块化\\04_卷四_异化论\\篇四_反自指展开的六个阶段.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "32.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md"
+        ]
+      },
+      "33": {
+        "count": 29,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md",
+          "mingben-workbench\\references\\量子对应与定理21修补.md",
+          "生命论_模块化\\00_体系总纲.md",
+          "生命论_模块化\\02_卷二_认识论\\篇一_缄默意识与明性：认识的存在论基础.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "33.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md"
+        ]
+      },
+      "33.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md"
+        ]
+      },
+      "33.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md"
+        ]
+      },
+      "34": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\Gω构造_范畴性质.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "34.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md"
+        ]
+      },
+      "35": {
+        "count": 19,
+        "files": [
+          "mingben-workbench\\references\\Gω构造_范畴性质.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\00_体系总纲.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "36": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\Gω构造_范畴性质.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "36.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第八卷_操作度量学与新颖性评估.md"
+        ]
+      },
+      "37": {
+        "count": 12,
+        "files": [
+          "mingben-workbench\\references\\Gω构造_范畴性质.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "38": {
+        "count": 46,
+        "files": [
+          "mingben-workbench\\references\\PTC实例与f3不动点.md",
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作论数学_八个应用方向.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md",
+          "mingben-workbench\\references\\量论参数统一与启发式项完成.md",
+          "mingben-workbench\\references\\量论操作化_GoI计算模型.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "38.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "39": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md",
+          "mingben-workbench\\references\\量论操作化_GoI计算模型.md"
+        ]
+      },
+      "39.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md"
+        ]
+      },
+      "40": {
+        "count": 95,
+        "files": [
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\量论操作化_GoI计算模型.md",
+          "生命论_模块化\\00_体系总纲.md",
+          "生命论_模块化\\00_数学编码状态总览.md",
+          "生命论_模块化\\03_卷三_群己论\\篇三_阶级：反自指的主体结构.md",
+          "生命论_模块化\\03_卷三_群己论\\篇四_社会健康的度量：六维框架.md",
+          "生命论_模块化\\04_卷四_异化论\\篇二_剩余价值与剥削.md",
+          "生命论_模块化\\04_卷四_异化论\\篇十二_大跃退：后毛泽东时代资本主义复辟的生命论清算.md",
+          "生命论_模块化\\04_卷四_异化论\\篇四_反自指展开的六个阶段.md",
+          "生命论_模块化\\05_卷五_解放论\\篇一_解放的本质.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇三_量论的数学基础.md",
+          "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md",
+          "生命论_模块化\\10_参考资料\\概念定义比较与资本主义主张的形式化反驳_20260825.md",
+          "生命论_模块化\\11_附录\\全本结构审查与重组方案.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "41": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\量论操作化_GoI计算模型.md"
+        ]
+      },
+      "42": {
+        "count": 22,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\量论操作化_GoI计算模型.md"
+        ]
+      },
+      "43": {
+        "count": 8,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\完全性与Hilb验证.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "43.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "43.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "44": {
+        "count": 25,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\完全性与Hilb验证.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md",
+          "生命论_模块化\\00_体系总纲.md",
+          "生命论_模块化\\05_卷五_解放论\\篇一_解放的本质.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "44.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "44.4": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "45": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\完全性与Hilb验证.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "45.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "46": {
+        "count": 14,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md"
+        ]
+      },
+      "46.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md"
+        ]
+      },
+      "47": {
+        "count": 14,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md"
+        ]
+      },
+      "47.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      },
+      "48": {
+        "count": 15,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md"
+        ]
+      },
+      "49": {
+        "count": 7,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md"
+        ]
+      },
+      "50": {
+        "count": 14,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md"
+        ]
+      },
+      "50.2": {
+        "count": 9,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\新数学概念研究_第十八卷_社会N值测量论.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      },
+      "50.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md"
+        ]
+      },
+      "50.4": {
+        "count": 7,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "51": {
+        "count": 24,
+        "files": [
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md",
+          "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md"
+        ]
+      },
+      "51.2": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      },
+      "51.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md"
+        ]
+      },
+      "51.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md"
+        ]
+      },
+      "52": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "52.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md"
+        ]
+      },
+      "53": {
+        "count": 23,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作论数学哲学_纲领.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md",
+          "mingben-workbench\\references\\相干空间PTC实例.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "53.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md"
+        ]
+      },
+      "53.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md"
+        ]
+      },
+      "54": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "54.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      },
+      "54.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md"
+        ]
+      },
+      "54.3": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      },
+      "54.4": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      },
+      "55": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "55.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md"
+        ]
+      },
+      "55.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md"
+        ]
+      },
+      "56": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "57": {
+        "count": 87,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\哲学数学双向映衬_历程与互校.md",
+          "mingben-workbench\\references\\操作论数学_五个前沿方向.md",
+          "mingben-workbench\\references\\操作论数学_八个应用方向.md",
+          "mingben-workbench\\references\\新数学概念研究_第三卷_感与革命相变.md",
+          "mingben-workbench\\references\\新数学概念研究_第五卷_量的发生学与AI对齐.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
+          "mingben-workbench\\references\\生命论公式全解_大白话版.md",
+          "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md",
+          "mingben-workbench\\references\\缄默操作重解数学.md",
+          "生命论_模块化\\11_附录\\全本结构审查与重组方案.md",
+          "生命论_模块化\\11_附录\\数学定理全本映射表.md"
+        ]
+      },
+      "57.1": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "57.2": {
+        "count": 7,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      },
+      "57.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "58": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md",
+          "mingben-workbench\\references\\缄默操作_新数学的种子.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "58.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "59": {
+        "count": 8,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "59.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "59.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "60": {
+        "count": 7,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "60.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md"
+        ]
+      },
+      "61": {
+        "count": 8,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md"
+        ]
+      },
+      "61.1": {
+        "count": 8,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      },
+      "61.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "62": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\缄默操作串联_62定理体系.md"
+        ]
+      },
+      "62.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      },
+      "63": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "63.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md"
+        ]
+      },
+      "65": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "65.1": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十六卷_Fock空间与量子场论.md",
+          "mingben-workbench\\references\\通宵研究总报告_20260826.md"
+        ]
+      },
+      "65.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十六卷_Fock空间与量子场论.md"
+        ]
+      },
+      "67": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "67.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md"
+        ]
+      },
+      "68": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "68.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十七卷_涌现塔修正与层级余单子.md"
+        ]
+      },
+      "69": {
+        "count": 10,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "69.2": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十八卷_社会N值测量论.md"
+        ]
+      },
+      "69.3": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十八卷_社会N值测量论.md"
+        ]
+      },
+      "69.4": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十八卷_社会N值测量论.md"
+        ]
+      },
+      "69.5": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十八卷_社会N值测量论.md"
+        ]
+      },
+      "69.6": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十八卷_社会N值测量论.md"
+        ]
+      }
+    },
+    "引理": {
+      "1": {
+        "count": 12,
+        "files": [
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "2": {
+        "count": 9,
+        "files": [
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "任务包_DeepSeek_代码形式化.md"
+        ]
+      },
+      "2.1": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.4.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "3": {
+        "count": 11,
+        "files": [
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "3.1": {
+        "count": 6,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.4.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "4.2": {
+        "count": 7,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\版本号规范化体系.md"
+        ]
+      },
+      "7": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "7.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.15.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      }
+    },
+    "推论": {
+      "1": {
+        "count": 14,
+        "files": [
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "1.1": {
+        "count": 7,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.4.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ref_consistency_report.md",
+          "批判性阅读地图_生命论全本.md",
+          "画板集_生命论.md"
+        ]
+      },
+      "1.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\spark_candidates.md"
+        ]
+      },
+      "1.7": {
+        "count": 9,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.6.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "2": {
+        "count": 13,
+        "files": [
+          "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "2.1": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.9.md",
+          "mingben-workbench\\references\\enactics_v1.5.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "2.2": {
+        "count": 4,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.5.md",
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "2.6": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\spark_candidates.md"
+        ]
+      },
+      "2.7": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\spark_candidates.md"
+        ]
+      },
+      "3": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第六卷_自生成范畴与量子对应.md",
+          "生命论_模块化\\02_卷二_认识论\\篇九_再演论：真理即对操作可再现结构的完整实现.md"
+        ]
+      },
+      "3.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\spark_candidates.md"
+        ]
+      },
+      "5": {
+        "count": 8,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "5.1": {
+        "count": 5,
+        "files": [
+          "mingben-workbench\\references\\enactics_v0.2.md",
+          "mingben-workbench\\references\\enactics_v0.5.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "5.2": {
+        "count": 15,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\enactics_v1.17.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "7": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "7.6": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\enactics_v1.11.md",
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "12": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "12.4": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md"
+        ]
+      },
+      "18": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "18.4": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第四卷_涌现范畴塔.md"
+        ]
+      },
+      "32": {
+        "count": 3,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "32.1": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\可靠性_余归纳GoI.md"
+        ]
+      },
+      "32.2": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\可靠性_余归纳GoI.md"
+        ]
+      },
+      "32.3": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\可靠性_余归纳GoI.md"
+        ]
+      },
+      "54": {
+        "count": 1,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md"
+        ]
+      },
+      "54.5": {
+        "count": 2,
+        "files": [
+          "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md"
+        ]
+      }
+    }
+  }
+}

@@ -1,105 +1,31 @@
-# === 二进制/大文件（不进git，可重新生成）===
-*.pdf
-*.epub
-*.mobi
-*.docx
-*.zip
-*.png
-*.jpg
-*.jpeg
-*.webp
-*.gif
-*.xlsx
-*.pptx
+# 备份目录（自动生成，不纳入版本控制）
+backup/
 
-# === 构建产物（可从模块系统重新生成）===
-生命论_输出/
-生命论合订本最新.md
-生命论合订本.md
-生命论合订本_*.md
-生命论_html*.md
-debug.tex
-*.aux
-*.log
-*.out
-*.toc
+# 状态报告（自动生成，但纳入版本控制以便三方查看）
+# 项目状态报告.md 不忽略，因为需要三方查看
 
-# === 历史版本（已被模块系统取代，不要再生成）===
-v95.md
-v101.md
-v11*.md
-v12*.md
-zonggang.md
-完美版*
-*_raw.txt
-shengminglun_v*.md
-生命论（明本论）·*
-生命论_*.md
-附录_*.md
-merge_all.py
-clean_perfect*.py
-full_history.txt
-history_part_*
-user_analysis.docx
-user_says.txt
-
-# === 已清理的旧目录/旧文件（防止重新出现）===
-check_zip/
-shengminglun_all_docs/
-shengminglun_full_*/
-shengminglun/
-skills_package/
-生命论核心10篇PDF/
-生命论全资料*
-三十精华*
-指定技能打包*
-生命论_全格式.zip
-Downloads/
-download/
-
-# === 系统/临时 ===
-.sessions/
-.tmp-tool-results/
-.skills
-skills
-.tmp/
-*.pyc
+# Python缓存
 __pycache__/
+*.pyc
+*.pyo
 
-# === 不跟踪的目录 ===
-.user_skills
-备份/
+# 临时文件
+*.tmp
+*.temp
+*.log
 
-# === 白名单：核心文件必须跟踪 ===
-!生命论_模块化/**
-!mingben-workbench/**
-!mingben-output/**
-!publish_style.tex
-!html_header.html
-!backup.sh
-!sync.sh
-!生命论_极简贯通.md
-!生命论_概念图谱_升级版.html
-!批判性阅读地图_生命论全本.md
-!画板集_生命论.md
-!生命论四轮攻防论辩全记录.md
-!命与活人_辩证札记.md
-!7天自我诊断与复健清单.md
-!明本学术法.txt
-!深度精读报告.txt
-!zixinli.txt
-!xinyuedufa.txt
-!yinyang_tiyong.txt
-!xuesheng.md
+# 操作系统文件
+.DS_Store
+Thumbs.db
 
-# === 视频审读目录（大文件，不进git）===
-赵皓阳视频审读/
-老放头视频审读/
-原始论文_20份/
-*.mp4
-*.webp
-tmp_*.png
-tmp_*.webp
-.git_bloated_backup/
-mingben-workbench/tools/vitality_log.jsonl
-mingben-workbench/tools/diagnosis_records.jsonl
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Coq编译产物
+*.vo
+*.vos
+*.vok
+*.glob

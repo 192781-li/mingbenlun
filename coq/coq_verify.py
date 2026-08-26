@@ -21,6 +21,54 @@ COQ_DIR = Path(__file__).parent
 THEORIES_DIR = COQ_DIR / "theories"
 REPORT_FILE = COQ_DIR / "coq_verify_report.json"
 
+def find_coqc():
+    """自动检测coqc路径，支持Windows和Linux/macOS"""
+    # 1. 环境变量COQC
+    env_coqc = os.environ.get("COQC")
+    if env_coqc and Path(env_coqc).exists():
+        return env_coqc
+    
+    # 2. PATH中的coqc
+    try:
+        result = subprocess.run(["where", "coqc"], capture_output=True, text=True, timeout=5)
+        if result.returncode == 0 and result.stdout.strip():
+            return result.stdout.strip().split("\n")[0].strip()
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        pass
+    
+    try:
+        result = subprocess.run(["which", "coqc"], capture_output=True, text=True, timeout=5)
+        if result.returncode == 0 and result.stdout.strip():
+            return result.stdout.strip().split("\n")[0].strip()
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        pass
+    
+    # 3. Windows已知安装路径
+    if sys.platform == "win32":
+        windows_paths = [
+            r"C:\Rocq-Platform~9.0~2025.08\bin\coqc.exe",
+            r"C:\Coq\bin\coqc.exe",
+            r"C:\Program Files\Coq\bin\coqc.exe",
+            r"C:\Program Files (x86)\Coq\bin\coqc.exe",
+        ]
+        # 也扫描Rocq-Platform开头的目录
+        program_files = Path("C:/")
+        if program_files.exists():
+            for d in program_files.iterdir():
+                if d.name.startswith("Rocq-Platform") or d.name.startswith("Coq"):
+                    candidate = d / "bin" / "coqc.exe"
+                    if candidate.exists():
+                        windows_paths.append(str(candidate))
+        
+        for p in windows_paths:
+            if Path(p).exists():
+                return p
+    
+    # 4. 默认返回coqc（让系统找）
+    return "coqc"
+
+COQC_PATH = find_coqc()
+
 def find_v_files():
     """查找所有.v文件"""
     return sorted(THEORIES_DIR.rglob("*.v"))
@@ -35,8 +83,10 @@ def check_admitted(v_file):
     theorem_admitted = re.findall(r'(Theorem|Lemma|Corollary|Proposition|Fact)\s+(\w+)[^.]*\.\s*Admitted\.', content)
     return len(matches), theorem_admitted
 
-def compile_v_file(v_file, coqc_path="coqc"):
+def compile_v_file(v_file, coqc_path=None):
     """编译单个.v文件"""
+    if coqc_path is None:
+        coqc_path = COQC_PATH
     try:
         result = subprocess.run(
             [coqc_path, "-R", str(THEORIES_DIR), "Enactics", str(v_file)],
@@ -136,21 +186,14 @@ def main():
     
     # 3. 尝试编译（如果coqc可用）
     print("--- 编译检查 ---")
-    coqc_path = "coqc"
-    # 尝试找到coqc
-    try:
-        subprocess.run([coqc_path, "--version"], capture_output=True, timeout=10)
-    except (FileNotFoundError, subprocess.TimeoutExpired):
-        # 尝试常见路径
-        for path in ["/usr/local/bin/coqc", "/opt/homebrew/bin/coqc", "C:\\Rocq-Platform~9.0~2025.08\\bin\\coqc.exe"]:
-            if os.path.exists(path):
-                coqc_path = path
-                break
+    coqc_path = COQC_PATH
+    print(f"  coqc路径: {coqc_path}")
     
     compile_results = []
     try:
         version = subprocess.run([coqc_path, "--version"], capture_output=True, text=True, timeout=10)
-        print(f"  coqc版本: {version.stdout.strip()}")
+        version_str = version.stdout.strip() or version.stderr.strip() or "unknown"
+        print(f"  coqc版本: {version_str}")
         for vf in v_files:
             result = compile_v_file(vf, coqc_path)
             compile_results.append(result)
