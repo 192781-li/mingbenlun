@@ -1,0 +1,10 @@
+;; ν*F成长状态：运行时长出新能力（旧语言不可能）
+(let learner (growing (perceive 1))
+  (let l2 (grow learner remember 42)
+    (let l3 (grow l2 recognize true)
+      (let l4 (grow l3 reflect "f3")
+        (seq
+          (get-cap l4 perceive)
+          (get-cap l4 remember)
+          (get-cap l4 recognize)
+          (get-cap l4 reflect))))))

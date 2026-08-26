@@ -1,0 +1,22 @@
+;; ============================================================
+;; 示例6：ν*F成长状态——运行时长出新能力
+;; 这是旧语言完全做不到的
+;; ============================================================
+
+(let learner
+  (growing ((perceive 1)))        ;; 初始只有"感知"能力
+
+  (let learner2 (grow learner remember 42)    ;; 长出"记忆"
+    (let learner3 (grow learner2 recognize true)  ;; 长出"识别"
+      (let learner4 (grow learner3 reflect "f3")   ;; 长出"反思"
+        (pair
+          (get-cap learner4 perceive)    ;; 使用初始能力
+          (pair
+            (get-cap learner4 remember)   ;; 使用新长出的能力
+            (pair
+              (get-cap learner4 recognize)
+              (get-cap learner4 reflect))))))))
+
+;; 结果: (1, (42, (true, "f3")))
+;; 能力从1个长到4个——状态空间在运行中扩展
+;; 旧语言：类型编译时固定，不可能长出新字段类型

@@ -1,0 +1,5 @@
+;; 斐波那契流：状态(a,b)，产出a，下一步(b,a+b)
+(let fib
+  (stream nm (pair 0 1)
+    (pair (pair (snd nm) (+ (fst nm) (snd nm))) (fst nm)))
+  (take fib 8))

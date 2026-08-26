@@ -1,0 +1,8 @@
+;; F2型交互过程：有状态，输出依赖历史，不可完全对齐
+(let counter
+  (proc (msg Int) (state Int)
+    (pair (+ state msg) state))
+  (seq
+    (run counter 1 0)
+    (run counter 2 1)
+    (run counter 3 3)))

@@ -1,0 +1,5 @@
+;; F1/F2分类演示
+(seq
+  (lam (x Int) x)
+  (proc (a Int) (s Int) (pair (+ s a) s))
+  (stream n 0 (pair (+ n 1) n)))

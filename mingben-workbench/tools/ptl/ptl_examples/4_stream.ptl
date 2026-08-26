@@ -1,0 +1,5 @@
+;; νF2生产性流：永远运行，每步必须产出
+(let nats
+  (stream n 0
+    (pair (+ n 1) n))
+  (take nats 10))
