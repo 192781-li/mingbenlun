@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-08-26T20:52:42.731388",
+  "total_files": 1,
+  "total_admitted": 1,
+  "admitted_details": [
+    {
+      "file": "theories\\ALL\\Layer1.v",
+      "count": 1,
+      "theorems": []
+    }
+  ],
+  "cycles": [],
+  "compile_results": [
+    {
+      "file": "theories\\ALL\\Layer1.v",
+      "success": false,
+      "stdout": "",
+      "stderr": "",
+      "returncode": 3221225781
+    }
+  ],
+  "strict_mode": false,
+  "summary": {
+    "compiled": 0,
+    "failed": 1,
+    "skipped": 0
+  }
+}
