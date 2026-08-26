@@ -129,15 +129,21 @@ Enactive incompleteness is independent of Gödel's: it does not require arithmet
 
 ### 3.3 Computational complexity
 
-**Theorem 3.2 (Π₂-completeness).** The agency decision problem for π-calculus processes,
+We work in the **asynchronous** π-calculus (outputs do not block) with **provenance causality** (Boreale-Nicola 1995), which records causal ancestry via labeled transitions rather than standard LTS (which merges isomorphic τ-transitions and erases location information).
 
-> AGENCY = {(P,a) : ∀ environments E, ∀ time t, P maintains self-control at a},
+**Theorem 3.2 (Π₂-completeness).** The agency decision problem for asynchronous π-calculus processes,
+
+> AGENCY = {(P,a) : ∀ environments E, every maximal path of P|E has infinitely many outputs on a, and every such output's causal ancestors are all τ (internal)},
 
 is Π₂-complete.
 
-*Proof sketch.* AGENCY ∈ Π₂ because SC(P,E,t,a) (self-control for t steps in environment E) is decidable by finite causal-path analysis, and AGENCY = ∀E ∀t SC(P,E,t,a). Π₂-hardness is by many-one reduction from TOTAL = {e : ∀x φ_e(x) halts}: construct a process P_e that simulates φ_e on all inputs in sequence, outputting on a private channel c; if φ_e is total, P_e produces an infinite stream of internally-caused outputs on a; if φ_e(k) diverges, P_e stalls, losing self-maintenance. ∎
+*Proof.* Define the decidable predicate R(P,E,t,s,a): "on all execution paths of P|E of length ≤ s, (i) every a-output in [0,s] has only τ ancestors, and (ii) every path of length s has at least one a-output in [t,s]." R is uniformly decidable: image-finiteness ensures the depth-s execution tree is finite, and provenance labels make ancestry checking decidable. By König's lemma, "every maximal path has infinitely many a-outputs after t" is equivalent to "∃s such that every s-path has an a-output in [t,s]." Hence AGENCY = ∀E ∀t ∃s R(P,E,t,s,a), which is ∀∀∃Δ₀ = Π₂.
+
+Π₂-hardness is by many-one reduction from TOTAL = {e : ∀x φ_e(x) halts}: construct P_e = (νc)(Runner_e(c) | Reporter(c,a)) where Runner simulates φ_e(0),φ_e(1),… in sequence, signaling on private channel c when each halts, and Reporter outputs on a upon receiving c. If e∈TOTAL, P_e produces infinitely many internally-caused a-outputs (c is private, so E cannot inject causality; asynchronous outputs do not block); if φ_e(k) diverges, P_e falls silent on a, violating liveness. ∎
 
 **Corollary 3.3.** AGENCY is strictly harder than HALT (Σ₁-complete). Even a halting oracle cannot decide agency.
+
+*Note.* The liveness condition ("infinitely many outputs") is essential: without it, AGENCY = ∀E∀t SC would be Π₁, and the TOTAL reduction would imply Π₂ ⊆ Π₁, collapsing the arithmetic hierarchy. The liveness condition adds the ∃s quantifier that places AGENCY in Π₂.
 
 **Theorem 3.4 (Agency = productivity).** AGENCY is recursively isomorphic to PRODUCTIVE (productivity of corecursive programs).
 
