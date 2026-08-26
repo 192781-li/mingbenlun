@@ -29,3 +29,5 @@ Thumbs.db
 *.vos
 *.vok
 *.glob
+*.aux
+.*.aux
