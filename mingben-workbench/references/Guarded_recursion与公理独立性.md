@@ -37,7 +37,7 @@ Nakano（2000）引入了"later"模态$\rhd$（也记为$\bullet$或$\triangleri
 - $\bang\rhd A \to \rhd\bang A$：如果数据晚一步可用，那么晚一步数据可用——成立（$\bang$是函子，与$\rhd$交换）
 - $\rhd\bang A \to \bang\rhd A$：如果晚一步有可复制数据，能否现在就复制"晚一步的数据"？——这要求预知未来，在因果系统中不成立
 
-这与定理6.1（!不穿透生产性状态）对应：$\bang$不能把"晚一步才有的线性状态"变成"现在就有的可复制数据"。
+这与T009（!不穿透生产性状态）对应：$\bang$不能把"晚一步才有的线性状态"变成"现在就有的可复制数据"。
 
 ## 3. 意义
 
@@ -47,7 +47,7 @@ Nakano（2000）引入了"later"模态$\rhd$（也记为$\bullet$或$\triangleri
    - 步索引逻辑关系（step-indexed logical relations）可用于证明PTC中Mealy机的性质
    - Clock quantifiers（Atkey-McBride）可处理多时钟流
    - Guarded recursion的范畴论语义（topos of trees，Møgelberg 2014）提供PTC的额外模型
-3. PTC特有的新贡献：!-模态与生产性的交互（定理6.1）——guarded recursion文献中没有研究$\rhd$与线性模态$\bang$的交互，这是我们的新结果
+3. PTC特有的新贡献：!-模态与生产性的交互（T009）——guarded recursion文献中没有研究$\rhd$与线性模态$\bang$的交互，这是我们的新结果
 
 ---
 

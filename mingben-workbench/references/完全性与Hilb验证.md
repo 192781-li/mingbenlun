@@ -117,7 +117,7 @@ $\mathrm{Tr}^\omega((g\otimes h)\circ U\circ(f\otimes h)) = g\circ\mathrm{Tr}^\o
 - $\Delta: \mathcal{H}\to\mathcal{H}\otimes\mathcal{H}$（复制，只对经典基成立，如$\Delta|i\rangle=|i\rangle|i\rangle$）
 - $\epsilon: \mathcal{H}\to\mathbb{C}$（删除）
 
-量子对象（维数≥2的Hilbert空间，在任意基下）没有自然的$\Delta$——这正是不可克隆定理。定理6.1在Hilb^ω中成立：$\bang$不穿透量子交互流处理器。✓
+量子对象（维数≥2的Hilbert空间，在任意基下）没有自然的$\Delta$——这正是不可克隆定理。T009在Hilb^ω中成立：$\bang$不穿透量子交互流处理器。✓
 
 ### 6.7 局限
 

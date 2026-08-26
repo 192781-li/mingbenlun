@@ -63,7 +63,7 @@ $$\mathrm{Tr}^\omega_X(R)\subseteq A^\omega\times B^\omega$$
 
 **证明**：(a) $I=\{*\}$，$R\subseteq(A\times\{*\})\times(B\times\{*\})$自然同构于$A\times B$上的关系，每步独立，流就是逐点应用。(b) 两次余归纳构造的状态序列$(x_n,y_n)$与一次构造的$(x_n,y_n)$相同。∎
 
-**定理3.2**（余归纳yanking）：对对称$\sigma_{X,X}:X\times X\to X\times X$（交换两个分量），$\mathrm{Tr}^\omega_X(\sigma)$诱导恒等流：输入$x_0x_1x_2\ldots$输出$x_0x_1x_2\ldots$。
+**T003**（余归纳yanking）：对对称$\sigma_{X,X}:X\times X\to X\times X$（交换两个分量），$\mathrm{Tr}^\omega_X(\sigma)$诱导恒等流：输入$x_0x_1x_2\ldots$输出$x_0x_1x_2\ldots$。
 
 **证明**：$\sigma$的转移是$((x_1,x_2),(x_2,x_1))$（交换）。余归纳迹中状态对$(x_n,x_{n+1})$，输出$x_n$，新状态$(x_{n+1},x_{n+2})$。输出流就是输入流本身。∎
 
@@ -95,7 +95,7 @@ $$\mathrm{Tr}^\omega_X(R)\subseteq A^\omega\times B^\omega$$
 
 这与定理13/20的矢列演算证明一致：问题出在$X$在$\multimap$的codomain位置。∎
 
-**定理4.2**（流处理器的!-模态刻画）：流处理器$(X,R,x_0)$可被$\bang$提升当且仅当$R$是非交互的（$F_1$型），即$R\subseteq X\times(X\times B)$且$X$在输出中的位置不经过$\multimap$的codomain。
+**T005**（流处理器的!-模态刻画）：流处理器$(X,R,x_0)$可被$\bang$提升当且仅当$R$是非交互的（$F_1$型），即$R\subseteq X\times(X\times B)$且$X$在输出中的位置不经过$\multimap$的codomain。
 
 **证明**：
 ($\Leftarrow$) 非交互$R\subseteq X\times(X\times B)$：$\bang R\subseteq\bang X\times\bang(X\times B)$，由monoidal strength分解为$\bang X\times\bang X\times\bang B$，状态线索由配对唯一确定。这就是命题1/定理19。
@@ -110,7 +110,7 @@ $$\mathrm{Tr}^\omega_X(R)\subseteq A^\omega\times B^\omega$$
 - 矢列$\Gamma\vdash A$的GoI解释是一个**算子/连线**$U$——这是静态的沉积（阴），可以被$\bang$（复制、存储、传递）
 - 践演判断$\triangleright A$对应$U$的**执行**$\mathrm{Ex}(U)$或$\mathrm{Ex}^\omega(U)$——这是动态的运行（阳），是一次性事件
 
-**定理5.1**（执行不是沉积）：执行$\mathrm{Ex}(U)$不是范畴$\mathcal{C}$中的态射，也不是$\bang$-模态对象。它是元范畴的事件（公理V：践演元公理）。
+**T007**（执行不是沉积）：执行$\mathrm{Ex}(U)$不是范畴$\mathcal{C}$中的态射，也不是$\bang$-模态对象。它是元范畴的事件（公理V：践演元公理）。
 
 **证明**：$\mathrm{Ex}(U) = U_{00}+\sum_{n\geq0}U_{01}(U_{11})^nU_{10}$涉及对反馈回路的迭代求和。在有限情形（$\mu$），这个和是有限的，结果是$\mathcal{C}$中的态射——但**计算这个和的过程**不是$\mathcal{C}$中的态射，它是元层面的操作。在无限情形（$\nu$），$\mathrm{Ex}^\omega(U)$产生无限流，它存在于$\mathbf{Flow}$而非$\mathcal{C}$中。
 
@@ -158,8 +158,8 @@ $$M(R,x_0) = \alpha\cdot\sum_{n=0}^{T} \|b_n\|$$
 3. **生产性迹范畴**：一个新的范畴论概念——迹的输出不在原范畴中，而在流范畴中；正确性条件是productivity而非nilpotency
 
 ### 新定理
-4. **定理4.1**：!不提升到交互流处理器（多重集无法追踪单一状态线索）——定理20在余归纳GoI中的语义强化
-5. **定理5.1**：执行不是沉积（践演判断的范畴论表述）
+4. **定理4.1**：!不提升到交互流处理器（多重集无法追踪单一状态线索）——T001在余归纳GoI中的语义强化
+5. **T007**：执行不是沉积（践演判断的范畴论表述）
 
 ### 与已有工作的关系
 - Mealy机范畴是已知的（coalgebra文献）

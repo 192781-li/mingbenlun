@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-26T21:23:46.935021",
+  "generated_at": "2026-08-26T22:03:03.749430",
   "summary": {
     "total_types": 7,
     "total_unique_refs": 447,
-    "total_occurrences": 7065
+    "total_occurrences": 7112
   },
   "refs": {
     "Theorem": {
@@ -152,7 +152,7 @@
     },
     "公理": {
       "0": {
-        "count": 242,
+        "count": 244,
         "files": [
           "mingben-workbench\\references\\GLL新颖性核查.md",
           "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
@@ -160,6 +160,7 @@
           "mingben-workbench\\references\\formalization-v0.2.md",
           "mingben-workbench\\references\\formalization_progress.md",
           "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ptl_type_checker_report.md",
           "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
           "生命论_模块化\\00_数学编码状态总览.md",
           "生命论_模块化\\01_卷一_存在论\\篇三_感与应：第一人称与第二人称.md",
@@ -174,12 +175,14 @@
         ]
       },
       "1": {
-        "count": 179,
+        "count": 191,
         "files": [
           "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
           "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
           "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\formalization_progress.md",
           "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ptl_type_checker_report.md",
           "mingben-workbench\\references\\ref_consistency_report.md",
           "mingben-workbench\\references\\哲学数学双向映衬_历程与互校.md",
           "mingben-workbench\\references\\操作论数学哲学_纲领.md",
@@ -204,12 +207,14 @@
         ]
       },
       "2": {
-        "count": 220,
+        "count": 224,
         "files": [
           "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
           "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
           "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\formalization_progress.md",
           "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ptl_type_checker_report.md",
           "mingben-workbench\\references\\ref_consistency_report.md",
           "mingben-workbench\\references\\操作论数学哲学_纲领.md",
           "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
@@ -237,12 +242,13 @@
         ]
       },
       "3": {
-        "count": 138,
+        "count": 139,
         "files": [
           "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
           "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
           "mingben-workbench\\references\\formalization-v0.2.md",
           "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ptl_type_checker_report.md",
           "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
           "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
           "mingben-workbench\\references\\版本号规范化体系.md",
@@ -260,12 +266,13 @@
         ]
       },
       "4": {
-        "count": 163,
+        "count": 164,
         "files": [
           "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
           "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
           "mingben-workbench\\references\\formalization-v0.2.md",
           "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ptl_type_checker_report.md",
           "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
           "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
           "mingben-workbench\\references\\生命论公式全解_大白话版.md",
@@ -280,12 +287,14 @@
         ]
       },
       "5": {
-        "count": 112,
+        "count": 119,
         "files": [
           "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
           "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
           "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\formalization_progress.md",
           "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ptl_type_checker_report.md",
           "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md",
           "mingben-workbench\\references\\新数学概念研究_第十一卷_践演一致性与阴阳数学.md",
           "mingben-workbench\\references\\新数学概念研究_第十三卷_操作逻辑与结构定理.md",
@@ -305,12 +314,14 @@
         ]
       },
       "6": {
-        "count": 97,
+        "count": 110,
         "files": [
           "mingben-workbench\\references\\PTC公理0-1修订_践演位置.md",
           "mingben-workbench\\references\\PTL形式化语义与类型可靠性证明.md",
           "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\formalization_progress.md",
           "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ptl_type_checker_report.md",
           "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
           "生命论_模块化\\01_卷一_存在论\\篇二_自指操作：生命的存在方式.md",
           "生命论_模块化\\03_卷三_群己论\\篇四_社会健康的度量：六维框架.md",
@@ -2716,7 +2727,7 @@
         ]
       },
       "20": {
-        "count": 431,
+        "count": 437,
         "files": [
           "mingben-workbench\\references\\GLL新颖性核查.md",
           "mingben-workbench\\references\\GoI动态语义_操作的执行与生命流.md",
@@ -2732,9 +2743,11 @@
           "mingben-workbench\\references\\enactics_v1.6.md",
           "mingben-workbench\\references\\enactics_v1.8.md",
           "mingben-workbench\\references\\formalization-v0.2.md",
+          "mingben-workbench\\references\\formalization_progress.md",
           "mingben-workbench\\references\\f层级形式化_明性的数学基础.md",
           "mingben-workbench\\references\\muF2_to_nuF2_生命起源的数学.md",
           "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ptl_type_checker_report.md",
           "mingben-workbench\\references\\tasks_deepseek.md",
           "mingben-workbench\\references\\不动点提升定理_生命流不可资本化.md",
           "mingben-workbench\\references\\余归纳GoI_生产性迹与生命流.md",
@@ -2751,6 +2764,7 @@
           "mingben-workbench\\references\\新数学概念研究_第十五卷_时间箭头与生命必然.md",
           "mingben-workbench\\references\\新数学概念研究_第十卷_概率信息与生命信息.md",
           "mingben-workbench\\references\\新数学概念研究_自生成范畴与践演迹.md",
+          "mingben-workbench\\references\\明性锚点_为什么创造新数学.md",
           "mingben-workbench\\references\\生命论公式全解_大白话版.md",
           "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md",
           "mingben-workbench\\references\\研究方法论_通宵复盘.md",
@@ -3531,9 +3545,10 @@
         ]
       },
       "57": {
-        "count": 87,
+        "count": 88,
         "files": [
           "mingben-workbench\\references\\overclaim_report.md",
+          "mingben-workbench\\references\\ptl_type_checker_report.md",
           "mingben-workbench\\references\\哲学数学双向映衬_历程与互校.md",
           "mingben-workbench\\references\\操作论数学_五个前沿方向.md",
           "mingben-workbench\\references\\操作论数学_八个应用方向.md",

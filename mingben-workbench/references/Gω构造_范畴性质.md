@@ -83,11 +83,11 @@ PTC的Productivity公理保证复合是生产性的（每步有产出）。
 $\mathcal{C}$上的$\bang$-余单子提升到$G^\omega(\mathcal{C})$：
 $$\bang(A^+,A^-) = (\bang A^+, \bang A^-)$$
 
-但定理6.1/20在$G^\omega(\mathcal{C})$中仍然成立：$\bang$不穿透生产性状态。具体地：
+但T009/20在$G^\omega(\mathcal{C})$中仍然成立：$\bang$不穿透生产性状态。具体地：
 
 **定理37**：在$G^\omega(\mathcal{C})$中，不存在自然态射$\bang\nu F_2 \to \nu\bang F_2$。
 
-**证明**：$G^\omega(\mathcal{C})$中的态射是$\mathcal{C}$中的生产性Mealy机。如果$\bang\nu F_2 \to \nu\bang F_2$在$G^\omega(\mathcal{C})$中存在，它在$\mathcal{C}$中的行为就是一个生产性Mealy机，把$\bang$-流转换为$\bang$-流——但这要求底层$\mathcal{C}$中有$\bang\nu F_2 \to \nu\bang F_2$，而定理20已证明不存在。∎
+**证明**：$G^\omega(\mathcal{C})$中的态射是$\mathcal{C}$中的生产性Mealy机。如果$\bang\nu F_2 \to \nu\bang F_2$在$G^\omega(\mathcal{C})$中存在，它在$\mathcal{C}$中的行为就是一个生产性Mealy机，把$\bang$-流转换为$\bang$-流——但这要求底层$\mathcal{C}$中有$\bang\nu F_2 \to \nu\bang F_2$，而T001已证明不存在。∎
 
 **意义**：即使在"更高层"的$G^\omega(\mathcal{C})$范畴中，生命流不可资本化的定理仍然成立。紧闭合和递归类型没有破坏这个结果——!-模态的限制是结构性的，不是某个特定范畴的偶然性质。
 
