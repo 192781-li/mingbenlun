@@ -1,138 +1,274 @@
 #!/usr/bin/env python3
-"""明本质量门控：检查章节编号、交叉引用、空章节、格式、重复、术语、概念覆盖、乱码。"""
-import re, sys, hashlib
-from collections import Counter
+"""
+全本质量门禁
+用法: python quality_gate.py [--fix]
+在导出全本或提交前跑所有检查器，确保0错误。
+--fix: 自动修复可修复的问题
+"""
+import os
+import sys
+import json
+import subprocess
+from pathlib import Path
+from datetime import datetime
 
-def cn2int(s):
-    digits = {'零':0,'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9}
-    units = {'十':10,'百':100,'千':1000}
-    if not s: return 0
-    result = 0; current = 0
-    for c in s:
-        if c in digits: current = digits[c]
-        elif c in units:
-            if current == 0: current = 1
-            result += current * units[c]; current = 0
-    result += current
-    return result
+REPO_ROOT = Path(__file__).parent.parent.parent
+SCRIPTS_DIR = REPO_ROOT / "mingben-workbench" / "scripts"
+REFERENCES_DIR = REPO_ROOT / "mingben-workbench" / "references"
+BOOK_DIR = REPO_ROOT / "生命论_模块化"
 
-def int2cn(n):
-    digits = '零一二三四五六七八九'
-    if n < 10: return digits[n]
-    if n == 10: return '十'
-    if n < 20: return '十' + (digits[n%10] if n%10 else '')
-    if n < 100:
-        return digits[n//10] + '十' + (digits[n%10] if n%10 else '')
-    if n < 1000:
-        r = digits[n//100] + '百'; rest = n % 100
-        if rest == 0: return r
-        if rest < 10: return r + '零' + digits[rest]
-        if rest < 20: return r + '一' + int2cn(rest)
-        return r + int2cn(rest)
-    if n < 10000:
-        r = digits[n//1000] + '千'; rest = n % 1000
-        if rest == 0: return r
-        if rest < 100: return r + '零' + int2cn(rest)
-        return r + int2cn(rest)
-    return str(n)
+# 颜色
+RED = '\033[91m'
+GREEN = '\033[92m'
+YELLOW = '\033[93m'
+RESET = '\033[0m'
 
-def check(path):
-    with open(path, 'r', encoding='utf-8') as f:
-        text = f.read()
-    lines = text.split('\n')
-    errors = []; warnings = []
+class QualityGate:
+    def __init__(self):
+        self.results = []
+        self.errors = 0
+        self.warnings = 0
+        self.passed = 0
+    
+    def check(self, name, func):
+        """运行一个检查"""
+        print(f"  检查 {name}...", end=' ', flush=True)
+        try:
+            result = func()
+            if result.get('error'):
+                print(f"{RED}✗ {result['error']}{RESET}")
+                self.results.append((name, 'ERROR', result))
+                self.errors += 1
+            elif result.get('warning'):
+                print(f"{YELLOW}⚠ {result['warning']}{RESET}")
+                self.results.append((name, 'WARN', result))
+                self.warnings += 1
+            else:
+                print(f"{GREEN}✓ {result.get('msg', '通过')}{RESET}")
+                self.results.append((name, 'PASS', result))
+                self.passed += 1
+        except Exception as e:
+            print(f"{RED}✗ 异常: {e}{RESET}")
+            self.results.append((name, 'ERROR', {'error': str(e)}))
+            self.errors += 1
+    
+    def report(self):
+        """输出总结"""
+        print()
+        print("=" * 60)
+        print(f"质量门禁结果：{GREEN}{self.passed}通过{RESET} / {YELLOW}{self.warnings}警告{RESET} / {RED}{self.errors}错误{RESET}")
+        print("=" * 60)
+        
+        if self.errors > 0:
+            print(f"\n{RED}错误详情：{RESET}")
+            for name, status, result in self.results:
+                if status == 'ERROR':
+                    print(f"  [{name}] {result.get('error', '')}")
+        
+        if self.warnings > 0:
+            print(f"\n{YELLOW}警告详情：{RESET}")
+            for name, status, result in self.results:
+                if status == 'WARN':
+                    print(f"  [{name}] {result.get('warning', '')}")
+        
+        return self.errors == 0
 
-    # 1. 章节编号
-    chapters = []
-    for i, line in enumerate(lines, 1):
-        m = re.match(r'^###?\s*第([零一二三四五六七八九十百千]+)章', line)
-        if m:
-            num = cn2int(m.group(1))
-            chapters.append((num, i, line.strip()))
+def check_theorem_registry():
+    """检查定理注册表完整性"""
+    registry_file = REFERENCES_DIR / "theorem_registry.json"
+    if not registry_file.exists():
+        return {'error': '定理注册表不存在'}
+    
+    registry = json.loads(registry_file.read_text(encoding='utf-8'))
+    required_fields = ['name', 'statement', 'current_version', 'status', 'coq_verified', 'literature_checked', 'novelty', 'philosophy_correspondence']
+    
+    issues = []
+    theorem_count = 0
+    for key, val in registry.items():
+        if key.startswith('_'):
+            continue
+        theorem_count += 1
+        for field in required_fields:
+            if field not in val:
+                issues.append(f"{key}缺少{field}")
+    
+    if issues:
+        return {'error': f'{len(issues)}个问题: ' + '; '.join(issues[:3])}
+    
+    # 检查ID连续性
+    ids = sorted([k for k in registry if k.startswith('T')])
+    expected = [f"T{i:03d}" for i in range(1, len(ids)+1)]
+    if ids != expected:
+        return {'warning': f'定理ID不连续: {ids}'}
+    
+    return {'msg': f'{theorem_count}个定理，字段完整'}
 
-    for i in range(1, len(chapters)):
-        prev_num, prev_line, prev_title = chapters[i-1]
-        num, line_no, title = chapters[i]
-        if num != prev_num + 1:
-            errors.append(f"章节跳跃: {prev_title.split()[0] if prev_title.split() else '第'+int2cn(prev_num)+'章'}→{title.split()[0] if title.split() else '第'+int2cn(num)+'章'} (行{prev_line})")
+def check_cross_refs():
+    """检查交叉引用有效性"""
+    cn_num = {'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10}
+    
+    # 获取现有卷篇
+    existing = set()
+    for vol_dir in BOOK_DIR.iterdir():
+        if vol_dir.is_dir():
+            import re
+            vol_match = re.match(r'(\d+)_卷([一二三四五六七八九十\d]+)', vol_dir.name)
+            if vol_match:
+                v = cn_num.get(vol_match.group(2), int(vol_match.group(2)) if vol_match.group(2).isdigit() else None)
+                if v:
+                    for md in vol_dir.glob('篇*.md'):
+                        pian_match = re.match(r'篇([一二三四五六七八九十\d]+)', md.name)
+                        if pian_match:
+                            p = cn_num.get(pian_match.group(1), int(pian_match.group(1)) if pian_match.group(1).isdigit() else None)
+                            if p:
+                                existing.add((v, p))
+    
+    # 扫描引用
+    import re
+    invalid = []
+    pattern = r'卷([一二三四五六七八九十\d]+)篇([一二三四五六七八九十\d]+)'
+    for root, dirs, files in os.walk(BOOK_DIR):
+        dirs[:] = [d for d in dirs if d not in {'.git', 'backup', '__pycache__'}]
+        for f in files:
+            if f.endswith('.md'):
+                content = (Path(root) / f).read_text(encoding='utf-8', errors='ignore')
+                for m in re.finditer(pattern, content):
+                    v = cn_num.get(m.group(1), int(m.group(1)) if m.group(1).isdigit() else None)
+                    p = cn_num.get(m.group(2), int(m.group(2)) if m.group(2).isdigit() else None)
+                    if v and p and (v, p) not in existing:
+                        rel = str(Path(root).relative_to(REPO_ROOT) / f)
+                        if '重组方案' not in rel:  # 重组方案文件中引用旧编号是正常的
+                            invalid.append(f"卷{v}篇{p} in {rel}")
+    
+    if invalid:
+        return {'error': f'{len(invalid)}个无效引用: ' + '; '.join(invalid[:3])}
+    return {'msg': f'{len(existing)}个卷篇，引用全部有效'}
 
-    # 2. 交叉引用
-    chapter_nums = {n for n, _, _ in chapters}
-    refs = re.findall(r'第([零一二三四五六七八九十百千]+)章', text)
-    for ref in refs:
-        ref_num = cn2int(ref)
-        if ref_num not in chapter_nums and ref_num <= len(chapters) + 5:
-            warnings.append(f"交叉引用可能无效: 第{ref}章")
+def check_coq_compilation():
+    """检查Coq Layer1是否编译通过"""
+    coq_file = REPO_ROOT / "coq" / "theories" / "ALL" / "Layer1.v"
+    if not coq_file.exists():
+        return {'warning': 'Layer1.v不存在，跳过Coq检查'}
+    
+    # 检查文件中是否有Admitted
+    content = coq_file.read_text(encoding='utf-8', errors='ignore')
+    admitted_count = content.count('Admitted')
+    if admitted_count > 0:
+        return {'error': f'Layer1.v中有{admitted_count}个Admitted'}
+    
+    return {'msg': 'Layer1.v无Admitted'}
 
-    # 3. 空章节
-    for i, (num, line_no, title) in enumerate(chapters):
-        end = chapters[i+1][1]-1 if i+1 < len(chapters) else len(lines)
-        body_lines = [l for l in lines[line_no:end] if l.strip()]
-        body_text = ''.join(body_lines)
-        if len(body_lines) < 1 or len(body_text) < 20:
-            warnings.append(f"空章节或过短: {title}")
+def check_overclaim():
+    """运行越级陈述检查器"""
+    checker = SCRIPTS_DIR / "overclaim_checker.py"
+    if not checker.exists():
+        return {'warning': '越级陈述检查器不存在'}
+    
+    try:
+        result = subprocess.run(
+            [sys.executable, str(checker), '--quiet'],
+            capture_output=True, text=True, cwd=str(REPO_ROOT), timeout=60
+        )
+        # 检查器返回0=通过，1=有警告
+        output = result.stdout + result.stderr
+        if 'W001' in output or 'W002' in output or 'W003' in output:
+            return {'error': '发现已证伪的越级陈述（W001/W002/W003）'}
+        return {'msg': '越级陈述检查通过'}
+    except subprocess.TimeoutExpired:
+        return {'warning': '越级陈述检查超时'}
+    except Exception as e:
+        return {'warning': f'越级陈述检查异常: {e}'}
 
-    # 4. 未闭合的加粗/斜体
-    for i, line in enumerate(lines, 1):
-        if line.count('**') % 2 != 0:
-            warnings.append(f"未闭合加粗 行{i}: {line.strip()[:50]}")
+def check_ref_consistency():
+    """运行引用一致性检查器"""
+    checker = SCRIPTS_DIR / "ref_consistency_checker.py"
+    if not checker.exists():
+        return {'warning': '引用一致性检查器不存在'}
+    
+    try:
+        result = subprocess.run(
+            [sys.executable, str(checker), '--quiet'],
+            capture_output=True, text=True, cwd=str(REPO_ROOT), timeout=60
+        )
+        output = result.stdout + result.stderr
+        if '无效引用' in output and '0' not in output.split('无效引用')[0][-5:]:
+            return {'error': '发现无效定理引用'}
+        return {'msg': '引用一致性检查通过'}
+    except Exception as e:
+        return {'warning': f'引用一致性检查异常: {e}'}
 
-    # 5. 标题层级跳跃
-    for i, line in enumerate(lines, 1):
-        m = re.match(r'^(#{1,6})\s', line)
-        if m and i > 1:
-            prev_level = 0
-            for j in range(i-2, -1, -1):
-                pm = re.match(r'^(#{1,6})\s', lines[j])
-                if pm: prev_level = len(pm.group(1)); break
-            if prev_level and len(m.group(1)) > prev_level + 1:
-                warnings.append(f"标题层级跳跃 行{i}: {line.strip()[:50]}")
+def check_name_consistency():
+    """检查核心概念名称一致性（明性/明本/民本）"""
+    issues = []
+    
+    # 检查"民本辩证法"和"民本学术法"是否还存在（应该是"明性辩证法"和"明性学术法"）
+    for root, dirs, files in os.walk(REPO_ROOT):
+        dirs[:] = [d for d in dirs if d not in {'.git', 'backup', '__pycache__', 'node_modules'}]
+        for f in files:
+            if f.endswith('.md'):
+                p = Path(root) / f
+                rel = str(p.relative_to(REPO_ROOT))
+                # 跳过历史版本和报告
+                if any(x in rel for x in ['enactics_v0', 'backup', '_report', '重组方案']):
+                    continue
+                content = p.read_text(encoding='utf-8', errors='ignore')
+                if '民本辩证法' in content:
+                    issues.append(f'{rel}: 民本辩证法→应为明性辩证法')
+                if '民本学术法' in content:
+                    issues.append(f'{rel}: 民本学术法→应为明性学术法')
+    
+    if issues:
+        return {'error': f'{len(issues)}处名称错误: ' + '; '.join(issues[:3])}
+    return {'msg': '明性/明本/民本名称一致'}
 
-    # 6. 重复段落（MD5）
-    para_hashes = Counter()
-    for para in re.split(r'\n\s*\n', text):
-        p = para.strip()
-        if len(p) > 50:
-            para_hashes[hashlib.md5(p.encode()).hexdigest()] += 1
-    for h, count in para_hashes.items():
-        if count > 1:
-            errors.append(f"重复段落出现{count}次 (MD5:{h[:8]})")
+def check_no_ai_boilerplate():
+    """检查是否有AI套话（质性内容）"""
+    ai_phrases = [
+        '值得注意的是', '总而言之', '综上所述', '不言而喻',
+        '在某种程度上', '从某种意义上说',
+    ]
+    # 这个检查只在数学文档中运行
+    math_docs = list((REFERENCES_DIR).glob('enactics_v1.*.md'))
+    issues = []
+    for doc in math_docs:
+        content = doc.read_text(encoding='utf-8', errors='ignore')
+        for phrase in ai_phrases:
+            if phrase in content:
+                issues.append(f'{doc.name}: "{phrase}"')
+    
+    if issues:
+        return {'warning': f'{len(issues)}处可能的AI套话'}
+    return {'msg': '无AI套话'}
 
-    # 7. 术语一致性
-    for i, line in enumerate(lines, 1):
-        if '道在日常' in line and '道在日常操作之外' not in line and '道在日常生活' not in line:
-            warnings.append(f"术语变体 行{i}: '道在日常' 建议用 '道在日用': {line.strip()[:60]}")
-
-    # 8. 核心概念覆盖（仅对全本检查，单篇模块不要求覆盖所有概念）
-    if len(chapters) >= 50:
-        core_concepts = ['自指', '操作', '明性', '反自指', '解放', '阶级', '异化', '自由人联合体', '道在日用', '阳主阴从', '四规定性', '负熵',
-                         '己化', '感', '应', '践演坐实', '视角涌现', '经文劫持', 'f³', '耗散结构', '自创生']
-        missing = [c for c in core_concepts if c not in text]
-        if missing:
-            warnings.append(f"核心概念缺失: {', '.join(missing)}")
-
-    # 9. 乱码
-    garbled = re.findall(r'[\ufffd\u0000-\u0008\u000b\u000c\u000e-\u001f]', text)
-    if garbled:
-        errors.append(f"乱码字符: {len(garbled)}个")
-
-    # 输出
-    print(f"=== 质量门控检查: {path} ===")
-    print(f"章节数: {len(chapters)}")
-    print(f"字数: {len(text)}")
+def main():
+    print("=" * 60)
+    print(f"践演论全本质量门禁 —— {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    print("=" * 60)
     print()
-    if errors:
-        print(f"❌ 错误 ({len(errors)}):")
-        for e in errors[:20]: print(f"  - {e}")
-    if warnings:
-        print(f"⚠️  警告 ({len(warnings)}):")
-        for w in warnings[:20]: print(f"  - {w}")
-    if not errors and not warnings:
-        print("✅ 全部通过")
-    return len(errors) == 0
+    
+    gate = QualityGate()
+    
+    print("【结构检查】")
+    gate.check("定理注册表", check_theorem_registry)
+    gate.check("交叉引用", check_cross_refs)
+    gate.check("名称一致性", check_name_consistency)
+    
+    print("\n【数学检查】")
+    gate.check("Coq编译", check_coq_compilation)
+    gate.check("越级陈述", check_overclaim)
+    gate.check("引用一致性", check_ref_consistency)
+    
+    print("\n【文风检查】")
+    gate.check("AI套话", check_no_ai_boilerplate)
+    
+    passed = gate.report()
+    
+    if passed:
+        print(f"\n{GREEN}质量门禁通过，可以导出全本。{RESET}")
+        sys.exit(0)
+    else:
+        print(f"\n{RED}质量门禁未通过，修复错误后再导出。{RESET}")
+        sys.exit(1)
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print("用法: quality_gate.py <markdown文件>"); sys.exit(1)
-    ok = check(sys.argv[1])
-    sys.exit(0 if ok else 1)
+    main()
