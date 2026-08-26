@@ -1,0 +1,1155 @@
+{
+  "total_matches": 258,
+  "files": {
+    "AI_PARTICIPANT_AGREEMENT.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T006",
+        "matched_text": "明性是异化的右逆"
+      }
+    ],
+    "coq\\README.md": [
+      {
+        "tid": "T003",
+        "matched_text": "Π₂完全性"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T011",
+        "matched_text": "革命级联"
+      }
+    ],
+    "mingben-workbench\\references\\Ag_lv_Ag_tr分裂新颖性核查报告.md": [
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "S_A⊬Ag_lv"
+      }
+    ],
+    "mingben-workbench\\references\\ai_allocation_plan.md": [
+      {
+        "tid": "T003",
+        "matched_text": "Π₂完全性"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "Π₂完全性"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY是Π₂"
+      },
+      {
+        "tid": "T005",
+        "matched_text": "明性幂等"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T008",
+        "matched_text": "明性反转异化"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "一般不可克隆"
+      },
+      {
+        "tid": "T011",
+        "matched_text": "革命级联"
+      }
+    ],
+    "mingben-workbench\\references\\enactics_AI_collaboration_guide.md": [
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY = {(P,a) : ∀ environments E, ∀ time t, P maintains self-control at channel a} is Π₂"
+      }
+    ],
+    "mingben-workbench\\references\\enactics_methodology.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      }
+    ],
+    "mingben-workbench\\references\\enactics_paper_v1.0.md": [
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "S_A ⊬ Ag_lv"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "S_A ⊬ Ag_lv"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "S_A⊬Ag_lv"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY = ∀E ∀t ∃s R(P,E,t,s,a), which is ∀∀∃Δ₀ = Π₂"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY = ∀E∀t SC would be Π₁, and the TOTAL reduction would imply Π₂ ⊆ Π₁, collapsing the arithmetic hierarchy. The liveness condition adds the ∃s quantifier that places AGENCY in Π₂"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY comes from the liveness dimension (\"infinitely many outputs on a\"), which is itself Π₂-complete and equivalent to the classical PRODUCTIVE/TOTAL problem. The causality dimension (\"every output's ancestors are all τ\") is ∀∀Δ₀=Π₁. Thus AGENCY = liveness(Π₂) ∧ causality(Π₁) = Π₂. The contribution is not a new Π₂"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY is Π₂"
+      },
+      {
+        "tid": "T012",
+        "matched_text": "clock quantification"
+      },
+      {
+        "tid": "T012",
+        "matched_text": "clock quantification"
+      },
+      {
+        "tid": "T012",
+        "matched_text": "clock quantification"
+      },
+      {
+        "tid": "T012",
+        "matched_text": "clock quantification"
+      }
+    ],
+    "mingben-workbench\\references\\enactics_v1.12_fix_guarded.md": [
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T012",
+        "matched_text": "异化 = 时钟量化"
+      }
+    ],
+    "mingben-workbench\\references\\enactive_category_theory_v0.1.md": [
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\formalization-v0.2.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      }
+    ],
+    "mingben-workbench\\references\\f层级形式化_研究笔记_v0.1.md": [
+      {
+        "tid": "T005",
+        "matched_text": "明性幂等"
+      },
+      {
+        "tid": "T011",
+        "matched_text": "革命级联"
+      },
+      {
+        "tid": "T011",
+        "matched_text": "革命级联"
+      }
+    ],
+    "mingben-workbench\\references\\GoI动态语义_操作的执行与生命流.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      }
+    ],
+    "mingben-workbench\\references\\Gω构造_范畴性质.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      }
+    ],
+    "mingben-workbench\\references\\novelty_assessment.md": [
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\one_click_prompts.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "Π₂-完全性"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "Π₂-完全性"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY ∈ Π₂"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY = ∀E ∀t SC(P,E,t,a)，两个全称量词加可判定谓词，属于Π₂"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY，AGENCY是Π₂"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY是Π₂"
+      },
+      {
+        "tid": "T004",
+        "matched_text": "AGENCY和PRODUCTIVE递归同构"
+      },
+      {
+        "tid": "T005",
+        "matched_text": "明性幂等"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "一般不可克隆"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "一般不可克隆"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\tasks_deepseek.md": [
+      {
+        "tid": "T003",
+        "matched_text": "Π₂-完全性"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY是Π₂"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY ∈ Π₂"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      }
+    ],
+    "mingben-workbench\\references\\tasks_qwen.md": [
+      {
+        "tid": "T006",
+        "matched_text": "明性余单"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      }
+    ],
+    "mingben-workbench\\references\\tasks_workbody.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T005",
+        "matched_text": "明性幂等"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "一般不可克隆"
+      }
+    ],
+    "mingben-workbench\\references\\一般刻画定理_数据与计算.md": [
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\不动点提升定理_生命流不可资本化.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      }
+    ],
+    "mingben-workbench\\references\\哲学数学双向映衬_历程与互校.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\操作范畴论_生命自指的数学框架.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      }
+    ],
+    "mingben-workbench\\references\\操作论数学_五个前沿方向.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      }
+    ],
+    "mingben-workbench\\references\\操作论数学_八个应用方向.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\操作论数学哲学_纲领.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\新定理_交互余代数不可资本化.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      }
+    ],
+    "mingben-workbench\\references\\新数学概念研究_第七卷_哥德尔与辩证法数学化.md": [
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      }
+    ],
+    "mingben-workbench\\references\\新数学概念研究_第九卷_νF严格化与量子Fock.md": [
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      }
+    ],
+    "mingben-workbench\\references\\新数学概念研究_第八卷_操作度量学与新颖性评估.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!不保持余归纳"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      }
+    ],
+    "mingben-workbench\\references\\新数学概念研究_第十二卷_革命数学与博弈论.md": [
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      }
+    ],
+    "mingben-workbench\\references\\新数学概念研究_第十八卷_社会N值测量论.md": [
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      }
+    ],
+    "mingben-workbench\\references\\新数学概念研究_第十四卷_解放定理与缄默维度.md": [
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      }
+    ],
+    "mingben-workbench\\references\\旧惯性vs新惯性_对比图.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      }
+    ],
+    "mingben-workbench\\references\\生命论公式全解_大白话版.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\生命论系统总览_从感到数学到语言.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\缄默操作串联_62定理体系.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\缄默操作重解数学.md": [
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "mingben-workbench\\references\\超级智慧包_v2.0.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!νF≇ν!F"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "S_A ⊬ Ag_lv"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "S_A⊬Ag_lv"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "AGENCY Π₂-完全 | 运行权判定Π₂-完全（活性Π₂"
+      },
+      {
+        "tid": "T006",
+        "matched_text": "明性使异化分裂 | 明性为每个a*提供右逆"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T012",
+        "matched_text": "异化压缩(guarded) | ∀κ.ν_κ F ≅ μF | 同构 | 异化=时钟量化"
+      },
+      {
+        "tid": "T012",
+        "matched_text": "异化=时钟量化"
+      },
+      {
+        "tid": "T012",
+        "matched_text": "异化是时间控制（时钟量化"
+      },
+      {
+        "tid": "T013",
+        "matched_text": "量子测量=异化"
+      },
+      {
+        "tid": "T013",
+        "matched_text": "量子测量是异化"
+      },
+      {
+        "tid": "T013",
+        "matched_text": "量子测量=异化"
+      },
+      {
+        "tid": "T013",
+        "matched_text": "Hilb外部基定理"
+      },
+      {
+        "tid": "T013",
+        "matched_text": "Hilb外部基定理"
+      },
+      {
+        "tid": "T014",
+        "matched_text": "异化链定理"
+      },
+      {
+        "tid": "T014",
+        "matched_text": "异化链定理"
+      },
+      {
+        "tid": "T016",
+        "matched_text": "steering不等式"
+      },
+      {
+        "tid": "T016",
+        "matched_text": "运行权steering"
+      }
+    ],
+    "mingben-workbench\\references\\践演论定理哲学解读.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "S_A ⊬ Ag_lv"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "S_A ⊬ Ag_lv"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "S_A ⊬ Ag_lv"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "系统自主性的不可判定性"
+      },
+      {
+        "tid": "T006",
+        "matched_text": "明性是异化的右逆"
+      },
+      {
+        "tid": "T006",
+        "matched_text": "明性是异化的右逆"
+      },
+      {
+        "tid": "T006",
+        "matched_text": "明性是异化的右逆"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      },
+      {
+        "tid": "T012",
+        "matched_text": "异化=时间控制） | 资本主义试图通过控制时间来资本化生命——计件工资、工时制度、KPI都是给生命过程安装时钟。但生命的νF₂过程不可被时钟量化完全捕获——guarded递归中`∀κ.ν_κF ≅ μF`只对时钟量化"
+      },
+      {
+        "tid": "T013",
+        "matched_text": "量子测量=异化） | 量子测量之所以是异化"
+      },
+      {
+        "tid": "T016",
+        "matched_text": "steering不等式"
+      },
+      {
+        "tid": "T016",
+        "matched_text": "steering不等式"
+      },
+      {
+        "tid": "T016",
+        "matched_text": "steering不等式"
+      },
+      {
+        "tid": "T017",
+        "matched_text": "完美自我遮蔽不动点"
+      },
+      {
+        "tid": "T017",
+        "matched_text": "完美自我遮蔽不动点"
+      },
+      {
+        "tid": "T017",
+        "matched_text": "完美自我遮蔽不动点"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "持续感染源"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "持续感染源"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "持续感染源"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "持续感染源"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "持续感染源"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "持续感染源"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "持续感染源"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "永生感染源"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "永生感染源"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "永生感染源"
+      },
+      {
+        "tid": "T018",
+        "matched_text": "永生感染源"
+      }
+    ],
+    "mingben-workbench\\references\\酉反馈_革命跃迁_综合.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      }
+    ],
+    "mingben-workbench\\references\\量子对应与定理21修补.md": [
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "README.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      }
+    ],
+    "三方协作任务监控表.md": [
+      {
+        "tid": "T003",
+        "matched_text": "Π₂完全性"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "Π₂完全性"
+      },
+      {
+        "tid": "T005",
+        "matched_text": "明性幂等"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      }
+    ],
+    "任务包_DeepSeek_代码形式化.md": [
+      {
+        "tid": "T002",
+        "matched_text": "S_A ⊬ Ag_lv"
+      }
+    ],
+    "任务包_WorkBuddy_审计反例.md": [
+      {
+        "tid": "T003",
+        "matched_text": "Π₂完全性"
+      },
+      {
+        "tid": "T005",
+        "matched_text": "明性幂等"
+      },
+      {
+        "tid": "T007",
+        "matched_text": "异化压缩"
+      },
+      {
+        "tid": "T011",
+        "matched_text": "革命级联"
+      },
+      {
+        "tid": "T012",
+        "matched_text": "异化压缩 | `∀κ.ν_κF ≅ μF`（guarded版） | 时钟量化"
+      }
+    ],
+    "双AI协作机制.md": [
+      {
+        "tid": "T017",
+        "matched_text": "完美自我遮蔽不动点"
+      },
+      {
+        "tid": "T017",
+        "matched_text": "完美自我遮蔽不动点"
+      }
+    ],
+    "实践论数学基础_自动化基础设施建设.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "S_A⊬Ag_lv"
+      },
+      {
+        "tid": "T003",
+        "matched_text": "Π₂-完全性"
+      },
+      {
+        "tid": "T016",
+        "matched_text": "steering不等式"
+      },
+      {
+        "tid": "T016",
+        "matched_text": "steering不等式"
+      },
+      {
+        "tid": "T016",
+        "matched_text": "运行权steering"
+      },
+      {
+        "tid": "T017",
+        "matched_text": "完美自我遮蔽不动点"
+      }
+    ],
+    "生命论_模块化\\00_体系总纲.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "生命论_模块化\\04_卷四_异化论\\篇一_商品、货币与资本.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      }
+    ],
+    "生命论_模块化\\05_卷五_解放论\\篇一_解放的本质.md": [
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      }
+    ],
+    "生命论_模块化\\10_卷十_数学基础\\篇一_PTC公理系统：操作范畴论的基础.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      }
+    ],
+    "生命论_模块化\\10_卷十_数学基础\\篇二_核心定理链：从生命不可复制到资本同构.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "!不穿透νF"
+      }
+    ],
+    "生命论_模块化\\10_卷十_数学基础\\篇六_量子对应与前沿方向.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可复制"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      },
+      {
+        "tid": "T013",
+        "matched_text": "量子测量（坍缩） | !-消除（把!A变成A） | 异化"
+      }
+    ],
+    "生命论_模块化\\10_参考资料\\概念定义比较与资本主义主张的形式化反驳_20260825.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      }
+    ],
+    "生命论_模块化\\11_附录\\全本结构审查与重组方案.md": [
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "生命论_模块化\\11_附录\\数学定理全本映射表.md": [
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "生命论_模块化\\11_附录\\附录十_操作范畴论：生命论的数学基础.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T009",
+        "matched_text": "不可克隆定理"
+      }
+    ],
+    "践演论_通宵研究总报告_20260826.md": [
+      {
+        "tid": "T011",
+        "matched_text": "革命级联"
+      }
+    ],
+    "践演论第一性原理底线.md": [
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T001",
+        "matched_text": "生命不可资本化"
+      },
+      {
+        "tid": "T002",
+        "matched_text": "自由只能在实践中确立"
+      }
+    ]
+  }
+}

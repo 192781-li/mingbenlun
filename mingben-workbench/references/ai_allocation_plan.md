@@ -20,12 +20,12 @@
 3. 践演不完备性（自我模型不能证明运行权，不用对角线法）
 4. AGENCY是Π₂-完全的（严格难于停机问题）
 5. 运行权不可定义于标准博弈
-6. 明性幂等（Cl(Cl(G))≅Cl(G)）
-7. 异化压缩（a*(νF)≅μF）
-8. 明性反转异化（Cl_self∘a*≅Id）
-9. 一般不可克隆（任意LNL范畴中νF→!νF不存在）
+6. 明性幂等（T005）（Cl(Cl(G))≅Cl(G)）
+7. 异化压缩（T007）（a*(νF)≅μF）
+8. 明性反转异化（T008）（Cl_self∘a*≅Id）
+9. 一般不可克隆（T009）（任意LNL范畴中νF→!νF不存在）
 10. 劫持检测三定理
-11. 革命级联（ρ(C)≥1）
+11. 革命级联（T011）（ρ(C)≥1）
 12. AI对齐根本限度
 13. 跨领域统一（量子/生命/劳动/AI）
 14. 运行权=余递归生产率
@@ -48,14 +48,14 @@ Rel、Mealy机、π-演算、Hilb、AGame博弈
 - `mingben-workbench/references/enactics_paper_v1.0.md`（综合论文，完整证明）
 - `mingben-workbench/references/enactics_v1.2.md`（不完备性完整证明）
 - `mingben-workbench/references/enactics_v1.4.md`（Π₂完全性完整证明）
-- `mingben-workbench/references/enactics_v1.7.md`（异化压缩完整证明）
+- `mingben-workbench/references/enactics_v1.7.md`（异化压缩（T007）完整证明）
 - `mingben-workbench/scripts/elc_type_checker.py`（类型检查器源码）
 
 ### 专属任务
 1. Coq/Agda形式化切消除和不完备性定理
 2. 逐行审查Π₂完全性证明
 3. 完善类型检查器（类型推断、μ/ν类型、Cl规则）
-4. 异化压缩定理的一般范畴论条件
+4. 异化压缩（T007）定理的一般范畴论条件
 5. LaTeX排版
 
 ### 为什么给它这些

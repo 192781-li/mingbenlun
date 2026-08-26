@@ -106,5 +106,5 @@ $$\bang(A^+,A^-) = (\bang A^+, \bang A^-)$$
 - $G^\omega(\mathcal{C})$是范畴（定理34）
 - $G^\omega(\mathcal{C})$是dagger compact closed（定理35）——f-层级的弯线在内部合法
 - $G^\omega(\mathcal{C})$有递归类型（定理36）——$\nu F_2$是合法对象
-- $\bang$不穿透生产性状态在$G^\omega(\mathcal{C})$中仍成立（定理37）——生命不可资本化在更高层范畴中仍成立
+- $\bang$不穿透生产性状态在$G^\omega(\mathcal{C})$中仍成立（定理37）——生命不可资本化（T001）在更高层范畴中仍成立
 - Int(C)是G^ω(C)的无状态全子范畴

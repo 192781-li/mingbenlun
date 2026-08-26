@@ -25,7 +25,7 @@ Joyal-Street-Verity（1996）的**迹幺半范畴**（traced monoidal category�
 
 ### 1.3 线性逻辑与量子不可克隆
 
-线性逻辑（Girard 1987）的资源敏感性、!-模态、以及与量子不可克隆定理的范畴论联系，都是已知的。Abramsky & Coecke等人用dagger compact closed category统一了量子力学和线性逻辑的结构。
+线性逻辑（Girard 1987）的资源敏感性、!-模态、以及与量子不可克隆定理（T009）的范畴论联系，都是已知的。Abramsky & Coecke等人用dagger compact closed category统一了量子力学和线性逻辑的结构。
 
 **结论**：定理14（量子-践演对应）的范畴论基础是已知的。
 
