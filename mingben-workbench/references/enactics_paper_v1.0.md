@@ -149,7 +149,7 @@ Enactive incompleteness is independent of Gödel's: it does not require arithmet
 
 ### 3.3 Computational complexity
 
-We work in the **asynchronous** π-calculus (outputs do not block) with **provenance causality** (Boreale-Nicola 1995), which records causal ancestry via labeled transitions rather than standard LTS (which merges isomorphic τ-transitions and erases location information).
+We work in the **asynchronous** π-calculus (outputs do not block) with **provenance tracking** (an extension of labeled transition semantics in the tradition of Boreale–De Nicola 1995), which records causal ancestry of outputs via labeled transitions rather than standard LTS (which merges isomorphic τ-transitions and erases location information).
 
 **Theorem 3.2 (Π₂-completeness).** The agency decision problem for asynchronous π-calculus processes,
 
@@ -305,15 +305,41 @@ Since "A is free" is Π₂ (∀ situations ∀ times, self-control) and "A is op
 
 ## 8. Related Work
 
-- **Linear logic** (Girard 1987): Our starting point; the Op/Tr distinction is the linear/!-modal distinction.
-- **Game semantics** (Abramsky-Jagadeesan-Malacaria 1994, Hyland-Ong 1996): We add the control attribution α_G, independent of polarity λ_G.
-- **Autopoiesis** (Maturana-Varela 1972): Operational closure is our self-referential closure; we add agency (who runs it) and prove it cannot be encoded away.
-- **Categorical quantum mechanics** (Abramsky-Coecke 2004): No-cloning is an instance of our general theorem in Hilb.
-- **Session types** (Caires-Pfenning 2010): We extend with agency types; domain-aware session types (Caires-Pérez-Pfenning-Toninho) track "on whose behalf" but not "who controls the self-referential loop," and do not have the comonad-on-one-fiber structure.
-- **Geometry of Interaction** (Girard 1989): Our feedback spectral radius N corresponds to GoI's feedback operator; productivity (N≥1) vs. nilpotency (N<1) distinguishes coinductive from inductive computation.
-- **Diagonal arguments** (Lawvere 1969): Our incompleteness does not use diagonalization; it uses the linear/!-modal type gap.
-- **Provability logic without contraction** (Beklemishev-Shamkanov): They show contraction's role in Gödel's theorem; our result is a typed, resource-sensitive variant about agency specifically.
-- **Marxist alienation theory**: We provide its first formalization, showing alienation truncates coinduction to induction (canonical surjection, non-injective).
+**Linear logic.** Jean-Yves Girard, "Linear logic," *Theoretical Computer Science*, 50(1):1–101, 1987. DOI: 10.1016/0304-3975(87)90045-4. Our starting point; the Op/Tr distinction is the linear/!-modal distinction.
+
+**Mixed linear/non-linear logic (LNL).** P. N. Benton, "A mixed linear and non-linear logic: Proofs, terms and models (extended abstract)," *CSL 1994*, LNCS 933, pp. 1–14. DOI: 10.1007/BFb0022241. Our categorical framework (LNL categories) follows Benton's adjunction L ⊣ M.
+
+**Game semantics.** Samson Abramsky, Radha Jagadeesan, Pasquale Malacaria, "Full abstraction for PCF," *ICALP 1994* (journal version: *Information and Computation*, 163(2):409–470, 2000); J. Martin E. Hyland, C.-H. Luke Ong, "On Full Abstraction for PCF: I, II, and III," *Information and Computation*, 163(2):285–408, 2000 (LICS 1994 conference version). We add the control attribution α_G, independent of polarity λ_G.
+
+**π-calculus and barbed bisimulation.** Robin Milner, Joachim Parrow, David Walker, "A calculus of mobile processes, I/II," *Information and Computation*, 100(1):1–77, 1992. Our process-calculus interpretation and barbed bisimulation recovery protocol (Theorem 5.3) build on this foundation.
+
+**Testing equivalence for mobile processes.** Michele Boreale, Rocco De Nicola, "Testing Equivalence for Mobile Processes," *Information and Computation*, 120(2):279–303, 1995. DOI: 10.1006/inco.1995.1114. Our use of labeled transition semantics for mobile processes is in this tradition; the specific "provenance causality" tracking (recording causal ancestry of outputs) is our extension, not a standard feature of Boreale–De Nicola's testing equivalence.
+
+**Autopoiesis.** Humberto R. Maturana, Francisco J. Varela, *Autopoiesis and Cognition: The Realization of the Living*, D. Reidel, 1980 (first published in Spanish as *De Maquinas y Seres Vivos*, 1972). Operational closure is our self-referential closure; we add agency (who runs it) and prove it cannot be encoded away.
+
+**Categorical quantum mechanics.** Samson Abramsky, Bob Coecke, "A categorical semantics of quantum protocols," *LICS 2004*, pp. 415–425. DOI: 10.1109/LICS.2004.1319636. No-cloning is an instance of our general theorem in Hilb.
+
+**Quantum no-cloning theorem.** William K. Wootters, Wojciech H. Żurek, "A single quantum cannot be cloned," *Nature*, 299(5886):802–803, 1982. DOI: 10.1038/299802a0. The compact-closed instance of Theorem 6.1 (! does not preserve final coalgebras).
+
+**Session types.** Luís Caires, Frank Pfenning, "Session Types as Intuitionistic Linear Propositions," *CONCUR 2010*, LNCS 6269, pp. 222–236. DOI: 10.1007/978-3-642-15375-4_16. We extend with agency types.
+
+**Domain-aware session types.** Luís Caires, Jorge A. Pérez, "Logic-Based Domain-Aware Session Types," *CONCUR 2014*, LNCS 8704, pp. 329–343 (extended version with Frank Pfenning and Bernardo Toninho: "Domain-Aware Session Types," *CONCUR 2019*, LIPIcs 140, 2019. arXiv:1907.01318). These track "the principals on whose behalf processes act" but not "who controls the self-referential loop," and do not have the comonad-on-one-fiber structure.
+
+**Geometry of Interaction.** Jean-Yves Girard, "Geometry of Interaction I: Interpretation of System F," *Logic Colloquium '88*, Studies in Logic and the Foundations of Mathematics, vol. 127, pp. 221–260, North-Holland, 1989. Our feedback spectral radius N corresponds to GoI's feedback operator; productivity (N≥1) vs. nilpotency (N<1) distinguishes coinductive from inductive computation.
+
+**Diagonal arguments.** F. William Lawvere, "Diagonal arguments and cartesian closed categories," *Category Theory, Homology Theory and their Applications II*, LNM 92, pp. 134–145, Springer, 1969. DOI: 10.1007/BFb0080961. Our incompleteness does not use diagonalization; it uses the linear/!-modal type gap.
+
+**Provability logic without contraction.** Lev D. Beklemishev, Daniyar S. Shamkanov, "Some abstract versions of Gödel's second incompleteness theorem based on non-classical logics," arXiv:1602.05728, 2016. They isolate the role of the contraction rule in Gödel's theorem and give a toy example of a modal logic without contraction where Gödel's argument fails. Our result is a typed, resource-sensitive variant about agency specifically.
+
+**Guarded recursion and clock quantification.** Lars Birkedal, Rasmus E. Møgelberg, "First steps in synthetic guarded domain theory: step-indexing in the topos of trees," *Logical Methods in Computer Science*, 8(4), 2012. The guarded-recursion version of Theorem 5.1 (∀κ.ν_κF ≅ μF, modeling alienation as clock quantification) builds on this framework.
+
+**Later modality.** Hiroshi Nakano, "A modality for recursion," *LICS 2000*, pp. 255–266. The ▶ (later) modality used in our guarded-recursion treatment originates here.
+
+**Network cascades.** Duncan J. Watts, "A simple model of global cascades on random networks," *PNAS*, 99(9):5766–5771, 2002. DOI: 10.1073/pnas.082090499. Our noisy cascade criterion (Theorem 7.6b, spectral radius threshold ρ(pC)>1) is the multi-type branching-process analogue of Watts' threshold model.
+
+**Multi-type branching processes.** Charles J. Mode, *Multitype Branching Processes*, Elsevier, 1971; Krishna B. Athreya, Peter E. Ney, *Branching Processes*, Springer, 1972. The spectral-radius survival criterion (ρ>1 for positive survival probability) is the standard result for multi-type Galton–Watson processes, applied here to clarity propagation.
+
+**Marxist alienation theory.** Karl Marx, *Capital: Critique of Political Economy*, Vol. I, 1867 (see especially the distinction between living labor [lebendige Arbeit] and objectified/dead labor [vergegenständlichte Arbeit], and the alienation of the worker from the product, process, species-being, and other humans in the *Economic and Philosophical Manuscripts of 1844*). We provide the first formalization of alienation as truncation of coinduction to induction (canonical surjection, non-injective, Theorem 5.1).
 
 ---
 
