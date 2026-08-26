@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PTL（践演迹语言）类型检查器 v0.1
+PTL（践演迹语言）类型检查器 v0.2
 基于形式化v0.2框架的PTL类型规则
 
 核心检查：
@@ -141,6 +141,31 @@ TYPE_INFERENCE_PATTERNS = [
     (r'守护|稍后|▷|later', PTLType.LATER.value),
 ]
 
+# 否定陈述白名单：包含这些词的行跳过!-穿透和线性性检查
+# 因为"不存在!νF₂""复制生命不可能"是否定陈述，不是违规
+NEGATION_WHITELIST = [
+    r'不存在', r'不可能', r'无法', r'不能', r'没有', r'不可', r'不会',
+    r'不允许', r'不成立', r'不穿透', r'不可复制', r'不可资本化',
+    r'被否定', r'被拒绝', r'被排除', r'被禁止',
+]
+
+# 元讨论白名单：包含这些词的行跳过检查
+# 因为"检查器发现bug""这是误报"是关于检查器本身的讨论
+META_DISCUSSION_WHITELIST = [
+    r'检查器', r'误报', r'bug', r'Bug', r'BUG',
+    r'扫描结果', r'检查报告', r'检查结果', r'违规标记',
+    r'白名单', r'黑名单', r'模式匹配', r'正则',
+]
+
+# 报告文件排除模式：这些文件是检查器自身产生的报告，不需要被扫描
+REPORT_FILE_PATTERNS = [
+    r'_report\.md$', r'_report\.json$',
+    r'overclaim_report', r'check.*report', r'ptl_type_checker_report',
+    r'formalization_report', r'check456_fullscan_report',
+    r'check6_report', r'formalization_check_report',
+    r'项目状态报告', r'项目基础设施检查清单',
+]
+
 # ============================================================
 # 检查器实现
 # ============================================================
@@ -153,19 +178,49 @@ class PTLTypeChecker:
         self.report = CheckReport()
         self.exclude_dirs = {'.git', 'backup', '__pycache__', 'node_modules', '.venv', 'coq'}
         self.exclude_files = {'ptl_type_checker.py', 'elc_type_checker.py', 'elc_type_checker_v2.py'}
+        self.negation_whitelist = NEGATION_WHITELIST
+        self.meta_whitelist = META_DISCUSSION_WHITELIST
+        self.report_patterns = REPORT_FILE_PATTERNS
+
+    def is_negation(self, line: str) -> bool:
+        """判断是否为否定陈述"""
+        for pattern in self.negation_whitelist:
+            if re.search(pattern, line):
+                return True
+        return False
+
+    def is_meta_discussion(self, line: str) -> bool:
+        """判断是否为元讨论"""
+        for pattern in self.meta_whitelist:
+            if re.search(pattern, line):
+                return True
+        return False
+
+    def is_report_file(self, file_path: Path) -> bool:
+        """判断是否为报告文件（检查器自身产生的）"""
+        filename = file_path.name
+        for pattern in self.report_patterns:
+            if re.search(pattern, filename):
+                return True
+        return False
 
     def find_md_files(self) -> List[Path]:
-        """查找所有Markdown文件"""
+        """查找所有Markdown文件（排除报告文件自身）"""
         md_files = []
         for root, dirs, files in os.walk(self.repo_root):
             dirs[:] = [d for d in dirs if d not in self.exclude_dirs]
             for f in files:
                 if f.endswith('.md') and f not in self.exclude_files:
-                    md_files.append(Path(root) / f)
+                    fpath = Path(root) / f
+                    if not self.is_report_file(fpath):
+                        md_files.append(fpath)
         return sorted(md_files)
 
     def check_bang_penetration(self, file_path: Path, line_num: int, line: str):
-        """检查!-穿透违规"""
+        """检查!-穿透违规（跳过否定陈述和元讨论）"""
+        # 白名单：否定陈述和元讨论跳过
+        if self.is_negation(line) or self.is_meta_discussion(line):
+            return
         for pattern, matched, message, suggestion in BANG_PENETRATION_PATTERNS:
             if re.search(pattern, line):
                 self.report.violations.append(Violation(
@@ -179,7 +234,10 @@ class PTLTypeChecker:
                 ))
 
     def check_linearity(self, file_path: Path, line_num: int, line: str):
-        """检查线性性违规"""
+        """检查线性性违规（跳过否定陈述和元讨论）"""
+        # 白名单：否定陈述和元讨论跳过
+        if self.is_negation(line) or self.is_meta_discussion(line):
+            return
         for pattern, matched, message, suggestion in LINEARITY_VIOLATION_PATTERNS:
             if re.search(pattern, line):
                 self.report.violations.append(Violation(
@@ -280,10 +338,10 @@ class PTLTypeChecker:
         """生成Markdown格式报告"""
         r = self.report
         lines = []
-        lines.append("# PTL类型检查器报告 v0.1")
+        lines.append("# PTL类型检查器报告 v0.2")
         lines.append("")
         lines.append(f"> 生成时间：{__import__('datetime').datetime.now().isoformat()}")
-        lines.append(f"> 检查器版本：v0.1（初版，模式匹配+启发式）")
+        lines.append(f"> 检查器版本：v0.2（初版，模式匹配+启发式）")
         lines.append("")
 
         # 总览
@@ -413,7 +471,7 @@ def main():
     if not (repo_root / "生命论_模块化").exists():
         repo_root = Path.cwd()
 
-    print("=== PTL类型检查器 v0.1 ===")
+    print("=== PTL类型检查器 v0.2 ===")
     print()
     print(f"仓库根目录: {repo_root}")
     print()
