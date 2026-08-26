@@ -80,6 +80,11 @@
       "principle": "T002: S_A ⊬ Ag_lv 自由只能在实践中确立",
       "must_contain_in": ["mingben-workbench/references/theorem_registry.json"],
       "keywords": ["自由只能在实践中确立"]
+    },
+    {
+      "id": "M07",
+      "principle": "方向可能比格罗滕迪克更根本，但成就是0。L8是武器库不是胜仗。L8之后用ALL解决重大开放问题、被别人使用，才有资格比较。之前不许声称超越。",
+      "check_type": "informational"
     }
   ],
   "user_directives": [
