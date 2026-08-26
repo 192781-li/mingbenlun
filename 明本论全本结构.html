@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>明本论 · 全本结构</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Noto Serif SC', serif;
+  background: #0a0a0f;
+  color: #e8e6e3;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 背景星点 */
+body::before {
+  content: '';
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background-image: 
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.25), transparent),
+    radial-gradient(1px 1px at 40% 90%, rgba(255,255,255,0.15), transparent),
+    radial-gradient(2px 2px at 90% 50%, rgba(255,215,0,0.1), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 80px 20px 60px;
+  background: linear-gradient(180deg, rgba(139,0,0,0.15) 0%, transparent 100%);
+}
+
+.hero .seal {
+  display: inline-block;
+  width: 60px; height: 60px;
+  border: 2px solid #8B0000;
+  color: #DC143C;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 56px;
+  margin-bottom: 24px;
+  transform: rotate(-3deg);
+  letter-spacing: 0;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 900;
+  letter-spacing: 12px;
+  background: linear-gradient(135deg, #fff 0%, #c9a96e 50%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+
+.hero .subtitle {
+  font-size: clamp(14px, 2vw, 20px);
+  color: #8a8a8a;
+  letter-spacing: 8px;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+
+.hero .stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.hero .stat {
+  text-align: center;
+}
+
+.hero .stat .num {
+  font-size: 36px;
+  font-weight: 700;
+  color: #c9a96e;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.hero .stat .label {
+  font-size: 13px;
+  color: #666;
+  letter-spacing: 4px;
+  margin-top: 4px;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* 命经 */
+.juan-shou {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 40px;
+  border: 1px solid rgba(139,0,0,0.3);
+  background: linear-gradient(135deg, rgba(139,0,0,0.08), rgba(0,0,0,0.3));
+  position: relative;
+}
+
+.juan-shou::before {
+  content: '卷首';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0a0a0f;
+  padding: 0 16px;
+  font-size: 12px;
+  color: #8B0000;
+  letter-spacing: 6px;
+}
+
+.juan-shou h2 {
+  font-size: 32px;
+  color: #DC143C;
+  letter-spacing: 16px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.juan-shou .desc {
+  color: #888;
+  font-size: 14px;
+  letter-spacing: 4px;
+}
+
+/* 卷 */
+.juan {
+  margin-bottom: 48px;
+  border-left: 3px solid var(--juan-color);
+  padding-left: 24px;
+  position: relative;
+}
+
+.juan-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  padding: 12px 16px;
+  background: linear-gradient(90deg, var(--juan-bg), transparent);
+  transition: all 0.3s;
+}
+
+.juan-header:hover {
+  background: linear-gradient(90deg, var(--juan-bg-hover), transparent);
+}
+
+.juan-num {
+  font-size: 14px;
+  color: var(--juan-color);
+  letter-spacing: 4px;
+  font-weight: 600;
+  font-family: 'Noto Sans SC', sans-serif;
+  min-width: 50px;
+}
+
+.juan-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e8e6e3;
+  letter-spacing: 4px;
+}
+
+.juan-meta {
+  margin-left: auto;
+  font-size: 12px;
+  color: #666;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+/* 篇网格 */
+.pian-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.pian-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 14px 16px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.pian-card:hover {
+  border-color: var(--juan-color);
+  background: rgba(255,255,255,0.04);
+  transform: translateX(4px);
+}
+
+.pian-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.pian-num {
+  font-size: 11px;
+  color: var(--juan-color);
+  font-weight: 600;
+  font-family: 'Noto Sans SC', sans-serif;
+  min-width: 28px;
+}
+
+.pian-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+.pian-chapters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.chapter-tag {
+  font-size: 10px;
+  color: #777;
+  background: rgba(255,255,255,0.03);
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: 'Noto Sans SC', sans-serif;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.pian-card:hover .chapter-tag {
+  color: #999;
+  background: rgba(255,255,255,0.06);
+}
+
+/* 底部 */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #444;
+  font-size: 12px;
+  letter-spacing: 4px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer .quote {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 12px;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+/* 响应式 */
+@media (max-width: 640px) {
+  .pian-grid { grid-template-columns: 1fr; }
+  .hero h1 { letter-spacing: 6px; }
+  .hero .stats { gap: 24px; }
+  .juan-name { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="seal">明</div>
+  <h1>明 本 论</h1>
+  <div class="subtitle">生 命 论 · 全 本 结 构</div>
+  <div class="stats">
+    <div class="stat"><div class="num">10</div><div class="label">卷</div></div>
+    <div class="stat"><div class="num">73</div><div class="label">篇</div></div>
+    <div class="stat"><div class="num">352</div><div class="label">章</div></div>
+    <div class="stat"><div class="num">∞</div><div class="label">命</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="juan-shou">
+    <h2>命 经</h2>
+    <div class="desc">卷首 · 开宗明义</div>
+  </div>
+
+  <div class="juan-shou">
+    <h2>命 经</h2>
+    <div class="desc">卷首 · 开宗明义</div>
+  </div>
+
+  <div class="juan" style="--juan-color:#DC143C;--juan-bg:#8B000022;--juan-bg-hover:#8B000044;">
+    <div class="juan-header">
+      <span class="juan-num">卷00</span>
+      <span class="juan-name">卷首_命经</span>
+      <span class="juan-meta">0篇 · 0章</span>
+    </div>
+    <div class="pian-grid">
+    </div>
+  </div>
+
+  <div class="juan" style="--juan-color:#16213e;--juan-bg:#1a1a2e22;--juan-bg-hover:#1a1a2e44;">
+    <div class="juan-header">
+      <span class="juan-num">卷01</span>
+      <span class="juan-name">卷一_存在论</span>
+      <span class="juan-meta">7篇 · 42章</span>
+    </div>
+    <div class="pian-grid">
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇一</span>
+          <span class="pian-name">在感：唯一无需怀疑的起点</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span><span class="chapter-tag">第七章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇七</span>
+          <span class="pian-name">生命唯物主义：立场</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇三</span>
+          <span class="pian-name">感与应：第一人称与第二人称</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇二</span>
+          <span class="pian-name">自指操作：生命的存在方式</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span><span class="chapter-tag">第七章</span><span class="chapter-tag">第八章</span><span class="chapter-tag">+2</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇五</span>
+          <span class="pian-name">形上形下</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇六</span>
+          <span class="pian-name">践演存在论</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span><span class="chapter-tag">第七章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇四</span>
+          <span class="pian-name">道论：一生道，道养一，一指万物</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="juan" style="--juan-color:#533483;--juan-bg:#0f346022;--juan-bg-hover:#0f346044;">
+    <div class="juan-header">
+      <span class="juan-num">卷02</span>
+      <span class="juan-name">卷二_认识论</span>
+      <span class="juan-meta">9篇 · 42章</span>
+    </div>
+    <div class="pian-grid">
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇一</span>
+          <span class="pian-name">缄默意识与明性：认识的存在论基础</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇七</span>
+          <span class="pian-name">物自体的消解与认识的践演基础</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇三</span>
+          <span class="pian-name">真理的标准：操作的成功</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇九</span>
+          <span class="pian-name">再演论：真理即对操作可再现结构的完整实现</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">## §1</span><span class="chapter-tag">## §2</span><span class="chapter-tag">## §3</span><span class="chapter-tag">## §4</span><span class="chapter-tag">## §5</span><span class="chapter-tag">## §6</span><span class="chapter-tag">## §7</span><span class="chapter-tag">## §8</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇二</span>
+          <span class="pian-name">认识的本质：操作的预期工具</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇五</span>
+          <span class="pian-name">f-层级：自在、自为与自觉</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇八</span>
+          <span class="pian-name">AI与明性：一个必须回答的新问题</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇六</span>
+          <span class="pian-name">意识形态：名实遮蔽的机制</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span><span class="chapter-tag">第七章</span><span class="chapter-tag">第八章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇四</span>
+          <span class="pian-name">理性与感性的颠倒</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="juan" style="--juan-color:#2d6a4f;--juan-bg:#1b433222;--juan-bg-hover:#1b433244;">
+    <div class="juan-header">
+      <span class="juan-num">卷03</span>
+      <span class="juan-name">卷三_群己论</span>
+      <span class="juan-meta">7篇 · 29章</span>
+    </div>
+    <div class="pian-grid">
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇一</span>
+          <span class="pian-name">人的本质：社会关系的总和与自指嵌套</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇七</span>
+          <span class="pian-name">法学专题</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇三</span>
+          <span class="pian-name">阶级：反自指的主体结构</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇二</span>
+          <span class="pian-name">分工、私有制与异化的起源</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇五</span>
+          <span class="pian-name">国家、法与意识形态机器</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇六</span>
+          <span class="pian-name">文化、语言与教育</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇四</span>
+          <span class="pian-name">社会健康的度量：六维框架</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="juan" style="--juan-color:#9d0208;--juan-bg:#6a040f22;--juan-bg-hover:#6a040f44;">
+    <div class="juan-header">
+      <span class="juan-num">卷04</span>
+      <span class="juan-name">卷四_异化论</span>
+      <span class="juan-meta">12篇 · 56章</span>
+    </div>
+    <div class="pian-grid">
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇一</span>
+          <span class="pian-name">商品、货币与资本</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇七</span>
+          <span class="pian-name">生态危机：资本与自然的对立</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇三</span>
+          <span class="pian-name">对劳动价值论的三个挑战</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇九</span>
+          <span class="pian-name">生命政治与反自指系统的权力分析</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇二</span>
+          <span class="pian-name">剩余价值与剥削</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇五</span>
+          <span class="pian-name">收编：反自指如何消化反抗</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇八</span>
+          <span class="pian-name">帝国主义与世界体系</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇六</span>
+          <span class="pian-name">数字资本主义</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇十</span>
+          <span class="pian-name">被异化的良善</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇十一</span>
+          <span class="pian-name">资本的辩经术：修正主义的名实分析</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇十二</span>
+          <span class="pian-name">大跃退：后毛泽东时代资本主义复辟的生命论清算</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span><span class="chapter-tag">第七章</span><span class="chapter-tag">第八章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇四</span>
+          <span class="pian-name">反自指展开的六个阶段</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="juan" style="--juan-color:#faa307;--juan-bg:#e85d0422;--juan-bg-hover:#e85d0444;">
+    <div class="juan-header">
+      <span class="juan-num">卷05</span>
+      <span class="juan-name">卷五_解放论</span>
+      <span class="juan-meta">8篇 · 40章</span>
+    </div>
+    <div class="pian-grid">
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇一</span>
+          <span class="pian-name">解放的本质</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span><span class="chapter-tag">第七章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇七</span>
+          <span class="pian-name">革命的战略与策略</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇三</span>
+          <span class="pian-name">正义的存在论基础：操作权复归</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇二</span>
+          <span class="pian-name">解放的三阶路径</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇五</span>
+          <span class="pian-name">公共权力的异化与回归</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇八</span>
+          <span class="pian-name">世界革命与人类解放</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇六</span>
+          <span class="pian-name">自由人联合体</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇四</span>
+          <span class="pian-name">社会主义经济：计划与市场</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="juan" style="--juan-color:#2a9d8f;--juan-bg:#26465322;--juan-bg-hover:#26465344;">
+    <div class="juan-header">
+      <span class="juan-num">卷06</span>
+      <span class="juan-name">卷六_实践论</span>
+      <span class="juan-meta">8篇 · 25章</span>
+    </div>
+    <div class="pian-grid">
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇一</span>
+          <span class="pian-name">明性修养论</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇七</span>
+          <span class="pian-name">践演明性思维方法</span>
+        </div>
+        <div class="pian-chapters"></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇三</span>
+          <span class="pian-name">情感操作论</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇二</span>
+          <span class="pian-name">日常操作论</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇五</span>
+          <span class="pian-name">明性辩证法：一种可操作的阅读与思考方法</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇八</span>
+          <span class="pian-name">时代警戒：理论用于预警而非解剖遗骸</span>
+        </div>
+        <div class="pian-chapters"></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇六</span>
+          <span class="pian-name">明本学术法：生命论视域下的学术生产全流程工作手册</span>
+        </div>
+        <div class="pian-chapters"></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇四</span>
+          <span class="pian-name">德性操作论</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="juan" style="--juan-color:#7209b7;--juan-bg:#3a0ca322;--juan-bg-hover:#3a0ca344;">
+    <div class="juan-header">
+      <span class="juan-num">卷07</span>
+      <span class="juan-name">卷七_格物论</span>
+      <span class="juan-meta">5篇 · 20章</span>
+    </div>
+    <div class="pian-grid">
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇一</span>
+          <span class="pian-name">自然与生命</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇三</span>
+          <span class="pian-name">技术与生产力</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇二</span>
+          <span class="pian-name">科学哲学：科学是什么，科学怎么发展</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇五</span>
+          <span class="pian-name">心理学与教育</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇四</span>
+          <span class="pian-name">医学与健康</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="juan" style="--juan-color:#dda15e;--juan-bg:#bc6c2522;--juan-bg-hover:#bc6c2544;">
+    <div class="juan-header">
+      <span class="juan-num">卷08</span>
+      <span class="juan-name">卷八_人文论</span>
+      <span class="juan-meta">6篇 · 39章</span>
+    </div>
+    <div class="pian-grid">
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇一</span>
+          <span class="pian-name">人的本质与发展</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇三</span>
+          <span class="pian-name">道德与价值</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇二</span>
+          <span class="pian-name">历史观</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇五</span>
+          <span class="pian-name">宗教与信仰</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇六</span>
+          <span class="pian-name">声与命：感在不同N值下的声学形态</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span><span class="chapter-tag">第七章</span><span class="chapter-tag">第八章</span><span class="chapter-tag">+5</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇四</span>
+          <span class="pian-name">艺术与美</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span><span class="chapter-tag">第七章</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="juan" style="--juan-color:#606c38;--juan-bg:#28361822;--juan-bg-hover:#28361844;">
+    <div class="juan-header">
+      <span class="juan-num">卷09</span>
+      <span class="juan-name">卷九_传统论</span>
+      <span class="juan-meta">5篇 · 24章</span>
+    </div>
+    <div class="pian-grid">
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇一</span>
+          <span class="pian-name">我们如何对待传统</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇三</span>
+          <span class="pian-name">中医与生命科学</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇二</span>
+          <span class="pian-name">周易与辩证法</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇五</span>
+          <span class="pian-name">道家与佛家</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇四</span>
+          <span class="pian-name">儒家的扬弃</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="juan" style="--juan-color:#370617;--juan-bg:#03071e22;--juan-bg-hover:#03071e44;">
+    <div class="juan-header">
+      <span class="juan-num">卷10</span>
+      <span class="juan-name">卷十_数学基础</span>
+      <span class="juan-meta">6篇 · 35章</span>
+    </div>
+    <div class="pian-grid">
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇一</span>
+          <span class="pian-name">PTC公理系统：操作范畴论的基础</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇三</span>
+          <span class="pian-name">量论的数学基础</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span><span class="chapter-tag">第七章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇二</span>
+          <span class="pian-name">核心定理链：从生命不可复制到资本同构</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇五</span>
+          <span class="pian-name">PTL践演迹语言</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span><span class="chapter-tag">第六章</span><span class="chapter-tag">第七章</span><span class="chapter-tag">第八章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇六</span>
+          <span class="pian-name">量子对应与前沿方向</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+
+      <div class="pian-card">
+        <div class="pian-title">
+          <span class="pian-num">篇四</span>
+          <span class="pian-name">f-层级的数学形式化</span>
+        </div>
+        <div class="pian-chapters"><span class="chapter-tag">第一章</span><span class="chapter-tag">第二章</span><span class="chapter-tag">第三章</span><span class="chapter-tag">第四章</span><span class="chapter-tag">第五章</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="quote">命不在天，在己。己者，行之不已也。</div>
+  明本论 · 生命论全本结构 · 万物皆新版
+</div>
+
+</body>
+</html>
