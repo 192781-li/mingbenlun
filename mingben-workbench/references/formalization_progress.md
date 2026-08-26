@@ -572,3 +572,78 @@
 - `mingben-workbench/scripts/ptl_type_checker.py` —— PTL类型检查器v0.3
 - `mingben-workbench/references/ptl_type_checker_report.md` —— v0.3可读报告
 - `mingben-workbench/references/ptl_type_checker_report.json` —— v0.3机器可读报告
+
+---
+
+## 2026-08-26（🔴致命级+🟠严重级问题集中解决）
+
+### 完成内容
+
+**1. 🔴 coqc编译环境问题解决**
+- 问题：coqc编译失败，退出码-1073741515（0xC0000135，DLL缺失）
+- 根因：直接调用coqc.exe没有设置PATH，依赖的DLL（libgmp-10.dll等40个）在Rocq的bin目录下找不到
+- 修复：每次运行coqc前先执行`$env:PATH = "C:\Rocq-Platform~9.0~2025.08\bin;$env:PATH"`和设置COQLIB
+- 验证：coqc --version返回"The Rocq Prover, version 9.0.1"，退出码0
+
+**2. 🔴 Coq ren_typed证明完成（Layer1.v完全编译通过）**
+- 问题：Layer1.v中ren_typed定理（改名保持类型）Admitted，无法编译通过
+- 修复过程：
+  - 用ASCII变量名（Gamma/Delta/xi）完全重写文件，避免PowerShell编码问题
+  - 7个类型规则分支（ty_zero/ty_tau/ty_out/ty_in/ty_par/ty_res/ty_rep）逐个补详细证明
+  - 修复ty_out分支：构造针对set_none上下文的Hinj和Hpts，证明n≠x、n≠y
+  - 修复ty_in分支：用f_equal把目标S n=S m转换成n=m，匹配Hinj结论
+  - 修复ty_res分支：同样用f_equal和simpl in *. exact Hn
+  - 修复n=0情况：simpl后目标和Hn相同，直接exact Hn
+- 结果：coqc编译退出码0，Layer1.v完全编译通过，0 Admitted
+- 文件：coq/theories/ALL/Layer1.v（458行，含语法+类型规则+12引理+ren_typed定理+subst_fresh推论+3个Example）
+
+**3. 🟠 旧格式引用迁移**
+- 建立映射表old_refs_mapping.json（7条最明确的映射）：
+  - 定理20→T001（生命不可资本化，437次）
+  - 定理3.2→T003（Π₂完全性，82次）
+  - 定理6.1→T009（一般不可克隆，51次）
+  - 定理5.1→T007（异化压缩）
+  - 定理5.3→T008（明性反转异化）
+  - 定理4.2→T005（明性幂等）
+  - 定理7.6→T011（革命级联）
+- 运行migrate_old_refs.py --apply：698处引用替换，88个文件修改
+- 剩余：7065-698=6367处旧引用待迁移（主要是定理1/2/3等各文档内部编号，无法全局映射，需后续人工处理）
+
+**4. 🟠 交叉引用更新检查**
+- 扫描全书"卷X篇Y"引用：38个唯一，110次出现
+- 有效性检查：107次有效（97.3%），3次无效
+- 3次无效引用都在"全本结构重组方案_最终版.md"中（描述重组前的状态，正常，非真正无效）
+- 结论：交叉引用更新问题已基本解决，全书大部分引用已对应重组后的目录结构
+
+### 四个优先级问题解决状态
+
+| 级别 | 问题 | 状态 |
+|------|------|------|
+| 🔴致命 | coqc编译环境（DLL缺失） | ✅ 解决 |
+| 🔴致命 | Coq ren_typed证明Admitted | ✅ 解决（Layer1.v编译通过） |
+| 🟠严重 | 旧格式引用7065次未迁移 | 🟡 部分解决（698处最明确的已迁移，剩余需人工） |
+| 🟠严重 | 交叉引用未更新 | ✅ 基本解决（107/110有效，3次在重组方案中正常） |
+
+### 发现的问题
+
+1. **旧引用迁移的映射表不完整**：7065处旧引用中只有698处能明确映射到T00X，剩余6367处是各文档内部的定理编号（定理1/2/3等），无法全局映射，需要后续逐文档人工处理。
+2. **coq_verify.py需要更新**：当前find_coqc()只检测路径，没有自动设置PATH和COQLIB环境变量，需要更新脚本。
+3. **卷一和卷二的篇数与重组方案不一致**：当前卷一有8篇（方案说7篇），卷二有9篇（方案说8篇），可能还有一些调整没完成，需后续确认。
+
+### 下次从哪里继续
+
+1. 更新coq_verify.py，自动设置PATH和COQLIB
+2. Coq Layer2（替换引理+主题约简+barbed双模拟）
+3. 逐文档人工迁移剩余旧格式引用
+4. 确认卷一和卷二的最终篇数
+5. PTL类型检查器v0.4（与Coq对齐类型规则）
+
+### 产出文件
+
+- `coq/theories/ALL/Layer1.v` —— 完全编译通过，0 Admitted
+- `mingben-workbench/references/old_refs_mapping.json` —— 7条映射
+- `mingben-workbench/references/cross_refs_scan.json` —— 交叉引用扫描报告
+- `mingben-workbench/references/cross_refs_validity.json` —— 交叉引用有效性检查报告
+- `scan_cross_refs.py` —— 交叉引用扫描脚本
+- `check_cross_refs.py` —— 交叉引用有效性检查脚本
+- `read_report.py` —— 报告读取辅助脚本
