@@ -81,7 +81,7 @@ def get_actual_chapter_count():
 
 def get_actual_appendix_count():
     """从附录目录获取实际附录数（排除00_附录标题.md）"""
-    app_dir = MODDIR / "10_附录"
+    app_dir = MODDIR / "12_附录"
     if not app_dir.exists(): return None
     return len([f for f in app_dir.glob("附录*.md")])
 

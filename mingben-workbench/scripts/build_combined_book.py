@@ -14,15 +14,15 @@ OUTPUT_DIR = REPO_ROOT / "book_combined"
 VOL_MAP = {
     "00_卷首_命经": "vol00_mingjing",
     "01_卷一_存在论": "vol01_cunzailun",
-    "02_卷二_认识论": "vol02_renshilun",
-    "03_卷三_群己论": "vol03_qunjilun",
-    "04_卷四_异化论": "vol04_yihualun",
-    "05_卷五_解放论": "vol05_jiefanglun",
-    "06_卷六_实践论": "vol06_shijianlun",
-    "07_卷七_格物论": "vol07_gewulun",
-    "08_卷八_人文论": "vol08_renwenlun",
-    "09_卷九_传统论": "vol09_chuantonglun",
-    "10_卷十_数学基础": "vol10_shuxuejichu",
+    "03_卷三_认识论": "vol02_renshilun",
+    "05_卷五_群己论": "vol03_qunjilun",
+    "06_卷六_异化论": "vol04_yihualun",
+    "07_卷七_解放论": "vol05_jiefanglun",
+    "04_卷四_实践论": "vol06_shijianlun",
+    "08_卷八_格物论": "vol07_gewulun",
+    "09_卷九_人文论": "vol08_renwenlun",
+    "10_卷十_传统论": "vol09_chuantonglun",
+    "11_卷十一_践演论": "vol10_shuxuejichu",
 }
 
 VOL_TITLES = {

@@ -56,7 +56,7 @@ NORM_WORDS = [
 ]
 
 # ── 跳过的文件（参考资料、附录、练习等非正文） ──
-SKIP_DIRS = ["10_参考资料", "10_附录", "09_练习"]
+SKIP_DIRS = ["10_参考资料", "12_附录", "09_练习"]
 SKIP_FILES = ["AGENTS.md", "manifest.txt", "auto_merge.py", "build_all.sh",
               "build.sh", "deep_check.py", "pipeline.sh", "quality_check.py",
               "renumber.py", "replace.sh", "smart_merge.py"]

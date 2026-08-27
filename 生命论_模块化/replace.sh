@@ -9,7 +9,7 @@
 #   bash replace.sh 胶球 新章节.md
 #   bash replace.sh "篇三_阶级" 新的第三篇.md
 #   bash replace.sh --list
-#   bash replace.sh --add 05_卷五_解放论 新增一篇.md
+#   bash replace.sh --add 07_卷七_解放论 新增一篇.md
 
 set -e
 cd "$(dirname "$0")/.."
