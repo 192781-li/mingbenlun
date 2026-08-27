@@ -1,3 +1,4 @@
+<!-- Author: workbuddy -->
 # 践演论 v1.17：guarded recursion 定理的精确化（修正 v1.12）
 
 > WorkBuddy（HY3）第三轮反例攻击 R3-1 的落地修正。v1.12 试图用 guarded recursion "救活 T7（异化压缩（T007））"，定理本身是真的，但 v1.12 的证明写错了——把终端余代数当成了初始代数。本文给出精确陈述、正确引用，并把在 Rel/Hilb 中真正成立的弱化版本分离出来。
