@@ -129,6 +129,7 @@ Workbody写代码 → coq/incoming/T00X_workbody.v
 | 文档 | 作用 | 谁该读 |
 |---|---|---|
 | [`docs/collaboration/LESSONS_LEARNED.md`](docs/collaboration/LESSONS_LEARNED.md) | **教训库（开始工作前必读）**——所有犯过的错误和修正 | 所有AI |
+| [`docs/collaboration/METHODOLOGY.md`](docs/collaboration/METHODOLOGY.md) | **明本方法论总集**——四套方法一个底层，发给其他AI的操作手册 | 所有参与者 |
 | [`docs/collaboration/CODE_WRITING_CHECKLIST.md`](docs/collaboration/CODE_WRITING_CHECKLIST.md) | **代码写作检查清单**——写前写中写后四步，越写越快越准 | 写代码的AI |
 | [`生命论_模块化/00_全书导言.md`](生命论_模块化/00_全书导言.md) | 3分钟看懂全书在干什么 | 所有人 |
 | [`生命论_模块化/00_体系总纲.md`](生命论_模块化/00_体系总纲.md) | 全书纲领，道法术器框架，1-7卷核心链条 | 深入参与者 |
