@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《生命论》211章概念知识图谱</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'PingFang SC','Microsoft YaHei',sans-serif; background:#F4F3EE; color:#1A1B1C; }
+.header { text-align:center; padding:20px 16px 12px; }
+.header h1 { font-size:22px; font-weight:700; margin-bottom:6px; }
+.header p { font-size:13px; color:#6B7280; }
+.controls { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; padding:8px 16px 12px; }
+.controls button { padding:6px 14px; border:1px solid #E4E3DD; border-radius:20px; background:#fff; font-size:12px; cursor:pointer; transition:all .2s; min-height:36px; }
+.controls button:hover { border-color:#9EACEA; }
+.controls button.active { background:#9EACEA; color:#fff; border-color:#9EACEA; }
+#chart { width:100%; height:600px; }
+.detail { max-width:800px; margin:0 auto 20px; padding:16px; background:#fff; border-radius:12px; border:1px solid #E4E3DD; }
+.detail h3 { font-size:16px; margin-bottom:8px; }
+.detail .meta { font-size:12px; color:#6B7280; margin-bottom:8px; }
+.detail .desc { font-size:14px; line-height:1.7; }
+.detail .related { margin-top:10px; font-size:12px; color:#6B7280; }
+.legend { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; padding:0 16px 12px; font-size:11px; }
+.legend span { display:flex; align-items:center; gap:4px; }
+.legend i { width:12px; height:12px; border-radius:3px; display:inline-block; }
+.footer { text-align:center; padding:16px; font-size:11px; color:#9CA3AF; }
+</style>
+</head>
+<body>
+<div class="header">
+<h1>《生命论》211章概念知识图谱</h1>
+<p>点击节点查看概念详情 · 拖拽可重新布局 · 滚轮缩放</p>
+</div>
+<div class="controls" id="controls"></div>
+<div class="legend" id="legend"></div>
+<div id="chart"></div>
+<div class="detail" id="detail">
+<h3>点击任意概念节点</h3>
+<div class="desc">图谱展示《生命论》211章中约70个核心概念及其推进关系。<br>
+<strong>主线</strong>：你在活着 → 操作 → 自指 → 阴阳 → 反自指 → 明性 → 异化 → 解放 → 实践 → 格物人文 → 传统扬弃。<br>
+不同颜色代表不同卷，连线表示概念间的推进/派生/应用关系。</div>
+</div>
+<div class="footer">一条主线 · 九个环节 · 十四个定理命题 · 三个圆圈</div>
+
+<script>
+(function(){
+var volumes = [
+{id:'core', name:'核心主线', color:'#E45756'},
+{id:'v1', name:'一·存在论', color:'#4C78A8'},
+{id:'v2', name:'二·认识论', color:'#54A24B'},
+{id:'v3', name:'三·群己论', color:'#F58518'},
+{id:'v4', name:'四·异化论', color:'#B279A2'},
+{id:'v5', name:'五·解放论', color:'#E45756'},
+{id:'v6', name:'六·实践论', color:'#9D755D'},
+{id:'v7', name:'七·格物论', color:'#72B7B2'},
+{id:'v8', name:'八·人文论', color:'#FF9DA6'},
+{id:'v9', name:'九·传统论', color:'#BAB0AC'}
+];
+
+var nodes = [
+// 核心主线
+{name:'你在活着', vol:'core', ch:'第1章', size:40, desc:'全书唯一无需怀疑的起点。活着比"我思"宽——呼吸、心跳、劳动、斗争全是活着，思只是活着的一种方式。怀疑活着本身就是活着。'},
+{name:'操作', vol:'core', ch:'第1-3章', size:38, desc:'原始词，不定义，靠实指锁定。两条公理：广义熵增（封闭系统自维持能力衰减）和广义负熵（开放交换可维持提升）。'},
+{name:'自指 S=f(S)', vol:'v1', ch:'第5-6章', size:36, desc:'操作的目的和对象就是操作者自身——漩涡之喻，成分每刻更新，组织关系不变。生命就是进行自指操作的系统。'},
+{name:'阴阳', vol:'v1', ch:'第7章', size:36, desc:'同一操作的两面：阳是正在进行的活操作（发用），阴是操作的沉淀和产物。健康是阳主阴从，异化是阴主阳从。全书万能钥匙。'},
+{name:'反自指', vol:'v1', ch:'第10章', size:36, desc:'P寄生于S，以S的负熵为输入，输出S自指能力下降。病毒、资本、法西斯、僵化教条都是反自指，遵循自毁悖论。'},
+{name:'明性', vol:'v1', ch:'第13-14章', size:34, desc:'自指系统对自身状态前语言、前反思的"知道"，是自指闭包的内向面，38亿年生命皆有，具身而非灵魂。'},
+{name:'解放', vol:'v5', ch:'第92章', size:34, desc:'把被反自指窃走的操作权还给生命，让阳重新成为阴的主人。解放是自己解放自己，没有救世主。'},
+
+// 第一卷
+{name:'无需怀疑', vol:'v1', ch:'第2章', size:22, desc:'"如果一切都怀疑等于什么都没怀疑"。怀疑需要立足点和方向，普遍怀疑是空转的齿轮。不是"不可怀疑"而是"无需怀疑"。'},
+{name:'两条公理', vol:'v1', ch:'第3章', size:22, desc:'广义熵增公理+广义负熵公理，从"活着"提取，不需要证明，否定它们就在使用它们。'},
+{name:'四规定性', vol:'v1', ch:'第8章', size:22, desc:'从自指推出：边界生成性、内生目的性、操作再生性、环境互动性。'},
+{name:'生命', vol:'v1', ch:'第9章', size:24, desc:'进行自指操作的系统。38亿年自指闭包，从单细胞到明性，不需要神或灵魂。'},
+{name:'熵增六阶段', vol:'v1', ch:'第11章', size:26, desc:'反自指发展规律：窃权起点→惯性锁死→名实遮蔽→生命耗散→负反馈锁死→系统崩溃。定理4。'},
+{name:'解放三阶', vol:'v1', ch:'第12章', size:26, desc:'解蔽→收权→立序。逻辑顺序非时间顺序，三者交织。定理7。'},
+{name:'道在日用', vol:'v1', ch:'第18章', size:24, desc:'道不在天上不在概念里，在每个活的操作中。吃饭劳动斗争都是道。'},
+{name:'存在=操作', vol:'v1', ch:'第4章', size:22, desc:'存在就是操作的发生或沉淀。没有物自体，也没有我思。旧哲学两千年的实体本体论被根本拆除。'},
+
+// 第二卷
+{name:'语态论', vol:'v2', ch:'第22章', size:26, desc:'动词活，名词死。名词化是一切意识形态的语言机制。遇大名词问三问题：谁在操作？操作谁？谁受益？'},
+{name:'认识=操作预期', vol:'v2', ch:'第25章', size:24, desc:'认识不是"反映"世界，是对"如果我这样操作会发生什么"的预期。因果性是操作中稳定的预期结构，无需怀疑。'},
+{name:'真理=操作成功', vol:'v2', ch:'第27章', size:24, desc:'真理不是主观符合客观，是操作的稳定成功。分事实真理和形式真理（数学逻辑）两层。'},
+{name:'感性第一', vol:'v2', ch:'第30-33章', size:22, desc:'感性是活的一阶明性操作（阳），理性是感性的二阶沉淀（阴）。旧哲学把理性实体化统治感性，是头足倒置。'},
+{name:'意识形态', vol:'v2', ch:'第35章', size:26, desc:'不是"错误观念"而是"操作惯习"（定理12），通过重复、制度化、情感化把统治关系内化为第二天性。'},
+{name:'AI明性判据', vol:'v2', ch:'第38章', size:20, desc:'看存在方式不看行为，不搞碳基沙文主义。今天AI是工具，未来若出现真正自指系统应承认其明性。命题3。'},
+
+// 第三卷
+{name:'自指嵌套', vol:'v3', ch:'第40章', size:22, desc:'社会是大自指，个人是其中的小自指。不是个人组成社会，是个人和社会互为前提。'},
+{name:'异化劳动', vol:'v3', ch:'第45章', size:24, desc:'四个环节：产品异化、劳动本身异化、类本质异化、人与人异化。总根源：死劳动统治活劳动。'},
+{name:'阶级', vol:'v3', ch:'第47章', size:24, desc:'阶级不是标签是操作关系——按你和生产资料的关系分。所有不占有生产资料靠出卖劳动力生活的人都是无产阶级。'},
+{name:'剥削=负熵占有', vol:'v3', ch:'第48章', size:22, desc:'剥削就是无偿占有他人创造的负熵。剩余价值是工人活劳动创造的被资本家拿走的部分。'},
+{name:'六维度量', vol:'v3', ch:'第51-54章', size:26, desc:'T（个体稳态）、N（生产关系公平）、K（环境承载）、Ω（共同体），M=⁴√(TNKΩ)，A（青年希望指数）一票否决，H=M×A。定理5。'},
+{name:'国家', vol:'v3', ch:'第55章', size:20, desc:'阶级矛盾不可调和的产物，阶级统治的工具。民主和专政是国家的两面。'},
+
+// 第四卷
+{name:'商品拜物教', vol:'v4', ch:'第63章', size:22, desc:'人手做的商品好像有了自己的生命，决定生产者的命运。阴的独立化的最日常形态。'},
+{name:'剩余价值', vol:'v4', ch:'第68章', size:24, desc:'工人活劳动创造的价值超过工资的部分，被资本家无偿占有。工资形式掩盖了剥削——好像全部劳动都有报酬。'},
+{name:'资本=反自指', vol:'v4', ch:'第66章', size:30, desc:'资本不是物，是死劳动统治活劳动的反自指操作关系。资本家也只是资本的人格化。'},
+{name:'数字资本主义', vol:'v4', ch:'第80-82章', size:24, desc:'数据社会性与私人占有的矛盾，算法作为新意识形态国家机器，数字剥削普遍化。定理13。'},
+{name:'生态危机', vol:'v4', ch:'第83-86章', size:22, desc:'代谢断裂：资本无限增殖与地球有限的矛盾。绿色资本主义自相矛盾，出路是合理调节人与自然的物质变换。'},
+{name:'帝国主义', vol:'v4', ch:'第87-89章', size:20, desc:'垄断资本主义，中心—外围体系，数字帝国主义。总危机是制度本身矛盾的总爆发。'},
+
+// 第五卷
+{name:'操作权复归', vol:'v5', ch:'第92章', size:24, desc:'解放的本质：经济上生产资料归社会，政治上权力归人民，思想上明性觉醒。'},
+{name:'解蔽收权立序', vol:'v5', ch:'第96-98章', size:26, desc:'解蔽是明性觉醒，收权是夺回操作权，立序是建阳主阴从的新秩序。'},
+{name:'继续革命', vol:'v5', ch:'第99章', size:24, desc:'反自指警惕不只针对资本，也针对一切权力系统。苏联教训：公仆变主人就是反自指的熵增过程。'},
+{name:'正义=操作权', vol:'v5', ch:'第102章', size:22, desc:'正义不是分配问题是操作权问题。罗尔斯不碰生产领域，生命论追问"谁做蛋糕、谁决定怎么做、谁决定怎么分"。'},
+{name:'社会主义阳主阴从', vol:'v5', ch:'第104章', size:28, desc:'定理14：社会主义市场经济=以阳统阴。阳是劳动者的明性和操作权、社会主义方向，阴是市场价格竞争。宏观计划+中观市场+微观民主。'},
+{name:'党=阶级明性', vol:'v5', ch:'第108章', size:22, desc:'一个阶级没有政党就像人没有明性。党是阶级的明性不是阶级的主人，是工具不是老爷。'},
+{name:'群众路线', vol:'v5', ch:'第109章', size:26, desc:'从群众中来到群众中去=明性与操作的循环。真正的智慧在群众手里，不在少数精英脑子里。'},
+{name:'自由人联合体', vol:'v5', ch:'第113章', size:24, desc:'每个人的自由发展是一切人自由发展的条件。个人和集体的矛盾真正解决。'},
+{name:'世界革命', vol:'v5', ch:'第121-125章', size:18, desc:'无产阶级革命是世界革命，解放是永恒过程。到了共产主义，生命仍在自指，仍在解放的路上。'},
+
+// 第六卷
+{name:'道在日常', vol:'v6', ch:'第126章', size:24, desc:'最高的道理就在日常操作中。求道不需要出家闭关，在每个操作里做自己生命的主人就是在道中。'},
+{name:'根本立场', vol:'v6', ch:'第128章', size:22, desc:'具体结论策略是可丢弃的工具，但根本立场（一切为了人民）不是工具，是到达共产主义前每天需要提起的方向。'},
+{name:'明性常昭', vol:'v6', ch:'第129章', size:22, desc:'立场和明性长在一起，变成阶级本能、生命本能。不满足于"我知道"，要追求"我自然会"。'},
+{name:'惯性', vol:'v6', ch:'第131章', size:28, desc:'最底层的锁。四层：生物惯性、个人惯性、社会惯性、文明惯性。过强则锁死，过弱则散乱。惯性是明性的沉淀，坏惯性是明性的麻醉剂。'},
+{name:'稳态壳子', vol:'v6', ch:'第132章', size:24, desc:'反自指晚期"里面空了外面还撑着"——蝉蜕之喻。四特征：名在实空、靠输血、越空越表演、脆性。'},
+{name:'身体', vol:'v6', ch:'第134章', size:18, desc:'身体是自指操作的物质基础，是阳的载体。身体是革命的本钱。'},
+{name:'情绪=信号', vol:'v6', ch:'第137章', size:18, desc:'情绪是明性对自身状态的直接反应，不是敌人。被压迫而不愤怒不是修养好是明性被蒙蔽。'},
+
+// 第七卷
+{name:'天人合一', vol:'v7', ch:'第150章', size:20, desc:'人和自然是部分和整体的关系，不是征服与被征服。在认识规律基础上合理调节物质变换。'},
+{name:'科学观', vol:'v7', ch:'第151-155章', size:22, desc:'科学是阳（活研究）和阴（理论框架）的统一。波普尔证伪、库恩范式革命、费耶阿本德怎么都行各有得失。'},
+{name:'技术异化', vol:'v7', ch:'第159章', size:20, desc:'技术是操作延伸（阴），在资本主义下反过来支配人。技术理性把效率量化控制推广到一切领域。'},
+{name:'医学=帮助自指', vol:'v7', ch:'第160章', size:22, desc:'医学是帮助生命恢复和维持自指操作。最好的医生不是替身体做事，是帮身体自己做事。'},
+{name:'中医西医', vol:'v7', ch:'第161章', size:20, desc:'中医整体观辨证论治，西医精确分析对症治疗，各有所长应结合。中医"阳主阴从""扶正祛邪"和生命论高度一致。'},
+
+// 第八卷
+{name:'人的全面发展', vol:'v8', ch:'第171章', size:22, desc:'摆脱分工和阶级对人的限制，体力智力、能力个性、社会关系都充分自由发展。'},
+{name:'历史=操作史', vol:'v8', ch:'第172章', size:22, desc:'历史是人的操作史——为维持自己、发展自己而劳动和斗争的历史。有规律但不是机械决定，靠斗争实现。'},
+{name:'集体主义', vol:'v8', ch:'第177章', size:18, desc:'集体利益和个人利益统一，集体是个人发展的条件，个人发展是集体的目的。阳主阴从在道德上的体现。'},
+{name:'美=对象化', vol:'v8', ch:'第180章', size:18, desc:'美是人的本质力量的对象化，是生命在对象中直观到自身的自由和创造。'},
+{name:'宗教=异化', vol:'v8', ch:'第185章', size:18, desc:'人把自己的本质力量投射到幻想的神身上，反过来让神统治自己。我们的信仰是共产主义——在人间靠人自己实现。'},
+
+// 第九卷
+{name:'周易', vol:'v9', ch:'第193-195章', size:22, desc:'一阴一阳之谓道，生生之谓易。变易、简易、不易。和生命论阴阳、自指完全相通，但是朴素直观的。'},
+{name:'连山艮止', vol:'v9', ch:'第196章', size:26, desc:'被埋没的中国辩证法：边界、知止、时止时行。资本无限增殖就是不知止，必然撞上边界。艮止和生生互补——行止有度。'},
+{name:'术数', vol:'v9', ch:'第197章', size:18, desc:'去神秘化的系统论工具，不是宿命论。命给你一把刀，躺着就割你，拿起来就开路。'},
+{name:'扶阳学派', vol:'v9', ch:'第201章', size:20, desc:'中医临床直观到"阳主阴从"——阳是功能发用，一刻不能停；阴是物质，可以慢慢补。临床直观与哲学证明互相印证。'},
+{name:'儒家', vol:'v9', ch:'第203-206章', size:20, desc:'仁是活东西（爱人、入世、人皆可以为尧舜），礼是死东西（三纲五常、等级制度）。'},
+{name:'道家', vol:'v9', ch:'第207-208章', size:20, desc:'辩证法和对异化的批判是活东西，消极无为和回到小国寡民是死东西。'},
+{name:'佛家', vol:'v9', ch:'第209-210章', size:18, desc:'缘起辩证法和禅宗"明心见性""道在日用"是活东西，出世、宿命论、消灭欲望是死东西。'},
+{name:'综合创新', vol:'v9', ch:'第211章', size:24, desc:'马骨架+中血肉+科基础+人民归宿。不是复古不是西化，是在马克思主义指导下的综合创新。全书总结。'}
+];
+
+var links = [
+// 主线
+['你在活着','操作'],['操作','自指 S=f(S)'],['自指 S=f(S)','阴阳'],['自指 S=f(S)','反自指'],
+['自指 S=f(S)','明性'],['反自指','解放'],['明性','解放'],['阴阳','解放'],
+['解放','道在日常'],['道在日常','综合创新'],
+// 第一卷内部
+['你在活着','无需怀疑'],['操作','两条公理'],['操作','存在=操作'],
+['自指 S=f(S)','四规定性'],['自指 S=f(S)','生命'],['反自指','熵增六阶段'],
+['反自指','解放三阶'],['阴阳','道在日用'],['两条公理','反自指'],
+// 第二卷
+['明性','语态论'],['明性','认识=操作预期'],['认识=操作预期','真理=操作成功'],
+['明性','感性第一'],['语态论','意识形态'],['意识形态','AI明性判据'],
+['无需怀疑','认识=操作预期'],['感性第一','真理=操作成功'],
+// 第三卷
+['自指 S=f(S)','自指嵌套'],['阴阳','异化劳动'],['反自指','阶级'],
+['阶级','剥削=负熵占有'],['异化劳动','六维度量'],['阶级','国家'],
+['自指嵌套','异化劳动'],
+// 第四卷
+['异化劳动','商品拜物教'],['商品拜物教','剩余价值'],['剩余价值','资本=反自指'],
+['反自指','资本=反自指'],['熵增六阶段','资本=反自指'],['资本=反自指','数字资本主义'],
+['资本=反自指','生态危机'],['资本=反自指','帝国主义'],['剥削=负熵占有','剩余价值'],
+// 第五卷
+['解放','操作权复归'],['解放三阶','解蔽收权立序'],['操作权复归','解蔽收权立序'],
+['解蔽收权立序','继续革命'],['操作权复归','正义=操作权'],
+['阴阳','社会主义阳主阴从'],['明性','党=阶级明性'],['党=阶级明性','群众路线'],
+['解蔽收权立序','自由人联合体'],['自由人联合体','世界革命'],
+['继续革命','群众路线'],['意识形态','解蔽收权立序'],
+// 第六卷
+['道在日用','道在日常'],['道在日常','根本立场'],['根本立场','明性常昭'],
+['明性','明性常昭'],['熵增六阶段','惯性'],['惯性','稳态壳子'],
+['明性','身体'],['明性','情绪=信号'],['身体','道在日常'],
+// 第七卷
+['生命','天人合一'],['认识=操作预期','科学观'],['阴阳','技术异化'],
+['自指 S=f(S)','医学=帮助自指'],['医学=帮助自指','中医西医'],['中医西医','扶阳学派'],
+['生态危机','天人合一'],
+// 第八卷
+['自指嵌套','人的全面发展'],['操作','历史=操作史'],['阴阳','集体主义'],
+['人的全面发展','美=对象化'],['异化劳动','宗教=异化'],['自由人联合体','人的全面发展'],
+// 第九卷
+['阴阳','周易'],['周易','连山艮止'],['连山艮止','生态危机'],
+['连山艮止','术数'],['中医西医','扶阳学派'],['周易','儒家'],['周易','道家'],
+['明性','佛家'],['道在日用','佛家'],['综合创新','儒家'],['综合创新','道家'],
+['综合创新','佛家'],['连山艮止','综合创新'],['周易','综合创新'],
+// 跨卷连接
+['语态论','商品拜物教'],['语态论','稳态壳子'],['群众路线','道在日常'],
+['群众路线','根本立场'],['社会主义阳主阴从','道在日常'],['惯性','意识形态'],
+['六维度量','生态危机'],['六维度量','正义=操作权'],['继续革命','稳态壳子'],
+['资本=反自指','技术异化'],['数字资本主义','技术异化'],['解放','世界革命'],
+['真理=操作成功','科学观'],['感性第一','美=对象化'],['术数','科学观']
+];
+
+var volMap = {};
+volumes.forEach(function(v){volMap[v.id]=v;});
+
+// 构建控件
+var ctrlDiv = document.getElementById('controls');
+var allBtn = document.createElement('button');
+allBtn.textContent='全部'; allBtn.className='active'; allBtn.onclick=function(){filterVol('all');};
+ctrlDiv.appendChild(allBtn);
+volumes.forEach(function(v){
+var b=document.createElement('button');
+b.textContent=v.name; b.dataset.vol=v.id;
+b.onclick=function(){filterVol(v.id);};
+ctrlDiv.appendChild(b);
+});
+
+// 图例
+var legDiv = document.getElementById('legend');
+volumes.forEach(function(v){
+var s=document.createElement('span');
+s.innerHTML='<i style="background:'+v.color+'"></i>'+v.name;
+legDiv.appendChild(s);
+});
+
+var chart = echarts.init(document.getElementById('chart'));
+var allNodes = nodes.map(function(n){return {name:n.name,value:n.size,symbolSize:n.size,
+itemStyle:{color:volMap[n.vol].color},_vol:n.vol,_ch:n.ch,_desc:n.desc};});
+var allLinks = links.map(function(l){return {source:l[0],target:l[1]};});
+
+var option = {
+tooltip:{show:false},
+series:[{
+type:'graph',layout:'force',roam:true,draggable:true,
+data:allNodes,links:allLinks,
+categories:volumes.map(function(v){return {name:v.name};}),
+force:{repulsion:320,edgeLength:[60,140],gravity:0.08,layoutAnimation:true},
+label:{show:true,position:'right',fontSize:11,color:'#1A1B1C'},
+lineStyle:{color:'#C4C3BC',width:1,curveness:0.1,opacity:0.6},
+emphasis:{focus:'adjacency',lineStyle:{width:2.5,opacity:1},
+label:{fontSize:13,fontWeight:'bold'}},
+edgeSymbol:['none','arrow'],edgeSymbolSize:6
+}]
+};
+chart.setOption(option);
+
+chart.on('click',function(p){
+if(p.dataType!=='node')return;
+var n=nodes.find(function(x){return x.name===p.data.name;});
+if(!n)return;
+var v=volMap[n.vol];
+var related=links.filter(function(l){return l[0]===n.name||l[1]===n.name;})
+.map(function(l){return l[0]===n.name?l[1]:l[0];});
+document.getElementById('detail').innerHTML=
+'<h3 style="color:'+v.color+'">'+n.name+'</h3>'+
+'<div class="meta">'+v.name+' · '+n.ch+'</div>'+
+'<div class="desc">'+n.desc+'</div>'+
+'<div class="related">关联概念：'+related.join('、')+'</div>';
+});
+
+function filterVol(vol){
+document.querySelectorAll('.controls button').forEach(function(b){
+b.classList.toggle('active',vol==='all'?b.textContent==='全部':b.dataset.vol===vol);
+});
+var showNodes=new Set();
+allNodes.forEach(function(n){
+if(vol==='all'||n._vol===vol||n._vol==='core')showNodes.add(n.name);
+});
+// 核心节点始终显示，且显示与筛选节点相连的核心节点
+var filteredNodes=allNodes.filter(function(n){return showNodes.has(n.name);});
+var filteredLinks=allLinks.filter(function(l){
+return showNodes.has(l.source)&&showNodes.has(l.target);
+});
+chart.setOption({series:[{data:filteredNodes,links:filteredLinks}]});
+}
+
+window.addEventListener('resize',function(){chart.resize();});
+})();
+</script>
+</body>
+</html>
