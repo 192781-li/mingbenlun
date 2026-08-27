@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生命论（明本论）· 可视化中心</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #12121c;
+    --gold: #d4a853;
+    --gold-light: #f0d68a;
+    --gold-dim: #8a6d2f;
+    --red: #c44040;
+    --blue: #4a6a8a;
+    --text: #e8e4dc;
+    --text-dim: #8a8680;
+    --text-bright: #fff;
+    --line: #2a2a3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans SC', sans-serif;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(212,168,83,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(196,64,64,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .header .subtitle {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 6px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 900;
+    color: var(--text-bright);
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+  }
+  .header .tagline {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .header .tagline em {
+    color: var(--gold-light);
+    font-style: normal;
+  }
+
+  .author {
+    margin-top: 24px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    color: var(--gold-dim);
+    letter-spacing: 3px;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+  }
+
+  .viz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+
+  .viz-card {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 28px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s ease;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .viz-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .viz-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  .viz-card:hover::before { opacity: 1; }
+
+  .viz-card .card-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .viz-card .card-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 8px;
+  }
+  .viz-card .card-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .viz-card .card-arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 24px;
+    color: var(--gold-dim);
+    font-size: 18px;
+    transition: transform 0.3s;
+  }
+  .viz-card:hover .card-arrow {
+    transform: translateX(4px);
+    color: var(--gold);
+  }
+
+  .core-thesis {
+    background: linear-gradient(135deg, rgba(212,168,83,0.08), rgba(212,168,83,0.02));
+    border: 1px solid var(--gold-dim);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .core-thesis .thesis-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: 600;
+    color: var(--text-bright);
+    line-height: 2;
+  }
+  .core-thesis .thesis-text em {
+    color: var(--gold-light);
+    font-style: normal;
+  }
+
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+  .footer a {
+    color: var(--gold-dim);
+    text-decoration: none;
+  }
+  .footer a:hover { color: var(--gold); }
+
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 10px 24px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 6px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.3s;
+  }
+  .github-link:hover {
+    background: rgba(212,168,83,0.1);
+    border-color: var(--gold);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="subtitle">生 命 论 · 明 本 论</div>
+    <h1>可视化中心</h1>
+    <p class="tagline">
+      从"<em>在感</em>"出发的哲学体系，用数学形式化生命、自由、异化、革命。<br>
+      感先于操作，操作先于实体；<em>自指操作即生命</em>。
+    </p>
+    <div class="author">作者：北原慢热</div>
+  </div>
+
+  <div class="section-label">交 互 式 可 视 化</div>
+
+  <div class="viz-grid">
+    <a class="viz-card" href="assets/html/阶级形成三条线联动_可视化.html">
+      <div class="card-icon">⚔️</div>
+      <div class="card-title">阶级形成三条线联动</div>
+      <div class="card-desc">操作权结构线 × F1→F2→F3明性线 × 阶级动态定义线。资产阶级与无产阶级的镜像对称形成过程，含马克思原文引用。</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="viz-card" href="assets/html/生命论_概念图谱_升级版.html">
+      <div class="card-icon">🕸️</div>
+      <div class="card-title">核心概念图谱</div>
+      <div class="card-desc">全书核心概念的关系网络，概念之间的推导和依赖关系，一图看懂生命论的概念架构。</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="viz-card" href="assets/html/生命论_概念知识图谱.html">
+      <div class="card-icon">📚</div>
+      <div class="card-title">211章概念推进全图</div>
+      <div class="card-desc">211章的概念推进全图，按章节顺序展现概念递进关系，一条主线穿到底。</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="viz-card" href="assets/html/生命论哲学坐标图.html">
+      <div class="card-icon">🧭</div>
+      <div class="card-title">哲学坐标图</div>
+      <div class="card-desc">生命论在中西哲学坐标系中的定位，与其他哲学流派的精确位置关系。</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="viz-card" href="assets/html/谱系总览图.html">
+      <div class="card-icon">👤</div>
+      <div class="card-title">人物谱系图</div>
+      <div class="card-desc">全本涉及的哲学家、思想家、历史人物的谱系关系。</div>
+      <div class="card-arrow">→</div>
+    </a>
+  </div>
+
+  <div class="core-thesis">
+    <div class="thesis-text">
+      知道怎么<em>反自指</em>，才知道怎么<em>正自指</em>。<br>
+      找最坚硬的锤头，把无产阶级的锁链砸断，<br>
+      让<em>人人如龙</em>。
+    </div>
+  </div>
+
+  <div class="footer">
+    <a class="github-link" href="https://github.com/192781-li/mingbenlun">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub 仓库
+    </a>
+    <p style="margin-top:20px;">生命论（明本论）· 北原慢热 · 2026</p>
+  </div>
+
+</div>
+</body>
+</html>
