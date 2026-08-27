@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阶级形成的三条线联动理论 · 生命论</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #12121c;
+    --gold: #d4a853;
+    --gold-light: #f0d68a;
+    --gold-dim: #8a6d2f;
+    --red: #c44040;
+    --red-light: #e87070;
+    --blue: #4a6a8a;
+    --blue-light: #7a9aba;
+    --blue-dim: #2a3a4a;
+    --text: #e8e4dc;
+    --text-dim: #8a8680;
+    --text-bright: #fff;
+    --line: #2a2a3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans SC', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* 背景纹理 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(212,168,83,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(74,106,138,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 标题区 */
+  .header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .header .subtitle {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 8px;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeIn 1s 0.2s forwards;
+  }
+  .header h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    color: var(--text-bright);
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 1s 0.4s forwards;
+  }
+  .header .core-thesis {
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeIn 1s 0.6s forwards;
+  }
+  .header .core-thesis em {
+    color: var(--gold-light);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  /* 操作权三角区 */
+  .power-triangle {
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: fadeIn 1s 0.8s forwards;
+  }
+  .power-triangle .section-label {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+  }
+  .triangle-svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+
+  /* 主可视化区 */
+  .main-viz {
+    position: relative;
+    margin-bottom: 80px;
+  }
+
+  .lines-container {
+    display: grid;
+    grid-template-columns: 1fr 120px 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  /* 中间F轴 */
+  .f-axis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    padding: 40px 0;
+  }
+  .f-axis::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom,
+      transparent 0%,
+      var(--gold-dim) 10%,
+      var(--gold) 50%,
+      var(--gold-dim) 90%,
+      transparent 100%);
+    transform: translateX(-50%);
+  }
+  .f-node {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .f-node.visible {
+    animation: nodeAppear 0.6s forwards;
+  }
+  @keyframes nodeAppear {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .f-node .f-label {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .f-node .f-name {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    letter-spacing: 2px;
+  }
+  .f-node .f-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    max-width: 100px;
+    line-height: 1.5;
+    opacity: 0.7;
+  }
+
+  /* 两侧阶级列 */
+  .class-column {
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 30px;
+  }
+  .class-column.proletariat { padding-right: 30px; }
+  .class-column.bourgeoisie { padding-left: 30px; }
+
+  .stage-card {
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.4s ease;
+    cursor: default;
+  }
+  .class-column.bourgeoisie .stage-card {
+    transform: translateX(30px);
+  }
+  .stage-card.visible {
+    animation: cardSlide 0.6s forwards;
+  }
+  @keyframes cardSlide {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .stage-card.prole {
+    background: linear-gradient(135deg, rgba(196,64,64,0.08), rgba(212,168,83,0.05));
+    border-left: 3px solid var(--red);
+  }
+  .stage-card.bourg {
+    background: linear-gradient(135deg, rgba(74,106,138,0.08), rgba(74,106,138,0.03));
+    border-right: 3px solid var(--blue);
+  }
+  .class-column.bourgeoisie .stage-card.bourg {
+    text-align: right;
+  }
+
+  .stage-card .stage-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .prole .stage-tag { color: var(--red-light); }
+  .bourg .stage-tag { color: var(--blue-light); }
+
+  .stage-card .stage-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 8px;
+  }
+  .stage-card .stage-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+  .stage-card .stage-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* 联动连线 */
+  .connection-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .conn-line {
+    stroke-dasharray: 4 4;
+    stroke-width: 1;
+    fill: none;
+    opacity: 0.3;
+  }
+  .conn-line.prole { stroke: var(--red); }
+  .conn-line.bourg { stroke: var(--blue); }
+
+  /* 马克思原文区 */
+  .marx-section {
+    margin-top: 80px;
+    opacity: 0;
+    animation: fadeIn 1s 2s forwards;
+  }
+  .marx-section .section-label {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+  }
+  .marx-quotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .marx-quote {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .marx-quote:hover {
+    border-color: var(--gold-dim);
+  }
+  .marx-quote::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 48px;
+    color: var(--gold-dim);
+    opacity: 0.3;
+    line-height: 1;
+  }
+  .marx-quote blockquote {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+  .marx-quote cite {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-style: normal;
+    padding-left: 20px;
+    display: block;
+  }
+
+  /* 核心命题区 */
+  .thesis-section {
+    margin-top: 80px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s 2.3s forwards;
+  }
+  .thesis-box {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(212,168,83,0.1), rgba(212,168,83,0.03));
+    border: 1px solid var(--gold-dim);
+    border-radius: 12px;
+    padding: 40px 60px;
+    max-width: 800px;
+  }
+  .thesis-box .thesis-label {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+  }
+  .thesis-box .thesis-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 700;
+    color: var(--text-bright);
+    line-height: 1.8;
+  }
+  .thesis-box .thesis-text em {
+    color: var(--gold-light);
+    font-style: normal;
+  }
+
+  /* 底部说明 */
+  .footer-note {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeIn 1s 2.6s forwards;
+  }
+
+  /* 流动粒子 */
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .particle.prole {
+    background: var(--red);
+    box-shadow: 0 0 8px var(--red);
+  }
+  .particle.bourg {
+    background: var(--blue);
+    box-shadow: 0 0 8px var(--blue);
+  }
+
+  /* 响应式 */
+  @media (max-width: 768px) {
+    .lines-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .f-axis {
+      flex-direction: row;
+      padding: 20px 0;
+      order: -1;
+    }
+    .f-axis::before {
+      top: 50%;
+      left: 0;
+      right: 0;
+      bottom: auto;
+      width: auto;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent);
+      transform: translateY(-50%);
+    }
+    .class-column.proletariat,
+    .class-column.bourgeoisie {
+      padding: 0;
+    }
+    .class-column.bourgeoisie .stage-card.bourg {
+      text-align: left;
+    }
+    .stage-card.bourg {
+      border-right: none;
+      border-left: 3px solid var(--blue);
+    }
+    .thesis-box {
+      padding: 30px 24px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 标题 -->
+  <div class="header">
+    <div class="subtitle">生命论 · 阶级形成理论</div>
+    <h1>阶级形成的三条线联动</h1>
+    <p class="core-thesis">
+      阶级不是固定的身份标签，是在<em>两条线</em>上的动态位置——<br>
+      外部的<em>操作权结构</em>与内部的<em>明性过程</em>联动，<em>第三条线</em>据此动态定义阶级。
+    </p>
+  </div>
+
+  <!-- 第一条线：操作权三角 -->
+  <div class="power-triangle">
+    <div class="section-label">第 一 条 线 · 外 部 结 构</div>
+    <svg class="triangle-svg" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- 三角形连线 -->
+      <line x1="250" y1="20" x2="80" y2="170" stroke="#3a3a4a" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <line x1="250" y1="20" x2="420" y2="170" stroke="#3a3a4a" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <line x1="80" y1="170" x2="420" y2="170" stroke="#3a3a4a" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+      <!-- 政治 -->
+      <circle cx="250" cy="20" r="32" fill="rgba(212,168,83,0.1)" stroke="#d4a853" stroke-width="1.5"/>
+      <text x="250" y="16" text-anchor="middle" fill="#d4a853" font-size="13" font-weight="700" font-family="Noto Serif SC">政治操作权</text>
+      <text x="250" y="32" text-anchor="middle" fill="#8a8680" font-size="10">国家机器·暴力·规则</text>
+
+      <!-- 经济 -->
+      <circle cx="80" cy="170" r="32" fill="rgba(196,64,64,0.08)" stroke="#c44040" stroke-width="1.5"/>
+      <text x="80" y="166" text-anchor="middle" fill="#e87070" font-size="13" font-weight="700" font-family="Noto Serif SC">经济支撑</text>
+      <text x="80" y="182" text-anchor="middle" fill="#8a8680" font-size="10">生产资料·资本·分配</text>
+
+      <!-- 文化 -->
+      <circle cx="420" cy="170" r="32" fill="rgba(74,106,138,0.08)" stroke="#4a6a8a" stroke-width="1.5"/>
+      <text x="420" y="166" text-anchor="middle" fill="#7a9aba" font-size="13" font-weight="700" font-family="Noto Serif SC">文化意义</text>
+      <text x="420" y="182" text-anchor="middle" fill="#8a8680" font-size="10">意识形态·教育·媒体</text>
+
+      <!-- 中心标注 -->
+      <text x="250" y="105" text-anchor="middle" fill="#5a5650" font-size="11" font-family="Noto Serif SC">三者联动 · 互相再生产</text>
+      <text x="250" y="122" text-anchor="middle" fill="#5a5650" font-size="10">经济是基础 · 政治是保障 · 文化是合法性</text>
+    </svg>
+  </div>
+
+  <!-- 主可视化：第二条线（F轴）+ 两侧阶级形成 -->
+  <div class="main-viz">
+    <div class="section-label" style="text-align:center;font-size:12px;color:var(--text-dim);letter-spacing:4px;margin-bottom:30px;">
+      第 二 条 线 · 内 部 意 识 （F1 → F2 → F3）
+    </div>
+
+    <div class="lines-container" id="linesContainer">
+      <!-- 左侧：无产阶级 -->
+      <div class="class-column proletariat">
+        <div class="stage-card prole" data-stage="1">
+          <div class="stage-tag">无 产 阶 级 · F1</div>
+          <div class="stage-title">被剥削的痛苦</div>
+          <div class="stage-text">
+            <strong>被剥夺操作权</strong>：不掌握生产资料，只能出卖劳动力；被排除在政治权力之外；被资产阶级意识形态支配。<br><br>
+            加班的疲惫、工资的微薄、老板的压迫、失业的恐惧、看不起病的焦虑——<strong>感受到了，但还不知道为什么</strong>。
+          </div>
+        </div>
+
+        <div class="stage-card prole" data-stage="2">
+          <div class="stage-tag">无 产 阶 级 · F2</div>
+          <div class="stage-title">自发斗争</div>
+          <div class="stage-text">
+            在<strong>既定资本主义模型内</strong>操作：罢工、谈判、要求涨工资、个体反抗。<br><br>
+            不质疑资本主义本身，只要求更好的条件。分散的、有限的——成果容易被资本收回。但这是从痛苦到自觉的<strong>必经之路</strong>。
+          </div>
+        </div>
+
+        <div class="stage-card prole" data-stage="3">
+          <div class="stage-tag">无 产 阶 级 · F3</div>
+          <div class="stage-title">阶级自觉</div>
+          <div class="stage-text">
+            <strong>跳出模型，看见阶级结构本身</strong>：认识到自己是一个阶级，认识到资本的剥削本质，认识到只有推翻资本主义才能真正解放。<br><br>
+            从"我是一个工人"到<strong>"我们是无产阶级"</strong>——位置转换，明性亮起。这是从"自在阶级"变成"自为阶级"的标志。
+          </div>
+        </div>
+      </div>
+
+      <!-- 中间：F轴 -->
+      <div class="f-axis">
+        <div class="f-node" data-stage="1">
+          <div class="f-label">F1</div>
+          <div class="f-name">感</div>
+          <div class="f-desc">缄默意识<br>先于分析的<br>直接抓取</div>
+        </div>
+        <div class="f-node" data-stage="2">
+          <div class="f-label">F2</div>
+          <div class="f-name">操作</div>
+          <div class="f-desc">在模型中<br>践演<br>分析填充</div>
+        </div>
+        <div class="f-node" data-stage="3">
+          <div class="f-label">F3</div>
+          <div class="f-name">明性</div>
+          <div class="f-desc">看见模型<br>是模型<br>位置转换</div>
+        </div>
+      </div>
+
+      <!-- 右侧：资产阶级 -->
+      <div class="class-column bourgeoisie">
+        <div class="stage-card bourg" data-stage="1">
+          <div class="stage-tag">资 产 阶 级 · F1</div>
+          <div class="stage-title">增殖的欲望</div>
+          <div class="stage-text">
+            <strong>掌握操作权</strong>：占有生产资料/资本，通过经济权获得政治权，通过文化权维护合法性。<br><br>
+            对财富的欲望、对竞争的恐惧、对破产的焦虑——资本的灵魂开始在人身上发芽。
+          </div>
+        </div>
+
+        <div class="stage-card bourg" data-stage="2">
+          <div class="stage-tag">资 产 阶 级 · F2</div>
+          <div class="stage-title">自觉执行资本职能</div>
+          <div class="stage-text">
+            在<strong>资本模型内</strong>操作：投资、剥削、竞争、积累、扩大再生产。<br><br>
+            不是个人选择，是结构迫使——不拼命赚钱就会在竞争中破产。人被资本逻辑驱动，<strong>以为自己在支配资本，实际是资本在支配人</strong>。
+          </div>
+        </div>
+
+        <div class="stage-card bourg" data-stage="3">
+          <div class="stage-tag">资 产 阶 级 · F3</div>
+          <div class="stage-title">资本的明性</div>
+          <div class="stage-text">
+            <strong>看见增殖逻辑并自觉执行</strong>：认识到资本的本性就是增殖，认识到剥削是"必要的"，认识到自己是"资本的人格化"。<br><br>
+            与无产阶级F3的根本区别：<strong>看见模型且处在模型中</strong>——不是要跳出模型，是要让模型更高效地运转。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第三条线：动态定义 -->
+  <div class="thesis-section">
+    <div class="thesis-box">
+      <div class="thesis-label">第 三 条 线 · 动 态 定 义</div>
+      <div class="thesis-text">
+        不是<em>先有阶级身份</em>再有行为和意识——<br>
+        而是因为一个人在<em>操作权结构</em>上的位置、<br>
+        在<em>F1→F2→F3明性过程</em>中的状态，<br>
+        我们才<em>动态地</em>称之为某个阶级。<br><br>
+        <span style="font-size:0.75em;color:var(--text-dim);font-weight:400;">
+          资产阶级可以背叛自己的阶级（马克思、恩格斯）；<br>
+          无产阶级可以被收收买（工人贵族）。<br>
+          阶级是化生的——!-模态就在νF₂中，条件具备就重新长出来。
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 马克思原文 -->
+  <div class="marx-section">
+    <div class="section-label">马 克 思 的 严 格 表 述</div>
+    <div class="marx-quotes">
+      <div class="marx-quote">
+        <blockquote>作为资本家，他只是人格化的资本。他的灵魂就是资本的灵魂。而资本只有一种生活本能，这就是增殖自身，创造剩余价值，用自己的不变部分即生产资料吮吸尽可能多的剩余劳动。</blockquote>
+        <cite>——《资本论》第一卷，《马克思恩格斯文集》第5卷，人民出版社2009年版，第269页</cite>
+      </div>
+      <div class="marx-quote">
+        <blockquote>我决不用玫瑰色描绘资本家和地主的面貌。不过这里涉及的人，只是经济范畴的人格化，是一定的阶级关系和利益的承担者。</blockquote>
+        <cite>——《资本论》第一卷第一版序言</cite>
+      </div>
+      <div class="marx-quote">
+        <blockquote>只有在越来越多地占有抽象财富成为他的活动的唯一动机时，他才作为资本家或作为人格化的、有意志和意识的资本执行职能。</blockquote>
+        <cite>——《资本论》第一卷第四章，货币转化为资本</cite>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer-note">
+    生命论（明本论）· 阶级形成的三条线联动理论 · 2026-08-27<br>
+    F1/F2/F3四层同构：数学层（f¹自在/f²自为/f³自觉）· 存在论层（感/操作/明性）· 应用层（题感/分析/元认知）· 政治经济学层（痛苦/斗争/阶级自觉）
+  </div>
+
+</div>
+
+<script>
+// 滚动动画
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+// F节点动画
+document.querySelectorAll('.f-node').forEach((node, i) => {
+  setTimeout(() => observer.observe(node), i * 200);
+});
+
+// 卡片动画（按stage分组，同stage一起出现）
+document.querySelectorAll('.stage-card').forEach(card => {
+  observer.observe(card);
+});
+
+// 为同stage的卡片设置延迟
+document.querySelectorAll('.stage-card').forEach(card => {
+  const stage = parseInt(card.dataset.stage);
+  card.style.animationDelay = (stage * 0.3) + 's';
+});
+document.querySelectorAll('.f-node').forEach(node => {
+  const stage = parseInt(node.dataset.stage);
+  node.style.animationDelay = (stage * 0.3) + 's';
+});
+
+// 流动粒子效果
+function createParticle(side) {
+  const container = document.getElementById('linesContainer');
+  const rect = container.getBoundingClientRect();
+  const particle = document.createElement('div');
+  particle.className = 'particle ' + side;
+
+  const startX = side === 'prole' ? 0 : rect.width;
+  const startY = Math.random() * rect.height;
+  const midX = rect.width / 2;
+  const midY = startY + (Math.random() - 0.5) * 100;
+  const endX = side === 'prole' ? rect.width * 0.4 : rect.width * 0.6;
+  const endY = midY + (Math.random() - 0.5) * 80;
+
+  particle.style.left = startX + 'px';
+  particle.style.top = startY + 'px';
+  particle.style.opacity = '0';
+  container.appendChild(particle);
+
+  const duration = 3000 + Math.random() * 2000;
+  const startTime = performance.now();
+
+  function animate(now) {
+    const elapsed = now - startTime;
+    const t = Math.min(elapsed / duration, 1);
+
+    // 贝塞尔曲线
+    const x = (1-t)*(1-t)*startX + 2*(1-t)*t*midX + t*t*endX;
+    const y = (1-t)*(1-t)*startY + 2*(1-t)*t*midY + t*t*endY;
+
+    particle.style.left = x + 'px';
+    particle.style.top = y + 'px';
+    particle.style.opacity = t < 0.2 ? t/0.2 : (t > 0.8 ? (1-t)/0.2 : 1);
+
+    if (t < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      particle.remove();
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+// 定期生成粒子
+setInterval(() => {
+  if (document.hidden) return;
+  createParticle(Math.random() > 0.5 ? 'prole' : 'bourg');
+}, 800);
+</script>
+</body>
+</html>
