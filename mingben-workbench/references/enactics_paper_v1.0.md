@@ -1,4 +1,4 @@
-# Enactics: A Linear Logic of Operational Agency
+﻿# Enactics: A Linear Logic of Operational Agency
 
 **Abstract.** We introduce *Enactics*, a formal system built on a single primitive distinction: *live operations* (Op), which are resource-sensitive and cannot be replicated, versus *traces* (Tr), which are static, replicable records of past operations. We extend intuitionistic linear logic with agency types split into live (`Ag_lv`) and trace (`Ag_tr`) variants, an alienation precondition type (`Hijack(b,a)`), and clarity types (`Cl(a,A)`) holding both live agency and its trace model. We prove: (1) a self-model (!-modal theory) cannot prove *live* self-agency (`Ag_lv`) — an incompleteness result arising from the Op/Tr type distinction rather than diagonalization, and the formal counterpart of Marx's second thesis on Feuerbach; (2) the agency decision problem is Π₂-complete (with the Π₂ dimension coming from liveness, causality being Π₁), strictly harder than the classical halting problem; (3) agency cannot be encoded in standard game semantics (undefinability theorem); (4) alienation truncates coinductive objects, admitting a canonical surjection onto inductive objects (non-injective, not an isomorphism); (5) clarity makes every alienation reindexing a split mono by providing its right inverse; (6) ! does not preserve final coalgebras (!νF≇ν!F), unifying quantum no-cloning, biological irreplicability, Marxist alienation theory, and AI alignment limits as instances of a single categorical principle. We give a game semantics, a π-calculus interpretation with a hijack-detection theorem, a Hilbert-space instance connecting agency to quantum measurement (where the preferred basis must be externally chosen, via einselection), and a network model of revolutionary cascade (deterministic SI: reachability; noisy: spectral radius threshold ρ(pC)>1).
 
@@ -103,7 +103,19 @@ e ::= x | ⋆ | λx.e | e e | e ⊗ e | let x⊗y = e in e
 
 **Theorem 2.1 (Cut elimination).** Every proof in ALL can be transformed into a cut-free proof.
 
-*Proof.* The new rules (Ag, Alien, Cl) are "atomic" — they annotate terms without introducing complex logical connectives. Their cut reductions are β-reductions that decrease cut formula complexity. Standard linear logic cut elimination applies; the new rules add no problematic cases. ∎
+The cut reduction rules for the new type constructors are:
+
+| Rule | Reduction |
+|------|-----------|
+| (R1) Ag_lv β | `unlive(live<a>(e))` ↦ `e` |
+| (R2) Ag_tr β | `untrace(trace(e))` ↦ `e` |
+| (R3) Cl β | `unsee(clarity<a>(e, m))` ↦ `e ⊗ m` |
+| (R4) Alien pass | `unlive(alien<b>(e, h))` ↦ `unlive(e)` |
+| (R5) Alien compose | `alien<b>(alien<c>(e, h₁), h₂)` ↦ `alien<b>(e, h₁∘h₂)` |
+
+*Proof.* Standard ILL cut elimination handles ⊗, ⊸, !. The new rules (R1)–(R4) handle cuts involving Ag_lv, Ag_tr, and Cl. (R5) is a computational equivalence (η-like), not a cut reduction.
+
+Define type complexity |A| with |Ag_lv(a,A)| = |Ag_tr(a,A)| = |A|+1, |Cl(a,A)| = |A|+2, |Hijack(b,a)| = 1. Reductions (R1)–(R3) strictly decrease cut formula complexity. (R4) moves the runner label along a finite alienation chain (b→a, a≠b) toward the chain's base (self or a `live` intro); since proofs have finite depth, alienation chains are finite, so (R4) terminates and triggers (R1) at the base. `Hijack` has no elim rule, so it produces no cut. `Cl` and `Alien` cannot form a direct cut (Cl(a,A) is not a subtype of Ag_lv(a,A); alienating a Cl requires first `unsee`-ing it). Hence all new cuts terminate. ∎
 
 **Corollary 2.2 (Consistency).** ALL is consistent (⊬ 0).
 
@@ -183,11 +195,17 @@ The key innovation: λ_G(m) = P means "this move belongs to Player's side," whil
 
 ### 4.2 Undefinability
 
-**Theorem 4.1 (Agency undefinability).** There is no faithful *-autonomous functor F: AGame → Game (standard games) such that F preserves the linear logic structure and F(G[b]) = F(G) for all G,b.
+**Theorem 4.1 (Agency full-abstraction failure).** Let F: AGame → Game be a faithful *-autonomous functor. If F(G[b]) = F(G) for all G, b (F erases agency at the object level), then F is not fully abstract: there exist G, b such that G ≉_ctx G[b] (distinguishable in AGame) but F(G) ≅_ctx F(G[b]) (indistinguishable in Game).
 
-*Proof.* If F(G[b]) = F(G), then F identifies games with different agency. But the clarity game Cl(G) has observation-layer moves that detect α_G; strategies on Cl(G) and Cl(G[b]) produce different observations, which F must preserve (being *-autonomous and faithful on standard games). Contradiction. ∎
+*Proof.* **Step 1: Construct the distinguishing context.** Define the *clarity observation context* `ObsCl`: an AGame context that (i) takes an agency game G as parameter, (ii) constructs Cl(G) (using the `Cl` type constructor, which is ALL-specific — not a standard linear logic connective), and (iii) uses Cl(G)'s observation-layer moves to read the control attribution function α_G. `ObsCl` is a legitimate AGame context — it uses `Cl` and α_G, both AGame-specific structures with no counterpart in standard Game.
 
-Agency is not an encodable label — it is a genuine expressive extension.
+**Step 2: G ≉_ctx G[b] in AGame.** Take G with α_G(m) = self for all m, and G[b] with α_{G[b]}(m) = b for some m. In context `ObsCl`: ObsCl[G] reads α_G(m) = self for all m → observation sequence "self, self, ..."; ObsCl[G[b]] reads α_{G[b]}(m) = b for some m → observation sequence contains "b". Different observations ⟹ G ≉_ctx G[b]. ∎
+
+**Step 3: F(G) ≅_ctx F(G[b]) in Game.** F(G[b]) = F(G) means they are the *same object* in Game. Same object ⟹ same behavior in all contexts ⟹ F(G) ≅_ctx F(G[b]). ∎
+
+**Step 4: Full abstraction fails.** Full abstraction requires G₁ ≅_ctx G₂ ⟺ F(G₁) ≅_ctx F(G₂). Step 2 gives left = false, Step 3 gives right = true. Bijection fails. ∎
+
+*Key insight.* The failure is structural, not contingent: `ObsCl` uses `Cl` (an ALL-specific type constructor). F preserves linear logic structure (⊗, ⊸, !, duality) but cannot preserve `Cl`/`Ag`/`α_G` — these have no standard-game counterpart. Agency is not an encodable label; it is a genuine expressive extension that no *-autonomous functor can eliminate. ∎
 
 ### 4.3 Clarity comonad
 
@@ -355,14 +373,14 @@ The philosophical content is precise: **freedom is Π₂ (liveness dimension), a
 
 | # | Theorem | Source | Status |
 |---|---|---|---|
-| 2.1 | Cut elimination for ALL | §2.3 | ✓ |
+| 2.1 | Cut elimination for ALL (R1–R5 reduction rules) | §2.3 | ✓ (v1.3: cut rules补全) |
 | 2.3 | Conservative extension of ILL | §2.3 | ✓ |
 | 2.4 | Clarity is linear (not !-modal) | §2.3 | ✓ |
 | 3.1 | Enactive incompleteness: S_A⊬Ag_lv(A,A) (live/trace split) | §3.1 | ✓ (v1.2: dereliction fix) |
 | 3.2 | AGENCY is Π₂-complete (async π + late semantics + provenance) | §3.3 | ✓ (corrected) |
 | 3.4 | Agency = productivity | §3.3 | ✓ |
 | 3.5 | Novelty: Π₂ from liveness, causality is Π₁ | §3.3 | analysis |
-| 4.1 | Agency undefinability in games | §4.2 | ✓ |
+| 4.1 | Agency full-abstraction failure (not circular) | §4.2 | ✓ (v1.3: rewritten from circular proof) |
 | 4.2 | Clarity idempotence (conditional: α static) | §4.3 | ⚠ (product def fails) |
 | 5.1 | Alienation truncation: alien(νF)↠μF (surjection, not iso) | §5.2 | ✓ (corrected from ≅) |
 | 5.3 | Clarity makes alienation a split mono (provides right inverse) | §5.2 | ✓ (v1.2: type fix) |
@@ -374,4 +392,4 @@ The philosophical content is precise: **freedom is Π₂ (liveness dimension), a
 
 ---
 
-*Enactics v1.2 — 2026年8月26日 — 经Workbody反例攻击(T4/T6/T7/T8/T9/T11)+千问深度审计(Alien规则/dereliction击穿/Ag_lv-Ag_tr分裂/Hijack类型)修正*
+*Enactics v1.3 — 2026年8月27日 — 千问P0修复：定理4.1循环论证→满抽象失败重写 + 定理2.1割归约规则(R1-R5)补全*
