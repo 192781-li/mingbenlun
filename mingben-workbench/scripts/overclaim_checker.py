@@ -49,6 +49,26 @@ OLD_THEME_REF_PATTERNS = [
     r'推论\s*\d+', r'定义\s*\d+', r'命题\s*\d+',
 ]
 
+# 退化情形检查：绝对化数学陈述必须排除退化情形
+# 教训来源：T009原陈述"在任何LNL范畴中不存在η:νF→!νF"，终范畴1是反例
+DEGENERATE_PATTERNS = [
+    (r'任何\s*(LNL|线性非线性|范畴|模型|拓扑空间|群|环|域)', '任何范畴/模型类陈述'),
+    (r'所有\s*(LNL|线性非线性|范畴|模型|拓扑空间|群|环|域)', '所有范畴/模型类陈述'),
+    (r'任意\s*(LNL|线性非线性|范畴|模型|拓扑空间|群|环|域)', '任意范畴/模型类陈述'),
+    (r'每一个\s*(LNL|线性非线性|范畴|模型|拓扑空间|群|环|域)', '每一个范畴/模型类陈述'),
+    (r'在\s*(所有|任何|任意|全部)\s*(范畴|模型|结构|系统|空间)\s*(中|里|下)', '在所有范畴/模型中'),
+    (r'(不存在|没有|不成立)\s*(η|态射|函子|自然变换).*(任何|所有|任意|每一个)', '不存在性的全称陈述'),
+]
+
+# 已经排除退化情形的标记（附近有这些词则不报警）
+DEGENERATE_EXEMPTIONS = [
+    r'非退化', r'non-degenerate', r'nondegenerate',
+    r'排除.*退化', r'除.*退化', r'除了.*终范畴', r'除了.*初始范畴',
+    r'非平凡', r'nontrivial', r'non-trivial',
+    r'至少.*对象', r'多于一个对象', r'有足够多的对象',
+    r'在非退化条件下', r'假设非退化',
+]
+
 # 证明标记（如果附近有这些词，认为有证明支撑）
 PROOF_MARKERS = [
     r'证明', r'证\b', r'Proof', r'QED', r'∎', r'证毕',
@@ -88,6 +108,7 @@ class OverclaimChecker:
             self._check_absolute(filepath, lineno, line, lines)
             self._check_novelty(filepath, lineno, line, lines)
             self._check_old_ref(filepath, lineno, line)
+            self._check_degenerate_cases(filepath, lineno, line, lines)
 
     def _has_proof_nearby(self, lines, lineno, window=5):
         """检查附近是否有证明标记"""
@@ -165,6 +186,37 @@ class OverclaimChecker:
                     'context': line.strip()[:100]
                 })
 
+    def _check_degenerate_cases(self, filepath, lineno, line, lines):
+        """检查绝对化数学陈述是否排除了退化情形
+
+        教训来源：T009原陈述"在任何LNL范畴中不存在η:νF→!νF"，
+        终范畴1（只有一个对象的退化范畴）是反例——所有对象同构，η当然存在。
+        哲学对应：谈"生命不可克隆"的前提是系统里还有"生命"这回事可言，
+        退化系统（终范畴）中活过程与静态状态的区别本身就消失了。
+        """
+        for pattern, name in DEGENERATE_PATTERNS:
+            matches = list(re.finditer(pattern, line))
+            for m in matches:
+                self.stats['degenerate'] += 1
+                # 检查附近是否已经排除了退化情形
+                start = max(0, lineno - 3)
+                end = min(len(lines), lineno + 3)
+                nearby = '\n'.join(lines[start:end])
+                exempt = False
+                for ex in DEGENERATE_EXEMPTIONS:
+                    if re.search(ex, nearby, re.IGNORECASE):
+                        exempt = True
+                        break
+                if not exempt:
+                    self.issues.append({
+                        'file': str(filepath.relative_to(self.root_dir)),
+                        'line': lineno,
+                        'severity': 'warning',
+                        'category': 'degenerate',
+                        'message': f'{name} "{m.group()}" 未排除退化情形。教训：T009"在任何LNL范畴中不存在η"被终范畴1反驳。请加"非退化/non-degenerate"条件或明确排除终范畴/初始范畴等退化结构。哲学上：绝对陈述必须考虑系统塌缩后区分本身消失的情况。',
+                        'context': line.strip()[:120]
+                    })
+
     def run(self):
         """运行检查"""
         md_files = list(self.root_dir.rglob('*.md'))
@@ -193,6 +245,7 @@ class OverclaimChecker:
         report.append(f'| 绝对化表述 | {self.stats["absolute"]} |')
         report.append(f'| 新颖性声称 | {self.stats["novelty"]} |')
         report.append(f'| 可变定理编号 | {self.stats["old_ref"]} |')
+        report.append(f'| 未排除退化情形 | {self.stats["degenerate"]} |')
         report.append(f'| **发现问题** | **{len(self.issues)}** |')
         report.append('')
 
