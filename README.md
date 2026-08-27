@@ -22,6 +22,7 @@
 - [可视化](#可视化)
 - [核心定理](#核心定理践演论)
 - [快速导航](#快速导航)
+- [长谈实录](#长谈实录)
 - [协作方式](#协作方式)
 - [永久原则](#永久原则)
 
@@ -85,6 +86,7 @@
 | [211章概念知识图谱](docs/assets/html/生命论_概念知识图谱.html) | 211章概念推进全图 |
 | [哲学坐标图](docs/assets/html/生命论哲学坐标图.html) | 生命论在中西哲学坐标系中的定位 |
 | [人物谱系图](docs/assets/html/谱系总览图.html) | 全本哲学家、思想家谱系关系 |
+| [践演-迁演磁极螺旋](docs/visualizations/践演迁演磁极螺旋.png) | 多条文明脉络在空间交织（迁演）、时间沉积（践演），磁极可翻转 |
 
 ---
 
@@ -97,6 +99,18 @@
 | T007 | 异化压缩 | `alien(νF) ↠ μF` | 异化把无限可能压到有限现实，不可逆地丢失信息 | 待重写 |
 | T009 | 一般不可克隆 | `!νF ≇ ν!F` | 生命不可被复制为静态状态 | 待重写 |
 | T011 | 革命级联 | 噪声版`ρ(pC)>1` | 星星之火可以燎原 | 待重写 |
+
+---
+
+## 长谈实录
+
+> 理论是在对话中长出来的。实录保留原话，包括粗口和情绪——F1层的真实记录和理论同等重要。
+
+| 实录 | 主题 | 核心突破 |
+|---|---|---|
+| [第一夜：从鞍钢宪法到磁极螺旋](docs/长谈实录/长谈实录_第一夜_从鞍钢宪法到磁极螺旋_20260828.md) | 阳主阴从的制度化 | 法律=操作权沉积、三域对应四规定性、毛泽东缺漏、歪阴也是阴、反者道之动修正、磁极螺旋、从中心点拔起 |
+| [金句录·第一次长谈](docs/金句录_第一次长谈_20260828.md) | 50条精华句子 | 阴阳与制度、法律、历史观、阶级、方法论 |
+| [北原慢热私人表述录](docs/北原慢热私人表述录.md) | F1层的真实流露 | 天赋与种子、反骨、四维史观、语言的局限 |
 
 ---
 
@@ -115,6 +129,7 @@
 | [docs/collaboration/METHODOLOGY.md](docs/collaboration/METHODOLOGY.md) | **明本方法论总集**：四套方法一个底层 |
 | [docs/collaboration/LESSONS_LEARNED.md](docs/collaboration/LESSONS_LEARNED.md) | **教训库（工作前必读）**：所有犯过的错误 |
 | [docs/collaboration/CODE_WRITING_CHECKLIST.md](docs/collaboration/CODE_WRITING_CHECKLIST.md) | 代码写作检查清单+8个数学证明思维种子 |
+| [docs/collaboration/CONVERSATION_CHECKLIST.md](docs/collaboration/CONVERSATION_CHECKLIST.md) | **对话协作检查清单**：什么时候沉积、私话怎么留、哲学注释规则 |
 | [docs/notes/明本论_写作避坑铁律.md](docs/notes/明本论_写作避坑铁律.md) | 15大类写作问题验尸报告 |
 | [docs/collaboration/信息获取手册.md](docs/collaboration/信息获取手册.md) | B站/抖音/微博等全平台信息获取方法 |
 
