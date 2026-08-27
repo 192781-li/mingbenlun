@@ -65,6 +65,7 @@ Workbody写Coq代码 → coq/incoming/T00X_workbody.v
 | 文件 | 作用 |
 |---|---|
 | `docs/collaboration/LESSONS_LEARNED.md` | **教训库（开始工作前必读）**——所有犯过的错误、修正、教训，不读就干活等于闭着眼跳坑 |
+| `docs/collaboration/CODE_WRITING_CHECKLIST.md` | **代码写作检查清单**——写前/写中/写后/持续四步，让代码越写越快越准 |
 | `生命论_模块化/00_全书导言.md` | 新来的人先看这个，3分钟看懂全书 |
 | `生命论_模块化/00_体系总纲.md` | 全书纲领，道法术器框架，1-7卷核心链条 |
 | `生命论_模块化/00_卷首_命经/` | 文言凝练，十二篇 |
