@@ -1,36 +1,33 @@
-# 备份目录（自动生成，不纳入版本控制）
-backup/
 
-# Python缓存
-__pycache__/
-*.pyc
-*.pyo
-
-# 临时文件
-*.tmp
-*.temp
-*.log
-
-# 操作系统文件
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Coq编译产物
-*.vo
-*.vos
-*.vok
-*.glob
 *.aux
 .*.aux
+backup/
+# Coq编译产物
+.DS_Store
+*.glob
+# IDE
+.idea/
 .lia.cache
-
-# 自动生成的输出（每次跑脚本重新生成）
+*.log
+output/
 outputs/项目状态报告.md
 outputs/项目状态日报.md
+*.pyc
+__pycache__/
+*.pyo
+# Python缓存
+*.swo
+*.swp
+*.temp
+Thumbs.db
+*.tmp
+*.vo
+*.vok
+*.vos
+.vscode/
+# 临时文件
+# 备份目录（自动生成，不纳入版本控制）
+# 操作系统文件
 明本方法论总集.docx
+生命论_模块化/output/
+# 自动生成的输出（每次跑脚本重新生成）
