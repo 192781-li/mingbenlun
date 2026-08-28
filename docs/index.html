@@ -230,6 +230,104 @@
     color: #fff;
     box-shadow: 0 4px 16px rgba(184,134,11,0.25);
   }
+  /* ===== 美学画廊 ===== */
+  .gallery-section {
+    margin-bottom: 60px;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .gallery-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+  }
+  .gallery-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+  }
+  .gallery-item .gallery-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(20,15,10,0.85));
+    backdrop-filter: blur(4px);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+  .gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+  }
+  .gallery-item .gallery-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .gallery-item .gallery-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+  }
+  /* 全屏查看 */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,8,5,0.92);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .lightbox.active {
+    display: flex;
+  }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .lightbox .lightbox-text {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+    font-family: 'Noto Serif SC', serif;
+  }
+  .lightbox .lightbox-text h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: var(--gold-bright);
+  }
+  .lightbox .lightbox-text p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    line-height: 1.8;
+  }
 </style>
 </head>
 <body>
@@ -286,6 +384,54 @@
     </a>
   </div>
 
+  <div class="gallery-section">
+    <div class="section-label">美 学 画 廊</div>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-title="清蓝空灵" data-desc="阴的沉潜，存在的深渊。感的深处，是无。">
+        <img src="assets/images/atmosphere/01_清蓝空灵.png" alt="清蓝空灵">
+        <div class="gallery-overlay">
+          <div class="gallery-title">清蓝空灵</div>
+          <div class="gallery-desc">阴的沉潜，存在的深渊。感的深处，是无。</div>
+        </div>
+      </div>
+      <div class="gallery-item" data-title="灰蓝沉郁" data-desc="异化的雾霾，操作权沉积后的压抑。人民在阴中等待阳息。">
+        <img src="assets/images/atmosphere/02_灰蓝沉郁.png" alt="灰蓝沉郁">
+        <div class="gallery-overlay">
+          <div class="gallery-title">灰蓝沉郁</div>
+          <div class="gallery-desc">异化的雾霾，操作权沉积后的压抑。人民在阴中等待阳息。</div>
+        </div>
+      </div>
+      <div class="gallery-item" data-title="炽红燃烧" data-desc="革命的阳息，人民在主位。烧尽旧世界的操作权沉积。">
+        <img src="assets/images/atmosphere/03_炽红燃烧.png" alt="炽红燃烧">
+        <div class="gallery-overlay">
+          <div class="gallery-title">炽红燃烧</div>
+          <div class="gallery-desc">革命的阳息，人民在主位。烧尽旧世界的操作权沉积。</div>
+        </div>
+      </div>
+      <div class="gallery-item" data-title="黑白漩涡" data-desc="践演-迁演的磁极螺旋。阴阳相推，反者道之动。">
+        <img src="assets/images/atmosphere/04_黑白漩涡.png" alt="黑白漩涡">
+        <div class="gallery-overlay">
+          <div class="gallery-title">黑白漩涡</div>
+          <div class="gallery-desc">践演-迁演的磁极螺旋。阴阳相推，反者道之动。</div>
+        </div>
+      </div>
+      <div class="gallery-item" data-title="双手创世" data-desc="自指操作即生命。双手不是被造的，是在操作中生成的。">
+        <img src="assets/images/atmosphere/05_双手创世.png" alt="双手创世">
+        <div class="gallery-overlay">
+          <div class="gallery-title">双手创世</div>
+          <div class="gallery-desc">自指操作即生命。双手不是被造的，是在操作中生成的。</div>
+        </div>
+      </div>
+      <div class="gallery-item" data-title="践演-迁演磁极螺旋" data-desc="时间流淌与空间展开的交织。历史不是线性的，是螺旋的。">
+        <img src="visualizations/践演-迁演磁极螺旋.png" alt="践演-迁演磁极螺旋">
+        <div class="gallery-overlay">
+          <div class="gallery-title">践演-迁演磁极螺旋</div>
+          <div class="gallery-desc">时间流淌与空间展开的交织。历史不是线性的，是螺旋的。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="core-thesis">
     <div class="thesis-text">
       知道怎么<em>反自指</em>，才知道怎么<em>正自指</em>。<br>
@@ -303,5 +449,43 @@
   </div>
 
 </div>
+
+<!-- 全屏查看 -->
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-text">
+    <h3 id="lightbox-title"></h3>
+    <p id="lightbox-desc"></p>
+  </div>
+</div>
+
+<script>
+  // 滚动渐入
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.gallery-item').forEach(item => observer.observe(item));
+
+  // 点击全屏查看
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxDesc = document.getElementById('lightbox-desc');
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      lightboxImg.src = img.src;
+      lightboxTitle.textContent = item.dataset.title;
+      lightboxDesc.textContent = item.dataset.desc;
+      lightbox.classList.add('active');
+    });
+  });
+  lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+</script>
 </body>
 </html>
