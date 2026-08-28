@@ -1,3 +1,7 @@
+<div align="right">
+  <img src="docs/assets/images/rick_avatar.png" width="72" height="72" style="border-radius:50%;border:2px solid #d4a853">
+</div>
+
 # 生命论（明本论）
 
 > **主人：北原慢热**
