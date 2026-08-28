@@ -53,6 +53,8 @@ def clean_text(content):
     """清理不可见字符和格式污染。"""
     for ch in ['\u200b', '\u200c', '\u200d', '\ufeff']:
         content = content.replace(ch, '')
+    # 防止 --- 紧跟文字被解析为 setext 二级标题
+    content = re.sub(r'([^\n])\n---\n', r'\1\n\n---\n', content)
     return content
 
 

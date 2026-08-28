@@ -61,12 +61,16 @@ $$\Gamma \vdash e : A$$
 其中$\Gamma$是线性上下文（每个变量用恰好一次）。
 
 关键规则：
+
 - **恒等**：$x:A \vdash x:A$
 - **替换**：$\Gamma \vdash e:A, \Delta, x:A \vdash e':B \Rightarrow \Gamma, \Delta \vdash e'[e/x]:B$
+
 - **函数引入**：$\Gamma, x:A \vdash e:B \Rightarrow \Gamma \vdash (\lambda(x)e): A \multimap B$
 - **函数应用**：$\Gamma \vdash f:A \multimap B, \Delta \vdash e:A \Rightarrow \Gamma, \Delta \vdash (f e):B$
+
 - **!-引入**：$\Gamma \vdash e:A \Rightarrow !\Gamma \vdash (bang e):!A$（只有!-模态变量可以复制）
 - **反射**：$\Gamma \vdash e:A \Rightarrow \Gamma \vdash (reflect e):明(A)$
+
 - **还原**：$\Gamma \vdash e:明(A) \Rightarrow \Gamma \vdash (reify e):A$
 
 ### 第五章 操作语义
@@ -77,10 +81,13 @@ PTL的操作语义基于GoI（Geometry of Interaction）：执行就是让信号
 
 - **函数应用**：$((\lambda(x)e) v) \to e[v/x]$
 - **张量分解**：$(let (pair x y) = (pair v1 v2) in e) \to e[v1/x][v2/y]$
+
 - **!-消除**：$(let (bang x) = (bang v) in e) \to e[v/x]$（x可以多次使用）
 - **μ-消除**：$(unfold (fold v)) \to v$
+
 - **ν-消除**：$(counfold (cofold v)) \to v$（生产性：每一步都有产出）
 - **反射**：$(reflect v) \to \langle v \rangle$（标记为"被看见的"）
+
 - **还原**：$(reify \langle v \rangle) \to v$（取消标记）
 
 ### 生产性（守护递归）
@@ -133,4 +140,5 @@ PTL解释器实现了8个示例，全部通过：
 | 践演位置 | 无（所有操作都是无位置的） | 公理0：每个态射有位置p | 程序的第一人称视角，位置不可物化 |
 
 ---
+
 *（PTL践演迹语言完。下一篇讲量子对应与前沿方向：Hilb^ω的PTC验证、线性逻辑与量子不可克隆、GoI动态语义、未解决的猜想。）*

@@ -34,6 +34,7 @@ bash 生命论_模块化/build.sh --check      # 只跑质检
 ```
 
 输出：
+
 - `生命论合订本_最新.md`
 - `生命论（明本论）合订本.html`
 
@@ -52,8 +53,10 @@ lark-cli drive +upload --file "生命论（明本论）合订本.html" \
 ### 第二章 2. 章号必须连续
 
 全书章号从第1章连续编号到最后一章（当前266章）。新增章节时：
+
 - 先确认插入位置前后章号：`grep -rn "^### 第" 生命论_模块化/`
 - 如果在中间插入，后续所有章号必须顺延（用脚本批量改，不要手改）
+
 - 章号用中文数字（第一百一十二章，不是第112章）
 - 质检会检查连续性和重复
 
@@ -70,19 +73,25 @@ lark-cli drive +upload --file "生命论（明本论）合订本.html" \
 每次修改后推荐 `bash sync.sh "提交信息"`（自动构建验证+提交+推送），或手动 `git add -A && git commit -m "描述" && git push`。
 
 **远程仓库（永久记录）：**
+
 - 远程名：origin
 - 地址：https://github.com/192781-li/mingbenlun.git
+
 - 推送命令：`git push -u origin main`（首次）/ `git push`（后续）
 - 注意：本地git无远程配置时，必须先 `git remote add origin https://github.com/192781-li/-.git`
+
 - 仓库名：mingbenlun（原名`-`，已改名）
 
 ## 质检内容
 
 build.sh 自动检查：
+
 - null字节（稀疏文件问题）
 - UTF-8乱码
+
 - 章号连续性和重复
 - 章名重复
+
 - manifest完整性（遗漏文件/幽灵文件）
 - 已知错字
 
@@ -127,6 +136,7 @@ python3 mingben-workbench/mingben.py sync "提交信息"
 
 - **F1（感）**：题感——先于分析的直接抓取（题型、得分结构、答案骨架）
 - **F2（应/操作）**：分析——在结构内填充因果逻辑和具体史实
+
 - **F3（自指/递归）**：元认知——看见题目怎么造的，用它优化答案
 
 哲学思维不是答题的敌人，是答题的外挂——前提是先把F1骨架搭好。
@@ -138,10 +148,13 @@ python3 mingben-workbench/mingben.py sync "提交信息"
 ## 共享工具库（mingben_utils.py）
 
 所有脚本共用的工具函数，消除重复代码：
+
 - `cn2int()` / `int2cn()`：中文数字转换
 - `parse_chapters()`：章节解析
+
 - `read_text()` / `write_text()`：安全文件读写
 - `human_size()`：人类可读大小
+
 - `Timer`：计时器
 - `run_parallel()`：并行执行
 
