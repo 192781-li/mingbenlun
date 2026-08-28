@@ -49,6 +49,13 @@ def shift_headings(content, levels=1):
     return "\n".join(lines)
 
 
+def clean_text(content):
+    """清理不可见字符和格式污染。"""
+    for ch in ['\u200b', '\u200c', '\u200d', '\ufeff']:
+        content = content.replace(ch, '')
+    return content
+
+
 def normalize_pian_file(content, pian_num):
     """归一化篇文件：
     1. 篇标题行替换为正确编号（编号从文件顺序生成，不信任源文件）
@@ -91,6 +98,58 @@ def normalize_appendix_file(content, app_num):
             lines[i] = f"## 附录{CN[app_num]} {title}".rstrip()
             break
     return shift_headings("\n".join(lines), 1)
+
+
+# ── 过滤研究笔记 ──────────────────────────────────────
+def strip_meta_notes(content):
+    """移除正文中混入的研究笔记（原话/展开/语境/状态：待入全本等元注释）。"""
+    lines = content.split("\n")
+    result = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+        # 检测笔记行：- **原话** / > **原话** / - **状态**：待 / > **状态**：待
+        is_note_line = bool(re.match(
+            r'^[-*]\s+\*\*(原话|展开|语境|状态|核心|出处|与定理|与佛教|文言凝练)\*\*',
+            stripped
+        )) or bool(re.match(
+            r'^>\s*\*\*(原话|展开|语境|状态|核心|出处|与定理|与佛教|文言凝练)\*\*',
+            stripped
+        )) or "待入全本" in stripped or "待核实" in stripped
+
+        if is_note_line:
+            # 回退：移除 result 末尾的空行、---、blockquote标题
+            while result and (
+                not result[-1].strip()
+                or result[-1].strip() == "---"
+                or result[-1].strip() == ">"
+                or (result[-1].strip().startswith("> **") and not is_note_line)
+            ):
+                result.pop()
+            # 前跳：跳过所有笔记行（- **...** / > **...** / > / 空行 / 编号子项）
+            while i < len(lines):
+                s = lines[i].strip()
+                if re.match(r'^#{2,3}\s+第[一二三四五六七八九十]+[篇章]', s):
+                    break
+                if s == "---":
+                    i += 1
+                    break
+                if (not s or s == ">" or
+                    re.match(r'^[-*]\s+\*\*', s) or
+                    re.match(r'^>\s*', s) or
+                    re.match(r'^\d+\.\s', s) or
+                    "待入全本" in s):
+                    i += 1
+                    continue
+                break
+            # 跳过尾部空行
+            while i < len(lines) and not lines[i].strip():
+                i += 1
+            continue
+        result.append(line)
+        i += 1
+    return "\n".join(result)
 
 
 # ── 验证 ──────────────────────────────────────────────
@@ -226,11 +285,13 @@ def build_markdown():
 
         for idx, (_, fname) in enumerate(chapters, 1):
             with open(dp / fname, "r", encoding="utf-8") as f:
-                parts.append(normalize_pian_file(f.read(), idx))
+                raw = f.read()
+            cleaned = strip_meta_notes(raw)
+            parts.append(normalize_pian_file(cleaned, idx))
             parts.append("\n\n")
         parts.append("---\n\n")
 
-    full = "".join(parts)
+    full = clean_text("".join(parts))
     with open(OUTPUT_MD, "w", encoding="utf-8") as f:
         f.write(full)
 
