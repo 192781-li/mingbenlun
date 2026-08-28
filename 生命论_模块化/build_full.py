@@ -182,6 +182,13 @@ def build_markdown():
             continue
 
         if vol["number"] == "附录":
+            # 尾声（全书后记，在正文之后、附录之前）
+            ep = SCRIPT_DIR / "00_尾声.md"
+            if ep.exists():
+                with open(ep, "r", encoding="utf-8") as f:
+                    parts.append(shift_headings(f.read(), 1))
+                parts.append("\n\n---\n\n")
+
             ov = dp / "00_附录标题.md"
             if ov.exists():
                 with open(ov, "r", encoding="utf-8") as f:
