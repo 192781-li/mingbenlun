@@ -225,7 +225,7 @@ def build_markdown():
         parts.append("\n\n---\n\n")
 
     # 体系总纲 + 全书导言
-    for front in ["00_体系总纲.md", "00_全书导言.md"]:
+    for front in ["00_全书导言.md", "00_体系总纲.md"]:
         fp = SCRIPT_DIR / front
         if fp.exists():
             with open(fp, "r", encoding="utf-8") as f:
