@@ -203,13 +203,13 @@ def check_name_consistency():
     
     # 检查"民本辩证法"和"民本学术法"是否还存在（应该是"明性辩证法"和"明性学术法"）
     for root, dirs, files in os.walk(REPO_ROOT):
-        dirs[:] = [d for d in dirs if d not in {'.git', 'backup', '__pycache__', 'node_modules'}]
+        dirs[:] = [d for d in dirs if d not in {'.git', 'backup', '__pycache__', 'node_modules', 'raw_materials'}]
         for f in files:
             if f.endswith('.md'):
                 p = Path(root) / f
                 rel = str(p.relative_to(REPO_ROOT))
-                # 跳过历史版本和报告
-                if any(x in rel for x in ['enactics_v0', 'backup', '_report', '重组方案']):
+                # 跳过历史版本和报告；raw_materials原始对话记录保留历史原貌不检查
+                if any(x in rel for x in ['enactics_v0', 'backup', '_report', '重组方案', 'raw_materials']):
                     continue
                 content = p.read_text(encoding='utf-8', errors='ignore')
                 if '民本辩证法' in content:
