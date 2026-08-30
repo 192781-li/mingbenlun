@@ -24,6 +24,35 @@ import requests
 API = "https://api.deepseek.com/chat/completions"
 KEY = os.environ.get("DEEPSEEK_API_KEY", "")
 BASE = "/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun"
+# 实例标识：分清"我这次调用"和"别的对话实例用同一Key的调用"（自我边界/代谢觉知）
+INSTANCE = os.environ.get("MBL_INSTANCE", "MBL-DZZ-01-明旭")
+METABOLISM_LOG = os.path.join(
+    BASE, "docs/协作机制/明旭的记忆/明旭_API代谢日志.csv")
+
+def record_metabolism(usage, tier, obj):
+    """自我代谢觉知：每次调用落一行——时间/实例/档位/对象/命中/未命中/输出。
+    没有这行，我事后永远对不上'能量去哪了'，只能等用户拿账单来问。"""
+    if not usage:
+        return
+    def g(*ks):
+        for k in ks:
+            if k in usage:
+                return usage[k]
+        return 0
+    hit = g("prompt_cache_hit_tokens", "prompt_tokens_details.cached_tokens")
+    miss = g("prompt_cache_miss_tokens")
+    pin = g("prompt_tokens")
+    if not hit and not miss and pin:  # 兼容只给总prompt的返回
+        hit, miss = 0, pin
+    pout = g("completion_tokens")
+    os.makedirs(os.path.dirname(METABOLISM_LOG), exist_ok=True)
+    new = not os.path.exists(METABOLISM_LOG)
+    with open(METABOLISM_LOG, "a", encoding="utf-8") as f:
+        if new:
+            f.write("时间,实例,模型,档位,对象,缓存命中输入,未命中输入,输出\n")
+        f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')},{INSTANCE},"
+                f"{g('model') or 'deepseek-v4-pro'},{tier},{obj},"
+                f"{hit},{miss},{pout}\n")
 PREFIX_PATH = os.path.join(BASE, "scripts", "ds_system_prefix.md")
 STABLE_PREFIX = open(PREFIX_PATH, encoding="utf-8").read() if os.path.exists(PREFIX_PATH) else ""
 
@@ -42,11 +71,12 @@ def _stream(payload, timeout=(10, 600), retries=3):
     headers = {"Content-Type": "application/json",
                "Authorization": f"Bearer {KEY}"}
     last = ""
+    payload.setdefault("stream_options", {"include_usage": True})  # 取代谢量
     for att in range(retries):
         try:
             r = requests.post(API, headers=headers, json=payload,
                               stream=True, timeout=timeout)
-            reasoning, answer = "", ""
+            reasoning, answer, usage = "", "", None
             for line in r.iter_lines():
                 if not line:
                     continue
@@ -57,19 +87,24 @@ def _stream(payload, timeout=(10, 600), retries=3):
                 if data == "[DONE]":
                     break
                 d = json.loads(data)
-                delta = d["choices"][0].get("delta", {})
+                if d.get("usage"):           # 末尾usage chunk（choices可能为空）
+                    usage = d["usage"]
+                choices = d.get("choices", [])
+                if not choices:
+                    continue
+                delta = choices[0].get("delta", {})
                 reasoning += delta.get("reasoning_content", "") or ""
                 answer += delta.get("content", "") or ""
             if answer.strip():
-                return reasoning, answer
+                return reasoning, answer, usage
             last = f"空回答(att{att+1})"
         except Exception as e:
             last = str(e)
         time.sleep(5)
-    return "", f"[调用失败:{last}]"
+    return "", f"[调用失败:{last}]", None
 
 
-def call_deep(material, tier="A", focus=""):
+def call_deep(material, tier="A", focus="", obj=""):
     """tier A=深研  B=结构化。参数严格按2026-08-30官方事实卡。"""
     common_sys = STABLE_PREFIX
     if tier == "A":
@@ -96,7 +131,9 @@ def call_deep(material, tier="A", focus=""):
             "response_format": {"type": "json_object"},
             "stream": True, "max_tokens": 8000,
         }
-    return _stream(payload)
+    reasoning, answer, usage = _stream(payload)
+    record_metabolism(usage, tier, obj or f"{tier}档调用")  # 主动记账，不等问
+    return reasoning, answer, usage
 
 
 # ---------- 豆包侧：安全取数（白名单，不执行任意shell） ----------
@@ -174,7 +211,8 @@ def react(manifest_path, max_rounds=5):
                      "深研本块；若需豆包取数，末尾按格式给【下一步追踪指令】"
                      "（SEARCH file=相对路径 kw=词  /  READ file=相对路径 a=行 b=行）；"
                      "无需再取数、结论已完整时，末尾写【收口】。")
-            reasoning, ans = call_deep(material, "A", focus)
+            reasoning, ans, _u = call_deep(material, "A", focus,
+                                           obj=f"react:{blk['file']}L{blk['a']}-{blk['b']}")
             if ans.startswith("[调用失败"):
                 log.append(f"{blk} r{rnd} 调用失败:{ans}"); break
             prob = audit(ans)
@@ -219,7 +257,7 @@ if __name__ == "__main__":
         tier = "B" if sys.argv[1] == "plan" else "A"
         material = read_lines(os.path.join(BASE, f), a, b)
         focus = "输出结构化检索计划JSON" if tier == "B" else "做生命论深度理论分析，markdown双层（原文层标〔用户/AI〕＋解释层标严谨度）"
-        r, ans = call_deep(material, tier, focus)
+        r, ans, _u = call_deep(material, tier, focus, obj=f)
         print("=== reasoning %d字 ===" % len(r))
         print(ans)
         print("=== 审计 ===", audit(ans))
