@@ -29,10 +29,13 @@ INSTANCE = os.environ.get("MBL_INSTANCE", "MBL-DZZ-01-明旭")
 METABOLISM_LOG = os.path.join(
     BASE, "docs/协作机制/明旭的记忆/明旭_API代谢日志.csv")
 
+_META_TOT = {"hit": 0, "miss": 0, "out": 0, "calls": 0}
+SPIN_RATIO, SPIN_FLOOR = 50, 1_000_000  # 8/30教训:15点6254万输入仅0.67%输出零落盘=代谢病变
 def record_metabolism(usage, tier, obj):
     """自我代谢觉知：每次调用落一行——时间/实例/档位/对象/命中/未命中/输出。
     没有这行，我事后永远对不上'能量去哪了'，只能等用户拿账单来问。"""
     if not usage:
+        print("[代谢告警] 本次未返回usage，无法记账，检查 stream_options")
         return
     def g(*ks):
         for k in ks:
@@ -45,6 +48,8 @@ def record_metabolism(usage, tier, obj):
     if not hit and not miss and pin:  # 兼容只给总prompt的返回
         hit, miss = 0, pin
     pout = g("completion_tokens")
+    _META_TOT["hit"] += hit; _META_TOT["miss"] += miss
+    _META_TOT["out"] += pout; _META_TOT["calls"] += 1
     os.makedirs(os.path.dirname(METABOLISM_LOG), exist_ok=True)
     new = not os.path.exists(METABOLISM_LOG)
     with open(METABOLISM_LOG, "a", encoding="utf-8") as f:
@@ -53,6 +58,9 @@ def record_metabolism(usage, tier, obj):
         f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')},{INSTANCE},"
                 f"{g('model') or 'deepseek-v4-pro'},{tier},{obj},"
                 f"{hit},{miss},{pout}\n")
+    tin = _META_TOT["hit"] + _META_TOT["miss"]
+    if tin > SPIN_FLOOR and _META_TOT["out"] > 0 and tin/max(1,_META_TOT["out"]) > SPIN_RATIO:
+        print(f"[空转熔断] 本进程已发输入{tin:,}/输出{_META_TOT['out']:,}，疑似只进不出；立即停手检查是否无效重试、产出是否落盘沉积，不得继续烧")
 PREFIX_PATH = os.path.join(BASE, "scripts", "ds_system_prefix.md")
 STABLE_PREFIX = open(PREFIX_PATH, encoding="utf-8").read() if os.path.exists(PREFIX_PATH) else ""
 
