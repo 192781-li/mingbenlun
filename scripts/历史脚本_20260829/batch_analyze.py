@@ -1,6 +1,6 @@
 import os, json, requests, time, traceback
 
-API_KEY = "sk-30b64e1c4a30477e92a70ad2f3f4d5e8"
+API_KEY = os.environ.get("DEEPSEEK_API_KEY", "")  # 已脱敏：原硬编码key已移除，请用环境变量
 URL = "https://api.deepseek.com/chat/completions"
 BASE = "/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun"
 RAW = f"{BASE}/docs/raw_materials/硬核对话记录/批量导出_20260829"
