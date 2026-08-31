@@ -175,7 +175,7 @@ def _stream(payload, timeout=(10, 600), retries=3):
         try:
             r = requests.post(API, headers=headers, json=payload,
                               stream=True, timeout=timeout)
-            reasoning, answer, usage = "", "", None
+            reasoning, answer, usage, finish = "", "", None, ""
             for line in r.iter_lines():
                 if not line:
                     continue
@@ -191,11 +191,20 @@ def _stream(payload, timeout=(10, 600), retries=3):
                 choices = d.get("choices", [])
                 if not choices:
                     continue
-                delta = choices[0].get("delta", {})
+                ch0 = choices[0]
+                if ch0.get("finish_reason"):
+                    finish = ch0["finish_reason"]
+                delta = ch0.get("delta", {})
                 reasoning += delta.get("reasoning_content", "") or ""
                 answer += delta.get("content", "") or ""
             elapsed = time.time() - t0
             if answer.strip():
+                if finish == "length":
+                    warn = (f"\n\n【!!截断告警!! finish_reason=length】正文因max_tokens耗尽被硬切，"
+                            f"本次钱已花但产出不完整，必须分段重跑，禁止拿半截产出当成品。"
+                            f"reasoning={len(reasoning)}字/answer={len(answer)}字")
+                    answer += warn
+                    print(warn)
                 return reasoning, answer, usage, att, elapsed
             last = f"空回答(att{att+1})"
         except Exception as e:
@@ -230,7 +239,7 @@ def call_deep(material, tier="A", focus="", obj=""):
                     f"{focus}\n\n【本块原始材料】\n{material}"}],
             "thinking": {"type": "enabled"},
             "reasoning_effort": "max",
-            "stream": True, "max_tokens": 16000,
+            "stream": True, "max_tokens": 65536,
             # 思考模式：不传 temperature/top_p（静默无效），不绑 json_object
         }
     else:
@@ -243,7 +252,7 @@ def call_deep(material, tier="A", focus="", obj=""):
             "reasoning": {"effort": "none"},      # 关思考，温度才生效
             "temperature": 0.2,
             "response_format": {"type": "json_object"},
-            "stream": True, "max_tokens": 8000,
+            "stream": True, "max_tokens": 16000,
         }
     reasoning, answer, usage, retries, elapsed = _stream(payload)
     status = "失败" if answer.startswith("[调用失败") or answer.startswith("[调用中止") else "成功"
