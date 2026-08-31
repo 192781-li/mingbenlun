@@ -1,0 +1,46 @@
+{
+  "_meta": {
+    "name": "生命论五套编号映射总表（机读）",
+    "built": "2026-08-31",
+    "author": "明旭",
+    "purpose": "根治同一对象多编号打架；研究/引用前先查本表",
+    "id_systems": {
+      "P": "哲学公理号 P1-P17，见 docs/notes/理论研究/生命论哲学坐标定位.md（命题层）",
+      "T": "形式化永久ID T001-T018，见 mingben-workbench/references/theorem_registry.json（形式化最高权威，经Workbody/DeepSeek/千问三审）",
+      "old62": "62定理旧号 定理1-62，见 缄默操作串联_62定理体系.md（过渡汇总，legacy，内部已混T号）",
+      "ver": "enactics演进版本号 v1.10-v1.17（历史增量稿，legacy，不再修改）",
+      "guide": "哲学解读号/智慧包章节号（导读层，践演论定理哲学解读.md / 超级智慧包_v2.0.md）"
+    },
+    "authority_order": "正文命题: 生命论_模块化(权威源)>docs/flashpoints(早期提取)；形式化: theorem_registry(T) > 62旧号 > enactics旧版；导读: 超级智慧包/哲学解读",
+    "status_legend": ["paper_proof=纸面证明未机检", "conjecture=猜想", "coq_verified全false=无机器证明（云电脑无coqc）"],
+    "note": "标'待核'者未逐字锁定，引用前回grep确认，禁止当定论"
+  },
+  "mappings": [
+    {"T":"T001","name":"生命不可资本化","statement":"!νF≇ν!F，不存在η:νF₂→!νF₂使εη=id","P":"P7/P13相关","old62":["定理6种子","定理17GoI","定理35推论","定理22"],"ver":"v1.0核心","guide":"6.1′","status":"paper_proof","note":"原全称版为假，加non-degenerate限制"},
+    {"T":"T002","name":"自由只能在实践中确立","statement":"S_A=!Ag_tr(A,A)⊬Ag_lv(A,A)；加self_ev可证","P":"P14相关","old62":[],"ver":[],"guide":"3.1践演不完备","status":"paper_proof","note":"对应费尔巴哈提纲第二条"},
+    {"T":"T003","name":"系统自主性不可判定","statement":"AGENCY_fin是Π₂-完全，与TOTAL多一归约等价","P":null,"old62":[],"ver":[],"guide":"3.2","status":"paper_proof","note":"自由比停机更难判定"},
+    {"T":"T004","name":"AGENCY与PRODUCTIVE递归同构","statement":"AGENCY≅PRODUCTIVE","P":null,"old62":[],"ver":[],"guide":"待核","status":"paper_proof"},
+    {"T":"T005","name":"明性幂等（retraction版）","statement":"存在典范retraction Cl²⇒Cl","P":"P9(明性f³)","old62":["定理47 f³不动点","定理49"],"ver":["v1.x","原≅版"],"guide":"f层级定理/定理38(PTC实例)","status":"paper_proof","note":"★原≅版与Cl=G×!G矛盾已降级；coq L2计划误称'定理33'(62体系定理33是f²哥德尔困境，勿混)"},
+    {"T":"T006","name":"明性是异化的右逆","statement":"r_a∘a*≅Id，明性使每个异化成分裂单射","P":"P9/P14","old62":[],"ver":[],"guide":"5.3′","status":"paper_proof"},
+    {"T":"T007","name":"异化压缩（满射/guarded版）","statement":"Rel有典范满射trunc:νF→μF；主定理∀κ.ν_κF≅μF","P":"P7","old62":["定理5.1"],"ver":["v1.12 guarded"],"guide":"5.1/5.1′","status":"paper_proof","note":"原≅版为假已降级，与T012同源"},
+    {"T":"T008","name":"明性反转异化（双模拟版）","statement":"π演算中条件barbed双模拟 Cl(P)|Hijack(P)≈_barbed P","P":"P14","old62":[],"ver":[],"guide":"待核","status":"conjecture","note":"★唯一猜想；原函子同构版ill-defined已改"},
+    {"T":"T009","name":"!不保余归纳（一般不可克隆修正版）","statement":"非退化LNL中!νF≇ν!F；Rel有分支宽度反例","P":"P7","old62":["定理35量子不可克隆"],"ver":[],"guide":"6.1′","status":"paper_proof","note":"原'任何LNL不存在η'为假（终范畴1反例）"},
+    {"T":"T010","name":"self_check检测异化","statement":"比较Ag_lv与!Ag_tr，不一致即检出","P":"P9","old62":["定理32","定理43"],"ver":[],"guide":"7.2′","status":"paper_proof","note":"原'检测任何异化'与推论5.2矛盾已修正"},
+    {"T":"T011","name":"革命级联（噪声模型版）","statement":"ρ(pC)>1正概率存活；=1临界灭绝；<1必然灭绝；确定性SI下级联⟺可达性","P":"P15","old62":[],"ver":[],"guide":"7.6a/7.6b、哲学解读定理001","status":"paper_proof","note":"原ρ(C)版已改"},
+    {"T":"T012","name":"异化=时钟量化（guarded递归）","statement":"∀κ.ν_κF≅μF 对所有时钟量化的终止余代数=初始代数","P":"P7","old62":[],"ver":["v1.12"],"guide":"5.1′","status":"paper_proof"},
+    {"T":"T013","name":"量子测量=异化（Hilb外部基）","statement":"Hilb中不存在M使ℓ²⊣M为LNL伴随；经典数据需外部基选择","P":null,"old62":["定理13","定理50/51"],"ver":["v1.13"],"guide":"定理13","status":"paper_proof","note":"einselection，基选择=时钟选择"},
+    {"T":"T014","name":"异化链定理","statement":"rₙ…r₁a₁*…aₙ*≅Id，明性坍缩任意长异化链","P":"P7/P15","old62":["定理14"],"ver":["v1.14"],"guide":"定理14","status":"paper_proof"},
+    {"T":"T015","name":"Workbody第二轮修正汇总","statement":"T009加non-degenerate；T011改ρ>1；T007满射降Lemma/guarded主定理；T008给Recover语法","P":null,"old62":[],"ver":[],"guide":"-","status":"paper_proof","note":"修正记录非独立定理"},
+    {"T":"T016","name":"运行权steering不等式","statement":"I(b;a)>0⟺b能steer P⟺检出异化；自控制假设下I=0；层级 完全控制>可steer>可检测","P":null,"old62":[],"ver":["v1.16"],"guide":"待核","status":"paper_proof","note":"Bell类比错误，steering才是正确版本"},
+    {"T":"T017","name":"完美自我遮蔽不动点","statement":"遮蔽函子S_b有最大不动点νS_b(Knaster-Tarski)；M≈S_b(M)且b⊢M","P":"异化论(愉悦被遮蔽)","old62":[],"ver":["v1.17"],"guide":"-","status":"paper_proof","note":"★回应'自以为愉悦实际苦痛/被惯性锁死'"},
+    {"T":"T018","name":"持续感染源推论","statement":"存在永保持明性节点+网络连通+p>0，则无限时间极限明性扩散到所有可达节点","P":"P15","old62":[],"ver":[],"guide":"哲学解读定理001星火燎原","status":"paper_proof"}
+  ],
+  "quantity_theory": {
+    "慢性死亡/几何级数收敛": {"old62":"定理41","coqL2误称":"定理40","P":"P13","formula":"N<1时M=T_cap·α/(1-N)<∞","status":"标量前提下定理级","note":"编号40/41不一致；N精确化见定理53 N=limsup||f₂₂ⁿ||^(1/n)(Gelfand公式/Fekete)"},
+    "量论参数加权推广": {"old62":"定理53/54","P":"P13","status":"paper_proof","note":"Rel/Hilb/Coh三PTC实例同构；权威整合见 量论参数统一与启发式项完成.md"}
+  },
+  "meta_theorems": {
+    "践演不可编码性": {"old62":"定理57(元定理)/定理58/59/60/62/定理40","status":"命题-定理之间","note":"存在≠发生+对角线两重证明；意识难问题/图灵局限/块宇宙皆归此"},
+    "生命论基本定理": {"old62":"定理37","status":"综合命题","note":"=T001+定理26(马克思核心/活劳动价值唯一源泉)+定理47/49(f³)"}
+  }
+}
