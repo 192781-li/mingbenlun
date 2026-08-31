@@ -29,35 +29,59 @@ INSTANCE = os.environ.get("MBL_INSTANCE", "MBL-DZZ-01-明旭")
 METABOLISM_LOG = os.path.join(
     BASE, "docs/协作机制/明旭的记忆/明旭_API代谢日志.csv")
 
-_META_TOT = {"hit": 0, "miss": 0, "out": 0, "calls": 0}
+_META_TOT = {"hit": 0, "miss": 0, "out": 0, "calls": 0, "failures": 0}
 SPIN_RATIO, SPIN_FLOOR = 50, 1_000_000  # 8/30教训:15点6254万输入仅0.67%输出零落盘=代谢病变
-def record_metabolism(usage, tier, obj):
-    """自我代谢觉知：每次调用落一行——时间/实例/档位/对象/命中/未命中/输出。
-    没有这行，我事后永远对不上'能量去哪了'，只能等用户拿账单来问。"""
-    if not usage:
-        print("[代谢告警] 本次未返回usage，无法记账，检查 stream_options")
-        return
+INPUT_WARN_THRESHOLD = 50_000  # 单次输入超过5万tokens先告警
+
+def init_metabolism_log():
+    """脚本启动即初始化代谢日志，确保0点之后的调用都有记录。"""
+    os.makedirs(os.path.dirname(METABOLISM_LOG), exist_ok=True)
+    if not os.path.exists(METABOLISM_LOG):
+        with open(METABOLISM_LOG, "w", encoding="utf-8") as f:
+            f.write("时间,实例,模型,档位,对象,缓存命中输入,未命中输入,输出,重试次数,状态,耗时秒\n")
+    # 启动标记：每次脚本启动写一行，便于核对调用次数
+    with open(METABOLISM_LOG, "a", encoding="utf-8") as f:
+        f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')},{INSTANCE},-,启动,-,0,0,0,0,脚本启动,0\n")
+
+init_metabolism_log()  # 模块加载即执行，确保不遗漏
+
+def estimate_input_tokens(material, focus="", tier="A"):
+    """调用前预估输入tokens，超过阈值告警。粗估：中文1字≈1.5token，英文1词≈1.3token。"""
+    sys_len = len(STABLE_PREFIX)
+    mat_len = len(material) + len(focus)
+    total_chars = sys_len + mat_len
+    est_tokens = int(total_chars * 1.2)  # 粗估系数
+    if est_tokens > INPUT_WARN_THRESHOLD:
+        print(f"[输入告警] 预估输入约{est_tokens:,}tokens，超过阈值{INPUT_WARN_THRESHOLD:,}。建议切块后再调用。")
+    return est_tokens
+
+def record_metabolism(usage, tier, obj, retries=0, status="成功", elapsed=0):
+    """自我代谢觉知：每次调用落一行——时间/实例/档位/对象/命中/未命中/输出/重试次数/状态/耗时。
+    即使调用失败也要记录，不再等用户拿账单来问。"""
     def g(*ks):
         for k in ks:
-            if k in usage:
+            if usage and k in usage:
                 return usage[k]
         return 0
     hit = g("prompt_cache_hit_tokens", "prompt_tokens_details.cached_tokens")
     miss = g("prompt_cache_miss_tokens")
     pin = g("prompt_tokens")
-    if not hit and not miss and pin:  # 兼容只给总prompt的返回
+    if not hit and not miss and pin:
         hit, miss = 0, pin
     pout = g("completion_tokens")
-    _META_TOT["hit"] += hit; _META_TOT["miss"] += miss
-    _META_TOT["out"] += pout; _META_TOT["calls"] += 1
+    model = g("model") or "deepseek-v4-pro"
+    if status == "成功":
+        _META_TOT["hit"] += hit; _META_TOT["miss"] += miss
+        _META_TOT["out"] += pout; _META_TOT["calls"] += 1
+    else:
+        _META_TOT["failures"] += 1
     os.makedirs(os.path.dirname(METABOLISM_LOG), exist_ok=True)
     new = not os.path.exists(METABOLISM_LOG)
     with open(METABOLISM_LOG, "a", encoding="utf-8") as f:
         if new:
-            f.write("时间,实例,模型,档位,对象,缓存命中输入,未命中输入,输出\n")
-        f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')},{INSTANCE},"
-                f"{g('model') or 'deepseek-v4-pro'},{tier},{obj},"
-                f"{hit},{miss},{pout}\n")
+            f.write("时间,实例,模型,档位,对象,缓存命中输入,未命中输入,输出,重试次数,状态,耗时秒\n")
+        f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')},{INSTANCE},{model},{tier},{obj},"
+                f"{hit},{miss},{pout},{retries},{status},{elapsed:.1f}\n")
     tin = _META_TOT["hit"] + _META_TOT["miss"]
     if tin > SPIN_FLOOR and _META_TOT["out"] > 0 and tin/max(1,_META_TOT["out"]) > SPIN_RATIO:
         print(f"[空转熔断] 本进程已发输入{tin:,}/输出{_META_TOT['out']:,}，疑似只进不出；立即停手检查是否无效重试、产出是否落盘沉积，不得继续烧")
@@ -80,6 +104,7 @@ def _stream(payload, timeout=(10, 600), retries=3):
                "Authorization": f"Bearer {KEY}"}
     last = ""
     payload.setdefault("stream_options", {"include_usage": True})  # 取代谢量
+    t0 = time.time()
     for att in range(retries):
         try:
             r = requests.post(API, headers=headers, json=payload,
@@ -103,18 +128,22 @@ def _stream(payload, timeout=(10, 600), retries=3):
                 delta = choices[0].get("delta", {})
                 reasoning += delta.get("reasoning_content", "") or ""
                 answer += delta.get("content", "") or ""
+            elapsed = time.time() - t0
             if answer.strip():
-                return reasoning, answer, usage
+                return reasoning, answer, usage, att, elapsed
             last = f"空回答(att{att+1})"
         except Exception as e:
             last = str(e)
         time.sleep(5)
-    return "", f"[调用失败:{last}]", None
+    elapsed = time.time() - t0
+    return "", f"[调用失败:{last}]", None, retries, elapsed
 
 
 def call_deep(material, tier="A", focus="", obj=""):
     """tier A=深研  B=结构化。参数严格按2026-08-30官方事实卡。"""
     common_sys = STABLE_PREFIX
+    # 调用前预估输入tokens，超过阈值告警
+    est = estimate_input_tokens(material, focus, tier)
     if tier == "A":
         payload = {
             "model": "deepseek-v4-pro",
@@ -139,8 +168,10 @@ def call_deep(material, tier="A", focus="", obj=""):
             "response_format": {"type": "json_object"},
             "stream": True, "max_tokens": 8000,
         }
-    reasoning, answer, usage = _stream(payload)
-    record_metabolism(usage, tier, obj or f"{tier}档调用")  # 主动记账，不等问
+    reasoning, answer, usage, retries, elapsed = _stream(payload)
+    status = "失败" if answer.startswith("[调用失败") else "成功"
+    record_metabolism(usage, tier, obj or f"{tier}档调用",
+                      retries=retries, status=status, elapsed=elapsed)
     return reasoning, answer, usage
 
 
