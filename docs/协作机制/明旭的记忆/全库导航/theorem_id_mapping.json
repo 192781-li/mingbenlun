@@ -9,7 +9,7 @@
       "T": "形式化永久ID T001-T018，见 mingben-workbench/references/theorem_registry.json（形式化最高权威，经Workbody/DeepSeek/千问三审）",
       "old62": "62定理旧号 定理1-62，见 缄默操作串联_62定理体系.md（过渡汇总，legacy，内部已混T号）",
       "ver": "enactics演进版本号 v1.10-v1.17（历史增量稿，legacy，不再修改）",
-      "guide": "哲学解读号/智慧包章节号（导读层，践演论定理哲学解读.md / 超级智慧包_v2.0.md）"
+      "guide": "哲学解读号/智慧包章节号（导读层，践演论定理哲学解读.md / 超级智慧包_v2.1.md）"
     },
     "authority_order": "正文命题: 生命论_模块化(权威源)>docs/flashpoints(早期提取)；形式化: theorem_registry(T) > 62旧号 > enactics旧版；导读: 超级智慧包/哲学解读",
     "status_legend": ["paper_proof=纸面证明未机检", "conjecture=猜想", "coq_verified全false=无机器证明（云电脑无coqc）"],
