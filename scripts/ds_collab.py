@@ -32,6 +32,57 @@ METABOLISM_LOG = os.path.join(
 _META_TOT = {"hit": 0, "miss": 0, "out": 0, "calls": 0, "failures": 0}
 SPIN_RATIO, SPIN_FLOOR = 50, 1_000_000  # 8/30教训:15点6254万输入仅0.67%输出零落盘=代谢病变
 INPUT_WARN_THRESHOLD = 50_000  # 单次输入超过5万tokens先告警
+INPUT_HARD_LIMIT = 150_000  # 单次输入硬上限，超过直接拒绝并建议切块
+
+# DeepSeek v4-pro 官方价格（元/百万tokens，2026-08-30核实）
+PRICE = {
+    "input_cache_hit": 0.5,    # 缓存命中输入
+    "input_cache_miss": 2.0,   # 未命中输入
+    "output": 8.0,             # 输出
+}
+DAILY_BUDGET = 20.0  # 每日预算（元），可通过环境变量MBL_DAILY_BUDGET覆盖
+BUDGET_WARN_RATIO = 0.8  # 用到80%告警
+BUDGET_STOP_RATIO = 1.0  # 用到100%中止新调用
+
+def get_daily_budget():
+    return float(os.environ.get("MBL_DAILY_BUDGET", DAILY_BUDGET))
+
+def calc_cost(hit=0, miss=0, out=0):
+    """根据token数计算费用（元）。"""
+    return (hit * PRICE["input_cache_hit"] +
+            miss * PRICE["input_cache_miss"] +
+            out * PRICE["output"]) / 1_000_000
+
+def get_today_cost():
+    """从代谢日志统计今天已用费用。"""
+    today = time.strftime("%Y-%m-%d")
+    total = 0.0
+    if not os.path.exists(METABOLISM_LOG):
+        return 0.0
+    try:
+        with open(METABOLISM_LOG, encoding="utf-8") as f:
+            import csv as _csv
+            reader = _csv.DictReader(f)
+            for row in reader:
+                if row.get("时间", "").startswith(today) and row.get("状态") == "成功":
+                    hit = int(row.get("缓存命中输入", 0) or 0)
+                    miss = int(row.get("未命中输入", 0) or 0)
+                    out = int(row.get("输出", 0) or 0)
+                    total += calc_cost(hit, miss, out)
+    except Exception:
+        pass
+    return total
+
+def check_budget(estimated_cost=0.0):
+    """检查每日预算，返回(是否允许, 提示信息)。"""
+    budget = get_daily_budget()
+    used = get_today_cost()
+    remaining = budget - used
+    if used + estimated_cost > budget * BUDGET_STOP_RATIO:
+        return False, f"[预算熔断] 今日已用¥{used:.2f}/预算¥{budget:.2f}，预估本次¥{estimated_cost:.2f}将超预算。中止调用，请降低输入量或调高MBL_DAILY_BUDGET。"
+    if used + estimated_cost > budget * BUDGET_WARN_RATIO:
+        return True, f"[预算告警] 今日已用¥{used:.2f}/预算¥{budget:.2f}（{used/budget*100:.0f}%），预估本次¥{estimated_cost:.2f}，剩余¥{remaining:.2f}。"
+    return True, f"[预算正常] 今日已用¥{used:.2f}/预算¥{budget:.2f}，预估本次¥{estimated_cost:.2f}。"
 
 def init_metabolism_log():
     """脚本启动即初始化代谢日志，确保0点之后的调用都有记录。"""
@@ -42,18 +93,33 @@ def init_metabolism_log():
     # 启动标记：每次脚本启动写一行，便于核对调用次数
     with open(METABOLISM_LOG, "a", encoding="utf-8") as f:
         f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')},{INSTANCE},-,启动,-,0,0,0,0,脚本启动,0\n")
+    # 启动时打印今日预算状态
+    used = get_today_cost()
+    budget = get_daily_budget()
+    print(f"[代谢启动] 今日已用¥{used:.2f}/预算¥{budget:.2f}（{used/budget*100:.0f}%）")
 
 init_metabolism_log()  # 模块加载即执行，确保不遗漏
 
 def estimate_input_tokens(material, focus="", tier="A"):
-    """调用前预估输入tokens，超过阈值告警。粗估：中文1字≈1.5token，英文1词≈1.3token。"""
+    """调用前预估输入tokens和费用，超过阈值告警。粗估：中文1字≈1.5token，英文1词≈1.3token。"""
     sys_len = len(STABLE_PREFIX)
     mat_len = len(material) + len(focus)
     total_chars = sys_len + mat_len
     est_tokens = int(total_chars * 1.2)  # 粗估系数
+    # 预估费用：假设缓存命中率约50%（系统提示通常命中，材料通常未命中）
+    est_hit = int(sys_len * 1.2)  # 系统提示大概率命中
+    est_miss = est_tokens - est_hit
+    est_output = 12000 if tier == "A" else 4000  # 预估输出
+    est_cost = calc_cost(est_hit, est_miss, est_output)
+    if est_tokens > INPUT_HARD_LIMIT:
+        print(f"[输入熔断] 预估输入约{est_tokens:,}tokens，超过硬上限{INPUT_HARD_LIMIT:,}。必须切块后再调用。建议每块≤{INPUT_HARD_LIMIT//3:,}tokens。")
+        return est_tokens, est_cost, False
     if est_tokens > INPUT_WARN_THRESHOLD:
-        print(f"[输入告警] 预估输入约{est_tokens:,}tokens，超过阈值{INPUT_WARN_THRESHOLD:,}。建议切块后再调用。")
-    return est_tokens
+        print(f"[输入告警] 预估输入约{est_tokens:,}tokens（系统提示≈{sys_len*1.2:.0f}+材料≈{mat_len*1.2:.0f}），预估费用¥{est_cost:.2f}。超过阈值{INPUT_WARN_THRESHOLD:,}，建议切块。")
+    # 预算检查
+    allowed, msg = check_budget(est_cost)
+    print(msg)
+    return est_tokens, est_cost, allowed
 
 def record_metabolism(usage, tier, obj, retries=0, status="成功", elapsed=0):
     """自我代谢觉知：每次调用落一行——时间/实例/档位/对象/命中/未命中/输出/重试次数/状态/耗时。
@@ -134,7 +200,11 @@ def _stream(payload, timeout=(10, 600), retries=3):
             last = f"空回答(att{att+1})"
         except Exception as e:
             last = str(e)
-        time.sleep(5)
+        # 指数退避：第1次失败等5s，第2次等10s，第3次等20s
+        if att < retries - 1:
+            wait = 5 * (2 ** att)
+            print(f"[重试] 第{att+1}次失败：{last[:80]}，{wait}s后重试...")
+            time.sleep(wait)
     elapsed = time.time() - t0
     return "", f"[调用失败:{last}]", None, retries, elapsed
 
@@ -142,8 +212,15 @@ def _stream(payload, timeout=(10, 600), retries=3):
 def call_deep(material, tier="A", focus="", obj=""):
     """tier A=深研  B=结构化。参数严格按2026-08-30官方事实卡。"""
     common_sys = STABLE_PREFIX
-    # 调用前预估输入tokens，超过阈值告警
-    est = estimate_input_tokens(material, focus, tier)
+    # 调用前预估输入tokens和费用，超过阈值告警，超硬上限或预算则中止
+    est_tokens, est_cost, allowed = estimate_input_tokens(material, focus, tier)
+    if not allowed:
+        # 输入超硬上限或预算不足，直接返回失败
+        fail_msg = f"[调用中止] 预估输入{est_tokens:,}tokens/费用¥{est_cost:.2f}，超过硬上限或预算。请切块或调整预算。"
+        print(fail_msg)
+        record_metabolism(None, tier, obj or f"{tier}档调用",
+                          retries=0, status="中止", elapsed=0)
+        return "", fail_msg, None
     if tier == "A":
         payload = {
             "model": "deepseek-v4-pro",
@@ -169,9 +246,16 @@ def call_deep(material, tier="A", focus="", obj=""):
             "stream": True, "max_tokens": 8000,
         }
     reasoning, answer, usage, retries, elapsed = _stream(payload)
-    status = "失败" if answer.startswith("[调用失败") else "成功"
+    status = "失败" if answer.startswith("[调用失败") or answer.startswith("[调用中止") else "成功"
     record_metabolism(usage, tier, obj or f"{tier}档调用",
                       retries=retries, status=status, elapsed=elapsed)
+    # 调用后打印实际费用
+    if usage:
+        actual_cost = calc_cost(
+            usage.get("prompt_cache_hit_tokens", 0) or usage.get("prompt_tokens_details", {}).get("cached_tokens", 0),
+            usage.get("prompt_cache_miss_tokens", 0),
+            usage.get("completion_tokens", 0))
+        print(f"[实际费用] 本次¥{actual_cost:.2f}（预估¥{est_cost:.2f}），耗时{elapsed:.0f}s，重试{retries}次")
     return reasoning, answer, usage
 
 
