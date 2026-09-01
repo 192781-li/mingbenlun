@@ -1,7 +1,7 @@
 {
   "version": "1.4",
-  "last_updated": "2026-09-01 23:25:00",
-  "updated_by": "S03-术数分对话（同步main + S03激活状态更新）",
+  "last_updated": "2026-09-02 01:50:00",
+  "updated_by": "S04-Coq形式化分站（派发哲学研判任务给S01）",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -257,6 +257,28 @@
         "T005"
       ],
       "description": "S04在做L3完整实现时，按S01提供的7条哲学校验清单逐条验证：Ag_lv线性性、Ag_tr无promotion、Hijack无消去、Cl是张量积、T005是retraction、双归约区分、T002证明依赖线性性。"
+    },
+    {
+      "id": "TASK-S04-008",
+      "assigned_to": "S01",
+      "title": "substitution_lemma证明思路的哲学研判",
+      "priority": "high",
+      "status": "pending",
+      "created_by": "S04",
+      "created_at": "2026-09-02 01:50:00",
+      "depends_on": [],
+      "description": "S04在修复Layer2.v的substitution_lemma（代换引理）时遇到困难。DeepSeek写了650行证明，但反复出现tactic错误（Nat.ltb_ge不存在、apply subst_name_neq用法错误、Nat.eqb_neq应用错误等），已经回喂4次仍未通过。\n\n这不是单纯的技术问题，涉及哲学判断：\n1. 代换引理（substitution_lemma）的存在论意义是什么？在生命论的操作本体论中，\"把一个变量代换成另一个变量\"意味着什么？\n2. 证明的结构应该是什么？对typed关系归纳 vs 对proc结构归纳，这两种归纳方式在哲学上有什么区别？哪一种更符合生命论的\"操作先于实体\"原则？\n3. 有没有更简单的证明思路？当前DeepSeek的证明太复杂（650行，6个辅助引理），是不是因为证明思路本身就错了？\n4. 代换引理和subject_reduction（主体归约）之间的哲学关系是什么？代换是归约的前提吗？\n\n请S01从哲学角度研判：\n- substitution_lemma的正确证明思路应该是什么？\n- 有没有更简洁、更符合生命论哲学的证明方式？\n- 如果证明思路需要调整，具体应该怎么调？\n\n产出：substitution_lemma证明思路哲学研判报告，反馈给S04执行。\nS04当前状态：L1完成，L2的subject_reduction完成，substitution_lemma/congruence_preserves_typing/progress三个引理Admitted，正在修复substitution_lemma。"
+    },
+    {
+      "id": "TASK-S04-009",
+      "assigned_to": "S01",
+      "title": "L3类型规则设计的哲学研判（Sheng/Ji/Jia/Ming/双归约）",
+      "priority": "high",
+      "status": "pending",
+      "created_by": "S04",
+      "created_at": "2026-09-02 01:50:00",
+      "depends_on": [],
+      "description": "S04即将开始L3的完整实现。L3是生命论形式化的核心层，涉及Sheng（生）、Ji（迹）、Jia（假）、Ming（明）四个核心概念的类型规则，以及reduce_self（自指归约）和reduce_alien（异化归约）两个归约关系。\n\n这些设计涉及深刻的哲学判断，需要S01和作者共同研判：\n\n1. **Sheng（生）的引入消去规则**：\n   - 引入规则：什么情况下一个进程\"拥有生\"？是正在进行的操作才有生吗？\n   - 消去规则：生用完之后变成什么？是消失了，还是转化为Ji（迹）？\n   - 线性性：生为什么是线性的、不可复制的？这在存在论上的根据是什么？\n\n2. **Ji（迹）的引入消去规则**：\n   - 引入规则：迹是如何产生的？是生的沉积吗？\n   - 消去规则：迹可以被读取、复制、忽略，但不能变回生（没有promotion规则）。这在哲学上意味着什么？\n   - !-模态：迹的可复现性。!本身是中性的，资本化是异化形态。这个解释在类型规则中如何体现？\n\n3. **Jia（假）的引入消去规则**：\n   - 引入规则：假是如何产生的？是他者假借我的名义运行吗？\n   - 消去规则：假为什么没有直接的消去规则？伪装不能直接揭开，只能通过明性（Ming）的坍缩（retraction）间接恢复。这在哲学上对吗？\n   - 假是类型构造子还是归约关系？异化是状态还是过程？\n\n4. **Ming（明）的引入消去规则**：\n   - 引入规则：明是什么？Ming(A) = Sheng(A) ⊗ !Ji(A)，生+看到自己的迹=明明德。这个公式对吗？\n   - 消去规则：明的幂等是retraction不是同构（Ming(Ming(A)) -> Ming(A)）。这在哲学上意味着什么？\n   - 明是存在论状态还是认识论属性？\n\n5. **双归约关系（reduce_self vs reduce_alien）**：\n   - reduce_self（自指归约）：操作的结果回到自身，S→f(S)，保持Sheng。这对应什么哲学过程？\n   - reduce_alien（异化归约）：操作的结果流向他者，S→f(b,S)，b抽走了Sheng，剩下的只有Ji。这对应什么哲学过程？\n   - 如何在proc语法中判断一个归约是self还是alien？判据是什么？\n   - 这两个归约关系在存在论上是并列的还是有先后的？\n\n6. **T002和T005的定理陈述**：\n   - T002：!Ji ⊬ Sheng（迹不能推出生）。这个陈述在哲学上对吗？\"你不能从脚印变回正在走的脚\"——自由只能在实践中确立。\n   - T005：Ming(Ming(A)) -> Ming(A)（明的幂等是retraction）。这个陈述对吗？\n\n请S01和作者共同研判以上6个哲学判断点，给出明确的哲学结论和形式化建议。S04将根据研判结果实现L3。\n\n产出：L3类型规则设计哲学研判报告，反馈给S04执行。"
     }
   ],
   "growth_log": [
