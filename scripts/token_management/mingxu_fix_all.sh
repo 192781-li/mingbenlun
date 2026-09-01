@@ -127,6 +127,8 @@ fix_station() {
     local STATION_ID="$1"
     local TOKEN_VAR="TOKEN_${STATION_ID}"
     local TOKEN="${!TOKEN_VAR}"
+    # 去除所有空白字符（Windows环境变量可能引入空格/回车）
+    TOKEN=$(echo "$TOKEN" | tr -d '[:space:]')
     local BRANCH="${STATION_BRANCH[$STATION_ID]}"
     local NAME="${STATION_NAME[$STATION_ID]}"
     
