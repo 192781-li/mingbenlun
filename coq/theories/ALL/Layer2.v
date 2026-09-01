@@ -85,9 +85,12 @@ Inductive reduce_star : proc -> proc -> Prop :=
    --------------------------------------------------------------------- *)
 Inductive is_value : proc -> Prop :=
   | val_zero : is_value PZero
+  | val_var  : forall x, is_value (PVar x)
+  | val_out  : forall x y P, is_value (POut x y P)
   | val_in   : forall x P, is_value (PIn x P)
   | val_res  : forall P, is_value P -> is_value (PRes P)
-  | val_rep  : forall P, is_value (PRep P).
+  | val_rep  : forall P, is_value (PRep P)
+  | val_par  : forall P Q, is_value P -> is_value Q -> is_value (PPar P Q).
 
 (* ---------------------------------------------------------------------
    6. Auxiliary lemmas
@@ -203,11 +206,62 @@ Proof.
 Qed.
 
 (* ---------------------------------------------------------------------
-   10. Progress (admitted for next iteration)
+   10. Progress
    --------------------------------------------------------------------- *)
+
+(* General progress theorem: every well-typed term is either a value or
+   can reduce. This holds for ANY context, not just empty ones, because
+   variables (PVar) and output prefixes (POut) are themselves values —
+   they cannot reduce on their own, only in parallel with a matching
+   input (red_comm, which is vacuous in our linear system). *)
+Theorem progress_general : forall Gamma P,
+  typed Gamma P -> is_value P \/ exists P', reduce P P'.
+Proof.
+  intros Gamma P H.
+  induction H as [
+    Gamma
+    | Gamma x T Hget
+    | Gamma P H IH
+    | Gamma x y P i o T Gamma1 Gamma2 Huse1 Ho Huse2 H IH
+    | Gamma x P i o T Gamma1 Huse Hi H IH
+    | Gamma P Q Gamma1 Gamma2 Hs HP IHP HQ IHQ
+    | Gamma P T H IH
+    | Gamma P H IH
+  ].
+  - (* ty_zero *)
+    left. apply val_zero.
+  - (* ty_var *)
+    left. apply val_var.
+  - (* ty_tau *)
+    right. exists P. apply red_tau.
+  - (* ty_out *)
+    left. apply val_out.
+  - (* ty_in *)
+    left. apply val_in.
+  - (* ty_par *)
+    destruct IHP as [Hv1 | [P' Hr1]].
+    + (* P is value *)
+      destruct IHQ as [Hv2 | [Q' Hr2]].
+      * (* both are values *)
+        left. apply val_par. exact Hv1. exact Hv2.
+      * (* Q can reduce *)
+        right. exists (PPar P Q'). apply red_par_r. exact Hr2.
+    + (* P can reduce *)
+      right. exists (PPar P' Q). apply red_par_l. exact Hr1.
+  - (* ty_res *)
+    destruct IH as [Hv | [P' Hr]].
+    + left. apply val_res. exact Hv.
+    + right. exists (PRes P'). apply red_res. exact Hr.
+  - (* ty_rep *)
+    left. apply val_rep.
+Qed.
+
+(* Progress for empty context is the special case of progress_general. *)
 Theorem progress : forall P, typed [] P ->
   is_value P \/ exists P', reduce P P'.
-Proof. Admitted.
+Proof.
+  intros P H. apply progress_general with (Gamma := []). exact H.
+Qed.
 
 (* =====================================================================
    LAYER 2 SUMMARY
