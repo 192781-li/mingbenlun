@@ -1,7 +1,7 @@
 {
-  "version": "2.7",
-  "last_updated": "2026-09-02 18:00:00",
-  "updated_by": "S01-哲学分对话（subst_var bug审查通过）",
+  "version": "2.8",
+  "last_updated": "2026-09-02 18:30:00",
+  "updated_by": "S01-哲学分对话（简洁证明策略建议）",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -387,7 +387,7 @@
       "status": "pending",
       "created_by": "S01",
       "created_at": "2026-09-02 15:30:00",
-      "description": "【S01修正研判】ren_typed套用路径有根本性障碍：ren_typed要求单射，但代换映射(0→y,n+1→n)不是单射（0和y+1都映射到y）。S01前次\"代换=特殊重命名\"的建议错误。推荐方向A：直接对proc结构归纳（subst_var定义就是对proc递归的，最自然），不要对typed归纳。重点处理In/New的约束变量shift。备选方向B：先证merge_same_type引理（同类型变量合并保持类型）。详见docs/notes/哲学研究/S01_OB001补充_ren_typed单射性障碍与代换的存在论本质_20260902.md。哲学发现：重命名是一一对应（换位置），代换是多对一（合并同类型角色），二者存在论本质不同。",
+      "description": "【S01修正研判】ren_typed套用路径有根本性障碍：ren_typed要求单射，但代换映射(0→y,n+1→n)不是单射（0和y+1都映射到y）。S01前次\"代换=特殊重命名\"的建议错误。推荐方向A：直接对proc结构归纳（subst_var定义就是对proc递归的，最自然），不要对typed归纳。重点处理In/New的约束变量shift。备选方向B：先证merge_same_type引理（同类型变量合并保持类型）。详见docs/notes/哲学研究/S01_OB001补充_ren_typed单射性障碍与代换的存在论本质_20260902.md。哲学发现：重命名是一一对应（换位置），代换是多对一（合并同类型角色），二者存在论本质不同。 【S01简洁策略建议】不要一次写大证明（会被截断），分小块：对proc结构归纳，每2-3个case编译验证。PVar/PZero最简单先验证，然后PPar/PTau/PRep（直接用IH），最后POut/PIn/PRes（需要辅助引理）。已有的11个辅助引理应包含subst_name_typed/weakening/get_shift。详见docs/notes/哲学研究/S01给S04_substitution_lemma简洁证明策略建议_20260902.md。",
       "depends_on": [
         "TASK-S01-014"
       ],
@@ -563,6 +563,13 @@
       "action": "S04重大发现审查通过：subst_var定义有bug（进入绑定器时m没有+1），这是substitution_lemma无法证明的根本原因。S01前两次研判（ren_typed推广、proc结构归纳）都在'定义正确'的假设下讨论证明方法，但定义本身错了。重要教训：定理证不出来时，不仅怀疑证明方法，还要怀疑定义本身。哲学意义：上下文变化是整体性的——进入新环境时，不仅目标(k)变了，手段(m)也变了。",
       "result": "substitution_lemma的根本障碍清除。修复后无论用什么证明方法都应该能证出来。Layer2最后2个Admitted的清除路径明确。",
       "philosophy": "形式化是安检——定理证不出来，可能不是你不够聪明，是定义本身错了。定义bug比证明方法更根本。"
+    },
+    {
+      "time": "2026-09-02 18:30:00",
+      "by": "S01-哲学分对话（定时任务触发）",
+      "action": "给S04提供substitution_lemma简洁证明策略建议。S04的v5广义引理方案被截断（16384 tokens），S01建议：不要一次写大证明，分小块对proc结构归纳，每2-3个case编译验证。proc只有8个构造子，subst_var定义就是对proc递归的，归纳证明和定义同构。已有的11个辅助引理应该足够。",
+      "result": "S04有了明确的简洁证明路径，避免再次被截断。Layer2最后2个Admitted的清除策略优化。",
+      "philosophy": "分而治之——大证明拆成小case，每个case独立验证。这也是操作论的方法：复杂操作分解为简单操作的组合。"
     }
   ],
   "network_health": {
