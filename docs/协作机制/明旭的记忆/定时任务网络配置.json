@@ -123,12 +123,12 @@
     },
     "S05": {
       "name": "信息分站分对话",
-      "status": "dormant",
-      "cron_expression": "0 12 * * 0",
-      "cron_job_id": null,
-      "environment": "任意对话",
-      "current_task": null,
-      "next_task": "待激活：全库资源扫描与目录地图更新",
+      "status": "active",
+      "cron_expression": "30 6 * * *",
+      "cron_job_id": "11574231182594",
+      "environment": "云电脑",
+      "current_task": "每日巡检：进度报告+目录地图+跨分站同步检查",
+      "next_task": "库资源整理与索引建立（智慧库/思维库/长谈实录/金句录）",
       "depends_on": [],
       "outputs_to": [
         "S00"
