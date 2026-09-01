@@ -37,9 +37,9 @@ Fixpoint subst_var (m : nat) (k : nat) (P : proc) : proc :=
   | PZero      => PZero
   | PTau Q     => PTau (subst_var m k Q)
   | POut x y Q => POut (subst_name m k x) (subst_name m k y) (subst_var m k Q)
-  | PIn x Q    => PIn (subst_name m k x) (subst_var m (S k) Q)
+  | PIn x Q    => PIn (subst_name m k x) (subst_var (S m) (S k) Q)
   | PPar Q R   => PPar (subst_var m k Q) (subst_var m k R)
-  | PRes Q     => PRes (subst_var m (S k) Q)
+  | PRes Q     => PRes (subst_var (S m) (S k) Q)
   | PRep Q     => PRep (subst_var m k Q)
   end.
 
