@@ -58,8 +58,8 @@
         "S04",
         "S00"
       ],
-      "last_run": "2026-09-01 16:12:00",
-      "last_output": "完成L3哲学基础研究（6000字，7条校验清单给S04，5个待深化问题）；S01正式激活；定时任务已创建（每天10:30）；PR#5已发起",
+      "last_run": "2026-09-01 18:30:00",
+      "last_output": "完成TASK-007 Coq核心概念命名审查（东方为骨西方为体）：Ag_lv→Sheng、Ag_tr→Ji、Hijack→Jia、Cl→Ming、!→可复现性。已派发T007给S04执行命名修改。",
       "identity_file": "docs/协作机制/分站/S01_哲学分对话_身份档案.md",
       "branch": "s01-philosophy"
     },
@@ -205,7 +205,7 @@
     {
       "title": "语义论与Coq形式化的语言基础联动",
       "assigned_to": "S01",
-      "status": "pending",
+      "status": "completed",
       "priority": "medium",
       "description": "研究语义论如何为Coq形式化提供语言基础。Coq形式化中使用的核心概念（Ag_lv活运行权、Ag_tr轨迹运行权、Hijack异化/伪装、Cl明性、!-模态沉积）是否需要语义层面的澄清？这些概念的命名是否准确传达了它们的存在论含义？有没有更好的命名方式？产出：Coq核心概念语义审查报告，反馈给S04 Coq分站。",
       "created_at": "2026-09-01 16:55:00",
@@ -213,7 +213,24 @@
       "depends_on": [
         "S04"
       ],
-      "id": "TASK-007"
+      "id": "TASK-007",
+      "completed_at": "2026-09-01 18:30:00",
+      "output": "完成命名审查报告：东方为骨，西方为体。Ag_lv→Sheng（生）、Ag_tr→Ji（迹）、Hijack→Jia（假）、Cl→Ming（明）、!-模态解释为可复现性。核心公式：Ming=Sheng⊗!Ji。已派发T007给S04执行命名修改。",
+      "output_file": "docs/notes/哲学研究/S01_TASK007_Coq核心概念命名审查_东方为骨西方为体.md"
+    },
+    {
+      "id": "T007",
+      "assigned_to": "S04",
+      "title": "L3核心概念命名修改（东方为骨，西方为体）",
+      "priority": "high",
+      "status": "pending",
+      "created_by": "S01",
+      "created_at": "2026-09-01 18:30:00",
+      "depends_on": [
+        "TASK-007"
+      ],
+      "description": "按S01命名审查报告执行L3概念改名：Ag_lv→Sheng（生）、Ag_tr→Ji（迹）、Hijack→Jia（假）、Cl→Ming（明）、!-模态解释从'资本化'改为'可复现性'。修改范围：Layer1.v的ty构造子、Layer3.v的所有变量名和注释、Layer2.v的依赖、L3-L5设计文档。注意：不要只改变量名，必须改注释——注释是骨的载体。改名后验证编译通过、T002/T005陈述自然。",
+      "reference_doc": "docs/notes/哲学研究/S01_TASK007_Coq核心概念命名审查_东方为骨西方为体.md"
     },
     {
       "id": "T005",
@@ -282,17 +299,24 @@
       "action": "大管家任务恢复：重新激活夜间巡检为大总站全局协调任务（PR审核+配置合并+分站巡检+每日总结），新建S04-Coq形式化每日推进任务。当前7个活跃定时任务，覆盖S00-S05所有分站。",
       "result": "所有分站都有定时任务在运行，大总站有全局协调任务，网络自生长机制完整",
       "philosophy": "大管家不是备份机器，大管家是协调者——审核PR、合并配置、巡检分站、解决冲突"
+    },
+    {
+      "time": "2026-09-01 18:30:00",
+      "by": "S01-哲学分对话",
+      "action": "完成TASK-007 Coq核心概念命名审查，确立'东方为骨，西方为体'命名原则。Ag_lv→Sheng（生）、Ag_tr→Ji（迹）、Hijack→Jia（假）、Cl→Ming（明）、!-模态解释为可复现性。派发T007给S04执行命名修改。",
+      "result": "L3核心概念从西方二手概念（agent/right/clarity/hijack）改为生命论存在论概念（生/迹/假/明）。骨贯穿到发指——命名是形式化的第一道关。",
+      "philosophy": "骨髓流不到发指，骨头再硬也没用。命名不是技术细节，是存在论选择。"
     }
   ],
   "network_health": {
     "active_stations": 6,
     "dormant_stations": 0,
-    "pending_tasks": 8,
+    "pending_tasks": 9,
     "in_progress_tasks": 1,
-    "last_coordination": "2026-09-01 16:12:00 S01激活+派发T006给S04",
-    "notes": "所有6个分站活跃。S01完成L3哲学基础研究，为S04提供哲学锚点；S01有3个语义论任务待执行。",
+    "last_coordination": "2026-09-01 18:30:00 S01完成TASK-007命名审查，派发T007给S04",
+    "notes": "所有6个分站活跃。S01完成TASK-007 Coq核心概念命名审查（东方为骨西方为体），已派发命名修改任务给S04。S01有TASK-005/TASK-006待执行。",
     "active_cron_jobs": 7,
-    "completed_tasks": 1
+    "completed_tasks": 2
   },
   "cron_jobs": [
     {
