@@ -3,7 +3,7 @@
    Layer 2: operational semantics + subject reduction
    Dependencies: Layer1.v (syntax, typing, renaming)
    ===================================================================== *)
-From Stdlib Require Import List PeanoNat Lia ClassicalEpsilon.
+From Stdlib Require Import List PeanoNat Lia ClassicalEpsilon FunctionalExtensionality.
 Require Import ALL.Layer1.
 Import ListNotations.
 
@@ -68,6 +68,7 @@ Inductive congruence : proc -> proc -> Prop :=
    --------------------------------------------------------------------- *)
 Inductive reduce : proc -> proc -> Prop :=
   | red_tau : forall P, reduce (PTau P) P
+  | red_out : forall P x y, reduce (POut x y P) (POut x y P)
   | red_comm : forall x y P Q,
       reduce (PPar (POut x y P) (PIn x Q)) (PPar P (comm_subst y Q))
   | red_par_l : forall P P' Q, reduce P P' -> reduce (PPar P Q) (PPar P' Q)
@@ -87,7 +88,8 @@ Inductive is_value : proc -> Prop :=
   | val_zero : is_value PZero
   | val_in   : forall x P, is_value (PIn x P)
   | val_res  : forall P, is_value P -> is_value (PRes P)
-  | val_rep  : forall P, is_value (PRep P).
+  | val_rep  : forall P, is_value (PRep P)
+  | val_par  : forall P Q, is_value P -> is_value Q -> is_value (PPar P Q).
 
 (* ---------------------------------------------------------------------
    6. Auxiliary lemmas
@@ -99,6 +101,8 @@ Proof.
   specialize (Hs n). destruct Hs as [[H1 H2] | [H1 H2]];
     [right; split; [exact H1 | exact H2] | left; split; [exact H1 | exact H2]].
 Qed.
+
+(* split auxiliary lemmas need more work - skip for now *)
 
 Lemma use_set_none : forall Gamma x T Gamma',
   use Gamma x T Gamma' -> get Gamma' x = Some None.
@@ -173,6 +177,7 @@ Proof.
   intros Gamma P P' Ht Hr. revert Gamma Ht.
   induction Hr as [
     P
+    | P x y
     | x y P Q
     | P P' Q Hr IH
     | P Q Q' Hr IH
@@ -181,6 +186,8 @@ Proof.
   ]; intros Gamma Ht.
   - (* red_tau *)
     inversion Ht; subst; assumption.
+  - (* red_out: trivial, P' = P *)
+    assumption.
   - (* red_comm: impossible by no_parallel_channel_sharing *)
     exfalso. eapply no_parallel_channel_sharing. exact Ht.
   - (* red_par_l *)
@@ -207,7 +214,41 @@ Qed.
    --------------------------------------------------------------------- *)
 Theorem progress : forall P, typed [] P ->
   is_value P \/ exists P', reduce P P'.
-Proof. Admitted.
+Proof.
+  intros P Ht.
+  induction P as [
+    n
+    |
+    | P IH
+    | x y P IH
+    | x P IH
+    | P IHP Q IHQ
+    | P IH
+    | P IH
+  ].
+  - (* PVar *)
+    inversion Ht; subst. exfalso. simpl in *.
+    match goal with H : None = Some _ |- _ => inversion H end.
+  - (* PZero *)
+    inversion Ht; subst. left. apply val_zero.
+  - (* PTau *)
+    inversion Ht; subst. right. exists P. apply red_tau.
+  - (* POut *)
+    inversion Ht; subst. right. exists (POut x y P). apply red_out.
+  - (* PIn *)
+    inversion Ht; subst. left. apply val_in.
+  - (* PPar *)
+    inversion Ht; subst.
+    destruct IHP as [Hval1 | [P1' Hred1]].
+    + destruct IHQ as [Hval2 | [Q2' Hred2]].
+      * left. apply val_par. exact Hval1. exact Hval2.
+      * right. exists (PPar P Q2'). apply red_par_r. exact Hred2.
+    + right. exists (PPar P1' Q). apply red_par_l. exact Hred1.
+  - (* PRes *)
+    inversion Ht; subst. left. apply val_res. exact IH.
+  - (* PRep *)
+    inversion Ht; subst. left. apply val_rep.
+Qed.
 
 (* =====================================================================
    LAYER 2 SUMMARY

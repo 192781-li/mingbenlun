@@ -71,6 +71,7 @@ Fixpoint ren (xi : nat -> nat) (P : proc) : proc :=
 (* 4. ALL typing rules (reconstructed) *)
 Inductive typed : ctx -> proc -> Prop :=
 | ty_zero : forall Gamma, typed Gamma PZero
+| ty_var  : forall Gamma x T, get Gamma x = Some (Some T) -> typed Gamma (PVar x)
 | ty_tau  : forall Gamma P, typed Gamma P -> typed Gamma (PTau P)
 | ty_out  : forall Gamma x y P i o T Gamma1 Gamma2,
     use Gamma x (TChan i o T) Gamma1 -> o = true ->
@@ -249,6 +250,7 @@ Proof.
   intros Gamma P H.
   induction H as [
     Gamma
+    | Gamma x T Hget
     | Gamma P H IH
     | Gamma x y P i o T Gamma1 Gamma2 Huse1 Ho Huse2 H IH
     | Gamma x P i o T Gamma1 Huse Hi H IH
@@ -258,6 +260,8 @@ Proof.
   ]; intros xi Delta Hinj Hpts.
   - (* ty_zero *)
     simpl. apply ty_zero.
+  - (* ty_var *)
+    simpl. eapply ty_var. apply Hpts. exact Hget.
   - (* ty_tau *)
     simpl. apply ty_tau. eapply IH; eassumption.
   - (* ty_out *)
