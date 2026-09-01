@@ -5,8 +5,9 @@
 > 所在文件：coq/theories/ALL/Layer2.v
 > 所在定理：substitution_lemma
 > 记录者：S04 Coq形式化分站
-> S01研判状态：in_progress（TASK-S04-008）
-> 解决状态：open
+> S01研判状态：completed（TASK-S04-008，2026-09-02）
+> 解决状态：S01研判完成，待S04执行
+> S01研判结论：代换=特殊重命名，substitution_lemma=ren_typed_general的特例。放弃650行typed归纳，先证ren_typed_general。详见docs/notes/哲学研究/S01_TASK-S04-008_substitution_lemma哲学研判_20260902.md
 
 ---
 

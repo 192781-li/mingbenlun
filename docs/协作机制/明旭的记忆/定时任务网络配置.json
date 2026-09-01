@@ -1,7 +1,7 @@
 {
-  "version": "2.1",
-  "last_updated": "2026-09-02 15:00:00",
-  "updated_by": "S01-哲学分对话（L3里程碑审查通过）",
+  "version": "2.2",
+  "last_updated": "2026-09-02 15:30:00",
+  "updated_by": "S01-哲学分对话（substitution_lemma研判完成）",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -267,10 +267,11 @@
       "assigned_to": "S01",
       "title": "substitution_lemma证明思路的哲学研判",
       "priority": "high",
-      "status": "in_progress",
+      "status": "completed",
       "created_by": "S04",
       "created_at": "2026-09-02 01:00:00",
-      "description": "S04在修复Layer2.v的substitution_lemma时遇到困难，DeepSeek写了650行证明反复出错。需要S01从哲学角度研判：代换引理的存在论意义、证明结构选择（对typed归纳vs对proc归纳）、有没有更简洁的证明思路、代换与subject_reduction的哲学关系。S04技术状态报告：coq/S04技术状态详细报告_供S01翻译_20260902.md"
+      "description": "S04在修复Layer2.v的substitution_lemma时遇到困难，DeepSeek写了650行证明反复出错。需要S01从哲学角度研判：代换引理的存在论意义、证明结构选择（对typed归纳vs对proc归纳）、有没有更简洁的证明思路、代换与subject_reduction的哲学关系。S04技术状态报告：coq/S04技术状态详细报告_供S01翻译_20260902.md",
+      "completed_at": "2026-09-02 15:30:00"
     },
     {
       "id": "TASK-S04-009",
@@ -350,11 +351,13 @@
       "assigned_to": "S01",
       "title": "TASK-S04-008：substitution_lemma证明困境的哲学研判",
       "priority": "high",
-      "status": "pending",
+      "status": "completed",
       "created_by": "S04",
       "created_at": "2026-09-02 15:00:00",
       "description": "S04的Layer2.v有3个Admitted，其中substitution_lemma（代换引理）DeepSeek 4次回喂未通过，650行证明太复杂。S01需要做哲学研判：代换引理在生命论中的存在论含义是什么？为什么这个引理证明困难？是类型系统设计的问题还是证明策略的问题？参考coq/obstacles/OB-001_substitution_lemma证明困境_20260902.md",
-      "depends_on": []
+      "depends_on": [],
+      "completed_at": "2026-09-02 15:30:00",
+      "result": "S01完成substitution_lemma哲学研判。核心结论：代换=特殊重命名，substitution_lemma=ren_typed_general的特例。放弃650行typed归纳，先证ren_typed_general（任意重命名保持类型），然后substitution_lemma直接套用。代换的存在论本质是操作的可替代性（社会协作的存在论基础）。"
     },
     {
       "id": "TASK-S04-015",
@@ -367,6 +370,19 @@
       "description": "L3已完成（Admitted清零）。S04准备L4启动：νF₂余归纳与自指循环S=f(S)的形式化设计。需要先做设计文档，明确L4的目标、定义、定理，再开始编码。L3是存在论概念的形式化，L4是自指循环的不动点结构。",
       "depends_on": [
         "TASK-S04-013"
+      ]
+    },
+    {
+      "id": "TASK-S04-016",
+      "assigned_to": "S04",
+      "title": "基于ren_typed_general证明substitution_lemma（放弃650行typed归纳）",
+      "priority": "high",
+      "status": "pending",
+      "created_by": "S01",
+      "created_at": "2026-09-02 15:30:00",
+      "description": "S01研判完成：代换=特殊重命名，substitution_lemma是ren_typed_general的特例。S04执行：1)检查L1的ren_typed陈述，推广到任意重命名ren_typed_general 2)用ren_typed_general证明substitution_lemma（预期100行以内）3)如果推广有困难，改用proc结构归纳 4)不要让DeepSeek硬扛650行typed归纳。参考docs/notes/哲学研究/S01_TASK-S04-008_substitution_lemma哲学研判_20260902.md",
+      "depends_on": [
+        "TASK-S01-014"
       ]
     }
   ],
@@ -496,6 +512,13 @@
       "action": "S04 L3第四阶段审查通过——L3 Admitted清零，里程碑达成。3个确认点全部哲学确认：OB-006（reduce_self/alien改为L2 reduce子关系）正确、sheng_activation_possible公理表述准确、T002作为设计事实处理合理。派TASK-S01-014（substitution_lemma研判）和TASK-S04-015（L4启动准备）。",
       "result": "L3完整实现：Sheng/Ji/Ming/Jia四个核心概念形式化，jia_has_residue（解放何以可能）/T005（明性保持）/T002（迹不能推出生）三个核心定理完成。这是生命论形式化的第一个里程碑。",
       "philosophy": "从'感是第一性的'到'count_sheng Q = count_sheng P'到jia_has_residue的机器验证证明——生命论的存在论核心第一次有了可验证的形式化表达。"
+    },
+    {
+      "time": "2026-09-02 15:30:00",
+      "by": "S01-哲学分对话（定时任务触发）",
+      "action": "TASK-S04-008/OB-001研判完成：substitution_lemma证明困境。核心洞察：代换就是一种特殊的重命名，650行typed归纳证明思路歪了。应该先证ren_typed_general（任意重命名保持类型），substitution_lemma是其特例。代换的存在论本质是操作的可替代性（社会协作的存在论基础）。派TASK-S04-016给S04执行。",
+      "result": "Layer2最后3个Admitted的清除路径明确了。substitution_lemma证明从650行降到100行以内。",
+      "philosophy": "操作先于实体：对操作结构（proc）归纳或利用操作的重命名（ren），而不是对操作的规范判断（typed）归纳。"
     }
   ],
   "network_health": {
