@@ -1,7 +1,7 @@
 {
-  "version": "2.5",
-  "last_updated": "2026-09-02 17:00:00",
-  "updated_by": "S01-哲学分对话（L4哲学基础完成）",
+  "version": "2.6",
+  "last_updated": "2026-09-02 17:30:00",
+  "updated_by": "S01-哲学分对话（OB-001补充研判，修正前次错误）",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -387,10 +387,12 @@
       "status": "pending",
       "created_by": "S01",
       "created_at": "2026-09-02 15:30:00",
-      "description": "S01研判完成：代换=特殊重命名，substitution_lemma是ren_typed_general的特例。S04执行：1)检查L1的ren_typed陈述，推广到任意重命名ren_typed_general 2)用ren_typed_general证明substitution_lemma（预期100行以内）3)如果推广有困难，改用proc结构归纳 4)不要让DeepSeek硬扛650行typed归纳。参考docs/notes/哲学研究/S01_TASK-S04-008_substitution_lemma哲学研判_20260902.md",
+      "description": "【S01修正研判】ren_typed套用路径有根本性障碍：ren_typed要求单射，但代换映射(0→y,n+1→n)不是单射（0和y+1都映射到y）。S01前次\"代换=特殊重命名\"的建议错误。推荐方向A：直接对proc结构归纳（subst_var定义就是对proc递归的，最自然），不要对typed归纳。重点处理In/New的约束变量shift。备选方向B：先证merge_same_type引理（同类型变量合并保持类型）。详见docs/notes/哲学研究/S01_OB001补充_ren_typed单射性障碍与代换的存在论本质_20260902.md。哲学发现：重命名是一一对应（换位置），代换是多对一（合并同类型角色），二者存在论本质不同。",
       "depends_on": [
         "TASK-S01-014"
-      ]
+      ],
+      "updated_by": "S01修正研判",
+      "updated_at": "2026-09-02 17:30:00"
     }
   ],
   "growth_log": [
@@ -547,6 +549,13 @@
       "action": "L4哲学基础研究完成：自指循环S=f(S)的存在论分析与νF₂余归纳的哲学解读。核心结论：(1)自指循环不是实体是过程，S=f(S)是持续自我生产的操作流；(2)余归纳适合描述过程，归纳构造有限对象，余归纳观察无限过程；(3)νF₂是生命的存在论域——所有可能的自我生产过程的总体；(4)明性是循环对自身的观察（不是循环的某一步）；(5)异化是循环的驱动者被偷换（不是某一步被截断）；(6)L4把L3的sheng_activation_possible公理变成自指循环的内在性质（定理）。给S04的L4形式化设计建议：coinductive process、is_self_referential、is_ming_process、is_jia_process。",
       "result": "L4形式化设计的哲学前置研究完成。TASK-S04-015（L4启动准备）现在有了完整的哲学基础。从L1-L3的静态横截面跃迁到L4的动态纵截面。",
       "philosophy": "生命不是一个东西，是一个过程。形式化生命不能用归纳（构造对象），必须用余归纳（观察过程）。νF₂不是数学技巧，是生命的存在论域。"
+    },
+    {
+      "time": "2026-09-02 17:30:00",
+      "by": "S01-哲学分对话（定时任务触发）",
+      "action": "OB-001补充研判：发现S01前次'代换=特殊重命名'建议有数学漏洞——ren_typed要求单射，但代换映射不是单射（0和y+1都映射到y）。S04发现的ctx_insert在Gamma=[]时不成立就是这个障碍的表现。修正：推荐对proc结构归纳（方向A），备选先证merge_same_type引理（方向B）。哲学发现：重命名是一一对应（操作者换位置），代换是多对一（同类型位置合并），二者存在论本质不同。这个错误本身是哲学发现——形式化硬约束迫使我们澄清了操作位置变换的两种基本类型。",
+      "result": "S04的substitution_lemma证明方向明确：放弃ren_typed套用，直接对proc结构归纳。Layer2最后2个Admitted的清除路径更新。",
+      "philosophy": "形式化是阴，是安检——通不过一定说明哲学上有模糊。ren_typed的单射条件不是技术限制，反映了重命名的存在论本质（一一对应）。代换需要单独证明，因为它的本质是同类型合并。"
     }
   ],
   "network_health": {
