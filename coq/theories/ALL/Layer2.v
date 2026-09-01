@@ -85,7 +85,9 @@ Inductive reduce_star : proc -> proc -> Prop :=
    --------------------------------------------------------------------- *)
 Inductive is_value : proc -> Prop :=
   | val_zero : is_value PZero
+  | val_var  : forall n, is_value (PVar n)
   | val_in   : forall x P, is_value (PIn x P)
+  | val_par  : forall P Q, is_value P -> is_value Q -> is_value (PPar P Q)
   | val_res  : forall P, is_value P -> is_value (PRes P)
   | val_rep  : forall P, is_value (PRep P).
 
