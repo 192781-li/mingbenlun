@@ -14,15 +14,15 @@ Require Import ALL.Layer1.
 Require Import ALL.Layer2.
 
 (* =====================================================================
-   一、明性锚点（注释形式，不参与编译）
+   一、明（Ming）锚点（注释形式，不参与编译）
    =====================================================================
    为什么L3是核心创新层？
    L1-L2是标准技术（π-演算线性类型系统的语法、类型规则、subject reduction）。
    L3开始才是生命论真正的数学创新——Ag_lv/Ag_tr分裂。
 
    哲学对应：
-   - Ag_lv = 活运行权（线性的，正在发用的操作，感的维度）
-   - Ag_tr = 轨迹运行权（非线性的，已经沉积为轨迹的操作，实体的维度）
+   - Ag_lv = 生（Sheng）（线性的，正在发用的操作，感的维度）
+   - Ag_tr = 迹（Ji）（非线性的，已经沉积为轨迹的操作，实体的维度）
    - 这个分裂是"感先于操作，操作先于实体"的类型论表达
 
    数学意义：
@@ -31,7 +31,7 @@ Require Import ALL.Layer2.
    不是所有非线性都是"沉积"，有些是"活的运行权"。这是新东西。
 
    T002是L3的试金石：
-   "自由只能在实践中确立" = !Ag_tr ⊬ Ag_lv（轨迹运行权不能推出活运行权）
+   "自由只能在实践中确立" = !Ag_tr ⊬ Ag_lv（迹（Ji）不能推出生（Sheng））
    如果L3的类型规则能让T002自然地陈述和证明，说明设计对了。
    ===================================================================== *)
 
@@ -47,51 +47,51 @@ Require Import ALL.Layer2.
    ===================================================================== *)
 
 (* Ag_tr支持dereliction（读取轨迹）：有Ag_tr(A)的上下文可以读取A *)
-Axiom agtr_dereliction : forall (A : ty), Prop.
+Axiom ji_dereliction : forall (A : ty), Prop.
 
 (* Ag_tr支持contraction（复制轨迹）：一份Ag_tr可以复制成两份 *)
-Axiom agtr_contraction : forall (A : ty), Prop.
+Axiom ji_contraction : forall (A : ty), Prop.
 
 (* Ag_tr支持weakening（丢弃轨迹）：Ag_tr可以被忽略 *)
-Axiom agtr_weakening : forall (A : ty), Prop.
+Axiom ji_weakening : forall (A : ty), Prop.
 
 (* 关键：故意不定义agtr_promotion——没有规则能从Ag_tr推出Ag_lv *)
-(* 这是T002的类型论基础：轨迹运行权不能推出活运行权 *)
+(* 这是T002的类型论基础：迹（Ji）不能推出生（Sheng） *)
 
 (* =====================================================================
    三、Hijack 的引入规则
    =====================================================================
-   Hijack(b,a,B)：b劫持了a的Ag_lv，伪装成a在运行。
+   Hijack(b,a,B)：b假（Jia）了a的Ag_lv，伪装成a在运行。
    Hijack没有消去规则——伪装不能直接揭开。
    只能通过异化归约把Hijack变成Ag_tr（伪装被沉积为轨迹）。
 
-   这对应哲学：异化是不可逆的——一旦活运行权被劫持，
-   就不能直接变回，只能通过明性（Cl）的坍缩（retraction）间接恢复。
+   这对应哲学：异化是不可逆的——一旦生（Sheng）被假（Jia），
+   就不能直接变回，只能通过明（Ming）（Cl）的坍缩（retraction）间接恢复。
    ===================================================================== *)
 
-Axiom hijack_intro : forall (b a : nat) (A B : ty), Prop.
+Axiom jia_intro : forall (b a : nat) (A B : ty), Prop.
 
 (* 故意不定义hijack_elim——Hijack没有消去规则 *)
 
 (* =====================================================================
-   四、Cl（明性）的规则
+   四、Cl（明（Ming））的规则
    =====================================================================
    Cl(A) = Ag_lv(A) ⊗ !Ag_tr(A)
-   明性 = 活运行权 + 看到自己的轨迹
+   明（Ming） = 生（Sheng） + 看到自己的轨迹
 
-   T005：明性幂等retraction —— Cl(Cl(A)) -> Cl(A)
+   T005：明（Ming）幂等retraction —— Cl(Cl(A)) -> Cl(A)
    注意：是retraction（⇒），不是同构（≅）。
    这是从之前的降级史中学到的：先证弱版，能升回的再升。
    ===================================================================== *)
 
-(* Cl的引入：Ag_lv + Ag_tr -> Cl（活运行权+看到自己的轨迹=明性） *)
-Axiom cl_intro : forall (A : ty), Prop.
+(* Cl的引入：Ag_lv + Ag_tr -> Cl（生（Sheng）+看到自己的轨迹=明（Ming）） *)
+Axiom ming_intro : forall (A : ty), Prop.
 
 (* Cl的消去：Cl -> Ag_lv + Ag_tr（直接展开） *)
-Axiom cl_elim : forall (A : ty), Prop.
+Axiom ming_elim : forall (A : ty), Prop.
 
-(* T005：明性幂等retraction —— Cl(Cl(A)) -> Cl(A) *)
-Axiom cl_retraction : forall (A : ty), Prop.
+(* T005：明（Ming）幂等retraction —— Cl(Cl(A)) -> Cl(A) *)
+Axiom ming_retraction : forall (A : ty), Prop.
 
 (* =====================================================================
    五、两个归约关系（骨架）
@@ -109,11 +109,11 @@ Axiom cl_retraction : forall (A : ty), Prop.
    （加PAgLvStep/PHijack等进程构造子），这是下一步的工作。
    ===================================================================== *)
 
-(* 自指归约：P自己归约，保持Ag_lv类型不变（活运行权在自己操作中持续） *)
+(* 自指归约：P自己归约，保持Ag_lv类型不变（生（Sheng）在自己操作中持续） *)
 Inductive reduce_self : Prop :=
 | rs_tau : reduce_self.  (* 占位，后续补充完整定义 *)
 
-(* 异化归约：在b的控制下归约，Ag_lv变成Ag_tr（活运行权沉积为轨迹） *)
+(* 异化归约：在b的控制下归约，Ag_lv变成Ag_tr（生（Sheng）沉积为轨迹） *)
 Inductive reduce_alien : Prop :=
 | ra_hijack : reduce_alien.  (* 占位，后续补充完整定义 *)
 
@@ -146,7 +146,7 @@ Admitted.
 
    核心直觉：
    S_A只有!-模态（可复制可丢弃），Ag_lv是线性的（不可复制不可丢弃）。
-   从"一切可复制"推不出"唯一的活运行权"——
+   从"一切可复制"推不出"唯一的生（Sheng）"——
    就像从一堆石头推不出一个活着的人。
    ===================================================================== *)
 
@@ -167,7 +167,7 @@ Qed.
    八、L3 完成度总结
    =====================================================================
    已完成（A方案验证成功）：
-   - [x] ty定义扩展：在Layer1的通用ty里加TAgLv/TAgTr/THijack/TCl
+   - [x] ty定义扩展：在Layer1的通用ty里加TSheng/TJi/TJia/TMing
    - [x] L1重新编译通过（只有deprecated警告，无错误）
    - [x] L2重新编译通过（无错误）
    - [x] Layer3.v用统一ty重写，直接复用L1/L2的ctx/use/split/typed
