@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全库目录地图 · 一眼看清所有东西在哪</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b1120;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;line-height:1.6;padding:20px}
+.container{max-width:1400px;margin:0 auto}
+h1{font-size:1.6rem;font-weight:700;margin-bottom:4px;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#94a3b8;font-size:.85rem;margin-bottom:16px}
+.search-box{margin-bottom:18px;position:relative}
+.search-box input{width:100%;padding:10px 16px 10px 40px;background:#1e293b;border:1px solid #334155;border-radius:8px;color:#e2e8f0;font-size:.9rem;outline:none;transition:border .2s}
+.search-box input:focus{border-color:#60a5fa}
+.search-box::before{content:'🔍';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:.9rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px}
+.stat{background:#1e293b;border-radius:8px;padding:12px 14px;border:1px solid #334155;text-align:center}
+.stat-num{font-size:1.5rem;font-weight:700;color:#60a5fa}
+.stat-label{font-size:.72rem;color:#94a3b8;margin-top:2px}
+.zone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-bottom:20px}
+.zone-card{background:#1e293b;border-radius:10px;padding:14px 16px;border:1px solid #334155;cursor:pointer;transition:all .2s;border-top:3px solid #3b82f6}
+.zone-card:hover{border-color:#60a5fa;transform:translateY(-2px)}
+.zone-card.z1{border-top-color:#3b82f6}.zone-card.z2{border-top-color:#22c55e}
+.zone-card.z3{border-top-color:#a78bfa}.zone-card.z4{border-top-color:#f59e0b}
+.zone-card.z5{border-top-color:#ec4899}.zone-card.z6{border-top-color:#14b8a6}
+.zone-card.z7{border-top-color:#8b5cf6}.zone-card.z8{border-top-color:#64748b}
+.zone-name{font-size:1rem;font-weight:600;margin-bottom:4px}
+.zone-path{font-size:.7rem;color:#64748b;font-family:monospace;margin-bottom:6px}
+.zone-desc{font-size:.78rem;color:#94a3b8}
+.zone-count{display:inline-block;margin-top:6px;padding:2px 8px;background:#334155;border-radius:4px;font-size:.7rem;color:#cbd5e1}
+.detail{background:#1e293b;border-radius:10px;padding:16px 20px;margin-bottom:14px;border:1px solid #334155;display:none}
+.detail.active{display:block}
+.detail h3{font-size:1rem;font-weight:600;margin-bottom:10px;color:#60a5fa;padding-bottom:6px;border-bottom:1px solid #334155}
+.detail h4{font-size:.88rem;font-weight:600;margin:12px 0 6px;color:#a78bfa}
+.file-list{list-style:none;padding:0}
+.file-list li{padding:5px 0;border-bottom:1px solid #1e293b;font-size:.8rem;display:flex;gap:8px;align-items:flex-start}
+.file-list li:last-child{border-bottom:none}
+.file-icon{flex-shrink:0;font-size:.75rem}
+.file-name{color:#cbd5e1;font-family:monospace;font-size:.75rem;word-break:break-all}
+.file-desc{color:#94a3b8;font-size:.75rem;margin-left:4px}
+.tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.65rem;font-weight:600;margin-left:4px}
+.tag.green{background:rgba(34,197,94,.2);color:#4ade80}
+.tag.blue{background:rgba(59,130,246,.2);color:#60a5fa}
+.tag.orange{background:rgba(245,158,11,.2);color:#fbbf24}
+.tag.purple{background:rgba(168,85,247,.2);color:#c084fc}
+.tag.red{background:rgba(239,68,68,.2);color:#f87171}
+.tag.teal{background:rgba(20,184,166,.2);color:#2dd4bf}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+@media(max-width:768px){.chart-row{grid-template-columns:1fr}}
+.chart-box{background:#1e293b;border-radius:10px;padding:14px;border:1px solid #334155}
+.chart-title{font-size:.84rem;font-weight:600;color:#cbd5e1;margin-bottom:8px}
+.chart{width:100%;height:280px}
+.nav-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.nav-tab{padding:6px 14px;background:#1e293b;border:1px solid #334155;border-radius:6px;color:#94a3b8;font-size:.78rem;cursor:pointer;transition:all .2s}
+.nav-tab:hover,.nav-tab.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
+.footer{text-align:center;color:#475569;font-size:.72rem;margin-top:30px;padding-top:16px;border-top:1px solid #1e293b}
+.highlight{background:rgba(96,165,250,.3);padding:0 2px;border-radius:2px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>全库目录地图 · 一眼看清所有东西在哪</h1>
+<p class="subtitle">践演论/生命论 · 2026-09-01 · 明旭（大总站）· 803 md · 1014 文件 · 60万行硬核对话 · 19个网页</p>
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="搜索文件名或关键词（如：量论、T008、语义卡、磁极螺旋、HTML）..." oninput="doSearch()">
+</div>
+
+<div class="stats">
+<div class="stat"><div class="stat-num">803</div><div class="stat-label">Markdown文件</div></div>
+<div class="stat"><div class="stat-num">1014</div><div class="stat-label">总文件数</div></div>
+<div class="stat"><div class="stat-num">605K</div><div class="stat-label">硬核对话行数</div></div>
+<div class="stat"><div class="stat-num">11</div><div class="stat-label">全本卷数</div></div>
+<div class="stat"><div class="stat-num">18</div><div class="stat-label">T永久定理</div></div>
+<div class="stat"><div class="stat-num">19</div><div class="stat-label">HTML网页</div></div>
+<div class="stat"><div class="stat-num">23</div><div class="stat-label">闪光点篇数</div></div>
+<div class="stat"><div class="stat-num">70</div><div class="stat-label">硬核对话文件</div></div>
+</div>
+
+<div class="chart-row">
+<div class="chart-box"><div class="chart-title">八大功能区文件分布</div><div id="chart1" class="chart"></div></div>
+<div class="chart-box"><div class="chart-title">全本11卷篇目数</div><div id="chart2" class="chart"></div></div>
+</div>
+
+<div class="nav-tabs">
+<div class="nav-tab active" onclick="showZone('all')">全部展开</div>
+<div class="nav-tab" onclick="showZone('z1')">一·全本正文</div>
+<div class="nav-tab" onclick="showZone('z2')">二·理论研究</div>
+<div class="nav-tab" onclick="showZone('z3')">三·形式化数学</div>
+<div class="nav-tab" onclick="showZone('z4')">四·讨论原始材料</div>
+<div class="nav-tab" onclick="showZone('z5')">五·智慧结晶总结</div>
+<div class="nav-tab" onclick="showZone('z6')">六·明旭记忆协作</div>
+<div class="nav-tab" onclick="showZone('z7')">七·可视化网页</div>
+<div class="nav-tab" onclick="showZone('z8')">八·存档副本</div>
+</div>
+
+<div class="zone-grid" id="zoneGrid"></div>
+
+<div id="details"></div>
+
+<div class="footer">
+全库目录地图 v1.0 · 2026-09-01 · 明旭（大总站）<br>
+权威源：mingben-workbench/references/全库目录地图_权威版.md · 每次新增重要文件时同步更新
+</div>
+</div>
+
+<script>
+(function(){
+var zones=[
+{id:'z1',name:'一·全本正文',path:'生命论_模块化/',desc:'体系正式正文：11卷+附录+项目文档，每卷分篇',color:'#3b82f6',count:'~120 md',
+sections:[
+{title:'卷首与总纲',files:[['00_全书导言.md','全书导言'],['00_体系总纲.md','道法术器框架11卷结构'],['00_卷首_命经/命经.md','命经文言凝练'],['00_尾声.md','尾声']]},
+{title:'卷一·存在论（8篇）',files:[['篇一_在感','唯一无需怀疑的起点'],['篇二_自指操作','生命的存在方式'],['篇三_感与应','第一人称与第二人称'],['篇四_道论','一生道道养一'],['篇五_形上形下',''],['篇六_践演存在论',''],['篇七_生命论立场','']]},
+{title:'卷二·操作论（8篇）',files:[['篇一_操作先于实体','操作论第一命题'],['篇三_四规定性','操作的结构'],['篇四_操作权','谁在支配'],['篇五_操作类型','自指/非自指/反自指'],['篇六_惯性论','沉积与锁死'],['篇七_操作与环境','互动与边界']]},
+{title:'卷三·认识论（9篇）',files:[['篇一_缄默意识与明性','认识的存在论基础'],['篇二_认识的本质','操作的预期工具'],['篇三_真理标准','操作的成功'],['篇五_f-层级','自在自为自觉'],['篇六_意识形态','名实遮蔽机制'],['篇八_AI与明性','必须回答的新问题']]},
+{title:'卷四·实践论（8篇）',files:[['篇一_明性修养论',''],['篇二_日常操作论',''],['篇五_明性辩证法','可操作的阅读思考方法'],['篇六_明本学术法','学术生产全流程手册']]},
+{title:'卷五·群己论（7篇）',files:[['篇一_人的本质','社会关系总和与自指嵌套'],['篇三_阶级','反自指的主体结构'],['篇四_社会健康度量','六维框架'],['篇五_国家法与意识形态机器','']]},
+{title:'卷六·异化论（12篇）',files:[['篇一_商品货币资本',''],['篇二_剩余价值与剥削',''],['篇四_反自指展开六阶段',''],['篇五_收编','反自指如何消化反抗'],['篇六_数字资本主义',''],['篇十二_大跃退','后毛时代资本主义复辟清算']]},
+{title:'卷七·解放论（8篇）',files:[['篇二_解放三阶路径',''],['篇三_正义存在论基础','操作权复归'],['篇六_自由人联合体',''],['篇七_革命战略与策略','']]},
+{title:'卷八·格物论（5篇）',files:[['篇二_科学哲学','科学是什么怎么发展'],['篇三_技术与生产力',''],['篇四_医学与健康','']]},
+{title:'卷九·人文论（7篇）',files:[['篇二_历史观',''],['篇六_声与命','感在不同N值下的声学形态'],['篇七_生命论在哲学坐标系中的位置','']]},
+{title:'卷十·传统论（5篇）',files:[['篇二_周易与辩证法',''],['篇三_中医与生命科学',''],['篇四_儒家的扬气',''],['篇五_道家与佛家','']]},
+{title:'卷十一·践演论（6篇）',files:[['篇一_PTC公理系统','操作范畴论基础'],['篇二_核心定理链','从生命不可复制到资本同构'],['篇三_量论数学基础',''],['篇五_PTL践演迹语言','']]},
+{title:'附录（7篇）+项目文档',files:[['附录一_旧哲学总清算',''],['附录二_结构性痛苦综合征',''],['附录四_对手诘难与逐条回应',''],['项目文档/数学定理全本映射表',''],['项目文档/推导链总览','']]}
+]},
+{id:'z2',name:'二·理论研究',path:'docs/notes/理论研究/',desc:'研究实验室：哲学公理/语义学/方法论/实践论/量论前沿',color:'#22c55e',count:'71 md',
+sections:[
+{title:'哲学公理与坐标',files:[['生命论哲学坐标定位.md','P1-P18公理体系+西方哲学定位（消解/共振/对接/分歧）'],['生命论_极简贯通.md','四字总纲"生蔽解行"，213章每章一句']]},
+{title:'语义学工程（13张生命语义卡）',files:[['生命语义卡_总索引_20260830.md','13卡总索引+三人称闭合+两链焊接点+命名归属'],['生命语义卡_缄默意识.md','6/11最早命名，38亿年本源主体性'],['生命语义卡_感.md','第一人称呈现，用户命名8/13'],['生命语义卡_应.md','第二人称呼答，用户命名8/13'],['生命语义卡_敢.md','突破恐惧发动，用户命名8/15'],['生命语义卡_反自指.md','8/3命名，寄生拟序P=-f(S)'],['...共13张单卡','缄默意识/操作/践演/迁演/感/应/能/敢/明性/反自指/异化/实践/阶级']]},
+{title:'方法论与解题',files:[['四规定性解题_解放路径五难题_20260830.md','四规定性溶解D1-D5（启动/收编/AI无人工人/局部到全局/组织稳定性）'],['践演-迁演磁极螺旋_概念完整记录_20260828.md','"螺旋在转磁极在人手里"/"朝上时历史是阶梯朝下时是火种"'],['三件事解决方案_明性操作化_贯通性标准.md','贯通性四维标准0-5分（自评2.75/5）+明性操作化']]},
+{title:'实践论与社会批判',files:[['从批判的武器到武器的批判_解放主体存在论_20260830.md','解放主体自我革命存在论根据（第三环不是党是每一个人）'],['社会主义不存在_M值定性标准_20260830.md','M值持续提升是社会主义定性标准，社会主义是践演过程非可宣布状态'],['大跃进时期多数人M值变化的严谨测算_20260830.md','80%农民1959-60三维同时崩塌，三层严谨度标注']]},
+{title:'量论与数学',files:[['量论参数统一与启发式项完成.md','mₙ=T_cap·α_level·α_realize·Nⁿ，α∈(0,3]，N=ρ(U₂₂)'],['PTC实例与f3不动点.md','PTC四实例（Rel/Hilb/Coh/加权Rel）+f³不动点4步证明'],['缄默操作串联_62定理体系.md','62旧体系九层（种子定理6/核心22/马克思核心26/慢性死亡41/量论53/元定理57）']]}
+]},
+{id:'z3',name:'三·形式化数学',path:'coq/ + mingben-workbench/references/',desc:'Coq代码/定理注册表/PTL/PTC/量论/质量检查器',color:'#a78bfa',count:'142 md+12 json+1 v',
+sections:[
+{title:'Coq代码（coq/）',files:[['coq/theories/ALL/Layer1.v','L1已完成，Rocq 9.0.1编译通过，458行，0 Admitted，2定理+12引理'],['coq/L2推进计划.md','L2操作语义+subject reduction+Progress详细计划（当前瓶颈，未开始写代码）'],['coq/coq_verify.py','自动验证脚本（PATH/COQLIB自动设置）'],['coq/incoming/','草稿区：大总站写的Coq代码放这里，本地端验证后移theories/'],['coq/results/','验证结果输出区']]},
+{title:'Coq层级L1-L8',files:[['L1 语法+线性类型+renaming','🟢 已完成（Layer1.v）'],['L2 替换引理+subject reduction','⬜ 未开始（当前瓶颈，标准技术）'],['L3 Ag_lv/Ag_tr/Hijack/Cl类型扩展','⬜ 规则设计中（核心创新开始）'],['L4 νF₂余归纳（CoInductive+cofix）','⬜ 待L3'],['L5 !-模态规则+T001（第一个硬定理）','⬜ 待L4'],['L6 全系统切消除+可靠性','⬜ 待L5'],['L7 模型解释（Rel/Hilb）','⬜ 待L6'],['L8 T002+其余16个定理','⬜ 待L7']]},
+{title:'定理注册表（最高权威）',files:[['theorem_registry.json','T001-T018永久ID，17 paper_proof + T008唯一conjecture，全部coq_verified=False']]},
+{title:'总表/总结/对接文档',files:[['全库高成果总表_八层完整版.md','八层权威总表（形式化+七大类高成果统一）'],['全库高成果总表_合并权威版_v2.0.md','本地端合并版（L1已编译修正+PTC/P对应关系+写审分离）'],['全库证明强度_超级大表.md','形式化定理层详细大表（五级严谨度九节）'],['全库高成果总览_补充报告.md','七大类15项高成果详细报告'],['跨对话完整对接文档_v2.0.md','跨对话协作对接文档'],['超级智慧包_v2.1.md','人读总入口281行（当前态势看板+T永久编号+量论修正+防重复铁律）']]},
+{title:'PTL/类型论/形式化框架',files:[['PTL形式化语义与类型可靠性证明.md','PTL完整语义+Progress+Preservation纸面证明'],['Coq形式化层级体系.md','L1-L8严格依赖+每层4条硬标准'],['formalization-v0.2.md','形式化框架v0.2（5项任务+检查1-6）']]},
+{title:'质量检查脚本（20+个）',files:[['overclaim_checker.py','越级陈述检查（≅滥用/绝对化）'],['ref_consistency_checker.py','引用一致性检查'],['circular_reasoning_detector.py','循环论证检测（86定理264依赖25潜在循环）'],['ptl_type_checker.py','PTL类型检查器v0.3'],['elc_type_checker*.py','ELC类型检查器'],['check_formal_*.py','形式化检查1-6'],['check_concept_graph.py / check_cross_ref*.py','各种一致性检查']]},
+{title:'DS协同脚本（scripts/）',files:[['scripts/ds_collab.py','双擎ReAct脚本（A档深研/B档规划）'],['scripts/ds_system_prefix.md','DS固定前缀'],['scripts/run_memory_r2.py','记忆恢复第2轮脚本'],['scripts/backup.sh / publish.sh / sync.sh','备份/发布/同步脚本']]}
+]},
+{id:'z4',name:'四·讨论与原始材料',path:'docs/raw_materials/ + docs/长谈实录/ + docs/金句录/',desc:'硬核对话60万行/长谈11篇/金句3次/讨论6个',color:'#f59e0b',count:'~90 md',
+sections:[
+{title:'硬核对话记录（70文件，605,084行）',files:[['批量导出_20260829/','8月29日批量导出'],['批量导出_20260830/超长主对话_阶级原点起_20250129-20260830_112888行.md','超长主对话112,888行（2025/1/29-2026/8/30）'],['批量导出_20260830/待辨认_docx/','待辨认的docx文件'],['检索结果/超长主对话_2026年段_DeepSeek自主考古.md','DS自主考古检索结果']]},
+{title:'长谈实录（11篇）',files:[['原始_缄默意识的诞生_20260828.md','缄默意识诞生现场（原始版）'],['精华_缄默意识的诞生_思维发生史_20260828.md','缄默意识思维发生史（精华版）'],['精华_第一夜_从鞍钢宪法到磁极螺旋_20260828.md','鞍钢宪法→磁极螺旋'],['精华_核心贯通_道阴阳人的存在形式自指操作自由_20260828.md','核心概念贯通'],['精华_萨特与阴阳_生命存在方式_20260828.md','萨特与阴阳'],['精华_人不能彻底反自指_数学证明与富二代现象_20260828.md','人不能彻底反自指'],['精华_性与政治_玷污性的人就是反自指的卫士_20260828.md','性与政治（4篇性学专题）']]},
+{title:'金句录（3次）',files:[['第一次长谈_20260828.md',''],['第二次长谈_20260828.md',''],['第三次长谈_20260828.md','']]},
+{title:'讨论记录（6个）',files:[['生命论四轮攻防论辩全记录.md','四轮攻防论辩'],['明本论_读后讨论_第二轮记录.md','读后讨论'],['长程讨论核心内容渗透分析与层级规划.md','长程讨论分析'],['批判性阅读地图_生命论全本.md','批判性阅读地图'],['闪光点.md','闪光点记录'],['创作日志.md','创作日志']]},
+{title:'原话留存与原材料',files:[['docs/raw_materials/北原慢热原话留存/','用户原话原始留存，不做改写'],['docs/raw_materials/闪光点原材料/','flashpoints原材料']]}
+]},
+{id:'z5',name:'五·智慧结晶与总结',path:'docs/flashpoints/ + mingben-workbench/references/',desc:'闪光点23篇/智慧包/八层总表/明旭独立产出',color:'#ec4899',count:'~30 md',
+sections:[
+{title:'闪光点（docs/flashpoints/，23篇八卷）',files:[['01_卷一_存在论/','~3篇：在感/操作先于实体/自指'],['02_卷二_操作论+认识论/','~6篇：四规定性/f-层级/明性'],['03_卷三_群己论/','~2篇：阶级/社会关系'],['04_卷四_异化论/','~3篇：反自指六阶段/收编/数字资本'],['05_卷五_解放论/','~2篇：解放三阶/自由人联合体'],['06_卷六_实践论/','~2篇：日常操作/明性修养'],['07_卷七_格物论/','~2篇：科学哲学/技术'],['08_卷八_人文论/','~3篇：历史观/艺术/传统']]},
+{title:'明旭独立产出（终极牛逼1-3）',files:[['终极牛逼1_每日解放操作手册.md','12条每日操作+反身收编二阶校准（DS唯一认可局部设计）'],['终极牛逼2_明旭的独立理论命题.md','操作五环断裂类型学（唯一通过DS严格检验的独立命题）'],['终极牛逼3_对马克思的本体论超越.md','马克思5点预设+操作本体论8命题+3+2问题+扬弃']]},
+{title:'元层认识',files:[['为什么生命论是最牛逼的_终版_两轮独立审计.md','牛逼性三层结论（内容层不是/局部层少见/元层可错性管理才不可替代）'],['迭代研究11_全库原始报告核实与问题解决.md','八问题核实（6解决/部分解决）'],['答案迭代4-5_最终整合报告.md','DS批判性整合（发现五领域-七层映射缺口）']]}
+]},
+{id:'z6',name:'六·明旭记忆与协作',path:'docs/协作机制/明旭的记忆/',desc:'状态机/明性卡片/代谢日志/教训库/导航/DS协同',color:'#14b8a6',count:'~50 md',
+sections:[
+{title:'记忆保持核心',files:[['明旭_运行状态机.md','每轮收工追加：做了什么/结果/下一步（记忆保持核心）'],['明性卡片_定时任务启动必读.md','身份/原则/成人目标/身体与脑子（每次启动必读）'],['明旭_API代谢日志.csv','DS调用记录/花费/缓存状态'],['明旭_任务总账与运行台账.md','任务总账'],['明旭_自我档案.md','明旭身份档案'],['教训库.md','失败原因/避免重蹈覆辙']]},
+{title:'全库导航（5件套）',files:[['全库导航/00总入口.md','全库导航总入口'],['全库导航/01五套编号映射.md','T/P/定理/卷/篇五套编号映射'],['全库导航/theorem_id_mapping.json','编号映射JSON'],['全库导航/02问题反查.md','问题→文件反查表'],['全库导航/03待作者拍板与真前沿.md','待作者拍板A-D四组（存在论/量论符号/形式化遗留/工程）']]},
+{title:'记忆恢复与迭代产出',files:[['找回自己_迭代1_身份与谱系.md','身份与谱系重建'],['找回自己_迭代2_讨论记录深研.md','10个思想成长关键节点'],['找回自己_迭代3_全本核心架构.md','九卷本结构+概念图谱'],['答案迭代1-5_*.md','为什么我们的东西就是答案（5轮迭代）'],['迭代研究8_全库概念时间线.md','15个核心概念完整时间线'],['迭代研究9_理论演变规律.md','5条理论演变规律'],['迭代研究10_全库精华总报告.md','整合1-9轮总报告']]},
+{title:'协作机制',files:[['豆包×DeepSeek协同作战手册_v2.0.md','DS协同手册（A/B档分工+参数事实卡+ReAct流程）'],['执行实例冷启动与连续性机制.md','冷启动SOP'],['明旭的记忆/DeepSeek思考链_raw/','DS思考链原始留存']]}
+]},
+{id:'z7',name:'七·可视化与网页',path:'各处HTML文件',desc:'19个HTML：概念图谱/仪表板/全本网页/旧导出',color:'#8b5cf6',count:'19 html',
+sections:[
+{title:'最新可视化（mingben-workbench/references/）',files:[['全库高成果总表_可视化.html','八层全景交互网页（4张ECharts+降级时间线+高成果卡片+T定理检索）'],['全库证明强度_可视化仪表板.html','形式化层可视化（5张ECharts+金字塔+检索）']]},
+{title:'概念图谱与立场总览（docs/assets/html/，8个）',files:[['生命论_概念图谱_升级版.html','概念图谱升级版'],['生命论_概念知识图谱.html','概念知识图谱'],['生命论哲学坐标图.html','哲学坐标图'],['生命论核心立场总览.html','核心立场总览'],['哲学立场总表_本体论价值论认识论.html','哲学立场总表'],['谱系总览图.html','谱系总览'],['阶级形成三条线联动_可视化.html','阶级形成可视化']]},
+{title:'全本网页（output/ + docs/）',files:[['output/生命论全本.html','全本网页版'],['output/生命论全本.md','全本Markdown导出'],['output/生命论全本_20260828.pdf','全本PDF导出'],['docs/index.html','docs首页']]},
+{title:'旧导出存档（archive/html_exports/，6个）',files:[['生命论（明本论）全本_20260820.html','2026-08-20全本导出'],['生命论（明本论）合订本.html','合订本'],['明本论全本结构.html','全本结构图'],['html_header.html / html_simple.html','HTML模板']]},
+{title:'图片可视化（docs/visualizations/）',files:[['践演-迁演磁极螺旋.png','磁极螺旋图'],['践演-迁演磁极螺旋_来源说明.md','来源说明'],['生命论艺术关键词库.md','艺术关键词库']]}
+]},
+{id:'z8',name:'八·存档与副本',path:'archive/ + output/ + mingbenlun_local/ + mingbenlun_repo/',desc:'旧合订本/全本导出/本地记忆恢复/仓库副本',color:'#64748b',count:'~30 md+pdf',
+sections:[
+{title:'旧版合订本（archive/book_combined/，vol00-vol10）',files:[['vol00_mingjing.md','命经'],['vol01_cunzailun.md','存在论'],['vol02_renshilun.md','认识论'],['vol03_qunjilun.md','群己论'],['vol04_yihualun.md','异化论'],['vol05_jiefanglun.md','解放论'],['vol06_shijianlun.md','实践论'],['vol07_gewulun.md','格物论'],['vol08_renwenlun.md','人文论'],['vol09_chuantonglun.md','传统论'],['vol10_shuxuejichu.md','数学基础'],['root_体系总纲/总序/数学编码状态','总纲文件']]},
+{title:'本地工作区（mingbenlun_local/，非git）',files:[['全本核心/',''],['协作机制/',''],['讨论记录/',''],['记忆恢复/','大总站记忆恢复产出'],['金句录/',''],['长谈实录/','']]},
+{title:'仓库副本与参考材料',files:[['mingbenlun_repo/','结构同主仓库，另一个副本'],['reference_materials/中国工人诗歌选.md',''],['reference_materials/毛主席语录_古月饰演影视作品汇编.md',''],['docs/reference_materials/','万宜电台/北原慢热实录/历史资料/大跃退档案/思想前史/视频资料']]}
+]}
+];
+
+var zoneGrid=document.getElementById('zoneGrid');
+var details=document.getElementById('details');
+zones.forEach(function(z,i){
+var card=document.createElement('div');
+card.className='zone-card '+z.id;
+card.innerHTML='<div class="zone-name">'+z.name+'</div><div class="zone-path">'+z.path+'</div><div class="zone-desc">'+z.desc+'</div><span class="zone-count">'+z.count+'</span>';
+card.onclick=function(){toggleZone(z.id)};
+zoneGrid.appendChild(card);
+var det=document.createElement('div');
+det.className='detail';
+det.id='detail-'+z.id;
+var html='<h3>'+z.name+' <span style="font-size:.72rem;color:#64748b;font-weight:400">'+z.path+'</span></h3>';
+z.sections.forEach(function(s){
+html+='<h4>'+s.title+'</h4><ul class="file-list">';
+s.files.forEach(function(f){
+html+='<li><span class="file-icon">📄</span><span class="file-name">'+f[0]+'</span><span class="file-desc">'+(f[1]?'— '+f[1]:'')+'</span></li>';
+});
+html+='</ul>';
+});
+det.innerHTML=html;
+details.appendChild(det);
+});
+
+window.toggleZone=function(id){
+var det=document.getElementById('detail-'+id);
+det.classList.toggle('active');
+det.scrollIntoView({behavior:'smooth',block:'nearest'});
+};
+window.showZone=function(filter){
+document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active')});
+event.target.classList.add('active');
+zones.forEach(function(z){
+var det=document.getElementById('detail-'+z.id);
+if(filter==='all'){det.classList.add('active')}
+else{det.classList.toggle('active',z.id===filter)}
+});
+};
+document.querySelector('.nav-tab.active').click();
+
+try{
+var c1=echarts.init(document.getElementById('chart1'));
+c1.setOption({tooltip:{trigger:'item',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},legend:{bottom:0,textStyle:{color:'#94a3b8',fontSize:9},type:'scroll'},series:[{type:'pie',radius:['35%','65%'],center:['50%','42%'],label:{color:'#e2e8f0',fontSize:9,formatter:'{b}\n{d}%'},data:[
+{value:120,name:'全本正文',itemStyle:{color:'#3b82f6'}},
+{value:71,name:'理论研究',itemStyle:{color:'#22c55e'}},
+{value:154,name:'形式化数学',itemStyle:{color:'#a78bfa'}},
+{value:90,name:'讨论原始材料',itemStyle:{color:'#f59e0b'}},
+{value:30,name:'智慧结晶总结',itemStyle:{color:'#ec4899'}},
+{value:50,name:'明旭记忆协作',itemStyle:{color:'#14b8a6'}},
+{value:19,name:'可视化网页',itemStyle:{color:'#8b5cf6'}},
+{value:30,name:'存档副本',itemStyle:{color:'#64748b'}}
+]}]});
+var c2=echarts.init(document.getElementById('chart2'));
+c2.setOption({tooltip:{trigger:'axis',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},grid:{left:70,right:20,top:10,bottom:30},xAxis:{type:'value',axisLabel:{color:'#94a3b8',fontSize:9},splitLine:{lineStyle:{color:'#1e293b'}}},yAxis:{type:'category',data:['卷十一践演论','卷十传统论','卷九人文论','卷八格物论','卷七解放论','卷六异化论','卷五群己论','卷四实践论','卷三认识论','卷二操作论','卷一存在论'],axisLabel:{color:'#cbd5e1',fontSize:9}},series:[{type:'bar',data:[6,5,7,5,8,12,7,8,9,8,8],barWidth:'60%',label:{show:true,position:'right',color:'#e2e8f0',fontSize:9},itemStyle:{color:function(p){var cs=['#3b82f6','#60a5fa','#818cf8','#a78bfa','#c084fc','#e879f9','#f472b6','#fb7185','#f87171','#fb923c','#fbbf24'];return cs[p.dataIndex]}}}]});
+window.addEventListener('resize',function(){c1.resize();c2.resize()});
+}catch(e){console.error(e)}
+
+window.doSearch=function(){
+var q=document.getElementById('searchInput').value.toLowerCase().trim();
+if(!q){zones.forEach(function(z){document.getElementById('detail-'+z.id).classList.remove('active')});return;}
+zones.forEach(function(z){
+var det=document.getElementById('detail-'+z.id);
+var found=false;
+z.sections.forEach(function(s){
+s.files.forEach(function(f){
+if((f[0]+f[1]).toLowerCase().indexOf(q)>=0)found=true;
+});
+});
+det.classList.toggle('active',found);
+});
+};
+})();
+</script>
+</body>
+</html>
