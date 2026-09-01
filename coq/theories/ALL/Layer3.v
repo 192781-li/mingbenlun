@@ -388,19 +388,57 @@ Inductive is_Jia (Gamma : ctx) (P : proc) : Prop :=
    注意：这不是可以"调用"的规则，是存在性命题。 *)
 Theorem jia_has_residue : forall Gamma P,
   is_Jia Gamma P -> exists Q,
-    (reduce_self Gamma P Q \/ exists R, reduce_alien Gamma 0 P R /\ reduce_self Gamma R Q) /\
+    (reduce_self Gamma P Q \/ exists b R, reduce_alien Gamma b P R /\ reduce_self Gamma R Q) /\
     is_Ming Gamma Q.
 Proof.
   intros Gamma P HJ.
   inversion HJ as [Q b Hra Hjc Hsr].
-  (* 当前是骨架：辅助谓词已精确定义，定理证明待后续工作。
-     哲学上这个定理是成立的——Sheng残余永远在流动，
-     总有一刻和旧代码冲突，冲突时Ming自然发生。
-     形式化上需要：从sheng_residue Q（count_sheng Q > 0）出发，
-     构造一个reduce_self步Q → Q'，使得Q'满足is_Ming。
-     关键引理：如果count_sheng Q > 0，那么存在Q'使得reduce_self Q Q'。
-     这个引理需要归约关系的性质来证明。 *)
-  Admitted.
+
+  (* 步骤1：从sheng_residue Q出发，用sheng_activation_possible公理+经典逻辑NNPP
+     得到exists Q', reduce_self Q Q'。
+     OB-004研判：归约可延续性不成立，但"可激活性"成立——
+     有Sheng残余就不可能完全没有reduce_self路径。 *)
+  assert (Hact : ~ (forall Q', ~ reduce_self Gamma Q Q')).
+    apply sheng_activation_possible. exact Hsr.
+  assert (Hex : exists Q', reduce_self Gamma Q Q').
+    apply NNPP. intro Hn. apply Hact.
+    intro Q'. intro Hrs. apply Hn. exists Q'. exact Hrs.
+  destruct Hex as [Q' Hrs'].
+
+  (* 步骤2：从reduce_self Q Q'得到sheng_continuous和deposits_ji *)
+  inversion Hrs' as [Q0 Q0' Hsc Hdj]. subst.
+
+  (* 步骤3：证明is_Ming Q' *)
+  (* 3a. has_ji Q'：deposits_ji Q Q' -> count_ji Q' > count_ji Q
+        ji_covers_sheng Q -> count_sheng Q < count_ji Q -> count_ji Q > 0
+        所以count_ji Q' > 0 -> has_ji Q' *)
+  assert (Hhj : has_ji Gamma Q').
+    unfold has_ji. unfold deposits_ji in Hdj.
+    unfold ji_covers_sheng in Hjc. unfold sheng_residue in Hsr.
+    lia.
+  (* 3b. still_sheng Q'：sheng_continuous Q Q' -> count_sheng Q' = count_sheng Q
+        sheng_residue Q -> count_sheng Q > 0 -> count_sheng Q' > 0 -> still_sheng Q' *)
+  assert (Hss : still_sheng Gamma Q').
+    unfold still_sheng. unfold sheng_continuous in Hsc.
+    unfold sheng_residue in Hsr. lia.
+  (* 3c. 可继续归约：sheng_activation_possible Q' + NNPP -> exists Q'', reduce_self Q' Q'' *)
+  assert (Hcont : exists Q'', reduce_self Gamma Q' Q'').
+    apply NNPP. intro Hn2.
+    assert (Hact2 : ~ (forall Q'', ~ reduce_self Gamma Q' Q'')).
+      apply sheng_activation_possible. exact Hss.
+    apply Hact2. intro Q''. intro Hrs2. apply Hn2. exists Q''. exact Hrs2.
+  destruct Hcont as [Q'' Hrs''].
+
+  (* 步骤4：构造is_Ming Q' *)
+  assert (HMing : is_Ming Gamma Q').
+    apply ming_here; [exact Hhj | exact Hss | exists Q''; exact Hrs''].
+
+  (* 步骤5：构造路径：P ->(alien b) Q ->(self) Q' *)
+  exists Q'.
+  split.
+  - right. exists b, Q. split. exact Hra. exact Hrs'.
+  - exact HMing.
+Qed.
 
 (* =====================================================================
    十、T005修正：is_Ming在reduce_self下的保持性（明性的幂等是自然事实）
