@@ -3,7 +3,7 @@
    Layer 1: ALL (reconstructed) syntax + typing rules + renaming lemma
    Dependencies: Coq standard library only, Coq >= 8.13
    ===================================================================== *)
-Require Import List PeanoNat Lia ClassicalEpsilon.
+From Stdlib Require Import List PeanoNat Lia ClassicalEpsilon.
 Import ListNotations.
 
 (* 1. pi-calculus syntax (de Bruijn) *)
