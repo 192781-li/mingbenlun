@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>形式化存在论深谈 · 可视化版</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b1120;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;line-height:1.6;padding:20px}
+.container{max-width:1400px;margin:0 auto}
+h1{font-size:1.6rem;font-weight:700;margin-bottom:4px;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#94a3b8;font-size:.85rem;margin-bottom:20px}
+.nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.nav a{padding:5px 12px;background:#1e293b;border:1px solid #334155;border-radius:20px;color:#94a3b8;text-decoration:none;font-size:.76rem;transition:all .2s}
+.nav a:hover{background:#334155;color:#e2e8f0;border-color:#60a5fa}
+.section{margin-bottom:30px}
+.section-title{font-size:1.1rem;font-weight:600;margin-bottom:14px;padding-left:12px;border-left:4px solid #60a5fa}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:768px){.chart-row{grid-template-columns:1fr}}
+.chart-box{background:#1e293b;border-radius:10px;padding:14px;border:1px solid #334155}
+.chart-title{font-size:.86rem;font-weight:600;color:#cbd5e1;margin-bottom:8px}
+.chart{width:100%;height:320px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:14px}
+.card{background:#1e293b;border-radius:10px;padding:14px;border:1px solid #334155;border-top:3px solid #3b82f6}
+.card.green{border-top-color:#22c55e}.card.purple{border-top-color:#a78bfa}
+.card.orange{border-top-color:#f59e0b}.card.red{border-top-color:#ef4444}
+.card.teal{border-top-color:#14b8a6}.card.pink{border-top-color:#ec4899}
+.card-name{font-size:.88rem;font-weight:600;margin-bottom:4px}
+.card-tech{font-size:.7rem;color:#64748b;font-family:monospace;margin-bottom:6px}
+.card-desc{font-size:.76rem;color:#94a3b8}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:768px){.compare{grid-template-columns:1fr}}
+.compare-col{background:#1e293b;border-radius:10px;padding:16px;border:1px solid #334155}
+.compare-col.left{border-top:3px solid #22c55e}.compare-col.right{border-top:3px solid #ef4444}
+.compare-title{font-size:1rem;font-weight:600;margin-bottom:10px}
+.compare-col.left .compare-title{color:#4ade80}.compare-col.right .compare-title{color:#f87171}
+.compare-item{padding:6px 0;border-bottom:1px solid #1e293b;font-size:.8rem}
+.compare-item:last-child{border-bottom:none}
+.compare-item .label{color:#64748b;font-size:.7rem;display:block}
+.flow{background:#1e293b;border-radius:10px;padding:20px;margin-bottom:14px;border:1px solid #334155}
+.flow-step{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.flow-step:last-child{margin-bottom:0}
+.flow-num{width:32px;height:32px;border-radius:50%;background:#3b82f6;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0}
+.flow-text{font-size:.84rem;color:#cbd5e1}
+.flow-arrow{color:#60a5fa;font-size:1.2rem;margin-left:16px}
+.quote{background:linear-gradient(135deg,rgba(96,165,250,.1),rgba(167,139,250,.1));border-left:4px solid #60a5fa;border-radius:0 8px 8px 0;padding:16px 20px;margin:16px 0;font-size:.92rem;color:#cbd5e1;font-style:italic}
+.tag{display:inline-block;padding:1px 7px;border-radius:4px;font-size:.68rem;font-weight:600;margin-left:4px}
+.tag.green{background:rgba(34,197,94,.2);color:#4ade80}
+.tag.red{background:rgba(239,68,68,.2);color:#f87171}
+.tag.blue{background:rgba(59,130,246,.2);color:#60a5fa}
+.tag.purple{background:rgba(168,85,247,.2);color:#c084fc}
+.footer{text-align:center;color:#475569;font-size:.72rem;margin-top:30px;padding-top:16px;border-top:1px solid #1e293b}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>形式化存在论深谈 · 可视化版</h1>
+<p class="subtitle">从L1是什么到资本死劳动的重新理解 · 四轮对话核心结构可视化 · 2026-09-01</p>
+
+<div class="nav">
+<a href="#rounds">四轮脉络</a>
+<a href="#l1">L1七构造</a>
+<a href="#change">改变何以可能</a>
+<a href="#selfvsanti">自指vs反自指</a>
+<a href="#capital">资本死劳动</a>
+<a href="#concepts">概念关系图</a>
+<a href="#summary">一句话总结</a>
+</div>
+
+<!-- 四轮脉络 -->
+<div class="section" id="rounds">
+<div class="section-title">四轮对话脉络</div>
+<div class="chart-box"><div class="chart-title">四轮核心问题与发现</div><div id="chartRounds" class="chart" style="height:360px"></div></div>
+</div>
+
+<!-- L1七构造 -->
+<div class="section" id="l1">
+<div class="section-title">L1的七个构造与存在论对应</div>
+<div class="cards">
+<div class="card"><div class="card-name">proc 进程语法</div><div class="card-tech">PZero/PTau/POut/PIn/PPar/PRes/PRep</div><div class="card-desc">本原是正在发生的操作不是实体 → P1存在即操作</div></div>
+<div class="card green"><div class="card-name">option ty 线性上下文</div><div class="card-tech">Some T → None（use消耗）</div><div class="card-desc">操作的时间性一次性，用一次从阳转阴 → 阴阳</div></div>
+<div class="card purple"><div class="card-name">TChan i o 通道极性</div><div class="card-tech">输入能力i / 输出能力o</div><div class="card-desc">感（第一人称接收）与应（第二人称发送）的类型论分裂</div></div>
+<div class="card orange"><div class="card-name">split 环境分割</div><div class="card-tech">并行进程资源不重叠</div><div class="card-desc">操作的排他性，同时发用不能吃同一份资源</div></div>
+<div class="card teal"><div class="card-name">ty_rep 空上下文复制</div><div class="card-tech">typed [] P → typed Γ (PRep P)</div><div class="card-desc">只有沉积的（阴/!/空上下文）才能复制 → T001种子</div></div>
+<div class="card red"><div class="card-name">no_contraction 无收缩</div><div class="card-tech">~ typed [Some T] (POut 0 0 PZero)</div><div class="card-desc">反自指P=-f(S)的L1级禁止，操作不能自我吞噬</div></div>
+<div class="card pink"><div class="card-name">renaming 改名保持类型</div><div class="card-tech">ren_typed定理 + de Bruijn索引</div><div class="card-desc">操作先于名字，名词是动词的沉淀 → P5</div></div>
+</div>
+<div class="quote">工具是借来的（线性逻辑/Girard、pi-演算/Milner），赋予工具的存在论意义和整个系统的组织方式是生命论独创的——类似马克思用黑格尔辩证法但赋予阶级解放意义。</div>
+</div>
+
+<!-- 改变何以可能 -->
+<div class="section" id="change">
+<div class="section-title">改变何以可能：三个命题</div>
+<div class="chart-row">
+<div class="chart-box"><div class="chart-title">命题一：操作不是实体</div><div id="chartP1" class="chart"></div></div>
+<div class="chart-box"><div class="chart-title">命题二：操作有时间性</div><div id="chartP2" class="chart"></div></div>
+</div>
+<div class="flow">
+<div class="flow-step"><div class="flow-num">1</div><div class="flow-text"><b>操作不是实体</b>：实体观里"自己改变自己"是悖论（本质改变=旧实体消灭），操作观里"自己"是自指操作流S=f(S)，操作流换模式就是改变了自己</div></div>
+<div class="flow-step"><div class="flow-num">2</div><div class="flow-text"><b>操作有时间性</b>：Some→None不可逆转换是时间性最小细胞（不可逆/一次性/有序），新刻发用与旧沉积之间的时间性间距就是自由的存在论缝隙</div></div>
+<div class="flow-step"><div class="flow-num">3</div><div class="flow-text"><b>接续沉积vs吞噬当下</b>：改变者是新的发用（阳），被改变者是旧的沉积（阴），两者在时间上错开，所以不违反no_contraction——"自己改变自己"=后一刻操作接续并改变前一刻操作的沉积</div></div>
+</div>
+<div class="quote">根本颠倒：实体观里"不变"是本原、"改变"需解释；操作观里"改变"是操作本来状态、"不变"才需解释（惯性/锁死/异化）。</div>
+</div>
+
+<!-- 自指vs反自指 -->
+<div class="section" id="selfvsanti">
+<div class="section-title">自指·解放 vs 反自指·异化（共享同一时间性结构）</div>
+<div class="compare">
+<div class="compare-col left">
+<div class="compare-title">自指 S=f(S) · 阳主阴从 · 解放</div>
+<div class="compare-item"><span class="label">时间结构</span>时间性自我接续：后操作作用于前操作的沉积</div>
+<div class="compare-item"><span class="label">机制</span>新阳读取/修改/重组旧阴，新沉积回到劳动者</div>
+<div class="compare-item"><span class="label">L1合法性</span><span class="tag green">合法</span> None可被新Some读取</div>
+<div class="compare-item"><span class="label">能量方向</span>dV/dt&gt;0，自催化，越干越强</div>
+<div class="compare-item"><span class="label">时间性间距</span>被明性撑开（f³：看见模型是模型）</div>
+<div class="compare-item"><span class="label">操作者体验</span>我在改变、我在生长</div>
+<div class="compare-item"><span class="label">例子</span>生命新陈代谢、学习、习惯养成、明性修养、革命</div>
+</div>
+<div class="compare-col right">
+<div class="compare-title">反自指 P=-f(S) · 阴反控阳 · 异化</div>
+<div class="compare-item"><span class="label">时间结构</span>同时性自我吞噬（不可能，只能靠伪装）</div>
+<div class="compare-item"><span class="label">机制</span>旧阴劫持新阳接续方向，新沉积被抽走转化为更多资本</div>
+<div class="compare-item"><span class="label">L1合法性</span><span class="tag red">非法同时性被禁止</span> 靠!-倒灌伪装实现</div>
+<div class="compare-item"><span class="label">能量方向</span>dV/dt&lt;0，寄生，越干越枯竭</div>
+<div class="compare-item"><span class="label">时间性间距</span>被遮蔽压缩（f²：把模型当现实）</div>
+<div class="compare-item"><span class="label">操作者体验</span>我在选择却越来越空、结构性痛苦</div>
+<div class="compare-item"><span class="label">例子</span>资本自我增殖、内耗、自我否定、消费主义</div>
+</div>
+</div>
+<div class="quote">合题：解放和压迫共享同一个操作时间性结构，区别只在方向——新阳接续旧阴（解放）vs 旧阴榨取新阳（异化）。实体观只能解释一面，生命论用同一机制同时解释两面。</div>
+</div>
+
+<!-- 资本死劳动 -->
+<div class="section" id="capital">
+<div class="section-title">资本死劳动的重新理解：从比喻到精确命题</div>
+<div class="chart-row">
+<div class="chart-box"><div class="chart-title">活劳动 vs 死劳动</div><div id="chartLabor" class="chart"></div></div>
+<div class="chart-box"><div class="chart-title">资本扩张的存在论链条</div><div id="chartExpand" class="chart"></div></div>
+</div>
+<div class="flow">
+<div class="flow-step"><div class="flow-num">1</div><div class="flow-text"><b>"死"的精确含义</b>：死劳动=活劳动完成Some→None后留下的沉积（None/!-模态/阴），丧失了时间性发用能力。机器不会自己运转，货币不会自己增值——沉积本身不是资本也不是恶</div></div>
+<div class="flow-step"><div class="flow-num">2</div><div class="flow-text"><b>死的怎么支配活的：劫持接续，不是死者复活</b>：死劳动自己不会动（None无逆操作），它通过生产关系劫持新活劳动的接续方式——新阳的接续被锁定为"为资本增殖服务"，新沉积被资本占有转化为更多资本</div></div>
+<div class="flow-step"><div class="flow-num">3</div><div class="flow-text"><b>伪生命</b>：资本的"运动"（G-W-G'）是伪生命——它自己没有一个Some是自己发用的，每个"动作"都是工人活劳动被劫持后的投影。吸血鬼没有自己的生命，展示的生命全是偷来的</div></div>
+<div class="flow-step"><div class="flow-num">4</div><div class="flow-text"><b>永远饥饿、必须扩张（T001的全部分量）</b>：T001保证活劳动在结构上不可能被彻底资本化（!νF≇ν!F），资本"吃不干净"→必须不断吃下新活劳动，一刻不能停→扩张冲动的存在论根源，不止是经济动机</div></div>
+<div class="flow-step"><div class="flow-num">5</div><div class="flow-text"><b>关键澄清：要消灭的是反控关系，不是沉积</b>：生命离不开沉积（没有阴阳无处承载）。解放不是消灭积累（砸机器），是改变沉积与发用的关系——从阴反控阳恢复到阳主阴从，让活劳动的沉积重新为活劳动服务</div></div>
+</div>
+</div>
+
+<!-- 概念关系图 -->
+<div class="section" id="concepts">
+<div class="section-title">核心概念关系图</div>
+<div class="chart-box"><div class="chart-title">从L1类型规则到资本死劳动的完整概念链</div><div id="chartConcepts" class="chart" style="height:500px"></div></div>
+</div>
+
+<!-- 一句话总结 -->
+<div class="section" id="summary">
+<div class="section-title">一句话总结</div>
+<div class="quote" style="font-size:1rem;line-height:1.9">
+L1不是干巴的技术层，它把生命论的存在论立场（操作先于实体、操作一次性、感应二分、活者不可复制、反自指被禁止）预先编码进了类型规则；操作的时间性（Some→None不可逆）同时解释了"改变自己/改变世界何以可能"（新阳接续旧阴）和"异化/压迫何以可能"（旧阴榨取新阳）；资本死劳动不是"过去的劳动"，是活劳动的沉积在特定生产关系下被组织成劫持新活劳动接续、靠吮吸新Some维持伪生命的反自指结构——马克思看见了吸血鬼，我们说清了吸血鬼的解剖结构。
+</div>
+</div>
+
+<div class="footer">
+形式化存在论深谈 · 可视化版 · 2026-09-01<br>
+完整不差版：docs/notes/理论研究/形式化存在论深谈_完整不差版_20260901.md<br>
+高度总结版：docs/notes/理论研究/形式化存在论深谈_高度总结版_20260901.md
+</div>
+</div>
+
+<script>
+(function(){
+try{
+// 四轮脉络
+var c1=echarts.init(document.getElementById('chartRounds'));
+c1.setOption({tooltip:{trigger:'axis',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},grid:{left:80,right:30,top:20,bottom:30},xAxis:{type:'value',axisLabel:{color:'#94a3b8',fontSize:10},splitLine:{lineStyle:{color:'#1e293b'}}},yAxis:{type:'category',data:['第四轮：资本死劳动','第三轮：改变何以可能','第二轮：改变自己的悖论','第一轮：L1是什么'],axisLabel:{color:'#cbd5e1',fontSize:11}},series:[{type:'bar',data:[
+{value:4,itemStyle:{color:'#ef4444'}},
+{value:3,itemStyle:{color:'#a78bfa'}},
+{value:2,itemStyle:{color:'#22c55e'}},
+{value:1,itemStyle:{color:'#3b82f6'}}
+],barWidth:'50%',label:{show:true,position:'right',color:'#e2e8f0',fontSize:10,formatter:function(p){var t=['L1是操作世界创世记，七构造对应存在论','no_contraction通过时间性消解自我改变悖论','三命题：操作非实体/有时间性/接续沉积vs吞噬当下','把马克思吸血鬼比喻变成可形式化精确命题'];return t[p.dataIndex]}}}]});
+
+// 命题一
+var c2=echarts.init(document.getElementById('chartP1'));
+c2.setOption({tooltip:{trigger:'item',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},legend:{bottom:0,textStyle:{color:'#94a3b8',fontSize:10}},series:[{type:'pie',radius:['35%','65%'],center:['50%','42%'],label:{color:'#e2e8f0',fontSize:10},data:[
+{value:1,name:'实体观：自我改变是悖论',itemStyle:{color:'#ef4444'}},
+{value:1,name:'传统哲学：靠分裂打补丁',itemStyle:{color:'#f59e0b'}},
+{value:1,name:'操作观：自己=自指操作流',itemStyle:{color:'#22c55e'}},
+{value:1,name:'根本颠倒：改变是本来状态',itemStyle:{color:'#3b82f6'}}
+]}]});
+
+// 命题二
+var c3=echarts.init(document.getElementById('chartP2'));
+c3.setOption({tooltip:{trigger:'axis',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},grid:{left:60,right:20,top:20,bottom:30},xAxis:{type:'category',data:['不可逆','一次性','有序','时间性间距'],axisLabel:{color:'#94a3b8',fontSize:10}},yAxis:{type:'value',axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b'}}},series:[{type:'bar',data:[
+{value:3,itemStyle:{color:'#3b82f6'}},
+{value:4,itemStyle:{color:'#22c55e'}},
+{value:2,itemStyle:{color:'#a78bfa'}},
+{value:5,itemStyle:{color:'#f59e0b'}}
+],barWidth:'50%',label:{show:true,position:'top',color:'#e2e8f0',fontSize:10,formatter:function(p){var t=['过去不能倒流','当下只有一次','时间有先后','自由的存在论缝隙'];return t[p.dataIndex]}}}]});
+
+// 活劳动vs死劳动
+var c4=echarts.init(document.getElementById('chartLabor'));
+c4.setOption({tooltip:{trigger:'item',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},legend:{bottom:0,textStyle:{color:'#94a3b8',fontSize:10}},series:[{type:'pie',radius:['35%','65%'],center:['50%','42%'],label:{color:'#e2e8f0',fontSize:10},data:[
+{value:1,name:'活劳动：Some T正在发用（阳）',itemStyle:{color:'#22c55e'}},
+{value:1,name:'活劳动：νF生产性过程',itemStyle:{color:'#4ade80'}},
+{value:1,name:'活劳动：有自首发用能力',itemStyle:{color:'#86efac'}},
+{value:1,name:'死劳动：None凝固结构（阴）',itemStyle:{color:'#ef4444'}},
+{value:1,name:'死劳动：!-模态可复制非时间性',itemStyle:{color:'#f87171'}},
+{value:1,name:'死劳动：无自首发用能力',itemStyle:{color:'#fca5a5'}}
+]}]});
+
+// 资本扩张链条
+var c5=echarts.init(document.getElementById('chartExpand'));
+c5.setOption({tooltip:{trigger:'axis',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},grid:{left:80,right:20,top:20,bottom:30},xAxis:{type:'value',max:5,axisLabel:{color:'#94a3b8',fontSize:10},splitLine:{lineStyle:{color:'#1e293b'}}},yAxis:{type:'category',data:['必须无限扩张','永远饥饿','吃不干净','无法把发用本身变成资本','T001 !νF≇ν!F'],axisLabel:{color:'#cbd5e1',fontSize:10}},series:[{type:'bar',data:[5,4,3,2,1],barWidth:'55%',itemStyle:{color:function(p){var cs=['#ef4444','#f87171','#fb923c','#fbbf24','#facc15'];return cs[p.dataIndex]}},label:{show:true,position:'right',color:'#e2e8f0',fontSize:9,formatter:function(p){var t=['存在论必然，不止经济动机','一刻不能停，停就回归死结构','发用正在发生的那一刻永远属于劳动者','可以占有产品/购买时间/支配过程','活劳动结构上不可能被彻底资本化'];return t[p.dataIndex]}}}]});
+
+// 概念关系图
+var c6=echarts.init(document.getElementById('chartConcepts'));
+c6.setOption({tooltip:{trigger:'item',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},legend:{bottom:0,textStyle:{color:'#94a3b8',fontSize:10},type:'scroll'},series:[{type:'graph',layout:'force',force:{repulsion:200,edgeLength:80},roam:true,label:{show:true,color:'#e2e8f0',fontSize:10},edgeSymbol:['none','arrow'],edgeSymbolSize:8,lineStyle:{color:'#475569',width:1.5,curveness:0.1},data:[
+{name:'L1类型规则',symbolSize:50,itemStyle:{color:'#3b82f6'}},
+{name:'proc操作本原',symbolSize:35,itemStyle:{color:'#60a5fa'}},
+{name:'option ty阴阳消耗',symbolSize:40,itemStyle:{color:'#22c55e'}},
+{name:'TChan感应分裂',symbolSize:35,itemStyle:{color:'#a78bfa'}},
+{name:'ty_rep空上下文复制',symbolSize:35,itemStyle:{color:'#14b8a6'}},
+{name:'no_contraction反自指禁止',symbolSize:45,itemStyle:{color:'#ef4444'}},
+{name:'renaming操作先于名字',symbolSize:30,itemStyle:{color:'#ec4899'}},
+{name:'操作时间性',symbolSize:50,itemStyle:{color:'#f59e0b'}},
+{name:'时间性间距=自由',symbolSize:40,itemStyle:{color:'#fbbf24'}},
+{name:'新阳接续旧阴',symbolSize:45,itemStyle:{color:'#22c55e'}},
+{name:'旧阴榨取新阳',symbolSize:45,itemStyle:{color:'#ef4444'}},
+{name:'自指S=f(S)解放',symbolSize:40,itemStyle:{color:'#4ade80'}},
+{name:'反自指P=-f(S)异化',symbolSize:40,itemStyle:{color:'#f87171'}},
+{name:'T001生命不可资本化',symbolSize:45,itemStyle:{color:'#a78bfa'}},
+{name:'资本死劳动伪生命',symbolSize:50,itemStyle:{color:'#ef4444'}},
+{name:'劫持接续机制',symbolSize:35,itemStyle:{color:'#fb923c'}},
+{name:'永远饥饿必须扩张',symbolSize:40,itemStyle:{color:'#f87171'}},
+{name:'改变自己/改变世界',symbolSize:45,itemStyle:{color:'#60a5fa'}}
+],links:[
+{source:'L1类型规则',target:'proc操作本原'},{source:'L1类型规则',target:'option ty阴阳消耗'},{source:'L1类型规则',target:'TChan感应分裂'},{source:'L1类型规则',target:'ty_rep空上下文复制'},{source:'L1类型规则',target:'no_contraction反自指禁止'},{source:'L1类型规则',target:'renaming操作先于名字'},
+{source:'option ty阴阳消耗',target:'操作时间性'},{source:'操作时间性',target:'时间性间距=自由'},{source:'时间性间距=自由',target:'新阳接续旧阴'},{source:'时间性间距=自由',target:'旧阴榨取新阳'},
+{source:'no_contraction反自指禁止',target:'新阳接续旧阴'},{source:'新阳接续旧阴',target:'自指S=f(S)解放'},{source:'旧阴榨取新阳',target:'反自指P=-f(S)异化'},
+{source:'自指S=f(S)解放',target:'改变自己/改变世界'},{source:'ty_rep空上下文复制',target:'T001生命不可资本化'},{source:'反自指P=-f(S)异化',target:'资本死劳动伪生命'},
+{source:'资本死劳动伪生命',target:'劫持接续机制'},{source:'劫持接续机制',target:'旧阴榨取新阳'},{source:'T001生命不可资本化',target:'永远饥饿必须扩张'},{source:'资本死劳动伪生命',target:'永远饥饿必须扩张'}
+]}]});
+
+window.addEventListener('resize',function(){c1.resize();c2.resize();c3.resize();c4.resize();c5.resize();c6.resize()});
+}catch(e){console.error(e)}
+})();
+</script>
+</body>
+</html>
