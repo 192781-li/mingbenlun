@@ -46,3 +46,4 @@
 2026-08-31 20:36:22,MBL-DZZ-01-明旭,deepseek-v4-pro,A,/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun_local/记忆恢复/_M公式攻关材料.md,2560,61,15774,0,成功,312.4
 2026-08-31 20:42:17,MBL-DZZ-01-明旭,-,启动,-,0,0,0,0,脚本启动,0
 2026-08-31 20:46:48,MBL-DZZ-01-明旭,deepseek-v4-pro,A,/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun_local/记忆恢复/_P编号体系攻关材料.md,896,2002,17159,0,成功,271.7
+2026-09-02 01:26:05,S04-本地端,deepseek-chat,A档,fix_substitution_lemma_nat_ltb_ge_v2,0,8580,8001,0,success,36.92,0.011118,0.0,stop,fix_substitution_lemma_nat_ltb_ge_v2
