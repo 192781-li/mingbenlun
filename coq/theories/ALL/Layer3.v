@@ -251,22 +251,25 @@ Definition sheng_residue (Gamma : ctx) (P : proc) : Prop :=
 
 (* reduce_self：Sheng流动连续，迹自然沉积
    这是"自指因果S=f(S)"的操作语义表达——正常的生命过程。
-   每一步归约：Sheng被传递（数量不变），同时留下新的迹（数量增加）。 *)
-Inductive reduce_self (Gamma : ctx) : proc -> proc -> Prop :=
-| self_step : forall P Q,
-    sheng_continuous Gamma P Q ->   (* Sheng数量不变 = 被传递 = 连续 *)
-    deposits_ji Gamma P Q ->        (* 产生了新的迹 *)
-    reduce_self Gamma P Q.
+   每一步归约：Sheng被传递（数量不变），同时留下新的迹（数量增加）。
+
+   OB-006修正：reduce_self不是独立的归约关系，是L2的reduce关系的子关系。
+   reduce_self P Q := reduce P Q /\ sheng_continuous P Q /\ deposits_ji P Q
+   这样subject_reduction_self可以直接用L2的subject_reduction证明。 *)
+Definition reduce_self (Gamma : ctx) (P Q : proc) : Prop :=
+  reduce P Q /\ sheng_continuous Gamma P Q /\ deposits_ji Gamma P Q.
 
 (* reduce_alien：Sheng流动被截断，他者插入
    这是异化的操作语义——劳动异化、权力异化、资本异化。
    每一步归约：Sheng被消耗（数量减少），流动被截断。
    b是插入的他者的标识。在当前框架中，b是一个nat参数，标记是哪个他者。
-   后续可以细化为具体的进程或通道。 *)
-Inductive reduce_alien (Gamma : ctx) : nat -> proc -> proc -> Prop :=
-| alien_step : forall b P Q,
-    sheng_discontinuous Gamma P Q ->  (* Sheng数量减少 = 被消耗 = 不连续 *)
-    reduce_alien Gamma b P Q.
+   后续可以细化为具体的进程或通道。
+
+   OB-006修正：reduce_alien不是独立的归约关系，是L2的reduce关系的子关系。
+   reduce_alien b P Q := reduce P Q /\ sheng_discontinuous P Q
+   这样subject_reduction_alien可以直接用L2的subject_reduction证明。 *)
+Definition reduce_alien (Gamma : ctx) (b : nat) (P Q : proc) : Prop :=
+  reduce P Q /\ sheng_discontinuous Gamma P Q.
 
 (* =====================================================================
    五点五、Sheng可激活性公理（OB-004研判结论）
@@ -405,8 +408,8 @@ Proof.
     intro Q'. intro Hrs. apply Hn. exists Q'. exact Hrs.
   destruct Hex as [Q' Hrs'].
 
-  (* 步骤2：从reduce_self Q Q'得到sheng_continuous和deposits_ji *)
-  inversion Hrs' as [Q0 Q0' Hsc Hdj]. subst.
+  (* 步骤2：从reduce_self Q Q'得到reduce, sheng_continuous和deposits_ji *)
+  destruct Hrs' as [Hred [Hsc Hdj]].
 
   (* 步骤3：证明is_Ming Q' *)
   (* 3a. has_ji Q'：deposits_ji Q Q' -> count_ji Q' > count_ji Q
@@ -436,7 +439,7 @@ Proof.
   (* 步骤5：构造路径：P ->(alien b) Q ->(self) Q' *)
   exists Q'.
   split.
-  - right. exists b, Q. split. exact Hra. exact Hrs'.
+  - right. exists b, Q. split. exact Hra. exact (conj Hred (conj Hsc Hdj)).
   - exact HMing.
 Qed.
 
@@ -469,7 +472,7 @@ Theorem T005_ming_preservation : forall Gamma P Q,
 Proof.
   intros Gamma P Q HM Hrs.
   inversion HM as [Hhj Hss Hex].
-  inversion Hrs as [P0 Q0 Hsc Hdj]. subst.
+  destruct Hrs as [Hred [Hsc Hdj]].
 
   (* 步骤1：证明still_sheng Q
      sheng_continuous P Q -> count_sheng Q = count_sheng P
@@ -548,26 +551,27 @@ Qed.
    但在类型层面，归约仍然保持类型（Jia是状态谓词，不是类型）。
    ===================================================================== *)
 
-(* 自指归约保持类型 *)
+(* 自指归约保持类型
+   OB-006修正：reduce_self是reduce的子关系，所以直接用L2的subject_reduction。 *)
 Theorem subject_reduction_self : forall Gamma (P Q : proc),
   reduce_self Gamma P Q -> typed Gamma P -> typed Gamma Q.
 Proof.
   intros Gamma P Q H Ht.
-  inversion H. subst.
-  (* reduce_self的基础是L2的reduce，当前骨架复用L2的subject_reduction。
-     后续需要证明sheng_continuous和deposits_ji不影响类型保持。 *)
-  Admitted.
+  destruct H as [Hred [Hsc Hdj]].
+  eapply subject_reduction. exact Ht. exact Hred.
+Qed.
 
 (* 异化归约保持类型（类型层面）
    哲学上：Sheng流动被截断，进入Jia状态，但类型不变。
-   Jia是状态谓词，不是类型，所以类型层面归约仍然保持类型。 *)
+   Jia是状态谓词，不是类型，所以类型层面归约仍然保持类型。
+   OB-006修正：reduce_alien是reduce的子关系，所以直接用L2的subject_reduction。 *)
 Theorem subject_reduction_alien : forall Gamma (b : nat) (P Q : proc),
   reduce_alien Gamma b P Q -> typed Gamma P -> typed Gamma Q.
 Proof.
   intros Gamma b P Q H Ht.
-  inversion H. subst.
-  (* 当前骨架，后续需要证明sheng_discontinuous不影响类型保持。 *)
-  Admitted.
+  destruct H as [Hred Hsd].
+  eapply subject_reduction. exact Ht. exact Hred.
+Qed.
 
 (* =====================================================================
    十三、L3 第三阶段（辅助谓词精确定义版）完成度总结
