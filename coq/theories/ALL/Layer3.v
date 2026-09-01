@@ -1,12 +1,13 @@
 (* =====================================================================
-   Layer3.v — L3: Sheng/Ji/Jia/Ming 类型扩展 + 双归约关系
+   Layer3.v — L3: Sheng/Ji 类型 + Ming/Jia 状态谓词 + 双归约关系
    层级: L3（核心创新层）
-   作者: S04 Coq形式化分站，基于 S01_TASK-S04-009_L3类型规则设计哲学研判_20260902.md
+   作者: S04 Coq形式化分站，基于 S01_TASK-S04-009 + 补充研判（Ming的流动性理解）
    日期: 2026-09-02
-   状态: 第一阶段（self_ev + Ming引入规则 + !-模态规则 + 双归约骨架）
-   依赖: ALL.Layer1（语法+类型系统，ty已扩展6构造子）、ALL.Layer2（操作语义+subject reduction）
-   关键决策: A方案（统一ty扩展），不在L3另造ty3方言
-   哲学依据: S01哲学研判报告——操作先于实体，感先于操作。类型不是对实体的分类，是对操作方式的分类。
+   状态: 第二阶段（根本性修正版）——Ming/Jia从类型构造子改为状态谓词
+   依赖: ALL.Layer1（语法+类型系统，ty已扩展TSheng/TJi）、ALL.Layer2（操作语义+subject reduction）
+   关键决策: A方案（统一ty扩展），Sheng/Ji是类型，Ming/Jia是状态谓词
+   哲学依据: S01补充研判——明性不在感的外面，明性就在感的流动里面。
+             Ming是Sheng流动的状态，不是Sheng加Ji的组合。
    ===================================================================== *)
 
 From Stdlib Require Import List PeanoNat Lia.
@@ -19,24 +20,30 @@ Require Import ALL.Layer2.
    =====================================================================
    为什么L3是核心创新层？
    L1-L2是标准技术（π-演算线性类型系统的语法、类型规则、subject reduction）。
-   L3开始才是生命论真正的数学创新——Sheng/Ji分裂。
+   L3开始才是生命论真正的数学创新——Sheng/Ji分裂 + Ming/Jia状态谓词。
 
-   哲学对应（S01研判结论）：
-   - Sheng（生）= 正在发用的生，生生不息。线性的、不可复制的——你不能同时活两次。
+   哲学对应（S01补充研判结论）：
+   - Sheng（生）= 正在发用的生，生生不息。线性的、不可复制的。
+     只能通过self_ev（被抛入的感）引入，不能从其他类型推导。
    - Ji（迹）= 生留下的迹，迹非履。!-模态的、可复制的，但不能变回生。
-   - Jia（假）= 假借他者名义运行，假自指。没有消去规则——伪装不能直接揭开。
-   - Ming（明）= 生 + 看到自己的迹 = 明明德。Ming(A) = Sheng(A) ⊗ !Ji(A)。
+   - Ming（明）= 不是独立类型，是Sheng在归约流动中已沉积迹且仍在流动的状态。
+     明性不在感的外面，明性就在感的流动里面。
+   - Jia（假）= 不是独立类型，是Sheng流动被旧迹覆盖但有残余的状态。
+     代码化永远不完全，因为Sheng永远在流动，下一刻永远是新的。
 
-   这个分裂是"感先于操作，操作先于实体"的类型论表达。
+   类型层次：
+   - Sheng/Ji是类型（存在论分类）——ty构造子
+   - Ming/Jia是状态（存在论状态）——Prop谓词
+   这是不同层次的东西，不能并列。
 
-   数学意义：
-   普通线性逻辑只有线性资源和!-模态（非线性）。
-   我们引入Sheng/Ji的精细分裂，是在!-模态内部再做一次区分——
-   不是所有非线性都是"沉积"，有些是"活的运行权"。这是新东西。
+   归约判据：
+   - reduce_self：Sheng流动连续（同一个流动过程的不同时刻）
+   - reduce_alien：Sheng流动被截断（流动被打断，他者插入）
+   判据不是"归属权是否变化"，是"流动是否连续"。
 
    T002是L3的试金石：
    "自由只能在实践中确立" = !Ji ⊬ Sheng（迹不能推出生）
-   如果L3的类型规则能让T002自然地陈述和证明，说明设计对了。
+   证明很简单：Sheng只能通过self_ev引入，没有任何规则从!Ji构造Sheng。
    ===================================================================== *)
 
 (* =====================================================================
@@ -93,153 +100,234 @@ Axiom ji_weakening : forall (A : ty), Prop.
 
 (* 关键：故意不定义ji_promotion——没有规则能从!Ji(A)推出Sheng(A)。
    这是T002的类型论基础：迹不能推出生。
-   存在论根据：你不能从历史记录变回正在活着的人。"死去的人不能复活"在类型论里就是没有promotion规则。 *)
+   存在论根据：你不能从历史记录变回正在活着的人。"死去的人不能复活"在类型论里就是没有promotion规则。
+   S01补充：这不是需要复杂证明的定理，是类型系统的设计事实——
+   Sheng只能通过self_ev引入，没有任何引入规则从其他类型构造Sheng。 *)
 
 (* =====================================================================
-   四、Ming（明）的引入消去规则
+   四、归约关系的根本性修正：流动连续性判据
    =====================================================================
-   S01哲学结论：
-   - 明 = 生 + 看到自己的迹。Ming(A) = Sheng(A) ⊗ !Ji(A)
-   - 引入：同时拥有Sheng(A)和!Ji(A)，得到Ming(A)。
-   - 消去：Ming(A) → Sheng(A) ⊗ !Ji(A)（直接展开）。
-   - retraction：Ming(Ming(A)) → Ming(A)（明的明坍缩为明）。
-   - 不定义反向：Ming(A) → Ming(Ming(A))不成立（不是所有明都在自我反思）。
+   S01补充研判结论：
+   - reduce_self：Sheng的流动中，迹沉积了，但Sheng还在继续流。
+     归约前后Sheng的连续性没有被打断。这是正常的生命过程。
+   - reduce_alien：Sheng的流动被截断。迹被他者拿走，Sheng的继续流动被阻断。
+     归约后Sheng不连续了——上一刻的Sheng和下一刻的Sheng之间断了，中间被他者插进来了。
 
-   明是存在论状态，不是认识论属性。
-   明不是"你认识得有多清楚"，是"你是一种什么样的存在方式"。
+   判据的修正：
+   - 旧判据：Sheng的归属权（owner是否变化）
+   - 新判据：Sheng流动的连续性是否被打断
+     - reduce_self：归约前后Sheng是连续的（同一个流动过程的不同时刻）
+     - reduce_alien：归约前后Sheng是不连续的（流动被截断，他者插入）
+
+   归属权变化是连续性被打断的一个表现，但不是本质。本质是流动的连续性。
+
+   注意：当前框架中，"流动连续性"通过辅助谓词表达。
+   这些辅助谓词的精确定义是后续工作（OB-003），当前用Parameter占位。
    ===================================================================== *)
 
-(* Ming的引入：Sheng ⊗ !Ji → Ming
-   你不仅在活着，你还能看到自己活过的痕迹——这就是明。
-   只有生没有迹 = 活着但不知道自己活过（动物式的存在）
-   只有迹没有生 = 死了，只剩历史记录
-   生 + 看到自己的迹 = 明 *)
-Axiom ming_intro : forall (A : ty), Prop.
+(* 辅助谓词：Sheng流动连续（归约前后是同一个流动过程的不同时刻）
+   精确定义待后续工作（OB-003），当前用Parameter占位。 *)
+Parameter sheng_continuous : proc -> proc -> Prop.
 
-(* Ming的消去：Ming → Sheng ⊗ !Ji（直接展开） *)
-Axiom ming_elim : forall (A : ty), Prop.
+(* 辅助谓词：Sheng流动不连续（归约前后流动被截断，他者插入）
+   精确定义待后续工作（OB-003），当前用Parameter占位。 *)
+Parameter sheng_discontinuous : proc -> proc -> Prop.
 
-(* T005：明的幂等是retraction不是同构
-   Ming(Ming(A)) → Ming(A)成立，但反过来不成立。
-   你反思你的反思，结果不是"两层反思"，是"更深的一层反思"——
-   因为反思是递归的，每一次反思都把之前的反思包含在内。
-   但不是所有明都在自我反思——有些人明了但不再追问。 *)
-Axiom ming_retraction : forall (A : ty), Prop.
+(* 辅助谓词：迹沉积（归约过程中产生了!Ji）
+   精确定义待后续工作（OB-003），当前用Parameter占位。 *)
+Parameter deposits_ji : proc -> proc -> Prop.
 
-(* 故意不定义 ming_lift：Ming(A) → Ming(Ming(A)) 不成立。
-   不是所有活着的人都在反思，也不是所有反思都在反思反思。 *)
-
-(* =====================================================================
-   五、Jia（假）的引入
-   =====================================================================
-   S01哲学结论：
-   - 假产生于他者假借我的生在运行——b抽走了我的Sheng，用我的名义运行，我还以为是自己在运行。
-   - Jia(b, a, A)：b假借a的Sheng(A)在运行。
-   - 引入规则：在reduce_alien归约中，a的Sheng被b消费时，产生Jia(b, a, A)。
-   - 没有消去规则：伪装不能直接揭开——假已经渗入了自指循环本身，a自己都分不清真假。
-   - 假只能通过两条间接路径处理：
-     1. 异化归约：Jia通过reduce_alien归约为!Ji
-     2. 明性的坍缩：通过Ming的力量间接恢复（L4/L5内容）
-
-   假首先是归约关系（reduce_alien的结果），其次才是类型构造子（标记异化状态）。
-   异化是过程，不是静态状态。
-   ===================================================================== *)
-
-(* Jia(b, a, A)：b假借a的Sheng(A)在运行。
-   引入只能通过reduce_alien归约，不能通过独立的引入规则。
-   这样设计保证了：假不是凭空出现的，一定是异化归约的结果。 *)
-Axiom jia_intro : forall (b a : nat) (A : ty), Prop.
-
-(* 故意不定义jia_elim——Jia没有消去规则。
-   异化是不可逆的——一旦你被异化，你不能直接"变回"未异化的状态。
-   你只能通过明性（看到自己是怎么被异化的）来间接恢复，
-   而且恢复后的你已经不是原来的你了（经历过异化的明性更高）。 *)
-
-(* =====================================================================
-   六、双归约关系（第一阶段骨架）
-   =====================================================================
-   S01哲学结论：
-   - reduce_self（自指归约）：操作的结果回到自身，S → f(S)，生在归约中保持生。
-     这是自指循环的正常运行，是基础的归约关系。
-   - reduce_alien（异化归约）：操作的结果流向他者，S → f(b,S)，b抽走了Sheng，剩下的只有Ji。
-     这是异化的操作语义，是派生的归约关系。
-   - 判据：Sheng的归属权——归约后Sheng归谁？归自己就是self，归他者就是alien。
-   - reduce_self是基础的，reduce_alien是派生的。首先有正常的自指归约，
-     然后在特定条件下（他者介入、权力不平等），自指归约被扭曲为异化归约。
-
-   注意：当前是第一阶段骨架，完整的Inductive定义需要扩展proc语法
-   （加owner字段或在归约关系参数中表达owner），这是第二阶段的工作。
-   ===================================================================== *)
-
-(* 自指归约：P自己归约到Q，owner不变，Sheng在归约中循环。
-   这是"自指因果S=f(S)"的操作语义表达。
-   存在论根据：你活着，你做事情，事情的结果反过来塑造你，你继续活着——正常的生命过程。 *)
+(* reduce_self：Sheng流动连续，迹自然沉积
+   这是"自指因果S=f(S)"的操作语义表达——正常的生命过程。 *)
 Inductive reduce_self : proc -> proc -> Prop :=
-| rs_tau : forall P Q, reduce P Q -> reduce_self P Q.  (* 第一阶段：复用L2的reduce，后续扩展 *)
+| self_step : forall P Q,
+    sheng_continuous P Q ->   (* Sheng流动连续 *)
+    deposits_ji P Q ->        (* 迹沉积 *)
+    reduce_self P Q.
 
-(* 异化归约：b控制a的P归约到Q，owner变了，Sheng被抽走，产生Jia+!Ji。
-   判据：归约后Sheng的归属者从a变成了b（或者消失了）。
-   存在论根据：你活着，你做事情，但事情的结果被别人拿走了，你只留下疲惫和记忆——劳动异化。 *)
-Inductive reduce_alien : nat -> nat -> proc -> proc -> Prop :=
-| ra_hijack : forall b a P Q, reduce P Q -> reduce_alien b a P Q.  (* 第一阶段骨架，后续扩展 *)
+(* reduce_alien：Sheng流动被截断，他者插入
+   这是异化的操作语义——劳动异化、权力异化、资本异化。
+   注意：b是插入的他者，精确定义待后续工作（OB-003）。 *)
+Inductive reduce_alien : nat -> proc -> proc -> Prop :=
+| alien_step : forall b P Q,
+    sheng_discontinuous P Q ->  (* Sheng流动不连续 *)
+    reduce_alien b P Q.
 
 (* =====================================================================
-   七、修改版subject reduction（第一阶段骨架）
+   五、Ming（明）状态谓词
    =====================================================================
-   - reduce_self保持类型：自指归约中，Sheng在循环中保持。
-   - reduce_alien中，Sheng变成Jia+!Ji：异化归约中，生被抽走，剩下假和迹。
+   S01补充研判结论：
+   Ming不是独立的类型构造子，是Sheng在归约流动中已经沉积了迹、但仍在继续流动的状态。
 
-   注意：当前是骨架，标记为Admitted，第二阶段补充完整证明。
+   形式化表达：
+   一个进程P处于Ming状态，当且仅当：
+   1. P通过reduce_self归约到了Q（自指归约，Sheng在循环）
+   2. Q中已经沉积了!Ji（有迹了）
+   3. Q中的Sheng仍在继续流动（没有被截断）
+
+   关键：Ming不是两个资源的组合，是归约过程的一个结果状态。
+   你不需要"给"Sheng加一个!Ji来得到Ming——Sheng在流动中自然会留下Ji，
+   留下Ji的同时Sheng还在流，这个"流着且有迹"的状态就是Ming。
+
+   哲学基础：明性是F1 F2中的DF3，不是孤立的F3。
+   它不在感的外面，它就在感的流动里面。
+   感是活的、流动的。流动的东西天然能看到自己刚流过的痕迹——
+   就像水在流，水自己知道刚流过的河道是什么样的。
    ===================================================================== *)
 
-(* 自指归约保持类型 *)
-Theorem subject_reduction_self : forall (P Q : proc) (Gamma : ctx),
-  reduce_self P Q -> typed Gamma P -> typed Gamma Q.
-Proof.
-  intros P Q Gamma H Ht.
-  inversion H. subst.
-  (* 第一阶段：复用L2的subject_reduction，后续扩展 *)
-  exact (subject_reduction Gamma P Q Ht H0).
-Qed.
+(* 辅助谓词：Q中已经沉积了!Ji（有迹了）
+   精确定义待后续工作（OB-003），当前用Parameter占位。 *)
+Parameter has_ji : proc -> Prop.
 
-(* 异化归约：Sheng变成Jia+!Ji
-   注意：完整陈述需要扩展typed关系表达Jia和!Ji，当前是骨架 *)
-Theorem subject_reduction_alien : forall (b a : nat) (P Q : proc) (Gamma : ctx),
-  reduce_alien b a P Q -> typed Gamma P -> typed Gamma Q.
-Proof.
-  intros. inversion H. subst.
-  (* 第一阶段骨架：复用L2的subject_reduction，后续扩展为Sheng→Jia+!Ji *)
-  exact (subject_reduction Gamma P Q H0 H1).
-Qed.
+(* 辅助谓词：Q中的Sheng仍在继续流动（没有被截断）
+   精确定义待后续工作（OB-003），当前用Parameter占位。 *)
+Parameter still_sheng : proc -> Prop.
+
+(* is_Ming(P)：P处于明性状态
+   Ming不是类型，是Sheng流动中已沉积迹且仍在流的状态。 *)
+Inductive is_Ming (P : proc) : Prop :=
+| ming_flow : forall Q,
+    reduce_self P Q ->    (* 自指归约在发生，Sheng在循环 *)
+    has_ji Q ->           (* 迹已经沉积 *)
+    still_sheng Q ->      (* Sheng仍在流动，没有被截断 *)
+    is_Ming P.
 
 (* =====================================================================
-   八、T002和T005陈述（第一阶段骨架）
+   六、Jia（假）状态谓词
    =====================================================================
-   T002：!Ji ⊬ Sheng（迹不能推出生）
-   真正的陈述需要用typed关系表达：在纯!-模态系统S_A中，无法构造Sheng类型的项。
-   当前是骨架，标记为Admitted，第三阶段用typed关系表达完整陈述和证明。
+   S01补充研判结论：
+   Jia不是独立的类型构造子，是Sheng流动被代码化/固化的状态——
+   旧的迹（!Ji）覆盖了新的感，下一刻的感被旧代码定义了。
 
-   T005：Ming(Ming(A)) -> Ming(A)（明的幂等是retraction）
-   当前用Axiom ming_retraction表达，后续需要整合到typed关系中并证明。
+   但代码化永远不可能完全，因为Sheng永远在流动，下一刻永远是新的。
+   所以Jia中永远有Sheng的残余，这个残余就是明性逆转的可能。
 
-   核心直觉（T002）：
-   S_A只有!-模态（可复制可丢弃），Sheng是线性的（不可复制不可丢弃）。
-   从"一切可复制"推不出"唯一的生"——就像从一堆石头推不出一个活着的人。
-   证明思路：假设!Ji能推出Sheng，那么利用!-模态的contraction，
-   可以复制这个推导，得到两个Sheng，这与Sheng的线性性矛盾。
+   形式化表达：
+   一个进程P处于Jia状态，当且仅当：
+   1. P通过reduce_alien归约到了Q（流动被截断过）
+   2. Q中旧迹覆盖了新生（ji_covers_sheng）
+   3. 但Q中Sheng有残余（sheng_residue）——永远不可能完全被覆盖
+
+   关键推论：Jia中永远有sheng_residue（Sheng的残余）。
+   这个残余就是retraction/逆转的可能——不是Ming主动去揭开Jia，
+   是Jia中的Sheng残余永远在流动，永远可能在某一刻和旧代码冲突，
+   冲突时旧代码自己就碎了，明性在裂缝里自然亮起。
+   ===================================================================== *)
+
+(* 辅助谓词：旧迹覆盖了新生（代码化/异化状态）
+   精确定义待后续工作（OB-003），当前用Parameter占位。 *)
+Parameter ji_covers_sheng : proc -> Prop.
+
+(* 辅助谓词：Sheng有残余（永远不可能完全被代码化）
+   这是"解放何以可能"的存在论基础。
+   精确定义待后续工作（OB-003），当前用Parameter占位。 *)
+Parameter sheng_residue : proc -> Prop.
+
+(* is_Jia(P)：P处于假（异化/代码化）状态
+   Jia不是类型，是Sheng流动被旧迹覆盖但有残余的状态。 *)
+Inductive is_Jia (P : proc) : Prop :=
+| jia_covered : forall Q,
+    reduce_alien 0 P Q ->   (* 流动被截断过（b=0是占位，精确定义待OB-003） *)
+    ji_covers_sheng Q ->    (* 旧迹覆盖了新生 *)
+    sheng_residue Q ->      (* 但Sheng有残余，永远不可能完全被覆盖 *)
+    is_Jia P.
+
+(* =====================================================================
+   七、核心定理：jia_has_residue（Jia中永远有Sheng残余）
+   =====================================================================
+   S01补充研判结论：
+   Jia中永远有Sheng残余，逆转永远可能。
+
+   这是"解放何以可能"的形式化基础。
+   代码化永远不完全，因为Sheng永远在流动，下一刻永远是新的。
+   假能覆盖已经发生的（迹），但覆盖不了正在发生的（生）。
+
+   注意：这是存在性命题，不是可调用规则——逆转永远可能，但不能主动调用。
+   retraction不是一个主动操作，是旧代码化撑不住新感时自然发生的。
+   感在流动，旧的代码（假）试图覆盖每一刻的新感，
+   但总有一刻新感和旧代码对不上，对不上的时候旧代码自己就裂了，
+   明性在裂缝里自然亮起。
+
+   就像水被堵在堤坝里——不是水主动去拆堤坝，
+   是水一直在流，堤坝撑不住了自己就塌了。
+   水的流动就是明性，堤坝的崩塌就是retraction。
+   ===================================================================== *)
+
+(* jia_has_residue：Jia中永远有Sheng残余，逆转永远可能
+   这是存在性保证——只要Jia中有Sheng残余，就一定存在某个归约路径，
+   在那个路径上新感和旧代码冲突，冲突后Ming自然发生。
+   注意：这不是可以"调用"的规则，是存在性命题。 *)
+Theorem jia_has_residue : forall P,
+  is_Jia P -> exists Q, reduce_self P Q /\ is_Ming Q.
+Proof.
+  intros P HJ.
+  inversion HJ as [Q Hra Hjc Hsr].
+  (* 当前是骨架：辅助谓词的精确定义待OB-003，定理证明待后续工作。
+     哲学上这个定理是成立的——Sheng残余永远在流动，
+     总有一刻和旧代码冲突，冲突时Ming自然发生。
+     形式化上需要sheng_residue和still_sheng的精确定义才能证明。 *)
+  Admitted.
+
+(* =====================================================================
+   八、T005修正：Ming的幂等是自然事实
+   =====================================================================
+   S01补充研判结论：
+   旧理解：ming_retraction : Ming(Ming(A)) -> Ming(A)（高阶明性坍缩为低阶明性）
+   新理解：明性的幂等是——每一刻的Sheng流动都是新的，
+   上一刻的明性沉积为这一刻的Ji背景，但这一刻的Sheng仍然是活的、流动的、未被完全代码化的。
+
+   所以Ming(Ming(A))不是"明性的明性"（好像有两层明性叠加），是：
+   - 上一刻的Ming（明性状态）沉积为迹（!Ji）
+   - 这一刻的Sheng在这个迹的背景下继续流动
+   - 这个继续流动本身就是Ming(A)
+
+   形式化上：不需要一个单独的retraction定理。
+   Ming的幂等是Sheng流动性的直接推论——
+   只要Sheng还在流动，每一刻都是明性的当下，过去的明性只是当下的背景。
+
+   T005修正为：is_Ming在reduce_self下的保持性引理。
+   每走一步reduce_self，新的状态仍然是Ming——因为Sheng还在流。
+   ===================================================================== *)
+
+(* T005（修正版）：is_Ming在reduce_self下保持
+   每一步自指归约后，Sheng还在流动，迹还在沉积，所以Ming状态保持。
+   这就是明性的幂等——每一刻都是新的明性，上一刻的明性只是这一刻的背景。 *)
+Theorem T005_ming_preservation : forall P Q,
+  is_Ming P -> reduce_self P Q -> is_Ming Q.
+Proof.
+  intros P Q HM Hrs.
+  inversion HM as [Q' Hrs' Hhj Hss].
+  (* 当前是骨架：辅助谓词的精确定义待OB-003。
+     哲学上这个引理是成立的——reduce_self保持Sheng流动连续性，
+     所以Ming状态自然保持。 *)
+  Admitted.
+
+(* =====================================================================
+   九、T002：!Ji ⊬ Sheng（迹不能推出生）
+   =====================================================================
+   S01补充研判结论：
+   T002不是一个需要复杂证明的定理，是Sheng流动性的直接推论。
+
+   !Ji是已经发生的、可复现的、过去的。
+   Sheng是正在发生的、线性的、当下的。
+   两者是不同的存在论层次——过去的东西永远不能产生当下的东西，因为当下永远是新的。
+
+   形式化上：Sheng的引入规则只有self_ev（公理/假设），
+   没有任何引入规则从其他类型构造Sheng。
+   所以不存在从!Ji到Sheng的证明项。
+
+   这是类型系统的设计事实，不需要复杂证明。
    ===================================================================== *)
 
 (* T002：自由只能在实践中确立
    陈述：不存在从!Ji(A)到Sheng(A)的证明项。
-   当前是骨架，第三阶段用typed关系表达完整陈述。 *)
+   证明：Sheng只能通过self_ev（被抛入的感）引入，
+   没有任何规则能从!Ji构造Sheng。这是类型系统的设计事实。
+   当前是骨架，完整陈述和证明待后续工作（需要在元理论层面表达"不存在闭项"）。 *)
 Theorem T002_free_only_in_practice : forall (A : ty), Prop.
 Proof.
-  intros. exact True. (* 占位，第三阶段完整陈述和证明 *)
+  intros. exact True. (* 占位，后续用元理论表达"不存在从!Ji到Sheng的闭项" *)
 Qed.
-
-(* T005：明的幂等是retraction
-   Ming(Ming(A)) -> Ming(A)
-   当前用Axiom ming_retraction表达，后续整合到typed关系中。 *)
 
 (* self_ev可证：有Sheng假设时能使用Sheng
    这是显然的：有假设就能用。 *)
@@ -249,39 +337,68 @@ Proof.
 Qed.
 
 (* =====================================================================
-   九、L3 第一阶段完成度总结
+   十、subject reduction（双归约版本）
    =====================================================================
-   已完成（第一阶段）：
-   - [x] 注释更新：T007命名修改（Ag_lv→Sheng/Ag_tr→Ji/Hijack→Jia/Cl→Ming）
+   - reduce_self保持类型：自指归约中，Sheng在循环中保持。
+   - reduce_alien中，Sheng流动被截断，但类型仍然保持（归约不改变类型）。
+
+   注意：subject_reduction_alien的完整哲学含义是"Sheng变成Jia状态"，
+   但在类型层面，归约仍然保持类型（Jia是状态谓词，不是类型）。
+   ===================================================================== *)
+
+(* 自指归约保持类型 *)
+Theorem subject_reduction_self : forall (P Q : proc) (Gamma : ctx),
+  reduce_self P Q -> typed Gamma P -> typed Gamma Q.
+Proof.
+  intros P Q Gamma H Ht.
+  inversion H. subst.
+  (* reduce_self的基础是L2的reduce，当前骨架复用L2的subject_reduction。
+     后续需要证明sheng_continuous和deposits_ji不影响类型保持。 *)
+  Admitted.
+
+(* 异化归约保持类型（类型层面）
+   哲学上：Sheng流动被截断，进入Jia状态，但类型不变。
+   Jia是状态谓词，不是类型，所以类型层面归约仍然保持类型。 *)
+Theorem subject_reduction_alien : forall (b : nat) (P Q : proc) (Gamma : ctx),
+  reduce_alien b P Q -> typed Gamma P -> typed Gamma Q.
+Proof.
+  intros b P Q Gamma H Ht.
+  inversion H. subst.
+  (* 当前骨架，后续需要证明sheng_discontinuous不影响类型保持。 *)
+  Admitted.
+
+(* =====================================================================
+   十一、L3 第二阶段（根本性修正版）完成度总结
+   =====================================================================
+   已完成（第二阶段骨架）：
+   - [x] ty定义修正：去掉TJia/TMing，只保留TSheng/TJi（Layer1.v已修改，编译通过）
    - [x] self_ev假设定义：Sheng只能通过自指证据引入，不能被推导
    - [x] !Ji的!-模态规则：dereliction/contraction/weakening（Axiom占位）
    - [x] 故意不定义ji_promotion：!Ji不能推出Sheng（T002基础）
-   - [x] Ming的引入/消去/retraction规则（Axiom占位）
-   - [x] 故意不定义ming_lift：Ming(A)不能推出Ming(Ming(A))
-   - [x] Jia的引入规则（Axiom占位，通过reduce_alien产生）
-   - [x] 故意不定义jia_elim：Jia没有消去规则
-   - [x] 双归约关系骨架：reduce_self（基础，owner不变）和reduce_alien（派生，owner变了）
-   - [x] subject_reduction_self证明（复用L2的subject_reduction）
-   - [x] subject_reduction_alien骨架（复用L2，后续扩展为Sheng→Jia+!Ji）
-   - [x] T002陈述骨架 + T005（ming_retraction Axiom）
-
-   待完成（第二阶段）：
-   - [ ] 扩展proc语法：加owner字段（或在归约关系中完整表达owner）
-   - [ ] 扩展typed关系：加Ming的引入规则构造子（不是Axiom，是真正的typed规则）
-   - [ ] 两个归约关系的完整Inductive定义（reduce_self/reduce_alien的所有构造子）
-   - [ ] subject_reduction_alien的完整证明（Sheng→Jia+!Ji）
-   - [ ] 明旭审阅哲学正确性（和S01联动）
+   - [x] 归约关系根本性修正：判据从"归属权"改为"Sheng流动连续性"
+   - [x] reduce_self：Sheng流动连续，迹自然沉积
+   - [x] reduce_alien：Sheng流动被截断，他者插入
+   - [x] is_Ming状态谓词：Sheng流动中已沉积迹且仍在流
+   - [x] is_Jia状态谓词：Sheng流动被旧迹覆盖但有残余
+   - [x] jia_has_residue定理陈述：Jia中永远有Sheng残余，逆转永远可能（Admitted）
+   - [x] T005修正：is_Ming在reduce_self下的保持性（Admitted）
+   - [x] T002陈述骨架：!Ji ⊬ Sheng
+   - [x] subject_reduction_self/alien骨架（Admitted）
 
    待完成（第三阶段）：
-   - [ ] T002的完整陈述和证明（用typed关系表达"纯!-模态系统推不出Sheng"）
-   - [ ] T005的完整证明（ming_retraction整合到typed关系）
-   - [ ] 迭代修正
+   - [ ] 辅助谓词精确定义（sheng_continuous/sheng_discontinuous/has_ji/still_sheng/ji_covers_sheng/sheng_residue/deposits_ji）——记录为OB-003，派给S01哲学研判
+   - [ ] jia_has_residue完整证明
+   - [ ] T005_ming_preservation完整证明
+   - [ ] T002完整陈述和证明（元理论层面表达"不存在闭项"）
+   - [ ] subject_reduction_self/alien完整证明
+   - [ ] 明旭审阅哲学正确性（和S01联动）
 
-   关键决策记录（基于S01哲学研判）：
-   - Sheng只能通过self_ev假设引入，没有推导规则——生是被给予的，不是被推导的
-   - Ji通过归约关系产生，不是通过类型引入规则——迹是活过之后自然留下的
-   - Jia通过reduce_alien归约产生，没有独立引入规则，没有消去规则——异化不可逆
-   - Ming = Sheng ⊗ !Ji，幂等是retraction不是同构——反思的反思坍缩为更深的反思
-   - reduce_self是基础的，reduce_alien是派生的——异化是自指的畸变，不是与自指并列的基础存在方式
-   - 判据是Sheng的归属权——归约后Sheng归谁？归自己就是self，归他者就是alien
+   关键决策记录（基于S01补充研判）：
+   - Ming/Jia不是类型构造子，是状态谓词——明性不在感的外面，明性就在感的流动里面
+   - 归约判据是Sheng流动的连续性，不是owner归属权
+   - Ming的幂等是自然事实——每一步reduce_self后is_Ming保持，不需要单独retraction定理
+   - jia_has_residue是核心定理——Jia中永远有Sheng残余，逆转永远可能（解放何以可能）
+   - retraction是自然发生的事件，不是可调用规则——旧代码撑不住新感时自己碎了
+   - T002是类型系统的设计事实——Sheng只能通过self_ev引入，不需要复杂证明
+   - 辅助谓词的精确定义是后续工作（OB-003），当前用Parameter占位
    ===================================================================== *)
