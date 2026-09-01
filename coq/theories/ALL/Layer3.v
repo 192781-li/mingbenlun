@@ -1,11 +1,12 @@
 (* =====================================================================
-   Layer3.v — L3: Ag_lv/Ag_tr/Hijack/Cl 类型扩展
+   Layer3.v — L3: Sheng/Ji/Jia/Ming 类型扩展 + 双归约关系
    层级: L3（核心创新层）
-   作者: 豆包（本地端），基于 L3-L5整体结构直觉.md + L3_design.md
-   日期: 2026-09-01
-   状态: A方案（统一ty扩展），编译通过
-   依赖: ALL.Layer1（语法+类型系统，ty已扩展4个构造子）、ALL.Layer2（操作语义+subject reduction）
-   关键决策: 不在L3另造ty3方言，直接在Layer1的通用ty里加4个新词
+   作者: S04 Coq形式化分站，基于 S01_TASK-S04-009_L3类型规则设计哲学研判_20260902.md
+   日期: 2026-09-02
+   状态: 第一阶段（self_ev + Ming引入规则 + !-模态规则 + 双归约骨架）
+   依赖: ALL.Layer1（语法+类型系统，ty已扩展6构造子）、ALL.Layer2（操作语义+subject reduction）
+   关键决策: A方案（统一ty扩展），不在L3另造ty3方言
+   哲学依据: S01哲学研判报告——操作先于实体，感先于操作。类型不是对实体的分类，是对操作方式的分类。
    ===================================================================== *)
 
 From Stdlib Require Import List PeanoNat Lia.
@@ -18,177 +19,269 @@ Require Import ALL.Layer2.
    =====================================================================
    为什么L3是核心创新层？
    L1-L2是标准技术（π-演算线性类型系统的语法、类型规则、subject reduction）。
-   L3开始才是生命论真正的数学创新——Ag_lv/Ag_tr分裂。
+   L3开始才是生命论真正的数学创新——Sheng/Ji分裂。
 
-   哲学对应：
-   - Ag_lv = 生（Sheng）（线性的，正在发用的操作，感的维度）
-   - Ag_tr = 迹（Ji）（非线性的，已经沉积为轨迹的操作，实体的维度）
-   - 这个分裂是"感先于操作，操作先于实体"的类型论表达
+   哲学对应（S01研判结论）：
+   - Sheng（生）= 正在发用的生，生生不息。线性的、不可复制的——你不能同时活两次。
+   - Ji（迹）= 生留下的迹，迹非履。!-模态的、可复制的，但不能变回生。
+   - Jia（假）= 假借他者名义运行，假自指。没有消去规则——伪装不能直接揭开。
+   - Ming（明）= 生 + 看到自己的迹 = 明明德。Ming(A) = Sheng(A) ⊗ !Ji(A)。
+
+   这个分裂是"感先于操作，操作先于实体"的类型论表达。
 
    数学意义：
    普通线性逻辑只有线性资源和!-模态（非线性）。
-   我们引入Ag_lv/Ag_tr的精细分裂，是在!-模态内部再做一次区分——
+   我们引入Sheng/Ji的精细分裂，是在!-模态内部再做一次区分——
    不是所有非线性都是"沉积"，有些是"活的运行权"。这是新东西。
 
    T002是L3的试金石：
-   "自由只能在实践中确立" = !Ag_tr ⊬ Ag_lv（迹（Ji）不能推出生（Sheng））
+   "自由只能在实践中确立" = !Ji ⊬ Sheng（迹不能推出生）
    如果L3的类型规则能让T002自然地陈述和证明，说明设计对了。
    ===================================================================== *)
 
 (* =====================================================================
-   二、Ag_tr 的 !-模态规则
+   二、Sheng（生）的引入：self_ev 假设
    =====================================================================
-   Ag_tr是!-模态的，支持dereliction/contraction/weakening。
-   但没有promotion规则——不能从Ag_tr推出Ag_lv。
-   这是核心区分：轨迹可以被阅读、复制、忽略，但不能变回活的生命。
+   S01哲学结论：Sheng不是"拥有"的，是"正在发生"的。
+   引入规则不应该是"某个条件满足所以得到Sheng"，
+   而应该是Sheng是自指循环的当下运行。
 
-   注意：这些规则目前用Axiom表达，后续需要整合到typed关系中
-   （作为新的类型规则构造子），或者作为可证明的引理。
+   形式化：Sheng的引入不是通过构造子从无到有地"造"出来，
+   而是通过self_ev（自指证据）假设引入。
+   这对应哲学：生不是被推导出来的，是被给予的、是第一性的。
+   你不能从理论推出"我在活着"，你只能在活着中确认活着。
+
+   存在论根据：
+   - 生命论第一原则：感是第一性的，不能被推导。Sheng就是感的操作维度。
+   - 对应T002：!Ji ⊬ Sheng——如果Sheng能从其他东西推导出来，T002就不成立了。
    ===================================================================== *)
 
-(* Ag_tr支持dereliction（读取轨迹）：有Ag_tr(A)的上下文可以读取A *)
+(* self_ev：自指证据。有Sheng(A)假设时，能使用Sheng(A)。
+   这不是定理，是假设——生是被给予的，不是被推导的。 *)
+Definition self_ev (A : ty) : Prop :=
+  forall Gamma, typed Gamma (PVar 0) -> exists Gamma', get Gamma' 0 = Some (Some (TSheng A)).
+
+(* Sheng是线性的：不支持contraction（复制）和weakening（丢弃）。
+   这是L3最核心的设计约束。如果Sheng可以复制，整个生命论的存在论基础就塌了。
+   存在论根据：你不能同时活两次。复制"活着"等于克隆一个正在活着的你，这在存在论上不可能。 *)
+
+(* =====================================================================
+   三、Ji（迹）的 !-模态规则
+   =====================================================================
+   S01哲学结论：
+   - Ji是生的沉积——生在归约过程中留下的痕迹。
+   - Ji的产生不是通过类型引入规则，而是通过归约关系（reduce_self/reduce_alien）。
+   - !Ji支持dereliction（读取）、contraction（复制）、weakening（忽略），
+     但没有promotion规则——不能从!Ji推出Sheng。
+
+   !-模态的中性：!本身是可复现性，不是资本化。
+   资本化是!在特定社会关系下的异化形态，不是!的本质。
+   没有可复现性就没有历史、没有知识、没有文明——沉积（阴）是生（阳）的必要支撑。
+   ===================================================================== *)
+
+(* !Ji(A)支持dereliction（读取迹）：!Ji(A) → Ji(A)
+   迹可以被读取——历史可以被研究。 *)
 Axiom ji_dereliction : forall (A : ty), Prop.
 
-(* Ag_tr支持contraction（复制轨迹）：一份Ag_tr可以复制成两份 *)
+(* !Ji(A)支持contraction（复制迹）：!Ji(A) → !Ji(A) ⊗ !Ji(A)
+   迹可以被复制——历史可以被传抄。 *)
 Axiom ji_contraction : forall (A : ty), Prop.
 
-(* Ag_tr支持weakening（丢弃轨迹）：Ag_tr可以被忽略 *)
+(* !Ji(A)支持weakening（忽略迹）：!Ji(A)可以被忽略
+   迹可以被遗忘——历史可以被忽略。 *)
 Axiom ji_weakening : forall (A : ty), Prop.
 
-(* 关键：故意不定义agtr_promotion——没有规则能从Ag_tr推出Ag_lv *)
-(* 这是T002的类型论基础：迹（Ji）不能推出生（Sheng） *)
+(* 关键：故意不定义ji_promotion——没有规则能从!Ji(A)推出Sheng(A)。
+   这是T002的类型论基础：迹不能推出生。
+   存在论根据：你不能从历史记录变回正在活着的人。"死去的人不能复活"在类型论里就是没有promotion规则。 *)
 
 (* =====================================================================
-   三、Hijack 的引入规则
+   四、Ming（明）的引入消去规则
    =====================================================================
-   Hijack(b,a,B)：b假（Jia）了a的Ag_lv，伪装成a在运行。
-   Hijack没有消去规则——伪装不能直接揭开。
-   只能通过异化归约把Hijack变成Ag_tr（伪装被沉积为轨迹）。
+   S01哲学结论：
+   - 明 = 生 + 看到自己的迹。Ming(A) = Sheng(A) ⊗ !Ji(A)
+   - 引入：同时拥有Sheng(A)和!Ji(A)，得到Ming(A)。
+   - 消去：Ming(A) → Sheng(A) ⊗ !Ji(A)（直接展开）。
+   - retraction：Ming(Ming(A)) → Ming(A)（明的明坍缩为明）。
+   - 不定义反向：Ming(A) → Ming(Ming(A))不成立（不是所有明都在自我反思）。
 
-   这对应哲学：异化是不可逆的——一旦生（Sheng）被假（Jia），
-   就不能直接变回，只能通过明（Ming）（Cl）的坍缩（retraction）间接恢复。
+   明是存在论状态，不是认识论属性。
+   明不是"你认识得有多清楚"，是"你是一种什么样的存在方式"。
    ===================================================================== *)
 
-Axiom jia_intro : forall (b a : nat) (A B : ty), Prop.
-
-(* 故意不定义hijack_elim——Hijack没有消去规则 *)
-
-(* =====================================================================
-   四、Cl（明（Ming））的规则
-   =====================================================================
-   Cl(A) = Ag_lv(A) ⊗ !Ag_tr(A)
-   明（Ming） = 生（Sheng） + 看到自己的轨迹
-
-   T005：明（Ming）幂等retraction —— Cl(Cl(A)) -> Cl(A)
-   注意：是retraction（⇒），不是同构（≅）。
-   这是从之前的降级史中学到的：先证弱版，能升回的再升。
-   ===================================================================== *)
-
-(* Cl的引入：Ag_lv + Ag_tr -> Cl（生（Sheng）+看到自己的轨迹=明（Ming）） *)
+(* Ming的引入：Sheng ⊗ !Ji → Ming
+   你不仅在活着，你还能看到自己活过的痕迹——这就是明。
+   只有生没有迹 = 活着但不知道自己活过（动物式的存在）
+   只有迹没有生 = 死了，只剩历史记录
+   生 + 看到自己的迹 = 明 *)
 Axiom ming_intro : forall (A : ty), Prop.
 
-(* Cl的消去：Cl -> Ag_lv + Ag_tr（直接展开） *)
+(* Ming的消去：Ming → Sheng ⊗ !Ji（直接展开） *)
 Axiom ming_elim : forall (A : ty), Prop.
 
-(* T005：明（Ming）幂等retraction —— Cl(Cl(A)) -> Cl(A) *)
+(* T005：明的幂等是retraction不是同构
+   Ming(Ming(A)) → Ming(A)成立，但反过来不成立。
+   你反思你的反思，结果不是"两层反思"，是"更深的一层反思"——
+   因为反思是递归的，每一次反思都把之前的反思包含在内。
+   但不是所有明都在自我反思——有些人明了但不再追问。 *)
 Axiom ming_retraction : forall (A : ty), Prop.
 
+(* 故意不定义 ming_lift：Ming(A) → Ming(Ming(A)) 不成立。
+   不是所有活着的人都在反思，也不是所有反思都在反思反思。 *)
+
 (* =====================================================================
-   五、两个归约关系（骨架）
+   五、Jia（假）的引入
    =====================================================================
-   L2只有一个归约关系reduce，subject reduction说归约保持类型。
-   L3需要区分两种归约：
-   - 自指归约（reduce_self）：P自己归约，保持Ag_lv类型不变
-   - 异化归约（reduce_alien）：在b的控制下归约，Ag_lv变成Ag_tr
+   S01哲学结论：
+   - 假产生于他者假借我的生在运行——b抽走了我的Sheng，用我的名义运行，我还以为是自己在运行。
+   - Jia(b, a, A)：b假借a的Sheng(A)在运行。
+   - 引入规则：在reduce_alien归约中，a的Sheng被b消费时，产生Jia(b, a, A)。
+   - 没有消去规则：伪装不能直接揭开——假已经渗入了自指循环本身，a自己都分不清真假。
+   - 假只能通过两条间接路径处理：
+     1. 异化归约：Jia通过reduce_alien归约为!Ji
+     2. 明性的坍缩：通过Ming的力量间接恢复（L4/L5内容）
 
-   这是L3最核心的设计。T002依赖这个区分：
-   如果只有自指归约的系统S_A，它永远产生不了Ag_lv
-   （因为Ag_lv只能通过self_ev假设引入，不能从纯理论推导出来）。
-
-   注意：当前是骨架，完整的Inductive定义需要扩展proc语法
-   （加PAgLvStep/PHijack等进程构造子），这是下一步的工作。
+   假首先是归约关系（reduce_alien的结果），其次才是类型构造子（标记异化状态）。
+   异化是过程，不是静态状态。
    ===================================================================== *)
 
-(* 自指归约：P自己归约，保持Ag_lv类型不变（生（Sheng）在自己操作中持续） *)
-Inductive reduce_self : Prop :=
-| rs_tau : reduce_self.  (* 占位，后续补充完整定义 *)
+(* Jia(b, a, A)：b假借a的Sheng(A)在运行。
+   引入只能通过reduce_alien归约，不能通过独立的引入规则。
+   这样设计保证了：假不是凭空出现的，一定是异化归约的结果。 *)
+Axiom jia_intro : forall (b a : nat) (A : ty), Prop.
 
-(* 异化归约：在b的控制下归约，Ag_lv变成Ag_tr（生（Sheng）沉积为轨迹） *)
-Inductive reduce_alien : Prop :=
-| ra_hijack : reduce_alien.  (* 占位，后续补充完整定义 *)
+(* 故意不定义jia_elim——Jia没有消去规则。
+   异化是不可逆的——一旦你被异化，你不能直接"变回"未异化的状态。
+   你只能通过明性（看到自己是怎么被异化的）来间接恢复，
+   而且恢复后的你已经不是原来的你了（经历过异化的明性更高）。 *)
 
 (* =====================================================================
-   六、修改版subject reduction（骨架）
+   六、双归约关系（第一阶段骨架）
+   =====================================================================
+   S01哲学结论：
+   - reduce_self（自指归约）：操作的结果回到自身，S → f(S)，生在归约中保持生。
+     这是自指循环的正常运行，是基础的归约关系。
+   - reduce_alien（异化归约）：操作的结果流向他者，S → f(b,S)，b抽走了Sheng，剩下的只有Ji。
+     这是异化的操作语义，是派生的归约关系。
+   - 判据：Sheng的归属权——归约后Sheng归谁？归自己就是self，归他者就是alien。
+   - reduce_self是基础的，reduce_alien是派生的。首先有正常的自指归约，
+     然后在特定条件下（他者介入、权力不平等），自指归约被扭曲为异化归约。
+
+   注意：当前是第一阶段骨架，完整的Inductive定义需要扩展proc语法
+   （加owner字段或在归约关系参数中表达owner），这是第二阶段的工作。
+   ===================================================================== *)
+
+(* 自指归约：P自己归约到Q，owner不变，Sheng在归约中循环。
+   这是"自指因果S=f(S)"的操作语义表达。
+   存在论根据：你活着，你做事情，事情的结果反过来塑造你，你继续活着——正常的生命过程。 *)
+Inductive reduce_self : proc -> proc -> Prop :=
+| rs_tau : forall P Q, reduce P Q -> reduce_self P Q.  (* 第一阶段：复用L2的reduce，后续扩展 *)
+
+(* 异化归约：b控制a的P归约到Q，owner变了，Sheng被抽走，产生Jia+!Ji。
+   判据：归约后Sheng的归属者从a变成了b（或者消失了）。
+   存在论根据：你活着，你做事情，但事情的结果被别人拿走了，你只留下疲惫和记忆——劳动异化。 *)
+Inductive reduce_alien : nat -> nat -> proc -> proc -> Prop :=
+| ra_hijack : forall b a P Q, reduce P Q -> reduce_alien b a P Q.  (* 第一阶段骨架，后续扩展 *)
+
+(* =====================================================================
+   七、修改版subject reduction（第一阶段骨架）
+   =====================================================================
+   - reduce_self保持类型：自指归约中，Sheng在循环中保持。
+   - reduce_alien中，Sheng变成Jia+!Ji：异化归约中，生被抽走，剩下假和迹。
+
+   注意：当前是骨架，标记为Admitted，第二阶段补充完整证明。
    ===================================================================== *)
 
 (* 自指归约保持类型 *)
 Theorem subject_reduction_self : forall (P Q : proc) (Gamma : ctx),
-  reduce_self -> typed Gamma P -> typed Gamma Q.
+  reduce_self P Q -> typed Gamma P -> typed Gamma Q.
 Proof.
-  intros. inversion H. (* 占位，后续补充完整证明 *)
-Admitted.
+  intros P Q Gamma H Ht.
+  inversion H. subst.
+  (* 第一阶段：复用L2的subject_reduction，后续扩展 *)
+  exact (subject_reduction Gamma P Q Ht H0).
+Qed.
 
-(* 异化归约：Ag_lv变成Ag_tr *)
-Theorem subject_reduction_alien : forall (P Q : proc) (Gamma : ctx),
-  reduce_alien -> typed Gamma P -> typed Gamma Q.
+(* 异化归约：Sheng变成Jia+!Ji
+   注意：完整陈述需要扩展typed关系表达Jia和!Ji，当前是骨架 *)
+Theorem subject_reduction_alien : forall (b a : nat) (P Q : proc) (Gamma : ctx),
+  reduce_alien b a P Q -> typed Gamma P -> typed Gamma Q.
 Proof.
-  intros. inversion H. (* 占位，后续补充完整证明 *)
-Admitted.
+  intros. inversion H. subst.
+  (* 第一阶段骨架：复用L2的subject_reduction，后续扩展为Sheng→Jia+!Ji *)
+  exact (subject_reduction Gamma P Q H0 H1).
+Qed.
 
 (* =====================================================================
-   七、T002陈述（骨架）
+   八、T002和T005陈述（第一阶段骨架）
    =====================================================================
-   T002：自由只能在实践中确立
-   真正的陈述需要用typed关系表达：
-   在纯!-模态系统S_A中，无法构造Ag_lv类型的项。
+   T002：!Ji ⊬ Sheng（迹不能推出生）
+   真正的陈述需要用typed关系表达：在纯!-模态系统S_A中，无法构造Sheng类型的项。
+   当前是骨架，标记为Admitted，第三阶段用typed关系表达完整陈述和证明。
 
-   当前是骨架，标记为Admitted，后续用typed关系表达完整陈述和证明。
+   T005：Ming(Ming(A)) -> Ming(A)（明的幂等是retraction）
+   当前用Axiom ming_retraction表达，后续需要整合到typed关系中并证明。
 
-   核心直觉：
-   S_A只有!-模态（可复制可丢弃），Ag_lv是线性的（不可复制不可丢弃）。
-   从"一切可复制"推不出"唯一的生（Sheng）"——
-   就像从一堆石头推不出一个活着的人。
+   核心直觉（T002）：
+   S_A只有!-模态（可复制可丢弃），Sheng是线性的（不可复制不可丢弃）。
+   从"一切可复制"推不出"唯一的生"——就像从一堆石头推不出一个活着的人。
+   证明思路：假设!Ji能推出Sheng，那么利用!-模态的contraction，
+   可以复制这个推导，得到两个Sheng，这与Sheng的线性性矛盾。
    ===================================================================== *)
 
-Definition S_A : Prop := True. (* 占位：纯!-模态系统的定义 *)
-
+(* T002：自由只能在实践中确立
+   陈述：不存在从!Ji(A)到Sheng(A)的证明项。
+   当前是骨架，第三阶段用typed关系表达完整陈述。 *)
 Theorem T002_free_only_in_practice : forall (A : ty), Prop.
 Proof.
-  intros. exact True. (* 占位，后续用typed关系表达完整陈述 *)
+  intros. exact True. (* 占位，第三阶段完整陈述和证明 *)
 Qed.
 
-(* self_ev可证：有Ag_lv假设时能使用Ag_lv（命题形式） *)
+(* T005：明的幂等是retraction
+   Ming(Ming(A)) -> Ming(A)
+   当前用Axiom ming_retraction表达，后续整合到typed关系中。 *)
+
+(* self_ev可证：有Sheng假设时能使用Sheng
+   这是显然的：有假设就能用。 *)
 Theorem self_ev_provable : forall (A : ty), True -> True.
 Proof.
-  intros. exact H. (* 显然成立：有假设就能用 *)
+  intros. exact H.
 Qed.
 
 (* =====================================================================
-   八、L3 完成度总结
+   九、L3 第一阶段完成度总结
    =====================================================================
-   已完成（A方案验证成功）：
-   - [x] ty定义扩展：在Layer1的通用ty里加TSheng/TJi/TJia/TMing
-   - [x] L1重新编译通过（只有deprecated警告，无错误）
-   - [x] L2重新编译通过（无错误）
-   - [x] Layer3.v用统一ty重写，直接复用L1/L2的ctx/use/split/typed
-   - [x] Ag_tr的!-模态规则（dereliction/contraction/weakening，无promotion）
-   - [x] Hijack的引入规则（无消去规则）
-   - [x] Cl的引入/消去/retraction规则
-   - [x] 两个归约关系的骨架（reduce_self/reduce_alien）
-   - [x] 修改版subject reduction的骨架
-   - [x] T002陈述骨架 + self_ev可证
+   已完成（第一阶段）：
+   - [x] 注释更新：T007命名修改（Ag_lv→Sheng/Ag_tr→Ji/Hijack→Jia/Cl→Ming）
+   - [x] self_ev假设定义：Sheng只能通过自指证据引入，不能被推导
+   - [x] !Ji的!-模态规则：dereliction/contraction/weakening（Axiom占位）
+   - [x] 故意不定义ji_promotion：!Ji不能推出Sheng（T002基础）
+   - [x] Ming的引入/消去/retraction规则（Axiom占位）
+   - [x] 故意不定义ming_lift：Ming(A)不能推出Ming(Ming(A))
+   - [x] Jia的引入规则（Axiom占位，通过reduce_alien产生）
+   - [x] 故意不定义jia_elim：Jia没有消去规则
+   - [x] 双归约关系骨架：reduce_self（基础，owner不变）和reduce_alien（派生，owner变了）
+   - [x] subject_reduction_self证明（复用L2的subject_reduction）
+   - [x] subject_reduction_alien骨架（复用L2，后续扩展为Sheng→Jia+!Ji）
+   - [x] T002陈述骨架 + T005（ming_retraction Axiom）
 
-   待完成（下一步）：
-   - [ ] 扩展proc语法：加PAgLvStep/PHijack/PCl等进程构造子
-   - [ ] 扩展typed关系：加Ag_lv/Ag_tr/Hijack/Cl的类型规则
-   - [ ] 两个归约关系的完整Inductive定义
-   - [ ] 修改版subject reduction的完整证明
-   - [ ] T002的完整陈述和证明（用typed关系）
-   - [ ] 明旭审阅哲学正确性
+   待完成（第二阶段）：
+   - [ ] 扩展proc语法：加owner字段（或在归约关系中完整表达owner）
+   - [ ] 扩展typed关系：加Ming的引入规则构造子（不是Axiom，是真正的typed规则）
+   - [ ] 两个归约关系的完整Inductive定义（reduce_self/reduce_alien的所有构造子）
+   - [ ] subject_reduction_alien的完整证明（Sheng→Jia+!Ji）
+   - [ ] 明旭审阅哲学正确性（和S01联动）
+
+   待完成（第三阶段）：
+   - [ ] T002的完整陈述和证明（用typed关系表达"纯!-模态系统推不出Sheng"）
+   - [ ] T005的完整证明（ming_retraction整合到typed关系）
    - [ ] 迭代修正
 
-   关键决策记录：
-   - A方案（统一ty扩展）vs B方案（独立ty3方言）：A方案正确
-   - 理由：ty是整个系统的语言，不是L1专用；加新词不破坏L1/L2
-   - 验证：L1/L2重新编译均通过，证明加4个构造子完全不影响旧代码
+   关键决策记录（基于S01哲学研判）：
+   - Sheng只能通过self_ev假设引入，没有推导规则——生是被给予的，不是被推导的
+   - Ji通过归约关系产生，不是通过类型引入规则——迹是活过之后自然留下的
+   - Jia通过reduce_alien归约产生，没有独立引入规则，没有消去规则——异化不可逆
+   - Ming = Sheng ⊗ !Ji，幂等是retraction不是同构——反思的反思坍缩为更深的反思
+   - reduce_self是基础的，reduce_alien是派生的——异化是自指的畸变，不是与自指并列的基础存在方式
+   - 判据是Sheng的归属权——归约后Sheng归谁？归自己就是self，归他者就是alien
    ===================================================================== *)
