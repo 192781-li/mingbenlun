@@ -18,9 +18,14 @@ Inductive proc : Type :=
 | PRep  : proc -> proc.
 
 (* 2. Types and contexts *)
+(* A方案：通用语言扩展——L3需要的4个新类型直接加在ty里，全系统共用 *)
 Inductive ty : Type :=
-| TUnit : ty
-| TChan : bool -> bool -> ty -> ty.
+| TUnit   : ty
+| TChan   : bool -> bool -> ty -> ty
+| TAgLv   : ty -> ty          (* 活运行权：正在活着的操作，νF₂型，线性，生产性 *)
+| TAgTr   : ty -> ty          (* 轨迹运行权：沉积下来的痕迹，!-模态型，可复制可丢弃 *)
+| THijack : ty -> ty -> ty    (* 劫持：b的运行权伪装成a，异化的类型化表达 *)
+| TCl     : ty -> ty.         (* 明性：活运行权+看到自己的轨迹=自我意识 *)
 
 Definition ctx := list (option ty).
 
