@@ -112,15 +112,24 @@ Qed.
    vacuously true. *)
 Lemma par_elim : forall Gamma P Q, typed Gamma (PPar P Q) ->
   exists Gamma1 Gamma2, split Gamma Gamma1 Gamma2 /\ typed Gamma1 P /\ typed Gamma2 Q.
-Proof. Admitted.
+Proof.
+  intros Gamma P Q H. inversion H; subst.
+  do 2 eexists. repeat split; eassumption.
+Qed.
 
 Lemma out_elim : forall Gamma x y P, typed Gamma (POut x y P) ->
   exists Gamma1 Gamma2 T i o, use Gamma x (TChan i o T) Gamma1 /\ o = true /\ use Gamma1 y T Gamma2 /\ typed Gamma2 P.
-Proof. Admitted.
+Proof.
+  intros Gamma x y P H. inversion H; subst.
+  do 5 eexists. split; [eassumption | split; [try reflexivity; try eassumption | split; [eassumption | eassumption]]].
+Qed.
 
 Lemma in_elim : forall Gamma x P, typed Gamma (PIn x P) ->
   exists Gamma1 T i o, use Gamma x (TChan i o T) Gamma1 /\ i = true /\ typed (Some T :: Gamma1) P.
-Proof. Admitted.
+Proof.
+  intros Gamma x P H. inversion H; subst.
+  do 4 eexists. split; [eassumption | split; [try reflexivity; try eassumption | eassumption]].
+Qed.
 
 Lemma no_parallel_channel_sharing : forall Gamma x y P Q,
   ~ typed Gamma (PPar (POut x y P) (PIn x Q)).
