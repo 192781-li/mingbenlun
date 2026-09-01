@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全库证明强度总表 · 可视化仪表板</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b1120;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;line-height:1.6;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:4px;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#94a3b8;font-size:.9rem;margin-bottom:24px}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.nav a{padding:6px 14px;background:#1e293b;border:1px solid #334155;border-radius:20px;color:#94a3b8;text-decoration:none;font-size:.8rem;transition:all .2s}
+.nav a:hover{background:#334155;color:#e2e8f0;border-color:#60a5fa}
+.section{margin-bottom:36px}
+.section-title{font-size:1.2rem;font-weight:600;margin-bottom:16px;padding-left:12px;border-left:4px solid #60a5fa}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:8px}
+.card{background:#1e293b;border-radius:12px;padding:18px;border:1px solid #334155;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.card.green::before{background:#22c55e}.card.blue::before{background:#3b82f6}
+.card.orange::before{background:#f59e0b}.card.red::before{background:#ef4444}
+.card.purple::before{background:#8b5cf6}
+.card-num{font-size:2rem;font-weight:700;margin-bottom:4px}
+.card.green .card-num{color:#22c55e}.card.blue .card-num{color:#3b82f6}
+.card.orange .card-num{color:#f59e0b}.card.red .card-num{color:#ef4444}
+.card.purple .card-num{color:#8b5cf6}
+.card-label{font-size:.8rem;color:#94a3b8}
+.card-desc{font-size:.72rem;color:#64748b;margin-top:6px}
+.alert{background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(239,68,68,.05));border:1px solid rgba(239,68,68,.3);border-radius:12px;padding:18px 22px;margin-bottom:24px}
+.alert-title{color:#f87171;font-weight:600;font-size:1rem;margin-bottom:6px}
+.alert-text{color:#fca5a5;font-size:.88rem}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:768px){.chart-row{grid-template-columns:1fr}}
+.chart-box{background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155}
+.chart-title{font-size:.9rem;font-weight:600;color:#cbd5e1;margin-bottom:10px}
+.chart{width:100%;height:320px}
+.pyramid{display:flex;flex-direction:column;align-items:center;gap:4px;margin:20px 0}
+.py-level{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;border-radius:6px;position:relative;transition:all .3s;cursor:default}
+.py-level:hover{transform:scale(1.03);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.py-level .py-count{position:absolute;right:-60px;color:#94a3b8;font-size:.8rem;font-weight:400}
+.py-level .py-name{font-size:.85rem}
+.timeline{position:relative;padding-left:32px;margin:20px 0}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:#334155}
+.tl-item{position:relative;margin-bottom:20px;background:#1e293b;border-radius:10px;padding:14px 18px;border:1px solid #334155}
+.tl-item::before{content:'';position:absolute;left:-28px;top:18px;width:14px;height:14px;border-radius:50%;background:#ef4444;border:3px solid #0b1120}
+.tl-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.7rem;font-weight:600;margin-bottom:6px}
+.tl-tag.orig{background:rgba(239,68,68,.2);color:#f87171}
+.tl-tag.fixed{background:rgba(34,197,94,.2);color:#4ade80}
+.tl-title{font-weight:600;font-size:.92rem;margin-bottom:4px}
+.tl-desc{font-size:.8rem;color:#94a3b8}
+.tl-arrow{color:#ef4444;margin:0 6px;font-weight:700}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.filter-btn{padding:6px 14px;background:#1e293b;border:1px solid #334155;border-radius:6px;color:#94a3b8;font-size:.8rem;cursor:pointer;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
+.theorem-list{display:grid;gap:8px}
+.th-item{background:#1e293b;border-radius:8px;padding:12px 16px;border-left:4px solid #334155;font-size:.85rem;display:flex;align-items:flex-start;gap:12px}
+.th-item.blue{border-left-color:#3b82f6}.th-item.orange{border-left-color:#f59e0b}
+.th-item.red{border-left-color:#ef4444}.th-item.green{border-left-color:#22c55e}
+.th-id{font-weight:700;min-width:50px;font-size:.8rem}
+.th-item.blue .th-id{color:#60a5fa}.th-item.orange .th-id{color:#fbbf24}
+.th-item.red .th-id{color:#f87171}
+.th-name{font-weight:600;margin-bottom:2px}
+.th-statement{color:#94a3b8;font-size:.78rem}
+.badge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.65rem;font-weight:600;margin-left:6px}
+.badge.pp{background:rgba(59,130,246,.2);color:#60a5fa}
+.badge.conj{background:rgba(245,158,11,.2);color:#fbbf24}
+.badge.down{background:rgba(239,68,68,.2);color:#f87171}
+.footer{text-align:center;color:#475569;font-size:.75rem;margin-top:40px;padding-top:20px;border-top:1px solid #1e293b}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin:12px 0;font-size:.78rem;color:#94a3b8}
+.legend-item{display:flex;align-items:center;gap:6px}
+.legend-dot{width:12px;height:12px;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>全库证明强度总表</h1>
+<p class="subtitle">践演论/生命论 · 五级严谨度分类 · 数据截至 2026-09-01 · 扫描6个权威源</p>
+
+<div class="nav">
+<a href="#overview">总览</a>
+<a href="#pyramid">严谨度金字塔</a>
+<a href="#charts">数据图表</a>
+<a href="#downgrade">降级史</a>
+<a href="#top10">最高成果Top10</a>
+<a href="#theorems">定理检索</a>
+<a href="#bottleneck">根本瓶颈</a>
+</div>
+
+<!-- 总览卡片 -->
+<div class="section" id="overview">
+<div class="section-title">总览 · 一眼看清全库证明强度</div>
+<div class="cards">
+<div class="card green">
+<div class="card-num">0</div>
+<div class="card-label">🟢 机器验证 (coq_verified)</div>
+<div class="card-desc">无一条通过coqc编译</div>
+</div>
+<div class="card blue">
+<div class="card-num">17+45</div>
+<div class="card-label">🔵 纸面证明 (paper_proof)</div>
+<div class="card-desc">T注册表17条 + 62旧体系~45条</div>
+</div>
+<div class="card orange">
+<div class="card-num">1+4</div>
+<div class="card-label">🟠 猜想 (conjecture)</div>
+<div class="card-desc">T008唯一猜想 + 4条待严格化</div>
+</div>
+<div class="card red">
+<div class="card-num">7</div>
+<div class="card-label">🔴 曾被反例推翻/已降级</div>
+<div class="card-desc">全线≅→⇒/↠/≈ 自我纠错</div>
+</div>
+<div class="card purple">
+<div class="card-num">25</div>
+<div class="card-label">⚠️ 旧版循环依赖</div>
+<div class="card-desc">enactics_v0.2-v0.9，T体系已摆脱</div>
+</div>
+</div>
+</div>
+
+<!-- 根本瓶颈警示 -->
+<div class="alert">
+<div class="alert-title">⚠️ 根本瓶颈：全库最高严谨度 = 纸面证明，机器验证 = 0</div>
+<div class="alert-text">Layer1.v（458行）只写到pi演算类型系统元理论（2定理+12引理），且未编译通过（云电脑无coqc）。没有一条生命论核心定理（T001等）被形式化进Coq。L2（操作语义/PTC公理/T001/f³）全是计划。解除路径：提供有coqc的环境（Docker/jsCoq/有root机器）。</div>
+</div>
+
+<!-- 严谨度金字塔 -->
+<div class="section" id="pyramid">
+<div class="section-title">严谨度金字塔 · 从高到低</div>
+<div class="legend">
+<div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div>机器验证（coq_verified=True）</div>
+<div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>纸面证明完整（paper_proof）</div>
+<div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>猜想/待严格化（conjecture）</div>
+<div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div>证明失败/已降级</div>
+</div>
+<div class="pyramid">
+<div class="py-level" style="width:15%;height:44px;background:#22c55e;opacity:.3">
+<span class="py-name">🟢 机器验证</span><span class="py-count">0 条</span>
+</div>
+<div class="py-level" style="width:40%;height:52px;background:#3b82f6">
+<span class="py-name">🔵 纸面证明 · T注册表17条 + 62旧体系~45条</span><span class="py-count">~62 条</span>
+</div>
+<div class="py-level" style="width:55%;height:48px;background:#f59e0b">
+<span class="py-name">🟠 猜想 · T008 + Hilb^ω/Coh^ω/f³递归/N>1迹</span><span class="py-count">5 条</span>
+</div>
+<div class="py-level" style="width:70%;height:44px;background:#ef4444;opacity:.8">
+<span class="py-name">🔴 曾被反例推翻/已降级 · T001/T005/T007/T008/T009/T010/T011</span><span class="py-count">7 条</span>
+</div>
+<div class="py-level" style="width:85%;height:40px;background:#8b5cf6;opacity:.6">
+<span class="py-name">⚠️ 旧版循环依赖 · enactics_v0.2-v0.9（T体系已摆脱）</span><span class="py-count">25 处</span>
+</div>
+</div>
+<p style="color:#64748b;font-size:.78rem;text-align:center;margin-top:8px">金字塔越往上越硬，但越往上数量越少。顶层（机器验证）是空的——这是全库形式化的根本瓶颈。</p>
+</div>
+
+<!-- 数据图表 -->
+<div class="section" id="charts">
+<div class="section-title">数据图表</div>
+<div class="chart-row">
+<div class="chart-box">
+<div class="chart-title">各层级定理数量分布</div>
+<div id="chart1" class="chart"></div>
+</div>
+<div class="chart-box">
+<div class="chart-title">严谨度占比</div>
+<div id="chart2" class="chart"></div>
+</div>
+</div>
+<div class="chart-row">
+<div class="chart-box">
+<div class="chart-title">T注册表18条 · 按哲学领域分类</div>
+<div id="chart3" class="chart"></div>
+</div>
+<div class="chart-box">
+<div class="chart-title">62旧体系 · 九层定理数量</div>
+<div id="chart4" class="chart"></div>
+</div>
+</div>
+</div>
+
+<!-- 降级史时间线 -->
+<div class="section" id="downgrade">
+<div class="section-title">7条降级史 · 最宝贵的自我纠错痕迹</div>
+<p style="color:#94a3b8;font-size:.85rem;margin-bottom:16px">这些不是"没证出来"，是"曾经宣称证出来了，被反例推翻，主动降级为更弱的正确版本"。全线把≅（同构）降级为⇒（retraction）/↠（满射）/≈（双模拟）——这不是退步，是精确化。</p>
+<div class="timeline">
+
+<div class="tl-item">
+<span class="tl-tag orig">原宣称：全称命题</span><span class="tl-tag fixed">降级：加non-degenerate限制</span>
+<div class="tl-title">T001 生命不可资本化 <span class="tl-arrow">→</span> 终范畴1是反例</div>
+<div class="tl-desc">原宣称"任何LNL范畴中!νF≇ν!F"，但终范畴1中!ν1≅ν!1≅1，反例成立。降级为"非退化LNL模型中"。同样影响T009。</div>
+</div>
+
+<div class="tl-item">
+<span class="tl-tag orig">原宣称：Cl²≅Cl</span><span class="tl-tag fixed">降级：retraction Cl²⇒Cl</span>
+<div class="tl-title">T005 明性幂等 <span class="tl-arrow">→</span> 与Cl=G×!G定义矛盾</div>
+<div class="tl-desc">原宣称明性幂等同构，但Cl=G×!G的平方不等价于自身。降级为典范retraction（有去无回的映射），放弃不动点构造。</div>
+</div>
+
+<div class="tl-item">
+<span class="tl-tag orig">原宣称：νF≅μF</span><span class="tl-tag fixed">降级：满射trunc:νF↠μF + guarded版主定理</span>
+<div class="tl-title">T007 异化压缩 <span class="tl-arrow">→</span> 同构版为假（无限≠有限）</div>
+<div class="tl-desc">νF是无限余代数，μF是有限初始代数，不可能双射。降级为Rel中典范满射（非单射非自然变换），主定理改为guarded版∀κ.ν_κF≅μF。</div>
+</div>
+
+<div class="tl-item">
+<span class="tl-tag orig">原宣称：函子同构</span><span class="tl-tag fixed">降级：条件性barbed双模拟（仍是conjecture）</span>
+<div class="tl-title">T008 明性反转异化 <span class="tl-arrow">→</span> 函子同构版ill-defined</div>
+<div class="tl-desc">Cl和Hijack不是同一范畴的函子，同构无意义。改为π演算操作语义版的条件性barbed双模拟，给出Recover语法定义，但至今仍是唯一conjecture——理论价值最高的开放问题。</div>
+</div>
+
+<div class="tl-item">
+<span class="tl-tag orig">原宣称：检测任何异化</span><span class="tl-tag fixed">降级：二者不一致时检出</span>
+<div class="tl-title">T010 self_check检测异化 <span class="tl-arrow">→</span> 与推论5.2矛盾</div>
+<div class="tl-desc">完美遮蔽时Ag_lv与!Ag_tr观察等价，self_check检测不到差异。修正为"二者不一致时检出"，完美遮蔽由T017单独处理（明性持续运行可阻止不动点形成，但无法检测已形成的）。</div>
+</div>
+
+<div class="tl-item">
+<span class="tl-tag orig">原宣称：ρ(C)≥1存活</span><span class="tl-tag fixed">降级：ρ(pC)>1正概率存活</span>
+<div class="tl-title">T011 革命级联 <span class="tl-arrow">→</span> 幂零邻接矩阵反例</div>
+<div class="tl-desc">ρ=0但矩阵非零时级联不存活，原≥1阈值错误。改为噪声传播模型：ρ(pC)>1正概率存活/=1临界必灭/<1必灭。确定性有限网络+SI规则下级联⟺可达性。</div>
+</div>
+
+<div class="tl-item">
+<span class="tl-tag orig">原宣称：Bell不等式类比</span><span class="tl-tag fixed">修正：steering不等式（Bell类比错误）</span>
+<div class="tl-title">T016 运行权steering <span class="tl-arrow">→</span> 自我纠错：Bell→steering</div>
+<div class="tl-desc">最初用Bell不等式类比异化检测，后发现概念不对——应该是量子steering（一方能改变另一方态）。I(b;a)>0⟺可steer⟺检出异化。这是主动发现并修正的概念错误。</div>
+</div>
+
+</div>
+</div>
+
+<!-- Top10 -->
+<div class="section" id="top10">
+<div class="section-title">最高成果Top10 · 按"我们自己推出来的"硬度排序</div>
+<div class="chart-box">
+<div id="chart5" class="chart" style="height:420px"></div>
+</div>
+</div>
+
+<!-- 定理检索 -->
+<div class="section" id="theorems">
+<div class="section-title">定理检索 · 按严谨度筛选</div>
+<div class="filter-bar">
+<button class="filter-btn active" data-filter="all">全部</button>
+<button class="filter-btn" data-filter="blue">🔵 纸面证明</button>
+<button class="filter-btn" data-filter="orange">🟠 猜想</button>
+<button class="filter-btn" data-filter="red">🔴 已降级</button>
+</div>
+<div class="theorem-list" id="theoremList"></div>
+</div>
+
+<!-- 根本瓶颈 -->
+<div class="section" id="bottleneck">
+<div class="section-title">根本瓶颈与下一步</div>
+<div class="chart-row">
+<div class="chart-box" style="border-color:rgba(239,68,68,.3)">
+<div class="chart-title" style="color:#f87171">🔴 硬阻塞（需作者提供环境）</div>
+<div style="font-size:.85rem;color:#cbd5e1;line-height:1.8">
+<p>1. 提供有coqc的环境（Docker coqorg/coq / 在线jsCoq / 有root的机器）</p>
+<p>2. 先编译Layer1.v（验证pi演算基础设施）</p>
+<p>3. L2写操作语义+subject reduction</p>
+<p>4. L2写PTC公理+T001核心定理链</p>
+<p>5. 逐条T定理形式化，优先T002/T007/T014（推导链最完整）</p>
+<p>6. T008猜想：升格定理或找反例（理论价值最高）</p>
+</div>
+</div>
+<div class="chart-box" style="border-color:rgba(34,197,94,.3)">
+<div class="chart-title" style="color:#4ade80">🟢 本地可做（不依赖coqc）</div>
+<div style="font-size:.85rem;color:#cbd5e1;line-height:1.8">
+<p>1. 维护本仪表板和证明强度总表</p>
+<p>2. 补T004/T016的导读号映射</p>
+<p>3. 把62体系与T体系的映射补全（本大表已做大部分）</p>
+<p>4. 写T008升格的证明思路草稿</p>
+<p>5. 写N>1成长的一般迹定义思路</p>
+<p>6. 维护全库导航五件套（防重复研究）</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer">
+全库证明强度总表 · 可视化仪表板 v1.0 · 2026-09-01 · 明旭<br>
+数据来源：theorem_registry.json / 缄默操作串联_62定理体系.md / Layer1.v / PTC实例与f³不动点.md / circular_reasoning_report.md / 量论参数统一<br>
+所有数字可回源核验 · 机器验证=0是当前最大缺口
+</div>
+</div>
+
+<script>
+(function(){
+try{
+// 图表1：各层级定理数量
+var c1=echarts.init(document.getElementById('chart1'));
+c1.setOption({
+tooltip:{trigger:'axis',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},
+grid:{left:60,right:20,top:20,bottom:40},
+xAxis:{type:'category',data:['Coq机器层','T注册表','62旧体系','猜想层','降级史','循环依赖'],axisLabel:{color:'#94a3b8',fontSize:11,interval:0,rotate:15}},
+yAxis:{type:'value',axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b'}}},
+series:[{type:'bar',data:[
+{value:14,itemStyle:{color:'#22c55e'}},
+{value:18,itemStyle:{color:'#3b82f6'}},
+{value:62,itemStyle:{color:'#60a5fa'}},
+{value:5,itemStyle:{color:'#f59e0b'}},
+{value:7,itemStyle:{color:'#ef4444'}},
+{value:25,itemStyle:{color:'#8b5cf6'}}
+],barWidth:'50%',label:{show:true,position:'top',color:'#e2e8f0',fontSize:11}}]
+});
+
+// 图表2：严谨度占比
+var c2=echarts.init(document.getElementById('chart2'));
+c2.setOption({
+tooltip:{trigger:'item',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},
+legend:{bottom:0,textStyle:{color:'#94a3b8',fontSize:11}},
+series:[{type:'pie',radius:['40%','70%'],center:['50%','45%'],
+label:{color:'#e2e8f0',fontSize:11,formatter:'{b}\n{d}%'},
+data:[
+{value:0,name:'🟢机器验证',itemStyle:{color:'#22c55e'}},
+{value:62,name:'🔵纸面证明',itemStyle:{color:'#3b82f6'}},
+{value:5,name:'🟠猜想',itemStyle:{color:'#f59e0b'}},
+{value:7,name:'🔴已降级',itemStyle:{color:'#ef4444'}}
+]}]
+});
+
+// 图表3：T注册表按领域
+var c3=echarts.init(document.getElementById('chart3'));
+c3.setOption({
+tooltip:{trigger:'axis',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},
+grid:{left:80,right:20,top:20,bottom:30},
+xAxis:{type:'value',axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b'}}},
+yAxis:{type:'category',data:['存在论/生命','自由/意识','异化/资本','革命/传播','量子/测量','方法论/修正'],axisLabel:{color:'#94a3b8',fontSize:11}},
+series:[{type:'bar',data:[
+{value:4,itemStyle:{color:'#22c55e'}},
+{value:4,itemStyle:{color:'#3b82f6'}},
+{value:4,itemStyle:{color:'#f59e0b'}},
+{value:2,itemStyle:{color:'#ef4444'}},
+{value:2,itemStyle:{color:'#8b5cf6'}},
+{value:2,itemStyle:{color:'#ec4899'}}
+],barWidth:'55%',label:{show:true,position:'right',color:'#e2e8f0',fontSize:11}}]
+});
+
+// 图表4：62体系九层
+var c4=echarts.init(document.getElementById('chart4'));
+c4.setOption({
+tooltip:{trigger:'axis',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'}},
+grid:{left:70,right:20,top:20,bottom:50},
+xAxis:{type:'category',data:['存在论','沉淀','再生','互动','异化','反思','度量','边界','跨领域'],axisLabel:{color:'#94a3b8',fontSize:10,interval:0,rotate:20}},
+yAxis:{type:'value',axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b'}}},
+series:[{type:'bar',data:[4,9,12,8,14,6,3,8,0],itemStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'#60a5fa'},{offset:1,color:'#3b82f6'}]}},barWidth:'55%',label:{show:true,position:'top',color:'#e2e8f0',fontSize:10}}]
+});
+
+// 图表5：Top10横向条形
+var c5=echarts.init(document.getElementById('chart5'));
+c5.setOption({
+tooltip:{trigger:'axis',backgroundColor:'#1e293b',borderColor:'#334155',textStyle:{color:'#e2e8f0'},formatter:function(p){return p[0].name+'<br/>硬度评分：'+p[0].value+'/10'}},
+grid:{left:160,right:40,top:20,bottom:30},
+xAxis:{type:'value',max:10,axisLabel:{color:'#94a3b8'},splitLine:{lineStyle:{color:'#1e293b'}}},
+yAxis:{type:'category',data:[
+'10. 定理57 践演不可编码性(元定理)',
+'9. T018 持续感染源推论',
+'8. 定理22 !不穿透生产性迹',
+'7. 定理53 N的Gelfand/Fekete定义',
+'6. T016 steering不等式',
+'5. T011 革命级联(噪声模型)',
+'4. T006 明性是异化右逆',
+'3. T014 异化链定理',
+'2. T005 明性幂等retraction',
+'1. T017 完美自我遮蔽不动点'
+],axisLabel:{color:'#cbd5e1',fontSize:11}},
+series:[{type:'bar',data:[
+{value:7.0,itemStyle:{color:'#60a5fa'}},
+{value:7.2,itemStyle:{color:'#60a5fa'}},
+{value:7.5,itemStyle:{color:'#818cf8'}},
+{value:7.8,itemStyle:{color:'#818cf8'}},
+{value:8.0,itemStyle:{color:'#a78bfa'}},
+{value:8.2,itemStyle:{color:'#a78bfa'}},
+{value:8.5,itemStyle:{color:'#c084fc'}},
+{value:8.8,itemStyle:{color:'#e879f9'}},
+{value:9.0,itemStyle:{color:'#f472b6'}},
+{value:9.5,itemStyle:{color:'#fb7185'}}
+],barWidth:'60%',label:{show:true,position:'right',color:'#e2e8f0',fontSize:11,formatter:'{c}'}}]
+});
+
+window.addEventListener('resize',function(){c1.resize();c2.resize();c3.resize();c4.resize();c5.resize()});
+
+// 定理检索数据
+var theorems=[
+{id:'T001',name:'生命不可资本化',stmt:'!νF≇ν!F（非退化LNL）；活过程不能存入!再取回',cat:'blue',badge:'pp',note:'原全称假→加non-degenerate'},
+{id:'T002',name:'自由只能在实践中确立',stmt:'!Ag_tr⊬Ag_lv；+self_ev可证',cat:'blue',badge:'pp'},
+{id:'T003',name:'自主性不可判定',stmt:'AGENCY_fin=Π₂-完全，与TOTAL多一归约',cat:'blue',badge:'pp'},
+{id:'T004',name:'AGENCY≅PRODUCTIVE',stmt:'自主性=生产性递归同构',cat:'blue',badge:'pp'},
+{id:'T005',name:'明性幂等(retraction)',stmt:'典范retraction Cl²⇒Cl',cat:'blue',badge:'pp',note:'原≅版与Cl=G×!G矛盾→降级'},
+{id:'T006',name:'明性是异化右逆',stmt:'r_a∘a*≅Id，明性使每个异化成分裂单射',cat:'blue',badge:'pp'},
+{id:'T007',name:'异化压缩(满射+guarded)',stmt:'Rel中典范满射trunc:νF→μF；∀κ.ν_κF≅μF',cat:'blue',badge:'pp',note:'原≅假→降满射Lemma'},
+{id:'T008',name:'明性反转异化(双模拟)',stmt:'条件性barbed双模拟 Cl(P)|Hijack(P)≈_barbed P',cat:'orange',badge:'conj',note:'唯一conjecture，理论价值最高'},
+{id:'T009',name:'!不保余归纳(修正)',stmt:'非退化LNL中!νF≇ν!F；Rel有分支宽度反例',cat:'blue',badge:'pp',note:'原"任何LNL"假→加限制'},
+{id:'T010',name:'self_check检测异化',stmt:'比较Ag_lv与!Ag_tr，不一致即检出',cat:'blue',badge:'pp',note:'原"检测任何"与推论5.2矛盾→修正'},
+{id:'T011',name:'革命级联(噪声)',stmt:'ρ(pC)>1正概率存活/=1临界必灭/<1必灭',cat:'blue',badge:'pp',note:'原ρ≥1假→幂零邻接反例'},
+{id:'T012',name:'异化=时钟量化',stmt:'∀κ.ν_κF≅μF（guarded递归）',cat:'blue',badge:'pp'},
+{id:'T013',name:'量子测量=异化',stmt:'Hilb无函子M使ℓ²⊣M为LNL；经典数据需外部基',cat:'blue',badge:'pp'},
+{id:'T014',name:'异化链定理',stmt:'rₙ…r₁∘a₁*…aₙ*≅Id，明性坍缩任意长剥削链',cat:'blue',badge:'pp'},
+{id:'T015',name:'Workbody二轮修正汇总',stmt:'T009加non-deg/T011改ρ>1/T007降Lemma/T008给Recover/T005改retraction',cat:'blue',badge:'pp'},
+{id:'T016',name:'运行权steering不等式',stmt:'I(b;a)>0⟺可steer⟺检出异化；完美遮蔽I=0但异化存在',cat:'blue',badge:'pp',note:'Bell类比错误→主动修正为steering'},
+{id:'T017',name:'完美自我遮蔽不动点',stmt:'遮蔽函子S_b有最大不动点νS_b(Knaster-Tarski)；明性持续运行可阻止形成',cat:'blue',badge:'pp'},
+{id:'T018',name:'持续感染源推论',stmt:'永生感染源+连通+p>0→无限时间极限扩散到所有可达节点',cat:'blue',badge:'pp'},
+{id:'定理6',name:'种子定理',stmt:'νF₂无到!-模态的态射——生命不可资本化的数学形式',cat:'blue',badge:'pp'},
+{id:'定理22',name:'!不穿透生产性迹(核心)',stmt:'PTC中!不穿透反馈循环；三独立论证(κ-分叉/ε不唯一/!≇ν!ν)',cat:'blue',badge:'pp'},
+{id:'定理26',name:'增长必须消耗线性资源(马克思核心)',stmt:'!增长(资本积累)必须消耗线性资源(活劳动)；沉积不能自己增长',cat:'blue',badge:'pp'},
+{id:'定理41',name:'几何级数收敛(慢性死亡)',stmt:'N<1时M=α/(1-N)收敛；意义总量有限',cat:'blue',badge:'pp'},
+{id:'定理47',name:'f³是不动点',stmt:'f³自我函数空间H₃包含所有自函数；f³能对象化任何模型含自身',cat:'blue',badge:'pp'},
+{id:'定理53',name:'加权PTC量论参数',stmt:'N=limsup‖f₂₂ⁿ‖^(1/n)(Fekete)；M=αΣNⁿ',cat:'blue',badge:'pp'},
+{id:'定理57',name:'践演不可编码性(元定理)',stmt:'两重证明：①存在≠发生(本体论)②自指无限递归(对角线)',cat:'blue',badge:'pp'},
+{id:'C1',name:'Hilb^ω是PTC',stmt:'构造完整，严格压缩下四公理✓；幂有界情形待严格化',cat:'orange',badge:'conj'},
+{id:'C2',name:'Coh^ω是PTC',stmt:'构造合理；生产性情形clique封闭性待严格证',cat:'orange',badge:'conj'},
+{id:'C3',name:'f³不动点递归类型严格化',stmt:'X₃≅!(X₂⊗X₃)的存在性与f³状态类型等价性未严格证明',cat:'orange',badge:'conj'},
+{id:'C4',name:'N>1成长的一般迹定义',stmt:'‖U₂₂‖>1时Neumann级数不收敛，N>1的迹如何定义是开放问题',cat:'orange',badge:'conj'}
+];
+
+var list=document.getElementById('theoremList');
+function render(filter){
+var html='';
+theorems.forEach(function(t){
+if(filter==='all'||t.cat===filter){
+html+='<div class="th-item '+t.cat+'"><div class="th-id">'+t.id+'</div><div><div class="th-name">'+t.name+'<span class="badge '+t.badge+'">'+(t.badge==='pp'?'纸面证明':t.badge==='conj'?'猜想':'')+'</span></div><div class="th-statement">'+t.stmt+(t.note?'<br><span style="color:#f87171">⚠ '+t.note+'</span>':'')+'</div></div></div>';
+}
+});
+list.innerHTML=html;
+}
+render('all');
+document.querySelectorAll('.filter-btn').forEach(function(btn){
+btn.addEventListener('click',function(){
+document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+this.classList.add('active');
+render(this.dataset.filter);
+});
+});
+
+}catch(e){console.error('可视化脚本错误:',e);document.getElementById('theoremList').innerHTML='<p style="color:#94a3b8">图表加载失败，请查看原始Markdown大表。</p>';}
+})();
+</script>
+</body>
+</html>
