@@ -31,3 +31,22 @@ Thumbs.db
 明本方法论总集.docx
 生命论_模块化/output/
 # 自动生成的输出（每次跑脚本重新生成）
+
+# ========== 新增：大文件和安全规则 ==========
+# 压缩包和备份（不入库，用外部存储）
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+archive/old_editions/backups/
+
+# 本地token和密钥（绝对不能入库）
+*.token
+.env
+.secrets
+~/.mingxu/
+
+# 超大原始对话记录（>5M，保留摘要，原始文件外部存储）
+# docs/raw_materials/硬核对话记录/ 下超过5M的文件建议移到archive或外部存储
+
