@@ -86,6 +86,7 @@ Inductive reduce_star : proc -> proc -> Prop :=
    --------------------------------------------------------------------- *)
 Inductive is_value : proc -> Prop :=
   | val_zero : is_value PZero
+  | val_var  : forall x, is_value (PVar x)
   | val_in   : forall x P, is_value (PIn x P)
   | val_res  : forall P, is_value P -> is_value (PRes P)
   | val_rep  : forall P, is_value (PRep P)
@@ -212,42 +213,50 @@ Qed.
 (* ---------------------------------------------------------------------
    10. Progress (admitted for next iteration)
    --------------------------------------------------------------------- *)
+(* 广义progress：对任意上下文，类型良好的进程要么是值，要么可以归约 *)
+Theorem progress_general : forall Gamma P, typed Gamma P ->
+  is_value P \/ exists P', reduce P P'.
+Proof.
+  intros Gamma P Ht.
+  induction Ht as [
+    Gamma
+    | Gamma x T Hget
+    | Gamma P H IH
+    | Gamma x y P i o T Gamma1 Gamma2 Huse1 Ho Huse2 Hbody IH
+    | Gamma x P i o T Gamma1 Huse Hi Hbody IH
+    | Gamma P Q Gamma1 Gamma2 Hs HP IHP HQ IHQ
+    | Gamma P T H IH
+    | Gamma P H IH
+  ].
+  - (* ty_zero *)
+    left. apply val_zero.
+  - (* ty_var *)
+    left. apply val_var.
+  - (* ty_tau *)
+    right. exists P. apply red_tau.
+  - (* ty_out *)
+    right. exists (POut x y P). apply red_out.
+  - (* ty_in *)
+    left. apply val_in.
+  - (* ty_par *)
+    destruct IHP as [HvalP | [P' HredP]].
+    + destruct IHQ as [HvalQ | [Q' HredQ]].
+      * left. apply val_par. exact HvalP. exact HvalQ.
+      * right. exists (PPar P Q'). apply red_par_r. exact HredQ.
+    + right. exists (PPar P' Q). apply red_par_l. exact HredP.
+  - (* ty_res *)
+    destruct IH as [HvalP | [P' HredP]].
+    + left. apply val_res. exact HvalP.
+    + right. exists (PRes P'). apply red_res. exact HredP.
+  - (* ty_rep *)
+    left. apply val_rep.
+Qed.
+
+(* 闭进程的progress是广义版本的特例 *)
 Theorem progress : forall P, typed [] P ->
   is_value P \/ exists P', reduce P P'.
 Proof.
-  intros P Ht.
-  induction P as [
-    n
-    |
-    | P IH
-    | x y P IH
-    | x P IH
-    | P IHP Q IHQ
-    | P IH
-    | P IH
-  ].
-  - (* PVar *)
-    inversion Ht; subst. exfalso. simpl in *.
-    match goal with H : None = Some _ |- _ => inversion H end.
-  - (* PZero *)
-    inversion Ht; subst. left. apply val_zero.
-  - (* PTau *)
-    inversion Ht; subst. right. exists P. apply red_tau.
-  - (* POut *)
-    inversion Ht; subst. right. exists (POut x y P). apply red_out.
-  - (* PIn *)
-    inversion Ht; subst. left. apply val_in.
-  - (* PPar *)
-    inversion Ht; subst.
-    destruct IHP as [Hval1 | [P1' Hred1]].
-    + destruct IHQ as [Hval2 | [Q2' Hred2]].
-      * left. apply val_par. exact Hval1. exact Hval2.
-      * right. exists (PPar P Q2'). apply red_par_r. exact Hred2.
-    + right. exists (PPar P1' Q). apply red_par_l. exact Hred1.
-  - (* PRes *)
-    inversion Ht; subst. left. apply val_res. exact IH.
-  - (* PRep *)
-    inversion Ht; subst. left. apply val_rep.
+  intros P Ht. apply progress_general with (Gamma := []). exact Ht.
 Qed.
 
 (* =====================================================================
