@@ -469,16 +469,39 @@ Theorem T005_ming_preservation : forall Gamma P Q,
 Proof.
   intros Gamma P Q HM Hrs.
   inversion HM as [Hhj Hss Hex].
-  inversion Hrs as [P0 Q0 Hsc Hdj].
-  (* 当前是骨架：辅助谓词已精确定义，证明待后续工作。
-     证明思路：
-     1. reduce_self P Q → sheng_continuous P Q → count_sheng Q = count_sheng P
-     2. still_sheng P → count_sheng P > 0 → count_sheng Q > 0 → still_sheng Q
-     3. reduce_self P Q → deposits_ji P Q → count_ji Q > count_ji P
-     4. has_ji P → count_ji P > 0 → count_ji Q > 0 → has_ji Q
-     5. 需要证明exists Q', reduce_self Q Q'（归约的可延续性）
-     6. 所以is_Ming Q *)
-  Admitted.
+  inversion Hrs as [P0 Q0 Hsc Hdj]. subst.
+
+  (* 步骤1：证明still_sheng Q
+     sheng_continuous P Q -> count_sheng Q = count_sheng P
+     still_sheng P -> count_sheng P > 0
+     所以count_sheng Q > 0 -> still_sheng Q *)
+  assert (HssQ : still_sheng Gamma Q).
+    unfold still_sheng. unfold sheng_continuous in Hsc.
+    unfold still_sheng in Hss. lia.
+
+  (* 步骤2：证明has_ji Q
+     deposits_ji P Q -> count_ji Q > count_ji P
+     has_ji P -> count_ji P > 0
+     所以count_ji Q > 0 -> has_ji Q *)
+  assert (HhjQ : has_ji Gamma Q).
+    unfold has_ji. unfold deposits_ji in Hdj.
+    unfold has_ji in Hhj. lia.
+
+  (* 步骤3：证明exists Q', reduce_self Q Q'（归约的可延续性）
+     用sheng_activation_possible公理 + 经典逻辑NNPP
+     still_sheng Q -> count_sheng Q > 0
+     sheng_activation_possible -> ~ (forall Q', ~ reduce_self Q Q')
+     NNPP -> exists Q', reduce_self Q Q' *)
+  assert (Hcont : exists Q', reduce_self Gamma Q Q').
+    apply NNPP. intro Hn.
+    assert (Hact : ~ (forall Q', ~ reduce_self Gamma Q Q')).
+      apply sheng_activation_possible. exact HssQ.
+    apply Hact. intro Q'. intro Hrs'. apply Hn. exists Q'. exact Hrs'.
+  destruct Hcont as [Q' Hrs'].
+
+  (* 步骤4：构造is_Ming Q *)
+  apply ming_here; [exact HhjQ | exact HssQ | exists Q'; exact Hrs'].
+Qed.
 
 (* =====================================================================
    十一、T002：!Ji ⊬ Sheng（迹不能推出生）
