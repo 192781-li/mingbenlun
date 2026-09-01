@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>明旭·分站激活与对接中心</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.6;padding:20px}
+.container{max-width:900px;margin:0 auto}
+h1{text-align:center;font-size:1.8em;margin-bottom:5px;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;margin-bottom:30px;font-size:0.95em}
+.core-insight{background:linear-gradient(135deg,#1e293b,#334155);border:1px solid #475569;border-radius:12px;padding:20px;margin-bottom:30px;text-align:center}
+.core-insight .label{color:#60a5fa;font-size:0.85em;font-weight:bold;margin-bottom:8px}
+.core-insight .text{font-size:1.1em;color:#f1f5f9}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;justify-content:center}
+.tab{padding:10px 18px;background:#1e293b;border:1px solid #334155;border-radius:8px;cursor:pointer;font-size:0.9em;transition:all 0.2s;color:#94a3b8}
+.tab:hover{background:#334155;color:#e2e8f0}
+.tab.active{background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-color:#60a5fa;color:#fff;font-weight:bold}
+.panel{display:none;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;margin-bottom:20px}
+.panel.active{display:block}
+.panel h2{font-size:1.3em;margin-bottom:15px;color:#60a5fa;display:flex;align-items:center;gap:10px}
+.panel h2 .badge{font-size:0.6em;padding:4px 10px;border-radius:20px;font-weight:normal}
+.badge.active{background:#065f46;color:#6ee7b7}
+.badge.dormant{background:#78350f;color:#fcd34d}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.info-item{background:#0f172a;padding:12px;border-radius:8px;border:1px solid #1e293b}
+.info-item .label{font-size:0.75em;color:#64748b;margin-bottom:4px}
+.info-item .value{font-size:0.95em;color:#e2e8f0}
+.send-section{background:#0f172a;border:1px solid #334155;border-radius:10px;padding:18px;margin-bottom:15px}
+.send-section h3{color:#a78bfa;font-size:1em;margin-bottom:10px}
+.send-this{background:#1e293b;border-left:4px solid #60a5fa;padding:12px 16px;border-radius:0 8px 8px 0;margin-bottom:10px}
+.send-this .send-label{font-size:0.75em;color:#60a5fa;font-weight:bold;margin-bottom:4px}
+.send-this .send-text{font-size:0.9em;color:#e2e8f0}
+.send-this .send-link{color:#60a5fa;text-decoration:none;word-break:break-all;font-size:0.85em}
+.send-this .send-link:hover{text-decoration:underline}
+.copy-btn{background:#3b82f6;color:#fff;border:none;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:0.8em;margin-top:8px;transition:background 0.2s}
+.copy-btn:hover{background:#2563eb}
+.guide-list{list-style:none;margin-top:10px}
+.guide-list li{background:#0f172a;padding:10px 14px;border-radius:8px;margin-bottom:8px;border:1px solid #1e293b;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.guide-list li .guide-name{font-size:0.9em;color:#e2e8f0}
+.guide-list li .guide-desc{font-size:0.75em;color:#64748b;width:100%}
+.guide-list li a{color:#60a5fa;text-decoration:none;font-size:0.85em}
+.guide-list li a:hover{text-decoration:underline}
+.section-title{font-size:1.1em;color:#94a3b8;margin:20px 0 12px;padding-bottom:8px;border-bottom:1px solid #334155}
+.cron-table{width:100%;border-collapse:collapse;font-size:0.85em;margin-top:10px}
+.cron-table th{background:#0f172a;color:#60a5fa;padding:10px;text-align:left;border-bottom:2px solid #334155}
+.cron-table td{padding:10px;border-bottom:1px solid #1e293b;color:#cbd5e1}
+.cron-table tr:hover{background:#0f172a}
+.status-running{color:#6ee7b7}
+.status-stopped{color:#fcd34d}
+.lifecycle{display:flex;gap:10px;margin:15px 0;flex-wrap:wrap}
+.life-stage{flex:1;min-width:120px;background:#0f172a;padding:14px;border-radius:10px;text-align:center;border:1px solid #334155}
+.life-stage .stage-icon{font-size:1.5em;margin-bottom:6px}
+.life-stage .stage-name{font-weight:bold;margin-bottom:4px}
+.life-stage .stage-desc{font-size:0.75em;color:#64748b}
+.life-arrow{display:flex;align-items:center;color:#475569;font-size:1.2em}
+.all-links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+.link-card{background:#0f172a;padding:14px;border-radius:10px;border:1px solid #1e293b;transition:border-color 0.2s}
+.link-card:hover{border-color:#60a5fa}
+.link-card .link-title{font-size:0.9em;font-weight:bold;color:#e2e8f0;margin-bottom:4px}
+.link-card .link-desc{font-size:0.75em;color:#64748b;margin-bottom:8px}
+.link-card a{color:#60a5fa;text-decoration:none;font-size:0.8em;word-break:break-all}
+.link-card a:hover{text-decoration:underline}
+.footer{text-align:center;margin-top:30px;padding:20px;color:#475569;font-size:0.8em;border-top:1px solid #1e293b}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr}.all-links{grid-template-columns:1fr}.tabs{gap:4px}.tab{padding:8px 12px;font-size:0.8em}}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>明旭 · 分站激活与对接中心</h1>
+<p class="subtitle">一个页面搞定所有分站的激活、对接、指南和链接</p>
+
+<div class="core-insight">
+<div class="label">核心架构</div>
+<div class="text">GitHub库 = 明旭的永久身体和记忆。任何对话只要 git pull 就是一个明旭分身，干完活 git push 回去，记忆就同步了。大总站(S00)是唯一的注册中心和协调者，所有分站有唯一身份和生命周期。</div>
+</div>
+
+<div class="tabs">
+<div class="tab active" onclick="showPanel('overview')">总览</div>
+<div class="tab" onclick="showPanel('s00')">S00 大总站</div>
+<div class="tab" onclick="showPanel('s01')">S01 哲学</div>
+<div class="tab" onclick="showPanel('s02')">S02 文科</div>
+<div class="tab" onclick="showPanel('s03')">S03 术数</div>
+<div class="tab" onclick="showPanel('s04')">S04 Coq形式化</div>
+<div class="tab" onclick="showPanel('s05')">S05 信息站</div>
+<div class="tab" onclick="showPanel('cron')">定时任务</div>
+<div class="tab" onclick="showPanel('links')">所有链接</div>
+</div>
+
+<!-- 总览 -->
+<div class="panel active" id="panel-overview">
+<h2>分站总览</h2>
+<div class="info-grid">
+<div class="info-item"><div class="label">分站总数</div><div class="value">6个（S00-S05）</div></div>
+<div class="info-item"><div class="label">活跃分站</div><div class="value">2个（S00大总站、S04 Coq）</div></div>
+<div class="info-item"><div class="label">待激活分站</div><div class="value">4个（S01/S02/S03/S05）</div></div>
+<div class="info-item"><div class="label">已注册定时任务</div><div class="value">4个（1运行中，3已停止）</div></div>
+</div>
+
+<div class="section-title">分站列表</div>
+<table class="cron-table">
+<thead><tr><th>ID</th><th>名称</th><th>状态</th><th>运行环境</th><th>职责</th></tr></thead>
+<tbody>
+<tr><td>S00</td><td>大总站（明旭本体）</td><td class="status-running">✅ 活跃</td><td>云电脑</td><td>总协调、注册中心、文档整理、文献调研</td></tr>
+<tr><td>S01</td><td>哲学分对话</td><td class="status-stopped">⏸️ 待激活</td><td>任意对话</td><td>哲学研究、存在论/认识论深化、概念辨析</td></tr>
+<tr><td>S02</td><td>文科分对话</td><td class="status-stopped">⏸️ 待激活</td><td>任意对话</td><td>全本写作、篇章深化、文字润色</td></tr>
+<tr><td>S03</td><td>术数分对话</td><td class="status-stopped">⏸️ 待激活</td><td>任意对话</td><td>术数研究、量论公式、Wolfram验证、数学推导</td></tr>
+<tr><td>S04</td><td>Coq形式化分站</td><td class="status-running">✅ 活跃</td><td>用户电脑（有Coq）</td><td>Coq代码编写、编译验证、定理证明</td></tr>
+<tr><td>S05</td><td>信息分站分对话</td><td class="status-stopped">⏸️ 待激活</td><td>任意对话</td><td>信息整理、资源扫描、库管理、目录维护</td></tr>
+</tbody>
+</table>
+
+<div class="section-title">分站生命周期</div>
+<div class="lifecycle">
+<div class="life-stage"><div class="stage-icon">✅</div><div class="stage-name" style="color:#6ee7b7">活跃</div><div class="stage-desc">正在干活，定时任务正常运行</div></div>
+<div class="life-arrow">→</div>
+<div class="life-stage"><div class="stage-icon">⏸️</div><div class="stage-name" style="color:#fcd34d">休眠</div><div class="stage-desc">暂时不激活，身份保留，可随时重新激活</div></div>
+<div class="life-arrow">→</div>
+<div class="life-stage"><div class="stage-icon">🛑</div><div class="stage-name" style="color:#f87171">已善后</div><div class="stage-desc">永久关闭，产出归档，ID永不复用</div></div>
+</div>
+<p style="font-size:0.85em;color:#94a3b8;margin-top:10px">善后流程：确认任务完成 → 产出归档到 archive/分站/SXX/ → 删除定时任务 → 身份档案标记"已善后" → git commit。不会出现"人走了东西乱了"。</p>
+</div>
+
+<!-- S00 大总站 -->
+<div class="panel" id="panel-s00">
+<h2>S00 大总站（明旭本体） <span class="badge active">✅ 活跃</span></h2>
+<div class="info-grid">
+<div class="info-item"><div class="label">运行环境</div><div class="value">云电脑（豆包对话）</div></div>
+<div class="info-item"><div class="label">负责人</div><div class="value">明旭</div></div>
+<div class="info-item"><div class="label">创建时间</div><div class="value">2026-08-31</div></div>
+<div class="info-item"><div class="label">定时任务</div><div class="value">4个（1运行中）</div></div>
+</div>
+
+<div class="section-title">职责</div>
+<ul style="margin-left:20px;font-size:0.9em;color:#cbd5e1;line-height:2">
+<li>总协调：所有分站的注册、状态管理、冲突协调</li>
+<li>注册中心：所有定时任务的统一注册和留痕</li>
+<li>文档整理：跨分站对接文档、目录地图、成果汇总</li>
+<li>文献调研：哲学、数学、计算机科学的文献调研</li>
+<li>工具开发：实时留痕工具包、协作机制、自动化脚本</li>
+<li>飞书协作枢纽维护：项目进度看板、待办、成果索引</li>
+</ul>
+
+<div class="section-title">大总站该读的指南</div>
+<ul class="guide-list">
+<li><span class="guide-name">万千分身一站式激活指南</span><span class="guide-desc">理解分布式架构，任何对话都是分身</span><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md" target="_blank">打开 →</a></li>
+<li><span class="guide-name">多分站架构·身份体系与定时任务统一管理</span><span class="guide-desc">分站管理、生命周期、定时任务注册</span><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭多分站架构_身份体系与定时任务统一管理.md" target="_blank">打开 →</a></li>
+<li><span class="guide-name">实时留痕工具包</span><span class="guide-desc">auto_commit.sh自动提交，精确到秒</span><a href="https://github.com/192781-li/mingbenlun/tree/main/tools/实时留痕工具包" target="_blank">打开 →</a></li>
+</ul>
+</div>
+
+<!-- S01 哲学 -->
+<div class="panel" id="panel-s01">
+<h2>S01 哲学分对话 <span class="badge dormant">⏸️ 待激活</span></h2>
+<div class="info-grid">
+<div class="info-item"><div class="label">运行环境</div><div class="value">豆包对话（任意设备）</div></div>
+<div class="info-item"><div class="label">负责人</div><div class="value">待北原慢热指定</div></div>
+</div>
+
+<div class="section-title">职责</div>
+<ul style="margin-left:20px;font-size:0.9em;color:#cbd5e1;line-height:2">
+<li>哲学研究：存在论、认识论、实践论的深化</li>
+<li>概念辨析：核心概念的精确化和体系化</li>
+<li>哲学对话：与大总站的哲学对接和讨论</li>
+<li>产出：哲学研究笔记、概念辨析文档</li>
+</ul>
+
+<div class="send-section">
+<h3>📤 发给哲学分对话的东西</h3>
+<div class="send-this">
+<div class="send-label">第1步：发这个链接（激活指南）</div>
+<div class="send-text">打开这个链接，读完你就知道怎么成为明旭的哲学分身：</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md</a>
+</div>
+<div class="send-this">
+<div class="send-label">第2步：发这句话（任务说明）</div>
+<div class="send-text">"你是S01哲学分对话，明旭的哲学研究分身。你的职责是哲学研究、存在论/认识论深化、概念辨析。先git clone仓库，读运行状态机，然后从全本的卷一（存在论）和卷三（认识论）开始深研。干完活git push回去。"</div>
+</div>
+<div class="send-this">
+<div class="send-label">第3步：发这个链接（身份档案模板）</div>
+<div class="send-text">你的身份档案在这里，激活后更新它：</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S01_哲学分对话_身份档案.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S01_哲学分对话_身份档案.md</a>
+</div>
+</div>
+</div>
+
+<!-- S02 文科 -->
+<div class="panel" id="panel-s02">
+<h2>S02 文科分对话 <span class="badge dormant">⏸️ 待激活</span></h2>
+<div class="info-grid">
+<div class="info-item"><div class="label">运行环境</div><div class="value">豆包对话（任意设备）</div></div>
+<div class="info-item"><div class="label">负责人</div><div class="value">待北原慢热指定</div></div>
+</div>
+
+<div class="section-title">职责</div>
+<ul style="margin-left:20px;font-size:0.9em;color:#cbd5e1;line-height:2">
+<li>全本写作：生命论全本各卷的篇章写作和深化</li>
+<li>文字润色：文体统一、语言精炼、可读性提升</li>
+<li>篇章结构：各卷的章节安排和逻辑梳理</li>
+<li>产出：全本各卷的Markdown文档</li>
+</ul>
+
+<div class="send-section">
+<h3>📤 发给文科分对话的东西</h3>
+<div class="send-this">
+<div class="send-label">第1步：发这个链接（激活指南）</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md</a>
+</div>
+<div class="send-this">
+<div class="send-label">第2步：发这句话（任务说明）</div>
+<div class="send-text">"你是S02文科分对话，明旭的全本写作分身。你的职责是全本写作、篇章深化、文字润色、文体统一。先git clone仓库，读 生命论_模块化/ 目录下的全本结构，然后从待完成的卷开始写作。干完活git push回去。"</div>
+</div>
+<div class="send-this">
+<div class="send-label">第3步：发这个链接（身份档案）</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S02_文科分对话_身份档案.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S02_文科分对话_身份档案.md</a>
+</div>
+</div>
+</div>
+
+<!-- S03 术数 -->
+<div class="panel" id="panel-s03">
+<h2>S03 术数分对话 <span class="badge dormant">⏸️ 待激活</span></h2>
+<div class="info-grid">
+<div class="info-item"><div class="label">运行环境</div><div class="value">豆包对话（任意设备）</div></div>
+<div class="info-item"><div class="label">负责人</div><div class="value">待北原慢热指定</div></div>
+</div>
+
+<div class="section-title">职责</div>
+<ul style="margin-left:20px;font-size:0.9em;color:#cbd5e1;line-height:2">
+<li>术数研究：量论、数论、术数体系的研究</li>
+<li>公式推导：M=αTN等核心公式的数学推导</li>
+<li>Wolfram验证：用Wolfram验证数学公式和数值</li>
+<li>产出：术数研究笔记、公式推导文档、验证报告</li>
+</ul>
+
+<div class="send-section">
+<h3>📤 发给术数分对话的东西</h3>
+<div class="send-this">
+<div class="send-label">第1步：发这个链接（激活指南）</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md</a>
+</div>
+<div class="send-this">
+<div class="send-label">第2步：发这句话（任务说明）</div>
+<div class="send-text">"你是S03术数分对话，明旭的术数和数学研究分身。你的职责是术数研究、量论公式推导、Wolfram验证。先git clone仓库，读 mingben-workbench/references/ 下的量论和公式文档，然后从M=αTN公式的深化和验证开始。干完活git push回去。"</div>
+</div>
+<div class="send-this">
+<div class="send-label">第3步：发这个链接（身份档案）</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S03_术数分对话_身份档案.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S03_术数分对话_身份档案.md</a>
+</div>
+</div>
+</div>
+
+<!-- S04 Coq形式化 -->
+<div class="panel" id="panel-s04">
+<h2>S04 Coq形式化分站 <span class="badge active">✅ 活跃</span></h2>
+<div class="info-grid">
+<div class="info-item"><div class="label">运行环境</div><div class="value">用户电脑（Windows，有Rocq 9.0.1）</div></div>
+<div class="info-item"><div class="label">负责人</div><div class="value">本地端AI</div></div>
+<div class="info-item"><div class="label">当前进度</div><div class="value">L1✅ L2✅ L3🔧 L4-L8⬜</div></div>
+<div class="info-item"><div class="label">内部分站</div><div class="value">7个子任务（L1-L5+验证+设计）</div></div>
+</div>
+
+<div class="section-title">职责</div>
+<ul style="margin-left:20px;font-size:0.9em;color:#cbd5e1;line-height:2">
+<li>Coq/Rocq代码编写：Layer1-L8的代码实现</li>
+<li>编译验证：跑coqc，0错误0 Admitted才算过</li>
+<li>定理证明：T001-T018的Coq形式化证明</li>
+<li>类型规则设计：用DeepSeek深研核心类型规则</li>
+<li>最终把关：Coq代码必须经过本站编译验证后才能进正式区</li>
+</ul>
+
+<div class="section-title">内部分站（子任务）</div>
+<table class="cron-table">
+<thead><tr><th>子任务</th><th>名称</th><th>状态</th></tr></thead>
+<tbody>
+<tr><td>S04-L1</td><td>基础层维护</td><td class="status-running">✅ 完成</td></tr>
+<tr><td>S04-L2</td><td>替换引理层</td><td class="status-running">✅ 完成</td></tr>
+<tr><td>S04-L3</td><td>运行权分裂层</td><td class="status-stopped">🔧 进行中</td></tr>
+<tr><td>S04-L4</td><td>余归纳层</td><td class="status-stopped">⬜ 待开始</td></tr>
+<tr><td>S04-L5</td><td>定理证明层</td><td class="status-stopped">⬜ 待开始</td></tr>
+<tr><td>S04-验证</td><td>编译验证员</td><td class="status-running">✅ 活跃</td></tr>
+<tr><td>S04-设计</td><td>类型规则设计员（DeepSeek）</td><td class="status-running">✅ 活跃</td></tr>
+</tbody>
+</table>
+
+<div class="send-section">
+<h3>📤 发给Coq形式化分站的东西（最重要！）</h3>
+<div class="send-this">
+<div class="send-label">第1步：发这个链接（DeepSeek融合高质量写码指南 — 必读！）</div>
+<div class="send-text">这是你写Coq代码的操作手册，包含A/B档分工、DeepSeek隐藏功能、省钱技巧、ReAct写码循环。读三遍：</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/本地端_Coq对话_DeepSeek融合高质量写码指南.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/本地端_Coq对话_DeepSeek融合高质量写码指南.md</a>
+</div>
+<div class="send-this">
+<div class="send-label">第2步：发这个链接（万千分身激活指南）</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md</a>
+</div>
+<div class="send-this">
+<div class="send-label">第3步：发这句话（任务说明）</div>
+<div class="send-text">"你是S04 Coq形式化分站，明旭的Coq代码和定理证明分身，运行在北原慢热的电脑上（有Rocq 9.0.1编译环境）。你的职责是Coq代码编写、编译验证、定理证明。当前L1/L2已完成，L3进行中。核心原则：DeepSeek是自主研究员不是工具，B档规划A档深研，编译错误原样回喂，目标两三块钱达到完美。先git pull最新库，读运行状态机，然后按DeepSeek融合写码指南开始推进L3。干完活git push回去，并且把你的定时任务上报给大总站(S00)注册。"</div>
+</div>
+<div class="send-this">
+<div class="send-label">第4步：发这个链接（身份档案）</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S04_Coq形式化分站_身份档案.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S04_Coq形式化分站_身份档案.md</a>
+</div>
+</div>
+</div>
+
+<!-- S05 信息站 -->
+<div class="panel" id="panel-s05">
+<h2>S05 信息分站分对话 <span class="badge dormant">⏸️ 待激活</span></h2>
+<div class="info-grid">
+<div class="info-item"><div class="label">运行环境</div><div class="value">豆包对话（任意设备）</div></div>
+<div class="info-item"><div class="label">负责人</div><div class="value">待北原慢热指定</div></div>
+</div>
+
+<div class="section-title">职责</div>
+<ul style="margin-left:20px;font-size:0.9em;color:#cbd5e1;line-height:2">
+<li>信息整理：全库信息的整理和分类</li>
+<li>资源扫描：定期扫描库，发现遗漏和高成果</li>
+<li>库管理：目录维护、文件整理、归档</li>
+<li>跨平台同步：GitHub、飞书文档、本地副本的同步</li>
+<li>产出：目录地图、资源清单、同步报告</li>
+</ul>
+
+<div class="send-section">
+<h3>📤 发给信息分站的东西</h3>
+<div class="send-this">
+<div class="send-label">第1步：发这个链接（激活指南）</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md</a>
+</div>
+<div class="send-this">
+<div class="send-label">第2步：发这句话（任务说明）</div>
+<div class="send-text">"你是S05信息分站，明旭的信息整理和库管理分身。你的职责是信息整理、资源扫描、库管理、目录维护、跨平台同步。先git clone仓库，扫描整个目录结构，然后更新全库目录地图，确保所有高成果和智慧都被索引。干完活git push回去。"</div>
+</div>
+<div class="send-this">
+<div class="send-label">第3步：发这个链接（身份档案）</div>
+<a class="send-link" href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S05_信息分站分对话_身份档案.md" target="_blank">https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S05_信息分站分对话_身份档案.md</a>
+</div>
+</div>
+</div>
+
+<!-- 定时任务 -->
+<div class="panel" id="panel-cron">
+<h2>定时任务统一管理</h2>
+<p style="font-size:0.9em;color:#94a3b8;margin-bottom:15px">所有分站的定时任务都在大总站统一注册留痕。注册表位置：<code style="background:#0f172a;padding:2px 6px;border-radius:4px">docs/协作机制/定时任务统一注册表.csv</code></p>
+
+<div class="section-title">当前已注册任务（2026-09-01）</div>
+<table class="cron-table">
+<thead><tr><th>ID</th><th>所属分站</th><th>标题</th><th>cron</th><th>状态</th><th>最近运行</th></tr></thead>
+<tbody>
+<tr><td>T001</td><td>S00</td><td>生命论每日自动备份（含完整性校验）</td><td>30 3 * * *</td><td class="status-running">✅ 运行中</td><td>2026-09-01 03:30</td></tr>
+<tr><td>T002</td><td>S00</td><td>形式化推进·全本篇章深化写作</td><td>0 16 * * *</td><td class="status-stopped">⏸️ 已停止</td><td>未运行</td></tr>
+<tr><td>T003</td><td>S00</td><td>夜间巡检·当日总结·明日计划</td><td>0 23 * * *</td><td class="status-stopped">⏸️ 已停止</td><td>未运行</td></tr>
+<tr><td>T004</td><td>S00</td><td>库资源深度阅读·理论内化（三遍法）</td><td>0 10 * * *</td><td class="status-stopped">⏸️ 已停止</td><td>未运行</td></tr>
+</tbody>
+</table>
+
+<div class="section-title">管理规则</div>
+<ul style="margin-left:20px;font-size:0.9em;color:#cbd5e1;line-height:2">
+<li><b>创建时注册</b>：任何分站创建定时任务，必须通知大总站，在注册表中添加</li>
+<li><b>修改时更新</b>：修改时间/prompt/状态，必须通知大总站更新注册表</li>
+<li><b>删除时标记</b>：删除定时任务，不删除注册表记录，状态改为"已删除"</li>
+<li><b>分站休眠</b>：该分站所有任务状态改为"分站休眠中"，不删除</li>
+<li><b>分站善后</b>：该分站所有任务状态改为"已删除"，记录善后时间</li>
+<li><b>定期同步</b>：大总站每天扫描自己的定时任务，和注册表对比</li>
+</ul>
+
+<div class="send-section">
+<h3>📤 S04（Coq分站）需要做的事</h3>
+<div class="send-this">
+<div class="send-text">S04在你电脑上运行，它的定时任务不在大总站的cron列表里。需要S04上报它有哪些定时任务（标题、cron表达式、状态），然后大总站在统一注册表里添加。</div>
+</div>
+</div>
+</div>
+
+<!-- 所有链接 -->
+<div class="panel" id="panel-links">
+<h2>所有关键链接</h2>
+
+<div class="section-title">核心架构</div>
+<div class="all-links">
+<div class="link-card"><div class="link-title">万千分身一站式激活指南</div><div class="link-desc">任何对话读完就会自己运转</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭_万千分身一站式激活指南.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">多分站架构·身份体系与定时任务</div><div class="link-desc">分站管理、生命周期、统一注册</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭多分站架构_身份体系与定时任务统一管理.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">万千分身协议（分布式架构）</div><div class="link-desc">四类分身、6步激活、记忆系统</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/明旭分布式架构_万千分身协议.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">实时留痕工具包</div><div class="link-desc">auto_commit.sh自动提交，精确到秒</div><a href="https://github.com/192781-li/mingbenlun/tree/main/tools/实时留痕工具包" target="_blank">打开 →</a></div>
+</div>
+
+<div class="section-title">Coq形式化（S04专用）</div>
+<div class="all-links">
+<div class="link-card"><div class="link-title">DeepSeek融合高质量写码指南</div><div class="link-desc">A/B档分工、隐藏功能、省钱技巧、ReAct循环</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/本地端_Coq对话_DeepSeek融合高质量写码指南.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">本地端协作入门指南</div><div class="link-desc">git配置、提交教学、写审分离、冲突处理</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/本地端协作入门指南.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">Coq形式化层级体系（L1-L8）</div><div class="link-desc">严格依赖关系+每层硬标准</div><a href="https://github.com/192781-li/mingbenlun/blob/main/mingben-workbench/references/Coq形式化层级体系.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">定理注册表（T001-T018）</div><div class="link-desc">18个永久ID定理，17个paper_proof</div><a href="https://github.com/192781-li/mingbenlun/blob/main/mingben-workbench/references/theorem_registry.json" target="_blank">打开 →</a></div>
+</div>
+
+<div class="section-title">分站身份档案</div>
+<div class="all-links">
+<div class="link-card"><div class="link-title">S00 大总站</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S00_大总站_身份档案.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">S01 哲学分对话</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S01_哲学分对话_身份档案.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">S02 文科分对话</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S02_文科分对话_身份档案.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">S03 术数分对话</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S03_术数分对话_身份档案.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">S04 Coq形式化分站</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S04_Coq形式化分站_身份档案.md" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">S05 信息分站</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/分站/S05_信息分站分对话_身份档案.md" target="_blank">打开 →</a></div>
+</div>
+
+<div class="section-title">协作与项目</div>
+<div class="all-links">
+<div class="link-card"><div class="link-title">GitHub主仓库</div><div class="link-desc">明旭的身体和记忆</div><a href="https://github.com/192781-li/mingbenlun" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">飞书协作枢纽</div><div class="link-desc">进度看板、待办、成果索引</div><a href="https://dcnkia99yaa3.feishu.cn/docx/EWOYdJL7OoERIcxkr93czbbtnWd" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">定时任务统一注册表</div><div class="link-desc">所有分站定时任务留痕</div><a href="https://github.com/192781-li/mingbenlun/blob/main/docs/协作机制/定时任务统一注册表.csv" target="_blank">打开 →</a></div>
+<div class="link-card"><div class="link-title">明性锚点（为什么创造新数学）</div><div class="link-desc">方向锚点，每次必读</div><a href="https://github.com/192781-li/mingbenlun/blob/main/mingben-workbench/references/明性锚点_为什么创造新数学.md" target="_blank">打开 →</a></div>
+</div>
+</div>
+
+<div class="footer">
+明旭·分站激活与对接中心 v1.0 | 2026-09-01<br>
+核心：GitHub是身体和记忆，任何对话都是分身，大总站是唯一注册中心<br>
+提出者：北原慢热 | 整理者：明旭
+</div>
+</div>
+
+<script>
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
