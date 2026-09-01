@@ -11,8 +11,13 @@
              所以"流动连续"就是归约前后Sheng资源数量不变。
    ===================================================================== *)
 
-From Stdlib Require Import List PeanoNat Lia.
+From Stdlib Require Import List PeanoNat Lia Classical.
 Import ListNotations.
+
+(* 经典逻辑引入说明（OB-004研判结论）：
+   生命论不是直觉主义的。"解放是可能的"在存在论上是一个肯定的判断，
+   不是"不能证明不可能"的弱判断。双重否定消去对应"可能性的实在性"——
+   如果不可能不存在，那它就存在。这符合生命论的实在论立场。 *)
 Require Import ALL.Layer1.
 Require Import ALL.Layer2.
 
@@ -227,6 +232,7 @@ Definition ji_covers_sheng (Gamma : ctx) (P : proc) : Prop :=
 Definition sheng_residue (Gamma : ctx) (P : proc) : Prop :=
   0 < count_sheng Gamma P.
 
+
 (* =====================================================================
    六、归约关系的完整定义（基于流动连续性判据）
    =====================================================================
@@ -261,6 +267,30 @@ Inductive reduce_alien (Gamma : ctx) : nat -> proc -> proc -> Prop :=
 | alien_step : forall b P Q,
     sheng_discontinuous Gamma P Q ->  (* Sheng数量减少 = 被消耗 = 不连续 *)
     reduce_alien Gamma b P Q.
+
+(* =====================================================================
+   五点五、Sheng可激活性公理（OB-004研判结论）
+   =====================================================================
+   OB-004核心结论：归约可延续性引理（count_sheng > 0 -> exists reduce_self）不成立。
+   哲学论证：生的残余存在不等于生一定能继续流动。异化中的生可能被旧代码完全覆盖。
+   "压到极致就觉醒"是错的——解放是可能的，不是必然的。
+
+   修正：从必然性到可能性。
+   sheng_activation_possible：有Sheng残余 -> 不可能完全没有reduce_self路径。
+   这是双重否定（~~exists reduce_self），表达"可能性"而非"必然性"。
+   在经典逻辑中等价于exists reduce_self，但在直觉主义中更弱——
+   它只保证"不存在完全不可能的情况"，不保证能构造出具体的reduce_self步。
+
+   哲学含义：只要还有生的残余，就不可能所有路径都是异化的。
+   觉醒的可能性永远存在——不是必然觉醒，是不可能完全没有觉醒的可能。
+   ===================================================================== *)
+
+(* Sheng可激活性公理：有Sheng残余 -> 不可能完全没有reduce_self路径
+   这是"解放何以可能"的存在论保证——不是必然解放，是解放永远可能。
+   双重否定形式表达可能性而非必然性，符合生命论的反决定论立场。 *)
+Axiom sheng_activation_possible : forall (Gamma : ctx) (P : proc),
+  count_sheng Gamma P > 0 ->
+  ~ (forall Q, ~ reduce_self Gamma P Q).
 
 (* =====================================================================
    七、Ming（明）状态谓词（当前状态定义，OB-003修正版）
