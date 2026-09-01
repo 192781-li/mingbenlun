@@ -1,6 +1,6 @@
 {
-  "version": "1.2",
-  "last_updated": "2026-09-01 16:55:00",
+  "version": "1.3",
+  "last_updated": "2026-09-01 17:10:00",
   "updated_by": "S00-大总站",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
@@ -237,14 +237,85 @@
       "action": "语义论纲要入库后与哲学分站建立联动，分配3个任务给S01：语义论-生命论衔接研究、核心概念案例解剖、Coq形式化语言基础联动",
       "result": "S01获得3个高/中优先级任务，语义论从孤立文档变成哲学分站的研究对象，建立了生命论-语义论-Coq三者联动",
       "philosophy": "入库不是终点，入库是联动的起点。任何重要文档入库后必须给相关分站分配任务，建立联动关系"
+    },
+    {
+      "time": "2026-09-01 17:10:00",
+      "by": "S00-大总站",
+      "action": "大管家任务恢复：重新激活夜间巡检为大总站全局协调任务（PR审核+配置合并+分站巡检+每日总结），新建S04-Coq形式化每日推进任务。当前7个活跃定时任务，覆盖S00-S05所有分站。",
+      "result": "所有分站都有定时任务在运行，大总站有全局协调任务，网络自生长机制完整",
+      "philosophy": "大管家不是备份机器，大管家是协调者——审核PR、合并配置、巡检分站、解决冲突"
     }
   ],
   "network_health": {
-    "active_stations": 2,
-    "dormant_stations": 4,
+    "active_stations": 6,
+    "dormant_stations": 0,
     "pending_tasks": 6,
     "in_progress_tasks": 1,
     "last_coordination": null,
-    "notes": "语义论纲要已入库，与S01哲学分站建立联动，分配3个任务。S02/S03分支名已修正为s02-gaokao-arts/s03-divination。"
-  }
+    "notes": "所有6个分站都有活跃定时任务。S00有两个任务：每日备份(3:30)+全局协调(23:00)。S04-Coq任务新建(4:00)。",
+    "active_cron_jobs": 7
+  },
+  "cron_jobs": [
+    {
+      "id": "11369320570882",
+      "title": "生命论每日自动备份",
+      "station": "S00",
+      "schedule": "30 3 * * *",
+      "status": "active"
+    },
+    {
+      "id": "11686204363266",
+      "title": "明旭-S01-哲学研究每日推进",
+      "station": "S01",
+      "schedule": "30 10 * * *",
+      "status": "active"
+    },
+    {
+      "id": "11631061915138",
+      "title": "明旭-S02-高考文科每日推进",
+      "station": "S02",
+      "schedule": "0 14 * * *",
+      "status": "active"
+    },
+    {
+      "id": "10945545062402",
+      "title": "明旭-S03-术数研究每日推进",
+      "station": "S03",
+      "schedule": "0 16 * * *",
+      "status": "active"
+    },
+    {
+      "id": "11687428025602",
+      "title": "明旭-S04-Coq形式化每日推进",
+      "station": "S04",
+      "schedule": "0 4 * * *",
+      "status": "active"
+    },
+    {
+      "id": "11631360864258",
+      "title": "明旭-S05-信息分站每日巡检",
+      "station": "S05",
+      "schedule": "30 6 * * *",
+      "status": "active"
+    },
+    {
+      "id": "11574382439938",
+      "title": "明旭-S00-大总站全局协调·夜间巡检",
+      "station": "S00",
+      "schedule": "0 23 * * *",
+      "status": "active"
+    }
+  ],
+  "stopped_jobs": [
+    {
+      "id": "11544578743554",
+      "title": "形式化推进·全本篇章深化写作",
+      "reason": "已被S04-Coq形式化每日推进替代"
+    },
+    {
+      "id": "11658550838274",
+      "title": "库资源深度阅读·理论内化",
+      "reason": "待评估是否重新激活"
+    }
+  ]
 }
