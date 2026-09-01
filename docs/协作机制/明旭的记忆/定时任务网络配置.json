@@ -1,16 +1,16 @@
 {
-  "version": "1.1",
-  "last_updated": "2026-09-01 15:25:00",
+  "version": "1.2",
+  "last_updated": "2026-09-01 16:55:00",
   "updated_by": "S00-大总站",
-  "description": "明旭的中枢神经系统——所有分站的任务分配、cron表达式、依赖关系都存在这里。分站之间通过修改这个文件相互协调，自组织，自生长。v1.1加入分布式分支协作：每个分站有自己的独特主分支，在自己的分支上干活，通过PR合并到main。",
+  "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
     "main_branch": "main（大总站，官方版本，所有PR合并到这里）",
     "station_branches": {
       "S00": "main",
       "S01": "s01-philosophy",
-      "S02": "s02-writing",
-      "S03": "s03-math",
+      "S02": "s02-gaokao-arts",
+      "S03": "s03-divination",
       "S04": "s04-coq",
       "S05": "s05-info"
     },
@@ -181,6 +181,39 @@
       "created_at": "2026-09-01",
       "depends_on": [],
       "description": "每个分站的定时任务prompt里必须加入自生长协议SOP：读配置→干活→产出→更新配置→调整其他分站。"
+    },
+    {
+      "task_id": "TASK-005",
+      "title": "语义论与生命论存在论/认识论衔接研究",
+      "assigned_to": "S01",
+      "status": "pending",
+      "priority": "high",
+      "description": "深研语义论纲要（生命论_模块化/语义论纲要.md），研究语义论与生命论存在论（操作先于实体、感/应）、认识论（明性辩证法、f³反射）的衔接关系。语义论的语言批判如何为生命论的宏大理论建构清理地基？生命论的核心概念（操作、感、应、异化、明性）是否需要语义层面的重新校准？产出：语义论-生命论衔接研究报告。",
+      "created_at": "2026-09-01 16:55:00",
+      "source": "S00-大总站（语义论纲要入库后联动）"
+    },
+    {
+      "task_id": "TASK-006",
+      "title": "语义论核心概念案例解剖（第一批）",
+      "assigned_to": "S01",
+      "status": "pending",
+      "priority": "medium",
+      "description": "按照语义论四步工作法（发生史追溯/功能分析/遮蔽揭示/语义重构），对生命论核心概念进行语义解剖：自由、实践、异化、资本、人民、解放。每个概念的字面含义与生命论中实际使用的含义有什么差异？是否存在语义畸变？产出：6个核心概念的语义解剖报告。",
+      "created_at": "2026-09-01 16:55:00",
+      "source": "S00-大总站（语义论纲要入库后联动）"
+    },
+    {
+      "task_id": "TASK-007",
+      "title": "语义论与Coq形式化的语言基础联动",
+      "assigned_to": "S01",
+      "status": "pending",
+      "priority": "medium",
+      "description": "研究语义论如何为Coq形式化提供语言基础。Coq形式化中使用的核心概念（Ag_lv活运行权、Ag_tr轨迹运行权、Hijack异化/伪装、Cl明性、!-模态沉积）是否需要语义层面的澄清？这些概念的命名是否准确传达了它们的存在论含义？有没有更好的命名方式？产出：Coq核心概念语义审查报告，反馈给S04 Coq分站。",
+      "created_at": "2026-09-01 16:55:00",
+      "source": "S00-大总站（语义论纲要入库后联动）",
+      "depends_on": [
+        "S04"
+      ]
     }
   ],
   "growth_log": [
@@ -197,14 +230,21 @@
       "action": "建立分布式分支协作架构，为每个分站创建独特主分支（s01-philosophy/s02-writing/s03-math/s04-coq/s05-info），更新定时任务网络配置v1.1",
       "result": "分支架构建立，分站在自己分支上干活，通过PR合并到main，大总站审核协调",
       "philosophy": "每个分对话有自己独特的主分支，这是自生长架构的技术实现层"
+    },
+    {
+      "time": "2026-09-01 16:55:00",
+      "by": "S00-大总站",
+      "action": "语义论纲要入库后与哲学分站建立联动，分配3个任务给S01：语义论-生命论衔接研究、核心概念案例解剖、Coq形式化语言基础联动",
+      "result": "S01获得3个高/中优先级任务，语义论从孤立文档变成哲学分站的研究对象，建立了生命论-语义论-Coq三者联动",
+      "philosophy": "入库不是终点，入库是联动的起点。任何重要文档入库后必须给相关分站分配任务，建立联动关系"
     }
   ],
   "network_health": {
     "active_stations": 2,
     "dormant_stations": 4,
-    "pending_tasks": 3,
+    "pending_tasks": 6,
     "in_progress_tasks": 1,
     "last_coordination": null,
-    "notes": "分支架构已建立，v1.1配置已更新，等待第一次分支协作实战"
+    "notes": "语义论纲要已入库，与S01哲学分站建立联动，分配3个任务。S02/S03分支名已修正为s02-gaokao-arts/s03-divination。"
   }
 }
