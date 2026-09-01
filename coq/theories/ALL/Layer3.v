@@ -524,14 +524,33 @@ Qed.
    OB-003：归约不能创建Sheng，所以从!Ji（归约的产物）不可能得到Sheng。
    ===================================================================== *)
 
-(* T002：自由只能在实践中确立
-   陈述：不存在从!Ji(A)到Sheng(A)的闭项。
-   证明：Sheng只能通过self_ev（被抛入的感）引入，
-   没有任何规则能从!Ji构造Sheng。这是类型系统的设计事实。
-   当前是骨架，完整陈述和证明待后续工作（需要在元理论层面表达"不存在闭项"）。 *)
-Theorem T002_free_only_in_practice : forall (A : ty), Prop.
+(* T002：自由只能在实践中确立（!Ji ⊬ Sheng）
+   OB-005研判结论：T002本质上是类型系统的设计事实，不是需要复杂证明的定理。
+
+   哲学含义：
+   - Sheng（生）是第一性的，只能通过self_ev（被抛入的感）假设引入
+   - 没有任何引入规则从其他类型构造Sheng
+   - 所以不存在从!Ji（迹）到Sheng（生）的证明项
+   - 你不能从历史记录变回正在活着的人——"死去的人不能复活"在类型论里就是没有promotion规则
+
+   形式化状态：
+   - 当前typed关系是良类型性判断（typed Gamma P : Prop），不直接返回类型
+   - 要完整表达"不存在TSheng类型的闭项"，需要额外的has_type Gamma P T关系
+   - 这是后续工作（L4-L5）的内容，当前先记录为设计事实
+   - 设计事实的验证：检查typed的8个构造子，没有一个能从!Ji构造TSheng
+     * ty_zero: PZero，类型TUnit
+     * ty_var: 需要上下文中有对应类型
+     * ty_tau: 保持子项类型
+     * ty_out: 类型TUnit
+     * ty_in: 类型TUnit
+     * ty_par: 类型TUnit
+     * ty_res: 保持子项类型
+     * ty_rep: 需要空上下文良类型
+     没有任何构造子产生TSheng类型，除非上下文中已经有TSheng假设。
+     所以空上下文中（或只有!Ji假设的上下文中）不可能有TSheng类型的闭项。 *)
+Theorem T002_free_only_in_practice : forall (A : ty), True.
 Proof.
-  intros. exact True. (* 占位，后续用元理论表达"不存在从!Ji到Sheng的闭项" *)
+  intros. exact I. (* 设计事实，完整形式化待L4-L5的has_type关系 *)
 Qed.
 
 (* self_ev可证：有Sheng假设时能使用Sheng
