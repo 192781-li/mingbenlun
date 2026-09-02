@@ -50,3 +50,7 @@ archive/old_editions/backups/
 # 超大原始对话记录（>5M，保留摘要，原始文件外部存储）
 # docs/raw_materials/硬核对话记录/ 下超过5M的文件建议移到archive或外部存储
 
+
+# S04临时文件
+commit_msg*.txt
+s01_temp_docs/

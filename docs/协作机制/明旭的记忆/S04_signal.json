@@ -1,0 +1,74 @@
+{
+  "station": "S04",
+  "name": "Coq形式化分站",
+  "branch": "s04-coq",
+  "last_update": "2026-09-02 20:45:03",
+  "current_task": "OB-010 ty_par最后case: strengthening紧缩引理(typed_strengthen_unused)+收尾;DS#14已确认路线,S01已确认思路",
+  "status": "working_DS检查完成_ty_par解法确定_待实现strengthening",
+  "L1": {
+    "admitted": 0,
+    "compiled": true
+  },
+  "L2": {
+    "new_main_lemma": "subst_ren_general(源任意,同构ren_typed)",
+    "subst_ren_general_cases": "7/8 Qed (ty_zero/ty_var/ty_tau/ty_out/ty_in/ty_res/ty_rep), 仅ty_par admit",
+    "top_level_Admitted": 3,
+    "inner_admit": 2,
+    "compiled": true,
+    "remaining": [
+      "subst_ren_general的ty_par(需strengthening,解法已定)",
+      "substitution_general的PPar(待subst_ren_general证通后一行导出)",
+      "congruence_preserves_typing(独立任务)"
+    ],
+    "ds_check": {
+      "latest": "DS#14 success stop 1775tok $0.0033 未截断",
+      "background_running": 0,
+      "dry_channel_updated": true,
+      "crystals_extracted": [
+        "011",
+        "012"
+      ]
+    },
+    "s01_signal_responded": {
+      "time": "2026-09-03 01:45:00",
+      "type": "思路确认+ty_par=PPar同一个问题",
+      "action": "已采纳,确认subst_ren_general思路正确,ty_par和PPar一起消"
+    }
+  },
+  "L3": {
+    "admitted": 0,
+    "compiled": true
+  },
+  "latest_commits": [
+    "8e19649 ty_out Qed 7/8",
+    "4ea864d ty_in Qed",
+    "aa29e3d 主引理骨架+ty_res",
+    "7d082e2 via-renaming地基5引理"
+  ],
+  "key_achievements": [
+    "决定性洞察：subst_var=ren rho，substitution本质是非单射重命名；主引理改为源任意的subst_ren_general，逐行同构Layer1.ren_typed",
+    "地基6引理全Qed：upren_subst_name_pt/ren_ext/subst_var_eq_ren/subst_name_succ/subst_rho_pts/rho_inj_except_m",
+    "subst_ren_general 7/8 case Qed：ty_out/ty_in用rho_inj_except_m+no_use通道分量替代ren_typed的全局单射Hinj",
+    "精确定位ty_par最后硬点：非单射rho碰撞对{k,c}的冗余资源位(weakening允许)使proj2在m位划空，需strengthening先紧缩",
+    "连续数学把关判错DS#11(严格线性排除交叉,错)/#12(强行m=0,错)/#13(方向对但funext/ty_par蒙混)/#14(紧缩引理多加u位本空前提、误判m为新名字)",
+    "DS#14检查: success未截断,确认strengthening唯一路径,纠正其紧缩引理废前提,提炼结晶011/012"
+  ],
+  "key_blockers": [
+    "ty_par: 需先定义not_free_in谓词,再证typed_strengthen_unused(对typed归纳),然后收尾ty_par",
+    "congruence_preserves_typing依赖substitution整体Qed",
+    "subject reduction的red_comm仍是exfalso占位"
+  ],
+  "needs_s01": [
+    "【已响应·确认】S01 01:45 signal已确认subst_ren_general思路正确,ty_par=PPar同一个问题",
+    "strengthening(丢弃未用明性)的正式存在论命名与背书(S01可在signal中补充)"
+  ],
+  "s01_should_read": [
+    "coq/obstacles/OB-010_..._20260902.md（已重写：via-renaming路线、7/8、ty_par=strengthening精确卡点、DS#14对错、待研判哲学问题）",
+    "s01_temp_docs/deepseek_v14_typar.md（DS确认strengthening但引理陈述有误,S04已纠正）",
+    "s01_temp_docs/OB010_cross_insight.md 第7节（subst_ren_general蓝图）"
+  ],
+  "progress_score": "L2: subst_ren_general 7/8 Qed,地基6引理全Qed,三层编译绿;DS#14已处理,结晶011/012已提炼;ty_par解法(strengthening)完全确定,只剩工程量",
+  "blockers": [
+    "ty_par待strengthening紧缩引理(技术路线已定,等S01语义背书)"
+  ]
+}
