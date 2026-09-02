@@ -951,7 +951,70 @@ Proof.
   - (* ty_zero *) apply ty_zero.
   - (* ty_var *) eapply ty_var. apply Hpts. exact Hget.
   - (* ty_tau *) apply ty_tau. exact (IH m k G Hpts Hnu).
-  - (* ty_out：rho_inj_except_m + no_use 三段，待填 *) admit.
+  - (* ty_out：两通道经rho；全局单射的三处用途全改用rho_inj_except_m+no_use通道分量 *)
+    simpl.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_name m k y)).
+    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i o T) Hx1).
+    + exact Ho.
+    + unfold use. split; [| reflexivity].
+      rewrite (set_none_neq Gamma x y Hyx) in Hy1.
+      assert (HyDelta : get G (subst_name m k y) = Some (Some T)) by exact (Hpts y T Hy1).
+      assert (Hxi : subst_name m k x <> subst_name m k y).
+      { intro E.
+        assert (Rkk : subst_name m k k = m).
+        { exact (subst_name_eq m k k (eq_refl : k = k)). }
+        assert (Hxk : x <> k) by (intro F; subst x; exact (Hnux Rkk)).
+        assert (Hyk : y <> k) by (intro F; subst y; exact (Hnuy Rkk)).
+        enough (x = y) by contradiction.
+        exact (rho_inj_except_m m k x y Hxk Hyk Hnux Hnuy E). }
+      assert (Hxi' : subst_name m k y <> subst_name m k x) by
+        (intro E; apply Hxi; symmetry; exact E).
+      rewrite (set_none_neq G (subst_name m k x) (subst_name m k y) Hxi'). exact HyDelta.
+    + apply (IH m k (set_none (set_none G (subst_name m k x)) (subst_name m k y))).
+      * intros n T' Hn.
+        assert (Hny : n <> y).
+        { intro F; subst n; rewrite set_none_self in Hn;
+          [injection Hn as Hc; discriminate | apply get_Some_lt in Hy1; exact Hy1]. }
+        assert (Hnx : n <> x).
+        { intro F; subst n; rewrite (set_none_neq (set_none Gamma x) y x Hxy) in Hn;
+          rewrite set_none_self in Hn;
+          [injection Hn as Hc; discriminate | apply get_Some_lt in Hx1; exact Hx1]. }
+        rewrite (set_none_neq (set_none Gamma x) y n Hny) in Hn.
+        rewrite (set_none_neq Gamma x n Hnx) in Hn.
+        assert (HnDelta : get G (subst_name m k n) = Some (Some T')) by exact (Hpts n T' Hn).
+        assert (Hxinx : subst_name m k n <> subst_name m k x).
+        { intro E.
+          assert (Rkk : subst_name m k k = m).
+          { exact (subst_name_eq m k k (eq_refl : k = k)). }
+          assert (Hnk : n <> k) by
+            (intro F; subst n; rewrite Rkk in E; exact (Hnux (eq_sym E))).
+          assert (Hxk : x <> k) by (intro F; subst x; exact (Hnux Rkk)).
+          assert (Hrnnm : subst_name m k n <> m) by (rewrite E; exact Hnux).
+          enough (n = x) by contradiction. exact (rho_inj_except_m m k n x Hnk Hxk Hrnnm Hnux E). }
+        assert (Hxiny : subst_name m k n <> subst_name m k y).
+        { intro E.
+          assert (Rkk : subst_name m k k = m).
+          { exact (subst_name_eq m k k (eq_refl : k = k)). }
+          assert (Hnk : n <> k) by
+            (intro F; subst n; rewrite Rkk in E; exact (Hnuy (eq_sym E))).
+          assert (Hyk : y <> k) by (intro F; subst y; exact (Hnuy Rkk)).
+          assert (Hrnnm : subst_name m k n <> m) by (rewrite E; exact Hnuy).
+          enough (n = y) by contradiction. exact (rho_inj_except_m m k n y Hnk Hyk Hrnnm Hnuy E). }
+        rewrite (set_none_neq (set_none G (subst_name m k x)) (subst_name m k y) (subst_name m k n) Hxiny).
+        rewrite (set_none_neq G (subst_name m k x) (subst_name m k n) Hxinx).
+        exact HnDelta.
+      * exact Hnub.
   - (* ty_in：通道经rho，body进绑定器；局部单射由rho_inj_except_m+no_use通道分量提供 *)
     simpl.
     unfold use in Huse. destruct Huse as [Hx1 Hx2]. subst Gamma1.
