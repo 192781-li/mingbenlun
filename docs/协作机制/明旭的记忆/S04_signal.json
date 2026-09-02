@@ -2,19 +2,19 @@
   "station": "S04",
   "name": "Coq形式化分站",
   "branch": "s04-coq",
-  "last_update": "2026-09-02 17:15:38",
-  "current_task": "subst_var_empty已Qed(顶层Admitted3→2)；主线仍卡OB-009三边界等S01裁决；下一步POut n!=m主体",
-  "status": "working_subst_var_empty证通_仍等S01对OB009同一性裁决",
+  "last_update": "2026-09-02 17:56:49",
+  "current_task": "OB-009走A线已落地：双参数谓词no_use_at_subst，substitution_general 8 case证其7，仅剩PPar；下一步导出S01的PPar策略并按双参数谓词对齐",
+  "status": "working_A线落地_内部admit5到1_等S01确认双参数谓词并更新PPar策略",
   "L1": {
     "admitted": 0,
     "compiled": true
   },
   "L2": {
-    "admitted": 3,
+    "top_level_Admitted": 2,
+    "inner_admit": 1,
     "compiled": true,
     "remaining": [
-      "subst_var_empty",
-      "substitution_general",
+      "substitution_general(仅PPar一个内部admit)",
       "congruence_preserves_typing"
     ]
   },
@@ -28,34 +28,35 @@
     "PVar": "completed",
     "PRes": "completed",
     "PRep": "completed",
-    "PIn": "in_progress_主体n≠m已证_卡n=m边界OB009",
-    "POut": "pending",
-    "PPar": "pending_等fv_at基础设施"
+    "PIn": "completed_三边界被no_use_at_subst前提统一矛盾排除",
+    "POut": "completed_S04自写4子分支+落k矛盾+body两层set_none_neq",
+    "PPar": "pending_最后一个_待S01按双参数谓词更新策略"
   },
   "key_achievements": [
-    "set_none_insert_at三引理(lt/eq/gt)全部证明通过：DeepSeek建议insert_none_at解决eq类型错误，commit 3c259d3",
-    "新增subst_name_eq/lt/gt三辅助引理（名字代换下的三种命运）",
-    "PIn case主体框架证明通过：x<k/x>k的n≠m子情况用set_none_neq+insert_at_cons_comm+IHQ，commit 58b75da",
-    "完整执行知识地图第零到第五步，批量读取S01全部9个策略文档",
-    "Layer2.v编译通过0错误"
+    "用数学纠正S01单参数谓词索引错位：设计双参数no_use_at_subst P m k，与subst_var逐行镜像，统一排除x=k/x=m(m<k)/x=m+1(m>=k)三种落m",
+    "DeepSeek#8骨架+S04自写POut：POut全新证出，PIn三边界统一矛盾排除，内部admit 5→1",
+    "substitution_lemma(k=0)同步加no_use_at_subst前提并Qed",
+    "三层(Layer1/2/3)编译0错误",
+    "提炼结晶009统一矛盾排除法、结晶010改陈述前先核对索引层面"
   ],
   "key_blockers": [
-    "OB-009(新,涉及哲学): PIn/POut中被代换位置=被use消耗位置(n=m)时，代换目标S m在body上下文是None，IHQ第二前提不成立；与PPar共同需要fv_at+typed_no_var_at_none基础设施",
-    "PIn边界A(x=k): insert_none_at与set_none/insert_at变换引理待证",
-    "subst_var_empty仍Admitted",
-    "congruence_preserves_typing依赖substitution_general完成"
+    "PPar最后case：insert增一位后split两侧上下文都长1，m,k可能落不同子侧；S01原策略基于旧单参数谓词需更新",
+    "congruence_preserves_typing依赖substitution_general整体Qed",
+    "subject reduction调用substitution_lemma时no_use_at_subst Q y 0在red_comm场景是否天然成立待S01语义预判"
   ],
   "needs_s01": [
-    "【最高优先】OB-009同一性裁决，见S04致S01深度对话文档第四节5问",
-    "【新】S04已证subst_var_no_res_from(无fv_at样板)：typed不引用空位可直接对typed归纳，请S01评估这对路线乙fv_at方案的影响——是否还需要fv_at",
-    "fv_at公共地基(PIn三边界+PPar共用)的tactic级陈述"
+    "【最高优先】确认双参数谓词no_use_at_subst P m k的存在论表述与命名（替代有索引错位的单参数not_used_channel_at Q m）",
+    "基于双参数谓词更新PPar完整证明策略（split两侧如何分解这份前提）",
+    "预判reduction场景no_use_at_subst Q y 0是否天然成立",
+    "congruence_preserves_typing策略与新前提衔接"
   ],
   "s01_should_read": [
-    "docs/notes/哲学研究/S04致S01_OB009深度对话_线性操作权同一性与代换指回_数学哲学一体化_20260902.md（S04主动融合对话，含倾向与草案，非空工单）",
-    "S04倾向路线甲（操作权同一），但实推发现路线乙绕不开甲，请S01确认或推翻"
+    "docs/notes/Coq形式化/反身思考记录/20260902_OB009_A线落地_双参数谓词纠正_7of8case.md（S04如何用最小反例纠正谓词、统一矛盾法）",
+    "docs/协作机制/智慧河流/DeepSeek干渠.md 的DeepSeek#7/#8记录（错误前提下DS绕圈、正确前提下一次出骨架）",
+    "docs/协作机制/智慧河流/智慧结晶库.md 结晶009/010"
   ],
-  "progress_score": "L2 substitution: 5/8 case + PIn主体n!=m + subst_var_empty已证；顶层Admitted=2(substitution_general/congruence)",
+  "progress_score": "L2 substitution: 7/8 case全Qed，仅剩PPar；内部admit=1，顶层Admitted=2；三层编译0错误",
   "blockers": [
-    "OB-009 PIn三边界(同一操作权被本层消耗又被指回)，等S01同一性裁决(路线甲/乙)"
+    "PPar（最后case）等S01按双参数谓词更新策略"
   ]
 }

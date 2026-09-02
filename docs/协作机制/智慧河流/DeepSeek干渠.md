@@ -52,6 +52,21 @@
 - **流向**：→提炼结晶（无fv_at方法论 + 归纳不变量要覆盖"代换点右侧"）；→给S01路线乙提供【已证样板】：typed不引用空位这件事可以不引入fv_at、直接对typed归纳做到
 - **元教训**：DeepSeek给结构骨架和正确大方向（无需fv_at），S04靠构造反例逐步修正归纳不变量——智慧伙伴关系的标准样态
 
+## [2026-09-02 17:25] [S04] DeepSeek调用 #7（A线·单参数谓词版，后被S04证伪谓词）
+- **问题**：按S01 A线方案加单参数 `not_used_channel_at Q m`（S04已修正PIn/PRes用S x、POut通道值两位置都查），要 substitution_general 完整证明。给了Layer1全文、Layer2基础设施、当前定理、A线方案（prompt 18455 tok）
+- **DeepSeek回答**：finish_reason=stop未截断（4763 tok，$0.0102）。bool矛盾排除法（subst m; rewrite Nat.eqb_refl; discriminate）、PVar/PZero/PTau/PRes/PRep/lemma骨架正确；但POut整段绕进 set_none/insert_none_at 交换出不来，POut与PIn的x=k、x-1=m共4处仍admit
+- **批判性判断**：矛盾排除法【采纳】；但S04在审查中发现**更根本的问题不在tactic而在谓词陈述**——单参数版存在insert位索引错位，只排除"x=m且m<k"一种落m，漏掉 x=k（注入位）和 x=m+1（x>k返回x-1）两种反例。DS没看出这层，因为它把谓词当既定前提接受了
+- **结果**：#7代码未采用；S04回到定义，构造最小反例确认三种落m情形，设计出与subst_var逐行镜像的双参数谓词 no_use_at_subst P m k，单独编译通过
+- **流向**：→反模式（"加前提"类动作必须先核对前提在哪个上下文层面陈述，否则DS会在错误前提下给出局部漂亮、整体不成立的证明）；→为#8准备正确谓词
+
+## [2026-09-02 17:31] [S04] DeepSeek调用 #8（A线·正确双参数谓词版，骨架可用）
+- **问题**：喂给DS纠正后的双参数 no_use_at_subst + 精确的"统一矛盾法"策略（每个use位置带negb(subst_name m k x=?m)，三分x=k/x<k/x>k，落m分支discriminate，其余走n≠m主体），要完整证明（prompt 19023 tok）
+- **DeepSeek回答**：finish_reason=stop（5827 tok，$0.0115）。helper(andb3_true/negb_eqb_true_neq)、PVar/PZero/PTau、PIn的x<k/x>k、PRes、PRep、substitution_lemma结构全对；**仅POut有4类执行级错**：①inversion临时名x0/y0/P0与induction绑定名n/n0/Q双轨；②insert上下文get推原始Gamma方向写反；③body归纳假设第二前提直接传Hget、漏穿两层set_none_neq；④use_neq未保留Hu1/Hu2先证位置不等
+- **批判性判断**：骨架【采纳】，POut【不照抄、S04自己重写】。探针实测induction Q后POut分量真实命名=n(通道)/n0(值)/Q(body)，据此重写POut为"通道n的</k × 值n0的</k"4子分支+落k矛盾，body的Hget用两层set_none_neq穿到最内层。逐轮编译修8处tactic问题（use_neq结论方向、unfold多假设逗号、andb3显式实例化、rewrite等式方向、simpl目标展开等）
+- **结果**：**成功**。substitution_general 8个case证其7（PVar/PZero/PTau/POut/PIn/PRes/PRep全Qed），内部admit 5→1（仅剩PPar），substitution_lemma同步加前提并Qed，三层编译0错误
+- **流向**：→提炼结晶（统一矛盾排除法：A线前提把为假边界统一变成false=true；归纳假设穿set_none要用set_none_neq逐层还原get）；→PPar按S01专门策略最后攻克
+- **元教训**：#7→#8的跃迁来自S04先把谓词改对再问DS；DS在正确前提下一次给出可用骨架，错误前提下只能局部绕圈。问题质量=前提正确性，这是承接者模式的核心
+
 ## 待记录
 
 （后续调用继续按格式追加）
