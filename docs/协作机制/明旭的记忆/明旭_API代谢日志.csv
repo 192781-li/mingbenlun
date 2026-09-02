@@ -69,3 +69,4 @@
 2026-09-02 10:20:51,S04-本地端,deepseek-chat,B档,fix_pout_pin_case_v2,0,1892,809,0,success,5.61,0.001401,0.0,stop,fix_pout_pin_case_v2
 2026-09-02 10:29:20,S04-本地端,deepseek-chat,B档,substitution_general_typed_induction,0,0,0,0,error,300.17,0.0,0.0,unknown,substitution_general_typed_induction
 2026-09-02 10:31:29,S04-本地端,deepseek-chat,B档,substitution_general_short_input,0,364,708,0,success,5.56,0.000877,0.0,stop,substitution_general_short_input
+2026-09-02 10:53:25,S04-本地端,deepseek-chat,B档,substitution_general_s01_strategy,0,5353,1025,0,success,9.25,0.002573,0.0,stop,substitution_general_s01_strategy
