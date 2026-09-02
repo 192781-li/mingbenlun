@@ -1131,6 +1131,51 @@ Proof.
     apply ty_rep. exact (IH u Hnu).
 Qed.
 
+(* 桥接引理：no_use_at_subst 保证进程不引用任何"rho 值为 m"的位置。
+   存在论：代换后坍缩到 m 的碰撞位，进程的操作权本就不流经，故该位可收摄。
+   PIn/PRes 进绑定器，rho 升级为 subst_name(Sm)(Sk)、位置偏移 S u。 *)
+Lemma nouse_excludes_rhom : forall (P : proc) (m k u : nat),
+  no_use_at_subst P m k = true ->
+  subst_name m k u = m ->
+  not_free_in P u = true.
+Proof.
+  induction P as [ n | | P0 IHP0 | x y P0 IHP0 | x P0 IHP0 | P0 IHP0 Q0 IHQ0 | P0 IHP0 | P0 IHP0 ];
+    intros m k u Hnu Hrhom; simpl in Hnu; simpl.
+  - (* PVar n *)
+    apply Bool.negb_true_iff in Hnu. apply Nat.eqb_neq in Hnu.
+    apply Bool.negb_true_iff. apply Nat.eqb_neq.
+    intro E. subst n. exact (Hnu Hrhom).
+  - (* PZero *) reflexivity.
+  - (* PTau *) exact (IHP0 m k u Hnu Hrhom).
+  - (* POut x y P0：&& 左结合 (A&&B)&&C *)
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [Hxy Hnub].
+    apply Bool.andb_true_iff in Hxy. destruct Hxy as [Hnx Hny].
+    apply Bool.negb_true_iff in Hnx. apply Nat.eqb_neq in Hnx.
+    apply Bool.negb_true_iff in Hny. apply Nat.eqb_neq in Hny.
+    apply Bool.andb_true_iff. split.
+    + apply Bool.andb_true_iff. split.
+      * apply Bool.negb_true_iff. apply Nat.eqb_neq.
+        intro E. subst x. exact (Hnx Hrhom).
+      * apply Bool.negb_true_iff. apply Nat.eqb_neq.
+        intro E. subst y. exact (Hny Hrhom).
+    + exact (IHP0 m k u Hnub Hrhom).
+  - (* PIn x P0：body 进绑定器，位置偏移 S u，rho 升级 *)
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [Hnx Hnub].
+    apply Bool.negb_true_iff in Hnx. apply Nat.eqb_neq in Hnx.
+    apply Bool.andb_true_iff. split.
+    + apply Bool.negb_true_iff. apply Nat.eqb_neq.
+      intro E. subst x. exact (Hnx Hrhom).
+    + eapply IHP0. exact Hnub. rewrite subst_name_succ. rewrite Hrhom. reflexivity.
+  - (* PPar P0 Q0 *)
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [HnP HnQ].
+    apply Bool.andb_true_iff. split.
+    + exact (IHP0 m k u HnP Hrhom).
+    + exact (IHQ0 m k u HnQ Hrhom).
+  - (* PRes P0：进绑定器 *)
+    eapply IHP0. exact Hnu. rewrite subst_name_succ. rewrite Hrhom. reflexivity.
+  - (* PRep P0 *) exact (IHP0 m k u Hnu Hrhom).
+Qed.
+
 (* =====================================================================
    subst_ren_general：代换定理的最一般形式（源任意，逐行同构 Layer1.ren_typed）
    源 D 经 rho=subst_name m k 到目标 Gamma；资源保持 Hpts + no_use 局部单射。
