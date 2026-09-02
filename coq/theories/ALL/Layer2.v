@@ -183,12 +183,67 @@ Proof.
 Qed.
 
 (* ---------------------------------------------------------------------
-   7. Substitution lemma (admitted for next iteration)
+   6.6 insert_at: 在上下文的指定位置插入类型
+   --------------------------------------------------------------------- *)
+
+(* insert_at k T Gamma: 在位置k插入Some T
+   哲学含义：代换的一般化——在任意位置插入同类型的迹
+   来源：S01精确证明骨架 *)
+Fixpoint insert_at (k : nat) (T : ty) (Gamma : ctx) : ctx :=
+  match k with
+  | 0 => Some T :: Gamma
+  | S k' => match Gamma with
+    | [] => None :: insert_at k' T []  (* 补None，保持位置正确 *)
+    | g :: Gamma' => g :: insert_at k' T Gamma'
+    end
+  end.
+
+(* get_insert_at_lt: n < k时，插入位置在n之后，不影响位置n
+   注意：仅当get返回Some (Some T')时成立，排除Gamma=[]的边界情况 *)
+Lemma get_insert_at_lt : forall Gamma T k n T',
+  n < k -> get (insert_at k T Gamma) n = Some (Some T') ->
+  get Gamma n = Some (Some T').
+Proof. Admitted.
+
+(* get_insert_at_gt: n > k时，插入位置在n之前，n偏移1
+   注意：仅当get返回Some (Some T')时成立 *)
+Lemma get_insert_at_gt : forall Gamma T k n T',
+  n > k -> get (insert_at k T Gamma) n = Some (Some T') ->
+  get Gamma (n - 1) = Some (Some T').
+Proof. Admitted.
+
+(* name_subst_general: 名字代换的一般化版本
+   n ≠ k时，变量索引偏移后类型不变
+   哲学含义：迹的替换不改变分类——同类型的迹可以互换 *)
+Lemma name_subst_general : forall Gamma T k m n,
+  typed (insert_at k T Gamma) (PVar n) ->
+  get Gamma m = Some (Some T) ->
+  n <> k ->
+  typed Gamma (PVar (subst_name m k n)).
+Proof. Admitted.
+
+(* substitution_general: 代换引理的一般化版本（k,m为变量）
+   核心洞察：PIn/PRes case中k会变成1，固定k=0的归纳假设不够用
+   哲学含义：代换是多对一的合并（同类型角色合并），不是一一对应的重命名
+   来源：S01精确证明骨架 *)
+Lemma substitution_general : forall Gamma T k m Q,
+  typed (insert_at k T Gamma) Q ->
+  get Gamma m = Some (Some T) ->
+  typed Gamma (subst_var m k Q).
+Proof. Admitted.
+
+(* ---------------------------------------------------------------------
+   7. Substitution lemma (k=0的特例)
    --------------------------------------------------------------------- *)
 Theorem substitution_lemma : forall Gamma T y Q,
   typed (Some T :: Gamma) Q -> get Gamma y = Some (Some T) ->
   typed Gamma (subst_var y 0 Q).
-Proof. Admitted.
+Proof.
+  intros Gamma T y Q H Hget.
+  apply substitution_general with (T := T) (k := 0) (m := y).
+  - exact H.  (* insert_at 0 T Gamma = Some T :: Gamma，定义性 *)
+  - exact Hget.
+Qed.
 
 (* ---------------------------------------------------------------------
    8. Congruence preserves typing (admitted for next iteration)
