@@ -151,6 +151,38 @@ Proof.
 Qed.
 
 (* ---------------------------------------------------------------------
+   6.5 辅助引理：代换引理的基础设施
+   --------------------------------------------------------------------- *)
+
+(* var_shift_lemma: 变量索引减1保持类型
+   哲学含义：进入绑定器后，外部变量的索引偏移不改变其类型 *)
+Lemma var_shift_lemma : forall Gamma T n,
+  typed (Some T :: Gamma) (PVar (S n)) -> typed Gamma (PVar n).
+Proof.
+  intros Gamma T n H.
+  inversion H; subst.
+  simpl in *.
+  eapply ty_var.
+  eassumption.
+Qed.
+
+(* name_subst_lemma: 名字代换保持类型
+   哲学含义：迹的替换不改变分类——同类型的迹可以互换 *)
+Lemma name_subst_lemma : forall Gamma T y n,
+  typed (Some T :: Gamma) (PVar n) ->
+  get Gamma y = Some (Some T) ->
+  typed Gamma (PVar (subst_name y 0 n)).
+Proof.
+  intros Gamma T y n H Hget.
+  destruct n as [|n'].
+  - (* n = 0: subst_name y 0 0 = y *)
+    simpl. apply ty_var with (T := T). exact Hget.
+  - (* n = S n': subst_name y 0 (S n') = n' *)
+    unfold subst_name. simpl. rewrite Nat.sub_0_r.
+    apply var_shift_lemma with (T := T) (n := n'). exact H.
+Qed.
+
+(* ---------------------------------------------------------------------
    7. Substitution lemma (admitted for next iteration)
    --------------------------------------------------------------------- *)
 Theorem substitution_lemma : forall Gamma T y Q,
