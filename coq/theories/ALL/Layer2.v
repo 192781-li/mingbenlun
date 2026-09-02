@@ -204,6 +204,17 @@ Fixpoint insert_at (k : nat) (T : ty) (Gamma : ctx) : ctx :=
     end
   end.
 
+(* insert_none_at：在位置k插入None（解决set_none_insert_at_eq的类型问题）
+   存在论意义：插入一个已消耗的操作权位置，用于描述"消耗插入的操作权"后的状态 *)
+Fixpoint insert_none_at (k : nat) (Gamma : ctx) : ctx :=
+  match k with
+  | 0 => None :: Gamma
+  | S k' => match Gamma with
+    | [] => None :: insert_none_at k' []
+    | g :: Gamma' => g :: insert_none_at k' Gamma'
+    end
+  end.
+
 (* insert_at和(::)的交换律：先insert_at再加头部 = 先加头部再insert_at(S k)
    这是OB-008的核心引理，解决PRes case的Gamma变量替换问题
    存在论意义：世界的扩展(::)和资源的插入(insert_at)是可交换的操作 *)
@@ -254,23 +265,81 @@ Qed.
    正确的形式需要重新考虑，暂时Admitted。
    存在论意义：插入操作权后立即消耗它，回到原来的上下文（但长度可能不同） *)
 Lemma set_none_insert_at_eq : forall k T Gamma,
-  set_none (insert_at k T Gamma) k = Gamma.
+  set_none (insert_at k T Gamma) k = insert_none_at k Gamma.
 Proof.
-  (* S01建议的陈述=insert_at k None Gamma有类型错误（insert_at第二个参数是ty不是option ty）。
-     原陈述=Gamma也错误（Gamma=[]时左边=[None]右边=[]）。
-     正确陈述待重新分析。可能需要定义insert_none_at操作，或者在PIn case中直接处理。
-     暂时Admitted，待DeepSeek第四次分析。 *)
-Admitted.
+  (* DeepSeek第四次：定义insert_none_at辅助函数解决类型问题。
+     手算验证：Gamma=[a0,a1,a2], k=1:
+     insert_at 1 T [a0,a1,a2]=[a0,Some T,a1,a2]
+     set_none [... ] 1=[a0,None,a1,a2]
+     insert_none_at 1 [a0,a1,a2]=[a0,None,a1,a2] ✅ *)
+  intros k.
+  induction k.
+  - intros T Gamma. simpl. reflexivity.
+  - intros T Gamma.
+    destruct Gamma as [| g Gamma'].
+    + (* Gamma = []：simpl后需要f_equal + IHk *)
+      simpl. f_equal. apply IHk.
+    + (* Gamma = g :: Gamma' *)
+      simpl. f_equal. apply IHk.
+Qed.
 
 (* set_none_insert_at_gt: x > k时，set_none在insert_at之后，位置偏移
    存在论意义：在插入位置之后消耗操作权，插入的操作权不受影响 *)
+(* 辅助引理：当x > k时，set_none在insert_at k T []的x位置不改变（因为x位置本来就是None） *)
+Lemma set_none_insert_at_nil_gt : forall k T x,
+  x > k -> set_none (insert_at k T []) x = insert_at k T [].
+Proof.
+  intros k T x Hgt.
+  generalize dependent x.
+  induction k; intros x Hgt.
+  - destruct x; simpl.
+    + lia.
+    + reflexivity.
+  - destruct x; simpl.
+    + lia.
+    + rewrite IHk; try lia. reflexivity.
+Qed.
+
 Lemma set_none_insert_at_gt : forall k T Gamma x,
   x > k -> set_none (insert_at k T Gamma) x = insert_at k T (set_none Gamma (x - 1)).
 Proof.
-  (* 证明复杂：k=S k', Gamma=[]时需要辅助引理（空上下文中set_none不改变None位置）。
-     S01的证明策略在Gamma=[]的case中不够详细。
-     暂时Admitted，待DeepSeek第四次分析给出完整证明。 *)
-Admitted.
+  (* DeepSeek第四次完整证明：k=0时证明x-0=x，k=S k',Gamma=[]时用set_none_insert_at_nil_gt *)
+  intros k T.
+  induction k.
+  - intros Gamma x Hgt.
+    destruct Gamma as [| g Gamma'].
+    + simpl. destruct x; simpl; try lia. reflexivity.
+    + simpl. destruct x; simpl.
+      * lia.
+      * assert (H : x - 0 = x) by lia. rewrite H. reflexivity.
+  - intros Gamma x Hgt.
+    destruct Gamma as [| g Gamma'].
+    + (* Gamma = []：simpl后先f_equal，再apply set_none_insert_at_nil_gt *)
+      simpl.
+      destruct x as [| x'].
+      * lia.
+      * f_equal.
+        apply set_none_insert_at_nil_gt.
+        lia.
+    + (* Gamma = g :: Gamma'：先destruct x，x=S x'时再destruct x'（因为x'>k>=0），然后simpl+f_equal+IHk *)
+      destruct x as [| x'].
+      * lia.
+      * (* x = S x'，x' > k *)
+        destruct x' as [| x''].
+        -- (* x' = 0，但x' > k >= 0，矛盾 *)
+           exfalso. lia.
+        -- (* x' = S x''，set_none (g::Gamma') (S x'') = g :: set_none Gamma' x'' *)
+           simpl.
+           f_equal.
+           (* IHk需要set_none Gamma' (S x''-1)，目标是set_none Gamma' x''，
+              先建立IHk结论，再用S x''-1=x''改写 *)
+           assert (Hih : set_none (insert_at k T Gamma') (S x'') =
+                        insert_at k T (set_none Gamma' (S x'' - 1))).
+           { apply IHk with (x := S x''). lia. }
+           assert (Hsub : S x'' - 1 = x'') by lia.
+           rewrite Hsub in Hih.
+           exact Hih.
+Qed.
 
 (* get_insert_at_lt: n < k时，插入位置在n之后，不影响位置n
    注意：仅当get返回Some (Some T')时成立，排除Gamma=[]的边界情况 *)

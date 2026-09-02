@@ -78,3 +78,4 @@
 2026-09-02 14:24:46,S04-本地端,deepseek-chat,B档,S04_set_none_analysis,0,3785,3397,0,success,24.11,0.004759,0.0,stop,S04_set_none_analysis
 2026-09-02 14:33:10,S04-本地端,deepseek-chat,B档,S04_set_none_reanalysis,0,2223,6022,0,success,37.72,0.007224,0.0,stop,S04_set_none_reanalysis
 2026-09-02 14:39:42,S04-本地端,deepseek-chat,B档,S04_all_wisdom_to_deepseek,0,11744,8000,0,truncated,49.0,0.011971,0.0,length,S04_all_wisdom_to_deepseek
+2026-09-02 15:01:33,S04-本地端,deepseek-chat,B档,S04_all_problems_to_deepseek_v4,0,2312,8000,0,truncated,42.95,0.009424,0.0,length,S04_all_problems_to_deepseek_v4
