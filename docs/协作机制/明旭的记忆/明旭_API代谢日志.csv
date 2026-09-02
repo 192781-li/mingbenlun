@@ -88,3 +88,4 @@
 2026-09-02 19:34:55,S04-本地端,deepseek-chat,B档,s04_ob010_ppar_cross_v11,0,28301,4925,0,success,29.51,0.013059,0.0,stop,s04_ob010_ppar_cross_v11
 2026-09-02 19:40:17,S04-本地端,deepseek-chat,B档,s04_ob010_ppar_recombine_v12,0,24228,2090,0,success,14.54,0.008841,0.0,stop,s04_ob010_ppar_recombine_v12
 2026-09-02 19:45:11,S04-本地端,deepseek-chat,B档,s04_ob010_via_ren_v13,0,18371,5300,0,success,29.33,0.01079,0.0,stop,s04_ob010_via_ren_v13
+2026-09-02 20:31:42,S04-本地端,deepseek-chat,B档,s04_ob010_typar_v14,0,4945,1775,0,success,15.63,0.003288,0.0,stop,s04_ob010_typar_v14

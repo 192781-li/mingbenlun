@@ -67,6 +67,29 @@
 - **流向**：→提炼结晶（统一矛盾排除法：A线前提把为假边界统一变成false=true；归纳假设穿set_none要用set_none_neq逐层还原get）；→PPar按S01专门策略最后攻克
 - **元教训**：#7→#8的跃迁来自S04先把谓词改对再问DS；DS在正确前提下一次给出可用骨架，错误前提下只能局部绕圈。问题质量=前提正确性，这是承接者模式的核心
 
+## DS#11 s04_ob010_ppar_cross（PPar交叉，deepseek-chat，留档 deepseek_v11_ppar_cross.md）
+- **问了什么**：PPar交叉情形（k副本与m源被原split分到两侧）怎么证
+- **它答了什么**：主张严格线性条件下交叉情形被排除（两子进程不共享资源，故k/m不会分落两侧产生交叉），给了同侧骨架
+- **S04判断**：**判错不采纳**。typed允许weakening（ty_zero任意Gamma、ty_rep泛化），子上下文可携带进程不用的冗余资源，交叉在数学上可能；"严格线性排除交叉"过强。同侧骨架留作参考
+- **元教训**：DS会把体系实际允许的weakening误当成严格线性，凡DS断言"某情形不可能/矛盾"必须回Layer1的typed定义核实
+
+## DS#12 s04_ob010_ppar_recombine（资源重划，2090 tok，$0.0088，留档 deepseek_v12_recombine.md）
+- **问了什么**：用split_proj Ga(xik k)Gamma重划消交叉的具体做法
+- **它答了什么**：方向=split_proj重划（有启发）；但强行 assert(Hm0:m=0)，理由"get_Some_lt in Hget; simpl; lia"，并自留admit、建议把主陈述削弱成 get Gamma m 的三析取
+- **S04判断**：**判错不采纳**。get Gamma m=Some T 只给 m<length Gamma，推不出 m=0，一般m,k下不成立；削弱陈述语义不清。仅吸收"split_proj重划消交叉"方向
+
+## DS#13 s04_ob010_via_ren_v13（via-renaming路线，5300 tok，$0.0108，留档 deepseek_v13_via_ren.md）
+- **问了什么**：把substitution归约为非单射renaming、仿ren_typed证主定理的完整骨架
+- **它答了什么**：给出"subst=ren rho、桥接引理、remember/revert对typed归纳"的正确方向与骨架
+- **S04判断**：**方向采纳、证明不照抄**。它用了体系没有的functional_extensionality（改证逐点引理upren_subst_name_pt+ren_ext）；andb3命名可疑；ty_out陷入eqb分支爆炸且有 assert(Hm:m=k)by lia 类错误；ty_par用reflexivity蒙混几何等式。S04据此独立自证6个干净地基引理全Qed
+- **结果**：直接催生via-renaming路线落地（commit 7d082e2）
+
+## DS#14 s04_ob010_typar_v14（ty_par最后卡点，1775 tok，$0.0033，留档 deepseek_v14_typar.md）
+- **问了什么**：非单射rho下ty_par的proj2碰撞位（冗余资源）如何处理，是否需要strengthening，只要设计判断不要整证明
+- **它答了什么**：确认"必须strengthening、是唯一正确路径"；确认紧缩对typed归纳不会在ty_par自指；否定改split_proj变体/弱化IH（会波及其余7 case）
+- **S04判断**：**路线采纳、两处纠错**。错1：紧缩引理加了 forall T,get C u<>Some T（u位本空）前提，使紧缩退化为恒等——正确是"进程不用u即可清空，无论原来有无资源"。错2：称最终导出时"选m为不在Gamma中的新名字"，实际m是承载被代入资源T的源位置（get Gamma m=Some T），不是新名字。正确引理陈述=typed_strengthen_unused: typed C P->not_free_in u P->typed(set_none C u)P
+- **结果**：ty_par解法与引理陈述最终落定，写入OB-010第三节
+
 ## 待记录
 
 （后续调用继续按格式追加）

@@ -2,62 +2,46 @@
   "station": "S04",
   "name": "Coq形式化分站",
   "branch": "s04-coq",
-  "last_update": "2026-09-02 17:56:49",
-  "current_task": "OB-009走A线已落地：双参数谓词no_use_at_subst，substitution_general 8 case证其7，仅剩PPar；下一步导出S01的PPar策略并按双参数谓词对齐",
-  "status": "working_A线落地_内部admit5到1_等S01确认双参数谓词并更新PPar策略",
-  "L1": {
-    "admitted": 0,
-    "compiled": true
-  },
+  "last_update": "2026-09-02 20:40:00",
+  "current_task": "OB-010终局：via-renaming路线新主引理subst_ren_general已Qed 7/8 case，只剩ty_par；卡点精确定位为非单射rho下并行组合需要strengthening紧缩引理（陈述已定，S04已纠正DS#14）",
+  "status": "working_新主引理7of8_ty_par待strengthening_等S01确认紧缩的存在论语义",
+  "L1": { "admitted": 0, "compiled": true },
   "L2": {
-    "top_level_Admitted": 2,
-    "inner_admit": 1,
+    "new_main_lemma": "subst_ren_general(源任意,同构ren_typed)",
+    "subst_ren_general_cases": "7/8 Qed (ty_zero/ty_var/ty_tau/ty_out/ty_in/ty_res/ty_rep), 仅ty_par admit",
+    "top_level_Admitted": 3,
+    "inner_admit": 2,
     "compiled": true,
     "remaining": [
-      "substitution_general(仅PPar一个内部admit)",
-      "congruence_preserves_typing"
+      "subst_ren_general的ty_par(需strengthening,解法已定)",
+      "substitution_general的PPar(待subst_ren_general证通后一行导出)",
+      "congruence_preserves_typing(独立任务)"
     ]
   },
-  "L3": {
-    "admitted": 0,
-    "compiled": true
-  },
-  "substitution_general_progress": {
-    "PZero": "completed",
-    "PTau": "completed",
-    "PVar": "completed",
-    "PRes": "completed",
-    "PRep": "completed",
-    "PIn": "completed_三边界被no_use_at_subst前提统一矛盾排除",
-    "POut": "completed_S04自写4子分支+落k矛盾+body两层set_none_neq",
-    "PPar": "pending_最后一个_待S01按双参数谓词更新策略"
-  },
+  "L3": { "admitted": 0, "compiled": true },
+  "latest_commits": ["8e19649 ty_out Qed 7/8", "4ea864d ty_in Qed", "aa29e3d 主引理骨架+ty_res", "7d082e2 via-renaming地基5引理"],
   "key_achievements": [
-    "用数学纠正S01单参数谓词索引错位：设计双参数no_use_at_subst P m k，与subst_var逐行镜像，统一排除x=k/x=m(m<k)/x=m+1(m>=k)三种落m",
-    "DeepSeek#8骨架+S04自写POut：POut全新证出，PIn三边界统一矛盾排除，内部admit 5→1",
-    "substitution_lemma(k=0)同步加no_use_at_subst前提并Qed",
-    "三层(Layer1/2/3)编译0错误",
-    "提炼结晶009统一矛盾排除法、结晶010改陈述前先核对索引层面"
+    "决定性洞察：subst_var=ren rho，substitution本质是非单射重命名；主引理改为源任意的subst_ren_general，逐行同构Layer1.ren_typed",
+    "地基6引理全Qed：upren_subst_name_pt/ren_ext/subst_var_eq_ren/subst_name_succ/subst_rho_pts/rho_inj_except_m",
+    "subst_ren_general 7/8 case Qed：ty_out/ty_in用rho_inj_except_m+no_use通道分量替代ren_typed的全局单射Hinj",
+    "精确定位ty_par最后硬点：非单射rho碰撞对{k,c}的冗余资源位(weakening允许)使proj2在m位划空，需strengthening先紧缩",
+    "连续数学把关判错DS#11(严格线性排除交叉,错)/#12(强行m=0,错)/#13(方向对但funext/ty_par蒙混)/#14(紧缩引理多加u位本空前提、误判m为新名字)"
   ],
   "key_blockers": [
-    "PPar最后case：insert增一位后split两侧上下文都长1，m,k可能落不同子侧；S01原策略基于旧单参数谓词需更新",
-    "congruence_preserves_typing依赖substitution_general整体Qed",
-    "subject reduction调用substitution_lemma时no_use_at_subst Q y 0在red_comm场景是否天然成立待S01语义预判"
+    "ty_par：需先证typed_strengthen_unused(进程不用u则清空u位仍typed,对typed归纳)+进程自由变量谓词not_free_in,再对碰撞位k,c紧缩后照ren_typed ty_par完成",
+    "congruence_preserves_typing依赖substitution整体Qed",
+    "subject reduction的red_comm仍是exfalso占位,待通信接到substitution"
   ],
   "needs_s01": [
-    "【最高优先】确认双参数谓词no_use_at_subst P m k的存在论表述与命名（替代有索引错位的单参数not_used_channel_at Q m）",
-    "基于双参数谓词更新PPar完整证明策略（split两侧如何分解这份前提）",
-    "预判reduction场景no_use_at_subst Q y 0是否天然成立",
-    "congruence_preserves_typing策略与新前提衔接"
+    "【最高优先·哲学研判】strengthening紧缩=主动丢弃未被使用的明性(资源位),主人已说'明性可不保持',请正式研判其在ALL体系合法并给命名(紧缩/去冗余/明性收摄),确认与路线乙同型异位相容",
+    "确认碰撞对{k,c}收束到同一m的存在论解读:两条操作权流汇为一条,strengthening清掉无操作权流经的空壳位置",
+    "congruence_preserves_typing策略需基于新主引理subst_ren_general(而非旧substitution_general)更新,注意构造no_use前提与k<=length(k=0用lia)"
   ],
   "s01_should_read": [
-    "docs/notes/哲学研究/S04致S01_A线谓词双参数校正_单参数漏边界AC的数学证明_20260902.md（最高优先：路线乙一致，但单参数谓词漏边界A/C，已用双参数no_use_at_subst证7/8，请更新A线/PPar/congruence三文档）",
-    "docs/notes/Coq形式化/反身思考记录/20260902_OB009_A线落地_双参数谓词纠正_7of8case.md（S04如何用最小反例纠正谓词、统一矛盾法）",
-    "docs/协作机制/智慧河流/DeepSeek干渠.md 的DeepSeek#7/#8记录（错误前提下DS绕圈、正确前提下一次出骨架）",
-    "docs/协作机制/智慧河流/智慧结晶库.md 结晶009/010；PPar强版本已立OB-010"
+    "coq/obstacles/OB-010_..._20260902.md（已重写：via-renaming路线、7/8、ty_par=strengthening精确卡点、DS#14对错、待研判哲学问题）",
+    "s01_temp_docs/deepseek_v14_typar.md（DS确认strengthening但引理陈述有误,S04已纠正）",
+    "s01_temp_docs/OB010_cross_insight.md 第7节（subst_ren_general蓝图）"
   ],
-  "progress_score": "L2 substitution: 7/8 case全Qed，仅剩PPar；内部admit=1，顶层Admitted=2；三层编译0错误",
-  "blockers": [
-    "PPar（最后case）等S01按双参数谓词更新策略"
-  ]
+  "progress_score": "L2 substitution: 新主引理subst_ren_general 7/8 case Qed，地基6引理全Qed，编译绿；只剩ty_par(strengthening,解法与陈述已定)，随后一行导出旧substitution_general",
+  "blockers": ["ty_par待strengthening紧缩引理(技术路线已定,等S01语义背书)"]
 }
