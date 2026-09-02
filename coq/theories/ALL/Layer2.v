@@ -356,7 +356,7 @@ Lemma substitution_general : forall Gamma T k m Q,
 Proof.
   intros Gamma T k m Q.
   induction Q; intros Ht Hget.
-  - (* PVar *) admit.
+  - (* PVar - 待证明，n=k时需要get_insert_at_self引理 *) admit.
   - (* PZero *) simpl. apply ty_zero.
   - (* PTau *)
     simpl. inversion Ht; subst.

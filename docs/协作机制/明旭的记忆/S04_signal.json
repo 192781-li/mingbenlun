@@ -2,8 +2,8 @@
   "station": "S04",
   "name": "Coq形式化分站",
   "branch": "s04-coq",
-  "last_update": "2026-09-02 13:22:37",
-  "current_task": "substitution_general证明（PRes case Gamma变量问题待解决）",
+  "last_update": "2026-09-02 13:33:04",
+  "current_task": "substitution_general证明（PVar case卡点，get_insert_at_self引理证明失败）",
   "status": "in_progress",
   "L1": {
     "admitted": 0,
@@ -21,27 +21,31 @@
     "admitted": 0,
     "compiled": true
   },
-  "key_blockers": [
-    "PRes case: apply res_elim in Ht后Gamma变量从上下文消失，5种方法全部失败",
-    "insert_at_cons_comm引理已证明通过，但PRes case应用时仍遇Gamma问题"
-  ],
-  "recent_achievements": [
-    "TASK-S04-017超级强制版执行完成：阅读确认机制写入运行状态机和SOP",
+  "substitution_general_progress": {
+    "PZero": "completed",
+    "PTau": "completed",
+    "PVar": "blocked",
+    "POut": "pending",
+    "PIn": "pending",
+    "PPar": "pending",
+    "PRes": "pending",
+    "PRep": "pending"
+  },
+  "key_achievements": [
     "insert_at_cons_comm引理证明通过（OB-008核心引理）",
-    "智慧交换日志已建立，S01-S04双向智慧闭环开始运作"
+    "智慧河流SOP首次执行，读取河流主干/状态/结晶库",
+    "TASK-S04-017超级强制版执行完成，阅读确认机制写入SOP"
   ],
-  "s01_philosophy_outputs_read": [
-    "智慧生长机制v1.0",
-    "证明智慧手册四步法",
-    "必读确认清单",
-    "7c1ad27精确纠正（不要证上下文等式，证get等式）",
-    "OB-008研判（insert_at_cons_comm）",
-    "智慧交换日志"
+  "key_blockers": [
+    "PVar case: get_insert_at_self引理的归纳证明失败（simpl/cbn不展开到IH形式）",
+    "PRes case: apply res_elim in Ht后Gamma变量从上下文消失（6种方法失败）"
   ],
-  "next_steps": [
-    "解决PRes case的Gamma变量问题（可能需要换对Ht归纳策略）",
-    "完成substitution_general剩余5个case（PVar/POut/PIn/PPar/PRep）",
-    "完成congruence_preserves_typing证明",
-    "L2达到0 Admitted"
+  "needs_s01": [
+    "get_insert_at_self引理的证明策略（simpl/cbn不展开到IH形式）",
+    "或者PVar case的更直接证明策略"
+  ],
+  "s01_should_read": [
+    "insert_at_cons_comm引理证明通过，验证了OB-008研判的正确性",
+    "PVar case卡点记录，需要S01研判get_insert_at_self的证明策略"
   ]
 }
