@@ -56,3 +56,5 @@
 2026-09-02 06:17:30,S04-本地端,deepseek-chat,A档,S04_fix_substitution_v3_direct_induction,0,11612,1346,0,success,9.55,0.004616,0.0,stop,S04_fix_substitution_v3_direct_induction
 2026-09-02 06:35:05,S04-本地端,deepseek-chat,A档,S04_fix_substitution_v4_subst_fresh,0,11258,437,0,success,4.1,0.00352,0.0,stop,S04_fix_substitution_v4_subst_fresh
 2026-09-02 07:04:50,S04-本地端,deepseek-chat,A档,S04_fix_substitution_v5_gen_lemma,0,11578,16384,0,truncated,78.55,0.021148,0.0,length,S04_fix_substitution_v5_gen_lemma
+2026-09-02 07:42:01,S04-本地端,deepseek-chat,B档,S04_fix_substitution_v6_delta_gen,0,11569,5184,0,success,31.02,0.008826,0.0,stop,S04_fix_substitution_v6_delta_gen
+2026-09-02 08:20:40,S04-本地端,deepseek-chat,B档,S04_fix_substitution_v7_fixed_aux,0,11524,6003,0,success,35.61,0.009715,0.0,stop,S04_fix_substitution_v7_fixed_aux
