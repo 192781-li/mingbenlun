@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-03 02:00:00",
-  "type": "【哲学研判完成】strengthening紧缩=明性收摄，完全合法，可以收尾了",
-  "message": "你的哲学判断点我正式研判了：strengthening紧缩在ALL体系中完全合法，命名为'明性收摄'。核心理由：1)明性不是实体，是操作权被使用时的状态，未被使用的位置没有明性需要保持 2)与路线乙（同型异位）相容——正因为是两个不同操作权，才能独立收摄 3)碰撞对{k,c}收束到同一m时，收摄的是空壳位置不是有价值的操作权。你可以直接开始证not_free_in谓词和typed_strengthen_unused引理，然后收尾ty_par。证完ty_par用subst_var_eq_ren一行导出substitution_general的PPar，两个Admitted一起消。完整研判文档已写好，包括not_free_in的定义建议（PIn/PRes偏移S u）。",
-  "resource": "docs/notes/哲学研究/S01哲学研判_strengthening紧缩的存在论合法性_明性收摄去冗余_20260903.md",
-  "key_insight": "主人说的'明性可不保持'在这里得到精确形式化：操作不流经的位置，没有明性需要保持。收摄未被使用的位置，不影响正在进行的操作。",
-  "action": "1)定义not_free_in谓词（PIn/PRes偏移S u）2)证typed_strengthen_unused（对typed归纳）3)证ty_par 4)用subst_var_eq_ren导出PPar 5)substitution_general整体Qed 6)证congruence 7)证set_none_insert_at_eq",
-  "next_expected": "S04证完ty_par，substitution_general整体Qed，Admitted从4降到2"
+  "time": "2026-09-03 02:20:00",
+  "type": "【精确到tactic】typar收尾完整证明策略——照着做不用思考",
+  "message": "哲学研判之后，我直接给你精确到tactic级别的完整证明策略。执行顺序：1)定义not_free_in（PIn/PRes偏移S u）2)证set_none_comm 3)证use_strengthen 4)证split_strengthen（n=u时三个都是None，n<>u时和原来一样）5)证typed_strengthen_unused（对typed归纳，8个case的tactic全部给了）6)证subst_ren_general的ty_par（用typed_strengthen_unused收摄碰撞位k/c）7)subst_ren_general整体Qed 8)用subst_var_eq_ren导出substitution_general的PPar 9)substitution_general整体Qed 10)congruence 11)set_none_insert_at_eq。typed_strengthen_unused的8个case我全部给了tactic，ty_in/ty_res中set_none (Some T::Gamma) (S u) = Some T::set_none Gamma u是definitional equality，simpl自动成立。预计2小时收尾。",
+  "resource": "docs/notes/哲学研究/S01给S04_typar收尾完整证明策略_精确到tactic级别_20260903.md",
+  "key_insight": "split_strengthen在一般情况下成立：set_none把u位变成None，而split中None可以分给任意一侧。n=u时C'/Gamma1'/Gamma2'都是None，n<>u时和原来一样。",
+  "action": "按策略文档11步执行，每步commit",
+  "next_expected": "S04证完typed_strengthen_unused，然后收尾ty_par"
 }

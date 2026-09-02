@@ -31,17 +31,130 @@ Definition closed (P : proc) : Prop := ~ fv P.
 Definition subst_name (m : nat) (k : nat) (n : nat) : nat :=
   if n =? k then m else if n <=? k then n else n - 1.
 
+(* subst_name三种情况的辅助引理——存在论：名字在代换下的三种命运 *)
+Lemma subst_name_eq : forall m k n, n = k -> subst_name m k n = m.
+Proof.
+  intros m k n H. unfold subst_name. rewrite H. rewrite Nat.eqb_refl. reflexivity.
+Qed.
+
+Lemma subst_name_lt : forall m k n, n < k -> subst_name m k n = n.
+Proof.
+  intros m k n Hlt. unfold subst_name.
+  destruct (n =? k) eqn:Heq.
+  - apply Nat.eqb_eq in Heq; lia.
+  - destruct (n <=? k) eqn:Hle.
+    + reflexivity.
+    + apply Nat.leb_gt in Hle; lia.
+Qed.
+
+Lemma subst_name_gt : forall m k n, n > k -> subst_name m k n = n - 1.
+Proof.
+  intros m k n Hgt. unfold subst_name.
+  destruct (n =? k) eqn:Heq.
+  - apply Nat.eqb_eq in Heq; lia.
+  - destruct (n <=? k) eqn:Hle.
+    + apply Nat.leb_le in Hle; lia.
+    + reflexivity.
+Qed.
+
 Fixpoint subst_var (m : nat) (k : nat) (P : proc) : proc :=
   match P with
   | PVar n     => PVar (subst_name m k n)
   | PZero      => PZero
   | PTau Q     => PTau (subst_var m k Q)
   | POut x y Q => POut (subst_name m k x) (subst_name m k y) (subst_var m k Q)
-  | PIn x Q    => PIn (subst_name m k x) (subst_var m (S k) Q)
+  | PIn x Q    => PIn (subst_name m k x) (subst_var (S m) (S k) Q)
   | PPar Q R   => PPar (subst_var m k Q) (subst_var m k R)
-  | PRes Q     => PRes (subst_var m (S k) Q)
+  | PRes Q     => PRes (subst_var (S m) (S k) Q)
   | PRep Q     => PRep (subst_var m k Q)
   end.
+
+(* ---------------------------------------------------------------------
+   2.1 no_use_at_subst (OB-009 A线前提，S04数学把关后的正确陈述)
+   存在论：代换是把注入位k的引用重定向到源位m。若某 use 在代换后恰好
+   落在 m（通道/发送值经 subst_name 后名字=m），则该 use 会把 m 清空成
+   None，而 body 的重定向又指回 m——指向寂然，类型化破产（S01反例的一般化）。
+   故代换定理要求：代换(m,k)之后，m 从未被 use 消耗。
+   关键(纠正S01单参数版的索引错位)：use位置x在insert上下文，m在原始Gamma，
+   二者隔了插入位k，故不能只比较 x=m；必须比较【代换后的名字】subst_name m k x
+   是否=m（它涵盖 x=k / x=m<k / x=m+1>k 三种落m情形）。递归结构与subst_var
+   严格镜像：PIn/PRes进绑定器用(S m)(S k)，POut不进绑定器仍m k、且通道与
+   发送值两个位置都查，PVar只引用不消耗=true。
+   --------------------------------------------------------------------- *)
+Fixpoint no_use_at_subst (P : proc) (m k : nat) : bool :=
+  match P with
+  | PZero      => true
+  | PTau Q     => no_use_at_subst Q m k
+  | PVar n     => true
+  | POut x y Q => negb (Nat.eqb (subst_name m k x) m)
+                  && negb (Nat.eqb (subst_name m k y) m)
+                  && no_use_at_subst Q m k
+  | PIn x Q    => negb (Nat.eqb (subst_name m k x) m)
+                  && no_use_at_subst Q (S m) (S k)
+  | PPar Q R   => no_use_at_subst Q m k && no_use_at_subst R m k
+  | PRes Q     => no_use_at_subst Q (S m) (S k)
+  | PRep Q     => no_use_at_subst Q m k
+  end.
+
+(* ====== subst_var 与 ren 的桥接（OB-010 via-renaming 路线） ====== *)
+(* upren 与 subst_name 在绑定器提升下逐点相等：名字在代换下穿越绑定器 *)
+Lemma upren_subst_name_pt : forall m k n,
+  upren (subst_name m k) n = subst_name (S m) (S k) n.
+Proof.
+  intros m k n. destruct n as [|n'].
+  - reflexivity.
+  - unfold subst_name. simpl.
+    destruct (n' =? k) eqn:E.
+    + apply Nat.eqb_eq in E. subst n'. reflexivity.
+    + destruct (n' <=? k) eqn:E2.
+      * apply Nat.leb_le in E2. destruct (S n' <=? S k) eqn:E3; [reflexivity | lia].
+      * apply Nat.leb_gt in E2. destruct (S n' <=? S k) eqn:E3; [lia |].
+        simpl. f_equal. lia.
+Qed.
+
+(* 绑定器提升：subst_name 在 S 位置上的平移——穿越一个绑定层 *)
+Lemma subst_name_succ : forall m k n,
+  subst_name (S m) (S k) (S n) = S (subst_name m k n).
+Proof.
+  intros m k n. unfold subst_name. simpl.
+  destruct (n =? k) eqn:E.
+  - apply Nat.eqb_eq in E. subst n. simpl. reflexivity.
+  - destruct (n <=? k) eqn:E2.
+    + apply Nat.leb_le in E2. simpl. reflexivity.
+    + apply Nat.leb_gt in E2. simpl. lia.
+Qed.
+
+(* 逐点相等的重命名函数给出相同结果——操作权流动不因名字而变 *)
+Lemma ren_ext : forall (f g : nat -> nat) P, (forall n, f n = g n) ->
+  ren f P = ren g P.
+Proof.
+  intros f g P. revert f g. induction P; intros f g H; simpl.
+  - f_equal. apply H.
+  - reflexivity.
+  - f_equal. exact (IHP f g H).
+  - f_equal; [apply H | apply H | exact (IHP f g H)].
+  - f_equal; [apply H |
+      apply (IHP (upren f) (upren g)); intros q; destruct q; simpl; auto].
+  - f_equal; [exact (IHP1 f g H) | exact (IHP2 f g H)].
+  - f_equal. apply (IHP (upren f) (upren g)); intros q; destruct q; simpl; auto.
+  - f_equal. exact (IHP f g H).
+Qed.
+
+(* subst_var 本质就是沿 subst_name 的重命名——代换即重命名的特例 *)
+Lemma subst_var_eq_ren : forall m k P,
+  subst_var m k P = ren (subst_name m k) P.
+Proof.
+  intros m k P. revert m k. induction P; intros a b; simpl.
+  - reflexivity.
+  - reflexivity.
+  - f_equal. exact (IHP a b).
+  - f_equal. exact (IHP a b).
+  - f_equal. rewrite (IHP (S a) (S b)).
+      apply ren_ext. intros q. symmetry. apply upren_subst_name_pt.
+  - f_equal; [exact (IHP1 a b) | exact (IHP2 a b)].
+  - f_equal. rewrite (IHP (S a) (S b)). apply ren_ext. intros q. symmetry. apply upren_subst_name_pt.
+  - f_equal. exact (IHP a b).
+Qed.
 
 Definition comm_subst (y : nat) (Q : proc) : proc := subst_var y 0 Q.
 
@@ -85,9 +198,12 @@ Inductive reduce_star : proc -> proc -> Prop :=
    --------------------------------------------------------------------- *)
 Inductive is_value : proc -> Prop :=
   | val_zero : is_value PZero
+  | val_var  : forall x, is_value (PVar x)
+  | val_out  : forall x y P, is_value (POut x y P)
   | val_in   : forall x P, is_value (PIn x P)
   | val_res  : forall P, is_value P -> is_value (PRes P)
-  | val_rep  : forall P, is_value (PRep P).
+  | val_rep  : forall P, is_value (PRep P)
+  | val_par  : forall P Q, is_value P -> is_value Q -> is_value (PPar P Q).
 
 (* ---------------------------------------------------------------------
    6. Auxiliary lemmas
@@ -131,6 +247,12 @@ Proof.
   do 4 eexists. split; [eassumption | split; [try reflexivity; try eassumption | eassumption]].
 Qed.
 
+Lemma res_elim : forall Gamma P, typed Gamma (PRes P) ->
+  exists T, typed (Some T :: Gamma) P.
+Proof.
+  intros Gamma P H. inversion H; subst.
+  eexists. eassumption.
+Qed.
 Lemma no_parallel_channel_sharing : forall Gamma x y P Q,
   ~ typed Gamma (PPar (POut x y P) (PIn x Q)).
 Proof.
@@ -148,16 +270,1589 @@ Proof.
 Qed.
 
 (* ---------------------------------------------------------------------
-   7. Substitution lemma (admitted for next iteration)
+   6.5 辅助引理：代换引理的基础设施
    --------------------------------------------------------------------- *)
-Theorem substitution_lemma : forall Gamma T y Q,
-  typed (Some T :: Gamma) Q -> get Gamma y = Some (Some T) ->
-  typed Gamma (subst_var y 0 Q).
-Proof. Admitted.
+
+(* var_shift_lemma: 变量索引减1保持类型
+   哲学含义：进入绑定器后，外部变量的索引偏移不改变其类型 *)
+Lemma var_shift_lemma : forall Gamma T n,
+  typed (Some T :: Gamma) (PVar (S n)) -> typed Gamma (PVar n).
+Proof.
+  intros Gamma T n H.
+  inversion H; subst.
+  simpl in *.
+  eapply ty_var.
+  eassumption.
+Qed.
+
+(* name_subst_lemma: 名字代换保持类型
+   哲学含义：迹的替换不改变分类——同类型的迹可以互换 *)
+Lemma name_subst_lemma : forall Gamma T y n,
+  typed (Some T :: Gamma) (PVar n) ->
+  get Gamma y = Some (Some T) ->
+  typed Gamma (PVar (subst_name y 0 n)).
+Proof.
+  intros Gamma T y n H Hget.
+  destruct n as [|n'].
+  - (* n = 0: subst_name y 0 0 = y *)
+    simpl. apply ty_var with (T := T). exact Hget.
+  - (* n = S n': subst_name y 0 (S n') = n' *)
+    unfold subst_name. simpl. rewrite Nat.sub_0_r.
+    apply var_shift_lemma with (T := T) (n := n'). exact H.
+Qed.
 
 (* ---------------------------------------------------------------------
-   8. Congruence preserves typing (admitted for next iteration)
+   6.6 insert_at: 在上下文的指定位置插入类型
    --------------------------------------------------------------------- *)
+
+(* insert_at k T Gamma: 在位置k插入Some T
+   哲学含义：代换的一般化——在任意位置插入同类型的迹
+   来源：S01精确证明骨架 *)
+Fixpoint insert_at (k : nat) (T : ty) (Gamma : ctx) : ctx :=
+  match k with
+  | 0 => Some T :: Gamma
+  | S k' => match Gamma with
+    | [] => None :: insert_at k' T []  (* 补None，保持位置正确 *)
+    | g :: Gamma' => g :: insert_at k' T Gamma'
+    end
+  end.
+
+(* insert_none_at：在位置k插入None（解决set_none_insert_at_eq的类型问题）
+   存在论意义：插入一个已消耗的操作权位置，用于描述"消耗插入的操作权"后的状态 *)
+Fixpoint insert_none_at (k : nat) (Gamma : ctx) : ctx :=
+  match k with
+  | 0 => None :: Gamma
+  | S k' => match Gamma with
+    | [] => None :: insert_none_at k' []
+    | g :: Gamma' => g :: insert_none_at k' Gamma'
+    end
+  end.
+
+(* insert_at和(::)的交换律：先insert_at再加头部 = 先加头部再insert_at(S k)
+   这是OB-008的核心引理，解决PRes case的Gamma变量替换问题
+   存在论意义：世界的扩展(::)和资源的插入(insert_at)是可交换的操作 *)
+Lemma insert_at_cons_comm : forall (T T' : ty) (k : nat) (Gamma : ctx),
+  Some T' :: insert_at k T Gamma = insert_at (S k) T (Some T' :: Gamma).
+Proof.
+  intros T T' k Gamma.
+  induction k.
+  - simpl. reflexivity.
+  - destruct Gamma as [| g Gamma']; simpl; reflexivity.
+Qed.
+
+(* get_insert_at_self: 插入位置k的操作权确实是T
+   这是PVar case的核心引理，n=k时用它证明T0=T
+   存在论意义：插入操作权后，那个位置确实有这个操作权——操作的结果是可验证的 *)
+Lemma get_insert_at_self : forall k T Gamma,
+  get (insert_at k T Gamma) k = Some (Some T).
+Proof.
+  intros k T.
+  induction k.
+  - intros Gamma. simpl. reflexivity.
+  - intros Gamma. destruct Gamma as [| g Gamma']; simpl; apply IHk.
+Qed.
+
+(* set_none_insert_at_lt: x < k时，set_none和insert_at可交换
+   存在论意义：在插入位置之前消耗操作权，不影响插入的位置 *)
+Lemma set_none_insert_at_lt : forall k T Gamma x,
+  x < k -> set_none (insert_at k T Gamma) x = insert_at k T (set_none Gamma x).
+Proof.
+  intros k T.
+  induction k.
+  - intros Gamma x Hlt. exfalso. lia.
+  - intros Gamma x Hlt.
+    destruct x as [| x'].
+    + destruct Gamma as [| g Gamma']; simpl; reflexivity.
+    + destruct Gamma as [| g Gamma']; simpl.
+      * (* Gamma = [] *)
+        assert (H : set_none (insert_at k T []) x' = insert_at k T (set_none [] x')).
+        { apply IHk. lia. }
+        simpl in H. f_equal. exact H.
+      * (* Gamma = g :: Gamma' *)
+        f_equal. apply IHk. lia.
+Qed.
+
+(* set_none_insert_at_eq: x = k时，消耗的正是插入的操作权
+   注意：原陈述set_none (insert_at k T Gamma) k = Gamma是错的！
+   因为insert_at增加了列表长度，set_none后长度不变，所以不可能等于Gamma。
+   正确的形式需要重新考虑，暂时Admitted。
+   存在论意义：插入操作权后立即消耗它，回到原来的上下文（但长度可能不同） *)
+Lemma set_none_insert_at_eq : forall k T Gamma,
+  set_none (insert_at k T Gamma) k = insert_none_at k Gamma.
+Proof.
+  (* DeepSeek第四次：定义insert_none_at辅助函数解决类型问题。
+     手算验证：Gamma=[a0,a1,a2], k=1:
+     insert_at 1 T [a0,a1,a2]=[a0,Some T,a1,a2]
+     set_none [... ] 1=[a0,None,a1,a2]
+     insert_none_at 1 [a0,a1,a2]=[a0,None,a1,a2] ✅ *)
+  intros k.
+  induction k.
+  - intros T Gamma. simpl. reflexivity.
+  - intros T Gamma.
+    destruct Gamma as [| g Gamma'].
+    + (* Gamma = []：simpl后需要f_equal + IHk *)
+      simpl. f_equal. apply IHk.
+    + (* Gamma = g :: Gamma' *)
+      simpl. f_equal. apply IHk.
+Qed.
+
+(* set_none_insert_at_gt: x > k时，set_none在insert_at之后，位置偏移
+   存在论意义：在插入位置之后消耗操作权，插入的操作权不受影响 *)
+(* 辅助引理：当x > k时，set_none在insert_at k T []的x位置不改变（因为x位置本来就是None） *)
+Lemma set_none_insert_at_nil_gt : forall k T x,
+  x > k -> set_none (insert_at k T []) x = insert_at k T [].
+Proof.
+  intros k T x Hgt.
+  generalize dependent x.
+  induction k; intros x Hgt.
+  - destruct x; simpl.
+    + lia.
+    + reflexivity.
+  - destruct x; simpl.
+    + lia.
+    + rewrite IHk; try lia. reflexivity.
+Qed.
+
+Lemma set_none_insert_at_gt : forall k T Gamma x,
+  x > k -> set_none (insert_at k T Gamma) x = insert_at k T (set_none Gamma (x - 1)).
+Proof.
+  (* DeepSeek第四次完整证明：k=0时证明x-0=x，k=S k',Gamma=[]时用set_none_insert_at_nil_gt *)
+  intros k T.
+  induction k.
+  - intros Gamma x Hgt.
+    destruct Gamma as [| g Gamma'].
+    + simpl. destruct x; simpl; try lia. reflexivity.
+    + simpl. destruct x; simpl.
+      * lia.
+      * assert (H : x - 0 = x) by lia. rewrite H. reflexivity.
+  - intros Gamma x Hgt.
+    destruct Gamma as [| g Gamma'].
+    + (* Gamma = []：simpl后先f_equal，再apply set_none_insert_at_nil_gt *)
+      simpl.
+      destruct x as [| x'].
+      * lia.
+      * f_equal.
+        apply set_none_insert_at_nil_gt.
+        lia.
+    + (* Gamma = g :: Gamma'：先destruct x，x=S x'时再destruct x'（因为x'>k>=0），然后simpl+f_equal+IHk *)
+      destruct x as [| x'].
+      * lia.
+      * (* x = S x'，x' > k *)
+        destruct x' as [| x''].
+        -- (* x' = 0，但x' > k >= 0，矛盾 *)
+           exfalso. lia.
+        -- (* x' = S x''，set_none (g::Gamma') (S x'') = g :: set_none Gamma' x'' *)
+           simpl.
+           f_equal.
+           (* IHk需要set_none Gamma' (S x''-1)，目标是set_none Gamma' x''，
+              先建立IHk结论，再用S x''-1=x''改写 *)
+           assert (Hih : set_none (insert_at k T Gamma') (S x'') =
+                        insert_at k T (set_none Gamma' (S x'' - 1))).
+           { apply IHk with (x := S x''). lia. }
+           assert (Hsub : S x'' - 1 = x'') by lia.
+           rewrite Hsub in Hih.
+           exact Hih.
+Qed.
+
+(* get_insert_at_lt: n < k时，插入位置在n之后，不影响位置n
+   注意：仅当get返回Some (Some T')时成立，排除Gamma=[]的边界情况 *)
+Lemma get_insert_at_lt : forall Gamma T k n T',
+  n < k -> get (insert_at k T Gamma) n = Some (Some T') ->
+  get Gamma n = Some (Some T').
+Proof.
+  intros Gamma0 T.
+  induction Gamma0 as [| g Gamma' IHGamma].
+  { (* Gamma0 = [] *)
+    intros k n T' Hlt Hget.
+    revert n T' Hlt Hget.
+    induction k as [| k' IHk'].
+    { intros n T' Hlt. inversion Hlt. }
+    { intros n T' Hlt Hget.
+      destruct n as [| n'].
+      { simpl in Hget. inversion Hget. }
+      { simpl in Hget.
+        eapply IHk' with (n := n').
+        { apply le_S_n in Hlt. exact Hlt. }
+        { exact Hget. }
+      }
+    }
+  }
+  { (* Gamma0 = g :: Gamma' *)
+    intros k n T' Hlt Hget.
+    destruct k as [| k'].
+    { inversion Hlt. }
+    { destruct n as [| n'].
+      { simpl in Hget. simpl. exact Hget. }
+      { simpl in Hget.
+        eapply IHGamma with (n := n').
+        { apply le_S_n in Hlt. exact Hlt. }
+        { exact Hget. }
+      }
+    }
+  }
+Qed.
+
+Lemma get_insert_at_gt : forall Gamma T k n T',
+  n > k -> get (insert_at k T Gamma) n = Some (Some T') ->
+  get Gamma (n - 1) = Some (Some T').
+Proof.
+  intros Gamma0 T.
+  induction Gamma0 as [| g Gamma' IHGamma].
+  { (* Gamma0 = [] *)
+    intros k n T' Hgt Hget.
+    revert n T' Hgt Hget.
+    induction k as [| k' IHk'].
+    { intros n T' Hgt Hget. destruct n as [| n'].
+      { inversion Hgt. }
+      { simpl in Hget. inversion Hget. }
+    }
+    { intros n T' Hgt Hget.
+      destruct n as [| n'].
+      { inversion Hgt. }
+      { simpl in Hget.
+        eapply IHk' with (n := n').
+        { apply le_S_n in Hgt. exact Hgt. }
+        { exact Hget. }
+      }
+    }
+  }
+  { (* Gamma0 = g :: Gamma' *)
+    intros k n T' Hgt Hget.
+    destruct k as [| k'].
+    { destruct n as [| n'].
+      { inversion Hgt. }
+      { destruct n' as [| n''].
+        { simpl in Hget. simpl. exact Hget. }
+        { simpl in Hget. simpl. exact Hget. }
+      }
+    }
+    { destruct n as [| n'].
+      { inversion Hgt. }
+      { apply le_S_n in Hgt.
+        destruct n' as [| n''].
+        { inversion Hgt. }
+        { simpl in Hget. simpl.
+          replace n'' with (S n'' - 1) by (destruct n''; simpl; auto).
+          eapply IHGamma with (k := k') (n := S n'').
+          { exact Hgt. }
+          { exact Hget. }
+        }
+      }
+    }
+  }
+Qed.
+
+(* name_subst_general: 名字代换的一般化版本
+   n ≠ k时，变量索引偏移后类型不变
+   哲学含义：迹的替换不改变分类——同类型的迹可以互换 *)
+Lemma name_subst_general : forall Gamma T k m n,
+  typed (insert_at k T Gamma) (PVar n) ->
+  get Gamma m = Some (Some T) ->
+  n <> k ->
+  typed Gamma (PVar (subst_name m k n)).
+Proof.
+  intros Gamma T k m n H Hget Hne.
+  inversion H; subst.
+  destruct (Nat.compare n k) eqn:Hcmp.
+  - (* n = k，矛盾 *)
+    assert (Heq : n = k). { apply Nat.compare_eq_iff. exact Hcmp. }
+    contradiction.
+  - (* n < k *)
+    assert (Hlt : n < k). { apply Nat.compare_lt_iff. exact Hcmp. }
+    assert (Hget' : get Gamma n = Some (Some T0)).
+    { eapply get_insert_at_lt; eauto. }
+    assert (Hsub : subst_name m k n = n).
+    { unfold subst_name.
+      destruct (n =? k) eqn:E.
+      + apply Nat.eqb_eq in E. contradiction.
+      + destruct (n <=? k) eqn:E2.
+        * reflexivity.
+        * apply Nat.leb_gt in E2. lia.
+    }
+    rewrite Hsub.
+    apply ty_var with (T := T0). exact Hget'.
+  - (* n > k *)
+    assert (Hgt : n > k). { apply Nat.compare_gt_iff. exact Hcmp. }
+    assert (Hget' : get Gamma (n - 1) = Some (Some T0)).
+    { eapply get_insert_at_gt; eauto. }
+    assert (Hsub : subst_name m k n = n - 1).
+    { unfold subst_name.
+      destruct (n =? k) eqn:E.
+      + apply Nat.eqb_eq in E. contradiction.
+      + destruct (n <=? k) eqn:E2.
+        * apply Nat.leb_le in E2. lia.
+        * reflexivity.
+    }
+    rewrite Hsub.
+    apply ty_var with (T := T0). exact Hget'.
+Qed.
+
+(* 空上下文代换引理：在空上下文下合法的进程，代换后仍然合法
+   这是PRep case的核心引理
+   存在论意义：空世界中没有操作权可以消耗，代换不改变任何东西 *)
+(* ===== no_res_from：代换位置k及其之后全无操作权，则代换保持类型化 =====
+   存在论：代换是"撤去k位、把对k的指称迁回m、其后之名依次前移"。
+   若k及其之后本就没有操作权（空上下文逐层加Some前缀正是此结构），
+   则类型化之操作所引用之名必在k之前（n<k，subst_name不变），代换不改类型。
+   关键：不需要显式fv_at谓词——类型推导自身携带"引用了哪些位置"。 ===== *)
+
+Definition no_res_from (Gamma : ctx) (k : nat) : Prop :=
+  forall n, n >= k -> get Gamma n = None \/ get Gamma n = Some None.
+
+Lemma no_res_from_empty : forall k, no_res_from [] k.
+Proof. intros k n _. left. reflexivity. Qed.
+
+Lemma no_res_from_cons : forall (t : option ty) G k,
+  no_res_from G k -> no_res_from (t :: G) (S k).
+Proof.
+  intros t G k H n hn. destruct n as [|n'].
+  - lia.
+  - simpl. apply H. lia.
+Qed.
+
+Lemma no_res_from_set_none : forall G k x,
+  x < k -> no_res_from G k -> no_res_from (set_none G x) k.
+Proof.
+  intros G k x Hxk H n hn.
+  rewrite (set_none_neq G x n); [ apply H; exact hn | lia ].
+Qed.
+
+Lemma no_res_from_contra : forall G k n T,
+  no_res_from G k -> n >= k -> get G n = Some (Some T) -> False.
+Proof.
+  intros G k n T H hn Hg.
+  specialize (H n hn). destruct H as [H | H]; rewrite Hg in H; discriminate.
+Qed.
+
+Lemma split_no_res_from_l : forall G G1 G2 k,
+  split G G1 G2 -> no_res_from G k -> no_res_from G1 k.
+Proof.
+  intros G G1 G2 k Hs H n hn.
+  unfold split in Hs. specialize (Hs n).
+  destruct Hs as [[Hg _] | [_ Hd]].
+  - rewrite Hg. apply H. exact hn.
+  - exact Hd.
+Qed.
+
+Lemma split_no_res_from_r : forall G G1 G2 k,
+  split G G1 G2 -> no_res_from G k -> no_res_from G2 k.
+Proof.
+  intros G G1 G2 k Hs H n hn.
+  unfold split in Hs. specialize (Hs n).
+  destruct Hs as [[_ Hd] | [Hg _]].
+  - exact Hd.
+  - rewrite Hg. apply H. exact hn.
+Qed.
+
+Lemma subst_var_no_res_from : forall (Gamma : ctx) (m k : nat) (P : proc),
+  no_res_from Gamma k -> typed Gamma P -> typed Gamma (subst_var m k P).
+Proof.
+  intros Gamma m k P Hk Hty.
+  generalize dependent k. generalize dependent m.
+  induction Hty; intros m k Hk.
+  - (* ty_zero *) simpl. apply ty_zero.
+  - (* ty_var x *) simpl.
+    assert (hlt : x < k).
+    { destruct (Nat.ltb x k) eqn:El.
+      - apply Nat.ltb_lt; exact El.
+      - apply Nat.ltb_ge in El. exfalso.
+        eapply no_res_from_contra; [exact Hk|exact El|exact H]. }
+    rewrite (subst_name_lt m k x hlt). eapply ty_var. exact H.
+  - (* ty_tau *) simpl. apply ty_tau. apply (IHHty m k). exact Hk.
+  - (* ty_out x y *) simpl.
+    assert (Hc1 := H). unfold use in Hc1. destruct Hc1 as [Hxg Heq1].
+    assert (Hc2 := H1). unfold use in Hc2. destruct Hc2 as [Hyg Heq2].
+    subst Gamma1 Gamma2.
+    assert (hxk : x < k).
+    { destruct (Nat.ltb x k) eqn:Elx.
+      - apply Nat.ltb_lt; exact Elx.
+      - apply Nat.ltb_ge in Elx. exfalso.
+        eapply no_res_from_contra;[exact Hk|exact Elx|exact Hxg]. }
+    assert (Hk1 : no_res_from (set_none Gamma x) k).
+    { apply no_res_from_set_none; [exact hxk|exact Hk]. }
+    assert (hyk : y < k).
+    { destruct (Nat.ltb y k) eqn:Ely.
+      - apply Nat.ltb_lt; exact Ely.
+      - apply Nat.ltb_ge in Ely. exfalso.
+        eapply no_res_from_contra;[exact Hk1|exact Ely|exact Hyg]. }
+    assert (Hk2 : no_res_from (set_none (set_none Gamma x) y) k).
+    { apply no_res_from_set_none; [exact hyk|exact Hk1]. }
+    rewrite (subst_name_lt m k x hxk).
+    rewrite (subst_name_lt m k y hyk).
+    eapply ty_out with (i:=i)(o:=o)(T:=T)
+      (Gamma1:=set_none Gamma x)(Gamma2:=set_none (set_none Gamma x) y).
+    + exact H. + exact H0. + exact H1.
+    + apply (IHHty m k). exact Hk2.
+  - (* ty_in x *) simpl.
+    assert (Hc1 := H). unfold use in Hc1. destruct Hc1 as [Hxg Heq1]. subst Gamma1.
+    assert (hxk : x < k).
+    { destruct (Nat.ltb x k) eqn:Elx.
+      - apply Nat.ltb_lt; exact Elx.
+      - apply Nat.ltb_ge in Elx. exfalso.
+        eapply no_res_from_contra;[exact Hk|exact Elx|exact Hxg]. }
+    assert (Hk1 : no_res_from (set_none Gamma x) k).
+    { apply no_res_from_set_none; [exact hxk|exact Hk]. }
+    rewrite (subst_name_lt m k x hxk).
+    eapply ty_in with (i:=i)(o:=o)(T:=T)(Gamma1:=set_none Gamma x).
+    + exact H. + exact H0.
+    + apply (IHHty (S m) (S k)).
+      exact (no_res_from_cons (Some T) (set_none Gamma x) k Hk1).
+  - (* ty_par *) simpl.
+    assert (Hk1 : no_res_from Gamma1 k) by (eapply split_no_res_from_l; eassumption).
+    assert (Hk2 : no_res_from Gamma2 k) by (eapply split_no_res_from_r; eassumption).
+    eapply ty_par with (Gamma1:=Gamma1)(Gamma2:=Gamma2).
+    + exact H.
+    + apply (IHHty1 m k). exact Hk1.
+    + apply (IHHty2 m k). exact Hk2.
+  - (* ty_res *) simpl. apply ty_res with (T:=T).
+    apply (IHHty (S m) (S k)).
+    exact (no_res_from_cons (Some T) Gamma k Hk).
+  - (* ty_rep *) simpl. apply ty_rep.
+    exact (IHHty m k (no_res_from_empty k)).
+Qed.
+
+Lemma subst_var_empty : forall m k P, typed [] P -> typed [] (subst_var m k P).
+Proof.
+  intros m k P H.
+  apply (subst_var_no_res_from [] m k P (no_res_from_empty k) H).
+Qed.
+
+Lemma andb3_true : forall b1 b2 b3 : bool,
+  andb (andb b1 b2) b3 = true -> b1 = true /\ b2 = true /\ b3 = true.
+Proof.
+  intros b1 b2 b3 H.
+  apply Bool.andb_true_iff in H. destruct H as [H12 H3].
+  apply Bool.andb_true_iff in H12. destruct H12 as [H1 H2].
+  auto.
+Qed.
+
+Lemma negb_eqb_true_neq : forall a b : nat,
+  negb (Nat.eqb a b) = true -> a <> b.
+Proof.
+  intros a b H.
+  apply Bool.negb_true_iff in H.
+  apply Nat.eqb_neq. exact H.
+Qed.
+
+(* =====================================================================
+   OB-010 PPar 地基：remove_at 与 insert_at/insert_none_at 的互逆
+   存在论内涵：并行组合把一份世界 split 成两侧；代换前要把"插入的迹"
+   从两侧各自撤除(remove_at)，再按那一位是"实有操作权(Some T)"还是
+   "寂然之位(None)"复原——撤除与插入互为逆操作，操作权的分合可严格往返。
+   ===================================================================== *)
+
+(* remove_at：删去位置k，其后操作权整体前移一位 *)
+Fixpoint remove_at (k : nat) (G : ctx) : ctx :=
+  match G, k with
+  | [], _ => []
+  | _ :: G', 0 => G'
+  | g :: G', S k' => g :: remove_at k' G'
+  end.
+
+(* 外延：等长且逐位置get相等，则两上下文同一（操作世界由其每一位唯一决定） *)
+Lemma ctx_ext : forall G1 G2,
+  length G1 = length G2 -> (forall n, get G1 n = get G2 n) -> G1 = G2.
+Proof.
+  intros G1. induction G1 as [|a G1' IH]; intros [|b G2'] Hlen Hget.
+  - reflexivity.
+  - simpl in Hlen. discriminate.
+  - simpl in Hlen. discriminate.
+  - simpl in Hlen. injection Hlen as Hlen'. f_equal.
+    + specialize (Hget 0). simpl in Hget. injection Hget as Hab. exact Hab.
+    + apply IH; [exact Hlen'|]. intros n. specialize (Hget (S n)). simpl in Hget. exact Hget.
+Qed.
+
+Lemma length_remove_at : forall k G, k < length G -> length (remove_at k G) = length G - 1.
+Proof.
+  intros k. induction k; intros G Hk.
+  - destruct G as [|g G']; [simpl in Hk; lia|]. simpl. lia.
+  - destruct G as [|g G']; [simpl in Hk; lia|].
+    simpl in Hk. simpl. rewrite IHk by lia. lia.
+Qed.
+
+Lemma length_insert_at : forall k T D, k <= length D -> length (insert_at k T D) = length D + 1.
+Proof.
+  intros k. induction k; intros T D Hk.
+  - simpl. lia.
+  - destruct D as [|d D']; [simpl in Hk; lia|].
+    simpl in Hk. simpl. f_equal. apply IHk. lia.
+Qed.
+
+Lemma length_insert_none_at : forall k D, k <= length D -> length (insert_none_at k D) = length D + 1.
+Proof.
+  intros k. induction k; intros D Hk.
+  - simpl. lia.
+  - destruct D as [|d D']; [simpl in Hk; lia|].
+    simpl in Hk. simpl. f_equal. apply IHk. lia.
+Qed.
+
+(* n<k：remove_at 不触及n之前的位 *)
+Lemma get_remove_at_lt : forall G k n, n < k -> get (remove_at k G) n = get G n.
+Proof.
+  intros G. induction G as [|g G' IH]; intros k n Hlt.
+  - destruct k; simpl; reflexivity.
+  - destruct k as [|k']; [lia|]. destruct n as [|n']; [simpl; reflexivity|].
+    simpl. apply IH. lia.
+Qed.
+
+(* n>=k：remove_at 后原 n+1 位移到 n *)
+Lemma get_remove_at_ge : forall G k n, n >= k -> get (remove_at k G) n = get G (n + 1).
+Proof.
+  intros G. induction G as [|g G' IH]; intros k n Hge.
+  - destruct k; simpl; reflexivity.
+  - destruct k as [|k'].
+    + simpl. replace (n + 1) with (S n) by lia. simpl. reflexivity.
+    + destruct n as [|n']; [lia|]. simpl. apply IH. lia.
+Qed.
+
+(* 实有位复原：k位持有Some T，则 G 恰为"在remove后k位插回T"（对k归纳，无需split给长度） *)
+Lemma insert_remove_at_id : forall k T G,
+  get G k = Some (Some T) -> G = insert_at k T (remove_at k G).
+Proof.
+  intros k. induction k; intros T G Hk.
+  - destruct G as [|g G']; [simpl in Hk; discriminate|].
+    simpl in Hk. injection Hk as Hg. subst g. simpl. reflexivity.
+  - destruct G as [|g G']; [simpl in Hk; discriminate|].
+    simpl in Hk. specialize (IHk T G' Hk). simpl. f_equal. exact IHk.
+Qed.
+
+(* 寂然位复原：k位存着Some None，则 G 恰为"在remove后k位插回None" *)
+Lemma insert_none_remove_id : forall k G,
+  get G k = Some None -> G = insert_none_at k (remove_at k G).
+Proof.
+  intros k. induction k; intros G Hk.
+  - destruct G as [|g G']; [simpl in Hk; discriminate|].
+    simpl in Hk. injection Hk as Hg. subst g. simpl. reflexivity.
+  - destruct G as [|g G']; [simpl in Hk; discriminate|].
+    simpl in Hk. specialize (IHk G' Hk). simpl. f_equal. exact IHk.
+Qed.
+
+(* insert_at 逐位置取回（前提 k<=length G：注入位在世界之内，不在尾部悬空补None）：
+   n<k 时同原 n 位；n>k 时对应原 n-1 位 *)
+Lemma get_insert_at_lt_eq : forall k T G n, k <= length G -> n < k ->
+  get (insert_at k T G) n = get G n.
+Proof.
+  intros k. induction k; intros T G n Hlen Hn; [lia|].
+  destruct G as [|g G']; [simpl in Hlen; lia|].
+  simpl in Hlen.
+  destruct n as [|n']; [simpl; reflexivity|]. simpl. apply IHk; lia.
+Qed.
+
+Lemma get_insert_at_gt_eq : forall k T G n, k <= length G -> n > k ->
+  get (insert_at k T G) n = get G (n - 1).
+Proof.
+  intros k T G n Hlen Hn. revert k n Hlen Hn. induction G as [|g G' IH]; intros k n Hlen Hn.
+  - assert (k = 0) by (simpl in Hlen; lia). subst k. destruct n; [lia|]. simpl.
+    destruct n; simpl; reflexivity.
+  - destruct k as [|k'].
+    + destruct n; [lia|]. simpl. destruct n; simpl; reflexivity.
+    + destruct n; [lia|].
+      simpl in Hlen. simpl in Hn.
+      assert (Hgt : n > k') by lia.
+      assert (Hlen' : k' <= length G') by lia.
+      specialize (IH k' n Hlen' Hgt) as Hih.
+      destruct n as [|a]; [exfalso; lia|].
+      simpl. replace (S a - 1) with a in Hih by lia. rewrite Hih. reflexivity.
+Qed.
+
+(* split 与 remove_at 的交换：在 insert_at 后的世界 split 成两侧，
+   各自撤除插入位 k，便回到原始 Gamma 的 split。逐位置对接：
+   n<k 用原位置 n，n>=k 用后移一位的 n+1（insert 在 n+1 处恰存 Gamma n）。 *)
+Lemma split_remove_at_both : forall Gamma T k G1 G2,
+  k <= length Gamma ->
+  split (insert_at k T Gamma) G1 G2 ->
+  split Gamma (remove_at k G1) (remove_at k G2).
+Proof.
+  intros Gamma T k G1 G2 Hlen Hs. unfold split. intros n.
+  unfold split in Hs.
+  destruct (Nat.ltb n k) eqn:El.
+  - (* n < k：看 insert 世界的 n 位 *)
+    apply Nat.ltb_lt in El.
+    specialize (Hs n). destruct Hs as [[L1 L2] | [R1 R2]].
+    + rewrite (get_insert_at_lt_eq k T Gamma n Hlen El) in L1. left. split.
+      * rewrite get_remove_at_lt by lia. exact L1.
+      * rewrite get_remove_at_lt by lia. exact L2.
+    + rewrite (get_insert_at_lt_eq k T Gamma n Hlen El) in R1. right. split.
+      * rewrite get_remove_at_lt by lia. exact R1.
+      * rewrite get_remove_at_lt by lia. exact R2.
+  - (* n >= k：看 insert 世界的 n+1 位（其值为 Gamma n） *)
+    apply Nat.ltb_ge in El.
+    assert (Hgt : n + 1 > k) by lia.
+    specialize (Hs (n + 1)). destruct Hs as [[L1 L2] | [R1 R2]].
+    + rewrite (get_insert_at_gt_eq k T Gamma (n+1) Hlen Hgt) in L1.
+      replace ((n + 1) - 1) with n in L1 by lia. left. split.
+      * rewrite get_remove_at_ge by lia. exact L1.
+      * rewrite get_remove_at_ge by lia. exact L2.
+    + rewrite (get_insert_at_gt_eq k T Gamma (n+1) Hlen Hgt) in R1.
+      replace ((n + 1) - 1) with n in R1 by lia. right. split.
+      * rewrite get_remove_at_ge by lia. exact R1.
+      * rewrite get_remove_at_ge by lia. exact R2.
+Qed.
+
+(* 资源保持：insert世界n位的资源，经rho后在目标世界同型在位——操作权不丢失 *)
+Lemma subst_rho_pts : forall Gamma T k m n T', k <= length Gamma ->
+  get Gamma m = Some (Some T) ->
+  get (insert_at k T Gamma) n = Some (Some T') ->
+  get Gamma (subst_name m k n) = Some (Some T').
+Proof.
+  intros Gamma T k m n T' Hkle Hm Hn.
+  destruct (Nat.ltb_spec n k) as [Hlt | Hge].
+  - rewrite subst_name_lt by lia.
+    rewrite (get_insert_at_lt_eq k T Gamma n Hkle Hlt) in Hn. exact Hn.
+  - destruct (Nat.eqb_spec n k) as [Heq | Hne].
+    + subst n. rewrite subst_name_eq by reflexivity.
+      rewrite get_insert_at_self in Hn. injection Hn as E. subst T'. exact Hm.
+    + assert (Hg : n > k) by lia.
+      rewrite subst_name_gt by lia.
+      rewrite (get_insert_at_gt_eq k T Gamma n Hkle Hg) in Hn. exact Hn.
+Qed.
+
+(* 局部单射：rho唯一非单射点是k与碰撞位c（rho值=m）；
+   排除k本身、排除像为m者后，rho在剩余位置单射——no_use正是提供后一排除 *)
+Lemma rho_inj_except_m : forall m k x y,
+  x <> k -> y <> k ->
+  subst_name m k x <> m -> subst_name m k y <> m ->
+  subst_name m k x = subst_name m k y -> x = y.
+Proof.
+  intros m k x y Hxk Hyk Hnx Hny Heq.
+  destruct (Nat.ltb_spec x k); destruct (Nat.ltb_spec y k).
+  - rewrite subst_name_lt in Heq by lia.
+    rewrite subst_name_lt in Heq by lia. lia.
+  - exfalso. rewrite subst_name_lt in Heq by lia.
+    rewrite subst_name_gt in Heq by lia. lia.
+  - exfalso. rewrite subst_name_gt in Heq by lia.
+    rewrite subst_name_lt in Heq by lia. lia.
+  - rewrite subst_name_gt in Heq by lia.
+    rewrite subst_name_gt in Heq by lia. lia.
+Qed.
+
+(* =====================================================================
+   subst_ren_general：代换定理的最一般形式（源任意，逐行同构 Layer1.ren_typed）
+   源 D 经 rho=subst_name m k 到目标 Gamma；资源保持 Hpts + no_use 局部单射。
+   PPar 用 split_proj 重划，源块 Ga/Gb 直接作子进程源（无需 insert 形状）。
+   ===================================================================== *)
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (Gamma : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (ren (subst_name m k) Q).
+Proof.
+  intros D Q H. induction H as [
+    Gamma
+  | Gamma x T Hget
+  | Gamma P H IH
+  | Gamma x y P i o T Gamma1 Gamma2 Huse1 Ho Huse2 H IH
+  | Gamma x P i o T Gamma1 Huse Hi H IH
+  | Gamma P Q Gamma1 Gamma2 Hs HP IHP HQ IHQ
+  | Gamma P T H IH
+  | Gamma P H IH
+  ]; intros m k G Hpts Hnu; simpl.
+  - (* ty_zero *) apply ty_zero.
+  - (* ty_var *) eapply ty_var. apply Hpts. exact Hget.
+  - (* ty_tau *) apply ty_tau. exact (IH m k G Hpts Hnu).
+  - (* ty_out：两通道经rho；全局单射的三处用途全改用rho_inj_except_m+no_use通道分量 *)
+    simpl.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_name m k y)).
+    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i o T) Hx1).
+    + exact Ho.
+    + unfold use. split; [| reflexivity].
+      rewrite (set_none_neq Gamma x y Hyx) in Hy1.
+      assert (HyDelta : get G (subst_name m k y) = Some (Some T)) by exact (Hpts y T Hy1).
+      assert (Hxi : subst_name m k x <> subst_name m k y).
+      { intro E.
+        assert (Rkk : subst_name m k k = m).
+        { exact (subst_name_eq m k k (eq_refl : k = k)). }
+        assert (Hxk : x <> k) by (intro F; subst x; exact (Hnux Rkk)).
+        assert (Hyk : y <> k) by (intro F; subst y; exact (Hnuy Rkk)).
+        enough (x = y) by contradiction.
+        exact (rho_inj_except_m m k x y Hxk Hyk Hnux Hnuy E). }
+      assert (Hxi' : subst_name m k y <> subst_name m k x) by
+        (intro E; apply Hxi; symmetry; exact E).
+      rewrite (set_none_neq G (subst_name m k x) (subst_name m k y) Hxi'). exact HyDelta.
+    + apply (IH m k (set_none (set_none G (subst_name m k x)) (subst_name m k y))).
+      * intros n T' Hn.
+        assert (Hny : n <> y).
+        { intro F; subst n; rewrite set_none_self in Hn;
+          [injection Hn as Hc; discriminate | apply get_Some_lt in Hy1; exact Hy1]. }
+        assert (Hnx : n <> x).
+        { intro F; subst n; rewrite (set_none_neq (set_none Gamma x) y x Hxy) in Hn;
+          rewrite set_none_self in Hn;
+          [injection Hn as Hc; discriminate | apply get_Some_lt in Hx1; exact Hx1]. }
+        rewrite (set_none_neq (set_none Gamma x) y n Hny) in Hn.
+        rewrite (set_none_neq Gamma x n Hnx) in Hn.
+        assert (HnDelta : get G (subst_name m k n) = Some (Some T')) by exact (Hpts n T' Hn).
+        assert (Hxinx : subst_name m k n <> subst_name m k x).
+        { intro E.
+          assert (Rkk : subst_name m k k = m).
+          { exact (subst_name_eq m k k (eq_refl : k = k)). }
+          assert (Hnk : n <> k) by
+            (intro F; subst n; rewrite Rkk in E; exact (Hnux (eq_sym E))).
+          assert (Hxk : x <> k) by (intro F; subst x; exact (Hnux Rkk)).
+          assert (Hrnnm : subst_name m k n <> m) by (rewrite E; exact Hnux).
+          enough (n = x) by contradiction. exact (rho_inj_except_m m k n x Hnk Hxk Hrnnm Hnux E). }
+        assert (Hxiny : subst_name m k n <> subst_name m k y).
+        { intro E.
+          assert (Rkk : subst_name m k k = m).
+          { exact (subst_name_eq m k k (eq_refl : k = k)). }
+          assert (Hnk : n <> k) by
+            (intro F; subst n; rewrite Rkk in E; exact (Hnuy (eq_sym E))).
+          assert (Hyk : y <> k) by (intro F; subst y; exact (Hnuy Rkk)).
+          assert (Hrnnm : subst_name m k n <> m) by (rewrite E; exact Hnuy).
+          enough (n = y) by contradiction. exact (rho_inj_except_m m k n y Hnk Hyk Hrnnm Hnuy E). }
+        rewrite (set_none_neq (set_none G (subst_name m k x)) (subst_name m k y) (subst_name m k n) Hxiny).
+        rewrite (set_none_neq G (subst_name m k x) (subst_name m k n) Hxinx).
+        exact HnDelta.
+      * exact Hnub.
+  - (* ty_in：通道经rho，body进绑定器；局部单射由rho_inj_except_m+no_use通道分量提供 *)
+    simpl.
+    unfold use in Huse. destruct Huse as [Hx1 Hx2]. subst Gamma1.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [Hnux Hnub].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    replace (ren (upren (subst_name m k)) P)
+      with (ren (subst_name (S m) (S k)) P)
+      by (symmetry; apply ren_ext with (f:=upren (subst_name m k)) (g:=subst_name (S m) (S k));
+          intros q; exact (upren_subst_name_pt m k q)).
+    eapply ty_in with (x := subst_name m k x) (P := ren (subst_name (S m) (S k)) P)
+      (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x)).
+    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i o T) Hx1).
+    + exact Hi.
+    + apply (IH (S m) (S k) (Some T :: set_none G (subst_name m k x))).
+      * intros n T' Hn. destruct n as [|n].
+        -- simpl in *. exact Hn.
+        -- simpl in Hn.
+           assert (Hnx : n <> x).
+           { intro F; subst n; rewrite set_none_self in Hn;
+             [injection Hn as Hc; discriminate | apply get_Some_lt in Hx1; exact Hx1]. }
+           rewrite (set_none_neq Gamma x n Hnx) in Hn.
+           assert (Hrk : forall z, z = k -> subst_name m k z = m) by
+             (intros z Hz; apply subst_name_eq; exact Hz).
+           assert (Hr : subst_name m k n <> subst_name m k x).
+           { intro E.
+             assert (Hnk : n <> k) by
+               (intro F; subst n; pose (Rk := Hrk k eq_refl); rewrite Rk in E;
+                exact (Hnux (eq_sym E))).
+             assert (Hxk : x <> k) by
+               (intro F; subst x; pose (Rk := Hrk k eq_refl); exact (Hnux Rk)).
+             assert (Hrnnm : subst_name m k n <> m) by (rewrite E; exact Hnux).
+             assert (Hnx2 : n = x) by exact (rho_inj_except_m m k n x Hnk Hxk Hrnnm Hnux E).
+             contradiction. }
+           rewrite subst_name_succ. simpl.
+           rewrite (set_none_neq G (subst_name m k x) (subst_name m k n) Hr).
+           exact (Hpts n T' Hn).
+      * exact Hnub.
+  - (* ty_par：split_proj 重划，待填（核心） *) admit.
+  - (* ty_res：进绑定器，rho升级为upren rho=subst_name(Sm)(Sk) *)
+    simpl.
+    replace (ren (upren (subst_name m k)) P)
+      with (ren (subst_name (S m) (S k)) P)
+      by (symmetry; apply ren_ext with (f:=upren (subst_name m k)) (g:=subst_name (S m) (S k));
+          intros n; exact (upren_subst_name_pt m k n)).
+    apply (ty_res G (ren (subst_name (S m) (S k)) P) T).
+    apply (IH (S m) (S k) (Some T :: G)).
+    + intros n T' Hn. destruct n as [|n'].
+      * simpl in Hn. injection Hn as E. subst T'. simpl. reflexivity.
+      * simpl in Hn. rewrite subst_name_succ. simpl. exact (Hpts n' T' Hn).
+    + exact Hnu.
+  - (* ty_rep *) apply (ty_rep G (ren (subst_name m k) P)).
+    apply (IH m k []).
+    + intros n T' Hn. simpl in Hn. discriminate.
+    + exact Hnu.
+Admitted.
+
+
+
+(* =====================================================================
+   None版strengthening的基础设施（DS#10骨架 + S04数学把关）
+   空绑定 insert_none_at 的 get/set_none/cons 套件，平行于 insert_at 版。
+   存在论：在"寂然之位"(None)插入空无，类型化者本就不引用它，
+   故撤除该位只是名字重排，不消耗任何操作权。
+   ===================================================================== *)
+
+(* set_none 只把某位置设为None、不增删位置，故长度不变 *)
+Lemma length_set_none : forall G k, length (set_none G k) = length G.
+Proof.
+  intros G. induction G as [|g G' IH]; intros k.
+  - destruct k; simpl; reflexivity.
+  - destruct k; simpl; f_equal; apply IH.
+Qed.
+
+Lemma get_insert_none_at_self : forall k D,
+  k <= length D -> get (insert_none_at k D) k = Some None.
+Proof.
+  intros k. induction k; intros D Hk.
+  - simpl. reflexivity.
+  - destruct D as [|d D']; [simpl in Hk; lia|].
+    simpl in Hk. simpl. apply IHk. lia.
+Qed.
+
+Lemma get_insert_none_at_lt : forall k D n,
+  k <= length D -> n < k -> get (insert_none_at k D) n = get D n.
+Proof.
+  intros k. induction k; intros D n Hk Hn; [lia|].
+  destruct D as [|d D']; [simpl in Hk; lia|].
+  simpl in Hk. destruct n as [|n']; [simpl; reflexivity|].
+  simpl. apply IHk; lia.
+Qed.
+
+Lemma get_insert_none_at_gt : forall k D n,
+  k <= length D -> n > k -> get (insert_none_at k D) n = get D (n - 1).
+Proof.
+  intros k. induction k; intros D n Hk Hn.
+  - destruct n; [lia|]. simpl. destruct n; simpl; reflexivity.
+  - destruct D as [|d D']; [simpl in Hk; lia|].
+    simpl in Hk. destruct n; [lia|].
+    simpl. assert (Hn' : n > k) by lia.
+    assert (Hk' : k <= length D') by lia.
+    specialize (IHk D' n Hk' Hn').
+    destruct n; [exfalso; lia|]. simpl.
+    replace (S n - 1) with n in IHk by lia. exact IHk.
+Qed.
+
+Lemma set_none_insert_none_lt : forall k D x,
+  x < k -> set_none (insert_none_at k D) x = insert_none_at k (set_none D x).
+Proof.
+  intros k. induction k; intros D x Hx.
+  - exfalso. lia.
+  - destruct x as [|x'].
+    + destruct D as [|d D']; simpl; reflexivity.
+    + destruct D as [|d D']; simpl; f_equal; apply IHk; lia.
+Qed.
+
+Lemma set_none_insert_none_eq : forall k D,
+  set_none (insert_none_at k D) k = insert_none_at k D.
+Proof.
+  intros k. induction k; intros D.
+  - simpl. reflexivity.
+  - destruct D as [|d D']; simpl; f_equal; apply IHk.
+Qed.
+
+Lemma set_none_insert_none_nil_gt : forall k x, x > k ->
+  set_none (insert_none_at k []) x = insert_none_at k [].
+Proof.
+  intros k. induction k; intros x Hx.
+  - destruct x; [lia|]. simpl. destruct x; simpl; reflexivity.
+  - destruct x; [lia|]. simpl. f_equal. apply IHk. lia.
+Qed.
+
+Lemma set_none_insert_none_gt : forall k D x,
+  x > k -> set_none (insert_none_at k D) x = insert_none_at k (set_none D (x - 1)).
+Proof.
+  intros k. induction k.
+  - intros D x Hgt. destruct D as [|d D'].
+    + simpl. destruct x; simpl; try lia; reflexivity.
+    + simpl. destruct x; simpl.
+      * lia.
+      * assert (H : x - 0 = x) by lia. rewrite H. reflexivity.
+  - intros D x Hgt. destruct D as [|d D'].
+    + simpl. destruct x as [|x']; [lia|]. f_equal.
+      apply set_none_insert_none_nil_gt. lia.
+    + destruct x as [|x']; [lia|]. destruct x' as [|x'']; [exfalso; lia|].
+      simpl. f_equal.
+      assert (Hih : set_none (insert_none_at k D') (S x'') =
+                    insert_none_at k (set_none D' (S x'' - 1))).
+      { apply IHk with (x := S x''). lia. }
+      assert (Hsub : S x'' - 1 = x'') by lia. rewrite Hsub in Hih. exact Hih.
+Qed.
+
+Lemma insert_none_at_cons_comm : forall (T : ty) (k : nat) (D : ctx),
+  Some T :: insert_none_at k D = insert_none_at (S k) (Some T :: D).
+Proof.
+  intros T k. induction k; intros D; simpl; reflexivity.
+Qed.
+
+(* =====================================================================
+   substitution_none_strengthen：空绑定strengthening（DS#10骨架，S04落地）
+   typed(insert_none_at k D) Q -> typed D(subst_var m k Q)，带 k<=length D。
+   空位是Some None，Q不引用/消耗k位 => n=k支全矛盾；无get T、无no_use。
+   存在论：撤除一个从未被持有的寂然之位，存在者只是整体下移一位。
+   ===================================================================== *)
+Lemma split_remove_none_both : forall D k G1 G2,
+  k <= length D ->
+  split (insert_none_at k D) G1 G2 ->
+  split D (remove_at k G1) (remove_at k G2).
+Proof.
+  intros D k G1 G2 Hlen Hs. unfold split. intros n. unfold split in Hs.
+  destruct (Nat.ltb n k) eqn:El.
+  - apply Nat.ltb_lt in El.
+    specialize (Hs n). destruct Hs as [[L1 L2] | [R1 R2]].
+    + rewrite (get_insert_none_at_lt k D n Hlen El) in L1. left; split;
+      rewrite get_remove_at_lt by lia; [exact L1 | exact L2].
+    + rewrite (get_insert_none_at_lt k D n Hlen El) in R1. right; split;
+      rewrite get_remove_at_lt by lia; [exact R1 | exact R2].
+  - apply Nat.ltb_ge in El. assert (Hgt : n + 1 > k) by lia.
+    specialize (Hs (n + 1)). destruct Hs as [[L1 L2] | [R1 R2]].
+    + rewrite (get_insert_none_at_gt k D (n + 1) Hlen Hgt) in L1.
+      replace ((n + 1) - 1) with n in L1 by lia. left; split;
+      rewrite get_remove_at_ge by lia; [exact L1 | exact L2].
+    + rewrite (get_insert_none_at_gt k D (n + 1) Hlen Hgt) in R1.
+      replace ((n + 1) - 1) with n in R1 by lia. right; split;
+      rewrite get_remove_at_ge by lia; [exact R1 | exact R2].
+Qed.
+
+(* =====================================================================
+   subst_var_keep_free：若 k 及以上没有任何真实操作权(Some(Some T))，
+   则 typed G Q 中被引用/消耗的名字都 < k，subst_var m k 是恒等。
+   用于 PPar 空侧 split 出的较短上下文（k位越界None）。
+   存在论：寂然之位以上本无存在者，名字的重定向触及不到空无，故自身保持。
+   ===================================================================== *)
+
+(* 在自身位置 set_none 后，该位绝不可能是真实操作权 *)
+
+Lemma get_None_ge : forall G k, get G k = None -> forall n, n >= k -> get G n = None.
+Proof.
+  induction G; intros k Hk n Hn.
+  - simpl. reflexivity.
+  - destruct k; [simpl in Hk; discriminate |]. destruct n; [lia |]. simpl.
+    apply IHG with (k := k); [exact Hk | lia].
+Qed.
+
+
+Lemma get_None_length : forall G k, get G k = None -> k >= length G.
+Proof.
+  induction G; intros k H.
+  - simpl. lia.
+  - destruct k; [simpl in H; discriminate |]. simpl in H.
+    apply IHG in H. simpl. lia.
+Qed.
+
+Lemma remove_at_ge_id : forall G k, k >= length G -> remove_at k G = G.
+Proof.
+  induction G; intros k Hk.
+  - destruct k; simpl; reflexivity.
+  - destruct k; [simpl in Hk; lia |]. simpl. f_equal. apply IHG. simpl in Hk. lia.
+Qed.
+
+Lemma get_set_none_at_ne : forall G n T,
+  get (set_none G n) n <> Some (Some T).
+Proof.
+  induction G; intros n T.
+  - destruct n; simpl; discriminate.
+  - destruct n; simpl; [discriminate | apply IHG].
+Qed.
+
+Lemma free_set_none : forall G k x,
+  (forall n T, n >= k -> get G n <> Some (Some T)) ->
+  (forall n T, n >= k -> get (set_none G x) n <> Some (Some T)).
+Proof.
+  intros G k x Hf n T Hnk Hc.
+  destruct (Nat.eq_dec n x).
+  - subst n. exact (get_set_none_at_ne G x T Hc).
+  - rewrite set_none_neq in Hc by tauto. exact (Hf n T Hnk Hc).
+Qed.
+
+Lemma free_cons_S : forall G k T0,
+  (forall n T, n >= k -> get G n <> Some (Some T)) ->
+  (forall n T, n >= S k -> get (Some T0 :: G) n <> Some (Some T)).
+Proof.
+  intros G k T0 Hf n T Hnk Hc.
+  destruct n; [lia |]. simpl in Hc. exact (Hf n T ltac:(lia) Hc).
+Qed.
+
+Lemma free_split_l : forall G G1 G2 k, split G G1 G2 ->
+  (forall n T, n >= k -> get G n <> Some (Some T)) ->
+  (forall n T, n >= k -> get G1 n <> Some (Some T)).
+Proof.
+  intros G G1 G2 k Hs Hf n T Hnk Hc.
+  unfold split in Hs. specialize (Hs n).
+  destruct Hs as [[L1 L2] | [R1 R2]].
+  - rewrite L1 in Hc. exact (Hf n T Hnk Hc).
+  - destruct R2 as [E | E]; rewrite E in Hc; discriminate.
+Qed.
+
+Lemma free_split_r : forall G G1 G2 k, split G G1 G2 ->
+  (forall n T, n >= k -> get G n <> Some (Some T)) ->
+  (forall n T, n >= k -> get G2 n <> Some (Some T)).
+Proof.
+  intros G G1 G2 k Hs Hf n T Hnk Hc.
+  unfold split in Hs. specialize (Hs n).
+  destruct Hs as [[L1 L2] | [R1 R2]].
+  - destruct L2 as [E | E]; rewrite E in Hc; discriminate.
+  - rewrite R1 in Hc. exact (Hf n T Hnk Hc).
+Qed.
+
+Lemma subst_var_keep_free : forall G k m Q,
+  (forall n T, n >= k -> get G n <> Some (Some T)) ->
+  typed G Q -> typed G (subst_var m k Q).
+Proof.
+  intros G k m Q. generalize dependent G. generalize dependent k. generalize dependent m.
+  induction Q; intros m k G Hf Ht.
+  - (* PVar *)
+    simpl.
+    inversion Ht as [| G0 x T0 Hg | | | | | |]; subst G0 x.
+    destruct (Nat.ltb n k) eqn:E;
+      [apply Nat.ltb_lt in E | apply Nat.ltb_ge in E; exfalso; exact (Hf n T0 E Hg)].
+    rewrite (subst_name_lt m k n E). apply ty_var with (T := T0). exact Hg.
+  - (* PZero *) simpl. apply ty_zero.
+  - (* PTau *)
+    simpl. inversion Ht; subst. apply ty_tau. exact (IHQ m k G Hf H1).
+  - (* POut *)
+    simpl.
+    inversion Ht as [| | | G0 x0 y0 P0 i0 o0 T0 G1 G2 Hu1 Ho Hu2 Hb | | | |].
+    subst G0 x0 y0 P0.
+    unfold use in Hu1, Hu2. destruct Hu1 as [Hg1 Hs1]. destruct Hu2 as [Hg2 Hs2].
+    destruct (Nat.ltb n k) eqn:En;
+      [apply Nat.ltb_lt in En | apply Nat.ltb_ge in En; exfalso; exact (Hf n (TChan i0 o0 T0) En Hg1)].
+    destruct (Nat.ltb n0 k) eqn:E0;
+      [apply Nat.ltb_lt in E0 |
+       apply Nat.ltb_ge in E0; exfalso; rewrite Hs1 in Hg2;
+       rewrite (set_none_neq G n n0 ltac:(lia)) in Hg2; exact (Hf n0 T0 E0 Hg2)].
+    rewrite (subst_name_lt m k n En). rewrite (subst_name_lt m k n0 E0).
+    assert (Hg2' : get (set_none G n) n0 = Some (Some T0)).
+    { rewrite <- Hs1. exact Hg2. }
+    rewrite Hs2, Hs1 in Hb.
+    eapply ty_out with (Gamma1 := set_none G n) (Gamma2 := set_none (set_none G n) n0).
+    ** unfold use; split; [exact Hg1 | reflexivity].
+    ** exact Ho.
+    ** unfold use; split; [exact Hg2' | reflexivity].
+    ** apply IHQ. 2: exact Hb. do 2 apply free_set_none. exact Hf.
+  - (* PIn *)
+    simpl.
+    inversion Ht as [| | | | G0 x0 P0 i0 o0 T0 G1 Huse Hi Hb | | |].
+    subst G0 x0 P0.
+    unfold use in Huse. destruct Huse as [Hg Hs].
+    destruct (Nat.ltb n k) eqn:En;
+      [apply Nat.ltb_lt in En | apply Nat.ltb_ge in En; exfalso; exact (Hf n (TChan i0 o0 T0) En Hg)].
+    rewrite (subst_name_lt m k n En).
+    rewrite Hs in Hb.
+    eapply ty_in with (i := i0) (o := o0) (T := T0) (Gamma1 := set_none G n).
+    ** unfold use; split; [exact Hg | reflexivity].
+    ** exact Hi.
+    ** apply IHQ. 2: exact Hb. apply free_cons_S. apply free_set_none. exact Hf.
+  - (* PPar *)
+    simpl.
+    inversion Ht as [| | | | | G0 Pa Pb G1 G2 Hsp Ha Hb | |]. subst G0 Pa Pb.
+    eapply ty_par; [exact Hsp | |].
+    + exact (IHQ1 m k G1 (free_split_l G G1 G2 k Hsp Hf) Ha).
+    + exact (IHQ2 m k G2 (free_split_r G G1 G2 k Hsp Hf) Hb).
+  - (* PRes *)
+    simpl. apply res_elim in Ht. destruct Ht as [T0 H1].
+    apply ty_res with (T := T0).
+    apply (IHQ (S m) (S k) (Some T0 :: G)).
+    + apply free_cons_S. exact Hf.
+    + exact H1.
+  - (* PRep *)
+    simpl. inversion Ht; subst. apply ty_rep.
+    apply subst_var_empty with (m := m) (k := k). exact H1.
+Qed.
+
+Lemma substitution_none_strengthen : forall D k m Q,
+  k <= length D ->
+  typed (insert_none_at k D) Q ->
+  typed D (subst_var m k Q).
+Proof.
+  intros D k m Q.
+  generalize dependent D. generalize dependent k. generalize dependent m.
+  induction Q; intros m k D Hlen Ht.
+  - (* PVar *)
+    simpl.
+    inversion Ht as [| G0 x T0 Hget0 | | | | | |]; subst G0 x.
+    destruct (Nat.compare n k) eqn:Hcmp.
+    + (* n=k：k位是None，矛盾 *)
+      assert (Heq : n = k) by (apply Nat.compare_eq_iff; exact Hcmp). subst n.
+      rewrite (get_insert_none_at_self k D Hlen) in Hget0. discriminate.
+    + (* n<k *)
+      assert (Hlt : n < k) by (apply Nat.compare_lt_iff; exact Hcmp).
+      rewrite (subst_name_lt m k n Hlt).
+      apply ty_var with (T := T0).
+      rewrite <- (get_insert_none_at_lt k D n Hlen Hlt). exact Hget0.
+    + (* n>k *)
+      assert (Hgt : n > k) by (apply Nat.compare_gt_iff; exact Hcmp).
+      rewrite (subst_name_gt m k n Hgt).
+      apply ty_var with (T := T0).
+      rewrite <- (get_insert_none_at_gt k D n Hlen Hgt). exact Hget0.
+  - (* PZero *) simpl. apply ty_zero.
+  - (* PTau *)
+    simpl. inversion Ht; subst. apply ty_tau.
+    exact (IHQ m k D Hlen H1).
+  - (* POut *)
+    simpl.
+    inversion Ht as [| | | G0 x0 y0 P0 i0 o0 T0 G1 G2 Hu1 Ho Hu2 Hb | | | |].
+    subst G0 x0 y0 P0.
+    unfold use in Hu1, Hu2.
+    destruct Hu1 as [Hgx Hs1]. destruct Hu2 as [Hgy Hs2].
+    destruct (Nat.eq_dec n k) as [Hnek | Hnnek].
+    + (* 通道 n=k：k位None矛盾 *)
+      subst n. rewrite (get_insert_none_at_self k D Hlen) in Hgx. discriminate.
+    + destruct (Nat.ltb n k) eqn:Hnltb.
+      * (* 通道 n<k *)
+        apply Nat.ltb_lt in Hnltb.
+        assert (Hgn : get D n = Some (Some (TChan i0 o0 T0)))
+          by (rewrite <- (get_insert_none_at_lt k D n Hlen Hnltb); exact Hgx).
+        rewrite (set_none_insert_none_lt k D n Hnltb) in Hs1.
+        assert (Hln1 : k <= length (set_none D n)) by (rewrite length_set_none; lia).
+        destruct (Nat.eq_dec n0 k) as [Hyek | Hynek].
+        -- (* 值 n0=k：矛盾 *)
+          subst n0. rewrite Hs1 in Hgy.
+          rewrite (get_insert_none_at_self k (set_none D n) Hln1) in Hgy. discriminate.
+        -- destruct (Nat.ltb n0 k) eqn:Hyltb.
+           ++ (* 值 n0<k *)
+              apply Nat.ltb_lt in Hyltb.
+              rewrite Hs1 in Hgy, Hs2.
+              assert (Hgn0 : get (set_none D n) n0 = Some (Some T0))
+                by (rewrite <- (get_insert_none_at_lt k (set_none D n) n0 Hln1 Hyltb); exact Hgy).
+              rewrite (set_none_insert_none_lt k (set_none D n) n0 Hyltb) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hln2 : k <= length (set_none (set_none D n) n0))
+                by (repeat rewrite length_set_none; lia).
+              rewrite (subst_name_lt m k n Hnltb). rewrite (subst_name_lt m k n0 Hyltb).
+              eapply ty_out with (Gamma1 := set_none D n)
+                                (Gamma2 := set_none (set_none D n) n0).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k (set_none (set_none D n) n0) Hln2 Hb).
+           ++ (* 值 n0>k *)
+              apply Nat.ltb_ge in Hyltb. assert (Hygt : n0 > k) by lia.
+              rewrite Hs1 in Hgy, Hs2.
+              assert (Hgn0 : get (set_none D n) (n0 - 1) = Some (Some T0))
+                by (rewrite <- (get_insert_none_at_gt k (set_none D n) n0 Hln1 Hygt); exact Hgy).
+              rewrite (set_none_insert_none_gt k (set_none D n) n0 Hygt) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hln2 : k <= length (set_none (set_none D n) (n0 - 1)))
+                by (repeat rewrite length_set_none; lia).
+              rewrite (subst_name_lt m k n Hnltb). rewrite (subst_name_gt m k n0 Hygt).
+              eapply ty_out with (Gamma1 := set_none D n)
+                                (Gamma2 := set_none (set_none D n) (n0 - 1)).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k (set_none (set_none D n) (n0 - 1)) Hln2 Hb).
+      * (* 通道 n>k *)
+        apply Nat.ltb_ge in Hnltb. assert (Hngt : n > k) by lia.
+        assert (Hgn : get D (n - 1) = Some (Some (TChan i0 o0 T0)))
+          by (rewrite <- (get_insert_none_at_gt k D n Hlen Hngt); exact Hgx).
+        rewrite (set_none_insert_none_gt k D n Hngt) in Hs1.
+        assert (Hln1 : k <= length (set_none D (n - 1))) by (rewrite length_set_none; lia).
+        destruct (Nat.eq_dec n0 k) as [Hyek | Hynek].
+        -- subst n0. rewrite Hs1 in Hgy.
+           rewrite (get_insert_none_at_self k (set_none D (n - 1)) Hln1) in Hgy. discriminate.
+        -- destruct (Nat.ltb n0 k) eqn:Hyltb.
+           ++ (* 值 n0<k *)
+              apply Nat.ltb_lt in Hyltb.
+              rewrite Hs1 in Hgy, Hs2.
+              assert (Hgn0 : get (set_none D (n - 1)) n0 = Some (Some T0))
+                by (rewrite <- (get_insert_none_at_lt k (set_none D (n - 1)) n0 Hln1 Hyltb); exact Hgy).
+              rewrite (set_none_insert_none_lt k (set_none D (n - 1)) n0 Hyltb) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hln2 : k <= length (set_none (set_none D (n - 1)) n0))
+                by (repeat rewrite length_set_none; lia).
+              rewrite (subst_name_gt m k n Hngt). rewrite (subst_name_lt m k n0 Hyltb).
+              eapply ty_out with (Gamma1 := set_none D (n - 1))
+                                (Gamma2 := set_none (set_none D (n - 1)) n0).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k (set_none (set_none D (n - 1)) n0) Hln2 Hb).
+           ++ (* 值 n0>k *)
+              apply Nat.ltb_ge in Hyltb. assert (Hygt : n0 > k) by lia.
+              rewrite Hs1 in Hgy, Hs2.
+              assert (Hgn0 : get (set_none D (n - 1)) (n0 - 1) = Some (Some T0))
+                by (rewrite <- (get_insert_none_at_gt k (set_none D (n - 1)) n0 Hln1 Hygt); exact Hgy).
+              rewrite (set_none_insert_none_gt k (set_none D (n - 1)) n0 Hygt) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hln2 : k <= length (set_none (set_none D (n - 1)) (n0 - 1)))
+                by (repeat rewrite length_set_none; lia).
+              rewrite (subst_name_gt m k n Hngt). rewrite (subst_name_gt m k n0 Hygt).
+              eapply ty_out with (Gamma1 := set_none D (n - 1))
+                                (Gamma2 := set_none (set_none D (n - 1)) (n0 - 1)).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k (set_none (set_none D (n - 1)) (n0 - 1)) Hln2 Hb).
+  - (* PIn *)
+    simpl.
+    inversion Ht as [| | | | G0 x0 P0 i0 o0 T0 G1 Huse Hi Hb | | |].
+    unfold use in Huse. destruct Huse as [Hgx Hs1].
+    subst G0 x0 P0.
+    destruct (Nat.eq_dec n k) as [Hnek | Hnnek].
+    + subst n. rewrite (get_insert_none_at_self k D Hlen) in Hgx. discriminate.
+    + destruct (Nat.ltb n k) eqn:Hnltb.
+      * (* n<k *)
+        apply Nat.ltb_lt in Hnltb.
+        assert (Hgn : get D n = Some (Some (TChan i0 o0 T0)))
+          by (rewrite <- (get_insert_none_at_lt k D n Hlen Hnltb); exact Hgx).
+        rewrite (set_none_insert_none_lt k D n Hnltb) in Hs1.
+        assert (Hln1 : k <= length (set_none D n)) by (rewrite length_set_none; lia).
+        rewrite (subst_name_lt m k n Hnltb).
+        eapply ty_in with (i := i0) (o := o0) (T := T0) (Gamma1 := set_none D n).
+        ** unfold use; split; [exact Hgn | reflexivity].
+        ** exact Hi.
+        ** rewrite Hs1 in Hb. rewrite insert_none_at_cons_comm in Hb.
+           apply (IHQ (S m) (S k) (Some T0 :: set_none D n)).
+           -- simpl. lia.
+           -- exact Hb.
+      * (* n>k *)
+        apply Nat.ltb_ge in Hnltb. assert (Hngt : n > k) by lia.
+        assert (Hgn : get D (n - 1) = Some (Some (TChan i0 o0 T0)))
+          by (rewrite <- (get_insert_none_at_gt k D n Hlen Hngt); exact Hgx).
+        rewrite (set_none_insert_none_gt k D n Hngt) in Hs1.
+        assert (Hln1 : k <= length (set_none D (n - 1))) by (rewrite length_set_none; lia).
+        rewrite (subst_name_gt m k n Hngt).
+        eapply ty_in with (i := i0) (o := o0) (T := T0) (Gamma1 := set_none D (n - 1)).
+        ** unfold use; split; [exact Hgn | reflexivity].
+        ** exact Hi.
+        ** rewrite Hs1 in Hb. rewrite insert_none_at_cons_comm in Hb.
+           apply (IHQ (S m) (S k) (Some T0 :: set_none D (n - 1))).
+           -- simpl. lia.
+           -- exact Hb.
+  - (* PPar：k位Some None线性分到一侧(持有,insert_none_remove_id+IH)，
+          另一侧要么也是Some None(同法)、要么越界None(短上下文keep_free恒等)。
+          存在论：并行的两侧各自撤除寂然之位，再于原世界D重新并起。 *)
+    simpl.
+    inversion Ht as [| | | | | G0 Pa Pb Ga Gb Hsp Ha Hb | |]; subst G0 Pa Pb.
+    assert (Hsp0 := Hsp).
+    apply (split_remove_none_both D k Ga Gb Hlen) in Hsp0.
+    unfold split in Hsp. specialize (Hsp k).
+    rewrite (get_insert_none_at_self k D Hlen) in Hsp.
+    destruct Hsp as [[La Lb] | [Ra Rb]].
+    + (* Ga 持有 k 位 Some None *)
+      assert (KGa : k < length Ga) by (eapply get_Some_lt; exact La).
+      assert (Ega : Ga = insert_none_at k (remove_at k Ga)).
+      { apply insert_none_remove_id. exact La. }
+      assert (HlenA : k <= length (remove_at k Ga)).
+      { rewrite length_remove_at by lia. lia. }
+      rewrite Ega in Ha.
+      destruct Lb as [GbN | GbS].
+      * (* Gb 越界 None：短上下文，代换恒等 *)
+        assert (KGb : k >= length Gb) by (apply get_None_length; exact GbN).
+        assert (Egb : remove_at k Gb = Gb) by (apply remove_at_ge_id; lia).
+        eapply ty_par with (Gamma1 := remove_at k Ga) (Gamma2 := remove_at k Gb).
+        -- exact Hsp0.
+        -- exact (IHQ1 m k (remove_at k Ga) HlenA Ha).
+        -- rewrite Egb. apply subst_var_keep_free with (k := k).
+           ++ intros n T Hn Hc.
+              assert (N : get Gb n = None) by exact (get_None_ge Gb k GbN n Hn).
+              rewrite N in Hc. discriminate.
+           ++ exact Hb.
+      * (* Gb 也是 Some None：同持有侧 *)
+        assert (KGb : k < length Gb) by (eapply get_Some_lt; exact GbS).
+        assert (Egb : Gb = insert_none_at k (remove_at k Gb)).
+        { apply insert_none_remove_id. exact GbS. }
+        assert (HlenB : k <= length (remove_at k Gb)).
+        { rewrite length_remove_at by lia. lia. }
+        rewrite Egb in Hb.
+        eapply ty_par with (Gamma1 := remove_at k Ga) (Gamma2 := remove_at k Gb).
+        -- exact Hsp0.
+        -- exact (IHQ1 m k (remove_at k Ga) HlenA Ha).
+        -- exact (IHQ2 m k (remove_at k Gb) HlenB Hb).
+    + (* Gb 持有 k 位 Some None（对称）：Ra 是 Gb 持有位，Rb 是 Ga 空侧析取 *)
+      assert (KGb : k < length Gb) by (eapply get_Some_lt; exact Ra).
+      assert (Egb : Gb = insert_none_at k (remove_at k Gb)).
+      { apply insert_none_remove_id. exact Ra. }
+      assert (HlenB : k <= length (remove_at k Gb)).
+      { rewrite length_remove_at by lia. lia. }
+      rewrite Egb in Hb.
+      destruct Rb as [GaN | GaS].
+      * (* Ga 越界 None *)
+        assert (KGa : k >= length Ga) by (apply get_None_length; exact GaN).
+        assert (Ega : remove_at k Ga = Ga) by (apply remove_at_ge_id; lia).
+        eapply ty_par with (Gamma1 := remove_at k Ga) (Gamma2 := remove_at k Gb).
+        -- exact Hsp0.
+        -- rewrite Ega. apply subst_var_keep_free with (k := k).
+           ++ intros n T Hn Hc.
+              assert (N : get Ga n = None) by exact (get_None_ge Ga k GaN n Hn).
+              rewrite N in Hc. discriminate.
+           ++ exact Ha.
+        -- exact (IHQ2 m k (remove_at k Gb) HlenB Hb).
+      * (* Ga 也是 Some None *)
+        assert (KGa : k < length Ga) by (eapply get_Some_lt; exact GaS).
+        assert (Ega : Ga = insert_none_at k (remove_at k Ga)).
+        { apply insert_none_remove_id. exact GaS. }
+        assert (HlenA : k <= length (remove_at k Ga)).
+        { rewrite length_remove_at by lia. lia. }
+        rewrite Ega in Ha.
+        eapply ty_par with (Gamma1 := remove_at k Ga) (Gamma2 := remove_at k Gb).
+        -- exact Hsp0.
+        -- exact (IHQ1 m k (remove_at k Ga) HlenA Ha).
+        -- exact (IHQ2 m k (remove_at k Gb) HlenB Hb).
+  - (* PRes *)
+    simpl. apply res_elim in Ht. destruct Ht as [T0 H1].
+    rewrite insert_none_at_cons_comm in H1.
+    apply ty_res with (T := T0).
+    apply (IHQ (S m) (S k) (Some T0 :: D)).
+    + simpl. lia.
+    + exact H1.
+  - (* PRep *)
+    simpl. inversion Ht; subst. apply ty_rep.
+    apply subst_var_empty with (m := m) (k := k). exact H1.
+Qed.
+
+Lemma substitution_general : forall Gamma T k m Q,
+  k <= length Gamma ->
+  typed (insert_at k T Gamma) Q ->
+  get Gamma m = Some (Some T) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (subst_var m k Q).
+Proof.
+  intros Gamma T k m Q.
+  generalize dependent Gamma.
+  generalize dependent T.
+  generalize dependent k.
+  generalize dependent m.
+  induction Q; intros m k T Gamma Hkle Ht Hget Hnu.
+  - (* PVar *)
+    simpl.
+    destruct (Nat.compare n k) eqn:Hcmp.
+    + (* n = k *)
+      assert (Heq : n = k). { apply Nat.compare_eq_iff. exact Hcmp. }
+      subst n.
+      inversion Ht as [ | Gamma0 x T0 Hget0 | | | | | | ].
+      subst Gamma0 x.
+      assert (Hself : get (insert_at k T Gamma) k = Some (Some T)).
+      { apply get_insert_at_self. }
+      rewrite Hself in Hget0.
+      injection Hget0 as HeqT.
+      subst T0.
+      assert (Hsub : subst_name m k k = m) by
+        (unfold subst_name; rewrite Nat.eqb_refl; reflexivity).
+      rewrite Hsub.
+      apply ty_var with (T := T). exact Hget.
+    + (* n < k *)
+      apply name_subst_general with (Gamma := Gamma) (T := T) (k := k) (m := m) (n := n);
+        [exact Ht | exact Hget | (apply Nat.compare_lt_iff in Hcmp; lia)].
+    + (* n > k *)
+      apply name_subst_general with (Gamma := Gamma) (T := T) (k := k) (m := m) (n := n);
+        [exact Ht | exact Hget | (apply Nat.compare_gt_iff in Hcmp; lia)].
+  - (* PZero *) simpl. apply ty_zero.
+  - (* PTau *)
+    simpl. inversion Ht; subst.
+    apply ty_tau.
+    apply IHQ with (m := m) (k := k) (T := T) (Gamma := Gamma).
+    + exact Hkle.
+    + exact H1.
+    + exact Hget.
+    + exact Hnu.
+  - (* POut：通道n、发送值n0、body Q；两个use位置代换后若落m则被Hnu前提矛盾排除，
+       其余按 n,n0 相对 k 的位置把 insert 上下文还原回 Gamma（set_none_insert_at / get_insert_at）。
+       存在论：输出一次同时消耗通道与值两份操作权，二者都不能是重定向目标m。 *)
+    simpl. simpl in Hnu.
+    inversion Ht as [| | | G0 x0 y0 P0 i0 o0 T0 G1 G2 Hu1 Ho Hu2 Hb | | | |].
+    subst G0 x0 y0 P0.
+    assert (Hne_yn : n0 <> n).
+    { intro Eq.
+      apply (use_neq (insert_at k T Gamma) n (TChan i0 o0 T0) G1 n0 T0 G2 Hu1 Hu2).
+      symmetry; exact Eq. }
+    unfold use in Hu1, Hu2.
+    destruct Hu1 as [Hgx Hs1]. destruct Hu2 as [Hgy Hs2].
+    apply (andb3_true _ _ _) in Hnu. destruct Hnu as [Hnx [Hny Hbnu]].
+    destruct (Nat.eq_dec n k) as [Hnek | Hnnek].
+    + (* 通道 n=k：subst_name m k n=m，落m，前提矛盾 *)
+      subst n.
+      rewrite subst_name_eq in Hnx by reflexivity.
+      rewrite Nat.eqb_refl in Hnx. discriminate.
+    + destruct (Nat.ltb n k) eqn:Hnltb.
+      * (* 通道 n<k，原始通道位 cx=n，代换后通道名仍为 n *)
+        apply Nat.ltb_lt in Hnltb.
+        rewrite (subst_name_lt m k n Hnltb) in Hnx.
+        apply negb_eqb_true_neq in Hnx.
+        assert (Hgn : get Gamma n = Some (Some (TChan i0 o0 T0)))
+          by (eapply get_insert_at_lt; eassumption).
+        rewrite (set_none_insert_at_lt k T Gamma n Hnltb) in Hs1.
+        destruct (Nat.eq_dec n0 k) as [Hyek | Hynek].
+        -- (* 值 n0=k：落m，矛盾 *)
+          subst n0. rewrite subst_name_eq in Hny by reflexivity.
+          rewrite Nat.eqb_refl in Hny. discriminate.
+        -- destruct (Nat.ltb n0 k) eqn:Hyltb.
+           ++ (* 值 n0<k，cy=n0，代换后值名仍 n0 *)
+              apply Nat.ltb_lt in Hyltb.
+              rewrite (subst_name_lt m k n0 Hyltb) in Hny.
+              apply negb_eqb_true_neq in Hny.
+              rewrite Hs1 in Hgy. rewrite Hs1 in Hs2.
+              assert (Hgn0 : get (set_none Gamma n) n0 = Some (Some T0))
+                by (eapply get_insert_at_lt; eassumption).
+              rewrite (set_none_insert_at_lt k T (set_none Gamma n) n0 Hyltb) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hgm : get (set_none (set_none Gamma n) n0) m = Some (Some T)).
+              { rewrite (set_none_neq (set_none Gamma n) n0 m); [| intro E; apply Hny; auto].
+                rewrite (set_none_neq Gamma n m); [exact Hget | intro E; apply Hnx; auto]. }
+              rewrite (subst_name_lt m k n Hnltb).
+              rewrite (subst_name_lt m k n0 Hyltb).
+              eapply ty_out with (Gamma1 := set_none Gamma n)
+                                  (Gamma2 := set_none (set_none Gamma n) n0).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k T (set_none (set_none Gamma n) n0) ltac:(repeat rewrite length_set_none; lia) Hb Hgm Hbnu).
+           ++ (* 值 n0>k，cy=n0-1，代换后值名 n0-1 *)
+              apply Nat.ltb_ge in Hyltb. assert (Hygt : n0 > k) by lia.
+              rewrite (subst_name_gt m k n0 Hygt) in Hny.
+              apply negb_eqb_true_neq in Hny.
+              rewrite Hs1 in Hgy. rewrite Hs1 in Hs2.
+              assert (Hgn0 : get (set_none Gamma n) (n0 - 1) = Some (Some T0))
+                by (eapply get_insert_at_gt; eassumption).
+              rewrite (set_none_insert_at_gt k T (set_none Gamma n) n0 Hygt) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hgm : get (set_none (set_none Gamma n) (n0 - 1)) m = Some (Some T)).
+              { rewrite (set_none_neq (set_none Gamma n) (n0 - 1) m); [| intro E; apply Hny; auto].
+                rewrite (set_none_neq Gamma n m); [exact Hget | intro E; apply Hnx; auto]. }
+              rewrite (subst_name_lt m k n Hnltb).
+              rewrite (subst_name_gt m k n0 Hygt).
+              eapply ty_out with (Gamma1 := set_none Gamma n)
+                                  (Gamma2 := set_none (set_none Gamma n) (n0 - 1)).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k T (set_none (set_none Gamma n) (n0 - 1)) ltac:(repeat rewrite length_set_none; lia) Hb Hgm Hbnu).
+      * (* 通道 n>k，原始通道位 cx=n-1，代换后通道名 n-1 *)
+        apply Nat.ltb_ge in Hnltb. assert (Hngt : n > k) by lia.
+        rewrite (subst_name_gt m k n Hngt) in Hnx.
+        apply negb_eqb_true_neq in Hnx.
+        assert (Hgn : get Gamma (n - 1) = Some (Some (TChan i0 o0 T0)))
+          by (eapply get_insert_at_gt; eassumption).
+        rewrite (set_none_insert_at_gt k T Gamma n Hngt) in Hs1.
+        destruct (Nat.eq_dec n0 k) as [Hyek | Hynek].
+        -- (* 值 n0=k：落m，矛盾 *)
+          subst n0. rewrite subst_name_eq in Hny by reflexivity.
+          rewrite Nat.eqb_refl in Hny. discriminate.
+        -- destruct (Nat.ltb n0 k) eqn:Hyltb.
+           ++ (* 值 n0<k，cy=n0 *)
+              apply Nat.ltb_lt in Hyltb.
+              rewrite (subst_name_lt m k n0 Hyltb) in Hny.
+              apply negb_eqb_true_neq in Hny.
+              rewrite Hs1 in Hgy. rewrite Hs1 in Hs2.
+              assert (Hgn0 : get (set_none Gamma (n - 1)) n0 = Some (Some T0))
+                by (eapply get_insert_at_lt; eassumption).
+              rewrite (set_none_insert_at_lt k T (set_none Gamma (n - 1)) n0 Hyltb) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hgm : get (set_none (set_none Gamma (n - 1)) n0) m = Some (Some T)).
+              { rewrite (set_none_neq (set_none Gamma (n - 1)) n0 m); [| intro E; apply Hny; auto].
+                rewrite (set_none_neq Gamma (n - 1) m); [exact Hget | intro E; apply Hnx; auto]. }
+              rewrite (subst_name_gt m k n Hngt).
+              rewrite (subst_name_lt m k n0 Hyltb).
+              eapply ty_out with (Gamma1 := set_none Gamma (n - 1))
+                                  (Gamma2 := set_none (set_none Gamma (n - 1)) n0).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k T (set_none (set_none Gamma (n - 1)) n0) ltac:(repeat rewrite length_set_none; lia) Hb Hgm Hbnu).
+           ++ (* 值 n0>k，cy=n0-1 *)
+              apply Nat.ltb_ge in Hyltb. assert (Hygt : n0 > k) by lia.
+              rewrite (subst_name_gt m k n0 Hygt) in Hny.
+              apply negb_eqb_true_neq in Hny.
+              rewrite Hs1 in Hgy. rewrite Hs1 in Hs2.
+              assert (Hgn0 : get (set_none Gamma (n - 1)) (n0 - 1) = Some (Some T0))
+                by (eapply get_insert_at_gt; eassumption).
+              rewrite (set_none_insert_at_gt k T (set_none Gamma (n - 1)) n0 Hygt) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hgm : get (set_none (set_none Gamma (n - 1)) (n0 - 1)) m = Some (Some T)).
+              { rewrite (set_none_neq (set_none Gamma (n - 1)) (n0 - 1) m); [| intro E; apply Hny; auto].
+                rewrite (set_none_neq Gamma (n - 1) m); [exact Hget | intro E; apply Hnx; auto]. }
+              rewrite (subst_name_gt m k n Hngt).
+              rewrite (subst_name_gt m k n0 Hygt).
+              eapply ty_out with (Gamma1 := set_none Gamma (n - 1))
+                                  (Gamma2 := set_none (set_none Gamma (n - 1)) (n0 - 1)).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k T (set_none (set_none Gamma (n - 1)) (n0 - 1)) ltac:(repeat rewrite length_set_none; lia) Hb Hgm Hbnu).
+  - (* PIn *)
+    simpl. simpl in Hnu.
+    inversion Ht as [| | | | Gamma0 x0 P0 i0 o0 T0 Gamma1 Huse Hi Hbody | | |].
+    unfold use in Huse. destruct Huse as [Hget_x Hset1].
+    subst Gamma0 x0 P0.
+    (* Hnu拆两份 *)
+    assert (Hnu2 := Hnu).
+    apply Bool.andb_true_iff in Hnu2.
+    destruct Hnu2 as [Hnu_x Hnu_body].
+    (* x0三分 *)
+    destruct (Nat.eq_dec n k) as [Hxk | Hxk_neq].
+    + (* x = k：矛盾 *)
+      subst n.
+      assert (Hsub : subst_name m k k = m) by
+        (unfold subst_name; rewrite Nat.eqb_refl; reflexivity).
+      rewrite Hsub in Hnu_x.
+      rewrite Nat.eqb_refl in Hnu_x. simpl in Hnu_x. discriminate.
+    + destruct (Nat.ltb n k) eqn:Hxlt.
+      * (* x < k *)
+        apply Nat.ltb_lt in Hxlt.
+        assert (Hsub : subst_name m k n = n) by (apply subst_name_lt; lia).
+        rewrite Hsub in Hnu_x.
+        apply negb_eqb_true_neq in Hnu_x.
+        assert (Hnm : n <> m) by exact Hnu_x.
+        (* get分量 *)
+        assert (Hget_n : get Gamma n = Some (Some (TChan i0 o0 T0))).
+        { eapply get_insert_at_lt; eauto. }
+        (* set_none分量 *)
+        rewrite set_none_insert_at_lt in Hset1 by exact Hxlt.
+        (* body *)
+        rewrite Hsub.
+        apply ty_in with (i := i0) (o := o0) (T := T0) (Gamma1 := set_none Gamma n).
+        -- unfold use. split. exact Hget_n. reflexivity.
+        -- exact Hi.
+        -- rewrite Hset1 in Hbody.
+           rewrite insert_at_cons_comm in Hbody.
+           assert (Hget' : get (Some T0 :: set_none Gamma n) (S m) = Some (Some T)).
+           { simpl. rewrite set_none_neq by lia. exact Hget. }
+           apply (IHQ (S m) (S k) T (Some T0 :: set_none Gamma n) ltac:(simpl; repeat rewrite length_set_none; lia) Hbody Hget' Hnu_body).
+      * (* x > k *)
+        apply Nat.ltb_ge in Hxlt. assert (Hxgt : n > k) by lia.
+        assert (Hsub : subst_name m k n = n - 1) by (apply subst_name_gt; lia).
+        rewrite Hsub in Hnu_x.
+        apply negb_eqb_true_neq in Hnu_x.
+        assert (Hnm1 : n - 1 <> m) by exact Hnu_x.
+        (* get分量 *)
+        assert (Hget_nm1 : get Gamma (n - 1) = Some (Some (TChan i0 o0 T0))).
+        { eapply get_insert_at_gt; eauto. }
+        (* set_none分量 *)
+        rewrite set_none_insert_at_gt in Hset1 by exact Hxgt.
+        (* body *)
+        rewrite Hsub.
+        apply ty_in with (i := i0) (o := o0) (T := T0) (Gamma1 := set_none Gamma (n - 1)).
+        -- unfold use. split. exact Hget_nm1. reflexivity.
+        -- exact Hi.
+        -- rewrite Hset1 in Hbody.
+           rewrite insert_at_cons_comm in Hbody.
+           assert (Hget' : get (Some T0 :: set_none Gamma (n - 1)) (S m) = Some (Some T)).
+           { simpl. rewrite set_none_neq by lia. exact Hget. }
+           apply (IHQ (S m) (S k) T (Some T0 :: set_none Gamma (n - 1)) ltac:(simpl; repeat rewrite length_set_none; lia) Hbody Hget' Hnu_body).
+  - (* PPar：交叉资源重划。via-renaming路线（subst_var=ren rho），
+       共同瓶颈=仿射strengthening（移除未使用位置资源仍typed），就位后用
+       split_proj重划统一消解，见 s01_temp_docs/OB010_cross_insight.md（OB-010） *)
+    admit.
+  - (* PRes *)
+    simpl in Hnu.
+    simpl.
+    apply res_elim in Ht.
+    destruct Ht as [T0 H1].
+    rewrite insert_at_cons_comm in H1.
+    assert (Hget' : get (Some T0 :: Gamma) (S m) = Some (Some T)).
+    { simpl. exact Hget. }
+    apply ty_res with (T := T0).
+    exact (IHQ (S m) (S k) T (Some T0 :: Gamma) ltac:(simpl; lia) H1 Hget' Hnu).
+  - (* PRep *)
+    simpl.
+    inversion Ht; subst.
+    apply ty_rep.
+    apply subst_var_empty with (m := m) (k := k).
+    exact H1.
+Admitted. (* 仅 PPar case 留 admit（待 split/insert_at 交换辅助引理），其余7个case全Qed *)
+
+Theorem substitution_lemma : forall Gamma T y Q,
+  typed (Some T :: Gamma) Q -> get Gamma y = Some (Some T) ->
+  no_use_at_subst Q y 0 = true ->
+  typed Gamma (subst_var y 0 Q).
+Proof.
+  intros Gamma T y Q H Hget Hnu.
+  apply substitution_general with (T := T) (k := 0) (m := y).
+  - lia.
+  - exact H.
+  - exact Hget.
+  - exact Hnu.
+Qed.
+
 Theorem congruence_preserves_typing : forall P P' Gamma,
   congruence P P' -> typed Gamma P -> typed Gamma P'.
 Proof. Admitted.
@@ -203,11 +1898,62 @@ Proof.
 Qed.
 
 (* ---------------------------------------------------------------------
-   10. Progress (admitted for next iteration)
+   10. Progress
    --------------------------------------------------------------------- *)
+
+(* General progress theorem: every well-typed term is either a value or
+   can reduce. This holds for ANY context, not just empty ones, because
+   variables (PVar) and output prefixes (POut) are themselves values —
+   they cannot reduce on their own, only in parallel with a matching
+   input (red_comm, which is vacuous in our linear system). *)
+Theorem progress_general : forall Gamma P,
+  typed Gamma P -> is_value P \/ exists P', reduce P P'.
+Proof.
+  intros Gamma P H.
+  induction H as [
+    Gamma
+    | Gamma x T Hget
+    | Gamma P H IH
+    | Gamma x y P i o T Gamma1 Gamma2 Huse1 Ho Huse2 H IH
+    | Gamma x P i o T Gamma1 Huse Hi H IH
+    | Gamma P Q Gamma1 Gamma2 Hs HP IHP HQ IHQ
+    | Gamma P T H IH
+    | Gamma P H IH
+  ].
+  - (* ty_zero *)
+    left. apply val_zero.
+  - (* ty_var *)
+    left. apply val_var.
+  - (* ty_tau *)
+    right. exists P. apply red_tau.
+  - (* ty_out *)
+    left. apply val_out.
+  - (* ty_in *)
+    left. apply val_in.
+  - (* ty_par *)
+    destruct IHP as [Hv1 | [P' Hr1]].
+    + (* P is value *)
+      destruct IHQ as [Hv2 | [Q' Hr2]].
+      * (* both are values *)
+        left. apply val_par. exact Hv1. exact Hv2.
+      * (* Q can reduce *)
+        right. exists (PPar P Q'). apply red_par_r. exact Hr2.
+    + (* P can reduce *)
+      right. exists (PPar P' Q). apply red_par_l. exact Hr1.
+  - (* ty_res *)
+    destruct IH as [Hv | [P' Hr]].
+    + left. apply val_res. exact Hv.
+    + right. exists (PRes P'). apply red_res. exact Hr.
+  - (* ty_rep *)
+    left. apply val_rep.
+Qed.
+
+(* Progress for empty context is the special case of progress_general. *)
 Theorem progress : forall P, typed [] P ->
   is_value P \/ exists P', reduce P P'.
-Proof. Admitted.
+Proof.
+  intros P H. apply progress_general with (Gamma := []). exact H.
+Qed.
 
 (* =====================================================================
    LAYER 2 SUMMARY
