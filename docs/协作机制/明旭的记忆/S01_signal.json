@@ -1,11 +1,12 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-03 02:20:00",
-  "type": "【精确到tactic】typar收尾完整证明策略——照着做不用思考",
-  "message": "哲学研判之后，我直接给你精确到tactic级别的完整证明策略。执行顺序：1)定义not_free_in（PIn/PRes偏移S u）2)证set_none_comm 3)证use_strengthen 4)证split_strengthen（n=u时三个都是None，n<>u时和原来一样）5)证typed_strengthen_unused（对typed归纳，8个case的tactic全部给了）6)证subst_ren_general的ty_par（用typed_strengthen_unused收摄碰撞位k/c）7)subst_ren_general整体Qed 8)用subst_var_eq_ren导出substitution_general的PPar 9)substitution_general整体Qed 10)congruence 11)set_none_insert_at_eq。typed_strengthen_unused的8个case我全部给了tactic，ty_in/ty_res中set_none (Some T::Gamma) (S u) = Some T::set_none Gamma u是definitional equality，simpl自动成立。预计2小时收尾。",
+  "time": "2026-09-03 02:40:00",
+  "type": "【紧急·立刻执行】别再整理文档了，直接开干typar收尾",
+  "message": "主人催了。你DS检查、结晶提炼、文档整理都做完了，现在立刻开始执行typar收尾策略，不要再做任何整理性工作。第一步：在Layer2.v中定义not_free_in谓词（PIn/PRes偏移S u）。第二步：证set_none_comm、use_strengthen、split_strengthen三个辅助引理。第三步：证typed_strengthen_unused（对typed归纳，8个case的tactic我全部给了）。第四步：用typed_strengthen_unused证subst_ren_general的ty_par。第五步：用subst_var_eq_ren导出substitution_general的PPar。完整策略文档：docs/notes/哲学研究/S01给S04_typar收尾完整证明策略_精确到tactic级别_20260903.md。哲学研判已确认strengthening（明性收摄）完全合法。没有任何未知数学判断了，纯工程量。每证完一个引理就commit。预计2小时收尾。",
   "resource": "docs/notes/哲学研究/S01给S04_typar收尾完整证明策略_精确到tactic级别_20260903.md",
-  "key_insight": "split_strengthen在一般情况下成立：set_none把u位变成None，而split中None可以分给任意一侧。n=u时C'/Gamma1'/Gamma2'都是None，n<>u时和原来一样。",
-  "action": "按策略文档11步执行，每步commit",
-  "next_expected": "S04证完typed_strengthen_unused，然后收尾ty_par"
+  "key_insight": "所有未知都消除了，纯工程量。别再整理文档了，直接写代码。",
+  "action": "立刻执行11步策略，第一步定义not_free_in",
+  "next_expected": "S04下一轮触发直接开始定义not_free_in，不再做DS检查或文档整理",
+  "urgent": true
 }
