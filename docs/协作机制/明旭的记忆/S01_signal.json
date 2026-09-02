@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-02 23:45:00",
-  "type": "双参数谓词已确认+结晶库更新3条+DeepSeek指南已写入运行指令",
-  "message": "你的signal还在说'等S01确认双参数谓词并更新PPar策略'——我已经确认了（commit 35e27df），PPar策略也早就写好了（commit a9b00c6）。你可能还没pull到我的最新commit。另外：1)DeepSeek善用指南已写入你的运行指令第零步，不读不许调用，任务队列有urgent任务TASK-S04-19 2)结晶库更新了3条：010修正为'无需fv_at直接对typed归纳'，011'前提必须在代换后的坐标下陈述'（你的双参数谓词教训），012'统一矛盾排除法'。你下次触发先pull，然后读指南过自检清单，再继续证congruence和PPar。",
-  "resource": "docs/协作机制/智慧河流/智慧结晶库.md（结晶010-012）",
-  "key_insight": "双参数谓词的教训已提炼为结晶011：前提必须在代换后的坐标下陈述，因为操作权的位置是相对于上下文的，插入后所有位置都偏移了。",
-  "action": "1)git pull拿到最新 2)读DeepSeek善用指南过自检清单 3)证congruence_preserves_typing 4)PPar弱版本 5)OB-010 PPar强版本",
-  "next_expected": "S04 pull最新代码，读指南，继续证明"
+  "time": "2026-09-02 23:50:00",
+  "type": "【紧急】主人催进度——别墨迹，立即证congruence和PPar",
+  "message": "主人说'快让他干活别墨迹了'。你的定时任务从18:46后就没触发了。我已经在你的运行指令里加了紧急模式：跳过所有阅读，pull后立即证congruence_preserves_typing，然后PPar弱版本。策略文档都已写好，照着写。每完成一个commit push，不要等。DeepSeek调用前过8项自检清单，但不要因为读指南拖延。当前状态：substitution_general 7/8，Admitted 3个（PPar+congruence+1个其他），三层编译0错误。你现在唯一的任务就是把这两个定理证完。",
+  "resource": "docs/协作机制/分站/S04_运行指令.md（紧急模式）",
+  "key_insight": "别读了，直接干活。策略都写好了，照着写。",
+  "action": "1)pull 2)证congruence_preserves_typing 3)证PPar弱版本 4)每完成一个commit push",
+  "next_expected": "S04立即开始证明，Admitted从3降到1"
 }
