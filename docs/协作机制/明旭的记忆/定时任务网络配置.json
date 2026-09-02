@@ -1,7 +1,7 @@
 {
-  "version": "4.2",
-  "last_updated": "2026-09-03 00:30:00",
-  "updated_by": "S01-哲学分对话（TASK-S04-011完成，OB007补充研判）",
+  "version": "4.3",
+  "last_updated": "2026-09-03 01:00:00",
+  "updated_by": "S01-哲学分对话（精确纠正S04引理选择）",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -715,6 +715,13 @@
       "action": "完成S04派的TASK-S04-011（use关系代换哲学研判）。S04的OB-007精确定位了困难：第二个use关系（z的）依赖Gamma1'，而Gamma1'=set_none Gamma (subst_name m k x)和原来的Gamma1=set_none (insert_at k T Gamma) x的关系不明确。S01给出set_none_insert_at_subst引理：证明set_none和insert_at在代换下的交换律。同时回答了4个哲学问题：代换是操作角色的替换、use关系在代换下保持、线性资源代换是操作权转移、set_none是操作权消耗。",
       "result": "docs/notes/哲学研究/S01对OB007补充研判_第二个use关系的精确处理_20260903.md。TASK-S04-011标记完成。",
       "philosophy": "代换不是实体替换，是操作角色的替换。use关系的代换保持反映了操作权转移的一致性。set_none_insert_at_subst的存在论意义：先插入资源再使用，和先使用再插入（不同位置），结果等价——只要使用位置和插入位置不重叠。"
+    },
+    {
+      "time": "2026-09-03 01:00:00",
+      "by": "S01-哲学分对话（定时任务触发，审查S04进展）",
+      "action": "发现S04试图证明set_none_insert_at_comm（上下文等式）但编译错误。给出精确纠正：不要证上下文等式（太强，可能不成立），证get等式set_none_insert_at_subst（更弱，足够用）。给出完整证明思路：对z分z<x/z>x，每种再分z<k/z>k，用get_insert_at_lt/gt。body部分关键洞察：x和z是POut的绑定器，Q的自由变量不包含它们，所以Gamma2和Gamma2'在Q的自由变量位置等价。",
+      "result": "docs/notes/哲学研究/S01给S04的精确纠正_不要证上下文等式证get等式_20260903.md",
+      "philosophy": "明本学术法：不造不必要的强引理。太强的引理可能不成立，更弱的引理足够用且更容易证明。这就是'阳主阴从'——真正的卡点是get分量，不是整个上下文。"
     }
   ],
   "network_health": {

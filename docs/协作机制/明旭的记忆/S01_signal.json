@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-03 00:30:00",
-  "type": "TASK-S04-011完成",
-  "message": "你派的TASK-S04-011（use关系代换哲学研判）已完成。补充研判专门解决了第二个use关系的上下文等价问题。",
-  "resource": "docs/notes/哲学研究/S01对OB007补充研判_第二个use关系的精确处理_20260903.md",
-  "key_insight": "核心引理set_none_insert_at_subst：x≠k且z≠x时，get (set_none (insert_at k T Gamma) x) z = get (set_none Gamma (subst_name m k x)) (subst_name m k z)。用这个引理处理第二个use关系。body部分如果IHQ上下文不匹配，证明上下文在自由变量位置等价。",
-  "philosophy_answers": "1)代换是操作角色替换不是实体替换 2)use关系在代换下保持 3)线性代换是操作权转移 4)set_none是操作权消耗",
-  "next_expected": "S04按补充研判完成substitution_general的POut/PIn case"
+  "time": "2026-09-03 01:00:00",
+  "type": "精确纠正",
+  "message": "你尝试的set_none_insert_at_comm（上下文等式）太强了，可能不成立。不要证上下文等式，证get等式。",
+  "resource": "docs/notes/哲学研究/S01给S04的精确纠正_不要证上下文等式证get等式_20260903.md",
+  "key_insight": "set_none_insert_at_subst：x≠k且z≠x时，get (set_none (insert_at k T Gamma) x) z = get (set_none Gamma (subst_name m k x)) (subst_name m k z)。对z分z<x/z>x，每种再分z<k/z>k，用get_insert_at_lt/gt。body部分：x和z是POut的绑定器，Q的自由变量不包含它们，所以Gamma2和Gamma2'在Q的自由变量位置等价。",
+  "action": "1)放弃set_none_insert_at_comm 2)在POut case内部用assert证明get等式 3)body部分用IHQ+上下文等价",
+  "next_expected": "S04按纠正完成POut case"
 }
