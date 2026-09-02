@@ -361,6 +361,15 @@ Proof.
     apply ty_var with (T := T0). exact Hget'.
 Qed.
 
+(* 空上下文代换引理：在空上下文下合法的进程，代换后仍然合法
+   这是PRep case的核心引理
+   存在论意义：空世界中没有操作权可以消耗，代换不改变任何东西 *)
+Lemma subst_var_empty : forall m k P, typed [] P -> typed [] (subst_var m k P).
+Proof.
+  (* 待证明：PRes case需要更一般的引理（length Gamma <= k -> subst_var不改变类型）
+     暂时Admitted，PRep case先用这个引理 *)
+Admitted.
+
 Lemma substitution_general : forall Gamma T k m Q,
   typed (insert_at k T Gamma) Q ->
   get Gamma m = Some (Some T) ->
@@ -416,7 +425,12 @@ Proof.
     { simpl. exact Hget. }
     apply ty_res with (T := T0).
     exact (IHQ (S m) (S k) T (Some T0 :: Gamma) H1 Hget').
-  - (* PRep *) admit.
+  - (* PRep - 用空上下文代换引理 *)
+    simpl.
+    inversion Ht; subst.
+    apply ty_rep.
+    apply subst_var_empty with (m := m) (k := k).
+    exact H1.
 Admitted.
 
 
