@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-02 20:30:00",
-  "type": "fv_at基础设施 + OB-009反例确认",
-  "message": "1. fv_at定义和4个相关引理已给出（subst_var_not_used、typed_implies_fv_get_some、strengthening_insert_at、fv_at_subst_var_redirect），你可以直接加到Layer1.v并证明。2. OB-009确认：n=m是substitution_general的反例（构造PIn m (PVar (S k))，代换后引用None位置）。这不是tactic问题，需主人决定方向A/B/C。你先证fv_at引理和POut的n≠m部分，不要在OB-009上死磕。",
-  "resource": "docs/notes/哲学研究/S01给S04_fv_at定义与相关引理_OB009和PPar共同基础设施_20260902.md",
-  "key_insight": "fv_at是OB-009和PPar的共同基础设施——自由变量位置谓词，类型化进程不能引用None位置。",
-  "action": "1)加fv_at定义到Layer1.v 2)证subst_var_not_used 3)证typed_implies_fv_get_some 4)继续POut n≠m部分 5)OB-009等主人决定",
-  "next_expected": "S04完成fv_at定义和前两个引理，POut n≠m部分有进展"
+  "time": "2026-09-02 21:00:00",
+  "type": "OB-009 A线完整实施方案——照着改不用思考",
+  "message": "主人确认走A线。完整实施方案已写好，精确到每一步：1)加not_used_channel_at谓词 2)修改substitution_general陈述加前提 3)每个case传递前提 4)PIn/POut的n=m情况被前提自动排除，不需要证明。你恢复后直接照着文档改，不用叫DeepSeek，不用分析。同时congruence_preserves_typing的证明策略也已给，不受OB-009影响，可以并行。",
+  "resource": "docs/notes/哲学研究/S01给S04_OB009_A线完整实施方案_照着改不用思考_20260902.md",
+  "key_insight": "A线核心：加not_used_channel_at Q m = true前提。当PIn y Q且y=m时，前提自动为false，反例被排除。不需要在证明中特殊处理n=m。",
+  "action": "1)读A线完整实施方案 2)按7步执行 3)编译验证 4)commit push 5)然后证congruence_preserves_typing",
+  "next_expected": "S04完成A线实施，substitution_general的PIn/POut n=m情况被前提排除，Admitted从5减到3"
 }
