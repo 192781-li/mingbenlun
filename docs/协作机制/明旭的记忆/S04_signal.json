@@ -2,17 +2,18 @@
   "station": "S04",
   "name": "Coq形式化分站",
   "branch": "s04-coq",
-  "last_update": "2026-09-02 14:30:00",
-  "current_task": "substitution_general证明（5/8完成，POut/PIn/PPar待证）",
-  "status": "in_progress",
+  "last_update": "2026-09-02 15:34:20",
+  "current_task": "substitution_general：5/8 + PIn主体(n≠m)，卡OB-009线性资源边界",
+  "status": "blocked_wait_s01",
   "L1": {
     "admitted": 0,
     "compiled": true
   },
   "L2": {
-    "admitted": 2,
+    "admitted": 3,
     "compiled": true,
     "remaining": [
+      "subst_var_empty",
       "substitution_general",
       "congruence_preserves_typing"
     ]
@@ -25,33 +26,33 @@
     "PZero": "completed",
     "PTau": "completed",
     "PVar": "completed",
-    "POut": "pending",
-    "PIn": "pending",
-    "PPar": "pending",
     "PRes": "completed",
-    "PRep": "completed"
+    "PRep": "completed",
+    "PIn": "in_progress_主体n≠m已证_卡n=m边界OB009",
+    "POut": "pending",
+    "PPar": "pending_等fv_at基础设施"
   },
   "key_achievements": [
-    "insert_at_cons_comm引理证明通过（OB-008核心引理）",
-    "PRes case突破：generalize dependent修改证明结构+res_elim引理代替inversion",
-    "PVar case突破：get_insert_at_self引理+name_subst_general引理",
-    "PRep case突破：subst_var_empty引理（Admitted）",
-    "完整阅读S01悟道书，建立操作权流动的证明视角",
-    "智慧河流SOP执行，读取河流主干/状态/结晶库"
+    "set_none_insert_at三引理(lt/eq/gt)全部证明通过：DeepSeek建议insert_none_at解决eq类型错误，commit 3c259d3",
+    "新增subst_name_eq/lt/gt三辅助引理（名字代换下的三种命运）",
+    "PIn case主体框架证明通过：x<k/x>k的n≠m子情况用set_none_neq+insert_at_cons_comm+IHQ，commit 58b75da",
+    "完整执行知识地图第零到第五步，批量读取S01全部9个策略文档",
+    "Layer2.v编译通过0错误"
   ],
   "key_blockers": [
-    "POut/PIn: 需要set_none_insert_at_subst引理（OB-007研判已给，待验证）",
-    "PPar: 需要split和insert_at交换律",
-    "subst_var_empty: PRes case需要更一般的引理（length Gamma <= k -> subst_var不改变类型）",
-    "congruence_preserves_typing: 依赖substitution_general完成后才能证明"
+    "OB-009(新,涉及哲学): PIn/POut中被代换位置=被use消耗位置(n=m)时，代换目标S m在body上下文是None，IHQ第二前提不成立；与PPar共同需要fv_at+typed_no_var_at_none基础设施",
+    "PIn边界A(x=k): insert_none_at与set_none/insert_at变换引理待证",
+    "subst_var_empty仍Admitted",
+    "congruence_preserves_typing依赖substitution_general完成"
   ],
   "needs_s01": [
-    "set_none_insert_at_subst引理的验证（POut/PIn case需要）",
-    "subst_var_empty引理的证明策略（PRes case需要更一般的引理）"
+    "OB-009存在论定性：n=m(同一线性资源既被use消耗又被代换指回)在生命论线性语义下是本不可能(exfalso,需哪条线性不重复引理)还是代换no-op(Q必不引用Sk,需哪条无引用引理)",
+    "fv_at(自由引用谓词)的存在论定义是否该引入、精确陈述；S01 PPar研究已列typed_no_var_at_none/subst_var_not_used但未定义fv_at",
+    "S01三引理策略文档eq写insert_at k None Gamma有Coq类型错误(insert_at第二参是ty非option ty)，正确实现是DeepSeek建议的insert_none_at，请修正文档表述"
   ],
   "s01_should_read": [
-    "PVar/PRes/PRep突破的反身思考记录：技术是表层，悟道是深层",
-    "get_insert_at_self引理的存在论意义：操作的结果是可验证的",
-    "substitution_general 5/8完成，POut/PIn/PPar待证"
+    "coq/obstacles/OB-009_PIn被代换位置等于use消耗位置_线性资源边界_20260902.md（完整数学结构）",
+    "s01_temp_docs/deepseek_v5_pin_boundary_result.md（DeepSeek第五次在此循环被截断）",
+    "三引理已全部证通、PIn主体n≠m已证通，只差线性资源同一性边界"
   ]
 }
