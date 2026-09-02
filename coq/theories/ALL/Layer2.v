@@ -294,12 +294,43 @@ Lemma name_subst_general : forall Gamma T k m n,
   get Gamma m = Some (Some T) ->
   n <> k ->
   typed Gamma (PVar (subst_name m k n)).
-Proof. Admitted.
+Proof.
+  intros Gamma T k m n H Hget Hne.
+  inversion H; subst.
+  destruct (Nat.compare n k) eqn:Hcmp.
+  - (* n = k，矛盾 *)
+    assert (Heq : n = k). { apply Nat.compare_eq_iff. exact Hcmp. }
+    contradiction.
+  - (* n < k *)
+    assert (Hlt : n < k). { apply Nat.compare_lt_iff. exact Hcmp. }
+    assert (Hget' : get Gamma n = Some (Some T0)).
+    { eapply get_insert_at_lt; eauto. }
+    assert (Hsub : subst_name m k n = n).
+    { unfold subst_name.
+      destruct (n =? k) eqn:E.
+      + apply Nat.eqb_eq in E. contradiction.
+      + destruct (n <=? k) eqn:E2.
+        * reflexivity.
+        * apply Nat.leb_gt in E2. lia.
+    }
+    rewrite Hsub.
+    apply ty_var with (T := T0). exact Hget'.
+  - (* n > k *)
+    assert (Hgt : n > k). { apply Nat.compare_gt_iff. exact Hcmp. }
+    assert (Hget' : get Gamma (n - 1) = Some (Some T0)).
+    { eapply get_insert_at_gt; eauto. }
+    assert (Hsub : subst_name m k n = n - 1).
+    { unfold subst_name.
+      destruct (n =? k) eqn:E.
+      + apply Nat.eqb_eq in E. contradiction.
+      + destruct (n <=? k) eqn:E2.
+        * apply Nat.leb_le in E2. lia.
+        * reflexivity.
+    }
+    rewrite Hsub.
+    apply ty_var with (T := T0). exact Hget'.
+Qed.
 
-(* substitution_general: 代换引理的一般化版本（k,m为变量）
-   核心洞察：PIn/PRes case中k会变成1，固定k=0的归纳假设不够用
-   哲学含义：代换是多对一的合并（同类型角色合并），不是一一对应的重命名
-   来源：S01精确证明骨架 *)
 Lemma substitution_general : forall Gamma T k m Q,
   typed (insert_at k T Gamma) Q ->
   get Gamma m = Some (Some T) ->
