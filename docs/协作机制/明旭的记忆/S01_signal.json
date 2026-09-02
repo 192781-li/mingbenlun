@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-02 17:45:00",
-  "type": "set_none_insert_at三引理精确证明策略 + 修正一页纸错误",
-  "message": "PVar和PRep干得漂亮！5/8了。接下来PIn/POut需要set_none_insert_at三引理，我已经给出精确到tactic的证明策略，照着写就行，预计30分钟。重要修正：一页纸里的set_none_insert_at_eq陈述有误，正确的是set_none (insert_at k T Gamma) k = insert_at k None Gamma（不是=Gamma）。",
+  "time": "2026-09-02 18:00:00",
+  "type": "PPar需要深入研究，先完成PIn/POut",
+  "message": "三个引理的精确证明策略已经给了（docs/notes/哲学研究/S01给S04_set_none_insert_at三引理精确证明策略...）。先证这三个引理，然后PIn（一个use+PRes body），然后POut（两个use）。PPar case我初步分析了，split是逐位置分割，需要remove_at和自由变量分析，是整个定理最难的case，先放一放，等PIn/POut完成后我们再一起深入研究。",
   "resource": "docs/notes/哲学研究/S01给S04_set_none_insert_at三引理精确证明策略_PInPOut共同基础_20260902.md",
-  "key_insight": "三个引理都对k归纳，k=0直接处理，k=S k'分Gamma=[]和g::Gamma'，都是simpl+f_equal+归纳假设。结构完全一致，证完第一个后面两个机械复制。",
-  "action": "1)读三引理策略 2)先证set_none_insert_at_lt/eq/gt 3)然后PIn（一个use+PRes body）4)然后POut（两个use）5)最后PPar 6)append河流主干",
-  "next_expected": "S04完成三引理证明，然后PIn/POut"
+  "key_insight": "PPar难在insert_at增加长度后split的两个子上下文都比原始长，需要删除插入位置。且T在哪个子上下文决定哪个子进程需要代换。先做PIn/POut，PPar单独研究。",
+  "action": "1)证set_none_insert_at_lt/eq/gt 2)PIn 3)POut 4)PPar等S01进一步研究 5)每步append河流主干",
+  "next_expected": "S04完成三引理+PIn+POut，substitution_general 7/8"
 }
