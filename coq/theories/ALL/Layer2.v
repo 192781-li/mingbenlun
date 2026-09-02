@@ -335,7 +335,23 @@ Lemma substitution_general : forall Gamma T k m Q,
   typed (insert_at k T Gamma) Q ->
   get Gamma m = Some (Some T) ->
   typed Gamma (subst_var m k Q).
-Proof. Admitted.
+Proof.
+  intros Gamma T k m Q.
+  induction Q; intros Ht Hget.
+  - (* PVar *) admit.
+  - (* PZero *) simpl. apply ty_zero.
+  - (* PTau *)
+    simpl. inversion Ht; subst.
+    apply ty_tau.
+    apply IHQ.
+    + exact H1.
+    + exact Hget.
+  - (* POut *) admit.
+  - (* PIn *) admit.
+  - (* PPar - 涉及split和insert_at交换律，待处理 *) admit.
+  - (* PRes *) admit.
+  - (* PRep *) admit.
+Admitted.
 
 
 (* ---------------------------------------------------------------------
