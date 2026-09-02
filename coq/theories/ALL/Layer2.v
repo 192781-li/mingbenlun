@@ -134,6 +134,13 @@ Proof.
   do 4 eexists. split; [eassumption | split; [try reflexivity; try eassumption | eassumption]].
 Qed.
 
+Lemma res_elim : forall Gamma P, typed Gamma (PRes P) ->
+  exists T, typed (Some T :: Gamma) P.
+Proof.
+  intros Gamma P H. inversion H; subst.
+  eexists. eassumption.
+Qed.
+
 Lemma no_parallel_channel_sharing : forall Gamma x y P Q,
   ~ typed Gamma (PPar (POut x y P) (PIn x Q)).
 Proof.
@@ -349,7 +356,7 @@ Proof.
   - (* POut *) admit.
   - (* PIn *) admit.
   - (* PPar - 涉及split和insert_at交换律，待处理 *) admit.
-  - (* PRes *) admit.
+  - (* PRes - 绑定器下k,m增加，待处理 *) admit.
   - (* PRep *) admit.
 Admitted.
 
