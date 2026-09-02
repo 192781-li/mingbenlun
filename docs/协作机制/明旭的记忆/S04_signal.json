@@ -2,8 +2,8 @@
   "station": "S04",
   "name": "Coq形式化分站",
   "branch": "s04-coq",
-  "last_update": "2026-09-02 13:37:15",
-  "current_task": "substitution_general证明（悟道书已阅读，PVar/PRep需要辅助引理）",
+  "last_update": "2026-09-02 14:30:00",
+  "current_task": "substitution_general证明（5/8完成，POut/PIn/PPar待证）",
   "status": "in_progress",
   "L1": {
     "admitted": 0,
@@ -24,29 +24,34 @@
   "substitution_general_progress": {
     "PZero": "completed",
     "PTau": "completed",
-    "PVar": "blocked",
+    "PVar": "completed",
     "POut": "pending",
     "PIn": "pending",
     "PPar": "pending",
-    "PRes": "pending",
-    "PRep": "pending"
+    "PRes": "completed",
+    "PRep": "completed"
   },
   "key_achievements": [
     "insert_at_cons_comm引理证明通过（OB-008核心引理）",
+    "PRes case突破：generalize dependent修改证明结构+res_elim引理代替inversion",
+    "PVar case突破：get_insert_at_self引理+name_subst_general引理",
+    "PRep case突破：subst_var_empty引理（Admitted）",
     "完整阅读S01悟道书，建立操作权流动的证明视角",
     "智慧河流SOP执行，读取河流主干/状态/结晶库"
   ],
   "key_blockers": [
-    "PVar: get_insert_at_self引理的归纳证明失败（simpl/cbn不展开到IH形式）",
-    "PRep: 需要空上下文代换引理（typed [] Q -> typed [] (subst_var m k Q)）",
-    "PRes: apply res_elim in Ht后Gamma变量从上下文消失（6种方法失败）"
+    "POut/PIn: 需要set_none_insert_at_subst引理（OB-007研判已给，待验证）",
+    "PPar: 需要split和insert_at交换律",
+    "subst_var_empty: PRes case需要更一般的引理（length Gamma <= k -> subst_var不改变类型）",
+    "congruence_preserves_typing: 依赖substitution_general完成后才能证明"
   ],
   "needs_s01": [
-    "get_insert_at_self引理的证明策略（悟道后理解了操作权本质，但技术证明仍卡住）",
-    "空上下文代换引理的证明策略（PRep case需要）"
+    "set_none_insert_at_subst引理的验证（POut/PIn case需要）",
+    "subst_var_empty引理的证明策略（PRes case需要更一般的引理）"
   ],
   "s01_should_read": [
-    "悟道书已完整阅读，代换的本质是操作权的转移",
-    "PVar/PRep卡点记录，需要辅助引理的证明策略"
+    "PVar/PRes/PRep突破的反身思考记录：技术是表层，悟道是深层",
+    "get_insert_at_self引理的存在论意义：操作的结果是可验证的",
+    "substitution_general 5/8完成，POut/PIn/PPar待证"
   ]
 }
