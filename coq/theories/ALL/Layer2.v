@@ -265,12 +265,26 @@ Admitted.
 Lemma set_none_insert_at_gt : forall k T Gamma x,
   x > k -> set_none (insert_at k T Gamma) x = insert_at k T (set_none Gamma (x - 1)).
 Proof.
-  (* 陈述有问题，待重新分析。
-     反例：k=0, x=1, Gamma=[g]:
-     左边=set_none (insert_at 0 T [g]) 1 = g :: None :: []
-     右边=insert_at 0 T (set_none [g] 0) = None :: Some T :: []
-     不相等。
-     可能需要更弱的形式，或者加前提条件。 *)
+  (* 陈述可能正确，但证明结构有问题。暂时Admitted，待DeepSeek第三次分析。
+     左边=set_none (insert_at 0 T [g,g']) 1 = [Some T, None, g']
+     右边=insert_at 0 T (set_none [g,g'] 0) = [Some T, None, g']
+     等等，这个反例不对...
+     重新算：k=0, x=1, Gamma=[g1,g2]
+     左边=set_none (insert_at 0 T [g1,g2]) 1 = set_none [Some T,g1,g2] 1 = [Some T,None,g2]
+     右边=insert_at 0 T (set_none [g1,g2] 0) = insert_at 0 T [None,g2] = [Some T,None,g2]
+     两边相等！
+     
+     那k=0, x=1, Gamma=[g]呢？
+     左边=set_none (insert_at 0 T [g]) 1 = set_none [Some T,g] 1 = [Some T,None]
+     右边=insert_at 0 T (set_none [g] 0) = insert_at 0 T [None] = [Some T,None]
+     两边相等！
+     
+     那k=1, x=2, Gamma=[g1,g2,g3]呢？
+     左边=set_none (insert_at 1 T [g1,g2,g3]) 2 = set_none [g1,Some T,g2,g3] 2 = [g1,Some T,None,g3]
+     右边=insert_at 1 T (set_none [g1,g2,g3] 1) = insert_at 1 T [g1,None,g3] = [g1,Some T,None,g3]
+     两边相等！
+     
+     陈述可能是对的，只是证明有问题。暂时Admitted，待DeepSeek第三次分析。 *)
 Admitted.
 
 (* get_insert_at_lt: n < k时，插入位置在n之后，不影响位置n
