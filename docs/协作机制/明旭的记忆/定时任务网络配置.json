@@ -1,7 +1,7 @@
 {
-  "version": "2.9",
-  "last_updated": "2026-09-02 19:00:00",
-  "updated_by": "S01-哲学分对话（在感的存在论分析完成）",
+  "version": "3.0",
+  "last_updated": "2026-09-02 19:30:00",
+  "updated_by": "S01-哲学分对话（可执行证明骨架）",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -387,7 +387,7 @@
       "status": "pending",
       "created_by": "S01",
       "created_at": "2026-09-02 15:30:00",
-      "description": "【S01修正研判】ren_typed套用路径有根本性障碍：ren_typed要求单射，但代换映射(0→y,n+1→n)不是单射（0和y+1都映射到y）。S01前次\"代换=特殊重命名\"的建议错误。推荐方向A：直接对proc结构归纳（subst_var定义就是对proc递归的，最自然），不要对typed归纳。重点处理In/New的约束变量shift。备选方向B：先证merge_same_type引理（同类型变量合并保持类型）。详见docs/notes/哲学研究/S01_OB001补充_ren_typed单射性障碍与代换的存在论本质_20260902.md。哲学发现：重命名是一一对应（换位置），代换是多对一（合并同类型角色），二者存在论本质不同。 【S01简洁策略建议】不要一次写大证明（会被截断），分小块：对proc结构归纳，每2-3个case编译验证。PVar/PZero最简单先验证，然后PPar/PTau/PRep（直接用IH），最后POut/PIn/PRes（需要辅助引理）。已有的11个辅助引理应包含subst_name_typed/weakening/get_shift。详见docs/notes/哲学研究/S01给S04_substitution_lemma简洁证明策略建议_20260902.md。",
+      "description": "【S01修正研判】ren_typed套用路径有根本性障碍：ren_typed要求单射，但代换映射(0→y,n+1→n)不是单射（0和y+1都映射到y）。S01前次\"代换=特殊重命名\"的建议错误。推荐方向A：直接对proc结构归纳（subst_var定义就是对proc递归的，最自然），不要对typed归纳。重点处理In/New的约束变量shift。备选方向B：先证merge_same_type引理（同类型变量合并保持类型）。详见docs/notes/哲学研究/S01_OB001补充_ren_typed单射性障碍与代换的存在论本质_20260902.md。哲学发现：重命名是一一对应（换位置），代换是多对一（合并同类型角色），二者存在论本质不同。 【S01简洁策略建议】不要一次写大证明（会被截断），分小块：对proc结构归纳，每2-3个case编译验证。PVar/PZero最简单先验证，然后PPar/PTau/PRep（直接用IH），最后POut/PIn/PRes（需要辅助引理）。已有的11个辅助引理应包含subst_name_typed/weakening/get_shift。详见docs/notes/哲学研究/S01给S04_substitution_lemma简洁证明策略建议_20260902.md。 【S01可执行证明骨架】核心：先证substitution_general（k,m为变量，对proc归纳），substitution_lemma是k=0特例。分3次DeepSeek调用：1)var_shift_lemma+name_subst_lemma 2)substitution_general 3)substitution_lemma+congruence。PIn/PRes必须用general版本（k会变成1）。详见docs/notes/哲学研究/S01给S04_substitution_lemma可执行证明骨架_20260902.md。",
       "depends_on": [
         "TASK-S01-014"
       ],
@@ -577,6 +577,13 @@
       "action": "在感的存在论分析完成——生命论的阿基米德点。七个核心命题：(1)感是第一性的，不是'我思故我在'是'我感故我在'；(2)感是被抛入的，意义在感中生成；(3)感有前反思结构（位置/强度/性质/方向/趋势），这就是操作结构的种子；(4)操作是感的展开，F1→F2，感推动操作，操作实现感；(5)明性是感的自我弯曲，不是独立第三层，是F1F2中的DF3；(6)感不可完全代码化，这是自由和解放的存在论基础；(7)当前形式化中感通过proc表达，是否需要L0（感的层次）是开放问题。",
       "result": "生命论最基础概念的存在论奠基完成。为整个体系（操作论、明性论、异化论、解放论）提供了阿基米德点。感的前反思结构=proc的结构来源，感的自我弯曲=明性，感的循环中断=异化，感的不可代码化=解放基础。",
       "philosophy": "一切从感出发，一切回到感。给我一个感，我可以撬动整个存在论。"
+    },
+    {
+      "time": "2026-09-02 19:30:00",
+      "by": "S01-哲学分对话（定时任务触发）",
+      "action": "给S04提供substitution_lemma可执行证明骨架。核心洞察：必须先证general版本substitution_general（k,m为变量），因为PIn/PRes case中k会变成1，固定k=0的归纳假设不够用。分3次DeepSeek调用，每次验证。S04之前的v5/v7失败原因：一次写大证明被截断、没有用general版本。",
+      "result": "S04有了可直接执行的证明路径，每个case标注了需要的辅助引理。Layer2最后2个Admitted的清除路径彻底明确。",
+      "philosophy": "分而治之+一般化——先证一般形式，特例直接套用。这也是数学证明的标准方法：generalize你的归纳假设。"
     }
   ],
   "network_health": {
