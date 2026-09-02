@@ -216,6 +216,18 @@ Proof.
   - destruct Gamma as [| g Gamma']; simpl; reflexivity.
 Qed.
 
+(* get_insert_at_self: 插入位置k的操作权确实是T
+   这是PVar case的核心引理，n=k时用它证明T0=T
+   存在论意义：插入操作权后，那个位置确实有这个操作权——操作的结果是可验证的 *)
+Lemma get_insert_at_self : forall k T Gamma,
+  get (insert_at k T Gamma) k = Some (Some T).
+Proof.
+  intros k T.
+  induction k.
+  - intros Gamma. simpl. reflexivity.
+  - intros Gamma. destruct Gamma as [| g Gamma']; simpl; apply IHk.
+Qed.
+
 (* get_insert_at_lt: n < k时，插入位置在n之后，不影响位置n
    注意：仅当get返回Some (Some T')时成立，排除Gamma=[]的边界情况 *)
 Lemma get_insert_at_lt : forall Gamma T k n T',
@@ -360,7 +372,29 @@ Proof.
   generalize dependent k.
   generalize dependent m.
   induction Q; intros m k T Gamma Ht Hget.
-  - (* PVar - 待证明，n=k时需要get_insert_at_self引理 *) admit.
+  - (* PVar - n=k时用get_insert_at_self证明T0=T，n≠k时用name_subst_general *)
+    simpl.
+    destruct (Nat.compare n k) eqn:Hcmp.
+    + (* n = k *)
+      assert (Heq : n = k). { apply Nat.compare_eq_iff. exact Hcmp. }
+      subst n.
+      inversion Ht as [ | Gamma0 x T0 Hget0 | | | | | | ].
+      subst Gamma0 x.
+      assert (Hself : get (insert_at k T Gamma) k = Some (Some T)).
+      { apply get_insert_at_self. }
+      rewrite Hself in Hget0.
+      injection Hget0 as HeqT.
+      subst T0.
+      assert (Hsub : subst_name m k k = m) by
+        (unfold subst_name; rewrite Nat.eqb_refl; reflexivity).
+      rewrite Hsub.
+      apply ty_var with (T := T). exact Hget.
+    + (* n < k *)
+      apply name_subst_general with (Gamma := Gamma) (T := T) (k := k) (m := m) (n := n);
+        [exact Ht | exact Hget | (apply Nat.compare_lt_iff in Hcmp; lia)].
+    + (* n > k *)
+      apply name_subst_general with (Gamma := Gamma) (T := T) (k := k) (m := m) (n := n);
+        [exact Ht | exact Hget | (apply Nat.compare_gt_iff in Hcmp; lia)].
   - (* PZero *) simpl. apply ty_zero.
   - (* PTau *)
     simpl. inversion Ht; subst.
