@@ -3,7 +3,7 @@
    Layer 1: ALL (reconstructed) syntax + typing rules + renaming lemma
    Dependencies: Coq standard library only, Coq >= 8.13
    ===================================================================== *)
-Require Import List PeanoNat Lia ClassicalEpsilon.
+From Stdlib Require Import List PeanoNat Lia ClassicalEpsilon.
 Import ListNotations.
 
 (* 1. pi-calculus syntax (de Bruijn) *)
@@ -18,14 +18,15 @@ Inductive proc : Type :=
 | PRep  : proc -> proc.
 
 (* 2. Types and contexts *)
-(* A方案：通用语言扩展——L3需要的4个新类型直接加在ty里，全系统共用 *)
+(* A方案：通用语言扩展——L3需要的新类型直接加在ty里，全系统共用
+   命名原则：东方为骨，西方为体。每个命名都承载生命论存在论精神。
+   重要修正（S01_TASK-S04-009补充）：Sheng/Ji是类型（存在论分类），
+   Ming/Jia是状态谓词（存在论状态），不是类型构造子，在Layer3.v中定义。 *)
 Inductive ty : Type :=
 | TUnit   : ty
 | TChan   : bool -> bool -> ty -> ty
-| TAgLv   : ty -> ty          (* 活运行权：正在活着的操作，νF₂型，线性，生产性 *)
-| TAgTr   : ty -> ty          (* 轨迹运行权：沉积下来的痕迹，!-模态型，可复制可丢弃 *)
-| THijack : ty -> ty -> ty    (* 劫持：b的运行权伪装成a，异化的类型化表达 *)
-| TCl     : ty -> ty.         (* 明性：活运行权+看到自己的轨迹=自我意识 *)
+| TSheng  : ty -> ty          (* Sheng（生）= 正在发用的生，生生不息。线性的、不可复制的。只能通过self_ev（被抛入的感）引入，不能从其他类型推导。来源：《周易·系辞上》"生生之谓易"。 *)
+| TJi     : ty -> ty.         (* Ji（迹）= 生留下的迹，迹非履。!-模态的、可复制的，但不能变回生（没有promotion规则）。来源：《庄子·天运》"夫迹，履之所出，而迹岂履哉？"。 *)
 
 Definition ctx := list (option ty).
 
@@ -71,6 +72,7 @@ Fixpoint ren (xi : nat -> nat) (P : proc) : proc :=
 (* 4. ALL typing rules (reconstructed) *)
 Inductive typed : ctx -> proc -> Prop :=
 | ty_zero : forall Gamma, typed Gamma PZero
+| ty_var  : forall Gamma x T, get Gamma x = Some (Some T) -> typed Gamma (PVar x)
 | ty_tau  : forall Gamma P, typed Gamma P -> typed Gamma (PTau P)
 | ty_out  : forall Gamma x y P i o T Gamma1 Gamma2,
     use Gamma x (TChan i o T) Gamma1 -> o = true ->
@@ -249,6 +251,7 @@ Proof.
   intros Gamma P H.
   induction H as [
     Gamma
+    | Gamma x T Hget
     | Gamma P H IH
     | Gamma x y P i o T Gamma1 Gamma2 Huse1 Ho Huse2 H IH
     | Gamma x P i o T Gamma1 Huse Hi H IH
@@ -258,6 +261,8 @@ Proof.
   ]; intros xi Delta Hinj Hpts.
   - (* ty_zero *)
     simpl. apply ty_zero.
+  - (* ty_var *)
+    simpl. eapply ty_var. apply Hpts. exact Hget.
   - (* ty_tau *)
     simpl. apply ty_tau. eapply IH; eassumption.
   - (* ty_out *)
