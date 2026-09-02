@@ -1230,6 +1230,82 @@ Proof.
     apply rho_collision_other.
 Qed.
 
+(* --- ty_par 专用辅助引理群：收摄后的源在"有资源位置"上恢复 rho 单射 --- *)
+
+(* 收摄位本身永远不可能持有实有操作权 Some(Some T)：它要么被置为 Some None，
+   要么本就越界为 None——明性收摄的位不再是资源位 *)
+Lemma get_set_none_self_not_some : forall C k T,
+  get (set_none C k) k <> Some (Some T).
+Proof.
+  induction C; intros k T.
+  - simpl. discriminate.
+  - destruct k as [|k'].
+    + simpl. intro E. injection E as E'. discriminate.
+    + simpl. exact (IHC k' T).
+Qed.
+
+(* 两个碰撞位 k 与 c 必不相同 *)
+Lemma collision_distinct : forall m k, k <> collision_other m k.
+Proof.
+  intros m k. unfold collision_other.
+  destruct (Nat.ltb_spec m k) as [Hlt | Hge]; lia.
+Qed.
+
+(* 收摄只可能把实有位置为 None/Some None，绝不可能凭空改变其他实有位：
+   收摄后仍是 Some(Some T) 的位，收摄前也是 *)
+Lemma set_none_preserves_some : forall C u n T,
+  get (set_none C u) n = Some (Some T) -> get C n = Some (Some T).
+Proof.
+  intros C u n T H. destruct (Nat.eqb_spec n u).
+  - subst n. exfalso. exact (get_set_none_self_not_some C u T H).
+  - rewrite (set_none_neq C u n n0) in H. exact H.
+Qed.
+
+(* 关键：在收摄掉两个碰撞位的源中，凡"有资源"的位置 n 必有 rho n <> m。
+   否则 n 是碰撞位（rhom_classify），而碰撞位已被收摄，不可能 has——矛盾。
+   这正是"收摄后恢复局部单射"的核心。 *)
+Lemma strengthened_has_not_rhom : forall C m k n,
+  has (set_none (set_none C k) (collision_other m k)) n ->
+  subst_name m k n <> m.
+Proof.
+  intros C m k n Hhas Hrhom.
+  apply rhom_classify in Hrhom. unfold has in Hhas.
+  destruct Hhas as [T Hget]. destruct Hrhom as [Ek | Ec].
+  - subst n.
+    rewrite (set_none_neq (set_none C k) (collision_other m k) k
+             (collision_distinct m k)) in Hget.
+    exact (get_set_none_self_not_some C k T Hget).
+  - subst n. exact (get_set_none_self_not_some (set_none C k)
+                      (collision_other m k) T Hget).
+Qed.
+
+(* split 的两侧在同一位置不可能都持有实有操作权（线性：一份资源不能两侧共有） *)
+Lemma split_disjoint_some : forall Gamma G1 G2 n T1 T2,
+  split Gamma G1 G2 ->
+  get G1 n = Some (Some T1) -> get G2 n = Some (Some T2) -> False.
+Proof.
+  intros Gamma G1 G2 n T1 T2 Hs H1 H2.
+  unfold split in Hs. specialize (Hs n).
+  destruct Hs as [[_ Hd] | [_ Hd]].
+  - destruct Hd as [Hd | Hd]; rewrite Hd in H2;
+      [discriminate | injection H2 as E; discriminate].
+  - destruct Hd as [Hd | Hd]; rewrite Hd in H1;
+      [discriminate | injection H1 as E; discriminate].
+Qed.
+
+(* 收摄后的两侧仍保持线性互斥：收摄不凭空产生资源，故仍不能同时持有 *)
+Lemma strengthened_disjoint : forall Gamma G1 G2 m k n T1 T2,
+  split Gamma G1 G2 ->
+  get (set_none (set_none G1 k) (collision_other m k)) n = Some (Some T1) ->
+  get (set_none (set_none G2 k) (collision_other m k)) n = Some (Some T2) ->
+  False.
+Proof.
+  intros Gamma G1 G2 m k n T1 T2 Hs H1 H2.
+  apply set_none_preserves_some in H1. apply set_none_preserves_some in H1.
+  apply set_none_preserves_some in H2. apply set_none_preserves_some in H2.
+  exact (split_disjoint_some Gamma G1 G2 n T1 T2 Hs H1 H2).
+Qed.
+
 (* =====================================================================
    subst_ren_general：代换定理的最一般形式（源任意，逐行同构 Layer1.ren_typed）
    源 D 经 rho=subst_name m k 到目标 Gamma；资源保持 Hpts + no_use 局部单射。
