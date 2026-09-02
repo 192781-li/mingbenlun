@@ -112,6 +112,18 @@ Proof.
         simpl. f_equal. lia.
 Qed.
 
+(* 绑定器提升：subst_name 在 S 位置上的平移——穿越一个绑定层 *)
+Lemma subst_name_succ : forall m k n,
+  subst_name (S m) (S k) (S n) = S (subst_name m k n).
+Proof.
+  intros m k n. unfold subst_name. simpl.
+  destruct (n =? k) eqn:E.
+  - apply Nat.eqb_eq in E. subst n. simpl. reflexivity.
+  - destruct (n <=? k) eqn:E2.
+    + apply Nat.leb_le in E2. simpl. reflexivity.
+    + apply Nat.leb_gt in E2. simpl. lia.
+Qed.
+
 (* 逐点相等的重命名函数给出相同结果——操作权流动不因名字而变 *)
 Lemma ren_ext : forall (f g : nat -> nat) P, (forall n, f n = g n) ->
   ren f P = ren g P.
@@ -913,6 +925,52 @@ Proof.
   - rewrite subst_name_gt in Heq by lia.
     rewrite subst_name_gt in Heq by lia. lia.
 Qed.
+
+(* =====================================================================
+   subst_ren_general：代换定理的最一般形式（源任意，逐行同构 Layer1.ren_typed）
+   源 D 经 rho=subst_name m k 到目标 Gamma；资源保持 Hpts + no_use 局部单射。
+   PPar 用 split_proj 重划，源块 Ga/Gb 直接作子进程源（无需 insert 形状）。
+   ===================================================================== *)
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (Gamma : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (ren (subst_name m k) Q).
+Proof.
+  intros D Q H. induction H as [
+    Gamma
+  | Gamma x T Hget
+  | Gamma P H IH
+  | Gamma x y P i o T Gamma1 Gamma2 Huse1 Ho Huse2 H IH
+  | Gamma x P i o T Gamma1 Huse Hi H IH
+  | Gamma P Q Gamma1 Gamma2 Hs HP IHP HQ IHQ
+  | Gamma P T H IH
+  | Gamma P H IH
+  ]; intros m k G Hpts Hnu; simpl.
+  - (* ty_zero *) apply ty_zero.
+  - (* ty_var *) eapply ty_var. apply Hpts. exact Hget.
+  - (* ty_tau *) apply ty_tau. exact (IH m k G Hpts Hnu).
+  - (* ty_out：rho_inj_except_m + no_use 三段，待填 *) admit.
+  - (* ty_in：绑定器升级，待填 *) admit.
+  - (* ty_par：split_proj 重划，待填（核心） *) admit.
+  - (* ty_res：进绑定器，rho升级为upren rho=subst_name(Sm)(Sk) *)
+    simpl.
+    replace (ren (upren (subst_name m k)) P)
+      with (ren (subst_name (S m) (S k)) P)
+      by (symmetry; apply ren_ext with (f:=upren (subst_name m k)) (g:=subst_name (S m) (S k));
+          intros n; exact (upren_subst_name_pt m k n)).
+    apply (ty_res G (ren (subst_name (S m) (S k)) P) T).
+    apply (IH (S m) (S k) (Some T :: G)).
+    + intros n T' Hn. destruct n as [|n'].
+      * simpl in Hn. injection Hn as E. subst T'. simpl. reflexivity.
+      * simpl in Hn. rewrite subst_name_succ. simpl. exact (Hpts n' T' Hn).
+    + exact Hnu.
+  - (* ty_rep *) apply (ty_rep G (ren (subst_name m k) P)).
+    apply (IH m k []).
+    + intros n T' Hn. simpl in Hn. discriminate.
+    + exact Hnu.
+Admitted.
 
 
 
