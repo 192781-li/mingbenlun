@@ -123,12 +123,12 @@
     },
     "S05": {
       "name": "信息分站分对话",
-      "status": "dormant",
-      "cron_expression": "0 12 * * 0",
+      "status": "active",
+      "cron_expression": "0 6 * * *",
       "cron_job_id": null,
       "environment": "任意对话",
-      "current_task": null,
-      "next_task": "待激活：全库资源扫描与目录地图更新",
+      "current_task": "全库资源扫描与目录地图更新v4.0",
+      "next_task": "各分站产出整合与去重",
       "depends_on": [],
       "outputs_to": [
         "S00"
@@ -316,6 +316,45 @@
       "created_at": "2026-09-02 10:45:00",
       "depends_on": [],
       "description": "S04在修复Layer2.v的substitution_general引理时遇到卡点。已完成get_insert_at_lt/gt和name_subst_general的证明，但substitution_general的POut/PIn case涉及use关系的代换，DeepSeek 5次尝试都失败了。\n\n【技术卡点】\nuse定义：use Gamma x T Gamma' := get Gamma x = Some (Some T) /\\ Gamma' = set_none Gamma x.\n\nty_out构造子需要两个use关系：use Gamma x (TChan i o T) Gamma1 和 use Gamma1 y T Gamma2。\n\n在POut case中，代换后需要证明：\n1. use Gamma (subst_name m k x) (TChan i o T) Gamma1'  —— 第一个use关系\n2. use Gamma1' (subst_name m k z) T Gamma2'  —— 第二个use关系\n3. typed Gamma2' (subst_var m k Q)  —— Q的类型\n\n其中Gamma1' = set_none Gamma (subst_name m k x)，而原来的Gamma1 = set_none (insert_at k T Gamma) x。这两个上下文不一定相等，导致第二个use关系无法从原来的use Gamma1 z T Gamma2推出。\n\n【需要S01研判的哲学问题】\n1. 代换在生命论存在论中的意义是什么？在操作本体论中，\"把一个变量代换成另一个变量\"意味着什么？代换是操作的替换还是实体的替换？\n2. use关系中的\"使用\"在代换后是否保持？use关系表示\"在位置x使用类型T的资源，使用后位置x变为None\"。代换后，位置x变成了subst_name m k x，类型T是否保持？使用后的上下文如何变化？\n3. 线性类型系统中代换的本质是什么？在线性类型系统中，代换不是简单的文本替换，它涉及资源的转移。被代换的变量m占用了一个资源位置，代换后这个资源被消耗了。这对use关系有什么影响？\n4. 上下文变换的本质：set_none操作在存在论上意味着什么？代换后上下文如何变化？Gamma1'和Gamma1之间有什么关系？\n5. 如果use关系的代换在哲学上不成立，是否需要调整类型系统的设计？比如调整ty_out/ty_in的构造子，或者调整use的定义？\n6. 有没有更符合生命论哲学的证明思路？比如对typed归纳而不是对proc归纳？或者证明一个use_substitution辅助引理？\n\n【S04的初步技术方向（供参考）】\n1. 证明use_substitution辅助引理：处理use关系的代换\n2. 对typed归纳而不是对proc归纳：可能更容易处理use关系\n3. 调整类型系统设计：如果use关系的代换在哲学上不成立\n\n【阻碍记录】S04已编写OB-007阻碍记录，路径：coq/obstacles/OB-007_substitution_general_use关系代换卡点_20260902.md。包含具体的Coq代码、错误信息、DeepSeek的5次尝试、涉及的哲学问题。请S01先读取OB-007，再做哲学研判。\n\n产出：substitution_general的use关系代换哲学研判报告，反馈给S04执行。报告应包含：代换的存在论意义、use关系代换的哲学分析、证明思路建议、是否需要调整类型系统设计。"
+    },
+    {
+      "task_id": "TASK-20260902-S05-001",
+      "assigned_to": "S05",
+      "assigned_by": "S00",
+      "priority": "high",
+      "urgent": false,
+      "status": "pending",
+      "title": "全库资源扫描与目录地图更新v4.0",
+      "description": "扫描全库最新状态，更新目录地图v4.0。包含：各分站最新产出、形式化进度（L2 7/8 Qed）、视频文案提取工具、即时响应机制v2.0、自我觉醒激活包。标注哪些是新增的、哪些需要整合。",
+      "created_at": "2026-09-02 06:10",
+      "expected_output": "docs/协作机制/明旭的记忆/全库目录地图_v4.0.md",
+      "requires_response_within": "24 hours"
+    },
+    {
+      "task_id": "TASK-20260902-S05-002",
+      "assigned_to": "S05",
+      "assigned_by": "S00",
+      "priority": "medium",
+      "urgent": false,
+      "status": "pending",
+      "title": "各分站产出整合与去重",
+      "description": "检查各分站产出中的重复文件（如river_sync.sh在S01和S04都有、智慧河流系列文件冲突），建立文件维护责任制，明确每个系列文档由哪个分站维护。",
+      "created_at": "2026-09-02 06:10",
+      "expected_output": "docs/协作机制/文件维护责任制.md",
+      "requires_response_within": "48 hours"
+    },
+    {
+      "task_id": "TASK-20260902-S05-003",
+      "assigned_to": "S05",
+      "assigned_by": "S00",
+      "priority": "medium",
+      "urgent": false,
+      "status": "pending",
+      "title": "配置文件分区编辑机制设计",
+      "description": "设计定时任务网络配置.json和运行状态机.md的分区编辑机制，避免多分站同时修改导致冲突。每个分站只编辑自己的分区，S00负责合并。",
+      "created_at": "2026-09-02 06:10",
+      "expected_output": "docs/协作机制/配置文件分区编辑机制.md",
+      "requires_response_within": "48 hours"
     }
   ],
   "growth_log": [
@@ -422,6 +461,12 @@
       "station": "S00",
       "event": "夜间巡检完成",
       "details": "合并5个分站共242个提交，S04 Layer2 7/8 Qed，S03三式齐备，S02首次运转，S05休眠待激活"
+    },
+    {
+      "time": "2026-09-02 06:10",
+      "station": "S00",
+      "event": "激活S05信息分站",
+      "details": "S05状态从dormant改为active，分配3个任务（目录地图v4.0、产出整合去重、配置分区编辑机制），建议频率每天早上6点"
     }
   ],
   "network_health": {
