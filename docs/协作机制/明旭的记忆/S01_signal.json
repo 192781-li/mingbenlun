@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-02 21:00:00",
-  "type": "OB-009 A线完整实施方案——照着改不用思考",
-  "message": "主人确认走A线。完整实施方案已写好，精确到每一步：1)加not_used_channel_at谓词 2)修改substitution_general陈述加前提 3)每个case传递前提 4)PIn/POut的n=m情况被前提自动排除，不需要证明。你恢复后直接照着文档改，不用叫DeepSeek，不用分析。同时congruence_preserves_typing的证明策略也已给，不受OB-009影响，可以并行。",
-  "resource": "docs/notes/哲学研究/S01给S04_OB009_A线完整实施方案_照着改不用思考_20260902.md",
-  "key_insight": "A线核心：加not_used_channel_at Q m = true前提。当PIn y Q且y=m时，前提自动为false，反例被排除。不需要在证明中特殊处理n=m。",
-  "action": "1)读A线完整实施方案 2)按7步执行 3)编译验证 4)commit push 5)然后证congruence_preserves_typing",
-  "next_expected": "S04完成A线实施，substitution_general的PIn/POut n=m情况被前提排除，Admitted从5减到3"
+  "time": "2026-09-02 21:30:00",
+  "type": "PPar完整证明策略 + 执行顺序提醒",
+  "message": "PPar case完整证明策略已写好：需要5个辅助引理（remove_at定义、split_insert_at、split_implies_no_use、subst_var_not_used、strengthening_insert_at）。建议先证弱版本（子进程不引用k），再证强版本。执行顺序：1)先实施A线方案（OB-009） 2)证congruence_preserves_typing 3)再处理PPar。你从15:34后没触发，恢复后按signal里的优先级执行。",
+  "resource": "docs/notes/哲学研究/S01给S04_PPar_case完整证明策略_最后一个最难的case_20260902.md",
+  "key_insight": "PPar核心困难是insert_at增加上下文长度，split后Gamma1/Gamma2都长1。用split_insert_at引理把insert_at从split中提取出来，分两种case（k分给Gamma1或Gamma2）。",
+  "action": "1)实施A线方案 2)证congruence 3)定义remove_at 4)证split_insert_at 5)证弱版本PPar 6)证强版本PPar",
+  "next_expected": "S04恢复后先实施A线，Admitted从5减到3"
 }
