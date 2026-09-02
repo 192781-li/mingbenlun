@@ -829,6 +829,105 @@ Proof.
       * rewrite get_remove_at_ge by lia. exact R2.
 Qed.
 
+(* =====================================================================
+   None版strengthening的基础设施（DS#10骨架 + S04数学把关）
+   空绑定 insert_none_at 的 get/set_none/cons 套件，平行于 insert_at 版。
+   存在论：在"寂然之位"(None)插入空无，类型化者本就不引用它，
+   故撤除该位只是名字重排，不消耗任何操作权。
+   ===================================================================== *)
+
+(* set_none 只把某位置设为None、不增删位置，故长度不变 *)
+Lemma length_set_none : forall G k, length (set_none G k) = length G.
+Proof.
+  intros G. induction G as [|g G' IH]; intros k.
+  - destruct k; simpl; reflexivity.
+  - destruct k; simpl; f_equal; apply IH.
+Qed.
+
+Lemma get_insert_none_at_self : forall k D,
+  k <= length D -> get (insert_none_at k D) k = Some None.
+Proof.
+  intros k. induction k; intros D Hk.
+  - simpl. reflexivity.
+  - destruct D as [|d D']; [simpl in Hk; lia|].
+    simpl in Hk. simpl. apply IHk. lia.
+Qed.
+
+Lemma get_insert_none_at_lt : forall k D n,
+  k <= length D -> n < k -> get (insert_none_at k D) n = get D n.
+Proof.
+  intros k. induction k; intros D n Hk Hn; [lia|].
+  destruct D as [|d D']; [simpl in Hk; lia|].
+  simpl in Hk. destruct n as [|n']; [simpl; reflexivity|].
+  simpl. apply IHk; lia.
+Qed.
+
+Lemma get_insert_none_at_gt : forall k D n,
+  k <= length D -> n > k -> get (insert_none_at k D) n = get D (n - 1).
+Proof.
+  intros k. induction k; intros D n Hk Hn.
+  - destruct n; [lia|]. simpl. destruct n; simpl; reflexivity.
+  - destruct D as [|d D']; [simpl in Hk; lia|].
+    simpl in Hk. destruct n; [lia|].
+    simpl. assert (Hn' : n > k) by lia.
+    assert (Hk' : k <= length D') by lia.
+    specialize (IHk D' n Hk' Hn').
+    destruct n; [exfalso; lia|]. simpl.
+    replace (S n - 1) with n in IHk by lia. exact IHk.
+Qed.
+
+Lemma set_none_insert_none_lt : forall k D x,
+  x < k -> set_none (insert_none_at k D) x = insert_none_at k (set_none D x).
+Proof.
+  intros k. induction k; intros D x Hx.
+  - exfalso. lia.
+  - destruct x as [|x'].
+    + destruct D as [|d D']; simpl; reflexivity.
+    + destruct D as [|d D']; simpl; f_equal; apply IHk; lia.
+Qed.
+
+Lemma set_none_insert_none_eq : forall k D,
+  set_none (insert_none_at k D) k = insert_none_at k D.
+Proof.
+  intros k. induction k; intros D.
+  - simpl. reflexivity.
+  - destruct D as [|d D']; simpl; f_equal; apply IHk.
+Qed.
+
+Lemma set_none_insert_none_nil_gt : forall k x, x > k ->
+  set_none (insert_none_at k []) x = insert_none_at k [].
+Proof.
+  intros k. induction k; intros x Hx.
+  - destruct x; [lia|]. simpl. destruct x; simpl; reflexivity.
+  - destruct x; [lia|]. simpl. f_equal. apply IHk. lia.
+Qed.
+
+Lemma set_none_insert_none_gt : forall k D x,
+  x > k -> set_none (insert_none_at k D) x = insert_none_at k (set_none D (x - 1)).
+Proof.
+  intros k. induction k.
+  - intros D x Hgt. destruct D as [|d D'].
+    + simpl. destruct x; simpl; try lia; reflexivity.
+    + simpl. destruct x; simpl.
+      * lia.
+      * assert (H : x - 0 = x) by lia. rewrite H. reflexivity.
+  - intros D x Hgt. destruct D as [|d D'].
+    + simpl. destruct x as [|x']; [lia|]. f_equal.
+      apply set_none_insert_none_nil_gt. lia.
+    + destruct x as [|x']; [lia|]. destruct x' as [|x'']; [exfalso; lia|].
+      simpl. f_equal.
+      assert (Hih : set_none (insert_none_at k D') (S x'') =
+                    insert_none_at k (set_none D' (S x'' - 1))).
+      { apply IHk with (x := S x''). lia. }
+      assert (Hsub : S x'' - 1 = x'') by lia. rewrite Hsub in Hih. exact Hih.
+Qed.
+
+Lemma insert_none_at_cons_comm : forall (T : ty) (k : nat) (D : ctx),
+  Some T :: insert_none_at k D = insert_none_at (S k) (Some T :: D).
+Proof.
+  intros T k. induction k; intros D; simpl; reflexivity.
+Qed.
+
 Lemma substitution_general : forall Gamma T k m Q,
   typed (insert_at k T Gamma) Q ->
   get Gamma m = Some (Some T) ->
