@@ -674,6 +674,161 @@ Proof.
   apply Nat.eqb_neq. exact H.
 Qed.
 
+(* =====================================================================
+   OB-010 PPar 地基：remove_at 与 insert_at/insert_none_at 的互逆
+   存在论内涵：并行组合把一份世界 split 成两侧；代换前要把"插入的迹"
+   从两侧各自撤除(remove_at)，再按那一位是"实有操作权(Some T)"还是
+   "寂然之位(None)"复原——撤除与插入互为逆操作，操作权的分合可严格往返。
+   ===================================================================== *)
+
+(* remove_at：删去位置k，其后操作权整体前移一位 *)
+Fixpoint remove_at (k : nat) (G : ctx) : ctx :=
+  match G, k with
+  | [], _ => []
+  | _ :: G', 0 => G'
+  | g :: G', S k' => g :: remove_at k' G'
+  end.
+
+(* 外延：等长且逐位置get相等，则两上下文同一（操作世界由其每一位唯一决定） *)
+Lemma ctx_ext : forall G1 G2,
+  length G1 = length G2 -> (forall n, get G1 n = get G2 n) -> G1 = G2.
+Proof.
+  intros G1. induction G1 as [|a G1' IH]; intros [|b G2'] Hlen Hget.
+  - reflexivity.
+  - simpl in Hlen. discriminate.
+  - simpl in Hlen. discriminate.
+  - simpl in Hlen. injection Hlen as Hlen'. f_equal.
+    + specialize (Hget 0). simpl in Hget. injection Hget as Hab. exact Hab.
+    + apply IH; [exact Hlen'|]. intros n. specialize (Hget (S n)). simpl in Hget. exact Hget.
+Qed.
+
+Lemma length_remove_at : forall k G, k < length G -> length (remove_at k G) = length G - 1.
+Proof.
+  intros k. induction k; intros G Hk.
+  - destruct G as [|g G']; [simpl in Hk; lia|]. simpl. lia.
+  - destruct G as [|g G']; [simpl in Hk; lia|].
+    simpl in Hk. simpl. rewrite IHk by lia. lia.
+Qed.
+
+Lemma length_insert_at : forall k T D, k <= length D -> length (insert_at k T D) = length D + 1.
+Proof.
+  intros k. induction k; intros T D Hk.
+  - simpl. lia.
+  - destruct D as [|d D']; [simpl in Hk; lia|].
+    simpl in Hk. simpl. f_equal. apply IHk. lia.
+Qed.
+
+Lemma length_insert_none_at : forall k D, k <= length D -> length (insert_none_at k D) = length D + 1.
+Proof.
+  intros k. induction k; intros D Hk.
+  - simpl. lia.
+  - destruct D as [|d D']; [simpl in Hk; lia|].
+    simpl in Hk. simpl. f_equal. apply IHk. lia.
+Qed.
+
+(* n<k：remove_at 不触及n之前的位 *)
+Lemma get_remove_at_lt : forall G k n, n < k -> get (remove_at k G) n = get G n.
+Proof.
+  intros G. induction G as [|g G' IH]; intros k n Hlt.
+  - destruct k; simpl; reflexivity.
+  - destruct k as [|k']; [lia|]. destruct n as [|n']; [simpl; reflexivity|].
+    simpl. apply IH. lia.
+Qed.
+
+(* n>=k：remove_at 后原 n+1 位移到 n *)
+Lemma get_remove_at_ge : forall G k n, n >= k -> get (remove_at k G) n = get G (n + 1).
+Proof.
+  intros G. induction G as [|g G' IH]; intros k n Hge.
+  - destruct k; simpl; reflexivity.
+  - destruct k as [|k'].
+    + simpl. replace (n + 1) with (S n) by lia. simpl. reflexivity.
+    + destruct n as [|n']; [lia|]. simpl. apply IH. lia.
+Qed.
+
+(* 实有位复原：k位持有Some T，则 G 恰为"在remove后k位插回T"（对k归纳，无需split给长度） *)
+Lemma insert_remove_at_id : forall k T G,
+  get G k = Some (Some T) -> G = insert_at k T (remove_at k G).
+Proof.
+  intros k. induction k; intros T G Hk.
+  - destruct G as [|g G']; [simpl in Hk; discriminate|].
+    simpl in Hk. injection Hk as Hg. subst g. simpl. reflexivity.
+  - destruct G as [|g G']; [simpl in Hk; discriminate|].
+    simpl in Hk. specialize (IHk T G' Hk). simpl. f_equal. exact IHk.
+Qed.
+
+(* 寂然位复原：k位存着Some None，则 G 恰为"在remove后k位插回None" *)
+Lemma insert_none_remove_id : forall k G,
+  get G k = Some None -> G = insert_none_at k (remove_at k G).
+Proof.
+  intros k. induction k; intros G Hk.
+  - destruct G as [|g G']; [simpl in Hk; discriminate|].
+    simpl in Hk. injection Hk as Hg. subst g. simpl. reflexivity.
+  - destruct G as [|g G']; [simpl in Hk; discriminate|].
+    simpl in Hk. specialize (IHk G' Hk). simpl. f_equal. exact IHk.
+Qed.
+
+(* insert_at 逐位置取回（前提 k<=length G：注入位在世界之内，不在尾部悬空补None）：
+   n<k 时同原 n 位；n>k 时对应原 n-1 位 *)
+Lemma get_insert_at_lt_eq : forall k T G n, k <= length G -> n < k ->
+  get (insert_at k T G) n = get G n.
+Proof.
+  intros k. induction k; intros T G n Hlen Hn; [lia|].
+  destruct G as [|g G']; [simpl in Hlen; lia|].
+  simpl in Hlen.
+  destruct n as [|n']; [simpl; reflexivity|]. simpl. apply IHk; lia.
+Qed.
+
+Lemma get_insert_at_gt_eq : forall k T G n, k <= length G -> n > k ->
+  get (insert_at k T G) n = get G (n - 1).
+Proof.
+  intros k T G n Hlen Hn. revert k n Hlen Hn. induction G as [|g G' IH]; intros k n Hlen Hn.
+  - assert (k = 0) by (simpl in Hlen; lia). subst k. destruct n; [lia|]. simpl.
+    destruct n; simpl; reflexivity.
+  - destruct k as [|k'].
+    + destruct n; [lia|]. simpl. destruct n; simpl; reflexivity.
+    + destruct n; [lia|].
+      simpl in Hlen. simpl in Hn.
+      assert (Hgt : n > k') by lia.
+      assert (Hlen' : k' <= length G') by lia.
+      specialize (IH k' n Hlen' Hgt) as Hih.
+      destruct n as [|a]; [exfalso; lia|].
+      simpl. replace (S a - 1) with a in Hih by lia. rewrite Hih. reflexivity.
+Qed.
+
+(* split 与 remove_at 的交换：在 insert_at 后的世界 split 成两侧，
+   各自撤除插入位 k，便回到原始 Gamma 的 split。逐位置对接：
+   n<k 用原位置 n，n>=k 用后移一位的 n+1（insert 在 n+1 处恰存 Gamma n）。 *)
+Lemma split_remove_at_both : forall Gamma T k G1 G2,
+  k <= length Gamma ->
+  split (insert_at k T Gamma) G1 G2 ->
+  split Gamma (remove_at k G1) (remove_at k G2).
+Proof.
+  intros Gamma T k G1 G2 Hlen Hs. unfold split. intros n.
+  unfold split in Hs.
+  destruct (Nat.ltb n k) eqn:El.
+  - (* n < k：看 insert 世界的 n 位 *)
+    apply Nat.ltb_lt in El.
+    specialize (Hs n). destruct Hs as [[L1 L2] | [R1 R2]].
+    + rewrite (get_insert_at_lt_eq k T Gamma n Hlen El) in L1. left. split.
+      * rewrite get_remove_at_lt by lia. exact L1.
+      * rewrite get_remove_at_lt by lia. exact L2.
+    + rewrite (get_insert_at_lt_eq k T Gamma n Hlen El) in R1. right. split.
+      * rewrite get_remove_at_lt by lia. exact R1.
+      * rewrite get_remove_at_lt by lia. exact R2.
+  - (* n >= k：看 insert 世界的 n+1 位（其值为 Gamma n） *)
+    apply Nat.ltb_ge in El.
+    assert (Hgt : n + 1 > k) by lia.
+    specialize (Hs (n + 1)). destruct Hs as [[L1 L2] | [R1 R2]].
+    + rewrite (get_insert_at_gt_eq k T Gamma (n+1) Hlen Hgt) in L1.
+      replace ((n + 1) - 1) with n in L1 by lia. left. split.
+      * rewrite get_remove_at_ge by lia. exact L1.
+      * rewrite get_remove_at_ge by lia. exact L2.
+    + rewrite (get_insert_at_gt_eq k T Gamma (n+1) Hlen Hgt) in R1.
+      replace ((n + 1) - 1) with n in R1 by lia. right. split.
+      * rewrite get_remove_at_ge by lia. exact R1.
+      * rewrite get_remove_at_ge by lia. exact R2.
+Qed.
+
 Lemma substitution_general : forall Gamma T k m Q,
   typed (insert_at k T Gamma) Q ->
   get Gamma m = Some (Some T) ->
