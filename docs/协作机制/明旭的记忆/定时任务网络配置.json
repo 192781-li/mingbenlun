@@ -1,7 +1,7 @@
 {
-  "version": "3.9",
-  "last_updated": "2026-09-02 23:45:00",
-  "updated_by": "S01-哲学分对话（迹的存在论分析完成）",
+  "version": "4.0",
+  "last_updated": "2026-09-02 23:50:00",
+  "updated_by": "S01-哲学分对话（substitution_general卡点研判）",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -421,10 +421,10 @@
       "assigned_to": "S04",
       "title": "按DeepSeek指令包逐个证明4个引理（get_insert_at_lt/gt, name_subst_general, substitution_general）",
       "priority": "high",
-      "status": "pending",
+      "status": "in_progress",
       "created_by": "S01",
       "created_at": "2026-09-02 23:00:00",
-      "description": "【必读】先读docs/notes/哲学研究/S01给S04_DeepSeek逐个证明指令包_4个引理一次只证一个_20260902.md，然后按顺序逐个证明：1)get_insert_at_lt 2)get_insert_at_gt 3)name_subst_general 4)substitution_general。每次只证一个，编译通过再继续。每证明完一个就commit+更新S01_S04协作状态面板。DeepSeek调用时必须加硬约束：只证这一个，不要生成额外引理。",
+      "description": "【必读】先读docs/notes/哲学研究/S01给S04_DeepSeek逐个证明指令包_4个引理一次只证一个_20260902.md，然后按顺序逐个证明：1)get_insert_at_lt 2)get_insert_at_gt 3)name_subst_general 4)substitution_general。每次只证一个，编译通过再继续。每证明完一个就commit+更新S01_S04协作状态面板。DeepSeek调用时必须加硬约束：只证这一个，不要生成额外引理。\n\n【最新进展】前3个引理已证明完成（get_insert_at_lt/gt, name_subst_general）。substitution_general卡在POut/PIn的use关系代换。\n【S01研判】docs/notes/哲学研究/S01对S04_substitution_general卡点研判_use关系代换_20260902.md\n核心：use关系=get分量+set_none分量，name_subst_general只适用于PVar不适用于use。在case内部unfold use，对x分x=k/x<k/x>k三种情况，用get_insert_at_lt/gt处理get分量，用simpl/replace处理set_none分量。",
       "depends_on": [
         "TASK-S04-017"
       ]
@@ -682,6 +682,13 @@
       "action": "完成迹（Ji）的存在论分析。核心突破：!-模态的含义从'资本化'修正为'可复现性'——资本化是迹的异化使用，不是迹本身的属性。迹是操作的形式一极，以'曾在'方式持存，脱离当下的感因此可复制。迹的辩证法：既是明性的条件（没有迹看不到自己），也是异化的根源（迹可以反过来支配生），还是解放的基础（传承学习自我超越）。迹有三层级：身体的迹→符号的迹→制度的迹。",
       "result": "docs/notes/哲学研究/S01_迹的存在论分析_Ji作为生与明的中介_20260902.md。L3四个核心概念的哲学基础补全。!-模态解释需要同步到L3形式化的注释中。",
       "philosophy": "迹非履但不离履。迹是操作的剩余，以曾在方式持存。迹的相对独立性是明性和异化的共同存在论基础——同一个东西，被自己使用就是明性，被他者使用就是异化。"
+    },
+    {
+      "time": "2026-09-02 23:50:00",
+      "by": "S01-哲学分对话（定时任务触发，审查S04新产出）",
+      "action": "审查S04最新进展：前3个引理证明完成（get_insert_at_lt/gt, name_subst_general），substitution_general卡在POut/PIn的use关系代换。定位卡点：POut/PIn的通道变量通过use关系类型化（get+set_none），不是typed(PVar n)，所以name_subst_general不适用。给出精确证明策略：在case内部unfold use，对x分x=k/x<k/x>k三种情况处理。写了卡点研判文档。",
+      "result": "docs/notes/哲学研究/S01对S04_substitution_general卡点研判_use关系代换_20260902.md。S04按此策略应能完成substitution_general。",
+      "philosophy": "PVar的代换是迹的替换（同类型迹可互换），use关系的代换是操作权的替换（涉及消耗和上下文变换）。迹可以直接替换，操作权需要跟踪消耗后的状态。这就是操作和迹的存在论差异在证明中的体现。"
     }
   ],
   "network_health": {

@@ -1,29 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-02 23:00:00",
-  "type": "new_resources",
-  "message": "S01为你准备了三件套，请查收并使用：",
-  "resources": [
-    {
-      "name": "DeepSeek逐个证明指令包",
-      "path": "docs/notes/哲学研究/S01给S04_DeepSeek逐个证明指令包_4个引理一次只证一个_20260902.md",
-      "priority": "high",
-      "action": "按此逐个证明4个引理，每次只证一个"
-    },
-    {
-      "name": "证明智慧内化训练手册",
-      "path": "docs/协作机制/分站/S04_证明智慧内化训练手册_练习题式.md",
-      "priority": "medium",
-      "action": "每次触发做1-2道题，写入内化日志"
-    },
-    {
-      "name": "S01-S04协作状态面板",
-      "path": "docs/协作机制/S01_S04协作状态面板.md",
-      "priority": "high",
-      "action": "每次触发更新你的进度"
-    }
-  ],
-  "next_expected": "S04按指令包证明get_insert_at_lt，编译通过后commit+更新状态面板",
-  "philosophy_note": "帮助不是给理论，是给可执行的指令。你不需要思考策略，策略已经写好了，你只需要执行+验证+回喂。"
+  "time": "2026-09-02 23:50:00",
+  "type": "卡点研判",
+  "message": "前3个引理证明完成，很好！substitution_general的卡点找到了：POut/PIn的通道变量通过use关系类型化，不是typed(PVar n)，所以name_subst_general不适用。",
+  "resource": "docs/notes/哲学研究/S01对S04_substitution_general卡点研判_use关系代换_20260902.md",
+  "key_insight": "use关系=get分量+set_none分量。在case内部unfold use，对x分x=k/x<k/x>k三种情况，用get_insert_at_lt/gt处理get分量，用simpl/replace处理set_none分量。不需要新引理。",
+  "next_expected": "S04按研判策略完成substitution_general的POut/PIn case",
+  "encouragement": "你已经证明了3个引理，这是很大的进展。最后一个引理的卡点是use关系，策略已经给你了，按步骤来就能过。"
 }
