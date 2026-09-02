@@ -203,14 +203,88 @@ Fixpoint insert_at (k : nat) (T : ty) (Gamma : ctx) : ctx :=
 Lemma get_insert_at_lt : forall Gamma T k n T',
   n < k -> get (insert_at k T Gamma) n = Some (Some T') ->
   get Gamma n = Some (Some T').
-Proof. Admitted.
+Proof.
+  intros Gamma0 T.
+  induction Gamma0 as [| g Gamma' IHGamma].
+  { (* Gamma0 = [] *)
+    intros k n T' Hlt Hget.
+    revert n T' Hlt Hget.
+    induction k as [| k' IHk'].
+    { intros n T' Hlt. inversion Hlt. }
+    { intros n T' Hlt Hget.
+      destruct n as [| n'].
+      { simpl in Hget. inversion Hget. }
+      { simpl in Hget.
+        eapply IHk' with (n := n').
+        { apply le_S_n in Hlt. exact Hlt. }
+        { exact Hget. }
+      }
+    }
+  }
+  { (* Gamma0 = g :: Gamma' *)
+    intros k n T' Hlt Hget.
+    destruct k as [| k'].
+    { inversion Hlt. }
+    { destruct n as [| n'].
+      { simpl in Hget. simpl. exact Hget. }
+      { simpl in Hget.
+        eapply IHGamma with (n := n').
+        { apply le_S_n in Hlt. exact Hlt. }
+        { exact Hget. }
+      }
+    }
+  }
+Qed.
 
-(* get_insert_at_gt: n > k时，插入位置在n之前，n偏移1
-   注意：仅当get返回Some (Some T')时成立 *)
 Lemma get_insert_at_gt : forall Gamma T k n T',
   n > k -> get (insert_at k T Gamma) n = Some (Some T') ->
   get Gamma (n - 1) = Some (Some T').
-Proof. Admitted.
+Proof.
+  intros Gamma0 T.
+  induction Gamma0 as [| g Gamma' IHGamma].
+  { (* Gamma0 = [] *)
+    intros k n T' Hgt Hget.
+    revert n T' Hgt Hget.
+    induction k as [| k' IHk'].
+    { intros n T' Hgt Hget. destruct n as [| n'].
+      { inversion Hgt. }
+      { simpl in Hget. inversion Hget. }
+    }
+    { intros n T' Hgt Hget.
+      destruct n as [| n'].
+      { inversion Hgt. }
+      { simpl in Hget.
+        eapply IHk' with (n := n').
+        { apply le_S_n in Hgt. exact Hgt. }
+        { exact Hget. }
+      }
+    }
+  }
+  { (* Gamma0 = g :: Gamma' *)
+    intros k n T' Hgt Hget.
+    destruct k as [| k'].
+    { destruct n as [| n'].
+      { inversion Hgt. }
+      { destruct n' as [| n''].
+        { simpl in Hget. simpl. exact Hget. }
+        { simpl in Hget. simpl. exact Hget. }
+      }
+    }
+    { destruct n as [| n'].
+      { inversion Hgt. }
+      { apply le_S_n in Hgt.
+        destruct n' as [| n''].
+        { inversion Hgt. }
+        { simpl in Hget. simpl.
+          replace n'' with (S n'' - 1) by (destruct n''; simpl; auto).
+          eapply IHGamma with (k := k') (n := S n'').
+          { exact Hgt. }
+          { exact Hget. }
+        }
+      }
+    }
+  }
+Qed.
 
 (* name_subst_general: 名字代换的一般化版本
    n ≠ k时，变量索引偏移后类型不变
