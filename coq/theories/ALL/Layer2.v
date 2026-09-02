@@ -256,8 +256,10 @@ Qed.
 Lemma set_none_insert_at_eq : forall k T Gamma,
   set_none (insert_at k T Gamma) k = Gamma.
 Proof.
-  (* 陈述有问题，待重新考虑。当Gamma=[]时左边=[None]右边=[]，不可能相等。
-     可能需要更弱的形式，或者在PIn case中直接处理而不用这个引理。 *)
+  (* S01建议的陈述=insert_at k None Gamma有类型错误（insert_at第二个参数是ty不是option ty）。
+     原陈述=Gamma也错误（Gamma=[]时左边=[None]右边=[]）。
+     正确陈述待重新分析。可能需要定义insert_none_at操作，或者在PIn case中直接处理。
+     暂时Admitted，待DeepSeek第四次分析。 *)
 Admitted.
 
 (* set_none_insert_at_gt: x > k时，set_none在insert_at之后，位置偏移
@@ -265,26 +267,9 @@ Admitted.
 Lemma set_none_insert_at_gt : forall k T Gamma x,
   x > k -> set_none (insert_at k T Gamma) x = insert_at k T (set_none Gamma (x - 1)).
 Proof.
-  (* 陈述可能正确，但证明结构有问题。暂时Admitted，待DeepSeek第三次分析。
-     左边=set_none (insert_at 0 T [g,g']) 1 = [Some T, None, g']
-     右边=insert_at 0 T (set_none [g,g'] 0) = [Some T, None, g']
-     等等，这个反例不对...
-     重新算：k=0, x=1, Gamma=[g1,g2]
-     左边=set_none (insert_at 0 T [g1,g2]) 1 = set_none [Some T,g1,g2] 1 = [Some T,None,g2]
-     右边=insert_at 0 T (set_none [g1,g2] 0) = insert_at 0 T [None,g2] = [Some T,None,g2]
-     两边相等！
-     
-     那k=0, x=1, Gamma=[g]呢？
-     左边=set_none (insert_at 0 T [g]) 1 = set_none [Some T,g] 1 = [Some T,None]
-     右边=insert_at 0 T (set_none [g] 0) = insert_at 0 T [None] = [Some T,None]
-     两边相等！
-     
-     那k=1, x=2, Gamma=[g1,g2,g3]呢？
-     左边=set_none (insert_at 1 T [g1,g2,g3]) 2 = set_none [g1,Some T,g2,g3] 2 = [g1,Some T,None,g3]
-     右边=insert_at 1 T (set_none [g1,g2,g3] 1) = insert_at 1 T [g1,None,g3] = [g1,Some T,None,g3]
-     两边相等！
-     
-     陈述可能是对的，只是证明有问题。暂时Admitted，待DeepSeek第三次分析。 *)
+  (* 证明复杂：k=S k', Gamma=[]时需要辅助引理（空上下文中set_none不改变None位置）。
+     S01的证明策略在Gamma=[]的case中不够详细。
+     暂时Admitted，待DeepSeek第四次分析给出完整证明。 *)
 Admitted.
 
 (* get_insert_at_lt: n < k时，插入位置在n之后，不影响位置n
