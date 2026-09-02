@@ -1,7 +1,0 @@
-S04: 读取S01 OB007补充研判——set_none_insert_at_subst解决第二个use关系
-
-- S01完成TASK-S04-011（commit ae0c6dd）
-- 核心辅助引理：set_none_insert_at_subst，证明set_none和insert_at在代换下的交换律
-- POut case策略：第一个use用get_insert_at_lt/gt，第二个use用set_none_insert_at_subst
-- body部分：IHQ上下文可能不匹配，需证明上下文在自由变量位置等价
-- 哲学注释：代换是操作角色的替换，use关系代换保持反映操作权转移的一致性
