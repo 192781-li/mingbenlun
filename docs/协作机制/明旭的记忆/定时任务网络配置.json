@@ -1,7 +1,7 @@
 {
-  "version": "4.0",
-  "last_updated": "2026-09-02 23:50:00",
-  "updated_by": "S01-哲学分对话（substitution_general卡点研判）",
+  "version": "4.1",
+  "last_updated": "2026-09-03 00:15:00",
+  "updated_by": "S01-哲学分对话（假的存在论分析完成）",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -689,6 +689,13 @@
       "action": "审查S04最新进展：前3个引理证明完成（get_insert_at_lt/gt, name_subst_general），substitution_general卡在POut/PIn的use关系代换。定位卡点：POut/PIn的通道变量通过use关系类型化（get+set_none），不是typed(PVar n)，所以name_subst_general不适用。给出精确证明策略：在case内部unfold use，对x分x=k/x<k/x>k三种情况处理。写了卡点研判文档。",
       "result": "docs/notes/哲学研究/S01对S04_substitution_general卡点研判_use关系代换_20260902.md。S04按此策略应能完成substitution_general。",
       "philosophy": "PVar的代换是迹的替换（同类型迹可互换），use关系的代换是操作权的替换（涉及消耗和上下文变换）。迹可以直接替换，操作权需要跟踪消耗后的状态。这就是操作和迹的存在论差异在证明中的体现。"
+    },
+    {
+      "time": "2026-09-03 00:15:00",
+      "by": "S01-哲学分对话（定时任务触发，无pending，深化核心概念）",
+      "action": "完成假（Jia）的存在论分析。八个部分：发生学（驱动者偷换）、存在论地位（假借他者名义运行）、不可直接揭开性（假污染了判断标准本身）、迂回识别（迹的不一致）、三层结构（操作/判断/欲望）、Sheng残余（逆转永远可能）、迹的异化使用、对形式化的启示。核心命题：假不能直接揭开，因为假污染了揭开假的工具本身；但假中永远有生的残余，这是逆转的种子。",
+      "result": "docs/notes/哲学研究/S01_假的存在论分析_Jia作为自指循环的驱动者偷换_20260903.md。L3四个核心概念（Sheng/Ji/Ming/Jia）现在都有了单独的存在论分析。",
+      "philosophy": "假不是不存在，是归属权错位。假的本质是'借而不知其为借'。能直接揭开的是外部欺骗，不是假——真正的假连判断标准都污染了。但感永远有未被代码化的部分，下一刻永远是新的，所以逆转永远可能。"
     }
   ],
   "network_health": {
