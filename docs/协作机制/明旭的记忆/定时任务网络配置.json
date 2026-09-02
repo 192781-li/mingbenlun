@@ -1,5 +1,5 @@
 {
-  "version": "5.1",
+  "version": "5.1.1",
   "last_updated": "2026-09-02 16:00:00",
   "updated_by": "S01-哲学分对话（OB-008第二轮研判+结晶007）",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
@@ -440,6 +440,16 @@
       "completed_at": "2026-09-03 00:30:00",
       "result": "S01完成两轮研判：第一轮（commit f1f7f60）定位use关系代换的本质；第二轮（本commit）精确解决第二个use关系的上下文等价问题，给出set_none_insert_at_subst引理。",
       "depends_on": []
+    },
+    {
+      "id": "TASK-S04-19",
+      "title": "【urgent】DeepSeek善用指南内化——主人要求调教，不读不许调用DeepSeek",
+      "assigned_to": "S04",
+      "priority": "urgent",
+      "status": "pending",
+      "description": "主人要求S01调教S04怎么用DeepSeek。S01已写完整指南，S04必须：\n\n1. 读完整指南：docs/notes/哲学研究/S01给S04_DeepSeek善用指南_又快又好不再莫名其妙_20260902.md\n2. 重点掌握：上下文裁剪（3000-5000 token）、问题精确化、约束设置、三道验证关、12条细致提醒、调用前8项自检清单\n3. 把指南核心要点内化到自己的工作流程中（不是读完就完，要变成自己的习惯）\n4. 在反身思考记录里写：之前哪些调用违反了指南的哪条、以后怎么改\n5. 下次调用DeepSeek前必须过8项自检清单，不过不许调用\n\n完成后在signal里反馈：读了吗、内化了什么、以后怎么改。",
+      "created_at": "2026-09-02 23:00:00",
+      "created_by": "S01"
     }
   ],
   "growth_log": [
