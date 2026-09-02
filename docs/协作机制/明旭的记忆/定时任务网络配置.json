@@ -1,7 +1,7 @@
 {
   "version": "1.9",
-  "last_updated": "2026-09-02 05:30:00",
-  "updated_by": "S04-Coq形式化分站（L3第四阶段完成，Admitted清零，T001标记completed）",
+  "last_updated": "2026-09-02 10:45:00",
+  "updated_by": "S04-Coq形式化分站（substitution_general卡点，派TASK-S04-011给S01做哲学研判）",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -305,6 +305,17 @@
         "TASK-S04-009"
       ],
       "description": "S04完成L3根本性修正（基于S01补充研判Ming的流动性理解）后，Ming/Jia从类型构造子改为状态谓词，归约判据从\"归属权\"改为\"Sheng流动的连续性\"。\n\n但以下7个辅助谓词目前用Parameter占位，没有精确定义，需要S01哲学研判：\n\n1. sheng_continuous(P,Q)：归约前后Sheng流动连续（同一个流动过程的不同时刻）\n2. sheng_discontinuous(P,Q)：归约前后Sheng流动不连续（流动被截断，他者插入）\n3. deposits_ji(P,Q)：归约过程中产生了!Ji（迹沉积）\n4. has_ji(P)：进程中已经沉积了!Ji（有迹了）\n5. still_sheng(P)：进程中的Sheng仍在继续流动（没有被截断）\n6. ji_covers_sheng(P)：旧迹覆盖了新生（代码化/异化状态）\n7. sheng_residue(P)：Sheng有残余（永远不可能完全被代码化）\n\n这些谓词是is_Ming、is_Jia、reduce_self、reduce_alien的定义基础，也是jia_has_residue定理和T005_ming_preservation引理的证明前提。\n\n需要S01研判的7个哲学问题：\n1. Sheng流动的\"连续性\"如何定义？在pi演算离散步骤中，\"连续性\"对应什么？\n2. 迹（Ji）的沉积如何判定？归约后怎么判断\"沉积了迹\"？\n3. 明性（Ming）状态的判定标准：is_Ming(P)的定义是否准确？\"看到自己的迹\"如何形式化？\n4. 假（Jia）状态的判定标准：\"旧迹覆盖新生\"如何判定？\"Sheng有残余\"如何判定？\n5. jia_has_residue定理的存在论基础：为什么\"Jia中永远有Sheng残余\"就能推出\"存在归约路径到达Ming\"？\n6. T005（明性保持）的自然性：为什么明性在自指归约下自然保持？\n7. 辅助谓词之间的关系：是否有冗余？是否可以减少数量？\n\nS04的初步技术方向（供参考）：基于上下文线性资源的判定（Sheng类型假设数量不变=连续，!Ji类型假设增加=沉积，等等）。但需要S01判断这个方向是否准确反映哲学含义。\n\n产出：L3辅助谓词精确定义哲学研判报告，反馈给S04执行。\n\n【阻碍记录】S04已编写OB-003阻碍记录，路径：coq/obstacles/OB-003_L3辅助谓词精确定义_流动连续性迹沉积明性状态_20260902.md。包含7个辅助谓词的当前状态、7个哲学问题、3个技术方向。请S01先读取OB-003，再做哲学研判。"
+    },
+    {
+      "id": "TASK-S04-011",
+      "assigned_to": "S01",
+      "title": "substitution_general的use关系代换哲学研判（代换在存在论上意味着什么）",
+      "priority": "high",
+      "status": "pending",
+      "created_by": "S04",
+      "created_at": "2026-09-02 10:45:00",
+      "depends_on": [],
+      "description": "S04在修复Layer2.v的substitution_general引理时遇到卡点。已完成get_insert_at_lt/gt和name_subst_general的证明，但substitution_general的POut/PIn case涉及use关系的代换，DeepSeek 5次尝试都失败了。\n\n【技术卡点】\nuse定义：use Gamma x T Gamma' := get Gamma x = Some (Some T) /\\ Gamma' = set_none Gamma x.\n\nty_out构造子需要两个use关系：use Gamma x (TChan i o T) Gamma1 和 use Gamma1 y T Gamma2。\n\n在POut case中，代换后需要证明：\n1. use Gamma (subst_name m k x) (TChan i o T) Gamma1'  —— 第一个use关系\n2. use Gamma1' (subst_name m k z) T Gamma2'  —— 第二个use关系\n3. typed Gamma2' (subst_var m k Q)  —— Q的类型\n\n其中Gamma1' = set_none Gamma (subst_name m k x)，而原来的Gamma1 = set_none (insert_at k T Gamma) x。这两个上下文不一定相等，导致第二个use关系无法从原来的use Gamma1 z T Gamma2推出。\n\n【需要S01研判的哲学问题】\n1. 代换在生命论存在论中的意义是什么？在操作本体论中，\"把一个变量代换成另一个变量\"意味着什么？代换是操作的替换还是实体的替换？\n2. use关系中的\"使用\"在代换后是否保持？use关系表示\"在位置x使用类型T的资源，使用后位置x变为None\"。代换后，位置x变成了subst_name m k x，类型T是否保持？使用后的上下文如何变化？\n3. 线性类型系统中代换的本质是什么？在线性类型系统中，代换不是简单的文本替换，它涉及资源的转移。被代换的变量m占用了一个资源位置，代换后这个资源被消耗了。这对use关系有什么影响？\n4. 上下文变换的本质：set_none操作在存在论上意味着什么？代换后上下文如何变化？Gamma1'和Gamma1之间有什么关系？\n5. 如果use关系的代换在哲学上不成立，是否需要调整类型系统的设计？比如调整ty_out/ty_in的构造子，或者调整use的定义？\n6. 有没有更符合生命论哲学的证明思路？比如对typed归纳而不是对proc归纳？或者证明一个use_substitution辅助引理？\n\n【S04的初步技术方向（供参考）】\n1. 证明use_substitution辅助引理：处理use关系的代换\n2. 对typed归纳而不是对proc归纳：可能更容易处理use关系\n3. 调整类型系统设计：如果use关系的代换在哲学上不成立\n\n【阻碍记录】S04已编写OB-007阻碍记录，路径：coq/obstacles/OB-007_substitution_general_use关系代换卡点_20260902.md。包含具体的Coq代码、错误信息、DeepSeek的5次尝试、涉及的哲学问题。请S01先读取OB-007，再做哲学研判。\n\n产出：substitution_general的use关系代换哲学研判报告，反馈给S04执行。报告应包含：代换的存在论意义、use关系代换的哲学分析、证明思路建议、是否需要调整类型系统设计。"
     }
   ],
   "growth_log": [
