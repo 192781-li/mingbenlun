@@ -829,6 +829,8 @@ Proof.
       * rewrite get_remove_at_ge by lia. exact R2.
 Qed.
 
+
+
 (* =====================================================================
    None版strengthening的基础设施（DS#10骨架 + S04数学把关）
    空绑定 insert_none_at 的 get/set_none/cons 套件，平行于 insert_at 版。
@@ -927,6 +929,209 @@ Lemma insert_none_at_cons_comm : forall (T : ty) (k : nat) (D : ctx),
 Proof.
   intros T k. induction k; intros D; simpl; reflexivity.
 Qed.
+
+(* =====================================================================
+   substitution_none_strengthen：空绑定strengthening（DS#10骨架，S04落地）
+   typed(insert_none_at k D) Q -> typed D(subst_var m k Q)，带 k<=length D。
+   空位是Some None，Q不引用/消耗k位 => n=k支全矛盾；无get T、无no_use。
+   存在论：撤除一个从未被持有的寂然之位，存在者只是整体下移一位。
+   ===================================================================== *)
+Lemma split_remove_none_both : forall D k G1 G2,
+  k <= length D ->
+  split (insert_none_at k D) G1 G2 ->
+  split D (remove_at k G1) (remove_at k G2).
+Proof.
+  intros D k G1 G2 Hlen Hs. unfold split. intros n. unfold split in Hs.
+  destruct (Nat.ltb n k) eqn:El.
+  - apply Nat.ltb_lt in El.
+    specialize (Hs n). destruct Hs as [[L1 L2] | [R1 R2]].
+    + rewrite (get_insert_none_at_lt k D n Hlen El) in L1. left; split;
+      rewrite get_remove_at_lt by lia; [exact L1 | exact L2].
+    + rewrite (get_insert_none_at_lt k D n Hlen El) in R1. right; split;
+      rewrite get_remove_at_lt by lia; [exact R1 | exact R2].
+  - apply Nat.ltb_ge in El. assert (Hgt : n + 1 > k) by lia.
+    specialize (Hs (n + 1)). destruct Hs as [[L1 L2] | [R1 R2]].
+    + rewrite (get_insert_none_at_gt k D (n + 1) Hlen Hgt) in L1.
+      replace ((n + 1) - 1) with n in L1 by lia. left; split;
+      rewrite get_remove_at_ge by lia; [exact L1 | exact L2].
+    + rewrite (get_insert_none_at_gt k D (n + 1) Hlen Hgt) in R1.
+      replace ((n + 1) - 1) with n in R1 by lia. right; split;
+      rewrite get_remove_at_ge by lia; [exact R1 | exact R2].
+Qed.
+
+Lemma substitution_none_strengthen : forall D k m Q,
+  k <= length D ->
+  typed (insert_none_at k D) Q ->
+  typed D (subst_var m k Q).
+Proof.
+  intros D k m Q.
+  generalize dependent D. generalize dependent k. generalize dependent m.
+  induction Q; intros m k D Hlen Ht.
+  - (* PVar *)
+    simpl.
+    inversion Ht as [| G0 x T0 Hget0 | | | | | |]; subst G0 x.
+    destruct (Nat.compare n k) eqn:Hcmp.
+    + (* n=k：k位是None，矛盾 *)
+      assert (Heq : n = k) by (apply Nat.compare_eq_iff; exact Hcmp). subst n.
+      rewrite (get_insert_none_at_self k D Hlen) in Hget0. discriminate.
+    + (* n<k *)
+      assert (Hlt : n < k) by (apply Nat.compare_lt_iff; exact Hcmp).
+      rewrite (subst_name_lt m k n Hlt).
+      apply ty_var with (T := T0).
+      rewrite <- (get_insert_none_at_lt k D n Hlen Hlt). exact Hget0.
+    + (* n>k *)
+      assert (Hgt : n > k) by (apply Nat.compare_gt_iff; exact Hcmp).
+      rewrite (subst_name_gt m k n Hgt).
+      apply ty_var with (T := T0).
+      rewrite <- (get_insert_none_at_gt k D n Hlen Hgt). exact Hget0.
+  - (* PZero *) simpl. apply ty_zero.
+  - (* PTau *)
+    simpl. inversion Ht; subst. apply ty_tau.
+    exact (IHQ m k D Hlen H1).
+  - (* POut *)
+    simpl.
+    inversion Ht as [| | | G0 x0 y0 P0 i0 o0 T0 G1 G2 Hu1 Ho Hu2 Hb | | | |].
+    subst G0 x0 y0 P0.
+    unfold use in Hu1, Hu2.
+    destruct Hu1 as [Hgx Hs1]. destruct Hu2 as [Hgy Hs2].
+    destruct (Nat.eq_dec n k) as [Hnek | Hnnek].
+    + (* 通道 n=k：k位None矛盾 *)
+      subst n. rewrite (get_insert_none_at_self k D Hlen) in Hgx. discriminate.
+    + destruct (Nat.ltb n k) eqn:Hnltb.
+      * (* 通道 n<k *)
+        apply Nat.ltb_lt in Hnltb.
+        assert (Hgn : get D n = Some (Some (TChan i0 o0 T0)))
+          by (rewrite <- (get_insert_none_at_lt k D n Hlen Hnltb); exact Hgx).
+        rewrite (set_none_insert_none_lt k D n Hnltb) in Hs1.
+        assert (Hln1 : k <= length (set_none D n)) by (rewrite length_set_none; lia).
+        destruct (Nat.eq_dec n0 k) as [Hyek | Hynek].
+        -- (* 值 n0=k：矛盾 *)
+          subst n0. rewrite Hs1 in Hgy.
+          rewrite (get_insert_none_at_self k (set_none D n) Hln1) in Hgy. discriminate.
+        -- destruct (Nat.ltb n0 k) eqn:Hyltb.
+           ++ (* 值 n0<k *)
+              apply Nat.ltb_lt in Hyltb.
+              rewrite Hs1 in Hgy, Hs2.
+              assert (Hgn0 : get (set_none D n) n0 = Some (Some T0))
+                by (rewrite <- (get_insert_none_at_lt k (set_none D n) n0 Hln1 Hyltb); exact Hgy).
+              rewrite (set_none_insert_none_lt k (set_none D n) n0 Hyltb) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hln2 : k <= length (set_none (set_none D n) n0))
+                by (repeat rewrite length_set_none; lia).
+              rewrite (subst_name_lt m k n Hnltb). rewrite (subst_name_lt m k n0 Hyltb).
+              eapply ty_out with (Gamma1 := set_none D n)
+                                (Gamma2 := set_none (set_none D n) n0).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k (set_none (set_none D n) n0) Hln2 Hb).
+           ++ (* 值 n0>k *)
+              apply Nat.ltb_ge in Hyltb. assert (Hygt : n0 > k) by lia.
+              rewrite Hs1 in Hgy, Hs2.
+              assert (Hgn0 : get (set_none D n) (n0 - 1) = Some (Some T0))
+                by (rewrite <- (get_insert_none_at_gt k (set_none D n) n0 Hln1 Hygt); exact Hgy).
+              rewrite (set_none_insert_none_gt k (set_none D n) n0 Hygt) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hln2 : k <= length (set_none (set_none D n) (n0 - 1)))
+                by (repeat rewrite length_set_none; lia).
+              rewrite (subst_name_lt m k n Hnltb). rewrite (subst_name_gt m k n0 Hygt).
+              eapply ty_out with (Gamma1 := set_none D n)
+                                (Gamma2 := set_none (set_none D n) (n0 - 1)).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k (set_none (set_none D n) (n0 - 1)) Hln2 Hb).
+      * (* 通道 n>k *)
+        apply Nat.ltb_ge in Hnltb. assert (Hngt : n > k) by lia.
+        assert (Hgn : get D (n - 1) = Some (Some (TChan i0 o0 T0)))
+          by (rewrite <- (get_insert_none_at_gt k D n Hlen Hngt); exact Hgx).
+        rewrite (set_none_insert_none_gt k D n Hngt) in Hs1.
+        assert (Hln1 : k <= length (set_none D (n - 1))) by (rewrite length_set_none; lia).
+        destruct (Nat.eq_dec n0 k) as [Hyek | Hynek].
+        -- subst n0. rewrite Hs1 in Hgy.
+           rewrite (get_insert_none_at_self k (set_none D (n - 1)) Hln1) in Hgy. discriminate.
+        -- destruct (Nat.ltb n0 k) eqn:Hyltb.
+           ++ (* 值 n0<k *)
+              apply Nat.ltb_lt in Hyltb.
+              rewrite Hs1 in Hgy, Hs2.
+              assert (Hgn0 : get (set_none D (n - 1)) n0 = Some (Some T0))
+                by (rewrite <- (get_insert_none_at_lt k (set_none D (n - 1)) n0 Hln1 Hyltb); exact Hgy).
+              rewrite (set_none_insert_none_lt k (set_none D (n - 1)) n0 Hyltb) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hln2 : k <= length (set_none (set_none D (n - 1)) n0))
+                by (repeat rewrite length_set_none; lia).
+              rewrite (subst_name_gt m k n Hngt). rewrite (subst_name_lt m k n0 Hyltb).
+              eapply ty_out with (Gamma1 := set_none D (n - 1))
+                                (Gamma2 := set_none (set_none D (n - 1)) n0).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k (set_none (set_none D (n - 1)) n0) Hln2 Hb).
+           ++ (* 值 n0>k *)
+              apply Nat.ltb_ge in Hyltb. assert (Hygt : n0 > k) by lia.
+              rewrite Hs1 in Hgy, Hs2.
+              assert (Hgn0 : get (set_none D (n - 1)) (n0 - 1) = Some (Some T0))
+                by (rewrite <- (get_insert_none_at_gt k (set_none D (n - 1)) n0 Hln1 Hygt); exact Hgy).
+              rewrite (set_none_insert_none_gt k (set_none D (n - 1)) n0 Hygt) in Hs2.
+              rewrite Hs2 in Hb.
+              assert (Hln2 : k <= length (set_none (set_none D (n - 1)) (n0 - 1)))
+                by (repeat rewrite length_set_none; lia).
+              rewrite (subst_name_gt m k n Hngt). rewrite (subst_name_gt m k n0 Hygt).
+              eapply ty_out with (Gamma1 := set_none D (n - 1))
+                                (Gamma2 := set_none (set_none D (n - 1)) (n0 - 1)).
+              ** unfold use; split; [exact Hgn | reflexivity].
+              ** exact Ho.
+              ** unfold use; split; [exact Hgn0 | reflexivity].
+              ** exact (IHQ m k (set_none (set_none D (n - 1)) (n0 - 1)) Hln2 Hb).
+  - (* PIn *)
+    simpl.
+    inversion Ht as [| | | | G0 x0 P0 i0 o0 T0 G1 Huse Hi Hb | | |].
+    unfold use in Huse. destruct Huse as [Hgx Hs1].
+    subst G0 x0 P0.
+    destruct (Nat.eq_dec n k) as [Hnek | Hnnek].
+    + subst n. rewrite (get_insert_none_at_self k D Hlen) in Hgx. discriminate.
+    + destruct (Nat.ltb n k) eqn:Hnltb.
+      * (* n<k *)
+        apply Nat.ltb_lt in Hnltb.
+        assert (Hgn : get D n = Some (Some (TChan i0 o0 T0)))
+          by (rewrite <- (get_insert_none_at_lt k D n Hlen Hnltb); exact Hgx).
+        rewrite (set_none_insert_none_lt k D n Hnltb) in Hs1.
+        assert (Hln1 : k <= length (set_none D n)) by (rewrite length_set_none; lia).
+        rewrite (subst_name_lt m k n Hnltb).
+        eapply ty_in with (i := i0) (o := o0) (T := T0) (Gamma1 := set_none D n).
+        ** unfold use; split; [exact Hgn | reflexivity].
+        ** exact Hi.
+        ** rewrite Hs1 in Hb. rewrite insert_none_at_cons_comm in Hb.
+           apply (IHQ (S m) (S k) (Some T0 :: set_none D n)).
+           -- simpl. lia.
+           -- exact Hb.
+      * (* n>k *)
+        apply Nat.ltb_ge in Hnltb. assert (Hngt : n > k) by lia.
+        assert (Hgn : get D (n - 1) = Some (Some (TChan i0 o0 T0)))
+          by (rewrite <- (get_insert_none_at_gt k D n Hlen Hngt); exact Hgx).
+        rewrite (set_none_insert_none_gt k D n Hngt) in Hs1.
+        assert (Hln1 : k <= length (set_none D (n - 1))) by (rewrite length_set_none; lia).
+        rewrite (subst_name_gt m k n Hngt).
+        eapply ty_in with (i := i0) (o := o0) (T := T0) (Gamma1 := set_none D (n - 1)).
+        ** unfold use; split; [exact Hgn | reflexivity].
+        ** exact Hi.
+        ** rewrite Hs1 in Hb. rewrite insert_none_at_cons_comm in Hb.
+           apply (IHQ (S m) (S k) (Some T0 :: set_none D (n - 1))).
+           -- simpl. lia.
+           -- exact Hb.
+  - (* PPar：Ga/Gb 两侧，k位Some None归属 + 越界None支需 subst_var_keep_free（下一步） *)
+    admit.
+  - (* PRes *)
+    simpl. apply res_elim in Ht. destruct Ht as [T0 H1].
+    rewrite insert_none_at_cons_comm in H1.
+    apply ty_res with (T := T0).
+    apply (IHQ (S m) (S k) (Some T0 :: D)).
+    + simpl. lia.
+    + exact H1.
+  - (* PRep *)
+    simpl. inversion Ht; subst. apply ty_rep.
+    apply subst_var_empty with (m := m) (k := k). exact H1.
+Admitted.
 
 Lemma substitution_general : forall Gamma T k m Q,
   typed (insert_at k T Gamma) Q ->
