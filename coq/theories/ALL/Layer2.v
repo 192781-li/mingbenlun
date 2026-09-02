@@ -503,11 +503,132 @@ Qed.
 (* 空上下文代换引理：在空上下文下合法的进程，代换后仍然合法
    这是PRep case的核心引理
    存在论意义：空世界中没有操作权可以消耗，代换不改变任何东西 *)
+(* ===== no_res_from：代换位置k及其之后全无操作权，则代换保持类型化 =====
+   存在论：代换是"撤去k位、把对k的指称迁回m、其后之名依次前移"。
+   若k及其之后本就没有操作权（空上下文逐层加Some前缀正是此结构），
+   则类型化之操作所引用之名必在k之前（n<k，subst_name不变），代换不改类型。
+   关键：不需要显式fv_at谓词——类型推导自身携带"引用了哪些位置"。 ===== *)
+
+Definition no_res_from (Gamma : ctx) (k : nat) : Prop :=
+  forall n, n >= k -> get Gamma n = None \/ get Gamma n = Some None.
+
+Lemma no_res_from_empty : forall k, no_res_from [] k.
+Proof. intros k n _. left. reflexivity. Qed.
+
+Lemma no_res_from_cons : forall (t : option ty) G k,
+  no_res_from G k -> no_res_from (t :: G) (S k).
+Proof.
+  intros t G k H n hn. destruct n as [|n'].
+  - lia.
+  - simpl. apply H. lia.
+Qed.
+
+Lemma no_res_from_set_none : forall G k x,
+  x < k -> no_res_from G k -> no_res_from (set_none G x) k.
+Proof.
+  intros G k x Hxk H n hn.
+  rewrite (set_none_neq G x n); [ apply H; exact hn | lia ].
+Qed.
+
+Lemma no_res_from_contra : forall G k n T,
+  no_res_from G k -> n >= k -> get G n = Some (Some T) -> False.
+Proof.
+  intros G k n T H hn Hg.
+  specialize (H n hn). destruct H as [H | H]; rewrite Hg in H; discriminate.
+Qed.
+
+Lemma split_no_res_from_l : forall G G1 G2 k,
+  split G G1 G2 -> no_res_from G k -> no_res_from G1 k.
+Proof.
+  intros G G1 G2 k Hs H n hn.
+  unfold split in Hs. specialize (Hs n).
+  destruct Hs as [[Hg _] | [_ Hd]].
+  - rewrite Hg. apply H. exact hn.
+  - exact Hd.
+Qed.
+
+Lemma split_no_res_from_r : forall G G1 G2 k,
+  split G G1 G2 -> no_res_from G k -> no_res_from G2 k.
+Proof.
+  intros G G1 G2 k Hs H n hn.
+  unfold split in Hs. specialize (Hs n).
+  destruct Hs as [[_ Hd] | [Hg _]].
+  - exact Hd.
+  - rewrite Hg. apply H. exact hn.
+Qed.
+
+Lemma subst_var_no_res_from : forall (Gamma : ctx) (m k : nat) (P : proc),
+  no_res_from Gamma k -> typed Gamma P -> typed Gamma (subst_var m k P).
+Proof.
+  intros Gamma m k P Hk Hty.
+  generalize dependent k. generalize dependent m.
+  induction Hty; intros m k Hk.
+  - (* ty_zero *) simpl. apply ty_zero.
+  - (* ty_var x *) simpl.
+    assert (hlt : x < k).
+    { destruct (Nat.ltb x k) eqn:El.
+      - apply Nat.ltb_lt; exact El.
+      - apply Nat.ltb_ge in El. exfalso.
+        eapply no_res_from_contra; [exact Hk|exact El|exact H]. }
+    rewrite (subst_name_lt m k x hlt). eapply ty_var. exact H.
+  - (* ty_tau *) simpl. apply ty_tau. apply (IHHty m k). exact Hk.
+  - (* ty_out x y *) simpl.
+    assert (Hc1 := H). unfold use in Hc1. destruct Hc1 as [Hxg Heq1].
+    assert (Hc2 := H1). unfold use in Hc2. destruct Hc2 as [Hyg Heq2].
+    subst Gamma1 Gamma2.
+    assert (hxk : x < k).
+    { destruct (Nat.ltb x k) eqn:Elx.
+      - apply Nat.ltb_lt; exact Elx.
+      - apply Nat.ltb_ge in Elx. exfalso.
+        eapply no_res_from_contra;[exact Hk|exact Elx|exact Hxg]. }
+    assert (Hk1 : no_res_from (set_none Gamma x) k).
+    { apply no_res_from_set_none; [exact hxk|exact Hk]. }
+    assert (hyk : y < k).
+    { destruct (Nat.ltb y k) eqn:Ely.
+      - apply Nat.ltb_lt; exact Ely.
+      - apply Nat.ltb_ge in Ely. exfalso.
+        eapply no_res_from_contra;[exact Hk1|exact Ely|exact Hyg]. }
+    assert (Hk2 : no_res_from (set_none (set_none Gamma x) y) k).
+    { apply no_res_from_set_none; [exact hyk|exact Hk1]. }
+    rewrite (subst_name_lt m k x hxk).
+    rewrite (subst_name_lt m k y hyk).
+    eapply ty_out with (i:=i)(o:=o)(T:=T)
+      (Gamma1:=set_none Gamma x)(Gamma2:=set_none (set_none Gamma x) y).
+    + exact H. + exact H0. + exact H1.
+    + apply (IHHty m k). exact Hk2.
+  - (* ty_in x *) simpl.
+    assert (Hc1 := H). unfold use in Hc1. destruct Hc1 as [Hxg Heq1]. subst Gamma1.
+    assert (hxk : x < k).
+    { destruct (Nat.ltb x k) eqn:Elx.
+      - apply Nat.ltb_lt; exact Elx.
+      - apply Nat.ltb_ge in Elx. exfalso.
+        eapply no_res_from_contra;[exact Hk|exact Elx|exact Hxg]. }
+    assert (Hk1 : no_res_from (set_none Gamma x) k).
+    { apply no_res_from_set_none; [exact hxk|exact Hk]. }
+    rewrite (subst_name_lt m k x hxk).
+    eapply ty_in with (i:=i)(o:=o)(T:=T)(Gamma1:=set_none Gamma x).
+    + exact H. + exact H0.
+    + apply (IHHty (S m) (S k)).
+      exact (no_res_from_cons (Some T) (set_none Gamma x) k Hk1).
+  - (* ty_par *) simpl.
+    assert (Hk1 : no_res_from Gamma1 k) by (eapply split_no_res_from_l; eassumption).
+    assert (Hk2 : no_res_from Gamma2 k) by (eapply split_no_res_from_r; eassumption).
+    eapply ty_par with (Gamma1:=Gamma1)(Gamma2:=Gamma2).
+    + exact H.
+    + apply (IHHty1 m k). exact Hk1.
+    + apply (IHHty2 m k). exact Hk2.
+  - (* ty_res *) simpl. apply ty_res with (T:=T).
+    apply (IHHty (S m) (S k)).
+    exact (no_res_from_cons (Some T) Gamma k Hk).
+  - (* ty_rep *) simpl. apply ty_rep.
+    exact (IHHty m k (no_res_from_empty k)).
+Qed.
+
 Lemma subst_var_empty : forall m k P, typed [] P -> typed [] (subst_var m k P).
 Proof.
-  (* 待证明：PRes case需要更一般的引理（length Gamma <= k -> subst_var不改变类型）
-     暂时Admitted，PRep case先用这个引理 *)
-Admitted.
+  intros m k P H.
+  apply (subst_var_no_res_from [] m k P (no_res_from_empty k) H).
+Qed.
 
 Lemma substitution_general : forall Gamma T k m Q,
   typed (insert_at k T Gamma) Q ->

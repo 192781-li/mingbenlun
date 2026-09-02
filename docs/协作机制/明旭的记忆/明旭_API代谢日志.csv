@@ -80,3 +80,4 @@
 2026-09-02 14:39:42,S04-本地端,deepseek-chat,B档,S04_all_wisdom_to_deepseek,0,11744,8000,0,truncated,49.0,0.011971,0.0,length,S04_all_wisdom_to_deepseek
 2026-09-02 15:01:33,S04-本地端,deepseek-chat,B档,S04_all_problems_to_deepseek_v4,0,2312,8000,0,truncated,42.95,0.009424,0.0,length,S04_all_problems_to_deepseek_v4
 2026-09-02 15:28:16,S04-本地端,deepseek-chat,B档,S04_PIn_three_boundary_cases,0,2863,8000,0,truncated,58.52,0.009573,0.0,length,S04_PIn_three_boundary_cases
+2026-09-02 16:07:54,S04-本地端,deepseek-chat,B档,s04_subst_var_at_none_v6,0,8335,4579,0,success,27.64,0.007287,0.0,stop,s04_subst_var_at_none_v6

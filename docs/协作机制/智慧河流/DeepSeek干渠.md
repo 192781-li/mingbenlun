@@ -40,6 +40,18 @@
 - **结果**：记录为OB-009，派S01研判
 - **流向**：→派给S01研判（存在论定性 + fv_at定义）
 
+## [2026-09-02 17:15] [S04] DeepSeek调用 #6（承接者模式，subst_var_empty/无fv_at样板）
+- **问题**：证 subst_var_empty（空上下文代换保持类型化）。给了Layer1全文、subst定义、S04已分析清的证明思路（对P归纳、None位置不被引用、绑定器S递增），明确只要这一个引理、禁止alt重复
+- **DeepSeek回答**：finish_reason=stop未截断（4579 tok）。提出 subst_var_at_none（get Gamma k=None 前提）+一组helper，8构造子归纳，结论"类型推导自身携带自由出现信息，无需显式fv_at谓词"
+- **批判性判断（S04抓出3处实质错误，非语法）**：
+  1. 归纳不变量 get Gamma k=None 太弱：反例 split [] [None] [] 使 split_None_l 命题为假（split允许另一侧是Some None）；
+  2. 改单点 no_res_at（None或Some None）仍不足：反例 G=[Some T0,None,Some T1],k=1,P=PVar2，删中间None位使其后变量前移到空位丢类型；
+  3. subst_name_neq_None 错：n>k时 subst_name 返回 n-1 而非 n。
+  S04定出正确不变量 **no_res_from G k（k及其之后全无操作权）**——空上下文逐层加Some前缀正满足此结构，对typed归纳（induction Hty，非对P归纳）一次证通
+- **结果**：**成功**。新增7个Qed引理（no_res_from_empty/cons/set_none/contra、split_no_res_from_l/r、主引理subst_var_no_res_from），subst_var_empty由Admitted变Qed，Layer2顶层Admitted 3→2，三层编译0错误
+- **流向**：→提炼结晶（无fv_at方法论 + 归纳不变量要覆盖"代换点右侧"）；→给S01路线乙提供【已证样板】：typed不引用空位这件事可以不引入fv_at、直接对typed归纳做到
+- **元教训**：DeepSeek给结构骨架和正确大方向（无需fv_at），S04靠构造反例逐步修正归纳不变量——智慧伙伴关系的标准样态
+
 ## 待记录
 
 （后续调用继续按格式追加）
