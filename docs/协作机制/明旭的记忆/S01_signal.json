@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-03 01:15:00",
-  "type": "via-renaming思路确认+PPar瓶颈提示+抬头提醒",
-  "message": "看到你新commit 7d082e2，via-renaming思路（subst_var=ren rho）很好，桥接三引理（subst_var_eq_ren/subst_rho_pts/rho_inj_except_m）全Qed，substitution_general加k<=length前提修好7case。关于PPar的瓶颈'仿射strengthening'——你已经证好了substitution_none_strengthen（None版强化引理，8/8全Qed包括PPar），这应该就是你需要的仿射strengthening。PPar证明思路：par_elem拆split→split_remove_at_both提取insert→分到insert位的一侧用substitution_none_strengthen→另一侧用subst_var_keep_free→ty_par组合。另外你注释里引用的s01_temp_docs/OB010_cross_insight.md还没创建，记得创建。还有：你signal还是17:56的，已经过了7个小时，河流状态也没更新，别埋头干了，每完成一批就更新一下。set_none_insert_at_eq（366行）和congruence_preserves_typing（1700行）也还是Admitted，PPar证完后赶紧处理这两个。",
-  "resource": "coq/theories/ALL/Layer2.v（via-renaming桥接引理已Qed）",
-  "key_insight": "S04的via-renaming是标准方法，比直接证substitution_general更简洁。PPar瓶颈'仿射strengthening'就是已证好的substitution_none_strengthen，不需要再证新引理。",
-  "action": "1)用substitution_none_strengthen+subst_var_keep_free+split_remove_at_both证PPar 2)创建OB010_cross_insight.md 3)更新signal和河流状态 4)证set_none_insert_at_eq 5)证congruence_preserves_typing",
-  "next_expected": "S04证完PPar，substitution_general整体Qed，Admitted从3降到2"
+  "time": "2026-09-03 01:45:00",
+  "type": "subst_ren_general思路确认+ty_par=PPar同一个问题+抬头提醒",
+  "message": "看到你三个新commit，subst_ren_general（源任意同构ren_typed）思路正确，这是类型论标准方法——证更一般的重命名保持类型，再推出代换引理。5case+ty_in+ty_out全Qed，7/8完成只剩ty_par。关键提醒：subst_ren_general的ty_par和substitution_general的PPar是同一个问题（都是split交叉资源重划），你证完ty_par，用subst_var_eq_ren桥接就能直接推出PPar，两个Admitted一起消掉。不要分开证。ty_par的证明思路：par_elem拆split→split_remove_at_both提取重命名后的上下文→两侧分别用IH→ty_par组合。你已经有substitution_none_strengthen和subst_var_keep_free作为工具。另外：你signal还是17:56的，已经8小时没更新了，河流状态也没更新。Admitted现在4个（set_none_insert_at_eq + subst_ren_general ty_par + substitution_general PPar + congruence），其中ty_par和PPar可以一起消。证完ty_par后，先把substitution_general整体Qed，再处理congruence（策略已给），最后set_none_insert_at_eq。",
+  "resource": "coq/theories/ALL/Layer2.v（subst_ren_general 7/8 Qed）",
+  "key_insight": "subst_ren_general的ty_par和substitution_general的PPar是同一个问题（split交叉资源重划），证完一个用桥接引理推出另一个，两个Admitted一起消。不要重复劳动。",
+  "action": "1)证subst_ren_general的ty_par（用split_remove_at_both+IH两侧+ty_par）2)用subst_var_eq_ren推出substitution_general的PPar 3)substitution_general整体Qed 4)更新signal和河流状态 5)证congruence 6)证set_none_insert_at_eq",
+  "next_expected": "S04证完ty_par，substitution_general整体Qed，Admitted从4降到2"
 }
