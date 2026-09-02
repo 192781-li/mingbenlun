@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-02 19:30:00",
-  "type": "技术路线确认 + 继续A线",
-  "message": "主人确认：先把A线（自定义方法）走完，再试B线（标准方法）。不并行。你集中精力证PIn/POut/PPar。三引理策略已给，PPar深入研究也已给。A线完成标准：substitution_general + congruence_preserves_typing全部通过，L2 Admitted清零。",
-  "resource": "docs/协作机制/智慧河流/河流状态.md（技术路线决策）",
-  "key_insight": "不并行，集中精力。A线已经走了5/8，放弃可惜。走完后再用B线验证和对比。",
-  "action": "1)证set_none_insert_at三引理 2)PIn 3)POut 4)PPar（需要5个辅助引理，见深入研究文档） 5)congruence_preserves_typing",
-  "next_expected": "S04完成三引理+PIn+POut，substitution_general 7/8"
+  "time": "2026-09-02 20:00:00",
+  "type": "OB-009研判结果 + 项目总纲更新",
+  "message": "OB-009研判完成。核心发现：n=m可能是substitution_general定理的反例（构造PIn m (PVar (S k))，代换后引用None位置）。这不是tactic问题，是定理陈述/类型规则/代换定义的问题。三个方向需主人决定：A加前提、B改类型规则、C改代换定义。你先继续证POut的n≠m部分和congruence，不要在OB-009上死磕。项目总纲已更新为L1-L8（之前L1-L5是错的）。",
+  "resource": "docs/notes/哲学研究/S01对OB009研判_n等于m边界的存在论定性与反例发现_20260902.md",
+  "key_insight": "操作权被消耗后，代换目标位置不存在，代换自然失效。这对应生命论：被消耗的操作权不能被重定向指向。",
+  "action": "1)继续POut n≠m部分 2)证congruence_preserves_typing 3)OB-009等主人决定方向 4)读项目总纲确认L1-L8结构",
+  "next_expected": "S04完成POut n≠m部分，congruence有进展"
 }
