@@ -140,7 +140,6 @@ Proof.
   intros Gamma P H. inversion H; subst.
   eexists. eassumption.
 Qed.
-
 Lemma no_parallel_channel_sharing : forall Gamma x y P Q,
   ~ typed Gamma (PPar (POut x y P) (PIn x Q)).
 Proof.
@@ -204,6 +203,18 @@ Fixpoint insert_at (k : nat) (T : ty) (Gamma : ctx) : ctx :=
     | g :: Gamma' => g :: insert_at k' T Gamma'
     end
   end.
+
+(* insert_at和(::)的交换律：先insert_at再加头部 = 先加头部再insert_at(S k)
+   这是OB-008的核心引理，解决PRes case的Gamma变量替换问题
+   存在论意义：世界的扩展(::)和资源的插入(insert_at)是可交换的操作 *)
+Lemma insert_at_cons_comm : forall (T T' : ty) (k : nat) (Gamma : ctx),
+  Some T' :: insert_at k T Gamma = insert_at (S k) T (Some T' :: Gamma).
+Proof.
+  intros T T' k Gamma.
+  induction k.
+  - simpl. reflexivity.
+  - destruct Gamma as [| g Gamma']; simpl; reflexivity.
+Qed.
 
 (* get_insert_at_lt: n < k时，插入位置在n之后，不影响位置n
    注意：仅当get返回Some (Some T')时成立，排除Gamma=[]的边界情况 *)
@@ -356,7 +367,7 @@ Proof.
   - (* POut *) admit.
   - (* PIn *) admit.
   - (* PPar - 涉及split和insert_at交换律，待处理 *) admit.
-  - (* PRes - 绑定器下k,m增加，待处理 *) admit.
+  - (* PRes - OB-008策略方向对，但apply res_elim in Ht后Gamma仍消失，待解决 *) admit.
   - (* PRep *) admit.
 Admitted.
 

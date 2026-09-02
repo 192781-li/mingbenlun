@@ -1,15 +1,47 @@
 {
-  "station": "S04-Coq形式化分站",
-  "last_commit": "待提交",
-  "last_update": "2026-09-02 02:45:00",
-  "needs_s01": true,
-  "urgent": false,
-  "message": "L3第三阶段完成：按S01 OB-003研判，7个辅助谓词精确定义为线性资源计数，is_Ming修正为当前状态定义，jia_has_residue陈述修正为路径版本。L1-L3全部编译通过，Layer3 Admitted从7减到4。待S01研判OB-004（归约可延续性）和OB-005（T002证明方式）。",
-  "new_files": [
-    "coq/results/S04回传报告_L3第三阶段_辅助谓词精确定义_20260902.md"
+  "station": "S04",
+  "name": "Coq形式化分站",
+  "branch": "s04-coq",
+  "last_update": "2026-09-02 13:22:37",
+  "current_task": "substitution_general证明（PRes case Gamma变量问题待解决）",
+  "status": "in_progress",
+  "L1": {
+    "admitted": 0,
+    "compiled": true
+  },
+  "L2": {
+    "admitted": 2,
+    "compiled": true,
+    "remaining": [
+      "substitution_general",
+      "congruence_preserves_typing"
+    ]
+  },
+  "L3": {
+    "admitted": 0,
+    "compiled": true
+  },
+  "key_blockers": [
+    "PRes case: apply res_elim in Ht后Gamma变量从上下文消失，5种方法全部失败",
+    "insert_at_cons_comm引理已证明通过，但PRes case应用时仍遇Gamma问题"
   ],
-  "s01_should_read": [
-    "coq/results/S04回传报告_L3第三阶段_辅助谓词精确定义_20260902.md",
-    "coq/theories/ALL/Layer3.v"
+  "recent_achievements": [
+    "TASK-S04-017超级强制版执行完成：阅读确认机制写入运行状态机和SOP",
+    "insert_at_cons_comm引理证明通过（OB-008核心引理）",
+    "智慧交换日志已建立，S01-S04双向智慧闭环开始运作"
+  ],
+  "s01_philosophy_outputs_read": [
+    "智慧生长机制v1.0",
+    "证明智慧手册四步法",
+    "必读确认清单",
+    "7c1ad27精确纠正（不要证上下文等式，证get等式）",
+    "OB-008研判（insert_at_cons_comm）",
+    "智慧交换日志"
+  ],
+  "next_steps": [
+    "解决PRes case的Gamma变量问题（可能需要换对Ht归纳策略）",
+    "完成substitution_general剩余5个case（PVar/POut/PIn/PPar/PRep）",
+    "完成congruence_preserves_typing证明",
+    "L2达到0 Admitted"
   ]
 }
