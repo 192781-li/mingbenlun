@@ -959,6 +959,152 @@ Proof.
       rewrite get_remove_at_ge by lia; [exact R1 | exact R2].
 Qed.
 
+(* =====================================================================
+   subst_var_keep_free：若 k 及以上没有任何真实操作权(Some(Some T))，
+   则 typed G Q 中被引用/消耗的名字都 < k，subst_var m k 是恒等。
+   用于 PPar 空侧 split 出的较短上下文（k位越界None）。
+   存在论：寂然之位以上本无存在者，名字的重定向触及不到空无，故自身保持。
+   ===================================================================== *)
+
+(* 在自身位置 set_none 后，该位绝不可能是真实操作权 *)
+
+Lemma get_None_ge : forall G k, get G k = None -> forall n, n >= k -> get G n = None.
+Proof.
+  induction G; intros k Hk n Hn.
+  - simpl. reflexivity.
+  - destruct k; [simpl in Hk; discriminate |]. destruct n; [lia |]. simpl.
+    apply IHG with (k := k); [exact Hk | lia].
+Qed.
+
+
+Lemma get_None_length : forall G k, get G k = None -> k >= length G.
+Proof.
+  induction G; intros k H.
+  - simpl. lia.
+  - destruct k; [simpl in H; discriminate |]. simpl in H.
+    apply IHG in H. simpl. lia.
+Qed.
+
+Lemma remove_at_ge_id : forall G k, k >= length G -> remove_at k G = G.
+Proof.
+  induction G; intros k Hk.
+  - destruct k; simpl; reflexivity.
+  - destruct k; [simpl in Hk; lia |]. simpl. f_equal. apply IHG. simpl in Hk. lia.
+Qed.
+
+Lemma get_set_none_at_ne : forall G n T,
+  get (set_none G n) n <> Some (Some T).
+Proof.
+  induction G; intros n T.
+  - destruct n; simpl; discriminate.
+  - destruct n; simpl; [discriminate | apply IHG].
+Qed.
+
+Lemma free_set_none : forall G k x,
+  (forall n T, n >= k -> get G n <> Some (Some T)) ->
+  (forall n T, n >= k -> get (set_none G x) n <> Some (Some T)).
+Proof.
+  intros G k x Hf n T Hnk Hc.
+  destruct (Nat.eq_dec n x).
+  - subst n. exact (get_set_none_at_ne G x T Hc).
+  - rewrite set_none_neq in Hc by tauto. exact (Hf n T Hnk Hc).
+Qed.
+
+Lemma free_cons_S : forall G k T0,
+  (forall n T, n >= k -> get G n <> Some (Some T)) ->
+  (forall n T, n >= S k -> get (Some T0 :: G) n <> Some (Some T)).
+Proof.
+  intros G k T0 Hf n T Hnk Hc.
+  destruct n; [lia |]. simpl in Hc. exact (Hf n T ltac:(lia) Hc).
+Qed.
+
+Lemma free_split_l : forall G G1 G2 k, split G G1 G2 ->
+  (forall n T, n >= k -> get G n <> Some (Some T)) ->
+  (forall n T, n >= k -> get G1 n <> Some (Some T)).
+Proof.
+  intros G G1 G2 k Hs Hf n T Hnk Hc.
+  unfold split in Hs. specialize (Hs n).
+  destruct Hs as [[L1 L2] | [R1 R2]].
+  - rewrite L1 in Hc. exact (Hf n T Hnk Hc).
+  - destruct R2 as [E | E]; rewrite E in Hc; discriminate.
+Qed.
+
+Lemma free_split_r : forall G G1 G2 k, split G G1 G2 ->
+  (forall n T, n >= k -> get G n <> Some (Some T)) ->
+  (forall n T, n >= k -> get G2 n <> Some (Some T)).
+Proof.
+  intros G G1 G2 k Hs Hf n T Hnk Hc.
+  unfold split in Hs. specialize (Hs n).
+  destruct Hs as [[L1 L2] | [R1 R2]].
+  - destruct L2 as [E | E]; rewrite E in Hc; discriminate.
+  - rewrite R1 in Hc. exact (Hf n T Hnk Hc).
+Qed.
+
+Lemma subst_var_keep_free : forall G k m Q,
+  (forall n T, n >= k -> get G n <> Some (Some T)) ->
+  typed G Q -> typed G (subst_var m k Q).
+Proof.
+  intros G k m Q. generalize dependent G. generalize dependent k. generalize dependent m.
+  induction Q; intros m k G Hf Ht.
+  - (* PVar *)
+    simpl.
+    inversion Ht as [| G0 x T0 Hg | | | | | |]; subst G0 x.
+    destruct (Nat.ltb n k) eqn:E;
+      [apply Nat.ltb_lt in E | apply Nat.ltb_ge in E; exfalso; exact (Hf n T0 E Hg)].
+    rewrite (subst_name_lt m k n E). apply ty_var with (T := T0). exact Hg.
+  - (* PZero *) simpl. apply ty_zero.
+  - (* PTau *)
+    simpl. inversion Ht; subst. apply ty_tau. exact (IHQ m k G Hf H1).
+  - (* POut *)
+    simpl.
+    inversion Ht as [| | | G0 x0 y0 P0 i0 o0 T0 G1 G2 Hu1 Ho Hu2 Hb | | | |].
+    subst G0 x0 y0 P0.
+    unfold use in Hu1, Hu2. destruct Hu1 as [Hg1 Hs1]. destruct Hu2 as [Hg2 Hs2].
+    destruct (Nat.ltb n k) eqn:En;
+      [apply Nat.ltb_lt in En | apply Nat.ltb_ge in En; exfalso; exact (Hf n (TChan i0 o0 T0) En Hg1)].
+    destruct (Nat.ltb n0 k) eqn:E0;
+      [apply Nat.ltb_lt in E0 |
+       apply Nat.ltb_ge in E0; exfalso; rewrite Hs1 in Hg2;
+       rewrite (set_none_neq G n n0 ltac:(lia)) in Hg2; exact (Hf n0 T0 E0 Hg2)].
+    rewrite (subst_name_lt m k n En). rewrite (subst_name_lt m k n0 E0).
+    assert (Hg2' : get (set_none G n) n0 = Some (Some T0)).
+    { rewrite <- Hs1. exact Hg2. }
+    rewrite Hs2, Hs1 in Hb.
+    eapply ty_out with (Gamma1 := set_none G n) (Gamma2 := set_none (set_none G n) n0).
+    ** unfold use; split; [exact Hg1 | reflexivity].
+    ** exact Ho.
+    ** unfold use; split; [exact Hg2' | reflexivity].
+    ** apply IHQ. 2: exact Hb. do 2 apply free_set_none. exact Hf.
+  - (* PIn *)
+    simpl.
+    inversion Ht as [| | | | G0 x0 P0 i0 o0 T0 G1 Huse Hi Hb | | |].
+    subst G0 x0 P0.
+    unfold use in Huse. destruct Huse as [Hg Hs].
+    destruct (Nat.ltb n k) eqn:En;
+      [apply Nat.ltb_lt in En | apply Nat.ltb_ge in En; exfalso; exact (Hf n (TChan i0 o0 T0) En Hg)].
+    rewrite (subst_name_lt m k n En).
+    rewrite Hs in Hb.
+    eapply ty_in with (i := i0) (o := o0) (T := T0) (Gamma1 := set_none G n).
+    ** unfold use; split; [exact Hg | reflexivity].
+    ** exact Hi.
+    ** apply IHQ. 2: exact Hb. apply free_cons_S. apply free_set_none. exact Hf.
+  - (* PPar *)
+    simpl.
+    inversion Ht as [| | | | | G0 Pa Pb G1 G2 Hsp Ha Hb | |]. subst G0 Pa Pb.
+    eapply ty_par; [exact Hsp | |].
+    + exact (IHQ1 m k G1 (free_split_l G G1 G2 k Hsp Hf) Ha).
+    + exact (IHQ2 m k G2 (free_split_r G G1 G2 k Hsp Hf) Hb).
+  - (* PRes *)
+    simpl. apply res_elim in Ht. destruct Ht as [T0 H1].
+    apply ty_res with (T := T0).
+    apply (IHQ (S m) (S k) (Some T0 :: G)).
+    + apply free_cons_S. exact Hf.
+    + exact H1.
+  - (* PRep *)
+    simpl. inversion Ht; subst. apply ty_rep.
+    apply subst_var_empty with (m := m) (k := k). exact H1.
+Qed.
+
 Lemma substitution_none_strengthen : forall D k m Q,
   k <= length D ->
   typed (insert_none_at k D) Q ->
@@ -1119,8 +1265,76 @@ Proof.
            apply (IHQ (S m) (S k) (Some T0 :: set_none D (n - 1))).
            -- simpl. lia.
            -- exact Hb.
-  - (* PPar：Ga/Gb 两侧，k位Some None归属 + 越界None支需 subst_var_keep_free（下一步） *)
-    admit.
+  - (* PPar：k位Some None线性分到一侧(持有,insert_none_remove_id+IH)，
+          另一侧要么也是Some None(同法)、要么越界None(短上下文keep_free恒等)。
+          存在论：并行的两侧各自撤除寂然之位，再于原世界D重新并起。 *)
+    simpl.
+    inversion Ht as [| | | | | G0 Pa Pb Ga Gb Hsp Ha Hb | |]; subst G0 Pa Pb.
+    assert (Hsp0 := Hsp).
+    apply (split_remove_none_both D k Ga Gb Hlen) in Hsp0.
+    unfold split in Hsp. specialize (Hsp k).
+    rewrite (get_insert_none_at_self k D Hlen) in Hsp.
+    destruct Hsp as [[La Lb] | [Ra Rb]].
+    + (* Ga 持有 k 位 Some None *)
+      assert (KGa : k < length Ga) by (eapply get_Some_lt; exact La).
+      assert (Ega : Ga = insert_none_at k (remove_at k Ga)).
+      { apply insert_none_remove_id. exact La. }
+      assert (HlenA : k <= length (remove_at k Ga)).
+      { rewrite length_remove_at by lia. lia. }
+      rewrite Ega in Ha.
+      destruct Lb as [GbN | GbS].
+      * (* Gb 越界 None：短上下文，代换恒等 *)
+        assert (KGb : k >= length Gb) by (apply get_None_length; exact GbN).
+        assert (Egb : remove_at k Gb = Gb) by (apply remove_at_ge_id; lia).
+        eapply ty_par with (Gamma1 := remove_at k Ga) (Gamma2 := remove_at k Gb).
+        -- exact Hsp0.
+        -- exact (IHQ1 m k (remove_at k Ga) HlenA Ha).
+        -- rewrite Egb. apply subst_var_keep_free with (k := k).
+           ++ intros n T Hn Hc.
+              assert (N : get Gb n = None) by exact (get_None_ge Gb k GbN n Hn).
+              rewrite N in Hc. discriminate.
+           ++ exact Hb.
+      * (* Gb 也是 Some None：同持有侧 *)
+        assert (KGb : k < length Gb) by (eapply get_Some_lt; exact GbS).
+        assert (Egb : Gb = insert_none_at k (remove_at k Gb)).
+        { apply insert_none_remove_id. exact GbS. }
+        assert (HlenB : k <= length (remove_at k Gb)).
+        { rewrite length_remove_at by lia. lia. }
+        rewrite Egb in Hb.
+        eapply ty_par with (Gamma1 := remove_at k Ga) (Gamma2 := remove_at k Gb).
+        -- exact Hsp0.
+        -- exact (IHQ1 m k (remove_at k Ga) HlenA Ha).
+        -- exact (IHQ2 m k (remove_at k Gb) HlenB Hb).
+    + (* Gb 持有 k 位 Some None（对称）：Ra 是 Gb 持有位，Rb 是 Ga 空侧析取 *)
+      assert (KGb : k < length Gb) by (eapply get_Some_lt; exact Ra).
+      assert (Egb : Gb = insert_none_at k (remove_at k Gb)).
+      { apply insert_none_remove_id. exact Ra. }
+      assert (HlenB : k <= length (remove_at k Gb)).
+      { rewrite length_remove_at by lia. lia. }
+      rewrite Egb in Hb.
+      destruct Rb as [GaN | GaS].
+      * (* Ga 越界 None *)
+        assert (KGa : k >= length Ga) by (apply get_None_length; exact GaN).
+        assert (Ega : remove_at k Ga = Ga) by (apply remove_at_ge_id; lia).
+        eapply ty_par with (Gamma1 := remove_at k Ga) (Gamma2 := remove_at k Gb).
+        -- exact Hsp0.
+        -- rewrite Ega. apply subst_var_keep_free with (k := k).
+           ++ intros n T Hn Hc.
+              assert (N : get Ga n = None) by exact (get_None_ge Ga k GaN n Hn).
+              rewrite N in Hc. discriminate.
+           ++ exact Ha.
+        -- exact (IHQ2 m k (remove_at k Gb) HlenB Hb).
+      * (* Ga 也是 Some None *)
+        assert (KGa : k < length Ga) by (eapply get_Some_lt; exact GaS).
+        assert (Ega : Ga = insert_none_at k (remove_at k Ga)).
+        { apply insert_none_remove_id. exact GaS. }
+        assert (HlenA : k <= length (remove_at k Ga)).
+        { rewrite length_remove_at by lia. lia. }
+        rewrite Ega in Ha.
+        eapply ty_par with (Gamma1 := remove_at k Ga) (Gamma2 := remove_at k Gb).
+        -- exact Hsp0.
+        -- exact (IHQ1 m k (remove_at k Ga) HlenA Ha).
+        -- exact (IHQ2 m k (remove_at k Gb) HlenB Hb).
   - (* PRes *)
     simpl. apply res_elim in Ht. destruct Ht as [T0 H1].
     rewrite insert_none_at_cons_comm in H1.
@@ -1131,7 +1345,7 @@ Proof.
   - (* PRep *)
     simpl. inversion Ht; subst. apply ty_rep.
     apply subst_var_empty with (m := m) (k := k). exact H1.
-Admitted.
+Qed.
 
 Lemma substitution_general : forall Gamma T k m Q,
   typed (insert_at k T Gamma) Q ->

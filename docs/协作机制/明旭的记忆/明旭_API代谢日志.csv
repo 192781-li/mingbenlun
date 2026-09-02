@@ -83,3 +83,5 @@
 2026-09-02 16:07:54,S04-本地端,deepseek-chat,B档,s04_subst_var_at_none_v6,0,8335,4579,0,success,27.64,0.007287,0.0,stop,s04_subst_var_at_none_v6
 2026-09-02 17:25:52,S04-本地端,deepseek-chat,B档,s04_ob009_Aline_v7,0,18455,4763,0,success,28.23,0.010222,0.0,stop,s04_ob009_Aline_v7
 2026-09-02 17:31:51,S04-本地端,deepseek-chat,B档,s04_ob009_Aline_v8_correct_pred,0,19023,5827,0,success,29.38,0.011546,0.0,stop,s04_ob009_Aline_v8_correct_pred
+2026-09-02 18:20:21,S04-本地端,deepseek-chat,B档,s04_ob010_ppar_split_insert_v9,0,15087,8000,0,truncated,43.16,0.012873,0.0,length,s04_ob010_ppar_split_insert_v9
+2026-09-02 18:54:57,S04-本地端,deepseek-chat,B档,s04_ob010_none_strengthen_v10,0,19890,5145,0,success,26.53,0.01103,0.0,stop,s04_ob010_none_strengthen_v10
