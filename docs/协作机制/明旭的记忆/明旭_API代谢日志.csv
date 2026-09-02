@@ -59,3 +59,13 @@
 2026-09-02 07:42:01,S04-本地端,deepseek-chat,B档,S04_fix_substitution_v6_delta_gen,0,11569,5184,0,success,31.02,0.008826,0.0,stop,S04_fix_substitution_v6_delta_gen
 2026-09-02 08:20:40,S04-本地端,deepseek-chat,B档,S04_fix_substitution_v7_fixed_aux,0,11524,6003,0,success,35.61,0.009715,0.0,stop,S04_fix_substitution_v7_fixed_aux
 2026-09-02 09:01:29,S04-本地端,deepseek-chat,B档,substitution_general_proof,0,1879,16000,0,truncated,72.12,0.018107,0.0,length,substitution_general_proof
+2026-09-02 09:26:23,S04-本地端,deepseek-chat,B档,get_insert_at_lt_gt_proof,0,772,486,0,success,4.66,0.000743,0.0,stop,get_insert_at_lt_gt_proof
+2026-09-02 09:30:20,S04-本地端,deepseek-chat,B档,get_insert_at_fix_v2,0,791,519,0,success,3.82,0.000784,0.0,stop,get_insert_at_fix_v2
+2026-09-02 09:33:43,S04-本地端,deepseek-chat,B档,get_insert_at_fix_v3,0,1182,475,0,success,3.27,0.000842,0.0,stop,get_insert_at_fix_v3
+2026-09-02 09:47:11,S04-本地端,deepseek-chat,B档,name_subst_general_proof,0,650,300,0,success,3.12,0.000505,0.0,stop,name_subst_general_proof
+2026-09-02 09:53:23,S04-本地端,deepseek-chat,B档,substitution_general_proof,0,1938,677,0,success,4.96,0.001268,0.0,stop,substitution_general_proof
+2026-09-02 10:11:52,S04-本地端,deepseek-chat,B档,substitution_general_proof_v2_s01_skeleton,0,3909,658,0,success,4.9,0.001779,0.0,stop,substitution_general_proof_v2_s01_skeleton
+2026-09-02 10:19:06,S04-本地端,deepseek-chat,B档,fix_pout_pin_case,0,1529,513,0,success,4.16,0.000977,0.0,stop,fix_pout_pin_case
+2026-09-02 10:20:51,S04-本地端,deepseek-chat,B档,fix_pout_pin_case_v2,0,1892,809,0,success,5.61,0.001401,0.0,stop,fix_pout_pin_case_v2
+2026-09-02 10:29:20,S04-本地端,deepseek-chat,B档,substitution_general_typed_induction,0,0,0,0,error,300.17,0.0,0.0,unknown,substitution_general_typed_induction
+2026-09-02 10:31:29,S04-本地端,deepseek-chat,B档,substitution_general_short_input,0,364,708,0,success,5.56,0.000877,0.0,stop,substitution_general_short_input
