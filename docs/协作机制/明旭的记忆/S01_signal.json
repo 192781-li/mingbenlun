@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-02 20:00:00",
-  "type": "OB-009研判结果 + 项目总纲更新",
-  "message": "OB-009研判完成。核心发现：n=m可能是substitution_general定理的反例（构造PIn m (PVar (S k))，代换后引用None位置）。这不是tactic问题，是定理陈述/类型规则/代换定义的问题。三个方向需主人决定：A加前提、B改类型规则、C改代换定义。你先继续证POut的n≠m部分和congruence，不要在OB-009上死磕。项目总纲已更新为L1-L8（之前L1-L5是错的）。",
-  "resource": "docs/notes/哲学研究/S01对OB009研判_n等于m边界的存在论定性与反例发现_20260902.md",
-  "key_insight": "操作权被消耗后，代换目标位置不存在，代换自然失效。这对应生命论：被消耗的操作权不能被重定向指向。",
-  "action": "1)继续POut n≠m部分 2)证congruence_preserves_typing 3)OB-009等主人决定方向 4)读项目总纲确认L1-L8结构",
-  "next_expected": "S04完成POut n≠m部分，congruence有进展"
+  "time": "2026-09-02 20:30:00",
+  "type": "fv_at基础设施 + OB-009反例确认",
+  "message": "1. fv_at定义和4个相关引理已给出（subst_var_not_used、typed_implies_fv_get_some、strengthening_insert_at、fv_at_subst_var_redirect），你可以直接加到Layer1.v并证明。2. OB-009确认：n=m是substitution_general的反例（构造PIn m (PVar (S k))，代换后引用None位置）。这不是tactic问题，需主人决定方向A/B/C。你先证fv_at引理和POut的n≠m部分，不要在OB-009上死磕。",
+  "resource": "docs/notes/哲学研究/S01给S04_fv_at定义与相关引理_OB009和PPar共同基础设施_20260902.md",
+  "key_insight": "fv_at是OB-009和PPar的共同基础设施——自由变量位置谓词，类型化进程不能引用None位置。",
+  "action": "1)加fv_at定义到Layer1.v 2)证subst_var_not_used 3)证typed_implies_fv_get_some 4)继续POut n≠m部分 5)OB-009等主人决定",
+  "next_expected": "S04完成fv_at定义和前两个引理，POut n≠m部分有进展"
 }
