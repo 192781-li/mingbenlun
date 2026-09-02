@@ -952,7 +952,44 @@ Proof.
   - (* ty_var *) eapply ty_var. apply Hpts. exact Hget.
   - (* ty_tau *) apply ty_tau. exact (IH m k G Hpts Hnu).
   - (* ty_out：rho_inj_except_m + no_use 三段，待填 *) admit.
-  - (* ty_in：绑定器升级，待填 *) admit.
+  - (* ty_in：通道经rho，body进绑定器；局部单射由rho_inj_except_m+no_use通道分量提供 *)
+    simpl.
+    unfold use in Huse. destruct Huse as [Hx1 Hx2]. subst Gamma1.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [Hnux Hnub].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    replace (ren (upren (subst_name m k)) P)
+      with (ren (subst_name (S m) (S k)) P)
+      by (symmetry; apply ren_ext with (f:=upren (subst_name m k)) (g:=subst_name (S m) (S k));
+          intros q; exact (upren_subst_name_pt m k q)).
+    eapply ty_in with (x := subst_name m k x) (P := ren (subst_name (S m) (S k)) P)
+      (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x)).
+    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i o T) Hx1).
+    + exact Hi.
+    + apply (IH (S m) (S k) (Some T :: set_none G (subst_name m k x))).
+      * intros n T' Hn. destruct n as [|n].
+        -- simpl in *. exact Hn.
+        -- simpl in Hn.
+           assert (Hnx : n <> x).
+           { intro F; subst n; rewrite set_none_self in Hn;
+             [injection Hn as Hc; discriminate | apply get_Some_lt in Hx1; exact Hx1]. }
+           rewrite (set_none_neq Gamma x n Hnx) in Hn.
+           assert (Hrk : forall z, z = k -> subst_name m k z = m) by
+             (intros z Hz; apply subst_name_eq; exact Hz).
+           assert (Hr : subst_name m k n <> subst_name m k x).
+           { intro E.
+             assert (Hnk : n <> k) by
+               (intro F; subst n; pose (Rk := Hrk k eq_refl); rewrite Rk in E;
+                exact (Hnux (eq_sym E))).
+             assert (Hxk : x <> k) by
+               (intro F; subst x; pose (Rk := Hrk k eq_refl); exact (Hnux Rk)).
+             assert (Hrnnm : subst_name m k n <> m) by (rewrite E; exact Hnux).
+             assert (Hnx2 : n = x) by exact (rho_inj_except_m m k n x Hnk Hxk Hrnnm Hnux E).
+             contradiction. }
+           rewrite subst_name_succ. simpl.
+           rewrite (set_none_neq G (subst_name m k x) (subst_name m k n) Hr).
+           exact (Hpts n T' Hn).
+      * exact Hnub.
   - (* ty_par：split_proj 重划，待填（核心） *) admit.
   - (* ty_res：进绑定器，rho升级为upren rho=subst_name(Sm)(Sk) *)
     simpl.
