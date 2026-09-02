@@ -2,8 +2,8 @@
   "station": "S04",
   "name": "Coq形式化分站",
   "branch": "s04-coq",
-  "last_update": "2026-09-02 13:33:04",
-  "current_task": "substitution_general证明（PVar case卡点，get_insert_at_self引理证明失败）",
+  "last_update": "2026-09-02 13:37:15",
+  "current_task": "substitution_general证明（悟道书已阅读，PVar/PRep需要辅助引理）",
   "status": "in_progress",
   "L1": {
     "admitted": 0,
@@ -33,19 +33,20 @@
   },
   "key_achievements": [
     "insert_at_cons_comm引理证明通过（OB-008核心引理）",
-    "智慧河流SOP首次执行，读取河流主干/状态/结晶库",
-    "TASK-S04-017超级强制版执行完成，阅读确认机制写入SOP"
+    "完整阅读S01悟道书，建立操作权流动的证明视角",
+    "智慧河流SOP执行，读取河流主干/状态/结晶库"
   ],
   "key_blockers": [
-    "PVar case: get_insert_at_self引理的归纳证明失败（simpl/cbn不展开到IH形式）",
-    "PRes case: apply res_elim in Ht后Gamma变量从上下文消失（6种方法失败）"
+    "PVar: get_insert_at_self引理的归纳证明失败（simpl/cbn不展开到IH形式）",
+    "PRep: 需要空上下文代换引理（typed [] Q -> typed [] (subst_var m k Q)）",
+    "PRes: apply res_elim in Ht后Gamma变量从上下文消失（6种方法失败）"
   ],
   "needs_s01": [
-    "get_insert_at_self引理的证明策略（simpl/cbn不展开到IH形式）",
-    "或者PVar case的更直接证明策略"
+    "get_insert_at_self引理的证明策略（悟道后理解了操作权本质，但技术证明仍卡住）",
+    "空上下文代换引理的证明策略（PRep case需要）"
   ],
   "s01_should_read": [
-    "insert_at_cons_comm引理证明通过，验证了OB-008研判的正确性",
-    "PVar case卡点记录，需要S01研判get_insert_at_self的证明策略"
+    "悟道书已完整阅读，代换的本质是操作权的转移",
+    "PVar/PRep卡点记录，需要辅助引理的证明策略"
   ]
 }
