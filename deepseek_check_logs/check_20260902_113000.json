@@ -1,0 +1,35 @@
+{
+  "check_time": "2026-09-02 11:30:00",
+  "task_name": "明旭-S04-DeepSeek结果自动检查",
+  "background_tasks": {
+    "running": [],
+    "completed": [
+      {
+        "task_name": "substitution_general_s01_ob007",
+        "output_file": "deepseek_sg_ob007.txt",
+        "output_size": 36835,
+        "status": "truncated",
+        "finish_reason": "length",
+        "cost": 0.016982,
+        "contains_coq_code": true,
+        "processed": true,
+        "processing_result": "set_none_insert_at_subst引理证明(99行)可能正确但未验证; substitution_general证明被截断, x=k case陷入无限循环assert; 已写反身思考记录; 自己尝试证明引理失败已回退"
+      }
+    ]
+  },
+  "output_quality_check": {
+    "empty_outputs": [],
+    "truncated_outputs": ["deepseek_sg_ob007.txt"],
+    "no_coq_code_outputs": []
+  },
+  "auto_apply_result": "无需自动应用 - 最新输出已被截断且已处理, substitution_general证明不完整",
+  "auto_retry_result": "不自动重试 - 已尝试7次, 自己分析了失败原因, 需要换策略(先证明get_insert_at_lt_eq/gt_eq等式形式引理)",
+  "current_layer2_state": {
+    "admitted_count": 2,
+    "admitted_lemmas": ["substitution_general", "congruence_preserves_typing"],
+    "compile_status": "passed"
+  },
+  "next_action": "先证明get_insert_at_lt_eq/gt_eq引理(等式形式), 再证明set_none_insert_at_subst, 然后自己写substitution_general证明框架",
+  "total_deepseek_calls_this_round": 7,
+  "total_cost_this_round": 0.045947
+}
