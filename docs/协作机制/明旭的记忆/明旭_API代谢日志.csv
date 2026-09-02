@@ -75,3 +75,4 @@
 2026-09-02 11:58:33,S04-本地端,deepseek-chat,B档,get_insert_at_eq_lemmas,0,847,610,0,success,4.15,0.0009,0.0,stop,get_insert_at_eq_lemmas
 2026-09-02 12:00:14,S04-本地端,deepseek-chat,B档,get_insert_at_eq_lemmas,768,79,538,0,success,4.6,0.000667,0.9067,stop,get_insert_at_eq_lemmas
 2026-09-02 12:47:07,S04-本地端,deepseek-chat,B档,substitution_general_pres_prep,0,1266,330,0,success,4.05,0.000705,0.0,stop,substitution_general_pres_prep
+2026-09-02 14:24:46,S04-本地端,deepseek-chat,B档,S04_set_none_analysis,0,3785,3397,0,success,24.11,0.004759,0.0,stop,S04_set_none_analysis

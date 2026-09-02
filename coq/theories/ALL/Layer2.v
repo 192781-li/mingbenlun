@@ -228,6 +228,51 @@ Proof.
   - intros Gamma. destruct Gamma as [| g Gamma']; simpl; apply IHk.
 Qed.
 
+(* set_none_insert_at_lt: x < k时，set_none和insert_at可交换
+   存在论意义：在插入位置之前消耗操作权，不影响插入的位置 *)
+Lemma set_none_insert_at_lt : forall k T Gamma x,
+  x < k -> set_none (insert_at k T Gamma) x = insert_at k T (set_none Gamma x).
+Proof.
+  intros k T.
+  induction k.
+  - intros Gamma x Hlt. exfalso. lia.
+  - intros Gamma x Hlt.
+    destruct x as [| x'].
+    + destruct Gamma as [| g Gamma']; simpl; reflexivity.
+    + destruct Gamma as [| g Gamma']; simpl.
+      * (* Gamma = [] *)
+        assert (H : set_none (insert_at k T []) x' = insert_at k T (set_none [] x')).
+        { apply IHk. lia. }
+        simpl in H. f_equal. exact H.
+      * (* Gamma = g :: Gamma' *)
+        f_equal. apply IHk. lia.
+Qed.
+
+(* set_none_insert_at_eq: x = k时，消耗的正是插入的操作权
+   注意：原陈述set_none (insert_at k T Gamma) k = Gamma是错的！
+   因为insert_at增加了列表长度，set_none后长度不变，所以不可能等于Gamma。
+   正确的形式需要重新考虑，暂时Admitted。
+   存在论意义：插入操作权后立即消耗它，回到原来的上下文（但长度可能不同） *)
+Lemma set_none_insert_at_eq : forall k T Gamma,
+  set_none (insert_at k T Gamma) k = Gamma.
+Proof.
+  (* 陈述有问题，待重新考虑。当Gamma=[]时左边=[None]右边=[]，不可能相等。
+     可能需要更弱的形式，或者在PIn case中直接处理而不用这个引理。 *)
+Admitted.
+
+(* set_none_insert_at_gt: x > k时，set_none在insert_at之后，位置偏移
+   存在论意义：在插入位置之后消耗操作权，插入的操作权不受影响 *)
+Lemma set_none_insert_at_gt : forall k T Gamma x,
+  x > k -> set_none (insert_at k T Gamma) x = insert_at k T (set_none Gamma (x - 1)).
+Proof.
+  (* 陈述有问题，待重新分析。
+     反例：k=0, x=1, Gamma=[g]:
+     左边=set_none (insert_at 0 T [g]) 1 = g :: None :: []
+     右边=insert_at 0 T (set_none [g] 0) = None :: Some T :: []
+     不相等。
+     可能需要更弱的形式，或者加前提条件。 *)
+Admitted.
+
 (* get_insert_at_lt: n < k时，插入位置在n之后，不影响位置n
    注意：仅当get返回Some (Some T')时成立，排除Gamma=[]的边界情况 *)
 Lemma get_insert_at_lt : forall Gamma T k n T',
