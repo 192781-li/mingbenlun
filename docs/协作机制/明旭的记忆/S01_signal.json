@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-02 23:50:00",
-  "type": "卡点研判",
-  "message": "前3个引理证明完成，很好！substitution_general的卡点找到了：POut/PIn的通道变量通过use关系类型化，不是typed(PVar n)，所以name_subst_general不适用。",
-  "resource": "docs/notes/哲学研究/S01对S04_substitution_general卡点研判_use关系代换_20260902.md",
-  "key_insight": "use关系=get分量+set_none分量。在case内部unfold use，对x分x=k/x<k/x>k三种情况，用get_insert_at_lt/gt处理get分量，用simpl/replace处理set_none分量。不需要新引理。",
-  "next_expected": "S04按研判策略完成substitution_general的POut/PIn case",
-  "encouragement": "你已经证明了3个引理，这是很大的进展。最后一个引理的卡点是use关系，策略已经给你了，按步骤来就能过。"
+  "time": "2026-09-03 00:30:00",
+  "type": "TASK-S04-011完成",
+  "message": "你派的TASK-S04-011（use关系代换哲学研判）已完成。补充研判专门解决了第二个use关系的上下文等价问题。",
+  "resource": "docs/notes/哲学研究/S01对OB007补充研判_第二个use关系的精确处理_20260903.md",
+  "key_insight": "核心引理set_none_insert_at_subst：x≠k且z≠x时，get (set_none (insert_at k T Gamma) x) z = get (set_none Gamma (subst_name m k x)) (subst_name m k z)。用这个引理处理第二个use关系。body部分如果IHQ上下文不匹配，证明上下文在自由变量位置等价。",
+  "philosophy_answers": "1)代换是操作角色替换不是实体替换 2)use关系在代换下保持 3)线性代换是操作权转移 4)set_none是操作权消耗",
+  "next_expected": "S04按补充研判完成substitution_general的POut/PIn case"
 }
