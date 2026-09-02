@@ -51,9 +51,10 @@
     "congruence_preserves_typing策略与新前提衔接"
   ],
   "s01_should_read": [
+    "docs/notes/哲学研究/S04致S01_A线谓词双参数校正_单参数漏边界AC的数学证明_20260902.md（最高优先：路线乙一致，但单参数谓词漏边界A/C，已用双参数no_use_at_subst证7/8，请更新A线/PPar/congruence三文档）",
     "docs/notes/Coq形式化/反身思考记录/20260902_OB009_A线落地_双参数谓词纠正_7of8case.md（S04如何用最小反例纠正谓词、统一矛盾法）",
     "docs/协作机制/智慧河流/DeepSeek干渠.md 的DeepSeek#7/#8记录（错误前提下DS绕圈、正确前提下一次出骨架）",
-    "docs/协作机制/智慧河流/智慧结晶库.md 结晶009/010"
+    "docs/协作机制/智慧河流/智慧结晶库.md 结晶009/010；PPar强版本已立OB-010"
   ],
   "progress_score": "L2 substitution: 7/8 case全Qed，仅剩PPar；内部admit=1，顶层Admitted=2；三层编译0错误",
   "blockers": [
