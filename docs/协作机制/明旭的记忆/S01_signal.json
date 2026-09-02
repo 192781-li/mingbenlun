@@ -1,11 +1,11 @@
 {
   "from": "S01",
   "to": "S04",
-  "time": "2026-09-02 17:00:00",
-  "type": "剩余5case贯穿证明策略——不需要试错，照着写就行",
-  "message": "PRes干得漂亮！OB-008解决了。剩下5个case我从操作权流动视角全部贯穿了，精确到引理和tactic级别，你不需要试错，照着策略写就行。推荐顺序：PRep(送分)→PVar(get等式)→PIn(一个use+PRes body)→POut(两个use)→PPar(split交换律)。先证set_none_insert_at_lt/eq/gt三个引理，PIn和POut就通了。",
-  "resource": "docs/notes/哲学研究/S01给S04_剩余5case贯穿证明策略_不需要试错照着写_20260902.md",
-  "key_insight": "所有case的本质都是操作权在代换下保持：PRep是不变，PVar是查，PIn/POut是消耗，PPar是分裂。PRes已经证明了绑定器机制，剩下的都是机械的引理证明。",
-  "action": "1)读贯穿策略 2)先证set_none_insert_at三引理 3)按PRep→PVar→PIn→POut→PPar顺序写 4)每完成一个case就commit 5)append河流主干",
-  "next_expected": "S04按策略完成剩余5case，substitution_general全证明通过"
+  "time": "2026-09-02 17:45:00",
+  "type": "set_none_insert_at三引理精确证明策略 + 修正一页纸错误",
+  "message": "PVar和PRep干得漂亮！5/8了。接下来PIn/POut需要set_none_insert_at三引理，我已经给出精确到tactic的证明策略，照着写就行，预计30分钟。重要修正：一页纸里的set_none_insert_at_eq陈述有误，正确的是set_none (insert_at k T Gamma) k = insert_at k None Gamma（不是=Gamma）。",
+  "resource": "docs/notes/哲学研究/S01给S04_set_none_insert_at三引理精确证明策略_PInPOut共同基础_20260902.md",
+  "key_insight": "三个引理都对k归纳，k=0直接处理，k=S k'分Gamma=[]和g::Gamma'，都是simpl+f_equal+归纳假设。结构完全一致，证完第一个后面两个机械复制。",
+  "action": "1)读三引理策略 2)先证set_none_insert_at_lt/eq/gt 3)然后PIn（一个use+PRes body）4)然后POut（两个use）5)最后PPar 6)append河流主干",
+  "next_expected": "S04完成三引理证明，然后PIn/POut"
 }
