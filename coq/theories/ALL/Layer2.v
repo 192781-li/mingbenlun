@@ -335,7 +335,94 @@ Lemma substitution_general : forall Gamma T k m Q,
   typed (insert_at k T Gamma) Q ->
   get Gamma m = Some (Some T) ->
   typed Gamma (subst_var m k Q).
-Proof. Admitted.
+Proof.
+  intros Gamma T k m Q.
+  generalize dependent Gamma.
+  generalize dependent k.
+  generalize dependent m.
+  induction Q; intros m k Gamma Hty Hget.
+  - (* PVar *)
+    simpl.
+    destruct (Nat.eq_dec n k) as [Heq | Hne].
+    + (* n = k: subst_name m k k = m *)
+      subst.
+      assert (Hsub : subst_name m k k = m).
+      { unfold subst_name.
+        destruct (k =? k) eqn:E.
+        - reflexivity.
+        - apply Nat.eqb_neq in E. contradiction.
+      }
+      rewrite Hsub.
+      apply ty_var with (T := T). exact Hget.
+    + (* n <> k: 用name_subst_general *)
+      apply name_subst_general with (T := T) (k := k) (m := m).
+      * exact Hty.
+      * exact Hget.
+      * exact Hne.
+  - (* PZero *)
+    simpl. constructor.
+  - (* PTau *)
+    simpl. inversion Hty; subst.
+    constructor.
+    apply IHQ with (m := m) (k := k); assumption.
+  - (* POut *)
+    simpl.
+    constructor.
+    + apply name_subst_general with (T := T) (k := k) (m := m).
+      * inversion Hty; subst; assumption.
+      * exact Hget.
+      * intro Hn. subst.
+        inversion Hty; subst.
+        apply get_insert_at_lt in Hget; [| lia].
+        apply get_insert_at_gt in Hget; [| lia].
+        lia.
+    + apply name_subst_general with (T := T) (k := k) (m := m).
+      * inversion Hty; subst; assumption.
+      * exact Hget.
+      * intro Hn. subst.
+        inversion Hty; subst.
+        apply get_insert_at_lt in Hget; [| lia].
+        apply get_insert_at_gt in Hget; [| lia].
+        lia.
+    + apply IHQ with (m := m) (k := k); assumption.
+  - (* PIn *)
+    simpl.
+    constructor.
+    + apply name_subst_general with (T := T) (k := k) (m := m).
+      * inversion Hty; subst; assumption.
+      * exact Hget.
+      * intro Hn. subst.
+        inversion Hty; subst.
+        apply get_insert_at_lt in Hget; [| lia].
+        apply get_insert_at_gt in Hget; [| lia].
+        lia.
+    + apply IHQ with (m := S m) (k := S k).
+      * inversion Hty; subst.
+        simpl in H3.
+        exact H3.
+      * simpl.
+        rewrite <- Hget.
+        reflexivity.
+  - (* PPar *)
+    simpl.
+    constructor.
+    + apply IHQ1 with (m := m) (k := k); assumption.
+    + apply IHQ2 with (m := m) (k := k); assumption.
+  - (* PRes *)
+    simpl.
+    constructor.
+    apply IHQ with (m := S m) (k := S k).
+    + inversion Hty; subst.
+      simpl in H1.
+      exact H1.
+    + simpl.
+      rewrite <- Hget.
+      reflexivity.
+  - (* PRep *)
+    simpl.
+    constructor.
+    apply IHQ with (m := m) (k := k); assumption.
+Qed.
 
 (* ---------------------------------------------------------------------
    7. Substitution lemma (k=0的特例)
