@@ -1176,6 +1176,60 @@ Proof.
   - (* PRep P0 *) exact (IHP0 m k u Hnu Hrhom).
 Qed.
 
+(* 碰撞位刻画：rho=subst_name m k 唯一把两个位置映到 m——注入位 k 与另一碰撞位 c。
+   c 的取法：m<k 时 c=m（走 lt 支，rho m=m）；m>=k 时 c=S m（走 gt 支，rho(S m)=m）。
+   存在论：非单射只可能发生在这两个"汇于 m"的位置，其余位置 rho 皆单射。 *)
+Definition collision_other (m k : nat) : nat := if m <? k then m else S m.
+
+Lemma rho_collision_k : forall m k, subst_name m k k = m.
+Proof. intros. apply subst_name_eq. reflexivity. Qed.
+
+Lemma rho_collision_other : forall m k, subst_name m k (collision_other m k) = m.
+Proof.
+  intros m k. unfold collision_other. destruct (m <? k) eqn:E.
+  - apply Nat.ltb_lt in E. rewrite (subst_name_lt m k m) by lia. reflexivity.
+  - apply Nat.ltb_ge in E. rewrite (subst_name_gt m k (S m)) by lia. simpl. lia.
+Qed.
+
+(* 任一满足 rho u=m 的位置，必是 k 或另一碰撞位 c——碰撞位恰好两个 *)
+Lemma rhom_classify : forall m k u, subst_name m k u = m ->
+  u = k \/ u = collision_other m k.
+Proof.
+  intros m k u H.
+  destruct (Nat.ltb_spec u k) as [Hlt | Hge].
+  - (* u < k：rho u = u，故 u=m；而 m=u<k，碰撞位 c=m=u *)
+    rewrite (subst_name_lt m k u Hlt) in H.
+    right. unfold collision_other.
+    destruct (Nat.ltb_spec m k) as [Hmk | Hmnk].
+    + simpl. exact H.
+    + exfalso. lia.
+  - destruct (Nat.eqb_spec u k) as [Heq | Hne].
+    + (* u = k *) left. exact Heq.
+    + (* u > k：rho u = u-1 = m，故 u=S m；而 m>=k，碰撞位 c=S m=u *)
+      assert (Hgt : u > k) by lia.
+      rewrite (subst_name_gt m k u Hgt) in H.
+      right. unfold collision_other.
+      destruct (Nat.ltb_spec m k) as [Hmk | Hmnk].
+      * exfalso. lia.
+      * simpl. lia.
+Qed.
+
+(* 打包收摄：把源上下文 C 在两个碰撞位 k、c 都收摄（set_none），
+   前提是进程 P 不引用它们（由 no_use + nouse_excludes_rhom 保证）。
+   收摄后的源在"有资源的位置"上 rho 必单射——这是 ty_par 重划的基石。 *)
+Lemma typed_strengthen_collisions : forall (C : ctx) (P : proc) m k,
+  typed C P -> no_use_at_subst P m k = true ->
+  typed (set_none (set_none C k) (collision_other m k)) P.
+Proof.
+  intros C P m k Hty Hnu.
+  apply typed_strengthen_unused.
+  - apply typed_strengthen_unused with (u := k).
+    + exact Hty.
+    + apply (nouse_excludes_rhom P m k k Hnu). apply rho_collision_k.
+  - apply (nouse_excludes_rhom P m k (collision_other m k) Hnu).
+    apply rho_collision_other.
+Qed.
+
 (* =====================================================================
    subst_ren_general：代换定理的最一般形式（源任意，逐行同构 Layer1.ren_typed）
    源 D 经 rho=subst_name m k 到目标 Gamma；资源保持 Hpts + no_use 局部单射。
