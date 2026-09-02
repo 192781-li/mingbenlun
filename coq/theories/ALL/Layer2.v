@@ -71,21 +71,22 @@ Fixpoint subst_var (m : nat) (k : nat) (P : proc) : proc :=
 
 (* ---------------------------------------------------------------------
    2.1 no_use_at_subst (OB-009 A线前提，S04数学把关后的正确陈述)
-   存在论：代换是把注入位k的引用重定向到源位m。若某 use 在代换后恰好
-   落在 m（通道/发送值经 subst_name 后名字=m），则该 use 会把 m 清空成
-   None，而 body 的重定向又指回 m——指向寂然，类型化破产（S01反例的一般化）。
-   故代换定理要求：代换(m,k)之后，m 从未被 use 消耗。
-   关键(纠正S01单参数版的索引错位)：use位置x在insert上下文，m在原始Gamma，
+   存在论：代换是把注入位k的引用重定向到源位m。若某引用（use消耗或PVar引用）
+   在代换后恰好落在 m，则该引用会与另一侧的引用碰撞——线性类型系统不允许两个
+   并行子进程引用同一操作权位（S04反例：PPar(PVar k)(PVar c)代换后变成
+   PPar(PVar m)(PVar m)，split无法分配）。
+   故代换定理要求：代换(m,k)之后，m 从未被任何引用（use或PVar）落在。
+   关键(纠正S01单参数版的索引错位)：引用位置x在insert上下文，m在原始Gamma，
    二者隔了插入位k，故不能只比较 x=m；必须比较【代换后的名字】subst_name m k x
-   是否=m（它涵盖 x=k / x=m<k / x=m+1>k 三种落m情形）。递归结构与subst_var
+   是否=m（涵盖 x=k / x=m<k / x=m+1>k 三种落m情形）。递归结构与subst_var
    严格镜像：PIn/PRes进绑定器用(S m)(S k)，POut不进绑定器仍m k、且通道与
-   发送值两个位置都查，PVar只引用不消耗=true。
+   发送值两个位置都查，PVar也查（S04反例修正：PVar碰撞同样导致split破产）。
    --------------------------------------------------------------------- *)
 Fixpoint no_use_at_subst (P : proc) (m k : nat) : bool :=
   match P with
   | PZero      => true
   | PTau Q     => no_use_at_subst Q m k
-  | PVar n     => true
+  | PVar n     => negb (Nat.eqb (subst_name m k n) m)
   | POut x y Q => negb (Nat.eqb (subst_name m k x) m)
                   && negb (Nat.eqb (subst_name m k y) m)
                   && no_use_at_subst Q m k
@@ -924,6 +925,210 @@ Proof.
     rewrite subst_name_lt in Heq by lia. lia.
   - rewrite subst_name_gt in Heq by lia.
     rewrite subst_name_gt in Heq by lia. lia.
+Qed.
+
+(* =====================================================================
+   not_free_in 与 strengthening（明性收摄）——ty_par 的最后一块地基
+   存在论：操作权未被进程引用的位置，其上没有明性需要保持；主动收摄
+   （set_none 清空）该位置不改变类型化。这是主人"明性可不保持"的精确形式化。
+   ===================================================================== *)
+
+(* not_free_in：进程 P 不引用位置 u（PVar/use通道/发送值都不指向 u）
+   递归结构与 subst_var/fv_at 一致：PIn/PRes 进绑定器后 u 偏移为 S u *)
+Fixpoint not_free_in (P : proc) (u : nat) : bool :=
+  match P with
+  | PZero      => true
+  | PTau Q     => not_free_in Q u
+  | PVar n     => negb (Nat.eqb n u)
+  | POut x y Q => negb (Nat.eqb x u) && negb (Nat.eqb y u) && not_free_in Q u
+  | PIn x Q    => negb (Nat.eqb x u) && not_free_in Q (S u)
+  | PPar Q R   => not_free_in Q u && not_free_in R u
+  | PRes Q     => not_free_in Q (S u)
+  | PRep Q     => not_free_in Q u
+  end.
+
+(* set_none 交换律：两个不同位置的收摄可交换顺序
+   存在论：收摄是逐位置独立操作，不同位置的空无互不干扰 *)
+Lemma set_none_comm : forall C x y, x <> y ->
+  set_none (set_none C x) y = set_none (set_none C y) x.
+Proof.
+  intros C. revert C. induction C as [| g C' IH]; intros x y Hxy.
+  - simpl. reflexivity.
+  - destruct x as [| x'].
+    { destruct y as [| y'].
+      { exfalso. apply Hxy. reflexivity. }
+      { simpl. reflexivity. } }
+    { destruct y as [| y'].
+      { simpl. reflexivity. }
+      { simpl. f_equal. apply IH. lia. } }
+Qed.
+
+(* 辅助：u >= length G 时 set_none G u = G（越界则无操作权可收摄） *)
+Lemma set_none_keep : forall G u, u >= length G -> set_none G u = G.
+Proof.
+  intros G. revert G. induction G as [| g G' IH]; intros u H.
+  - simpl. reflexivity.
+  - destruct u as [| u'].
+    + simpl in H. lia.
+    + simpl. f_equal. apply IH with (u := u'). simpl in H. lia.
+Qed.
+
+(* 辅助：u >= length G 时 get G u = None（越界无操作权） *)
+Lemma get_overflow : forall G u, u >= length G -> get G u = None.
+Proof.
+  intros G. revert G. induction G as [| g G' IH]; intros u H.
+  - simpl. reflexivity.
+  - destruct u as [| u'].
+    + simpl in H. lia.
+    + simpl. apply IH with (u := u'). simpl in H. lia.
+Qed.
+
+(* 辅助：u < length G -> get G u <> None（界内必有值） *)
+Lemma get_not_none_lt : forall G u, u < length G -> get G u <> None.
+Proof.
+  intros G u H. revert G H. induction u as [| u' IH]; intros G H.
+  - destruct G as [| g G'].
+    + simpl in H. lia.
+    + simpl. discriminate.
+  - destruct G as [| g G'].
+    + simpl in H. lia.
+    + simpl in H. assert (Hlt : u' < length G') by lia.
+      apply (IH G') in Hlt. simpl. exact Hlt.
+Qed.
+
+(* 辅助：get G u = None -> u >= length G（越界才返回空） *)
+Lemma get_none_ge : forall G u, get G u = None -> u >= length G.
+Proof.
+  intros G u H. destruct (Nat.ltb u (length G)) eqn:Hlt.
+  - apply Nat.ltb_lt in Hlt.
+    assert (Hne : get G u <> None) by (apply get_not_none_lt; exact Hlt).
+    exfalso. apply Hne. exact H.
+  - apply Nat.ltb_ge in Hlt. exact Hlt.
+Qed.
+
+(* 辅助：set_none 在自身位置的值只能是 None 或 Some None（空无即寂然） *)
+Lemma get_set_none_null : forall G u,
+  get (set_none G u) u = None \/ get (set_none G u) u = Some None.
+Proof.
+  intros G u. destruct (Nat.ltb u (length G)) eqn:H.
+  - apply Nat.ltb_lt in H. right. rewrite (set_none_self G u H). reflexivity.
+  - apply Nat.ltb_ge in H. left. rewrite (set_none_keep G u H).
+    rewrite (get_overflow G u H). reflexivity.
+Qed.
+
+(* 辅助：若两上下文在 u 位值相等，则 set_none 后在 u 位值仍相等 *)
+Lemma get_set_none_cong : forall G1 G2 u,
+  get G1 u = get G2 u -> get (set_none G1 u) u = get (set_none G2 u) u.
+Proof.
+  intros G1 G2 u H. destruct (Nat.ltb u (length G1)) eqn:H1; destruct (Nat.ltb u (length G2)) eqn:H2.
+  - apply Nat.ltb_lt in H1. apply Nat.ltb_lt in H2.
+    rewrite set_none_self by exact H1. rewrite set_none_self by exact H2. reflexivity.
+  - apply Nat.ltb_lt in H1. apply Nat.ltb_ge in H2.
+    exfalso. rewrite (get_overflow G2 u H2) in H.
+    apply (get_none_ge G1 u) in H. lia.
+  - apply Nat.ltb_ge in H1. apply Nat.ltb_lt in H2.
+    exfalso. rewrite (get_overflow G1 u H1) in H.
+    apply eq_sym in H. apply (get_none_ge G2 u) in H. lia.
+  - apply Nat.ltb_ge in H1. apply Nat.ltb_ge in H2.
+    rewrite (set_none_keep G1 u H1). rewrite (set_none_keep G2 u H2). exact H.
+Qed.
+
+(* set_none 与 split 交换：两侧同时收摄同一位置，整体 split 关系不变
+   存在论：收摄是全局操作，不改变资源的分合结构 *)
+Lemma split_set_none : forall C G1 G2 u,
+  split C G1 G2 -> split (set_none C u) (set_none G1 u) (set_none G2 u).
+Proof.
+  intros C G1 G2 u Hs. unfold split. intros n.
+  unfold split in Hs. specialize (Hs n).
+  destruct (Nat.eqb_spec n u) as [Heq | Hne].
+  - subst n. destruct Hs as [[H1 [H2|H2]] | [H1 [H2|H2]]].
+    + left. split.
+      * exact (get_set_none_cong G1 C u H1).
+      * exact (get_set_none_null G2 u).
+    + left. split.
+      * exact (get_set_none_cong G1 C u H1).
+      * exact (get_set_none_null G2 u).
+    + right. split.
+      * exact (get_set_none_cong G2 C u H1).
+      * exact (get_set_none_null G1 u).
+    + right. split.
+      * exact (get_set_none_cong G2 C u H1).
+      * exact (get_set_none_null G1 u).
+  - rewrite (set_none_neq C u n Hne).
+    rewrite (set_none_neq G1 u n Hne).
+    rewrite (set_none_neq G2 u n Hne).
+    exact Hs.
+Qed.
+
+(* typed_strengthen_unused（明性收摄引理）：
+   进程 P 不引用位置 u => 清空 u 位后 P 仍类型化。
+   对 typed C P 归纳；ty_par 中 u 落在哪侧就对该侧用 IH，split 同步收摄。
+   存在论：操作权未流经的位置，没有明性需要保持——收摄即空无，空无即合法。 *)
+Lemma typed_strengthen_unused : forall (C : ctx) (P : proc),
+  typed C P -> forall (u : nat), not_free_in P u = true -> typed (set_none C u) P.
+Proof.
+  intros C P H. induction H as [
+    Gamma
+  | Gamma x T Hget
+  | Gamma P H IH
+  | Gamma x y P i o T Gamma1 Gamma2 Huse1 Ho Huse2 H IH
+  | Gamma x P i o T Gamma1 Huse Hi H IH
+  | Gamma P Q Gamma1 Gamma2 Hs HP IHP HQ IHQ
+  | Gamma P T H IH
+  | Gamma P H IH
+  ]; intros u Hnu; simpl in Hnu; simpl.
+  - (* ty_zero *) apply ty_zero.
+  - (* ty_var *) apply Bool.negb_true_iff in Hnu. apply Nat.eqb_neq in Hnu.
+    eapply ty_var. rewrite (set_none_neq Gamma u x Hnu). exact Hget.
+  - (* ty_tau *) apply ty_tau. exact (IH u Hnu).
+  - (* ty_out：x,y通道位与收摄位u互异，交换收摄顺序后body用IH *)
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [Hxy Hnub].
+    apply Bool.andb_true_iff in Hxy. destruct Hxy as [Hnx Hny].
+    apply Bool.negb_true_iff in Hnx. apply Nat.eqb_neq in Hnx.
+    apply Bool.negb_true_iff in Hny. apply Nat.eqb_neq in Hny.
+    assert (Hxy : x <> y) by (eapply use_neq; eassumption).
+    assert (Hyx : y <> x) by (intro E; apply Hxy; symmetry; exact E).
+    assert (Hunx : u <> x) by (intro E; apply Hnx; symmetry; exact E).
+    assert (Huny : u <> y) by (intro E; apply Hny; symmetry; exact E).
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    eapply ty_out with
+      (Gamma1 := set_none (set_none Gamma u) x)
+      (Gamma2 := set_none (set_none (set_none Gamma u) x) y).
+    + unfold use. split; [| reflexivity].
+      rewrite (set_none_neq Gamma u x Hnx). exact Hx1.
+    + exact Ho.
+    + unfold use. split; [| reflexivity].
+      rewrite (set_none_neq (set_none Gamma u) x y Hyx).
+      rewrite (set_none_neq Gamma u y Hny).
+      rewrite <- (set_none_neq Gamma x y Hyx). exact Hy1.
+    + rewrite (set_none_comm Gamma u x Hunx).
+      rewrite (set_none_comm (set_none Gamma x) u y Huny).
+      exact (IH u Hnub).
+  - (* ty_in：通道位x与u互异；body进绑定器，u偏移S u *)
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [Hnx Hnub].
+    apply Bool.negb_true_iff in Hnx. apply Nat.eqb_neq in Hnx.
+    unfold use in Huse. destruct Huse as [Hx1 Hx2]. subst Gamma1.
+    eapply ty_in with (Gamma1 := set_none (set_none Gamma u) x).
+    + unfold use. split; [| reflexivity].
+      rewrite (set_none_neq Gamma u x Hnx). exact Hx1.
+    + exact Hi.
+    + simpl.
+      replace (set_none (set_none Gamma u) x)
+        with (set_none (set_none Gamma x) u).
+      * exact (IH (S u) Hnub).
+      * assert (Hunx : u <> x) by (intro E; exact (Hnx (eq_sym E))).
+        exact (eq_sym (set_none_comm Gamma u x Hunx)).
+  - (* ty_par：u落两侧各自收摄，split同步收摄 *)
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [HnuP HnuQ].
+    eapply ty_par with (Gamma1 := set_none Gamma1 u) (Gamma2 := set_none Gamma2 u).
+    + exact (split_set_none Gamma Gamma1 Gamma2 u Hs).
+    + exact (IHP u HnuP).
+    + exact (IHQ u HnuQ).
+  - (* ty_res：进绑定器，u偏移S u；set_none (Some T::G)(S u)=Some T::set_none G u *)
+    simpl. apply ty_res with (T := T). exact (IH (S u) Hnu).
+  - (* ty_rep：set_none [] u = []，重复体仍在空上下文类型化 *)
+    apply ty_rep. exact (IH u Hnu).
 Qed.
 
 (* =====================================================================
