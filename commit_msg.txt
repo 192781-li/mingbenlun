@@ -1,0 +1,13 @@
+S04: PRes case证明通过！OB-008卡点解决——S01第二轮研判+修改证明结构+res_elim引理
+
+突破：
+- 修改证明结构：generalize dependent让IHQ成为forall形式，可接受不同Gamma/k/m
+- 用res_elim引理代替inversion，Gamma自然保留
+- insert_at_cons_comm重写恢复IHQ需要的形式
+- PRes case 6次失败后终于证明通过！
+
+验证：
+- Layer2.v编译通过（0错误）
+- substitution_general还剩5个admit：PVar/POut/PIn/PPar/PRep
+
+哲学：证明结构必须反映存在论事实——代换是世界相关的，进入绑定器后世界扩展，代换参数偏移

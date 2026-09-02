@@ -1,0 +1,7 @@
+S04: substitution_general策略调整反身思考记录+DeepSeek POut case尝试
+
+- 记录策略调整：从POut case内部分情况改为先证明辅助引理
+- DeepSeek专注POut case尝试：10+admit，核心困难是第二个use关系需要set_none和insert_at的交换引理
+- 尝试添加set_none_insert_at_comm引理：证明有编译错误，已回退
+- 当前状态：L2有2个Admitted（substitution_general, congruence_preserves_typing）
+- 下一步：更仔细地证明set_none_insert_at_comm引理，或换其他策略

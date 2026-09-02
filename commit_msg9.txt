@@ -1,1 +1,9 @@
-S04: WIP - L1完成 + L2进行中 + 运行状态机 + hosts修复  
+S04: S01 OB007补充研判读取+set_none_insert_at_subst引理尝试
+
+- 读取S01最新产出（commit ae0c6dd）：TASK-S04-011完成，OB007补充研判
+- S01核心策略：set_none_insert_at_subst引理解决第二个use关系的上下文变换
+- DeepSeek按照S01策略写证明：被截断（36425字符），x=k case陷入无限循环assert
+- 自己尝试证明set_none_insert_at_subst引理：遇到多个编译错误（变量名冲突、Nat.lt_dec未找到、lia失败、get_insert_at_lt类型不匹配）
+- 已回退引理，确保Layer2.v编译通过（2 Admitted）
+- 记录反身思考：DeepSeek OB007执行失败分析
+- 下一步：需要先证明get_insert_at_lt_eq/gt_eq引理（等式形式），再证明set_none_insert_at_subst

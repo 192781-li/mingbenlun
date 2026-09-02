@@ -355,19 +355,33 @@ Lemma substitution_general : forall Gamma T k m Q,
   typed Gamma (subst_var m k Q).
 Proof.
   intros Gamma T k m Q.
-  induction Q; intros Ht Hget.
+  generalize dependent Gamma.
+  generalize dependent T.
+  generalize dependent k.
+  generalize dependent m.
+  induction Q; intros m k T Gamma Ht Hget.
   - (* PVar - 待证明，n=k时需要get_insert_at_self引理 *) admit.
   - (* PZero *) simpl. apply ty_zero.
   - (* PTau *)
     simpl. inversion Ht; subst.
     apply ty_tau.
-    apply IHQ.
+    apply IHQ with (m := m) (k := k) (T := T) (Gamma := Gamma).
     + exact H1.
     + exact Hget.
   - (* POut *) admit.
   - (* PIn *) admit.
   - (* PPar - 涉及split和insert_at交换律，待处理 *) admit.
-  - (* PRes - OB-008策略方向对，但apply res_elim in Ht后Gamma仍消失，待解决 *) admit.
+  - (* PRes - 用res_elim引理，不用inversion，Gamma自然保留 *)
+    simpl.
+    apply res_elim in Ht.
+    destruct Ht as [T0 H1].
+    (* H1 : typed (Some T0 :: insert_at k T Gamma) P，Gamma还在！ *)
+    rewrite insert_at_cons_comm in H1.
+    (* H1 : typed (insert_at (S k) T (Some T0 :: Gamma)) P *)
+    assert (Hget' : get (Some T0 :: Gamma) (S m) = Some (Some T)).
+    { simpl. exact Hget. }
+    apply ty_res with (T := T0).
+    exact (IHQ (S m) (S k) T (Some T0 :: Gamma) H1 Hget').
   - (* PRep *) admit.
 Admitted.
 

@@ -1,0 +1,7 @@
+S04: 读取S01新产出（substitution_general卡点研判+Jia存在论分析）
+
+- checkout S01分支最新哲学研究到本地
+- S01完成substitution_general卡点研判：use关系代换的本质是get+set_none分量的代换，推荐在POut case内部分情况处理
+- S01完成假（Jia）的存在论分析：假不能直接揭开，假中永远有Sheng残余
+- DeepSeek按照S01策略写了证明，但有7个admit，结构混乱，需要更仔细地执行
+- 当前状态：L2有2个Admitted（substitution_general, congruence_preserves_typing）
