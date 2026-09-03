@@ -4371,3 +4371,256 @@ Proof.
 需要仔细读错误：File line 2227 characters 11-38: Error: Found no subterm matching "?M1354 + 0" in HG23.
 
 这听起来在 `rewrite Nat.add_0_r in HG23` 时失败，因为 HG23 中没有 `?M1354 + 0` 子项。也就是 HG23 可能是 `Some (f (0 + n) (Some T))` 还是 `Some (f n (Some T))`？取决于之前 `get_setby_get` 应用时 k=0, 也许返回 `Some (f (0 + n) (Some T))`，然后 `rewrite Nat.add_0_r in HG23` 把 `0+n` 变成 `n`。但错误说没找到 `?M1354 + 0`，说明 HG23 可能已经是 `f n (Some T)` 形式？或者 `Nat.add_0_r` 匹配 `?M + 0`，而 `0+n` 不是 `n+0` 形式，方向写反了。需要检查 Nat.add_0_r 是 forall n, n + 0 = n。实际上 `0 + n` 化简为 n，但用 `Nat.add_0_l` 才是 `0 + n = n`。错误是 Found no subterm matching "?M1354 + 0" in HG23，即在 HG23 中找不到 `x + 0`。`get_setby_get` 返回 `f (k+n) u`，若 k=0，`0+n`，不是 `n+0`，所以 `rewrite Nat.add_0_r` 找不到 `? + 0`，应该用 `Nat.add_0_l` 或 `simpl`。但是之前版本也许有 `replace (0 + n) with n by reflexivity` 之类。错误说 line 2227，可能用户材料中的 r4 已经用了 `rewrite Nat.add_0_r`? 我们看到的错误是从旧回复？用户"上一版 coqc 编译错误"只给了一行：`File ".\Layer2.v", line 2227, characters 11-38: Error: Found no subterm matching "?M1354 + 0" in HG23.` 这是唯一错误，说明其他地方编译通过了，只有这个 rewrite 失败。需要给完整 split_assoc 代码修正这一行：把 `rewrite Nat.add_0_r in HG23` 改为 `rewrite Nat.add_0_l in HG23` 或 `simpl in HG23` 或 `replace (0 + n) with n in HG23 by lia`。但我们必须交付完整证明，且不能省略。用户说重交一个完整 Lemma split_assoc..Qed. 块，只修这处及连带同类 rewrite 顺序问题。可以基于材料A现有 r4 
+
+
+## 2026-09-04 07:22:07 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun (n : nat) (_ : option ty) =>
+               match get G2 n with
+               | Some (Some a) => Some a
+               | _ => match get G3 n with
+                      | Some v => v
+                      | None => None
+                      end
+               end).
+  exists (setby f G 0).
+  split.
+  { (* split G G1 G23 *)
+    unfold split. intro n.
+    specialize (Hs1 n). specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    { (* get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3e] | [H3 H12e]].
+      { destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+        { (* resource in G1 *)
+          left. split.
+          { rewrite H1, H12. reflexivity. }
+          { assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
+            { apply get_setby_get. exact EG. }
+            rewrite Nat.add_0_l in HG23. unfold f in HG23.
+            destruct H2e as [H2n | H2s]; destruct H3e as [H3n | H3s];
+              rewrite H2n in HG23 || rewrite H2s in HG23;
+              rewrite H3n in HG23 || rewrite H3s in HG23; cbn in HG23.
+            right. exact HG23. }
+        }
+        { (* resource in G2 *)
+          right. split.
+          { assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
+            { apply get_setby_get. exact EG. }
+            rewrite Nat.add_0_l in HG23. unfold f in HG23.
+            assert (HG2 : get G2 n = Some (Some T)).
+            { rewrite H2, H12. exact EG. }
+            rewrite HG2 in HG23. cbn in HG23. exact HG23. }
+          { exact H1e. }
+        }
+      }
+      { destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+        { (* resource in G3 *)
+          right. split.
+          { assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
+            { apply get_setby_get. exact EG. }
+            rewrite Nat.add_0_l in HG23. unfold f i
+[reasoning摘要]
+We need produce modified split_assoc proof only, replacing Admitted with full Qed using braces. Need use material A existing r5 proof likely in context? We have Layer2 full text includes split_assoc proof with bullets already Qed? Wait material A contains split_assoc proof ending Qed. But user says current r5 proof exists with bullet error. They ask to re-submit one complete Lemma split_assoc..Qed. block replacing all bullets with braces, fix line 2232. We have the current proof in material A? We saw it includes a huge split_assoc proof with bullets and ends Qed. We need rewrite that proof using braces. But need ensure correctness. The current proof may have errors besides bullet? User states only bullet issue line 2232. Need output one block with Lemma split_assoc ... Proof ... Qed using braces.
+
+We need inspect current proof and transform all bullet structures to braces. It has many nested bullets. We need carefully rewrite.
+
+Let's locate split_assoc proof in material. It begins:
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun ... end).
+  exists (setby f G 0). split.
+  - (* split G G1 G23 *)
+    unfold split. intro n. specialize (Hs1 n). specialize (Hs2 n).
+    unfold split in Hs1, Hs2.
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + ...
+    + ...
+    + ...
+  - (* split G23 G2 G3 *)
+    unfold split. intro n. specialize (Hs1 n). specia
+
+
+## 2026-09-04 07:23:39 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun (n : nat) (_ : option ty) =>
+               match get G2 n with
+               | Some (Some a) => Some a
+               | _ => match get G3 n with
+                      | Some v => v
+                      | None => None
+                      end
+               end).
+  exists (setby f G 0).
+  split.
+  { (* split G G1 G23 *)
+    unfold split. intro n.
+    specialize (Hs1 n). specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    { (* get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3e] | [H3 H12e]].
+      { (* Hs1 left *)
+        destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+        { (* resource in G1 *)
+          left. split.
+          { rewrite H1, H12. reflexivity. }
+          { assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
+            { apply get_setby_get. exact EG. }
+            rewrite Nat.add_0_l in HG23. unfold f in HG23.
+            destruct H2e as [H2n | H2s]; destruct H3e as [H3n | H3s];
+              rewrite H2n in HG23 || rewrite H2s in HG23;
+              rewrite H3n in HG23 || rewrite H3s in HG23; cbn in HG23.
+            right. exact HG23. }
+        }
+        { (* resource in G2 *)
+          right. split.
+          { assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
+            { apply get_setby_get. exact EG. }
+            rewrite Nat.add_0_l in HG23. unfold f in HG23.
+            assert (HG2 : get G2 n = Some (Some T)).
+            { rewrite H2, H12. exact EG. }
+            rewrite HG2 in HG23. cbn in HG23. exact HG23. }
+          { exact H1e. }
+        }
+      }
+      { (* Hs1 right *)
+        destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+        { (* resource in G3 *)
+          right. split.
+          { assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
+            { apply get_setby_get. exact EG. }
+    
+[reasoning摘要]
+我们需要理解当前任务。用户要求：证明 Lemma split_assoc，替换其 Admitted 占位。已经提供材料 A 中有一个现有的 split_assoc 证明（r5）完整文本，但编译错误是 line 2232 bullet 错误。要求用花括号替换所有 bullet，重交一个完整 Lemma split_assoc..Qed. 块，不重发辅助引理、不新造辅助引理，以材料A里现有 r5 证明为基础，修 bullet。
+
+我们需要从材料A中提取 split_assoc 现有证明文本，然后将其中的所有 bullet（- + * ++ -- 等）替换为花括号形式，并确保正确闭合，同时修复 line 2232 未闭合问题。
+
+材料A中 split_assoc 证明很大，在 Layer2.v 的末尾附近。我们需要读懂它的结构，特别是哪些 bullet 层次出错。
+
+注意：材料A中提供的 split_assoc 证明在 "Lemma split_assoc : ..." 开始，到 "Qed." 结束。我需要将这段证明中的所有 bullet 替换成花括号。但材料中该证明非常长，我需要处理所有子目标。
+
+用户要求不要用 bullet，用 `{}` 显式聚焦。对于 destruct 创建多个子目标，使用 `[> { ... } | { ... } | { ... } | { ... } ]` 或者依次用 `all: idtac.` 后逐个 `{ }`。但注意 goal selector 语法在 Coq 中 `[> ... | ...]` 可以直接对多个目标分别处理。但我们要用花括号，可能最简单的办法是：在每次 destruct 后，如果有多个子目标，使用 `{ ... }` 来分别处理，但为了防止 bullet 错误，我们可以用 `all: try ...` 等。
+
+不过需要仔细，因为原有证明中使用了 bullet，不仅在每个 destruct 分支用了 bullet，还在 split 后用了 `{` 和 `}` 大括号。原证明中已经有一部分使用了花括号，比如 `{ (* split G G1 G23 *) ... }` 和 `{ (* split G23 G2 G3 *) ... }`。但内部还用了许多小 bullet 如 `{` 和 `}`? 实际上当前材料中的 split_assoc 已经大量使用花括号？我们再读一下。
+
+材料中 split_assoc 证明开头：
+
+```
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun (n : nat) (_ : option ty) =>
+               match get G2 n with
+               | Some (Some a) => Some a
+               | _ => match get G3 n with
+                      | Some v => v
+                      | None => None
+                      end
+             
+
+
+## 2026-09-04 07:27:05 [proof_loop] split_assoc · round3 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun (n : nat) (_ : option ty) =>
+               match get G2 n with
+               | Some (Some a) => Some a
+               | _ => match get G3 n with
+                      | Some v => v
+                      | None => None
+                      end
+               end).
+  exists (setby f G 0).
+  split.
+  {
+    unfold split. intro n.
+    specialize (Hs1 n). specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    {
+      destruct Hs1 as [[H12 H3e] | [H3 H12e]].
+      {
+        destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+        {
+          left. split.
+          { rewrite H1, H12. reflexivity. }
+          {
+            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
+            { apply get_setby_get. exact EG. }
+            rewrite Nat.add_0_l in HG23. unfold f in HG23.
+            destruct H2e as [H2n | H2s]; destruct H3e as [H3n | H3s];
+              rewrite H2n in HG23 || rewrite H2s in HG23;
+              rewrite H3n in HG23 || rewrite H3s in HG23; cbn in HG23.
+            right. exact HG23.
+          }
+        }
+        {
+          right. split.
+          {
+            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
+            { apply get_setby_get. exact EG. }
+            rewrite Nat.add_0_l in HG23. unfold f in HG23.
+            assert (HG2 : get G2 n = Some (Some T)).
+            { rewrite H2, H12. exact EG. }
+            rewrite HG2 in HG23. cbn in HG23. exact HG23.
+          }
+          { exact H1e. }
+        }
+      }
+      {
+        destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+        {
+          right. split.
+          {
+            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
+            { apply get_setby_get. exact EG. }
+            rewrite Nat.add_0_l in HG23. unfold f in HG23.
+            assert (HG3 : get G3 n
+[reasoning摘要]
+我们需要完成证明 split_assoc。材料中已给出辅助引理 get_setby_None 等已经编译通过，不需要重新证明。任务要求用花括号，给出一个完整 Lemma split_assoc..Qed. 替换现有占位，修正 bullet 问题。
+
+现有错误是 line 2233 "This proof is focused, but cannot be unfocused this way"，常见于 bullet 不闭合。我们需要完全用 `{ }` 替代 bullets，确保每个子目标用 `{ ... }` 包裹。
+
+我们需要写出正确证明。策略已经在材料最后的“本题逐位置语义分析”中：使用 setby 定义 G23 = setby (fun n t => match get G2 n with Some (Some a) => Some a | _ => get G3 n end) G 0。但要严格处理 option 层级和 match 归约。
+
+注意：材料中上一版 r5 已有完整证明骨架，但 bullet 混乱，我们重写为花括号。由于我们无法看到材料A中 r5 完整证明的局部内容？但所述框架足够。
+
+我需要自己推理证明 split_assoc 的完整 Coq 代码，确保使用现有引理：get_setby_get, get_setby_None 等。我们不能使用 excluded_middle_informative，不用列表归纳本体，只对 setby 所需辅助引理（已存在）使用归纳。
+
+我们要求：主 Lemma split_assoc 不使用列表归纳。但证明中用 get_setby_None（已存在）等，是允许的。
+
+现在需要构建代码。分析 split_assoc 证明结构：
+
+目标：exists G23, split G G1 G23 /\ split G23 G2 G3。
+
+令 G23 := setby f G 0，其中 f n t 返回元素层 option ty，定义如材料给出的 pose，无类型标注，只有形参标注。
+
+我们需要证明两个 split 条件。每个 split 是 forall n, ...。所以：
+
+split G G1 G23:
+- intro n; specialize (Hs1 n); specialize (Hs2 n); unfold split in Hs1, Hs2? Actually Hs1 Hs2 already split. Destruct Hs1, Hs2.
+- 根据 get G n 分层。但注意 split G G1 G23 的目标是 forall n, (get G1 n = get G n /\ (get G23 n = None \/ get G23 n = Some None)) \/ (get G23 n = get G n /\ (get G1 n = None \/ get G1 n = Some None)).
+所以我们需要证明 G23 在 n 位的行为。根据情形：
+  情况：资源在 G3 时，G23 n = G n? 因为 G23 取 G2 or G3，若 G2 空而 G3 有资源，则 G23 n = G3 n = G n。但 split G G1 G23 需要什么？如果资源在 G3（即 split G G12 G3 的右支），则 G12 n 为空，G3 n = G n。由 Hs2 n，因为 G12 n 为空，Hs2 必须右支或左支？Hs2: split G12 G1 G2。如果 
