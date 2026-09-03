@@ -34,8 +34,10 @@ def _top_defined_names(text):
     return set(re.findall(r"(?m)^\s*"+_TOP+r"\s+([\w']+)", text))
 
 def apply_patch(file_path, target_lemma, blocks):
-    """按协议应用 DS 代码块，返回 (ok, msg, new_src, inserted)。
-    INSERT 辅助引理若与文件中已有顶层定义同名则去重跳过（修重复堆积）。"""
+    """按协议应用 DS 代码块，返回 (ok, msg, new_src, inserted, mode)。
+    mode: "replace"=本轮交了目标lemma并替换；"insert_only"=本轮只交辅助引理，先插到目标前沉淀；"none"=无可应用。
+    INSERT 辅助引理若与文件中已有顶层定义同名则去重跳过（修重复堆积）。
+    允许 DS 分步交：先逐轮把辅助引理证入文件，某轮再交主引理，避免已证对的辅助引理被整轮丢弃重证。"""
     src = open(file_path, encoding="utf-8").read()
     existing = _top_defined_names(src)
     insert_before, new_lemma, skipped = [], None, []
@@ -43,7 +45,7 @@ def apply_patch(file_path, target_lemma, blocks):
         body = re.sub(r"(?m)^\s*\(\*\s*INSERT-BEFORE:.*?\*\)\s*\n","",b).strip()
         if re.search(r"(?m)^(?:Lemma|Theorem)\s+"+re.escape(target_lemma)+r"\b", body):
             if new_lemma is not None:
-                return False, "多个代码块都定义了目标lemma，拒绝盲改", src, []
+                return False, "多个代码块都定义了目标lemma，拒绝盲改", src, [], "none"
             new_lemma = body
         elif body:
             names = _top_defined_names(body)
@@ -51,16 +53,23 @@ def apply_patch(file_path, target_lemma, blocks):
             if dup:                      # 上一轮已证入，本轮又给 -> 去重，保留文件现有版本
                 skipped.append(sorted(dup)); existing |= names; continue
             insert_before.append(body); existing |= names
-    if new_lemma is None:
-        return False, "DS 输出中没有目标 lemma %s 的完整新版本" % target_lemma, src, []
     span = lemma_span(src, target_lemma)
+    if new_lemma is None:
+        if not insert_before:
+            return False, "DS 输出中没有目标 lemma %s 的完整新版本，也没有任何新引理" % target_lemma, src, [], "none"
+        if not span:
+            return False, "源文件中定位不到 lemma %s 的起止" % target_lemma, src, [], "none"
+        ins = "\n\n".join(insert_before)+"\n\n"
+        msg = "仅插入辅助引理%d段（本轮未交主引理，先沉淀，下一轮交主引理）"%len(insert_before)
+        if skipped: msg += "；去重跳过已存在:%s"%skipped
+        return True, msg, src[:span[0]]+ins+src[span[0]:], insert_before, "insert_only"
     if not span:
-        return False, "源文件中定位不到 lemma %s 的起止" % target_lemma, src, []
+        return False, "源文件中定位不到 lemma %s 的起止" % target_lemma, src, [], "none"
     s,e = span
     ins = ("\n\n".join(insert_before)+"\n\n") if insert_before else ""
     msg = "替换目标lemma并插入%d段新引理"%len(insert_before)
     if skipped: msg += "；去重跳过已存在:%s"%skipped
-    return True, msg, src[:s]+ins+new_lemma+src[e:], insert_before
+    return True, msg, src[:s]+ins+new_lemma+src[e:], insert_before, "replace"
 
 def run_coqc(theories_dir, fname):
     cmd = ("set PATH=%s;%%PATH%% && set COQLIB=%s && cd /d %s && coqc.exe -R .. ALL %s 2>&1"
@@ -193,7 +202,7 @@ def proof_loop(task_brief, file_path, target_lemma, theories_dir=None, layer_fil
             result["rounds"].append({"r":rnd,"missing":missing}); continue
         bak = file_path + (".bak_r%d"%rnd)
         shutil.copy2(file_path, bak)
-        ok,msg,new_src,inserted = apply_patch(file_path,target_lemma,blocks)
+        ok,msg,new_src,inserted,mode = apply_patch(file_path,target_lemma,blocks)
         if not ok:
             log("[round %d] 未改文件：%s，回喂"%(rnd,msg))
             history += [("assistant",out["content"][:6000]),
@@ -207,6 +216,19 @@ def proof_loop(task_brief, file_path, target_lemma, theories_dir=None, layer_fil
         ins_txt = "\n".join(inserted)
         bad = lambda t: ("admit" in t) or ("Abort." in t)
         tgt_bad, ins_bad = bad(seg), bad(ins_txt)
+        if mode == "insert_only":
+            # 分步交：本轮只沉淀辅助引理。编译过且辅助无 admit 就算沉淀成功，不收敛，下轮交主引理。
+            log("[round %d] 辅助沉淀 coqc exit=%d 新引理admit/abort=%s"%(rnd,rc,ins_bad))
+            result["rounds"].append({"r":rnd,"mode":"insert_only","apply":msg,"coqc_rc":rc,"err_head":err[:400]})
+            if rc==0 and not ins_bad:
+                names=[n for b in inserted for n in _top_defined_names(b)]
+                history += [("assistant",out["content"][:6000]),
+                            ("user","辅助引理 %s 已收录进文件且 coqc 编译通过，无需重证，下一轮可直接引用。现在【只】需给出目标 Lemma %s 从 Lemma 行到 Qed. 的完整证明块（不要再只交辅助引理，也不要重复已收录的），并保证它引用的名字都已在材料A或已收录引理中。"%(names,target_lemma))]
+            else:
+                coqc_error = err if err.strip() else ("exit=%d；新引理问题=%s"%(rc,ins_bad))
+                history += [("assistant",out["content"][:6000]),
+                            ("user","刚插入的辅助引理编译未过（rc=%s，新引理admit/abort=%s）。错误见材料末尾，请修正这些辅助引理后重交，然后再给主引理 %s。"%(rc,ins_bad,target_lemma))]
+            continue
         log("[round %d] coqc exit=%d 目标段admit=%s 新引理admit/abort=%s"%(rnd,rc,tgt_bad,ins_bad))
         if rc==0 and not tgt_bad and not ins_bad:
             log("[round %d] ✅ 编译通过且目标+新引理均无admit，收敛"%rnd)
@@ -232,10 +254,15 @@ Proof. exact I. Qed.
     blks=extract_coq_blocks(sample); print("blocks:",len(blks))
     with tempfile.NamedTemporaryFile("w",suffix=".v",delete=False,encoding="utf-8") as f:
         f.write("Lemma foo : False.\nProof. admit.\nAdmitted.\n"); tmp=f.name
-    ok,msg,new,ins=apply_patch(tmp,"foo",blks)
-    print("apply:",ok,msg); print(new)
+    ok,msg,new,ins,mode=apply_patch(tmp,"foo",blks)
+    print("apply(replace):",ok,mode,msg); print(new)
     print("编造检查(应为空):",check_referenced_lemmas(blks,"Lemma foo : False."))
     print("卫生(应空):",check_hygiene(blks))
+    # insert_only：本轮只交辅助引理，应插到 foo 前且 mode=insert_only
+    with tempfile.NamedTemporaryFile("w",suffix=".v",delete=False,encoding="utf-8") as f:
+        f.write("Lemma foo : False.\nProof. admit.\nAdmitted.\n"); tmp2=f.name
+    ok2,msg2,new2,ins2,mode2=apply_patch(tmp2,"foo",blks[:1])
+    print("apply(insert_only):",ok2,mode2,msg2,"| helper在foo前:", new2.index("helper")<new2.index("Lemma foo"), "| foo仍Admitted:", "Admitted." in new2)
     abort=blks+["Lemma x:True. Proof. Abort."]
     print("卫生(应抓到Abort):",check_hygiene(abort))
-    import os as _os; _os.remove(tmp)
+    import os as _os; _os.remove(tmp); _os.remove(tmp2)

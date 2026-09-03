@@ -14,8 +14,10 @@ PHILOS = tuple(p for p in
   (r"哲学研究\S01给S04的证明智慧手册_生命论方法论如何写Coq证明_20260902.md",) if (NOTES/p).exists())
 
 BRIEF = (
- "只证明 Lemma split_assoc 这一个引理，给出它从 Lemma 行到列0 Qed. 的完整新版本以替换占位。"
- "不要输出任何其他引理、不要长段解释、不要 admit/Admitted/Abort。本轮唯一目标就是让 split_assoc 编译通过。"
+ "证明 Lemma split_assoc（替换其 Admitted 占位），并先自证它需要的辅助引理 get_setby_None。"
+ "严格按分块协议输出：①每个辅助引理【单独一个】```coq 代码块，且该块第一行写注释 (* INSERT-BEFORE: split_assoc *)；"
+ "②split_assoc 主引理【单独一个】```coq 代码块，从 `Lemma split_assoc` 到列0 `Qed.`；"
+ "③绝不要把两个 Lemma 放进同一个 coq 块。不要 admit/Admitted/Abort，不要长解释。"
 )
 
 EXTRA = r"""
@@ -45,19 +47,32 @@ setby f Gamma k 沿列表逐位作用，get_setby_get : get Gamma n=Some u -> ge
 注意 option (option ty) 是双层：None / Some None / Some (Some T)，destruct 时分层别漏；
 injection 对双层 option 一次剥到底（不要连续两次 injection）。
 
-======== 先练功：把这几个 setby/get 小引理一次性练齐（材料里只有 get_setby_get，其余你要先自证）========
-- 已有可直接用：get_setby_get : get Gamma n = Some u -> get (setby f Gamma k) n = Some (f (k+n) u)。
-- 【材料里没有、上一版你误当成已有（这是幻觉）】get_setby_None，必须先自己证：
-    Lemma get_setby_None : forall Gamma f k n, get Gamma n = None -> get (setby f Gamma k) n = None.
-  证法：对 Gamma 归纳；get Gamma n=None 即 n 越界（n>=length Gamma），setby 保持长度与结构，越界位仍为 None；
-  destruct n/列表后 simpl，用归纳假设或 reflexivity。k+n 处先 lia 或 rewrite Nat.add_0_r。
-- 若还需要“某位置 G2/G3 为空”的等式小引理，也一并先证到 Qed，不要在主证明里抛没着落的名字。
+======== option 层级铁事实（上一版就在这里错，line2172：option 构造子出现在需要 ty 处，务必刻死）========
+- ctx := list (option ty)。所以【列表元素】g 的类型是 option ty，只有两层构造：None | Some (T:ty)。
+  match 列表元素 g 只能写：match g with Some T => .. | None => .. end；destruct g as [T|]。
+  绝不能写 Some (Some _)，也不能 destruct g as [[T|]|]——那是把 g 错当成 option(option ty)。
+- 只有 get 的【返回值】才是 option(option ty)：None（越界）| Some None（在位但空）| Some (Some T)（资源）。
+  对 get G n 的结果 destruct 才用 [[T|]|]。把“列表元素”和“get 返回值”这两个类型严格分开。
 
-======== 纪律 ========
-- 先给上述小引理的完整 Qed 块（INSERT-BEFORE: split_assoc），再给 split_assoc 主引理完整 Qed 块，一个回答内一次交齐；
-- 只输出这些 coq 块；不许 induction G 来证 split_assoc 本体（位置独立，按 n 逐点 destruct），但 get_setby_None 这类列表引理可以对列表归纳；不许 excluded_middle；
-- 用到的库引理若材料中确无，打 (* @stdlib names: .. *)，否则必须自证；
-- 交付前自己逐行核对每个引用名都有着落，结尾必须 Qed.，整块可直接 coqc 通过。
+======== 唯一指定路线，禁止另起炉灶（上一版走过的弯路，不要再犯）========
+- 用上面 setby + get_setby_get/get_setby_None 的逐位置路线。
+- 【禁止】再定义 merge_ctx 或任何“递归合并两个 ctx 的 Fixpoint”——上一版这么做且在 match 列表元素时多套一层 option 导致类型错，已废弃。
+- split_assoc 本体【不对列表归纳、不用 excluded_middle】；只有 get_setby_None 这类列表小引理对列表归纳。
+
+======== 先练功：把 setby/get 小引理一次性练齐（材料里只有 get_setby_get，其余先自证）========
+- 已有可直接用：get_setby_get : get Gamma n = Some u -> get (setby f Gamma k) n = Some (f (k+n) u)。
+- 【材料里没有、上一版你误当成已有（幻觉）】get_setby_None，必须先自己证（单独 INSERT-BEFORE 块）：
+    Lemma get_setby_None : forall Gamma f k n, get Gamma n = None -> get (setby f Gamma k) n = None.
+  证法：对 Gamma 归纳；get Gamma n=None 即 n 越界（n>=length Gamma），setby 保持长度与结构，越界位仍 None；
+  destruct n/列表后 simpl，用归纳假设或 reflexivity；k+n 处 rewrite Nat.add_0_r / lia。
+- 若还需要“某位置 G2/G3 为空”的等式小引理，也一并先证到 Qed（各自独立 INSERT-BEFORE 块），不要在主证明里抛没着落的名字。
+
+======== 输出纪律（与执行方解析器严格对齐，错格式等于没交）========
+- 每个辅助引理单独一个 ```coq 块，块内第一行写 (* INSERT-BEFORE: split_assoc *)，其后是 Lemma..Proof..Qed.；
+- split_assoc 主引理单独一个 ```coq 块（不要 INSERT 标记，直接 Lemma split_assoc..Qed.），会整体替换占位；
+- 一个 coq 块只放一个 Lemma；不许 induction G 证本体；不许 excluded_middle；
+- 库引理若材料确无打 (* @stdlib names: .. *)，否则必须自证；
+- 交付前自己当 coqc 逐行核对：每个引用名有着落、option 层级正确、每块以 Qed. 结尾、可直接编译 0 错误。
 """
 
 if __name__ == "__main__":
