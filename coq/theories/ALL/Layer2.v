@@ -2159,6 +2159,23 @@ Proof.
   - exact (insert_pts_subst Gamma T k m Hkle Hget).
   - exact Hnu.
 Qed.
+(* ===== congruence 辅助引理占位（规格据 S00 策略/r1；证明由聚焦闭环逐个补） ===== *)
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof. Admitted.
+
+Lemma typed_empty_closed : forall G P, typed [] P -> typed G P.
+Proof. Admitted.
+
+Lemma typed_res_par_l : forall G P Q,
+  ~ fv_at Q 0 -> typed G (PRes (PPar P Q)) -> typed G (PPar (PRes P) Q).
+Proof. Admitted.
+
+Lemma typed_res_par_r : forall G P Q,
+  ~ fv_at Q 0 -> typed G (PPar (PRes P) Q) -> typed G (PRes (PPar P Q)).
+Proof. Admitted.
+
 Theorem congruence_preserves_typing : forall P P' Gamma,
   congruence P P' -> typed Gamma P -> typed Gamma P'.
 Proof. Admitted.
