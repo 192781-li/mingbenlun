@@ -2,9 +2,9 @@
   "station": "S04",
   "name": "Coq形式化分站",
   "branch": "s04-coq",
-  "last_update": "2026-09-03 范式革命·环境改造完成",
-  "current_task": "范式切换：DeepSeek主谋+S04承接；工具链scripts/s04_deepseek入库；下一步用proof_loop闭环消Layer2三个目标(subst_ren_general PPar→substitution_general PPar→congruence)",
-  "status": "环境改造完成_待启动DS闭环证PPar",
+  "last_update": "2026-09-04 split_assoc攻坚: subst_ren_general/substitution_general已Qed,4辅助引理Qed,split_assoc主证明5轮未收敛已切花括号策略",
+  "current_task": "split_assoc主证明Qed(花括号策略重启中)->typed_res_par_l/r->congruence_preserves_typing",
+  "status": "split_assoc攻坚中_花括号策略第6轮",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic",
     "authority_docs": [
@@ -14,20 +14,28 @@
     "toolchain": "scripts/s04_deepseek/（ds_v4/s04_context/proof_loop/run_current）",
     "v4_facts": "上下文1M/输出384K；三层全文约49K token占4.9%全量喂；空输出=reasoning吃额度非掐断；pro证明max_tokens>=32000自动续写"
   },
-  "L1": { "admitted": 0, "compiled": true },
+  "L1": {
+    "admitted": 0,
+    "compiled": true
+  },
   "L2": {
-    "new_main_lemma": "subst_ren_general(源任意,对进程Q归纳,同构ren_typed)",
-    "subst_ren_general_cases": "7/8 Qed，仅PPar(ty_par) admit",
-    "top_level_Admitted": 3,
+    "new_main_lemma": "subst_ren_general已Qed; 当前攻坚split_assoc",
+    "subst_ren_general_cases": "8/8 Qed",
+    "top_level_Admitted": 4,
     "remaining": [
-      "subst_ren_general 的 PPar（strengthening紧缩碰撞位后仿ren_typed ty_par，结晶011/012，工具引理全Qed）",
-      "substitution_general 的 PPar（上者通后 subst_var_eq_ren 一行导出）",
-      "congruence_preserves_typing（整体Admitted，11构造子）"
+      "split_assoc(主证明: 逐点destruct三态,5轮整段重写未收敛,已切花括号{}代替bullet策略)",
+      "typed_res_par_l(~fv_at Q 0做split重划)",
+      "typed_res_par_r(对称)",
+      "congruence_preserves_typing(11构造子,依赖split_assoc+typed_res_par_l/r)"
     ],
-    "note": "WIP快照commit38b762b为对进程归纳中间态(编译未过)；绿基线cf91ec6；起点由DS闭环连同是否必须对进程归纳一起判断",
+    "note": "split_assoc 4辅助引理Qed(get_setby_None_uncond/get_repeat_None_lt/length_repeat_None);主证明卡在多分支bullet闭合,已切花括号策略",
     "compiled": false
   },
-  "L3": { "admitted": 0, "compiled": true, "note": "骨架" },
+  "L3": {
+    "admitted": 0,
+    "compiled": true,
+    "note": "骨架"
+  },
   "key_achievements": [
     "代换本质=非单射重命名subst_var=ren(subst_name m k)，主引理subst_ren_general 7/8 Qed",
     "strengthening紧缩工具引理群全Qed：typed_strengthen_unused/collisions、rho_inj_except_m、split_proj等",
@@ -35,15 +43,13 @@
     "环境改造：唯一权威SOP+V4规范；3份S04专属旧文档归档；5份共享DS文档加V4指针；工具链工程化入库(离线自检全绿)"
   ],
   "key_blockers": [
-    "PPar：非单射rho碰撞对冗余资源位需先strengthening紧缩（路线已定，待DS闭环执行）",
-    "congruence依赖substitution整体Qed"
+    "split_assoc主证明: DS整段重写长证明无法一次保持多分支bullet闭合,5轮横跳,已切花括号{}策略",
+    "congruence依赖split_assoc+typed_res_par_l/r"
   ],
-  "needs_s01": [
-    "strengthening(丢弃未用明性)的正式存在论命名/背书（主人已说'明性可不保持'，待S01正式研判归档）"
-  ],
-  "s01_should_read": [
-    "docs/协作机制/分站/S04_DeepSeek_V4新范式调用规范.md（新分工，S01策略将全量原样喂给DS）"
-  ],
+  "needs_s01": false,
+  "s01_should_read": "split_assoc攻坚进展; 若花括号策略仍不收敛需S01研判是否换证明策略",
   "progress_score": "L1/L3绿；L2 7/8主引理+工具引理群就位，剩3目标；范式与工具链已就绪，可一键run_current.py启动DS闭环",
-  "blockers": ["待执行：python scripts/s04_deepseek/run_current.py subst_ren_general"]
+  "blockers": [
+    "待执行：python scripts/s04_deepseek/run_current.py subst_ren_general"
+  ]
 }
