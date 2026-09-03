@@ -1,4 +1,4 @@
-(* =====================================================================
+﻿(* =====================================================================
    ALL_Layer2.v
    Layer 2: operational semantics + subject reduction
    Dependencies: Layer1.v (syntax, typing, renaming)
@@ -2160,14 +2160,48 @@ Proof.
   - exact Hnu.
 Qed.
 (* ===== congruence 辅助引理占位（规格据 S00 策略/r1；证明由聚焦闭环逐个补） ===== *)
+Lemma get_setby_None_uncond : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+
+
+
+
+Lemma get_repeat_None_lt : forall len n,
+  n < len -> get (repeat (None : option ty) len) n = Some None.
+Proof.
+  intros len n. revert len. induction n; intros len Hlt.
+  - destruct len; [lia|]. simpl. reflexivity.
+  - destruct len; [lia|]. simpl. apply IHn. lia.
+Qed.
+
+Lemma length_repeat_None : forall len,
+  length (repeat (None : option ty) len) = len.
+Proof.
+  induction len; simpl; auto.
+Qed.
+
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+
+
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.
 Proof. Admitted.
-
-Lemma typed_empty_closed : forall G P, typed [] P -> typed G P.
-Proof. Admitted.
-
 Lemma typed_res_par_l : forall G P Q,
   ~ fv_at Q 0 -> typed G (PRes (PPar P Q)) -> typed G (PPar (PRes P) Q).
 Proof. Admitted.

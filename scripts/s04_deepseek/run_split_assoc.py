@@ -74,40 +74,34 @@ injection 对双层 option 一次剥到底（不要连续两次 injection）。
 - 库引理若材料确无打 (* @stdlib names: .. *)，否则必须自证；
 - 交付前自己当 coqc 逐行核对：每个引用名有着落、option 层级正确、每块以 Qed. 结尾、可直接编译 0 错误。
 
-======== 当前状态（重要，别推倒重来）========
-材料A里已有你上一版的 split_assoc 与辅助引理 get_setby_None_uncond/get_repeat_None_lt/length_repeat_None，
-辅助引理已编译通过；逐点结构正确。现在只剩主证明里 f 的【类型层级】错误（coqc：f 被写成返回 option(option ty)，
-但 setby 要求 f : nat -> option ty -> option ty）。
+======== 当前状态（重要，从零写主证明，别再走老路）========
+4 个辅助引理 get_setby_None_uncond / get_repeat_None_lt / length_repeat_None / get_setby_None 已全部 Qed 且编译通过，
+【直接用、不要重发、不要再新造任何辅助引理】（你上轮抽的 get_setby_merge_spec 把 get 层 match 和 Some(元素) 混层，已删除，禁止再抽这类引理）。
+split_assoc 主引理现在是 Admitted 占位，你这一轮只交它一个完整 Lemma 块。
 
-setby 精确定义（Layer1）：
-  Fixpoint setby (f : nat -> option ty -> option ty) (Gamma : ctx) (k:nat) : ctx :=
-    match Gamma with [] => [] | t::Gamma' => f k t :: setby f Gamma' (S k) end.
-  Lemma get_setby_get : get Gamma n = Some u -> get (setby f Gamma k) n = Some (f (k+n) u).  (* u:option ty 是该位“元素” *)
-关键层级：setby 的 f 吃的是【列表元素 t:option ty】、返回【列表元素 option ty】；它【不是】 get 的返回层 option(option ty)。
-所以构造 G23 的 f 必须返回 option ty（None | Some T），正确写法形如：
-  set (f : nat -> option ty -> option ty := fun n (_u:option ty) =>
-     match get G2 n with
-     | Some (Some a) => Some a                 (* G2 该位有资源 a:ty，元素层就是 Some a，绝不是 Some(Some a) *)
-     | _ => match get G3 n with
-            | Some v => v                     (* G3 该位元素 v:option ty，直接用，不要再包 Some *)
-            | None => None
-            end
-     end).
+setby/get 精确事实（Layer1）：
+  Fixpoint setby (f:nat->option ty->option ty) Gamma k := match Gamma with []=>[] | t::G'=>f k t::setby f G'(S k) end.
+  Lemma get_setby_get : get Gamma n = Some u -> get (setby f Gamma k) n = Some (f (k+n) u).  (* u:option ty 元素层；右侧 Some(元素层值) *)
+f 必须返回【元素层 option ty】，且因为是新建局部定义，用 pose（严禁 set(f:T:=..) 语法）：
+  pose (f : nat -> option ty -> option ty :=
+          fun n (_:option ty) => match get G2 n with Some (Some a) => Some a
+                                 | _ => match get G3 n with Some v => v | None => None end end).
   exists (setby f G 0).
-然后 get_setby_get 改写时：get G23 n = Some (f n u)，f n u 是 option ty；与 get G2 n/get G3 n（option(option ty)）
-对照时注意“元素层 Some a”对应“get 层 Some (Some a)”，destruct get G2 n as [[a|]|] 分三层，别再混。
-请做【最小修正】：只重写 split_assoc 主证明块（独立 coq 块从 Lemma split_assoc 到 Qed.），
-辅助引理已编译通过，【不要重发任何辅助引理】；保留逐点 A/B1/B2 结构。
-硬性自检（你最近几轮全栽在这）：
-1) f 的类型是 nat->option ty->option ty，内层每个 match 都写 “as r return option ty” 标注，分支里 G2 有资源给 Some a（元素层），绝不写 Some(Some a)/Some None；get G3 n 是 get 层，先 destruct as [[b|]|] 再取元素层值。
-2) bullet 层级（- + * ++ **）前后一致、每一层都闭合，不许出现 “Current bullet * is not finished”——交之前自己按缩进走一遍每个分支是否都收尾。
-3) 交付前逐行标注每个 Some/None 属于元素层还是 get 层（见系统铁律第8条）。
-4) 【set/pose 语法铁事实，你前两轮连续栽在这】f 是你【新建】的局部定义（证明目标里原本没有 f），必须用 pose 不是 set；pose 允许类型标注写在名字后：
-     pose (f : nat -> option ty -> option ty :=
-             fun n (_:option ty) => match get G2 n with Some (Some a) => Some a
-                                    | _ => match get G3 n with Some v => v | None => None end end).
-   严禁写 set (f : T := ...)（set 不接受“名字:类型:=”，正会报 line: Syntax error ',' or ')' expected after term）。后续 exists (setby f G 0) 与逐点证明不变。
-   另：本项目已定义 Inductive congruence（结构同余关系），不要把 congruence 当内置 tactic 用；需要等式闭合用 reflexivity/f_equal/lia，别写裸 congruence。"""
+
+【你前几轮唯一卡住点：f 的 match 在证明里没归约掉（2230/2226 Unable to unify Some None with Some (match...)）。标准手法，严格照做】
+要证逐位置等式时，get G23 n 经 get_setby_get 变成 Some (f n u)，两边都是 Some(元素层值)，只需证括号内元素层相等。
+绝不能让一个【尚未 destruct 完】的 match 去硬 reflexivity。正确顺序：
+  1) unfold f（或 cbn delta [f]）让 f 的 match 显形；
+  2) 对 get G2 n 做 destruct as [[a|]|]（get 层三态：Some(Some a)资源 / Some None 在位空 / None 越界）；
+  3) 必要时对 get G3 n 同样 destruct as [[b|]|]；
+  4) 用 specialize 后的 Hs1/Hs2（它们描述同一 n 位 G/G12/G3 与 G12/G1/G2 的分配）配合 discriminate/injection 消去与线性 split 矛盾的组合；
+  5) 每个幸存分支里 f 的 match 已落到确定构造子（Some a / v / None），此时 cbn 后 reflexivity（或 rewrite 对应假设再 reflexivity）。
+一句话：先把两个 get 都三态拆开、用 split 假设砍掉矛盾支，match 自然坍缩成构造子，再 reflexivity；不要对着含 match 的目标直接 reflexivity/eauto。
+
+硬性自检：
+1) bullet 层级（- + * ++ **）前后一致、每层闭合，交前按缩进走一遍每个分支都收尾（不许 Current bullet not finished）。
+2) 逐个 Some/None 标注元素层还是 get 层（系统铁律第8条）；f 每个分支返回元素层 option ty。
+3) 只交 split_assoc 一个块、从 Lemma 到 Qed.；不重发辅助、不新造辅助；不用裸 congruence tactic（与 Inductive congruence 同名，需要闭合用 reflexivity/f_equal/lia）。"""
 
 if __name__ == "__main__":
     res = proof_loop(BRIEF, FILE, TARGET, layer_files=("Layer1.v","Layer2.v"),
