@@ -78,22 +78,18 @@ injection 对双层 option 一次剥到底（不要连续两次 injection）。
 4 个辅助引理 get_setby_None_uncond / get_repeat_None_lt / length_repeat_None / get_setby_None 已全部 Qed 且编译通过，
 【直接用、不要重发、不要再新造任何辅助引理】（你上轮抽的 get_setby_merge_spec 把 get 层 match 和 Some(元素) 混层，已删除，禁止再抽这类引理）。
 材料A里 split_assoc 已有你多版证明（f 构造正确、4个辅助引理已 Qed、三态穷尽思路正确），
-但已连续 8 轮未收敛：前 5 轮 bullet 未闭合反复横跳，后 3 轮换花括号后报 `This proof is focused, but cannot be unfocused this way`（2232/2233/2235）。
-根因（执行方观察，供你参考）：你每次重写整段 ~8000 字符证明，在 4×3 多分支嵌套（destruct Hs1 × destruct Hs2 × split 两子目标 × destruct H2e/H3e）里，无论用 bullet 还是花括号，都无法一次保持所有分支的结构闭合。
-【本轮强制要求：assert 拆分，把大证明拆成两个独立 assert】
-- 主证明骨架固定为：
-  ```
-  pose (f := ...).  (* 你已写对的 f 构造，不要改 *)
-  exists (setby f G 0). split.
-  - assert (Hl : split G G1 (setby f G 0)). { (* 第一个 assert：逐位置证明 split G G1 G23 *) }
-    exact Hl.
-  - assert (Hr : split (setby f G 0) G2 G3). { (* 第二个 assert：逐位置证明 split G23 G2 G3 *) }
-    exact Hr.
-  ```
-- 每个 assert 内部独立证明，用你最有把握的 bullet 或花括号（二选一，不要混用），结构短（每个 assert 只处理一个 split 目标，不是两个同时）。
-- 关键：两个 assert 是独立的，第一个 assert 的证明不影响第二个，不会出现"修一个分支破坏另一个"的问题。
-- 不要重写已正确的 f 定义，也不要重发/新造辅助引理。
-你这一轮：重交【一个】完整 Lemma split_assoc..Qed. 块，按上面的 assert 拆分骨架写。
+【重大修正：你上一轮(r1)发现了根本问题，执行方已确认并修正见证】
+你在 r1 中指出：原指定的 `G23 := setby f G 0` 是假见证——反例 G=[]、G2=G3=[None] 时，setby f [] 0 = []，但 split [] [None] [None] 不成立。执行方核实反例正确。
+命题 split_assoc 本身成立，问题出在见证构造。已修正为：
+  `let max_len := Nat.max (length G2) (length G3) in exists (setby f (repeat (None:option ty) max_len) 0).`
+即：先建一个长度为 max(len G2, len G3) 的全 None 列表作基底，再用 f（优先取 G2 元素，否则取 G3 元素，否则 None）逐位置 setby。这样 G23 在 G2/G3 有资源的位置有资源，在都空的位置是 Some None（在位空），越界位置是 None。
+f 定义不变（你已写对）。4个辅助引理已 Qed，不要重发。
+【本轮要求】
+- 用修正后的见证（setby f (repeat None max_len) 0，不是 setby f G 0）重新证明。
+- 建议用 assert 拆分：先 assert (split G G1 G23)，再 assert (split G23 G2 G3)，两个独立 assert，每个结构短。
+- 证明逐位置等式时注意：G23 基底是 repeat None max_len，所以 n < max_len 时 get G23 n = Some (f n None)（经 get_setby_get），n >= max_len 时 get G23 n = None（越界）。
+- 不要重写 f 定义，不要重发辅助引理。
+你这一轮：重交【一个】完整 Lemma split_assoc..Qed. 块，用修正后的见证。
 
 setby/get 精确事实（Layer1）：
   Fixpoint setby (f:nat->option ty->option ty) Gamma k := match Gamma with []=>[] | t::G'=>f k t::setby f G'(S k) end.
@@ -102,7 +98,8 @@ f 必须返回【元素层 option ty】，且因为是新建局部定义，用 p
   pose (f := fun (n:nat) (_:option ty) =>
                match get G2 n with Some (Some a) => Some a
                | _ => match get G3 n with Some v => v | None => None end end).
-  exists (setby f G 0).
+  let max_len := Nat.max (length G2) (length G3) in
+  exists (setby f (repeat (None:option ty) max_len) 0).
 严禁 set(f:T:=..)（set 不接受名字:类型:=）；也严禁 pose (f : T := ..)（pose 同样不接受名字后类型）；
 也不要写 fun...end : T 这种“后置返回标注”，它会被 Coq 误绑到内层 match 导致分支被要求成函数类型。
 返回类型让 Coq 从分支自动推断（三个分支都是 option ty，自会推出 nat->option ty->option ty），只需给形参 (n:nat)(_:option ty) 标注。
