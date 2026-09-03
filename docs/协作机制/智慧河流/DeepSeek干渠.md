@@ -936,3 +936,444 @@ ty_out : forall Gamma x y P i o T Gamma1 Gamma2,
     use Gamma1 y T Gamma2 -> typed Gamma2 P -> typed Gamma (POut x y P).
 
 So inversion HTD as pattern [...|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|...]. Here names assigned: Gamma (for original source D), x0, y0, P0, i, o, T, Gamma1, Gamma2, Huse1, Ho, Huse2, H. Then subst Gamma x0 y0 P0 (not Gamma1/Gamma2). After subst, Gamma becomes D, x0 -> x, y0->y, P0->P. But Gamma1/2 are terms? Actually in constructor, Gamma1 and Gamma2 are parameters bound by forall. In inversion, those are eigenvariables? When we destruct an 
+
+
+## 2026-09-04 00:34:40 [proof_loop] substitution_general · round1 · DS输出
+
+我们采用主路径：先证明资源小引理 `insert_pts_subst`，然后把 `substitution_general` 替换为 `subst_ren_general` 的直接推论。  
+要点：  
+- 用 `Nat.compare` 对 `n` 三分，分别使用 `get_insert_at_lt`、`get_insert_at_self`、`get_insert_at_gt` 把 `insert_at` 世界的资源信息拉回 `Gamma`。  
+- `subst_name_lt/gt/eq` 把代换后的名字与这些位置对应。  
+- 主定理中先 `rewrite (subst_var_eq_ren m k Q)`，再直接 `apply (subst_ren_general ...)`，类型严格匹配。
+
+```coq
+(* INSERT-BEFORE: substitution_general *)
+Lemma insert_pts_subst : forall Gamma T k m,
+  k <= length Gamma -> get Gamma m = Some (Some T) ->
+  forall n T', get (insert_at k T Gamma) n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T').
+Proof.
+  intros Gamma T k m Hkle Hget n T' Hn.
+  destruct (Nat.compare n k) eqn:Hcmp.
+  - (* n < k *)
+    apply Nat.compare_lt_iff in Hcmp.
+    assert (Hn' : get Gamma n = Some (Some T')).
+    { exact (get_insert_at_lt Gamma T k n T' Hcmp Hn). }
+    rewrite (subst_name_lt m k n Hcmp).
+    exact Hn'.
+  - (* n = k *)
+    apply Nat.compare_eq_iff in Hcmp. subst n.
+    assert (Hself : get (insert_at k T Gamma) k = Some (Some T)) by apply get_insert_at_self.
+    rewrite Hself in Hn. injection Hn as HeqT. subst T'.
+    rewrite (subst_name_eq m k k eq_refl).
+    exact Hget.
+  - (* n > k *)
+    apply Nat.compare_gt_iff in Hcmp.
+    assert (Hn' : get Gamma (n - 1) = Some (Some T')).
+    { exact (get_insert_at_gt Gamma T k n T' Hcmp Hn). }
+    rewrite (subst_name_gt m k n Hcmp).
+    exact Hn'.
+Qed.
+```
+
+```coq
+Lemma substitution_general : forall Gamma T k m Q,
+  k <= length Gamma ->
+  typed (insert_at k T Gamma) Q ->
+  get Gamma m = Some (Some T) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (subst_var m k Q).
+Proof.
+  intros Gamma T k m Q Hkle Ht Hget Hnu.
+  rewrite (subst_var_eq_ren m k Q).
+  apply (subst_ren_general (insert_at k T Gamma) Q m k Gamma).
+  - exact Ht.
+  - exact (insert_pts_subst Gamma T k m Hkle Hget).
+  - exact Hnu.
+Qed.
+```
+[reasoning摘要]
+我们现在面对的任务很明确：把 substitution_general 重写为 subst_ren_general 的推论。材料 A 中已经存在 subst_ren_general 已 Qed，subst_var_eq_ren 已 Qed，以及 insert_at 相关引理。我们需要证明资源小引理 insert_pts_subst（这个名字可以自定，但必须用材料中真实存在的引理），然后重写 substitution_general。
+
+我们需要注意几个关键点：
+
+1. 材料 A 中的 subst_ren_general 签名：
+```
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+```
+这个签名中，m 在 k 之前？参数顺序是 `forall (m k : nat) (G : ctx)`，是的，m 在前，k 在后。我们在应用时要注意。
+
+2. substitution_general 当前签名（材料 A 中）：
+```
+Lemma substitution_general : forall Gamma T k m Q,
+  k <= length Gamma ->
+  typed (insert_at k T Gamma) Q ->
+  get Gamma m = Some (Some T) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (subst_var m k Q).
+```
+主路径要求保持此签名逐字不变，那么我们需要在新版本中保持这 5 个参数顺序和依赖。
+
+3. 注意：subst_var_eq_ren 的签名是 `forall m k P, subst_var m k P = ren (subst_name m k) P`，参数顺序 m, k, P。所以 `rewrite (subst_var_eq_ren m k Q)` 可以。
+
+4. 资源小引理：我们可以定义一个名字，例如 `insert_pts_subst`。根据任务说明，这个引理的形状是：
+```
+forall Gamma T k m,
+  k <= length Gamma -> get Gamma m = Some (Some T) ->
+  forall n T', get (insert_at k T Gamma) n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T').
+```
+证明按 n 与 k 三分，使用已有的 get_insert_at_self, get_insert_at_lt, get_insert_at_gt, subst_name_lt, subst_name_gt, subst_name_eq。
+我们需要注意这些引理的真实存在和签名。材料 A 中：
+- get_insert_at_self:
+
+
+## 2026-09-04 00:37:42 [proof_loop] substitution_general · round2 · DS输出
+
+根因：上一版 `insert_pts_subst` 用 `destruct (Nat.compare n k)` 后，在 `Eq` 分支误把 `Nat.compare_lt_iff` 施加到 `(n ?= k) = Eq` 上。修正为先用 `Nat.eq_dec` 单独处理 `n=k`，再用 `Nat.ltb_spec` 二分 `n<k / n>k`，避免 `compare` 三支中的错误引用。
+
+```coq
+(* INSERT-BEFORE: substitution_general *)
+Lemma insert_pts_subst : forall Gamma T k m,
+  k <= length Gamma -> get Gamma m = Some (Some T) ->
+  forall n T', get (insert_at k T Gamma) n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T').
+Proof.
+  intros Gamma T k m Hkle Hget n T' Hn.
+  destruct (Nat.eq_dec n k) as [Heq | Hne].
+  - subst n.
+    assert (Hself : get (insert_at k T Gamma) k = Some (Some T)) by apply get_insert_at_self.
+    rewrite Hself in Hn.
+    injection Hn as HT'. injection HT' as HTT. subst T'.
+    rewrite (subst_name_eq m k k eq_refl).
+    exact Hget.
+  - destruct (Nat.ltb_spec n k) as [Hlt | Hge].
+    + assert (Hn' : get Gamma n = Some (Some T')).
+      { exact (get_insert_at_lt Gamma T k n T' Hlt Hn). }
+      rewrite (subst_name_lt m k n Hlt).
+      exact Hn'.
+    + assert (Hgt : n > k) by lia.
+      assert (Hn' : get Gamma (n - 1) = Some (Some T')).
+      { exact (get_insert_at_gt Gamma T k n T' Hgt Hn). }
+      rewrite (subst_name_gt m k n Hgt).
+      exact Hn'.
+Qed.
+```
+
+```coq
+(* REPLACE: Lemma substitution_general ... Admitted. *)
+Lemma substitution_general : forall Gamma T k m Q,
+  k <= length Gamma ->
+  typed (insert_at k T Gamma) Q ->
+  get Gamma m = Some (Some T) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (subst_var m k Q).
+Proof.
+  intros Gamma T k m Q Hkle Ht Hget Hnu.
+  rewrite (subst_var_eq_ren m k Q).
+  apply (subst_ren_general (insert_at k T Gamma) Q Ht m k Gamma).
+  - intros n T' Hn. exact (insert_pts_subst Gamma T k m Hkle Hget n T' Hn).
+  - exact Hnu.
+Qed.
+```
+[reasoning摘要]
+我们需要理解错误。上一版给的代码中：
+
+```
+  destruct (Nat.compare n k) eqn:Hcmp.
+  - (* n < k *)
+    apply Nat.compare_lt_iff in Hcmp.
+```
+但 destruct on Nat.compare generates cases with Hcmp : (n ?= k) = Lt, etc. However error says Unable to apply lemma of type "forall n m, (n ?= m)=Lt <-> n<m" on hypothesis of type "(n ?= k)=Eq". That suggests in the "n=k" branch, we tried apply Nat.compare_lt_iff incorrectly? Wait the error line 2135 characters 10-28 likely in branch? Let's locate: The previous code maybe I wrote wrong: In first branch (n<k) Hcmp after destruct should be (n ?= k)=Lt. So apply Nat.compare_lt_iff works. In second branch likely we accidentally wrote apply Nat.compare_lt_iff? But the error says hypothesis Eq. Actually the error came from `apply Nat.compare_lt_iff in Hcmp` maybe in second branch because Hcmp was Eq. Let's check our last code block: we had:
+
+```
+destruct (Nat.compare n k) eqn:Hcmp.
+- (* n < k *)
+  apply Nat.compare_lt_iff in Hcmp.
+...
+- (* n = k *)
+  apply Nat.compare_eq_iff in Hcmp. subst n.
+...
+- (* n > k *)
+  apply Nat.compare_gt_iff in Hcmp.
+...
+```
+This looks correct. But error line maybe from an older segment? The user says "上一版 coqc 编译错误" exact: Unable to apply lemma ... on hypothesis of type Eq. Maybe in my last message I included two code blocks: insert_pts_subst and substitution_general. The insert_pts_subst as above should compile. Why error? Let's check Nat.compare_lt_iff in Rocq 9.1? Maybe the theorem is not Nat.compare_lt_iff? It is? Actually standar
+
+
+## 2026-09-04 00:39:50 [proof_loop] substitution_general · round3 · DS输出
+
+根因：`insert_pts_subst` 用 `destruct (Nat.compare n k)` 后，在 `Eq` 分支误把 `Nat.compare_lt_iff` 施加到 `(n ?= k) = Eq`。  
+修正：先用 `Nat.eq_dec` 分离 `n=k`，再用 `Nat.ltb_spec` 二分 `n<k / n>k`，三支各自匹配 `subst_name_eq/lt/gt`。
+
+若文件中已存在旧同名 `insert_pts_subst`，请删除旧定义后使用本块；`substitution_general` 整体替换为下面的直接推论版，签名不变。
+
+```coq
+(* INSERT-BEFORE: substitution_general *)
+Lemma insert_pts_subst : forall Gamma T k m,
+  k <= length Gamma -> get Gamma m = Some (Some T) ->
+  forall n T', get (insert_at k T Gamma) n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T').
+Proof.
+  intros Gamma T k m Hkle Hm n T' Hn.
+  destruct (Nat.eq_dec n k) as [Heq | Hne].
+  - subst n.
+    rewrite (get_insert_at_self k T Gamma) in Hn.
+    injection Hn as H1.
+    injection H1 as H2.
+    subst T'.
+    rewrite (subst_name_eq m k k eq_refl).
+    exact Hm.
+  - destruct (Nat.ltb_spec n k) as [Hlt | Hge].
+    + pose proof (get_insert_at_lt Gamma T k n T' Hlt Hn) as Hn'.
+      rewrite (subst_name_lt m k n Hlt).
+      exact Hn'.
+    + assert (Hgt : n > k) by lia.
+      pose proof (get_insert_at_gt Gamma T k n T' Hgt Hn) as Hn'.
+      rewrite (subst_name_gt m k n Hgt).
+      exact Hn'.
+Qed.
+```
+
+```coq
+(* REPLACE: Lemma substitution_general ... Admitted. *)
+Lemma substitution_general : forall Gamma T k m Q,
+  k <= length Gamma ->
+  typed (insert_at k T Gamma) Q ->
+  get Gamma m = Some (Some T) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (subst_var m k Q).
+Proof.
+  intros Gamma T k m Q Hkle Ht Hget Hnu.
+  rewrite (subst_var_eq_ren m k Q).
+  apply (subst_ren_general (insert_at k T Gamma) Q Ht m k Gamma).
+  - intros n T' Hn. exact (insert_pts_subst Gamma T k m Hkle Hget n T' Hn).
+  - exact Hnu.
+Qed.
+```
+[reasoning摘要]
+我们需要回答用户。这是一个 Coq 项目任务。用户要求给出完整修正版，帮助让 substitution_general Qed。我们已经知道材料里有 subst_ren_general 已 Qed，也有 subst_var_eq_ren。需要直接证明资源引理 insert_pts_subst 并导出 substitution_general。上一版 error 是在 insert_pts_subst 中错误使用 Nat.compare_lt_iff on Eq. 用户本轮材料末尾给错误。我的上一次版本已经用了 Nat.eq_dec + Nat.ltb_spec，应该可以。但用户说“应用后 coqc 未通过（rc=1），目标段含admit=False。完整错误见材料末尾”——其实材料末尾只显示一个错误，是之前版本？可能他们尝试的是之前版本的失败？需要仔细看本轮材料末尾：完整错误是 File "Layer2.v", line 2135, characters 10-28: Error: Unable to apply lemma of type "forall n m : nat, (n ?= m) = Lt <-> n < m" on hypothesis of type "(n ?= k) = Eq". 这对应上一版我使用 Nat.compare 三分导致的。但用户说“完整错误见材料末尾”，可能他们应用的是我给的第一个版本？在本轮 prompt 的“上一版 coqc 编译错误”中列出的就是这个。而我第二次回复已经修正了，但用户没有应用？他们现在给的新任务可能重复要求，我应给出最终正确的完整版，不要再用 Nat.compare_lt_iff in Eq 分支。
+
+但要确保我的证明在 Coq 9.1 中没有其他错误。需要仔细分析当前上下文，尤其是 `insert_at` 的定义和已有引理。材料 A 中定义：
+Fixpoint insert_at (k : nat) (T : ty) (Gamma : ctx) : ctx :=
+  match k with
+  | 0 => Some T :: Gamma
+  | S k' => match Gamma with
+    | [] => None :: insert_at k' T []
+    | g :: Gamma' => g :: insert_at k' T Gamma'
+    end
+  end.
+
+注意：当 Gamma=[] 且 k>0 时补 None。这个定义与 get_insert_at_lt/gt 已经证明的引理对应（材料中有 get_insert_at_lt : forall Gamma T k n T', n < k -> get (insert_at k T Gamma) n = Some (Some T') -> get Gamma n = Some (Some T'). 但注意这个引理的签名不是等式 get (insert_at ...) n = get Gamma n，而是保留 Some (Some T') 前提的蕴含。它要求 n < k 且 get insert = Some (Some T') 推出 get Gamma n = Some (Some T')。好吧，对于资源引理 n<k 时，我们已有 Hn: get (insert_at k T Gamma) n = Some (Some T')，可以直接用 get_insert_at_lt 得到 get Gamma
+
+
+## 2026-09-04 00:41:15 [proof_loop] substitution_general · round4 · DS输出
+
+根因：旧 `insert_pts_subst` 用 `destruct (Nat.compare n k)` 并在 `Eq` 分支误用 `Nat.compare_lt_iff`，Coq 拒绝把 `(n ?= k) = Eq` 当作 `(n ?= k) = Lt` 处理。修正为：先 `Nat.eq_dec` 分离 `n = k`，再 `Nat.ltb_spec` 二分 `n < k / n > k`，三条路径分别匹配 `subst_name_eq/lt/gt`。
+
+请删除当前文件中所有名为 `insert_pts_subst` 的重复段（包括错误的 `Nat.compare` 版本），然后使用下面两个块；第二个块整体替换 `Lemma substitution_general ... Admitted.`。
+
+```coq
+(* INSERT-BEFORE: substitution_general *)
+Lemma insert_pts_subst : forall Gamma T k m,
+  k <= length Gamma -> get Gamma m = Some (Some T) ->
+  forall n T', get (insert_at k T Gamma) n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T').
+Proof.
+  intros Gamma T k m Hkle Hm n T' Hn.
+  destruct (Nat.eq_dec n k) as [Heq | Hne].
+  - subst n.
+    rewrite (get_insert_at_self k T Gamma) in Hn.
+    injection Hn as H1.
+    injection H1 as H2.
+    subst T'.
+    rewrite (subst_name_eq m k k eq_refl).
+    exact Hm.
+  - destruct (Nat.ltb_spec n k) as [Hlt | Hge].
+    + pose proof (get_insert_at_lt Gamma T k n T' Hlt Hn) as Hn'.
+      rewrite (subst_name_lt m k n Hlt).
+      exact Hn'.
+    + assert (Hgt : n > k) by lia.
+      pose proof (get_insert_at_gt Gamma T k n T' Hgt Hn) as Hn'.
+      rewrite (subst_name_gt m k n Hgt).
+      exact Hn'.
+Qed.
+```
+
+```coq
+(* REPLACE: Lemma substitution_general ... Admitted. *)
+Lemma substitution_general : forall Gamma T k m Q,
+  k <= length Gamma ->
+  typed (insert_at k T Gamma) Q ->
+  get Gamma m = Some (Some T) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (subst_var m k Q).
+Proof.
+  intros Gamma T k m Q Hkle Ht Hget Hnu.
+  rewrite (subst_var_eq_ren m k Q).
+  eapply subst_ren_general with (D := insert_at k T Gamma) (G := Gamma).
+  - exact Ht.
+  - intros n T' Hn. exact (insert_pts_subst Gamma T k m Hkle Hget n T' Hn).
+  - exact Hnu.
+Qed.
+```
+[reasoning摘要]
+我们需要解决当前任务。用户给了很长材料，目标：让 substitution_general Qed，0 admit，保持签名。主路径：补 insert_pts_subst，然后整体导出。上一版错误是使用 Nat.compare 三分时误用 Nat.compare_lt_iff on Eq。用户已经给出主路径说明，并且先前我给了修正版使用 Nat.eq_dec + Nat.ltb_spec，但可能因为文件里已有旧 insert_pts_subst 重复定义导致错误？错误显示 line 2135 characters 10-28 是 Nat.compare_lt_iff 应用于 Eq。这说明我的修正版可能没有覆盖到旧定义或者仍使用了 compare。我们需要提供完整正确版本，确保没有 compare_lt_iff 误用。用户给了补充说明，要求从 Lemma substitution_general 声明行到 Qed 的完整新版本；若需要资源小引理，单独块 INSERT-BEFORE。
+
+我们需要检查材料中的现状：材料中在 substitution_general 之前已经有多个 insert_pts_subst 重复定义？材料A末尾有：在 subst_ren_general 后已经有一些辅助引理；然后有多个 insert_pts_subst 定义，最后还有 substitution_general 7-case admit。注意材料中在 substitution_general 之前已经存在一个 `Lemma insert_pts_subst` 了吗？材料显示在 substitution_general 之前有：
+
+```
+Lemma insert_pts_subst : forall Gamma T k m,
+...
+Proof.
+...
+Qed.
+
+(* REPLACE: Lemma substitution_general ... Admitted. *)
+Lemma insert_pts_subst : forall Gamma T k m,
+...
+Proof.
+...
+Qed.
+
+(* REPLACE: Lemma substitution_general ... Admitted. *)
+Lemma insert_pts_subst : forall Gamma T k m,
+...
+Proof.
+...
+Qed.
+
+(* REPLACE: Lemma substitution_general ... Admitted. *)
+Lemma substitution_general : ...
+```
+
+材料中实际上已经包含了多个 insert_pts_subst 块，其中前一版错误用了 `Nat.compare` 和 `Nat.compare_lt_iff` on Eq。我们需要给出一个没有重复的、正确的版本。如果直接粘贴一个新的 `Lemma insert_pts_subst` 会与已有的重复定义冲突。但用户可能期望我们提供替换块，从某处删除旧定义。问题：文件当前状态可能包含了我上一版错误版本（使用 Nat.compare），用户编译错误显示行2135错误。所以我们要给出修正版：把旧的 insert_pts_subst 替换成正确版本，并替换 substitution_general。
+
+我们需要明确要替换哪一段。用户说“输出协议：给出 substitution_general 从 `Lemma substitution_genera
+
+
+## 2026-09-04 00:41:59 [proof_loop] substitution_general · round5 · DS输出
+
+根因：错误仍出在旧 `insert_pts_subst` 里的 `destruct (Nat.compare n k)`，在 `Eq` 分支误用 `Nat.compare_lt_iff`。必须彻底删除该旧定义，替换为“先 `Nat.eq_dec`，再 `Nat.ltb_spec`”的版本；`substitution_general` 本身则改成 `subst_ren_general` 的直接推论。
+
+请先删除文件中所有与下面 `insert_pts_subst` 同名的旧定义，再分别放入两块。
+
+```coq
+(* INSERT-BEFORE: substitution_general *)
+Lemma insert_pts_subst : forall Gamma T k m,
+  k <= length Gamma -> get Gamma m = Some (Some T) ->
+  forall n T', get (insert_at k T Gamma) n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T').
+Proof.
+  intros Gamma T k m Hkle Hm n T' Hn.
+  destruct (Nat.eq_dec n k) as [Heq | Hne].
+  - subst n.
+    assert (Hself : get (insert_at k T Gamma) k = Some (Some T))
+      by apply get_insert_at_self.
+    rewrite Hself in Hn.
+    injection Hn as H1.
+    injection H1 as H2.
+    subst T'.
+    rewrite (subst_name_eq m k k eq_refl).
+    exact Hm.
+  - destruct (Nat.ltb_spec n k) as [Hlt | Hge].
+    + pose proof (get_insert_at_lt Gamma T k n T' Hlt Hn) as Hn'.
+      rewrite (subst_name_lt m k n Hlt).
+      exact Hn'.
+    + assert (Hgt : n > k) by lia.
+      pose proof (get_insert_at_gt Gamma T k n T' Hgt Hn) as Hn'.
+      rewrite (subst_name_gt m k n Hgt).
+      exact Hn'.
+Qed.
+```
+
+```coq
+(* REPLACE: Lemma substitution_general ... Admitted. *)
+Lemma substitution_general : forall Gamma T k m Q,
+  k <= length Gamma ->
+  typed (insert_at k T Gamma) Q ->
+  get Gamma m = Some (Some T) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (subst_var m k Q).
+Proof.
+  intros Gamma T k m Q Hkle Ht Hget Hnu.
+  rewrite (subst_var_eq_ren m k Q).
+  apply (subst_ren_general (insert_at k T Gamma) Q Ht m k Gamma).
+  - exact (insert_pts_subst Gamma T k m Hkle Hget).
+  - exact Hnu.
+Qed.
+```
+[reasoning摘要]
+我们需要给完整修正版。但注意用户把材料很长，我们只需根据错误。错误在上一版 insert_pts_subst 使用 Nat.compare 分支错误。需要避免 Nat.compare。直接用 Nat.ltb_spec 和 Nat.eq_dec 的版本已给过，但可能编译还失败？用户说应用后 coqc 未通过，错误仍是 line2135 `Nat.compare_lt_iff`。可能因为材料中的旧 insert_pts_subst 重复段没有删除，或者替换没有生效？我们需要确保输出正确的最终代码。
+
+目标：更新 substitution_general 为直接推论，并提供 insert_pts_subst 的可编译证明，不使用有问题的 Nat.compare。Line 2135 说明代码里仍存在 `destruct (Nat.compare n k)` 且错误在 `Nat.compare_lt_iff`。我们需要给出完整的替换块。注意材料中已有多个 `insert_pts_subst` 重复定义（A 材料末尾有多个）。我们需要删除旧重复并替换。但用户要求只改 substitution_general 段。可能需要明确：添加或替换 `insert_pts_subst` 时，旧的同名重复定义会导致 multiple definition 错误。上一版没删除旧的。材料里实际上已经有多个 `insert_pts_subst`（从材料A看，后面有三个重复定义）。这些重复定义本身可能不会编译，但可能在现有文件是允许？Coq 不允许重复定义同一名字，会 duplicate definition。但是材料A是全文，并未报重复错误？其实材料里确实有很多重复段，可能这是历史编辑的草稿？用户当前文件也许只有一个错误的版本？错误在 line2135，只一处。我们只需保证我们提供的代码无 Nat.compare。可以用 `Nat.eq_dec` + `Nat.ltb_spec`，已证明过这个版本好像没问题。但用户说应用后还失败，可能没有真正替换？我们可以再给出最终代码，并明确要求删除旧的同名引理。但输出格式要求给出完整修正版。
+
+为了安全，使用 `Nat.eq_dec` 和 `Nat.ltb_spec`。这个在 Rocq 9.1 应该可用。`Nat.eq_dec` 确实存在吗？标准库有 `Nat.eq_dec : forall n m : nat, {n = m} + {n <> m}`。`Nat.ltb_spec : forall n m : nat, BoolSpec (n < m) (m <= n) (n <? m)` 或 `Nat.ltb_spec`? 在 Stdlib 中，`Nat.ltb_spec` 可能在 `PeanoNat` 中？其实 `Nat.ltb_spec` 是 `Nat.ltb_spec : forall n m, reflect (n < m) (n <? m)`? 在 Coq 9.1 Stdlib 中，常见 `Nat.ltb_spec` 或 `Nat.ltb_lt`。Layer2 前面已经使用 `Nat.ltb_spec`（例如材料中 subst_rho_pts 用了 `destruct (Nat.ltb_spec n k) as [Hlt | Hge]`，所以它可用）。因此使用 `Nat.ltb_spec`。
+
+在 n=k 分支，我们 `subst T'`。injection 即可。`subst_name_eq m k k eq_refl` 需要
+
+
+## 2026-09-04 00:46:32 [proof_loop] insert_pts_subst · round1 · DS输出
+
+```coq
+Lemma insert_pts_subst : forall Gamma T k m,
+  k <= length Gamma -> get Gamma m = Some (Some T) ->
+  forall n T', get (insert_at k T Gamma) n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T').
+Proof.
+  intros Gamma T k m Hkle Hget n T' Hn.
+  destruct (Nat.eq_dec n k) as [Heq | Hne].
+  - subst n.
+    rewrite (get_insert_at_self k T Gamma) in Hn.
+    injection Hn as EQ. subst T'.
+    rewrite (subst_name_eq m k k eq_refl). exact Hget.
+  - destruct (Nat.ltb_spec n k) as [Hlt | Hge].
+    + assert (Hn' : get Gamma n = Some (Some T')).
+      { exact (get_insert_at_lt Gamma T k n T' Hlt Hn). }
+      rewrite (subst_name_lt m k n Hlt).
+      exact Hn'.
+    + assert (Hgt : n > k) by lia.
+      assert (Hn' : get Gamma (n - 1) = Some (Some T')).
+      { exact (get_insert_at_gt Gamma T k n T' Hgt Hn). }
+      rewrite (subst_name_gt m k n Hgt).
+      exact Hn'.
+Qed.
+```
+[reasoning摘要]
+We need produce full replacement of Lemma insert_pts_subst with fix. Need only that lemma, no other changes. Need ensure coqc passes. Need analyze current code and error. We have Layer2 code snippet. Need produce replacement from `Lemma insert_pts_subst : ...` to `Qed.`
+
+We need follow user strict: only output that block. Need include exact lemma with proof fixed. Need ensure no syntax issues, no weird. Let's read current Lemma in material:
+
+```
+Lemma insert_pts_subst : forall Gamma T k m,
+  k <= length Gamma -> get Gamma m = Some (Some T) ->
+  forall n T', get (insert_at k T Gamma) n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T').
+Proof.
+  intros Gamma T k m Hkle Hget n T' Hn.
+  destruct (Nat.eq_dec n k) as [Heq | Hne].
+  - subst n.
+    assert (Hself : get (insert_at k T Gamma) k = Some (Some T)) by apply get_insert_at_self.
+    rewrite Hself in Hn.
+    injection Hn as HT'. injection HT' as HTT. subst T'.
+    rewrite (subst_name_eq m k k eq_refl).
+    exact Hget.
+  - destruct (Nat.ltb_spec n k) as [Hlt | Hge].
+    + assert (Hn' : get Gamma n = Some (Some T')).
+      { exact (get_insert_at_lt Gamma T k n T' Hlt Hn). }
+      rewrite (subst_name_lt m k n Hlt).
+      exact Hn'.
+    + assert (Hgt : n > k) by lia.
+      assert (Hn' : get Gamma (n - 1) = Some (Some T')).
+      { exact (get_insert_at_gt Gamma T k n T' Hgt Hn). }
+      rewrite (subst_name_gt m k n Hgt).
+      exact Hn'.
+Qed.
+```
+
+Need only change first branch. But note potential issu
