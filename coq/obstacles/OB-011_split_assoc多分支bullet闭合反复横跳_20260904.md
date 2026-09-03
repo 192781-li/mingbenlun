@@ -40,7 +40,19 @@ DS 每次重写整段 ~8000 字符证明，在 4×3 多分支嵌套（destruct H
 
 无。这是纯工程实现问题（Coq 证明脚本结构），不涉及命名/定义/公理/存在论判断。
 
+## 策略演进（共 11 轮）
+
+| 策略 | 轮次 | 结果 | 错误 |
+|------|------|------|------|
+| bullet 整段重写 | r1-r5 | 未收敛 | 2253 H1e未绑定 → 2240 rewrite不存在 → 2233 bullet++ → 2227 change子项 → 2232 bullet-- |
+| 花括号{}代替bullet | r6-r8 | 未收敛 | 2232/2233/2235 `This proof is focused, but cannot be unfocused this way` |
+| assert拆分（两个独立assert） | r9-r11 | 进行中 | 待结果 |
+
+## 根因深化
+
+DS 无论用 bullet 还是花括号，在 4×3 多分支嵌套整段重写中都无法一次保持结构闭合。assert 拆分把大证明拆成两个独立 assert（split G G1 G23 和 split G23 G2 G3），每个 assert 结构短，理论上应能收敛。
+
 ## 后续
 
-- 若花括号策略 3 轮内收敛 → split_assoc Qed，继续 typed_res_par_l/r
-- 若仍不收敛 → 考虑分块证明（把每个 case 拆成独立子引理），或派 S01 研判是否换证明策略
+- 若 assert 拆分 3 轮内收敛 → split_assoc Qed → typed_res_par_l/r → congruence
+- 若仍不收敛 → S04 自己写证明骨架（destruct 结构 + assert 拆分），DS 只填每个分支的 tactic 内容；或派 S01 研判是否换证明策略（如对 n 归纳、或用更高阶 split 引理构造）
