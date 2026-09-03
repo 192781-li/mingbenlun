@@ -60,14 +60,23 @@ DS 在 assert 拆分策略的 r1 中，没有继续写证明，而是指出了**
 
 **根因**：setby f G 0 只能在 G 的已有位置上修改，不能扩展 G 的长度。当 G 比 G2/G3 短时，G23 不够长，无法包含 G2/G3 的资源。
 
-**修正**：G23 = setby f (repeat (None:option ty) (Nat.max (length G2) (length G3))) 0
+**修正（第一版，已发现不足）**：G23 = setby f (repeat (None:option ty) (Nat.max (length G2) (length G3))) 0
 - 先建一个长度为 max(len G2, len G3) 的全 None 列表作基底
 - 再用 f（优先取 G2 元素，否则取 G3 元素，否则 None）逐位置 setby
-- 这样 G23 在 G2/G3 有资源的位置有资源，在都空的位置是 Some None，越界位置是 None
+
+**见证修正策略 r1 的新发现（DS 反例有内部矛盾但揭示更深问题）**：
+DS 在 r1 中给出第二个反例 G=[], G12=[None], G3=[], G1=[None], G2=[None]，声称命题为假。但反例的第三个 split 写为 `split G23 [None] [None]`（G3=[None]），与前提 G3=[] 不一致。实际 G3=[] 时 G23=[] 是见证（split [] [None] [] 成立），所以该反例不成立。
+
+但 DS 的尝试揭示了更深刻的问题：**G23 的构造需要同时满足两个 split，简单 pad+setby 不对**。
+- 当 G1 在位空（Some None）但 G 越界（None）时，split G G1 G23 要求 G23 侧越界（None），不能在位空（Some None）
+- 当 G2 和 G3 都在位空（Some None）时，split G23 G2 G3 要求 G23 侧在位空（Some None），不能越界（None）
+- 这两个条件看似矛盾，但从 split 前提可推出 G=G1∪G2∪G3，当 G1/G2/G3 都在位空时 G 也在位空不越界，所以矛盾情况不存在
+- 正确的 G23 构造需要更精细的方法，不能简单 pad 到 max_len
 
 **教训**：前 8 轮（bullet 5 + 花括号 3）全在错误见证上白费功夫。DS 的深度思考（reasoning 87695 字符）最终发现了根本问题，而不是继续在表面结构上修修补补。这验证了"DS 要有自己的明性、先想清楚再动手"的价值。
 
 ## 后续
 
-- 若见证修正 3 轮内收敛 → split_assoc Qed → typed_res_par_l/r → congruence
-- 若仍不收敛 → 检查修正后的见证是否还有其他问题，或派 S01 研判 split 定义与上下文长度的关系
+- 见证修正策略 r2-r3 进行中，DS 会收到 r1 编译错误反馈继续修正
+- 若 3 轮内收敛 → split_assoc Qed → typed_res_par_l/r → congruence
+- 若仍不收敛 → 派 S01 研判 split_assoc 命题陈述与 G23 构造的数学正确性，或考虑修改命题（如补长度前提）
