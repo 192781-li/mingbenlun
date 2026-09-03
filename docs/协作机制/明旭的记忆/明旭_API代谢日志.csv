@@ -89,3 +89,10 @@
 2026-09-02 19:40:17,S04-本地端,deepseek-chat,B档,s04_ob010_ppar_recombine_v12,0,24228,2090,0,success,14.54,0.008841,0.0,stop,s04_ob010_ppar_recombine_v12
 2026-09-02 19:45:11,S04-本地端,deepseek-chat,B档,s04_ob010_via_ren_v13,0,18371,5300,0,success,29.33,0.01079,0.0,stop,s04_ob010_via_ren_v13
 2026-09-02 20:31:42,S04-本地端,deepseek-chat,B档,s04_ob010_typar_v14,0,4945,1775,0,success,15.63,0.003288,0.0,stop,s04_ob010_typar_v14
+2026-09-03 22:28:38,S04-本地端,deepseek-v4-flash,B,selftest_flash,0,9,1,0,success,0.71,1e-05,0.0,stop,selftest_flash
+2026-09-03 22:28:50,S04-本地端,deepseek-v4-pro,A,selftest_pro,0,97,472,0,success,12.08,0.00312,0.0,stop,selftest_pro
+2026-09-03 22:29:10,S04-本地端,deepseek-v4-flash,B,selftest_continue,0,29,39,0,success,0.72,0.00011,0.0,stop,selftest_continue
+2026-09-03 22:29:39,S04-本地端,deepseek-v4-flash,B,selftest_cont2,0,246,40,2,success,2.66,0.00033,0.0,stop,selftest_cont2
+2026-09-03 22:30:43,S04-本地端,deepseek-v4-flash,B,selftest_cont3,128,118,40,2,success,1.75,0.0002,0.5203,stop,selftest_cont3
+2026-09-03 22:38:22,S04-本地端,deepseek-v4-pro,A,dryrun_r1,0,239,1758,0,success,29.81,0.01127,0.0,stop,dryrun_r1
+2026-09-03 22:40:11,S04-本地端,deepseek-v4-pro,A,dryrun_recover_r2,0,254,2189,0,success,37.71,0.0139,0.0,stop,dryrun_recover_r2

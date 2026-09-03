@@ -1423,21 +1423,20 @@ Lemma subst_ren_general : forall (D : ctx) (Q : proc),
   no_use_at_subst Q m k = true ->
   typed Gamma (ren (subst_name m k) Q).
 Proof.
-  intros D Q H. induction H as [
-    Gamma
-  | Gamma x T Hget
-  | Gamma P H IH
-  | Gamma x y P i o T Gamma1 Gamma2 Huse1 Ho Huse2 H IH
-  | Gamma x P i o T Gamma1 Huse Hi H IH
-  | Gamma P Q Gamma1 Gamma2 Hs HP IHP HQ IHQ
-  | Gamma P T H IH
-  | Gamma P H IH
-  ]; intros m k G Hpts Hnu; simpl.
-  - (* ty_zero *) apply ty_zero.
-  - (* ty_var *) eapply ty_var. apply Hpts. exact Hget.
-  - (* ty_tau *) apply ty_tau. exact (IH m k G Hpts Hnu).
-  - (* ty_out：两通道经rho；全局单射的三处用途全改用rho_inj_except_m+no_use通道分量 *)
-    simpl.
+  intros D Q. revert D.
+  induction Q as [n|pz|P IHP|x y P IHP|x P IHP|P IHP Q IHQ|P IHP|P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out：两通道经rho；局部单射由rho_inj_except_m+no_use通道分量 *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
     assert (Hxy : x <> y). { eapply use_neq; eassumption. }
     assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
     unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
@@ -1447,11 +1446,11 @@ Proof.
     apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
     apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
     eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
-      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (P := ren (subst_name m k) P) (i := i) (o := true) (T := T)
       (Gamma1 := set_none G (subst_name m k x))
       (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_name m k y)).
-    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i o T) Hx1).
-    + exact Ho.
+    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i true T) Hx1).
+    + reflexivity.
     + unfold use. split; [| reflexivity].
       rewrite (set_none_neq Gamma x y Hyx) in Hy1.
       assert (HyDelta : get G (subst_name m k y) = Some (Some T)) by exact (Hpts y T Hy1).
@@ -1466,7 +1465,7 @@ Proof.
       assert (Hxi' : subst_name m k y <> subst_name m k x) by
         (intro E; apply Hxi; symmetry; exact E).
       rewrite (set_none_neq G (subst_name m k x) (subst_name m k y) Hxi'). exact HyDelta.
-    + apply (IH m k (set_none (set_none G (subst_name m k x)) (subst_name m k y))).
+    + apply (IHP (set_none (set_none Gamma x) y) H m k (set_none (set_none G (subst_name m k x)) (subst_name m k y))).
       * intros n T' Hn.
         assert (Hny : n <> y).
         { intro F; subst n; rewrite set_none_self in Hn;
@@ -1500,8 +1499,8 @@ Proof.
         rewrite (set_none_neq G (subst_name m k x) (subst_name m k n) Hxinx).
         exact HnDelta.
       * exact Hnub.
-  - (* ty_in：通道经rho，body进绑定器；局部单射由rho_inj_except_m+no_use通道分量提供 *)
-    simpl.
+  - (* PIn x P = ty_in：通道经rho，body进绑定器；局部单射由rho_inj_except_m+no_use通道分量 *)
+    inversion HTD as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|Gamma x0 P0 i o T Gamma1 Huse Hi H|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
     unfold use in Huse. destruct Huse as [Hx1 Hx2]. subst Gamma1.
     apply Bool.andb_true_iff in Hnu. destruct Hnu as [Hnux Hnub].
     apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
@@ -1510,11 +1509,11 @@ Proof.
       by (symmetry; apply ren_ext with (f:=upren (subst_name m k)) (g:=subst_name (S m) (S k));
           intros q; exact (upren_subst_name_pt m k q)).
     eapply ty_in with (x := subst_name m k x) (P := ren (subst_name (S m) (S k)) P)
-      (i := i) (o := o) (T := T)
+      (i := true) (o := o) (T := T)
       (Gamma1 := set_none G (subst_name m k x)).
-    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i o T) Hx1).
-    + exact Hi.
-    + apply (IH (S m) (S k) (Some T :: set_none G (subst_name m k x))).
+    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan true o T) Hx1).
+    + reflexivity.
+    + apply (IHP (Some T :: set_none Gamma x) H (S m) (S k) (Some T :: set_none G (subst_name m k x))).
       * intros n T' Hn. destruct n as [|n].
         -- simpl in *. exact Hn.
         -- simpl in Hn.
@@ -1538,21 +1537,25 @@ Proof.
            rewrite (set_none_neq G (subst_name m k x) (subst_name m k n) Hr).
            exact (Hpts n T' Hn).
       * exact Hnub.
-  - (* ty_par：split_proj 重划，待填（核心） *) admit.
-  - (* ty_res：进绑定器，rho升级为upren rho=subst_name(Sm)(Sk) *)
-    simpl.
+  - (* PPar P Q = ty_par —— 核心，收摄后IHP/IHQ源任意 *)
+    inversion HTD as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|Gamma P0 Q0 Gamma1 Gamma2 Hs HP HQ|? ? ? ?|? ? ?]. subst.
+    admit.
+  - (* PRes P = ty_res：进绑定器，rho升级为upren rho=subst_name(Sm)(Sk) *)
+    inversion HTD as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|Gamma P0 T H|? ? ?]. subst.
     replace (ren (upren (subst_name m k)) P)
       with (ren (subst_name (S m) (S k)) P)
       by (symmetry; apply ren_ext with (f:=upren (subst_name m k)) (g:=subst_name (S m) (S k));
           intros n; exact (upren_subst_name_pt m k n)).
     apply (ty_res G (ren (subst_name (S m) (S k)) P) T).
-    apply (IH (S m) (S k) (Some T :: G)).
+    apply (IHP (Some T :: Gamma) H (S m) (S k) (Some T :: G)).
     + intros n T' Hn. destruct n as [|n'].
       * simpl in Hn. injection Hn as E. subst T'. simpl. reflexivity.
       * simpl in Hn. rewrite subst_name_succ. simpl. exact (Hpts n' T' Hn).
     + exact Hnu.
-  - (* ty_rep *) apply (ty_rep G (ren (subst_name m k) P)).
-    apply (IH m k []).
+  - (* PRep P = ty_rep *)
+    inversion HTD as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|Gamma P0 H]. subst.
+    apply (ty_rep G (ren (subst_name m k) P)).
+    apply (IHP [] H m k []).
     + intros n T' Hn. simpl in Hn. discriminate.
     + exact Hnu.
 Admitted.
