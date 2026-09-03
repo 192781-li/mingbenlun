@@ -2203,280 +2203,163 @@ Lemma split_assoc : forall G G12 G3 G1 G2,
   exists G23, split G G1 G23 /\ split G23 G2 G3.
 Proof.
   intros G G12 G3 G1 G2 Hs1 Hs2.
-  pose (f := fun (n:nat) (_:option ty) =>
-            match get G2 n with
-            | Some (Some a) => Some a
-            | _ => match get G3 n with Some v => v | None => None end
-            end).
+  pose (f := fun (n : nat) (_ : option ty) =>
+               match get G2 n with
+               | Some (Some a) => Some a
+               | _ => match get G3 n with
+                      | Some v => v
+                      | None => None
+                      end
+               end).
   exists (setby f G 0). split.
   - (* split G G1 G23 *)
-    unfold split; intro n.
-    specialize (Hs1 n); specialize (Hs2 n).
+    unfold split. intro n. specialize (Hs1 n). specialize (Hs2 n).
     unfold split in Hs1, Hs2.
     destruct (get G n) as [[T|]|] eqn:EG.
-    + (* get G n = Some (Some T) *)
-      rewrite (get_setby_get G f 0 n (Some T) EG).
-      simpl. (* 0+n -> n *)
-      unfold f.
-      destruct Hs1 as [[HG12 HG3empty] | [HG3 HG12empty]].
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- (* Hs1l, Hs2l: B1 *)
-          destruct HG2empty as [HG2n | HG2s].
-          ++ rewrite HG2n. simpl.
-             destruct HG3empty as [HG3n | HG3s].
-             ** rewrite HG3n. simpl.
-                left. split.
-                -- rewrite HG1. rewrite HG12. reflexivity.
-                -- right. reflexivity.
-             ** rewrite HG3s. simpl.
-                left. split.
-                -- rewrite HG1. rewrite HG12. reflexivity.
-                -- right. reflexivity.
-          ++ rewrite HG2s. simpl.
-             destruct HG3empty as [HG3n | HG3s].
-             ** rewrite HG3n. simpl.
-                left. split.
-                -- rewrite HG1. rewrite HG12. reflexivity.
-                -- right. reflexivity.
-             ** rewrite HG3s. simpl.
-                left. split.
-                -- rewrite HG1. rewrite HG12. reflexivity.
-                -- right. reflexivity.
-        -- (* Hs1l, Hs2r: B2 *)
-          destruct HG1empty as [HG1n | HG1s].
-          ++ rewrite HG1n. simpl.
-             destruct HG3empty as [HG3n | HG3s].
-             ** rewrite HG3n. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-             ** rewrite HG3s. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-          ++ rewrite HG1s. simpl.
-             destruct HG3empty as [HG3n | HG3s].
-             ** rewrite HG3n. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-             ** rewrite HG3s. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- (* Hs1r, Hs2l: A *)
-          destruct HG12empty as [HG12n | HG12s].
-          ++ rewrite HG12n. simpl.
-             destruct HG2empty as [HG2n' | HG2s'].
-             ** rewrite HG2n'. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-             ** rewrite HG2s'. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-          ++ rewrite HG12s. simpl.
-             destruct HG2empty as [HG2n' | HG2s'].
-             ** rewrite HG2n'. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-             ** rewrite HG2s'. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-        -- (* Hs1r, Hs2r: A' *)
-          destruct HG12empty as [HG12n | HG12s].
-          ++ rewrite HG12n. simpl.
-             destruct HG1empty as [HG1n | HG1s].
-             ** rewrite HG1n. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-             ** rewrite HG1s. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-          ++ rewrite HG12s. simpl.
-             destruct HG1empty as [HG1n | HG1s].
-             ** rewrite HG1n. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-             ** rewrite HG1s. simpl.
-                right. split.
-                -- left; reflexivity.
-                -- right; reflexivity.
-    + (* get G n = Some None *)
-      rewrite (get_setby_get G f 0 n None EG).
-      simpl. unfold f.
-      destruct Hs1 as [[HG12 HG3empty] | [HG3 HG12empty]].
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- (* B1 *) 
-          destruct HG2empty as [HG2n | HG2s].
-          ++ rewrite HG2n. simpl.
-             destruct HG3empty as [HG3n | HG3s].
-             ** rewrite HG3n. simpl. left. split; [rewrite HG1, HG12; reflexivity | right; reflexivity].
-             ** rewrite HG3s. simpl. left. split; [rewrite HG1, HG12; reflexivity | right; reflexivity].
-          ++ rewrite HG2s. simpl.
-             destruct HG3empty as [HG3n | HG3s].
-             ** rewrite HG3n. simpl. left. split; [rewrite HG1, HG12; reflexivity | right; reflexivity].
-             ** rewrite HG3s. simpl. left. split; [rewrite HG1, HG12; reflexivity | right; reflexivity].
-        -- (* B2 *)
-          destruct HG1empty as [HG1n | HG1s].
-          ++ rewrite HG1n. simpl.
-             destruct HG3empty as [HG3n | HG3s].
-             ** rewrite HG3n. simpl. right. split; [left; reflexivity | right; reflexivity].
-             ** rewrite HG3s. simpl. right. split; [left; reflexivity | right; reflexivity].
-          ++ rewrite HG1s. simpl.
-             destruct HG3empty as [HG3n | HG3s].
-             ** rewrite HG3n. simpl. right. split; [left; reflexivity | right; reflexivity].
-             ** rewrite HG3s. simpl. right. split; [left; reflexivity | right; reflexivity].
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- (* A *)
-          destruct HG12empty as [HG12n | HG12s].
-          ++ rewrite HG12n. simpl.
-             destruct HG2empty as [HG2n' | HG2s'].
-             ** rewrite HG2n'. simpl. right. split; [left; reflexivity | right; reflexivity].
-             ** rewrite HG2s'. simpl. right. split; [left; reflexivity | right; reflexivity].
-          ++ rewrite HG12s. simpl.
-             destruct HG2empty as [HG2n' | HG2s'].
-             ** rewrite HG2n'. simpl. right. split; [left; reflexivity | right; reflexivity].
-             ** rewrite HG2s'. simpl. right. split; [left; reflexivity | right; reflexivity].
-        -- (* A' *)
-          destruct HG12empty as [HG12n | HG12s].
-          ++ rewrite HG12n. simpl.
-             destruct HG1empty as [HG1n | HG1s].
-             ** rewrite HG1n. simpl. right. split; [left; reflexivity | right; reflexivity].
-             ** rewrite HG1s. simpl. right. split; [left; reflexivity | right; reflexivity].
-          ++ rewrite HG12s. simpl.
-             destruct HG1empty as [HG1n | HG1s].
-             ** rewrite HG1n. simpl. right. split; [left; reflexivity | right; reflexivity].
-             ** rewrite HG1s. simpl. right. split; [left; reflexivity | right; reflexivity].
-    + (* get G n = None *)
-      rewrite (get_setby_None G f 0 n EG).
-      simpl.
-      destruct Hs1 as [[HG12 HG3empty] | [HG3 HG12empty]].
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- left. split.
-           ++ rewrite HG1. rewrite HG12. rewrite EG. reflexivity.
-           ++ right. reflexivity.
-        -- right. split.
-           ++ left; reflexivity.
-           ++ right; reflexivity.
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- right. split; [left; reflexivity | right; reflexivity].
-        -- right. split; [left; reflexivity | right; reflexivity].
+    + (* resource position: get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+      destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+      * (* Hs1 left, Hs2 left: resource in G1 *)
+        left. split.
+        -- rewrite H1. rewrite H12. rewrite EG. reflexivity.
+        -- assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct H2e as [H2n | H2s]; destruct H3e as [H3n | H3s];
+             rewrite H2n in HG23 || rewrite H2s in HG23;
+             rewrite H3n in HG23 || rewrite H3s in HG23;
+             cbn in HG23; right; exact HG23.
+      * (* Hs1 left, Hs2 right: resource in G2 *)
+        right. split.
+        -- assert (HG2 : get G2 n = Some (Some T)).
+           { rewrite H2. rewrite H12. rewrite EG. reflexivity. }
+           assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           rewrite HG2 in HG23. cbn in HG23. exact HG23.
+        -- exact H1e.
+      * (* Hs1 right, Hs2 left: resource in G3 *)
+        right. split.
+        -- assert (HG3 : get G3 n = Some (Some T)).
+           { rewrite H3. rewrite EG. reflexivity. }
+           assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct (get G2 n) as [[a|]|] eqn:EG2.
+           ++ exfalso.
+              destruct H2e as [H2n | H2s]; rewrite H2n in EG2 || rewrite H2s in EG2; discriminate.
+           ++ cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23.
+           ++ cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23.
+        -- exact H1e.
+      * (* Hs1 right, Hs2 right: resource in G3 (symmetric) *)
+        right. split.
+        -- assert (HG3 : get G3 n = Some (Some T)).
+           { rewrite H3. rewrite EG. reflexivity. }
+           assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct (get G2 n) as [[a|]|] eqn:EG2.
+           ++ exfalso.
+              destruct H1e as [H1n | H1s]; rewrite H1n in EG2 || rewrite H1s in EG2; discriminate.
+           ++ cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23.
+           ++ cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23.
+        -- exact H1e.
+    + (* empty position: get G n = Some None *)
+      left. split.
+      * destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+        destruct Hs2 as [[H1 H2e] | [H2 H1e]];
+        try (rewrite H12 in *; rewrite H1 in *; reflexivity);
+        try (rewrite H3 in *; rewrite H2 in *; exact H2e).
+      * assert (HG23 : get (setby f G 0) n = Some (f n (Some None))).
+        { apply get_setby_get. exact EG. }
+        unfold f in HG23.
+        destruct (get G2 n) as [[a|]|] eqn:EG2;
+        destruct (get G3 n) as [[b|]|] eqn:EG3;
+          try (rewrite EG2 in HG23; rewrite EG3 in HG23; cbn in HG23; right; exact HG23);
+          try (rewrite EG2 in HG23; rewrite EG3 in HG23; cbn in HG23; right; exact HG23).
+    + (* overflow position: get G n = None *)
+      assert (HG23 : get (setby f G 0) n = None).
+      { apply get_setby_None. exact EG. }
+      left. split.
+      * destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+        destruct Hs2 as [[H1 H2e] | [H2 H1e]];
+        try (rewrite H12 in *; rewrite H1 in *; reflexivity);
+        try (rewrite H3 in *; rewrite H2 in *; exact H2e).
+      * exact HG23.
   - (* split G23 G2 G3 *)
-    unfold split; intro n.
-    specialize (Hs1 n); specialize (Hs2 n).
+    unfold split. intro n. specialize (Hs1 n). specialize (Hs2 n).
     unfold split in Hs1, Hs2.
     destruct (get G n) as [[T|]|] eqn:EG.
-    + (* Some (Some T) *)
-      rewrite (get_setby_get G f 0 n (Some T) EG).
-      simpl. unfold f.
-      destruct Hs1 as [[HG12 HG3empty] | [HG3 HG12empty]].
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- (* B1: G12=G, G3 empty; G1=G12=G, G2 empty *)
-          destruct HG2empty as [HG2n | HG2s].
-          ++ rewrite HG2n. simpl.
-             destruct HG3empty as [HG3n | HG3s].
-             ** rewrite HG3n. simpl.
-                right. split; [left; reflexivity | right; reflexivity].
-             ** rewrite HG3s. simpl.
-                right. split; [left; reflexivity | right; reflexivity].
-          ++ rewrite HG2s. simpl.
-             destruct HG3empty as [HG3n | HG3s].
-             ** rewrite HG3n. simpl.
-                right. split; [left; reflexivity | right; reflexivity].
-             ** rewrite HG3s. simpl.
-                right. split; [left; reflexivity | right; reflexivity].
-        -- (* B2: G12=G, G3 empty; G2=G12=G, G1 empty *)
-          destruct HG2 as [HG2get HG1empty].
-          simpl.
-          destruct HG3empty as [HG3n | HG3s].
-          ++ rewrite HG3n. simpl.
-             left. split.
-             -- rewrite HG2get. reflexivity.
-             -- right; reflexivity.
-          ++ rewrite HG3s. simpl.
-             left. split.
-             -- rewrite HG2get. reflexivity.
-             -- right; reflexivity.
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- (* A: G3=G, G12 empty; G1=G12 empty, G2 empty *)
-          destruct HG3 as [HG3get HG12empty].
-          destruct HG12empty as [HG12n | HG12s]; simpl.
-          ++ rewrite HG12n. simpl.
-             destruct HG2empty as [HG2n' | HG2s'].
-             ** rewrite HG2n'. simpl. left. split; [reflexivity | right; reflexivity].
-             ** rewrite HG2s'. simpl. left. split; [reflexivity | right; reflexivity].
-          ++ rewrite HG12s. simpl.
-             destruct HG2empty as [HG2n' | HG2s'].
-             ** rewrite HG2n'. simpl. left. split; [reflexivity | right; reflexivity].
-             ** rewrite HG2s'. simpl. left. split; [reflexivity | right; reflexivity].
-        -- (* A': G3=G, G12 empty; G2=G12 empty, G1 empty *)
-          destruct HG3 as [HG3get HG12empty].
-          destruct HG12empty as [HG12n | HG12s]; simpl.
-          ++ rewrite HG12n. simpl.
-             destruct HG2 as [HG2get' HG1empty].
-             simpl. left. split; [rewrite HG2get'; reflexivity | right; reflexivity].
-          ++ rewrite HG12s. simpl.
-             destruct HG2 as [HG2get' HG1empty].
-             simpl. left. split; [rewrite HG2get'; reflexivity | right; reflexivity].
-    + (* get G n = Some None *)
-      rewrite (get_setby_get G f 0 n None EG).
-      simpl. unfold f.
-      destruct Hs1 as [[HG12 HG3empty] | [HG3 HG12empty]].
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- (* B1 *)
-          destruct HG2empty as [HG2n | HG2s]; simpl.
-          ++ rewrite HG2n. simpl.
-             destruct HG3empty as [HG3n | HG3s]; simpl.
-             ** rewrite HG3n. simpl. right. split; [left; reflexivity | right; reflexivity].
-             ** rewrite HG3s. simpl. right. split; [left; reflexivity | right; reflexivity].
-          ++ rewrite HG2s. simpl.
-             destruct HG3empty as [HG3n | HG3s]; simpl.
-             ** rewrite HG3n. simpl. right. split; [left; reflexivity | right; reflexivity].
-             ** rewrite HG3s. simpl. right. split; [left; reflexivity | right; reflexivity].
-        -- (* B2 *)
-          destruct HG2 as [HG2get HG1empty]; simpl.
-          destruct HG3empty as [HG3n | HG3s]; simpl.
-          ++ rewrite HG3n. simpl. left. split; [rewrite HG2get; reflexivity | right; reflexivity].
-          ++ rewrite HG3s. simpl. left. split; [rewrite HG2get; reflexivity | right; reflexivity].
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- (* A *)
-          destruct HG3 as [HG3get HG12empty]; simpl.
-          destruct HG12empty as [HG12n | HG12s]; simpl.
-          ++ rewrite HG12n. simpl.
-             destruct HG2empty as [HG2n' | HG2s']; simpl.
-             ** rewrite HG2n'. simpl. left. split; [reflexivity | right; reflexivity].
-             ** rewrite HG2s'. simpl. left. split; [reflexivity | right; reflexivity].
-          ++ rewrite HG12s. simpl.
-             destruct HG2empty as [HG2n' | HG2s']; simpl.
-             ** rewrite HG2n'. simpl. left. split; [reflexivity | right; reflexivity].
-             ** rewrite HG2s'. simpl. left. split; [reflexivity | right; reflexivity].
-        -- (* A' *)
-          destruct HG3 as [HG3get HG12empty]; simpl.
-          destruct HG12empty as [HG12n | HG12s]; simpl.
-          ++ rewrite HG12n. simpl.
-             destruct HG2 as [HG2get' HG1empty]; simpl.
-             left. split; [rewrite HG2get'; reflexivity | right; reflexivity].
-          ++ rewrite HG12s. simpl.
-             destruct HG2 as [HG2get' HG1empty]; simpl.
-             left. split; [rewrite HG2get'; reflexivity | right; reflexivity].
-    + (* get G n = None *)
-      rewrite (get_setby_None G f 0 n EG).
-      simpl.
-      destruct Hs1 as [[HG12 HG3empty] | [HG3 HG12empty]].
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- right. split; [left; reflexivity | right; reflexivity].
-        -- left. split; [rewrite HG2; reflexivity | right; reflexivity].
-      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
-        -- left. split; [reflexivity | right; reflexivity].
-        -- left. split; [reflexivity | right; reflexivity].
+    + (* resource position: get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+      destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+      * (* Hs1 left, Hs2 left: resource in G1, G23 empty *)
+        left. split.
+        -- assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct H2e as [H2n | H2s]; destruct H3e as [H3n | H3s];
+             rewrite H2n in HG23 || rewrite H2s in HG23;
+             rewrite H3n in HG23 || rewrite H3s in HG23;
+             cbn in HG23; exact HG23.
+        -- right. exact H2e.
+      * (* Hs1 left, Hs2 right: resource in G2 *)
+        right. split.
+        -- assert (HG2 : get G2 n = Some (Some T)).
+           { rewrite H2. rewrite H12. rewrite EG. reflexivity. }
+           assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           rewrite HG2 in HG23. cbn in HG23. exact HG23.
+        -- exact H1e.
+      * (* Hs1 right, Hs2 left: resource in G3 *)
+        right. split.
+        -- assert (HG3 : get G3 n = Some (Some T)).
+           { rewrite H3. rewrite EG. reflexivity. }
+           assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct (get G2 n) as [[a|]|] eqn:EG2.
+           ++ exfalso.
+              destruct H2e as [H2n | H2s]; rewrite H2n in EG2 || rewrite H2s in EG2; discriminate.
+           ++ cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23.
+           ++ cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23.
+        -- exact H1e.
+      * (* Hs1 right, Hs2 right: resource in G3 (symmetric) *)
+        right. split.
+        -- assert (HG3 : get G3 n = Some (Some T)).
+           { rewrite H3. rewrite EG. reflexivity. }
+           assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct (get G2 n) as [[a|]|] eqn:EG2.
+           ++ exfalso.
+              destruct H1e as [H1n | H1s]; rewrite H1n in EG2 || rewrite H1s in EG2; discriminate.
+           ++ cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23.
+           ++ cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23.
+        -- exact H1e.
+    + (* empty position: get G n = Some None *)
+      left. split.
+      * assert (HG23 : get (setby f G 0) n = Some (f n (Some None))).
+        { apply get_setby_get. exact EG. }
+        unfold f in HG23.
+        destruct (get G2 n) as [[a|]|] eqn:EG2;
+        destruct (get G3 n) as [[b|]|] eqn:EG3;
+          try (rewrite EG2 in HG23; rewrite EG3 in HG23; cbn in HG23; exact HG23);
+          try (rewrite EG2 in HG23; rewrite EG3 in HG23; cbn in HG23; exact HG23).
+      * destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+        destruct Hs2 as [[H1 H2e] | [H2 H1e]];
+        try (rewrite H12 in *; rewrite H1 in *; exact H2e);
+        try (rewrite H3 in *; rewrite H2 in *; exact H1e).
+    + (* overflow position: get G n = None *)
+      assert (HG23 : get (setby f G 0) n = None).
+      { apply get_setby_None. exact EG. }
+      left. split.
+      * exact HG23.
+      * destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+        destruct Hs2 as [[H1 H2e] | [H2 H1e]];
+        try (rewrite H12 in *; rewrite H1 in *; exact H2e);
+        try (rewrite H3 in *; rewrite H2 in *; exact H1e).
 Qed.
 Lemma typed_res_par_l : forall G P Q,
   ~ fv_at Q 0 -> typed G (PRes (PPar P Q)) -> typed G (PPar (PRes P) Q).

@@ -1857,3 +1857,2114 @@ Definition split Gamma Gamma1 Gamma2 := forall n,
 This is weird split: at each position, one side matches whole context, other side is None or Some None (empty/undefined). It permits both sides possibly None if Gamma None? Actually if Gamma get n is Some None then side could have Some None and other None, or side could None. For resource Some(Some T), exactly one side has it, other None/Some None. It's an affine/resource split with resource exactly one side if any actual resource.
 
 Need split_assoc: split G G1
+
+
+## 2026-09-04 02:45:48 [proof_loop] congruence_preserves_typing · round1 · DS输出
+
+```coq
+(* INSERT-BEFORE: congruence_preserves_typing *)
+(* @stdlib names: Nat.ltb_spec Nat.eqb_spec Bool.negb_true_iff Nat.eqb_neq *)
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  (* G23 is the join of the two right-hand contexts.
+     At position n:
+     - if G1 already owns the G-resource, then put the appropriate empty
+       value (required to make the right split work) in G23;
+     - otherwise G1 is empty, so put the original G-value into G23. *)
+  pose (empty_join := fun (a b : option ty) =>
+    match a with None => b | Some _ => a end).
+  pose (f := fun n (t : option ty) =>
+    if excluded_middle_informative (get G1 n = get G n)
+    then empty_join (get G2 n) (get G3 n)
+    else t).
+  exists (setby f G 0).
+  split.
+  - (* split G G1 G23 *)
+    unfold split. intro n.
+    specialize (Hs1 n); specialize (Hs2 n).
+    unfold split in Hs1, Hs2.
+    set (d := excluded_middle_informative (get G1 n = get G n)).
+    destruct d as [Heq | Hne].
+    + (* G1 owns the position *)
+      left. split.
+      * exact Heq.
+      * (* get G23 n is empty *)
+        destruct (get G n) as [u|] eqn:Eg.
+        -- (* get G n = Some u *)
+          rewrite (get_setby_get G f 0 n u Eg).
+          unfold f. rewrite Heq.
+          (* Need: empty_join (get G2 n) (get G3 n) is None or Some None.
+             This follows because G1 owns n, so neither G2 nor G3 carries an
+             actual resource at n. *)
+          destruct (get G2 n) as [u2|] eqn:Eg2.
+          ++ destruct u2 as [T2|].
+             ** (* G2 n = Some (Some T2) is impossible *)
+                exfalso.
+                (* G2 actual implies G12 actual, hence G actual, hence G1
+                   actual; then split G12 G1 G2 would have both sides actual. *)
+                apply (split_disjoint_some G12 G1 G2 n T2 T2).
+                destruct Hs2 as [Hs2L | Hs2R].
+                --- (* Hs2 left uses
+[reasoning摘要]
+We need solve problem: produce complete Coq code for lemmas and theorem congruence_preserves_typing. We have material Layer1/Layer2 definitions. Need give auxiliary lemmas and final theorem. Need ensure compiles with Coq 9.1 Stdlib, classical excluded_middle. We need reason.
+
+Task: On clean baseline, prove Theorem congruence_preserves_typing and auxiliary lemmas required: split_assoc, typed_empty_closed, typed_res_par_l/r, and update typed_rep_unfold_l/r using typed_empty_closed instead of typed_head_insert. r1 has existing lemmas split_refl_nil, split_nil_r, split_sym', typed_par_comm, typed_par_assoc_l/r maybe using split_assoc, typed_par_zero_l/r, typed_rep_unfold_r. Need produce complete blocks. We need only output INSERT-BEFORE etc. The final theorem with Hmain skeleton.
+
+Need inspect definitions.
+
+We need prove split_assoc constructively (or using setby). Given split G G12 G3 and split G12 G1 G2. Need exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+This is about partial monoid. Need construct G23 positionwise. We can use setby with function choosing from G2 and G3 depending on where resource at G12 went. Since split G12 G1 G2: for each n, either G12 n = G1 n and G2 n empty, or G12 n = G2 n and G1 n empty. Since split G G12 G3: for each n, either G n = G12 n and G3 n empty, or G n = G3 n and G12 n empty.
+
+Need construct G23 such that split G G1 G23 and split G23 G2 G3. At each position n, we need partition of G resource among G1,G2,G3. Given two binary splits. We can cla
+
+
+## 2026-09-04 02:57:57 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (f := fun n (t : option ty) =>
+    match t with
+    | None => None
+    | Some _ =>
+      match get G2 n with
+      | Some (Some a) => Some a
+      | _ => match get G3 n with
+             | Some (Some b) => Some b
+             | _ => None
+             end
+      end
+    end).
+  exists (setby f G 0).
+  split.
+  - unfold split. intro n.
+    specialize (Hs1 n). specialize (Hs2 n).
+    destruct Hs1 as [[L1 E3] | [R1 E12]].
+    + destruct Hs2 as [[L2 E2] | [R2 E1]].
+      * left. split.
+        { transitivity (G12 n); [exact L2 | exact L1]. }
+        { destruct (get G n) as [u|] eqn:Hg.
+          - pose proof (get_setby_get G f 0 n u Hg) as HG23.
+            replace (0+n) with n in HG23 by reflexivity.
+            assert (Hfn : f n u = None).
+            { subst f; simpl.
+              destruct E2 as [HG2None | HG2SomeNone].
+              + rewrite HG2None. simpl.
+                destruct E3 as [HG3None | HG3SomeNone].
+                * rewrite HG3None. reflexivity.
+                * rewrite HG3SomeNone. reflexivity.
+              + rewrite HG2SomeNone. simpl.
+                destruct E3 as [HG3None | HG3SomeNone].
+                * rewrite HG3None. reflexivity.
+                * rewrite HG3SomeNone. reflexivity.
+            }
+            right. rewrite HG23. f_equal. exact Hfn.
+          - assert (HfnNone : f n None = None) by (subst f; simpl; reflexivity).
+            rewrite (get_setby_None G f 0 n Hg HfnNone).
+            left. reflexivity. }
+      * right. split.
+        { destruct (get G n) as [u|] eqn:Hg.
+          - pose proof (get_setby_get G f 0 n u Hg) as HG23.
+            replace (0+n) with n in HG23 by reflexivity.
+            assert (Hfn : f n u = u).
+            { subst f; simpl.
+              assert (HG2n : get G2 n = get G n).
+              { transitivity (G12 n); [exact R2 |
+[reasoning摘要]
+我们需要给出 split_assoc 的完整证明，替换占位。必须只输出一个 coq 块，从 Lemma split_assoc 到 Qed。我们已经知道材料里有定义：split, setby, get_setby_get, get_setby_None, etc. 需要证明：
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+我们按补充说明的逐位置分析。G23 := setby (fun n t => match get G2 n with Some (Some a) => Some (Some a) | _ => get G3 n end) G 0.
+
+注意闭包捕获 G2 G3，f 的类型应该是 nat -> option ty -> option ty。这里 t 是 G 当前位置的值（u）。但 f 的形式是 fun n t => match get G2 n with ... end，忽略 t 只用 n。setby 在索引 k 从 0 开始，get_setby_get 给出 get (setby f Gamma k) n = Some (f (k+n) u)。当 k=0 时，f n u = match get G2 n with Some (Some a) => Some (Some a) | _ => get G3 n end。所以 G23 n = Some (match get G2 n with ... end) 当 get G n = Some u。好的。
+
+现在证明 split G G1 G23 和 split G23 G2 G3。
+
+我们先展开定义。需要小心处理 option option 的双层结构。
+
+证明思路：
+
+1. intro all; intros Hs1 Hs2.
+2. exists (setby (fun n t => match get G2 n with Some (Some a) => Some (Some a) | _ => get G3 n end) G 0).
+3. split.
+   - unfold split; intro n; specialize (Hs1 n); specialize (Hs2 n); destruct Hs1 as [[L1 Hempty2] | [R1 Hempty1]].
+     * 这是 Hs1 左：G12 n = G n，G3 n 空（None 或 Some None）。然后 destruct Hs2 as [[L2 HemptyG2] | [R2 HemptyG1]].
+        - 情况B1：G1 n = G12 n = G n，G2 n 空。需要证明 left：G1 n = G n，G23 n 空。G23 在 n 的值需要依赖 get G n。考虑到 G12 左支给了 G12 n = G n，可能与 get G n 有关；但我们没直接用 get G n 的值。要证明 G23 n 空（None 或 Some None）。我们用 Hs1 中的 G3 n 空和 Hs2 中的 G2 n 空。G23 的定义：get G n 可能是 Some u 或 None。
+           - 如果 get G n = Some u，那么 get G23 n
+
+
+## 2026-09-04 03:21:40 [proof_loop] split_assoc · round1 · DS输出
+
+只输出 `split_assoc` 引理的完整新版代码，包含必要的辅助 Fixpoint 与引理，全部 `Qed.`，不含 admit。
+
+```coq
+(* 辅助：合并两个上下文中资源位，用于构造 G23。
+   存在论：资源在 G2 则取 G2；否则取 G3。这样保证了 G23 与 G2、G3 逐点互斥。 *)
+Fixpoint merge_ctx (G2 G3 : ctx) : ctx :=
+  match G2, G3 with
+  | [], [] => []
+  | g2 :: G2', [] => g2 :: merge_ctx G2' []
+  | [], g3 :: G3' => g3 :: merge_ctx [] G3'
+  | g2 :: G2', g3 :: G3' =>
+      match g2 with
+      | Some (Some _) => g2
+      | _ => g3
+      end :: merge_ctx G2' G3'
+  end.
+
+(* merge_ctx 在每个位置的取值恰为 split 所需：要么取 G2 且 G3 为空，要么取 G3 且 G2 为空。 *)
+Lemma merge_ctx_split_pointwise : forall n G2 G3,
+  (get (merge_ctx G2 G3) n = get G2 n /\ (get G3 n = None \/ get G3 n = Some None))
+  \/ (get (merge_ctx G2 G3) n = get G3 n /\ (get G2 n = None \/ get G2 n = Some None)).
+Proof.
+  induction n as [| n' IH]; intros G2 G3.
+  - destruct G2 as [|g2 G2']; destruct G3 as [|g3 G3']; simpl.
+    + left. split; reflexivity.
+    + left. split; reflexivity.
+    + right. split; reflexivity.
+    + destruct g2 as [[T|]|]; simpl.
+      * left. split; reflexivity.
+      * right. split; reflexivity.
+      * right. split; reflexivity.
+  - destruct G2 as [|g2 G2']; destruct G3 as [|g3 G3']; simpl.
+    + left. split; reflexivity.
+    + left. split; reflexivity.
+    + right. split; reflexivity.
+    + destruct g2 as [[T|]|]; simpl.
+      * left. split; reflexivity.
+      * right. split; reflexivity.
+      * right. split; reflexivity.
+Qed.
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  exists (merge_ctx G2 G3). split.
+  - (* split G G1 (merge_ctx G2 G3) *)
+    unfold split. intro n.
+    specialize (Hs1 n). specialize (Hs2 n).
+    destruct Hs1 as [H1L | H1R].
+    + (* H1L: G12 n = G n, G3 n empty *)
+      destruct H1L as [Hg12 Hg3_emp].
+      destruct Hs2 as [H2L | H2R].
+      * (* H2L: G1 n = G12 n, G2 n empty *)
+        left. split.
+        -- destruct H2L as [Hg1 _]. rewrite <- Hg1. rewrite <- Hg12. 
+[reasoning摘要]
+We need produce Coq replacement for split_assoc only plus helper lemma get_setby_None (and maybe other helpers needed). Need ensure compiles with Layer2 material. We have Layer1/Layer2 full. Need inspect definitions and existing lemmas. We must not use Admitted. Only prove split_assoc. Let's understand.
+
+We need define G23 using setby with function matching get G2 n if Some (Some a), else get G3 n. Need helper get_setby_None not present? Material Layer1 has get_setby_None, actually yes in Layer1? Let's check Layer1 full: It has Lemma get_setby_get, Lemma get_setby_None. In Layer2 material, after Layer1 import, get_setby_None exists from Layer1. The task says材料里只有 get_setby_get, 要求自证 get_setby_None, but in Layer1 material provided there is get_setby_None. However maybe they say in their authoritative Layer1 there is get_setby_None? The provided Layer1 block includes:
+
+Lemma get_setby_get : ...
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None ->
+  f (k + n) None = None ->
+  get (setby f Gamma k) n = None.
+Proof... Qed.
+
+So existing get_setby_None has extra hypothesis f(k+n) None = None. The task says "材料里没有 get_setby_None，必须先自己证: Lemma get_setby_None : forall Gamma f k n, get Gamma n = None -> get (setby f Gamma k) n = None." That's a stronger lemma without f condition, and indeed material has not exactly that name? It has same name with extra arg? Wait existing Lemma get_setby_None has forall Gamma f k n, get Gamma n = None -> f(k+n)None=None -> get... None. Nam
+
+
+## 2026-09-04 03:33:08 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  intros Gamma f k n. revert k n. induction Gamma; intros k n H.
+  - simpl. reflexivity.
+  - destruct n as [|n'].
+    + simpl in H. discriminate.
+    + simpl in H. simpl. apply (IHGamma (S k) n'). exact H.
+Qed.
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (G23 := setby (fun n t =>
+      match get G2 n with
+      | Some (Some a) => Some a
+      | _ => match get G3 n with
+             | Some v => v
+             | None => None
+             end
+      end) G 0).
+  exists G23; split.
+  - unfold split; intros n.
+    unfold split in Hs1, Hs2.
+    specialize (Hs1 n). specialize (Hs2 n).
+    destruct Hs1 as [H1L | H1R].
+    + destruct H1L as [Hg12 Hg3_emp].
+      destruct Hs2 as [H2L | H2R].
+      * left. split.
+        -- destruct H2L as [Hg1 _]. rewrite <- Hg1. rewrite <- Hg12. reflexivity.
+        -- destruct H2L as [_ Hg2_emp].
+           unfold G23.
+           destruct (get G n) as [u |] eqn:EG.
+           ++ rewrite (get_setby_get G (fun n0 t0 =>
+                match get G2 n0 with
+                | Some (Some a) => Some a
+                | _ => match get G3 n0 with Some v => v | None => None end
+                end) 0 n u EG).
+              rewrite Nat.add_0_l.
+              destruct Hg2_emp as [Hg2_none | Hg2_none_some];
+                try rewrite Hg2_none; try rewrite Hg2_none_some; simpl.
+              ** destruct Hg3_emp as [Hg3_none | Hg3_none_some];
+                   rewrite Hg3_none; simpl; left; reflexivity.
+                 rewrite Hg3_none_some; simpl; right; reflexivity.
+              ** destruct Hg3_emp as [Hg3_none | Hg3_none_some];
+                   rewrite Hg3_none; simpl; left; reflexivity.
+                 rewrite Hg3_none_some; simpl; right; reflexivity.
+           ++ rewrite (get_setby_None G (fun n0 t0 =
+[reasoning摘要]
+我们需要理解错误。用户上一版给了 split_assoc 新代码，但编译错误在 Layer2.v line 2172, characters 14-20: Found a constructor of inductive type option while a constructor of ty is expected. 这个错误看起来是在我们上一版代码中某处模式匹配 `Some (Some _)` 时，Coq 期望 ty 构造子？但其实 merge_ctx 里 `match g2 with | Some (Some _) => g2 | _ => g3 end`，g2 类型是 option ty？等等 ctx 是 list (option ty)，每个元素是 option ty。所以 g2 : option ty。那么在 match g2 with Some (Some _) 中，内层 Some _ 的 _ 应该是 ty，但 Some 构造子是 option 的，所以 Some (Some _) 没问题。为什么报错 “Found a constructor of inductive type option while a constructor of ty is expected”？可能因为 `Some (Some _)` 中内层 Some 被解析为 ty 的构造子？不对，ty 构造子是 TUnit,TChan,TSheng,TJi，没有 Some。也许错误行在别处？用户提供错误说是上一个版本 apply 后未收敛，line 2172。我们需要看材料末尾错误。材料末尾只有这个错误。但用户说“应用后未收敛（rc=1，目标段admit=False，新引理admit/abort=False）。完整错误见材料末尾，定位根因并给完整修正版” 所以我们只需给出 split_assoc 的完整证明，确保正确。
+
+给定任务明确：只证明 Lemma split_assoc，不输出其他引理？但补充说明要求先给 get_setby_None 小引理。任务说“不要输出任何其他引理、不要长段解释”，但补充说明又说“先给上述小引理的完整 Qed 块（INSERT-BEFORE: split_assoc），再给 split_assoc 主引理完整 Qed 块”。所以要输出 get_setby_None 和 split_assoc 两个引理块。可能还要 G23 构造。我们需要用 setby 而不是 merge_ctx。用户说用显式构造 `G23 := setby (fun n t => match get G2 n with Some (Some a) => Some (Some a) | _ => get G3 n end) G 0.` 先前任务要求是替换占位，不需 merge_ctx 了。我们需要按要求提供。
+
+我们先分析 split_assoc 证明，确保无错误。
+
+定义：
+Definition split (Gamma Gamma1 Gamma2 : ctx) : Prop :=
+  forall n,
+    (get Gamma1 n = get Gamma n /\ (get Gamma2 n = None \/ get Gamma2 n = Some None))
+    \/ (get Gamma2 n = get Gamma n /\ (get Gamma1 n = None \/ get Gamma1 n = Some None)).
+
+我们需要证明：
+
+
+
+## 2026-09-04 03:38:42 [proof_loop] split_assoc · round3 · DS输出
+
+```coq
+(* 无条件版：get Gamma n = None 时 setby 结果该位仍为 None *)
+Lemma get_setby_None_uncond : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|g Gamma' IH]; intros f k n H.
+  - simpl. reflexivity.
+  - destruct n as [|n'].
+    + simpl in H. discriminate.
+    + simpl in H. simpl. apply (IH f (S k) n'). exact H.
+Qed.
+
+(* split_assoc：并行组合的结合律保持 split 结构 *)
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  (* 逐位置合并函数：有资源取资源，无资源保留 Some None，否则 None *)
+  pose (merge_opt := fun a b : option (option ty) =>
+    match a, b with
+    | Some (Some x), _ | _, Some (Some x) => Some (Some x)
+    | Some None, _ | _, Some None => Some None
+    | _, _ => None
+    end).
+  pose (G23 := setby (fun n _ => merge_opt (get G2 n) (get G3 n)) G 0).
+  exists G23; split.
+  - (* split G G1 G23 *)
+    unfold split. intro n.
+    specialize (Hs1 n). specialize (Hs2 n).
+    destruct Hs1 as [H1L | H1R].
+    + (* Hs1 左支：G12 n = G n，G3 n 空 *)
+      destruct H1L as [Hg12 Hg3_emp].
+      destruct Hs2 as [H2L | H2R].
+      * (* H2L：资源在 G1 *)
+        left. split.
+        -- destruct H2L as [Hg1 _]. rewrite Hg1, Hg12. reflexivity.
+        -- (* G23 n 为空 *)
+           destruct H2L as [_ Hg2_emp].
+           unfold G23.
+           destruct (get G n) as [u|] eqn:EG.
+           ++ rewrite get_setby_get with (u := u).
+              ** rewrite Nat.add_0_l.
+                 unfold merge_opt.
+                 destruct Hg2_emp as [Hg2_none | Hg2_none_some];
+                   [rewrite Hg2_none | rewrite Hg2_none_some]; simpl.
+                 destruct Hg3_emp as [Hg3_none | Hg3_none_some];
+                   [rewrite Hg3_none | rewrite Hg3_none_some]; simpl.
+                 -- left; reflexivity.
+                 -- right; reflexivity.
+                 -- left; reflexivity.
+                 -- right; reflexivity.
+              ** exact EG.
+        
+[reasoning摘要]
+我们需要为用户提供 split_assoc 的完整证明。用户指出之前的错误是某个地方把 option 构造子和 ty 构造子混淆了。他们让我们只输出 split_assoc 引理及其所需辅助引理（如 get_setby_None），全部 Qed，不使用 admit/Abort。
+
+需要先理解上下文：我们有 Layer1.v 和 Layer2.v 材料。split_assoc 是 Layer2.v 中已经存在的引理？在材料末尾我们看到有一个 split_assoc 的证明，但其中存在之前某版本的问题？用户说上一版编译错误发生在 line 2172, characters 14-20: Found a constructor of inductive type option while a constructor of ty is expected。这可能是因为在 split_assoc 证明中我们使用了 destruct u as [[T|]|] 之类，但 option ty 应该是 option (option ty)，而构造子混淆？错误说“constructor of inductive type option while a constructor of ty is expected”，可能是 `Some T` 中的 T 被当成 ty 期望，但实际 T 应该是 option ty？我们需要检查证明中哪里可能把 option 和 ty 混淆了。
+
+但用户要求只证明 split_assoc，并给出辅助引理 get_setby_None。我们需要从材料A中查看 split_assoc 当前定义。在材料中，split_assoc 在 Layer2.v 中已经有一个 proof，但其内容可能是我们之前写的那个有问题的证明。用户要求给完整新版本以替换占位。材料末尾给的当前 split_assoc 证明里面可能含有 merge_ctx 相关或者 setby 相关的内容，但最后报错 line 2172 可能是 `destruct u as [[T|]|]` 中的问题？实际上错误显示“constructor of inductive type option while a constructor of ty is expected”，可能是我们在某个 destruct 中尝试将 option (option ty) 分解为 `Some T` 但 T 期望是 ty，而实际是 option ty? 例如 `destruct u as [[T|]|]` 对 option (option ty) 应该是可行的：u : option (option ty)，第一个模式 `Some (Some T)` 然后 T : ty；第二个 `Some None`；第三个 `None`。但可能写法不对，应该是 `destruct u as [[T|]|]`? 在 Coq 中，`u : option (option ty)`，`case u` 可以写 `destruct u as [[T|]|]`，这是对的：内部 option 的两个构造子是 Some T 和 None，外部 option 的两个构造子是 Some 和 None，所以模式：Some (Some T) => [[T|]|] 是可行的。但错误信息表明构造函数混淆：它期望 ty 却得到 option。可能是我们在某个位置写了 `destruct u as [[T|]|]` 但 `T` 已经是某个东西？或者在 `destruc
+
+
+## 2026-09-04 03:53:59 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_setby_None_simple : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [| t Gamma IH]; intros f k n H; simpl in *.
+  - reflexivity.
+  - destruct n as [|n'].
+    + simpl in H. discriminate.
+    + apply IH. exact H.
+Qed.
+```
+[reasoning摘要]
+We need answer with Coq proofs. Need obey task. Need solve Lemma split_assoc using specified route. We need produce auxiliary lemmas and main lemma. We need reason carefully.
+
+We have material Layer1 includes get_setby_get, but task says get_setby_None not present in material? Actually Layer1 material includes get_setby_None? Let's check: In Layer1 section 6 after get_setby_get, there is Lemma get_setby_None : forall Gamma f k n, get Gamma n = None -> f (k + n) None = None -> get (setby f Gamma k) n = None. Yes material already has get_setby_None with extra condition f ... = None. Task claims "材料里没有、上一版你误当成已有（幻觉）get_setby_None, must self prove: forall Gamma f k n, get Gamma n = None -> get (setby f Gamma k) n = None." Wait material indeed has lemma with that exact name but stronger statement requiring f (k+n) None = None. The required statement is simpler and not present? Name exists with different type. We must define our own lemma? Cannot redefine existing name in same file unless remove? We are tasked to add Lemma get_setby_None, but material already has it with different statement. We cannot redefine same name in Coq. Need be careful. The instruction says "材料里没有、上一版你误当成已有（幻觉）get_setby_None". But material A includes Lemma get_setby_None. Maybe material A says get_setby_None exists. In task they say only get_setby_get exists. They may be wrong? We have to follow actual file? User says material A is authoritative. There is get_setby_None in Layer1. So if we add same name dup
+
+
+## 2026-09-04 03:56:14 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_setby_None_no_cond : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [| g Gamma IH]; intros f k n H.
+  - simpl. reflexivity.
+  - destruct n as [|n'].
+    + simpl in H. discriminate.
+    + simpl in H. simpl. apply IH. exact H.
+Qed.
+```
+[reasoning摘要]
+我们需要证明 split_assoc。用户给了详细指引：用 setby 构造 G23，不用 excluded_middle。需要先证明辅助引理 get_setby_None（材料里有 get_setby_None? 检查材料A：Layer1 有 get_setby_get 和 get_setby_None，在 split_proj 之前：
+
+Lemma get_setby_get ...
+Lemma get_setby_None : forall Gamma f k n, get Gamma n = None -> f (k+n) None = None -> get (setby f Gamma k) n = None.
+
+注意材料A里已经有 get_setby_None，但用户说“材料里没有、上一版误当成已有（幻觉）get_setby_None，必须先自己证”，但实际材料A里确实存在 get_setby_None？我们回看材料A：
+
+在 Layer1.v 第6节 projection construction 中：
+
+```
+Lemma get_setby_get : forall Gamma f k n (u : option ty),
+  get Gamma n = Some u ->
+  get (setby f Gamma k) n = Some (f (k + n) u).
+Proof. ... Qed.
+
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None ->
+  f (k + n) None = None ->
+  get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn Hf; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + rewrite Nat.add_succ_r in Hf. apply (IH f (S k) n); [exact Hn | exact Hf].
+Qed.
+```
+
+材料A确实有 get_setby_None，但需要第二个条件 `f (k+n) None = None`。用户要求证明一个更强（无第二个条件）的 `get_setby_None : forall Gamma f k n, get Gamma n = None -> get (setby f Gamma k) n = None`。这个在材料A中不是现成的，但可证明：如果 get Gamma n = None，则 n >= length Gamma，setby f Gamma k 长度同 Gamma，故 get (setby f Gamma k) n = None。需要长度引理或直接用归纳证明？用户建议对 Gamma 归纳，get Gamma n = None 即 n 越界，setby 保持长度与结构，越界位仍 None。但更简单：对 Gamma 归纳直接证明，不需要额外长度引理。注意 setby f Gamma k 对列表结构递归，若 Gamma 为空则结果为空，get 返回 None；若 Gamma 非空，destruct n，若 n=0 则 get Gamma 0 不可能是 None（因列表头存在，即使
+
+
+## 2026-09-04 03:59:18 [proof_loop] split_assoc · round3 · DS输出
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_setby_none_indep : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [| g Gamma IH]; intros f k n H.
+  - simpl. reflexivity.
+  - destruct n as [| n'].
+    + simpl in H. discriminate.
+    + simpl in H. simpl. apply IH. exact H.
+Qed.
+```
+[reasoning摘要]
+我们任务：证 split_assoc，需要先证 get_setby_None。用户反复强调协议。我要给出完整可编译代码。必须遵守：辅助引理单独块带 INSERT-BEFORE: split_assoc 注释。主引理单独块。
+
+我需要先证 get_setby_None。材料里已有 get_setby_get 以及 get_setby_None? 材料A里 Layer1? 我们看 Layer1 中 setby 定义与引理：
+
+In Layer1.v:
+Fixpoint setby (f : nat -> option ty -> option ty) (Gamma : ctx) (k : nat) : ctx :=
+  match Gamma with
+  | []      => []
+  | t :: Gamma' => f k t :: setby f Gamma' (S k)
+  end.
+
+Lemma get_setby_get : forall Gamma f k n (u : option ty),
+  get Gamma n = Some u ->
+  get (setby f Gamma k) n = Some (f (k + n) u).
+
+还有 Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None ->
+  f (k + n) None = None ->
+  get (setby f Gamma k) n = None.
+
+注意材料中的 get_setby_None 需要额外条件 f(k+n) None = None。但现在任务要求证一个更简单的 get_setby_None：只要 get Gamma n = None，就 get (setby f Gamma k) n = None。这成立吗？需要验证：按 setby 定义，对每个元素应用 f，它并不改变列表长度/某位置存在性？实际上 get Gamma n = None 意味着 n >= length Gamma，即越界。setby f Gamma k 的长度与 Gamma 相同（因为是逐元素映射，长度不变），所以 n 仍然越界，get 在 n 处 None。所以无条件版本 get_setby_None 也成立。证明对 Gamma 归纳即可，不需要 f 条件。注意名称冲突：材料中已有一个带条件的 get_setby_None 引理？在 Layer1.v 中，确实有：
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None ->
+  f (k + n) None = None ->
+  get (setby f Gamma k) n = None.
+Proof... Qed.
+
+如果我再定义一个同名 get_setby_None，但 Coq 不允许重复定义相同名字？可以覆盖? Coq 不允许重复定义同一常量名。如果文件里已有这个引理，我不能再定义。但用户要求“证 get_setby_None”，也许是指我需要一个新的、更简单的引理，但要避免同名。但材料A中 Layer1.v 第? 有 get_setby_None 带条件。如果我在 Layer2.v 中同样定义一个 Lemma get_setby_None，会报“get_setby_None already exists”吗？ Coq 可以在不同模块但同一命名空间冲突，Layer2 
+
+
+## 2026-09-04 04:23:44 [proof_loop] split_assoc · round1 · DS输出
+
+## 要点说明
+材料A Layer1.v 已有带额外前件的 `get_setby_None`，但其签名与任务要求不同；为避免重名，我将无前件版本命名为 `get_setby_None_uncond`。  
+原定 `setby f G 0` 在 `G2/G3` 长度短于 `G` 时会产生 `Some None` 使 `split G23 G2 G3` 失败，故改用 `setby f (repeat None (max (length G2) (length G3))) 0` 作为 `G23`，保持逐位置 `setby` 路线不变。  
+
+下为各辅助引理（各自独立块，首行 `(* INSERT-BEFORE: split_assoc *)`）与主引理块。
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_setby_None_uncond : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+```
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_repeat_None_lt : forall len n,
+  n < len -> get (repeat None len) n = Some None.
+Proof.
+  intros len n. revert len. induction n; intros len Hlt.
+  - destruct len; [lia|]. simpl. reflexivity.
+  - destruct len; [lia|]. simpl. apply IHn. lia.
+Qed.
+```
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma length_repeat_None : forall len,
+  length (repeat None len) = len.
+Proof.
+  induction len; simpl; auto.
+Qed.
+```
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (len23 := Nat.max (length G2) (length G3)).
+  set (base := repeat None len23).
+  set (f := fun (n : nat) (t : option ty) =>
+           match get G2 n with
+           | Some (Some a) => Some a
+           | _ => match get G3 n with
+                  | Some (Some b) => Some b
+                  | _ => None
+                  end
+           end).
+  exists (setby f base 0).
+  split.
+  - (* split G G1 G23 *)
+    unfold split; intros n.
+    specialize (Hs1 n); specialize (Hs2 n).
+    assert (Hbase_len : length base = len23) by (subst base; apply length_repeat_None).
+    destruct (Nat.ltb_spec n len23) as [Hlt | Hge].
+    + (* n < len23 *)
+      assert (Hbase_get : get base n 
+[reasoning摘要]
+We need produce Coq proofs for get_setby_None and split_assoc. Need inspect definitions. We have full Layer1/2 material. Need comply with output discipline: each auxiliary lemma separate code block with first line (* INSERT-BEFORE: split_assoc *), main split_assoc separate block.
+
+We need derive split_assoc. The instructions give construction:
+
+G23 := setby (fun n t => match get G2 n with Some (Some a) => Some (Some a) | _ => get G3 n end) G 0.
+
+Need prove:
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+Need prove get_setby_None first. But check material has get_setby_None already? Yes Layer1 has get_setby_None in section 6, because I see Layer1.v contains Lemma get_setby_None? Let's search: In Layer1.v after get_setby_get there is Lemma get_setby_None : forall Gamma f k n, get Gamma n = None -> f (k + n) None = None -> get (setby f Gamma k) n = None. Ah material has a stronger version with condition on f. Our instructions say get_setby_None : forall Gamma f k n, get Gamma n=None -> get (setby f Gamma k) n = None. But that's false in general if f maps None to Some. Wait setby computes f at each element. If get Gamma n = None, setby's get at n applies f to None and f can make Some (Some T) perhaps, so not true for arbitrary f. The original get_setby_None requires f (k+n) None = None. The prompt says "材料里没有、上一版你误当成已有（幻觉）get_setby_None" but actually material has it with extra condition. They wan
+
+
+## 2026-09-04 04:37:13 [proof_loop] split_assoc · round1 · DS输出
+
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+[reasoning摘要]
+我们需要证明 split_assoc 并修正辅助引理 get_setby_None。注意任务说“材料A里已有你上一版的 split_assoc 完整证明与三个辅助引理（get_setby_None_uncond/get_repeat_None_lt/length_repeat_None），逐点结构是对的，只剩编译错误（如 repeat None len 里 None 推断不出类型——元素是 option ty，应写 repeat (None:option ty) len；类似隐式参数推断不出的地方都显式标类型）。请基于材料末尾的 coqc 错误做【最小修正】，保留已正确的证明结构，给出修正后的完整 Lemma 块（辅助引理用 INSERT-BEFORE 块、split_assoc 用独立主块）；不要改路线、不要删正确引理。”
+
+但是材料A末尾实际上 split_assoc 是残缺的，后面还有一大段注释和代码混杂，而且 split_assoc 并没有完整 Qed。任务特别要求按分块协议输出：辅助引理 get_setby_None 单独一个块，split_assoc 主引理单独一个块。且说材料A里已有上一版的 split_assoc 完整证明与三个辅助引理（get_setby_None_uncond/get_repeat_None_lt/length_repeat_None），但编译错误在 repeat None len 推断不出类型。需要基于材料末尾的 coqc 错误做最小修正。
+
+我们看材料A最后一段：
+
+```
+Lemma get_setby_None_uncond : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+
+Lemma get_repeat_None_lt : forall len n,
+  n < len -> get (repeat None len) n = Some None.
+Proof.
+  intros len n. revert len. induction n; intros len Hlt.
+  - destruct len; [lia|]. simpl. reflexivity.
+  - destruct len; [lia|]. simpl. apply IHn. lia.
+Qed.
+
+Lemma length_repeat_None : forall len,
+  length (repeat None len) = len.
+Proof.
+  induction len; simpl; auto.
+Qed.
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G
+
+
+## 2026-09-04 04:41:29 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+```
+[reasoning摘要]
+我们需要回答用户。用户给出任务：证明 Lemma split_assoc（替换 Admitted），并先自证辅助引理 get_setby_None。注意材料A里其实已有 split_assoc 的完整证明和辅助引理 get_setby_None_uncond / get_repeat_None_lt / length_repeat_None，但有编译错误。需要给出修正后的完整 Lemma 块，辅助引理用 INSERT-BEFORE 块，split_assoc 用独立主块。需要最小修正，保留已正确证明结构，修正类型标注等问题。
+
+但是我们没有看到“材料末尾的 coqc 错误”，用户说错误在材料末尾原样附上？在对话材料A末尾并没有包含完整错误？材料A Layer2.v 末尾包含一个被截断的 split_assoc 证明段，然后有 "### 辅助引理 1：无前件 setby 保持 None" 后面 Admitted 等。可能用户提到的材料末尾错误指的是上一版代码编译错误在材料末尾原样附上，但这里我们看到材料A中 split_assoc 证明段未闭合，且有一些混乱注释，未见具体错误信息。或许在材料A最底部包含 “Lemma get_setby_None_uncond...” 开始的新引理，这些是用户说的“已有你上一版的 split_assoc 完整证明与三个辅助引理...只剩编译错误”。但用户强调“请基于材料末尾的 coqc 错误做最小修正”。我们看不到具体错误信息，但需要修正明显问题。
+
+让我们审视材料A中最后部分：
+
+```
+(* ===== congruence 辅助引理占位（规格据 S00 策略/r1；证明由聚焦闭环逐个补） ===== *)
+Lemma get_setby_None_uncond : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+
+Lemma get_repeat_None_lt : forall len n,
+  n < len -> get (repeat None len) n = Some None.
+Proof.
+  intros len n. revert len. induction n; intros len Hlt.
+  - destruct len; [lia|]. simpl. reflexivity.
+  - destruct len; [lia|]. simpl. apply IHn. lia.
+Qed.
+
+Lemma length_repeat_None : forall len,
+  length (repeat None len) = len.
+Proof.
+  induction len; simpl; auto.
+Qed.
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exis
+
+
+## 2026-09-04 04:44:51 [proof_loop] split_assoc · round3 · DS输出
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_repeat_None_lt : forall len n,
+  n < len -> get (repeat (None : option ty) len) n = Some None.
+Proof.
+  intros len n. revert len. induction n; intros len Hlt.
+  - destruct len; [lia|]. simpl. reflexivity.
+  - destruct len; [lia|]. simpl. apply IHn. lia.
+Qed.
+```
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma length_repeat_None : forall len,
+  length (repeat (None : option ty) len) = len.
+Proof.
+  induction len; simpl; auto.
+Qed.
+```
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_setby_None_uncond : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+```
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+```
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (f := fun (n : nat) (t : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some (Some a)
+    | _ => get G3 n
+    end).
+  exists (setby f G 0).
+  split.
+  - (* split G G1 G23 *)
+    unfold split; intro n.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* resource: Some (Some T) *)
+      destruct Hs1 as [[H12 H3]|[H3 H12]];
+      destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * (* Hs1 left, Hs2 left : resource in G1 *)
+        left. split.
+        -- congruence.
+        -- right.
+           destruct H2 as [H2|H2]; destruct H3 as [H3|H3];
+           rewrite (get_setby_get G f 0 n (
+[reasoning摘要]
+我们需要响应用户要求。用户说上一版插入的辅助引理编译未过，错误在材料末尾？但他们给出的错误是 repeat None len 里 None 推断不出类型。用户要求先修正辅助引理 get_setby_None 然后给 split_assoc。然而我们之前只输出了 get_setby_None，用户说“刚插入的辅助引理编译未过（rc=1，新引理admit/abort=False）。错误见材料末尾，请修正这些辅助引理后重交，然后再给主引理 split_assoc。”但材料末尾错误仅显示 line 2182 characters 17-21: Cannot infer implicit parameter A of None whose type is "Type" in environment: len : nat。这是关于 repeat None len 中 None 类型推断问题。我们需要修正辅助引理和 split_assoc 中所有 repeat None 的地方，显式标注 (None : option ty)。同时需要保证 get_setby_None 正确，并且 split_assoc 主引理完整。用户规定：目标 Lemma split_assoc 从 Lemma 行到 Qed.，辅助引理用 INSERT-BEFORE 标记，每个单独块。
+
+我们需要查看材料中已有的 split_assoc 证明结构，据用户说已存在，只需最小修正：把 repeat None len 改成 repeat (@None (option ty)) len 或 repeat (None: option ty) len。
+
+但是用户这次任务说“证明 Lemma split_assoc（替换其 Admitted 占位），并先自证它需要的辅助引理 get_setby_None。”并说“当前状态（重要，别推倒重来）材料A里已有你上一版的 split_assoc 完整证明与三个辅助引理（get_setby_None_uncond/get_repeat_None_lt/length_repeat_None），逐点结构是对的，只剩编译错误（如 repeat None len 里 None 推断不出类型——元素是 option ty，应写 repeat (None:option ty) len；类似隐式参数推断不出的地方都显式标类型）。请基于材料末尾的 coqc 错误做【最小修正】，保留已正确的证明结构，给出修正后的完整 Lemma 块（辅助引理用 INSERT-BEFORE 块、split_assoc 用独立主块）；不要改路线、不要删正确引理。”
+
+所以我们要输出修正后的三个辅助引理和 split_assoc？但用户说“请修正这些辅助引理后重交，然后再给主引理 split_assoc。”以及补充说明中“每个辅助引理单独一个```coq 块... split_assoc 主引理单独一个```coq 块”。因此应该提供所有辅助引理（可能包括已有的三个修正版）以及主引理。但用户说上一版已有三个辅助引理，材料末尾的错误只提到一个，我们需要修正所有出现 repeat None len 的地方，包括 get_repeat_None_lt 和 length_repeat_None，也许 get_setby_None_uncond 不受影响但我们也要输出？用户说“请修正这些辅助引理后重交，然后再给主引理 split_assoc”，且“每个辅助引理单独一个块”。上一版插入的是 get_setby_N
+
+
+## 2026-09-04 04:46:33 [proof_loop] split_assoc · round4 · DS输出
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_repeat_None_lt : forall len n,
+  n < len -> get (repeat (None : option ty) len) n = Some None.
+Proof.
+  intros len n. revert len. induction n; intros len Hlt.
+  - destruct len; [lia|]. simpl. reflexivity.
+  - destruct len; [lia|]. simpl. apply IHn. lia.
+Qed.
+```
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma length_repeat_None : forall len,
+  length (repeat (None : option ty) len) = len.
+Proof.
+  induction len; simpl; auto.
+Qed.
+```
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+```
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (f := fun (n : nat) (t : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some (Some a)
+    | _ => get G3 n
+    end).
+  exists (setby f G 0).
+  split.
+  - (* split G G1 G23 *)
+    unfold split; intro n.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* resource: Some (Some T) *)
+      destruct Hs1 as [[H12 H3]|[H3 H12]];
+      destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * (* Hs1 left, Hs2 left : resource in G1 *)
+        left. split.
+        -- congruence.
+        -- right.
+           destruct H2 as [H2|H2]; destruct H3 as [H3|H3];
+           rewrite (get_setby_get G f 0 n (Some T) EG);
+           change (0 + n) with n; unfold f; rewrite H2; simpl; rewrite H3; simpl; auto.
+      * (* Hs1 left, Hs2 right : resource in G2 *)
+        right. split.
+        -- rewrite (get_setby_get G f 0 n (Some T) EG);
+           change (0 + n) with n; unfold f; rewrite H2; simpl. exact EG.
+        -- exact H1.
+      * (* Hs1 right, Hs2 
+[reasoning摘要]
+我们需要理解任务：当前要证明 Lemma split_assoc 替换 Admitted 占位，并辅助引理 get_setby_None。材料末尾说上一版已存在 split_assoc 完整证明和三个辅助引理，但编译错误在 `repeat None len` 推断不出 `None` 类型的隐式参数 A。我们要做最小修正：显式标注 `repeat (None : option ty) len` 等。注意材料A中已经有 get_setby_None_uncond/get_repeat_None_lt/length_repeat_None 和 get_setby_None? 其实材料A中存在 get_setby_None 了吗？我在材料Layer2里看到：
+- 在 congruence 辅助引理占位附近有：
+```
+Lemma get_setby_None_uncond : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+...
+Qed.
+
+Lemma get_repeat_None_lt : forall len n,
+  n < len -> get (repeat None len) n = Some None.
+Proof.
+...
+Qed.
+
+Lemma length_repeat_None : forall len,
+  length (repeat None len) = len.
+Proof.
+...
+Qed.
+
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+...
+Qed.
+```
+等等看材料 Layer2 中确实有这三个引理，而且 get_setby_None 出现了两次？材料A中：
+```
+(* ===== congruence 辅助引理占位（规格据 S00 策略/r1；证明由聚焦闭环逐个补） ===== *)
+Lemma get_setby_None_uncond : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+
+Lemma get_repeat_None_lt : forall len n,
+  n < len -> get (repeat None len) n = Some None.
+Proof.
+  intros len n. revert len. induction n; intros len Hlt.
+  - destruct len; [lia|]. simpl. reflexivity.
+  - destruct len; [lia|]. simpl. apply IHn. lia.
+Qed.
+
+Lemma length_repeat
+
+
+## 2026-09-04 04:53:32 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (f := fun (n : nat) (_ : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+    | _ => match get G3 n with
+           | Some v => v
+           | None => None
+           end
+    end).
+  exists (setby f G 0).
+  split.
+  - (* split G G1 G23 *)
+    unfold split; intro n.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* resource: Some (Some T) *)
+      destruct Hs1 as [[H12 H3]|[H3 H12]];
+      destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * (* Hs1 left, Hs2 left : resource in G1 *)
+        left. split.
+        -- congruence.
+        -- right.
+           destruct H2 as [H2|H2]; destruct H3 as [H3|H3];
+           rewrite (get_setby_get G f 0 n (Some T) EG);
+           change (0 + n) with n; unfold f; rewrite H2; simpl; rewrite H3; simpl; auto.
+      * (* Hs1 left, Hs2 right : resource in G2 *)
+        right. split.
+        -- rewrite (get_setby_get G f 0 n (Some T) EG);
+           change (0 + n) with n; unfold f; rewrite H2, H12; simpl. reflexivity.
+        -- exact H1.
+      * (* Hs1 right, Hs2 left : resource in G3 *)
+        right. split.
+        -- rewrite (get_setby_get G f 0 n (Some T) EG);
+           change (0 + n) with n; unfold f.
+           destruct H2 as [H2|H2]; rewrite H2; simpl.
+           ++ rewrite H3. simpl. reflexivity.
+           ++ rewrite H3. simpl. reflexivity.
+        -- destruct H1 as [H1|H1]; [left; exact H1 | right; exact H1].
+      * (* Hs1 right, Hs2 right : resource in G3 *)
+        right. split.
+        -- rewrite (get_setby_get G f 0 n (Some T) EG);
+           change (0 + n) with n; unfold f.
+           rewrite H2. destruct H12 as [H12|H12]; rewrite H12 in H2; try discriminate.
+           destruct H2 as [H2|H2]; rewrite H2; simpl.
+           ++ rewrite H3. simpl. reflexivity.
+           ++ rewrite H3. si
+[reasoning摘要]
+我们需要回答用户：给出 split_assoc 主证明块（最小修正），因为辅助引理已编译通过。需要严格遵守输出纪律：split_assoc 主引理单独 coq 块，不要 INSERT 标记，整体替换占位。可能需要同时给出 get_setby_None 吗？用户说辅助引理已编译通过，如果无需改就不要重发；但本轮任务要求"先自证它需要的辅助引理 get_setby_None"，不过材料A中已经有 get_setby_None（在占位区确实有 Lemma get_setby_None 已定义过？注意材料末尾有一大段 get_setby_None_uncond、get_repeat_None_lt、length_repeat_None，然后还有 get_setby_None 的重复定义？滚动查看：在“===== congruence 辅助引理占位”下面有：
+
+Lemma get_setby_None_uncond : ...
+Lemma get_repeat_None_lt ...
+Lemma length_repeat_None ...
+Lemma get_setby_None : ...
+Lemma split_assoc : ...
+然后 split_assoc 已出现？材料中确实包含 split_assoc 占位（Admitted?）在末尾，以及后面的 typed_res_par_l etc admitted。用户说“材料A里已有你上一版的 split_assoc 与辅助引理 get_setby_None_uncond/get_repeat_None_lt/length_repeat_None，辅助引理已编译通过；逐点结构正确。现在只剩主证明里 f 的类型层级错误”。所以当前 split_assoc 在文件中是一个错误的定义（可能 Admitted），需要替换。get_setby_None 似乎已经在文件中定义？材料A最后有：
+
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+
+所以 get_setby_None 已经在材料中存在并证明正确。用户要求主证明最小修正，且"辅助引理若无需改就不要重发"。因此我们只需要给出修正后的 split_assoc 主证明块。需要完全可编译，且不能有 Admitted。我们需要自己构造完整证明。必须确保 f 类型正确：setby 的 f : nat -> option ty -> option ty，即吃位置 n 和元素 u:option ty，返回 option ty。但注意 setby f Gamma k 的定义：match Gamma with [] => [] | t::Gamma' => f k t :: setby f Gamma' (S k) end。对 (t::Gamma')，位置 k 是全局索引。get_setby_get 说 get (setby f Ga
+
+
+## 2026-09-04 04:55:20 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (f := fun (n : nat) (_ : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+    | _ => match get G3 n with
+           | Some v => v
+           | None => None
+           end
+    end).
+  exists (setby f G 0).
+  split.
+  - (* split G G1 G23 *)
+    unfold split; intro n.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [gn|] eqn:EG.
+    + destruct gn as [T|].
+      * (* get G n = Some (Some T) *)
+        destruct Hs1 as [[H12 H3]|[H3 H12]];
+        destruct Hs2 as [[H1 H2]|[H2 H1]].
+        -- (* Hs1 left, Hs2 left : resource in G1 *)
+           left. split.
+           ++ congruence.
+           ++ right.
+              destruct H2 as [H2|H2]; destruct H3 as [H3|H3];
+              rewrite (get_setby_get G f 0 n (Some T) EG);
+              change (0 + n) with n; unfold f;
+              rewrite H2; simpl; rewrite H3; simpl; auto.
+        -- (* Hs1 left, Hs2 right : resource in G2 *)
+           right. split.
+           ++ rewrite (get_setby_get G f 0 n (Some T) EG);
+              change (0 + n) with n; unfold f;
+              rewrite H2, H12; simpl. reflexivity.
+           ++ exact H1.
+        -- (* Hs1 right, Hs2 left : resource in G3 *)
+           right. split.
+           ++ rewrite (get_setby_get G f 0 n (Some T) EG);
+              change (0 + n) with n; unfold f.
+              destruct H2 as [H2|H2]; rewrite H2; simpl.
+              ** rewrite H3. simpl. reflexivity.
+              ** rewrite H3. simpl. reflexivity.
+           ++ destruct H1 as [H1|H1]; [left; exact H1 | right; exact H1].
+        -- (* Hs1 right, Hs2 right : resource in G3 *)
+           right. split.
+           ++ rewrite (get_setby_get G f 0 n (Some T) EG);
+              change (0 + n) with n; unfold f.
+              rewrite H2. destruct H12 as [H12|H12]; rewrite H12 in H2; try discrimi
+[reasoning摘要]
+我们需要理解当前任务。用户要求证明 split_assoc，替换 Admitted。材料A中已经给出了一个 split_assoc 的证明（在材料A Layer2.v 中），但是上一版编译错误在 line 2241 附近，指出模式问题。用户指出：当前状态：材料A里已有上一版 split_assoc 与辅助引理 get_setby_None_uncond/get_repeat_None_lt/length_repeat_None，辅助引理已编译通过；逐点结构正确。现在只剩主证明里 f 的【类型层级】错误（coqc：f 被写成返回 option(option ty)，但 setby 要求 f : nat -> option ty -> option ty）。
+
+但材料A中 Layer2.v 在末尾? 实际上材料A已经包含了 split_assoc 的证明体（似乎是上一版？）。用户说上一版 split_assoc 主证明块需最小修正，只重写 split_assoc 主证明块。我需要看一下材料A中给出的 split_assoc 证明体，它的 f 定义是否正确。材料A中在 Layer2.v 末尾附近（在“get_setby_None_uncond”等之后）给出了 split_assoc 的完整证明。我检查其中的 f 定义：
+
+```
+  set (f := fun (n : nat) (_ : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+    | _ => match get G3 n with
+           | Some v => v
+           | None => None
+           end
+    end).
+```
+
+这个 f 返回 match get G2 n 的 Some (Some a) 时返回 Some a（option ty），其他情况返回 match get G3 n 的 Some v => v（option ty），None => None。这看起来 f : nat -> option ty -> option ty。但注意 f 的第一个参数 n 实际上匹配 get G2 n，但 f 定义中的参数名是 n，并且在 setby 使用中 f 接收位置变量 n。没问题。但是 f 的第二个参数 _ : option ty 没有被使用，没问题。
+
+材料A中的 split_assoc 证明体是否是修正过的？用户上一个编译错误是 "Expects a disjunctive pattern..." 在 line 2241，说明材料A中的上一版可能有语法错误？但材料A中显示的 split_assoc 代码似乎没有明显的模式错误。不过用户现在说上一版已有辅助引理，只要求最小修正主证明块。我需要输出一个完整的主证明块，确保 f 类型正确，并且证明 tactic 正确。
+
+我们回顾材料A里 split_assoc 证明的结构：它对每个位置 n 分析各种情况，使用了大量的 destruct。但这个证明可能过于复杂，且用户指出上一版编译错误在 line 2241 "Expects a disjunctive pattern with 1 branch or a conjunctive pattern made of 0 patterns." 这可能是由于某些 destruct 模式错误导致。也许材料A中代码那一行附近有问题。但用户给出的材
+
+
+## 2026-09-04 04:58:48 [proof_loop] split_assoc · round3 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (f := fun (n : nat) (_ : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+    | Some None => Some None
+    | None => match get G3 n with
+              | Some v => v
+              | None => None
+              end
+    end).
+  exists (setby f G 0).
+  split.
+  - (* split G G1 G23 *)
+    unfold split; intro n.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [gn|] eqn:EG.
+    + destruct gn as [T|].
+      * (* get G n = Some (Some T) *)
+        destruct Hs1 as [[H12 H3] | [H3 H12]];
+        destruct Hs2 as [[H1 H2] | [H2 H1]].
+        -- (* Hs1 left, Hs2 left *)
+           left. split; [congruence | right].
+           rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n; unfold f.
+           destruct H2 as [H2|H2]; destruct H3 as [H3|H3];
+           rewrite H2; simpl; rewrite H3; simpl; auto.
+        -- (* Hs1 left, Hs2 right *)
+           right. split.
+           ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+              change (0+n) with n; unfold f.
+              rewrite H2, H12; simpl. reflexivity.
+           ++ exact H1.
+        -- (* Hs1 right, Hs2 left *)
+           right. split.
+           ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+              change (0+n) with n; unfold f.
+              destruct H2 as [H2|H2]; rewrite H2; simpl.
+              ** rewrite H3. simpl. reflexivity.
+              ** rewrite H3. simpl. reflexivity.
+           ++ destruct H1 as [H1|H1]; [left; exact H1 | right; exact H1].
+        -- (* Hs1 right, Hs2 right *)
+           right. split.
+           ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+              change (0+n) with n; unfold f.
+              rewrite H2. destruct H12 as [H12|H12]; rewrite H12 in H2; try discriminate.
+              destruct H2 as [H2|H2]; rewrite H2; simpl.
+     
+[reasoning摘要]
+我们只有错误的最后一行：`Error: Expects a disjunctive pattern with 1 branch or a conjunctive pattern made of 0 patterns.` 在 line 2244, characters 29-36。
+
+这可能是在 destruct 某个东西时模式错误，比如 `destruct H2 as [H2|H2]` 但 H2 不是 disjunction? 或者 `destruct H2 as [H2|H2];` 当 H2 是 option 时？材料说明 option 层级。
+
+我们需要查看上一版代码中 line 2244 附近。我没有行号，但可以根据上下文猜测。上一版 split_assoc 主证明中可能有错误的 destruct 模式，比如把 `get G2 n` 当成 option (option ty) 三层 destruct，但实际某个变量已是被 destruct 后的 `H2` 可能是 `get G2 n = None \/ get G2 n = Some None`，这是一个 disjunction，但 `destruct H2 as [H2|H2]` 是对的。错误信息说“Expects a disjunctive pattern with 1 branch or a conjunctive pattern made of 0 patterns.” 这可能发生在 `destruct H2 as [H2|H2]` 时 H2 并不是一个 disjunction，而是已经 destruct 后的等式？或者对 option 使用了错误模式。
+
+根据错误信息，在 line 2244，字符29-36，应该是 `H2` 或模式。可能是在 `destruct H2 as [H2|H2]` 时 H2 已经被 destruct 成了非 disjunction？比如上一版在某个分支里重复 destruct H2。
+
+我们被要求做“最小修正”：只重写 split_assoc 主证明块，保留逐点 A/B1/B2 结构。我们需要给出一个完整的没有错误的 split_assoc 证明。
+
+我们来仔细重新构造 split_assoc 的证明，注意 option 层级。材料给出精确路线：使用 setby f G 0，f 返回 option ty。辅助引理 get_setby_None 已有，我们需要在证明中使用它。
+
+我们重新写一个清晰的证明。注意我们要避免前一版的某些模式错误。可能需要使用 `destruct (get G2 n) as [[a|]|]` 等。但重点是：在 destruct Hs1/Hs2 时，它们都是 disjunction，每个分支里还有 conjunction。我们可以用 `destruct Hs1 as [[H12 H3] | [H3 H12]]` 这种模式（正确）。然后 H12、H3 等是等式或空析取。当我们需要进一步 destruct 这些空析取时，比如 `H2 : get G2 n = None \/ get G2 n = Some None`，我们可以 `destruct H2 as [H2|H2]`，这是合法的，因为它是析取。但如果我们在同一个分支里已经 destruct 过 H2，试图再 destruct 就会失败。
+
+这可能是因为在 `get G n = Some None` 分支中，我们在有些子分支里对 H2/H3 重复 destruct，或者在错误的上
+
+
+## 2026-09-04 05:00:57 [proof_loop] split_assoc · round4 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (f := fun (n : nat) (_ : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+    | _ => match get G3 n with
+           | Some v => v
+           | None => None
+           end
+    end).
+  exists (setby f G 0).
+  split.
+  - unfold split; intros n.
+    unfold split in Hs1, Hs2.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + destruct Hs1 as [[H12 H3]|[H3 H12]]; destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * left. split; [congruence | right].
+        rewrite (get_setby_get G f 0 n (Some T) EG).
+        change (0+n) with n. unfold f.
+        destruct H2 as [H2|H2]; destruct H3 as [H3|H3]; simpl; auto.
+      * right. split.
+        ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n. unfold f.
+           rewrite H2, H12; simpl. reflexivity.
+        ++ exact H1.
+      * right. split.
+        ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n. unfold f.
+           destruct H2 as [H2|H2]; rewrite H2; simpl;
+           [rewrite H3 | rewrite H3]; simpl; reflexivity.
+        ++ destruct H1 as [H1|H1]; [left; exact H1 | right; exact H1].
+      * right. split.
+        ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n. unfold f.
+           rewrite H2. destruct H12 as [H12|H12]; rewrite H12 in H2; try discriminate.
+           destruct H2 as [H2|H2]; rewrite H2; simpl;
+           [rewrite H3 | rewrite H3]; simpl; reflexivity.
+        ++ exact H1.
+    + destruct Hs1 as [[H12 H3]|[H3 H12]]; destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * left. split; [congruence | right].
+        rewrite (get_setby_get G f 0 n None EG).
+        change (0+n) with n. unfold f.
+        destruct H2 as [H2|H2]; destruct H3 as [H3|H3]; simpl; auto.
+      * right. split.
+        ++ rewrite (get_s
+[reasoning摘要]
+我们需要回应用户要求：上一版 split_assoc 失败，错误在 f 类型层级。用户给了非常详细的修正指引：setby 的 f 返回 option ty，不能返回 option(option ty)。我们需要输出最小修正的 split_assoc 主引理块，且先用辅助引理 get_setby_None 已存在？用户说材料A里已有 get_setby_None_uncond/get_repeat_None_lt/length_repeat_None，辅助引理已编译通过；但真正的 get_setby_None 是否已在材料里？看材料 A Layer2.v 全文，在 congruence 辅助引理部分有：
+
+```
+Lemma get_setby_None_uncond : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+```
+
+然后还有 `get_setby_None` 在 split_assoc 之前？材料里 split_assoc 之前有：
+
+```
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+```
+
+是的，材料里已经有 get_setby_None 了，在 split_assoc 前面。所以辅助引理已有 Qed。我们只需修 split_assoc 主证明。
+
+用户强调：辅助引理若无需改就不要重发。我们只重发 split_assoc 主引理独立块。
+
+需要按之前策略写正确，注意 f 返回 option ty。现有的 split_assoc 占位在材料里已有旧代码。我们需要给一个完整 Lemma split_assoc ... Qed. 只替换该引理。确保不 admit。
+
+我们要仔细设计证明，避免编译错误。错误信息：The term "Some None" has type "option (option ?A)" while expected "option ty". 这说明在 f 定义或某个位置写错了。用户给的正确 f 应该返回 option ty。但注意在 split_assoc 的第二部分需要构造 G23，f 定义为：
+
+```
+fun (n : nat) (_ : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+
+
+## 2026-09-04 05:18:09 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (f : nat -> option ty -> option ty := fun n (_ : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+    | _ => match get G3 n with
+           | Some v => v
+           | None => None
+           end
+    end).
+  exists (setby f G 0).
+  split.
+  - unfold split; intros n.
+    unfold split in Hs1, Hs2.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + destruct Hs1 as [[H12 H3]|[H3 H12]]; destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * left. split; [congruence | right].
+        rewrite (get_setby_get G f 0 n (Some T) EG).
+        change (0+n) with n. unfold f.
+        destruct H2 as [H2|H2]; destruct H3 as [H3|H3]; simpl; auto.
+      * right. split.
+        ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n. unfold f.
+           rewrite H2, H12; simpl. reflexivity.
+        ++ exact H1.
+      * right. split.
+        ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n. unfold f.
+           destruct H2 as [H2|H2]; rewrite H2; simpl;
+           [rewrite H3 | rewrite H3]; simpl; reflexivity.
+        ++ destruct H1 as [H1|H1]; [left; exact H1 | right; exact H1].
+      * right. split.
+        ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n. unfold f.
+           rewrite H2. destruct H12 as [H12|H12]; rewrite H12 in H2; try discriminate.
+           destruct H2 as [H2|H2]; rewrite H2; simpl;
+           [rewrite H3 | rewrite H3]; simpl; reflexivity.
+        ++ exact H1.
+    + destruct Hs1 as [[H12 H3]|[H3 H12]]; destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * left. split; [congruence | right].
+        rewrite (get_setby_get G f 0 n None EG).
+        change (0+n) with n. unfold f.
+        destruct H2 as [H2|H2]; destruct H3 as [H3|H3]; simpl; auto.
+      * right. split.
+ 
+[reasoning摘要]
+We need produce Coq code for split_assoc only? The task says辅助引理已编译通过, not resend. Need minimal correction: only rewrite split_assoc main proof block. Must be complete, compile. We need know exact current file has prior split_assoc with bugs? The material A includes a split_assoc proof already (but maybe buggy?). User says current state: auxiliary lemmas already compiled, only main proof f type error line2172. Need produce replacement Lemma split_assoc ... Qed with correct f type.
+
+Need understand definitions and available lemmas. We need produce a correct proof using setby, get_setby_get, get_setby_None. We need verify logic. We cannot run coq, must be careful.
+
+Let's restate goal:
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+Given split is pointwise: at each n, either left gets G's value and right empty, or right gets G's value and left empty.
+
+Existential: define f : nat -> option ty -> option ty. Let G23 := setby f G 0.
+
+We can define f n _ := match get G2 n with | Some (Some a) => Some a | _ => match get G3 n with | Some v => v | None => None end end.
+
+Need ensure f returns option ty. Here:
+match get G2 n with
+| Some (Some a) => Some a
+| _ => match get G3 n with | Some v => v | None => None end
+end.
+- get G2 n : option (option ty). Patterns: Some (Some a) gives a : ty, Some a : option ty. _ covers Some None and None (two branches), okay as one branch returning option ty via nested mat
+
+
+## 2026-09-04 05:22:40 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (f : nat -> option ty -> option ty := fun n (_ : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+    | _ => match get G3 n with
+           | Some v => v
+           | None => None
+           end
+    end).
+  exists (setby f G 0).
+  assert (HG23_some : forall n u, get G n = Some u -> get (setby f G 0) n = Some (f n u)).
+  { intros n u H. apply get_setby_get. exact H. }
+  assert (HG23_none : forall n, get G n = None -> get (setby f G 0) n = None).
+  { intros n H. apply get_setby_None. exact H. }
+  split.
+  - unfold split; intros n.
+    unfold split in Hs1, Hs2.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct Hs1 as [[H12 H3e] | [H3 H12e]].
+    + destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+      * (* L1 L2: resource in G1 *)
+        left; split.
+        { rewrite H1, H12; reflexivity. }
+        destruct (get G n) as [[T|]|] eqn:EG.
+        -- rewrite (HG23_some n (Some T) EG).
+           destruct H2e as [H2n|H2s]; destruct H3e as [H3n|H3s].
+           ++ left; unfold f; rewrite H2n,H3n; reflexivity.
+           ++ right; unfold f; rewrite H2n,H3s; reflexivity.
+           ++ left; unfold f; rewrite H2s,H3n; reflexivity.
+           ++ right; unfold f; rewrite H2s,H3s; reflexivity.
+        -- rewrite (HG23_some n None EG).
+           destruct H2e as [H2n|H2s]; destruct H3e as [H3n|H3s].
+           ++ left; unfold f; rewrite H2n,H3n; reflexivity.
+           ++ right; unfold f; rewrite H2n,H3s; reflexivity.
+           ++ left; unfold f; rewrite H2s,H3n; reflexivity.
+           ++ right; unfold f; rewrite H2s,H3s; reflexivity.
+        -- rewrite (HG23_none n EG). left; reflexivity.
+      * (* L1 R2: resource in G2 *)
+        right; split.
+        { exact H1e. }
+        destruct (get G n) as [[T|]|] eqn:EG.
+        -- rewrite (HG23_some n (Some T) EG).
+           unfold f; r
+[reasoning摘要]
+我们任务：修改 split_assoc 主证明。上一版只主证明错格式。需要给出正确 split_assoc 证明块，替换 Admitted 占位，不重发辅助引理。材料中已有上一版 split_assoc 但格式/类型错。我们要写一个完整的 Lemma split_assoc ... Qed. 代码块。需要利用现有 setby/get_setby_get/get_setby_None。注意只输出 split_assoc 主引理一个块，不要 INSERT-BEFORE 标记？任务说 split_assoc 主引理单独一个块（不要 INSERT 标记，直接 Lemma split_assoc..Qed.），会整体替换占位。好。
+
+我们需要构造正确的 split_assoc。仔细看补充说明指定路线。
+
+我们已有 get_setby_None 辅助引理（已编译通过）。不用重发。split_assoc 主证明需要逐位置。
+
+给一个完整代码块，期望 coqc 通过。
+
+先回顾定义：
+ctx = list (option ty).
+get : option(option ty)，三层 None | Some None | Some(Some T).
+split 逐位置：每个 n，G1 n = G n 且 G2 n = None 或 Some None；或 G2 n = G n 且 G1 n = None 或 Some None。
+注意 split 的陈述：第一个分支 left：get Gamma1 n = get Gamma n /\ (get Gamma2 n = None \/ get Gamma2 n = Some None)。就是这个。
+
+我们使用 G23 := setby f G 0，其中 f n u = 若 get G2 n 为 Some (Some a) 则 Some a，否则 get G3 n（get 层）。要小心 f 返回 option ty，当 get G3 n 为 Some v（v:option ty）直接返回 v；当 None 返回 None。这里 get G3 n 的 get 层三层可能需要 destruct 成 [[b|]|]：若 None 或 Some None? 等等。其实 get G3 n 返回 option(option ty)，Some v 其中 v:option ty。所以我们可以直接 match get G3 n with | Some v => v | None => None end。这返回 option ty。没问题。
+
+f 定义：
+fun n (u : option ty) =>
+  match get G2 n with
+  | Some (Some a) => Some a
+  | _ => match get G3 n with
+         | Some v => v
+         | None => None
+         end
+  end
+需要确保匹配类型。我们可以写 set (f : nat -> option ty -> option ty := fun n (_ : option ty) => ...).
+
+之后证明 split G G1 G23 和 split G23 G2 G3。要逐位置。
+
+我们尝试采用一个更结构化、可编译的证明，避免繁琐 case。不靠 destruct all 分支可能复杂。但任务指定逐点 A/B1/B2，直接 destruct Hs1 n, Hs2 n。
+
+
+## 2026-09-04 05:25:20 [proof_loop] split_assoc · round3 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  set (f : nat -> option ty -> option ty := fun n (_ : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+    | _ => match get G3 n with
+           | Some v => v
+           | None => None
+           end
+    end).
+  exists (setby f G 0).
+  split.
+  - unfold split; intros n.
+    unfold split in Hs1, Hs2.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + destruct Hs1 as [[H12 H3]|[H3 H12]]; destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * left. split; [congruence | right].
+        rewrite (get_setby_get G f 0 n (Some T) EG).
+        change (0+n) with n. unfold f.
+        destruct H2 as [H2|H2]; destruct H3 as [H3|H3]; simpl; reflexivity.
+      * right. split.
+        ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n. unfold f.
+           rewrite H2, H12; simpl. reflexivity.
+        ++ exact H1.
+      * right. split.
+        ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n. unfold f.
+           destruct H2 as [H2|H2]; rewrite H2; simpl;
+           [rewrite H3 | rewrite H3]; simpl; reflexivity.
+        ++ destruct H1 as [H1|H1]; [left; exact H1 | right; exact H1].
+      * right. split.
+        ++ rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n. unfold f.
+           rewrite H2. destruct H12 as [H12|H12]; rewrite H12 in H2; try discriminate.
+           destruct H2 as [H2|H2]; rewrite H2; simpl;
+           [rewrite H3 | rewrite H3]; simpl; reflexivity.
+        ++ exact H1.
+    + destruct Hs1 as [[H12 H3]|[H3 H12]]; destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * left. split; [congruence | right].
+        rewrite (get_setby_get G f 0 n None EG).
+        change (0+n) with n. unfold f.
+        destruct H2 as [H2|H2]; destruct H3 as [H3|H3]; simpl; reflexivity.
+      * r
+[reasoning摘要]
+我们需要回应。任务：证明 split_assoc，替换 Admitted占位。材料中已有 split_assoc? 用户说辅助引理已编译通过，当前状态材料A里已有上一版 split_assoc 与辅助引理 get_setby_None_uncond/get_repeat_None_lt/length_repeat_None，辅助引理已编译通过；但现在需要重写 split_assoc主证明块，独立coq块，f类型层级正确，最小修正，不要重发辅助引理。但是我们需要给出完整可编译代码。用户特别强调：不要重发任何辅助引理；辅助引理已编译通过。所以只需输出 split_assoc主引理块。但系统要求确保引用的辅助引理存在。材料A中已有 get_setby_None? 用户说材料A里已有上一版 split_assoc 与辅助引理 get_setby_None_uncond/get_repeat_None_lt/length_repeat_None，但说明里提到“get_setby_None 必须先自己证”，但当前状态又提到辅助引理已编译通过，包括 get_setby_None_uncond 等，但不是 get_setby_None? 材料 A 中 Layer2.v 的确有 Lemma get_setby_None : ... 完整证明？查材料：在 congruence 辅助引理占位部分有：
+
+```
+Lemma get_setby_None_uncond : ...
+Proof. ... Qed.
+
+Lemma get_repeat_None_lt : ...
+...
+Lemma get_setby_None : forall Gamma f k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u0 Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f:=f) (k:=S k). exact Hn.
+Qed.
+```
+
+是的，材料 A 中已有 get_setby_None 完整证明。所以无需重发辅助引理。只需给 split_assoc 主证明。
+
+现在必须给出正确 split_assoc 证明，沿用材料A中已有的 split_assoc? 材料A中已经有一个 split_assoc 证明（最后部分），用户说上一版在材料A里已有，但那个可能有问题？用户说“上一版 coqc 编译错误 line 2205 syntax error”，材料A中的 split_assoc 可能包含语法错误？让我们检查用户提供的材料 A 中 split_assoc 块，前面有 `Lemma split_assoc : ...` 证明很长，似乎已经有 proof 结束 Qed。但用户上一版错误 line 2205 是语法错误，可能在材料A中的 split_assoc 证明内存在某个战术语法错误。我们需要提供一个正确版本。
+
+由于我们不能实际运行 coqc，但必须尽可能给出正确代码。可以从材料A中那个 split_assoc 证明复制并修正？可是我们没有看到材料A中的split_assoc完整代码？用户在最开始材料A中包含了完整 Layer2.v
+
+
+## 2026-09-04 05:40:31 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f : nat -> option ty -> option ty := fun n (_:option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+    | _ => match get G3 n with
+           | Some v => v
+           | None => None
+           end
+    end).
+  exists (setby f G 0).
+  split.
+  - (* split G G1 (setby f G 0) *)
+    unfold split; intros n.
+    unfold split in Hs1, Hs2.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3]|[H3 H12]];
+      destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * (* 左左：资源在 G1 *)
+        left. split.
+        -- rewrite H1, H12. reflexivity.
+        -- right.
+           rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n.
+           unfold f.
+           destruct H2 as [H2|H2]; destruct H3 as [H3|H3]; simpl; reflexivity.
+      * (* 左右：资源在 G2 *)
+        right. split.
+        -- rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n.
+           unfold f.
+           rewrite H2, H12. simpl.
+           reflexivity.
+        -- exact H1.
+      * (* 右左：资源在 G3 *)
+        right. split.
+        -- rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n.
+           unfold f.
+           destruct H2 as [H2|H2]; rewrite H2; simpl;
+           [rewrite H3 | rewrite H3]; simpl; reflexivity.
+        -- destruct H1 as [H1|H1]; [left; exact H1 | right; exact H1].
+      * (* 右右：矛盾 *)
+        exfalso.
+        destruct H1 as [H1|H1]; destruct H2 as [H2|H2];
+        rewrite H1 in H12; rewrite H2 in H12;
+        try discriminate;
+        rewrite H3 in H12;
+        try discriminate.
+    + (* get G n = Some None *)
+      destruct Hs1 as [[H12 H3]|[H3 H12]];
+      destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * left. split.
+        -- rewrite H1, H12. reflexivity.
+
+[reasoning摘要]
+We need solve task: prove Lemma split_assoc replacing Admitted. We have full material A. We need produce one coq block with Lemma split_assoc ... Qed only, after first ensuring helper get_setby_None already exists? User says current state: auxiliary lemmas already compiled (including get_setby_None perhaps? Wait material A contains get_setby_None near bottom? Let's inspect. In Layer2 near bottom before split_assoc, there is:
+Lemma get_setby_None_uncond...
+Lemma get_repeat_None_lt...
+Lemma length_repeat_None...
+Lemma get_setby_None : forall Gamma f k n, get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof. ... Qed.
+Then Lemma split_assoc ... Proof. Admitted.
+
+Yes material A includes get_setby_None just before split_assoc. So no need to re-send helper. Task asks prove split_assoc. We need provide code block with Lemma split_assoc ... Qed replacing placeholder. Need ensure compiles with Coq 9.1.0. There is warning: don't use congruence tactic? They said don't write bare `congruence`. But we can use `congruence`? They prohibited; use reflexivity/f_equal/lia. However existing proof likely used congruence in many places. Need avoid if possible? The instruction says "本项目已定义 Inductive congruence（结构同余关系），不要把 congruence 当内置 tactic 用；需要等式闭合用 reflexivity/f_equal/lia，别写裸 congruence。" So in our proof avoid tactic `congruence`.
+
+We need produce minimal correction? They previously described exact strategy with f returning option ty. Material A currently has split_assoc proof with appa
+
+
+## 2026-09-04 05:41:28 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f : nat -> option ty -> option ty :=
+          fun n (u : option ty) =>
+            match get G2 n with
+            | Some (Some a) => Some a
+            | _ => match get G3 n with
+                   | Some v => v
+                   | None => None
+                   end
+            end).
+  exists (setby f G 0).
+  split.
+  - (* split G G1 (setby f G 0) *)
+    unfold split; intros n.
+    unfold split in Hs1, Hs2.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3]|[H3 H12]];
+      destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * (* 左左：资源在 G1 *)
+        left. split.
+        -- rewrite H1, H12. reflexivity.
+        -- right.
+           rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n.
+           unfold f.
+           destruct H2 as [H2|H2]; destruct H3 as [H3|H3]; simpl; reflexivity.
+      * (* 左右：资源在 G2 *)
+        right. split.
+        -- rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n.
+           unfold f.
+           rewrite H2, H12. simpl.
+           reflexivity.
+        -- exact H1.
+      * (* 右左：资源在 G3 *)
+        right. split.
+        -- rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n.
+           unfold f.
+           destruct H2 as [H2|H2]; rewrite H2; simpl;
+           [rewrite H3 | rewrite H3]; simpl; reflexivity.
+        -- destruct H1 as [H1|H1]; [left; exact H1 | right; exact H1].
+      * (* 右右：矛盾 *)
+        exfalso.
+        destruct H1 as [H1|H1]; destruct H2 as [H2|H2];
+        rewrite H1 in H12; rewrite H2 in H12;
+        try discriminate;
+        rewrite H3 in H12;
+        try discriminate.
+    + (* get G n = Some None *)
+      destruct Hs1 as [[H12 H3]|[H3 H12]];
+      destruct Hs2 as [[H1 H2]|[H2 
+[reasoning摘要]
+我们需要理解任务。用户要求证明 split_assoc 主引理最小修正，只有主证明块，辅助引理已存在。上一版错误在 line 2205 附近语法错误，可能是 set (f : T := ...) 语法。用户已明确指出用 pose 不是 set。我们需重写 split_assoc 主证明。必须确保 f 类型正确。参照用户给出的分析。
+
+我们需要产出一个单独的 coq 块，从 Lemma split_assoc 到 Qed.，不含辅助引理。注意不重发辅助引理。
+
+先仔细阅读材料 A 中已有的 split_assoc 旧版（占位）和辅助引理。材料末尾已给了上一版 split_assoc 全文，可能是错误的？实际上材料A末尾包含了辅助引理和 split_assoc 的实现，但是注明了上一版主证明错误在 f 类型层级。我们要替换 split_assoc 主证明块。
+
+从材料 A 中，split_assoc 已经有一个实现含 setby f G 0，但 f 定义可能写错层级？用户说只重写 split_assoc 主证明块。我们需写正确的。
+
+我们需要自己构造。看材料 A 中末尾确实给出了 split_assoc 代码，但是 f 定义可能有问题：它定义 f 为 match get G2 n with | Some (Some a) => Some a | _ => ... end。这其实是正确的元素层返回 option ty。然而可能在 Coq 中 f 局部定义用 set 导致语法错误。用户告诉用 pose。所以只需改写为 pose。
+
+让我们分析现有 split_assoc 证明逻辑：它用 pose (f : nat -> option ty -> option ty := fun n (_:option ty) => match get G2 n with | Some (Some a) => Some a | _ => match get G3 n with | Some v => v | None => None end end). 然后 exists (setby f G 0). split. 两个目标的证明已经存在。看起来代码逻辑基本正确，只是 f 定义用 set 语法错误。用户要求最小修正。所以我们直接提供相同代码但用 pose。
+
+但是我们必须检查现有代码中是否还有其他会导致错误的地方。用户强调 f 类型是 nat -> option ty -> option ty，现有代码 f 的 lambda 参数是 fun n (_:option ty) => ...，返回 match get G2 n with ... | Some (Some a) => Some a | _ => ... end。这里 get G2 n 是 option (option ty)，match 匹配 Some (Some a) 返回 Some a（option ty 的元素层），匹配 _ 返回 match get G3 n with | Some v => v | None => None end。get G3 n 也是 option (option ty)，match Some v 返回 v : option ty，None 返回 None : option ty。所以 f 返回 option ty，正确。_ 参数未使用。
+
+注意 lambda 第二参数 named _:option ty？在 Coq 中写 `fun n (_:option ty) => ...` 可
+
+
+## 2026-09-04 05:43:11 [proof_loop] split_assoc · round3 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun n (u : option ty) =>
+    match get G2 n with
+    | Some (Some a) => Some a
+    | _ => match get G3 n with
+           | Some v => v
+           | None => None
+           end
+    end).
+  exists (setby f G 0).
+  split.
+  - (* split G G1 (setby f G 0) *)
+    unfold split; intros n.
+    unfold split in Hs1, Hs2.
+    specialize (Hs1 n); specialize (Hs2 n).
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3]|[H3 H12]];
+      destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * (* 左左：资源在 G1 *)
+        left. split.
+        -- rewrite H1, H12. reflexivity.
+        -- right.
+           rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n.
+           unfold f.
+           destruct H2 as [H2|H2]; destruct H3 as [H3|H3]; simpl; reflexivity.
+      * (* 左右：资源在 G2 *)
+        right. split.
+        -- rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n.
+           unfold f.
+           rewrite H2, H12. simpl.
+           reflexivity.
+        -- exact H1.
+      * (* 右左：资源在 G3 *)
+        right. split.
+        -- rewrite (get_setby_get G f 0 n (Some T) EG).
+           change (0+n) with n.
+           unfold f.
+           destruct H2 as [H2|H2]; rewrite H2; simpl;
+           [rewrite H3 | rewrite H3]; simpl; reflexivity.
+        -- destruct H1 as [H1|H1]; [left; exact H1 | right; exact H1].
+      * (* 右右：矛盾 *)
+        exfalso.
+        destruct H1 as [H1|H1]; destruct H2 as [H2|H2];
+        rewrite H1 in H12; rewrite H2 in H12;
+        try discriminate;
+        rewrite H3 in H12;
+        try discriminate.
+    + (* get G n = Some None *)
+      destruct Hs1 as [[H12 H3]|[H3 H12]];
+      destruct Hs2 as [[H1 H2]|[H2 H1]].
+      * left. split.
+        -- rewrite H1, H12. reflexivity.
+        -- right.
+           r
+[reasoning摘要]
+我们需要判断用户任务：证明 split_assoc？但材料A里已经有 split_assoc 的证明，且辅助引理 get_setby_None 已存在？用户提供的材料A Layer2 中包含 get_setby_None 以及 split_assoc 证明（在材料末尾附近）。
+
+但用户说“上一版 coqc 编译错误 line 2205”，要求最小修正。我们需要阅读材料A中当前的 split_assoc 证明块，它可能有问题？材料A中已经给出了 split_assoc 的证明，看起来用的是 pose f 返回？让我检查材料A中给出的 split_assoc 证明。在材料A Layer2 末尾部分：
+
+```
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f : nat -> option ty -> option ty :=
+          fun n (u : option ty) =>
+            match get G2 n with
+            | Some (Some a) => Some a
+            | _ => match get G3 n with
+                   | Some v => v
+                   | None => None
+                   end
+            end).
+  exists (setby f G 0).
+  split.
+...
+```
+
+这看起来正确。但用户报告错误 line 2205 字符 42-44 Syntax error，可能对应 `pose (f : nat -> option ty -> option ty :=` 中的 `:=`？用户硬性自检说：set/pose 语法铁事实，必须用 pose 不是 set；pose 允许类型标注写在名字后：`pose (f : nat -> option ty -> option ty := fun n (_:option ty) => ...)`. 材料A当前正是这个写法。
+
+但错误为什么产生？用户说“上一版 coqc 编译错误 line 2205, characters 42-44: Error: Syntax error: ',' or ')' expected after [term level 200] (in [term]).” 可能当前材料A中的块其实存在语法问题？我们需要定位可能的具体问题。用户要求“只重写 split_assoc 主证明块”，并且不要辅助引理。我们要给出一个完整可编译的 split_assoc 主证明块。
+
+但材料A中已有的 split_assoc 证明可能存在问题吗？它似乎已经正确。但用户报告的错误可能是基于某次提交的版本，而材料A是“权威”，但可能包含了错误。我们要根据材料A当前呈现的代码分析。
+
+在材料A中，split_assoc 的 f 定义：
+```
+  pose (f : nat -> option ty -> option ty :=
+          fun n (u : opt
+
+
+## 2026-09-04 05:48:41 [proof_loop] split_assoc · round4 · DS输出
+
+```coq
+(* INSERT-BEFORE: split_assoc *)
+Lemma get_setby_merge_spec : forall G2 G3 n,
+  get (setby (fun i (_:option ty) =>
+    match get G2 i with
+    | Some (Some a) => Some a
+    | _ => match get G3 i with
+           | Some v => v
+           | None => None
+           end
+    end) (repeat (None:option ty) (Nat.max (length G2) (length G3))) 0) n =
+  match get G2 n with
+  | Some (Some a) => Some (Some a)
+  | _ => get G3 n
+  end.
+Proof.
+  intros G2 G3 n.
+  set (maxlen := Nat.max (length G2) (length G3)).
+  destruct (Nat.ltb_spec n maxlen) as [Hlt | Hge].
+  - rewrite (get_setby_get (repeat (None:option ty) maxlen) (fun i (_:option ty) =>
+      match get G2 i with
+      | Some (Some a) => Some a
+      | _ => match get G3 i with
+             | Some v => v
+             | None => None
+             end
+      end) 0 n None).
+    + replace (0 + n) with n by lia.
+      reflexivity.
+    + unfold maxlen in Hlt. apply get_repeat_None_lt. exact Hlt.
+  - assert (EG2none : get G2 n = None).
+    { destruct (get G2 n) as [[a|]|] eqn:E.
+      + apply get_Some_lt in E. assert (length G2 <= maxlen) by (unfold maxlen; apply Nat.le_max_l). lia.
+      + apply get_Some_lt in E. assert (length G2 <= maxlen) by (unfold maxlen; apply Nat.le_max_l). lia.
+      + reflexivity. }
+    assert (EG3none : get G3 n = None).
+    { destruct (get G3 n) as [[b|]|] eqn:E.
+      + apply get_Some_lt in E. assert (length G3 <= maxlen) by (unfold maxlen; apply Nat.le_max_r). lia.
+      + apply get_Some_lt in E. assert (length G3 <= maxlen) by (unfold maxlen; apply Nat.le_max_r). lia.
+      + reflexivity. }
+    rewrite EG2none, EG3none.
+    assert (Hrepeat : get (repeat (None:option ty) maxlen) n = None).
+    { apply get_overflow_none. rewrite length_repeat_None. exact Hge. }
+    rewrite (get_setby_None (repeat (None:option ty) maxlen) (fun i (_:option ty) =>
+      match get G2 i with
+      | Some (Some a) => Some a
+      | _ => match get G3 i with
+             | Some v => v
+             | None => None
+           
+[reasoning摘要]
+我们需要给 split_assoc 的修正版。用户说辅助引理已经编译通过，不要重发任何辅助引理。但我们的输出需要只重写 split_assoc 主证明块。但注意到用户要求“# 本轮任务 证明 Lemma split_assoc（替换其 Admitted 占位），并先自证它需要的辅助引理 get_setby_None。” 但后文又说“辅助引理已编译通过，【不要重发任何辅助引理】”。所以最终我们只发主证明块。但主证明引用了 get_setby_None，材料A中已有，OK。
+
+现在的错误：在 split_assoc 证明中，某个分支尝试统一 Some None 与 Some (match get G2 n with ... end)，导致失败。根因：在 split 第二目标某些分支中，我们对 G23 位值要求等于某侧空（None 或 Some None），但 G23 位值实际由 setby f 计算，可能为 Some None？需要具体看错误环境。错误位置 line 2230，应该是在证明 split (setby f G 0) G2 G3 的某些分支，目标要让 get (setby f G 0) n = Some None 且另一侧... 但实际 f 返回 maybe Some None? 错误显示无法统一 Some None with Some match... 说明某处需要 f n u = None，但 match 返回 Some None? 等等。
+
+错误环境：
+EG : get G n = Some (Some T)
+H12 : get G12 n = Some (Some T)
+H3 : get G3 n = None
+H1 : get G1 n = get G12 n
+H2 : get G2 n = None
+在第二目标 split (setby f G 0) G2 G3，且情形：Hs1 n 左支，Hs2 n 左支？这里 H1 : get G1 n = get G12 n，H2 : get G2 n = None，H3 : get G3 n = None? 但是 G3 n=None, G2 n=None，此时资源在 G1？不，G n = Some (Some T)，但 G2 和 G3 都空，Hs1 n 左支? Hs1: split G G12 G3，若 G3 n=None 且 G12 n=G n=Some(Some T)，则 Hs1 左支成立。Hs2: split G12 G1 G2，若 G2 n=None 且 G1 n=G12 n=Some(Some T)，则 Hs2 左支成立。所以在第二目标中，我们要证明 split (setby f G 0) G2 G3，在位置 n，资源应该归哪边？根据目标 split (setby f G 0) G2 G3，左支资源在 setby f G 0，右支 G3 空。但 setby f G 0 n = f n (Some T) (因为 get G n=Some(Some T))。由 f 定义，get G2 n=None => match get G2 n with Some(Some a)=>Some a | _ => match get G3 n with ... end. G3 n=None => _ => None。所以 f n (Some T)=None。这样 get (setby f G 0) n = Some None? 不对：get_setby_get 说 get (setby f G 0
+
+
+## 2026-09-04 06:04:01 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f : nat -> option ty -> option ty :=
+          fun n (_:option ty) =>
+            match get G2 n with
+            | Some (Some a) => Some a
+            | _ => match get G3 n with Some v => v | None => None end
+            end).
+  exists (setby f G 0). split.
+  - (* split G G1 G23 *)
+    unfold split; intro n.
+    specialize (Hs1 n); specialize (Hs2 n).
+    unfold split in Hs1, Hs2.
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* get G n = Some (Some T) *)
+      rewrite (get_setby_get G f 0 n (Some T) EG).
+      simpl. (* 0+n -> n *)
+      unfold f.
+      destruct Hs1 as [[HG12 HG3empty] | [HG3 HG12empty]].
+      * destruct Hs2 as [[HG1 HG2empty] | [HG2 HG1empty]].
+        -- (* Hs1l, Hs2l: B1 *)
+          destruct HG2empty as [HG2n | HG2s].
+          ++ rewrite HG2n. simpl.
+             destruct HG3empty as [HG3n | HG3s].
+             ** rewrite HG3n. simpl.
+                left. split.
+                -- rewrite HG1. rewrite HG12. reflexivity.
+                -- right. reflexivity.
+             ** rewrite HG3s. simpl.
+                left. split.
+                -- rewrite HG1. rewrite HG12. reflexivity.
+                -- right. reflexivity.
+          ++ rewrite HG2s. simpl.
+             destruct HG3empty as [HG3n | HG3s].
+             ** rewrite HG3n. simpl.
+                left. split.
+                -- rewrite HG1. rewrite HG12. reflexivity.
+                -- right. reflexivity.
+             ** rewrite HG3s. simpl.
+                left. split.
+                -- rewrite HG1. rewrite HG12. reflexivity.
+                -- right. reflexivity.
+        -- (* Hs1l, Hs2r: B2 *)
+          destruct HG1empty as [HG1n | HG1s].
+          ++ rewrite HG1n. simpl.
+             destruct HG3empty as [HG3n | HG3s].
+             ** rewrite HG3n. simpl.
+                right. split.
+          
+[reasoning摘要]
+We need respond with Coq proof for split_assoc only, perhaps no helpers. Need obey protocol: auxiliary lemmas each separate block first line comment; but they say no new helpers, use existing. So just provide main Lemma split_assoc block. Need ensure proof compiles with Rocq 9.1. Need craft complete proof.
+
+We need reason carefully.
+
+Goal: forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+We define f and G23 as specified. Need prove two split statements.
+
+Given Hs1 : split G G12 G3, Hs2 : split G12 G1 G2. Define:
+pose (f := fun n (_ : option ty) => match get G2 n with Some (Some a) => Some a | _ => match get G3 n with Some v => v | None => None end end).
+pose (G23 := setby f G 0).
+
+Then exists G23. split.
+
+For first split G G1 G23: forall n,
+ get G1 n = get G n /\ (get G23 n = None \/ get G23 n = Some None)
+or get G23 n = get G n /\ (get G1 n = None \/ get G1 n = Some None).
+
+We can specialize Hs1 n, Hs2 n. Need derive.
+
+Let's carefully classify.
+
+Let x= get G n, y= get G12 n, z= get G3 n, u= get G1 n, v=get G2 n.
+Hs1 says:
+L1: y=x /\ (z=None \/ z=Some None)
+or R1: z=x /\ (y=None \/ y=Some None).
+Hs2 says:
+L2: u=y /\ (v=None \/ v=Some None)
+or R2: v=y /\ (u=None \/ u=Some None).
+
+For G23 at n, f n x = match v with Some(Some a)=>Some a | _ => match z with Some w=>w | None=>None end.
+
+Need prove first split. Cases A/B1/B2. Maybe easier derive from assumptions rather than fully destruct x/z etc.
+
+We can analyze based on H
+
+
+## 2026-09-04 06:25:56 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun (n:nat) (_:option ty) =>
+               match get G2 n with Some (Some a) => Some a
+               | _ => match get G3 n with Some v => v | None => None end end).
+  exists (setby f G 0). split.
+  - unfold split. intro n. specialize (Hs1 n). specialize (Hs2 n).
+    unfold split in Hs1, Hs2.
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* resource position: get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+      destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+      * (* B1: resource in G1, G23 empty *)
+        left. split.
+        -- rewrite EG in *. rewrite <- H12. rewrite <- H1. reflexivity.
+        -- assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct H2e as [H2n | H2s]; destruct H3e as [H3n | H3s];
+             rewrite H2n in HG23 || rewrite H2s in HG23;
+             rewrite H3n in HG23 || rewrite H3s in HG23;
+             cbn in HG23; right; exact HG23.
+      * (* B2: resource in G2, G1 empty, G23 holds *)
+        right. split.
+        -- assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           rewrite <- H2 in HG23. rewrite <- H12 in HG23.
+           rewrite EG in HG23. cbn in HG23.
+           injection HG23 as HG23'. rewrite HG23'. reflexivity.
+        -- exact H1e.
+      * (* A: resource in G3, G1 empty, G23 holds *)
+        right. split.
+        -- assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct H2e as [H2n | H2s]; rewrite H2n in HG23 || rewrite H2s in HG23.
+           rewrite <- H3 in HG23. rewrite EG in HG23. cbn in HG23.
+           injection HG23 as HG23'.
+[reasoning摘要]
+We need edit split_assoc proof to fix bullet error. We need output only one coq block for Lemma split_assoc with corrected bullets. Need understand current proof in材料A and make it compile. But we cannot run coqc. Need carefully inspect current proof and fix bullet structure. The task says line 2229 `[Focus] Wrong bullet --: Current bullet ** is not finished`, meaning some ** branch not finished before line with --. We need restructure bullets consistently.
+
+We need output complete Lemma split_assoc proof. We can base on existing proof, but must ensure bullet closure. Could also simplify drastically. Let's analyze existing split_assoc proof and perhaps rewrite more compactly to avoid bullet mess. The current proof is long, uses bullets -, +, *, --, ++, ** etc. The error indicates at some point `--` appears while bullet `**` unfinished. Need fix. We can produce a clean proof that follows existing skeleton, probably avoids nested fourth-level confusion. But must be valid.
+
+Let's understand target split_assoc: 
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+We can define f as given. Need prove. The existing proof is very verbose due to all combinations, but maybe we can produce a simpler proof using pointwise logic and automation? We need be precise and compilable with Coq 9.1 and no SSReflect. Could use `exfalso` and `destruct` etc.
+
+Let's think if there is a cleaner proof. We need G23 = setby f
+
+
+## 2026-09-04 06:29:28 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun (n:nat) (_:option ty) =>
+               match get G2 n with Some (Some a) => Some a
+               | _ => match get G3 n with Some v => v | None => None end end).
+  exists (setby f G 0). split.
+  - unfold split. intro n. specialize (Hs1 n). specialize (Hs2 n).
+    unfold split in Hs1, Hs2.
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* resource position: get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+      destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+      * (* B1: resource in G1, G2 and G3 empty *)
+        left. split.
+        -- rewrite H12 in *. rewrite H1 in *. exact EG.
+        -- assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct H2e as [H2n | H2s]; destruct H3e as [H3n | H3s];
+             rewrite H2n in HG23 || rewrite H2s in HG23;
+             rewrite H3n in HG23 || rewrite H3s in HG23;
+             cbn in HG23; right; exact HG23.
+      * (* B2: resource in G2, G1 and G3 empty *)
+        right. split.
+        -- assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           rewrite <- H2 in HG23. rewrite <- H12 in HG23.
+           rewrite EG in HG23. cbn in HG23.
+           injection HG23 as HG23'. rewrite HG23'. reflexivity.
+        -- exact H1e.
+      * (* A: resource in G3, G1 and G2 empty *)
+        right. split.
+        -- assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct H2e as [H2n | H2s]; rewrite H2n in HG23 || rewrite H2s in HG23.
+           rewrite <- H3 in HG23. rewrite EG in HG23. cbn in HG23.
+           injection HG23 as HG23'. rewrite HG23'. re
+[reasoning摘要]
+我们被要求给出 split_assoc 的证明修正版。根据材料，之前错误是 bullet 未闭合、以及 Nothing to rewrite 等。我们需要基于现有骨架重写，保持 f 定义和思路，但理顺 bullets。
+
+我需要提供 split_assoc 完整证明，从 Lemma split_assoc 到 Qed.，不要 INSERT 标记。注意材料中已经有一个 split_assoc 完整证明，但可能 bullet 有误。用户说材料A里 split_assoc 已有上一版完整证明，错误是 bullet 未闭合和 Nothing to rewrite。我们需要修正 bullet 层级和 rewrite 错误。
+
+我需分析给出的错误：line 2218, characters 11-26: Error: Nothing to rewrite. 这发生在某个 rewrite 处。但用户说唯一错误是 line 2229 wrong bullet，而材料末尾附了 Nothing to rewrite。可能两处。我们需要重新给出整个 split_assoc 证明，确保无错误。
+
+由于我无法实际运行 coqc，但可以仔细检查逻辑和语法。我们可以复用材料中的 split_assoc 证明骨架，调整 bullets 和 rewrite。
+
+按照要求，只给一个 coq 块，内容为 Lemma split_assoc ... Qed. 不能加 INSERT-BEFORE 标记，因为 split_assoc 是主引理。
+
+我们需要保证：
+
+- 使用现有 f 定义。
+- 不重新证明辅助引理。
+- 遵守 option 层级。
+- 用 get_setby_get 和 get_setby_None 等已知引理。
+
+注意：在证明中会用到 get_setby_None 吗？材料中的证明在空位分支使用了 get_setby_None（已提供）。我们假设已存在。
+
+我来整理证明。材料中 split_assoc 证明比较长，有若干分支。我需要确保 bullet 闭合：用户建议最外层用 -，下一层 +，再下一层 *，再深 ++。实际上 Coq bullet 可以 - + * 循环，但最好统一。
+
+我将仔细检查材料中的证明，修正 bullet 和 rewrite 问题。
+
+让我们重写证明，遵循这些指导：
+
+- 证明思路：构造 G23 := setby f G 0。
+- 目标1：split G G1 G23。
+- 目标2：split G23 G2 G3。
+- 展开 split， intro n， specialize Hs1 n Hs2 n， unfold split in Hs1, Hs2。
+- 对 get G n 进行三态 destruct (get G n) as [[T|]|] eqn:EG。
+  - 资源位 (Some T)：
+      destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+      destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+      四种组合：其中两种为矛盾（资源不可能同时出现在两侧）。需要确定哪些是矛盾：
+      - Hs1 左支表示 G12 有资源，G3 空；Hs2 左支表示 G1 有资源，G2 空。这是 B1 情形（资源在 G1）。
+      - Hs1 左支 + Hs2 右支：G12 有资源 -> 可能 G2 有资源（这是 B2）？但 Hs2 右支表示 G2 有资源，G1 空。
+
+
+## 2026-09-04 06:32:35 [proof_loop] split_assoc · round3 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun (n : nat) (_ : option ty) =>
+               match get G2 n with
+               | Some (Some a) => Some a
+               | _ => match get G3 n with
+                      | Some v => v
+                      | None => None
+                      end
+               end).
+  exists (setby f G 0). split.
+  - unfold split. intro n.
+    specialize (Hs1 n). specialize (Hs2 n).
+    unfold split in Hs1, Hs2.
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+      destruct Hs2 as [[H1 H2e] | [H2 H1e]];
+      try contradiction.
+      * (* resource in G1 *)
+        left. split.
+        -- rewrite H1. rewrite H12. rewrite EG. reflexivity.
+        -- assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct H2e as [H2n | H2s];
+           destruct H3e as [H3n | H3s];
+             rewrite H2n in HG23 || rewrite H2s in HG23;
+             rewrite H3n in HG23 || rewrite H3s in HG23;
+             cbn in HG23; right; exact HG23.
+      * (* resource in G2 *)
+        right. split.
+        -- assert (HG2 : get G2 n = Some (Some T)).
+           { rewrite H2. rewrite H12. rewrite EG. reflexivity. }
+           assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           rewrite HG2 in HG23. cbn in HG23.
+           exact HG23.
+        -- exact H1e.
+      * (* resource in G3 *)
+        right. split.
+        -- assert (HG3 : get G3 n = Some (Some T)).
+           { rewrite H3. rewrite EG. reflexivity. }
+           assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           de
+[reasoning摘要]
+我们需要理解当前状态。用户给了材料A全文，其中Layer2.v已经包含 split_assoc 的上一版完整证明（材料中已有 split_assoc 从某处开始，但似乎是当前文件内容，不是错误旧版？用户说上一版错误 line 2229 bullet not finished，但现在给出编译错误却是在 line 2218，term EG expected type "Some (Some T) = Some (Some T)"。这表明他们给的“上一版完整证明”当前 Material A 里包含的 split_assoc 可能有不同问题？需要仔细看材料A末尾 split_assoc 部分。
+
+材料A Layer2.v 末尾有 split_assoc 的证明，我看到：
+
+```
+Lemma split_assoc : ...
+Proof.
+  intros ...
+  pose (f := fun ...).
+  exists (setby f G 0). split.
+  - unfold split. intro n. specialize ...
+    ...
+  - unfold split. intro n. specialize ...
+    ...
+Qed.
+```
+
+这个证明很长，且在材料A中已经是完整 Qed 的（截止到末尾 `Qed.`）。但是用户说当前状态是“4 个辅助引理已Qed，split_assoc 上一版有 bullet not finished 错误”，但又给出了一个 line 2218 错误：`The term "EG" has type "get G n = Some (Some T)" while it is expected to have type "Some (Some T) = Some (Some T)"`。可能这份材料A中的 split_assoc 并不是实际当前文件内容？也许材料A末尾的 split_assoc 是“错误版本”？
+
+用户指令：以材料A里现有证明为基础，重交一个完整 Lemma split_assoc..Qed. 块，把 bullet 层级彻底理顺；不要改 f 定义与三态穷尽骨架。辅助引理已存在不要重发。因此我们需要输出：一个单独的 coq 代码块，包含完整的 Lemma split_assoc 到 Qed.，修复 bullet 层级和那个 EG 类型错误。
+
+我们需要仔细分析材料A中 split_assoc 的证明，找出问题，并给出正确版本。
+
+先看材料A split_assoc 证明（从 "Lemma split_assoc" 到 "Qed."）。它似乎有很多分支，且 bullet 层级混乱。需要整理。注意在材料A中 split_assoc 已经以 Qed 结尾，但用户说实际编译错误 bullet not finished？可能材料A展示的版本是用户粘贴的“当前状态”，但其中可能有 bugs，比如 bullet 层级实际上不对？但材料显示结尾有 Qed 可能编辑器自动闭合？Coq 要求 bullet 必须闭合才能 Qed。如果 bullet not finished，Qed 会报错，所以可能材料A中的证明不是实际编译通过的。
+
+需要根据报错 line 2218：环境里 H12, H1 等，EG 类型是 get G n = Some (Some T)，但某处期望 Some (Some T) = Some (Some T)。很可能在第一个 split 目标的资源分支 B1 中，有一行
+
+
+## 2026-09-04 06:43:21 [proof_loop] split_assoc · round4 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun (n : nat) (_ : option ty) =>
+               match get G2 n with
+               | Some (Some a) => Some a
+               | _ => match get G3 n with
+                      | Some v => v
+                      | None => None
+                      end
+               end).
+  exists (setby f G 0). split.
+  - (* split G G1 G23 *)
+    unfold split. intro n. specialize (Hs1 n). specialize (Hs2 n).
+    unfold split in Hs1, Hs2.
+    destruct (get G n) as [[T|]|] eqn:EG.
+    + (* resource position: get G n = Some (Some T) *)
+      destruct Hs1 as [[H12 H3e] | [H3 H12e]];
+      destruct Hs2 as [[H1 H2e] | [H2 H1e]].
+      * (* Hs1 left, Hs2 left: resource in G1 *)
+        left. split.
+        -- rewrite H1. rewrite H12. rewrite EG. reflexivity.
+        -- assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           destruct H2e as [H2n | H2s]; destruct H3e as [H3n | H3s];
+             rewrite H2n in HG23 || rewrite H2s in HG23;
+             rewrite H3n in HG23 || rewrite H3s in HG23;
+             cbn in HG23; right; exact HG23.
+      * (* Hs1 left, Hs2 right: resource in G2 *)
+        right. split.
+        -- assert (HG2 : get G2 n = Some (Some T)).
+           { rewrite H2. rewrite H12. rewrite EG. reflexivity. }
+           assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get. exact EG. }
+           unfold f in HG23.
+           rewrite HG2 in HG23. cbn in HG23. exact HG23.
+        -- exact H1e.
+      * (* Hs1 right, Hs2 left: resource in G3 *)
+        right. split.
+        -- assert (HG3 : get G3 n = Some (Some T)).
+           { rewrite H3. rewrite EG. reflexivity. }
+           assert (HG23 : get (setby f G 0) n = Some (f n (Some T))).
+           { apply get_setby_get.
+[reasoning摘要]
+We need answer with complete corrected split_assoc block only. Need analyze previous errors? User says previous errors only line 2225 Found no subterm matching "get G n" in current goal. Earlier material gave previous coqc error line 2229 bullet. Now says unique? conflicting. We need produce final Lemma split_assoc..Qed. Must not include auxiliary, they said aux all Qed. We need ensure compile.
+
+We need derive correct proof. We have material Layer2 already includes split_assoc proof perhaps full with admitted? Actually material A contains Lemma split_assoc ... Proof. ... Qed. at near end? Let's inspect. It includes get_setby_None_uncond, get_repeat_None_lt, length_repeat_None, get_setby_None, split_assoc. The split_assoc proof in material A is apparently complete but maybe has bullet issues and an error at line 2225? Let's reconstruct.
+
+Goal: split_assoc. We need correct proof, no aux. We can write own clean proof using available lemmas: get_setby_get, get_setby_None (already Qed). We must be careful bullet levels. We can write without bullets? Coq doesn't require bullets. Could use semicolons, try; and avoid complicated bullet nesting. But proof must be robust. We can avoid bullets entirely using `all: ...`? Simpler? The issue was bullets. We can structure with subproofs and use ? Better perhaps avoid bullets by using `Proof. intros...; assert...; ...` but split goals.
+
+Let's construct proof carefully. We can use custom tactic/proof search? We can rely on classical? No. But 
