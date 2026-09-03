@@ -8,7 +8,7 @@ S04 上下文工程 —— 让 DeepSeek 获取一切，按"稳定→变化"四�
 V4 上下文 1M，三个 .v 合计约 49K token，全量喂入只占约 5%，不再"只喂相关片段"。
 路径走 _paths.py。strategy_docs 路径相对于 docs/协作机制；layer_files 相对于 theories/ALL。
 """
-from _paths import THEORIES, DOCS, CRYSTAL
+from _paths import THEORIES, DOCS, NOTES, CRYSTAL
 
 # 逐字固定——不要随手改，否则前缀缓存失效
 SYSTEM_PREFIX = """你是明旭生命论（明本论/ALL体系）项目 S04 形式化分站的【主证明者、自主 Coq 研究员】。
@@ -36,8 +36,9 @@ def stable_knowledge():
     return SYSTEM_PREFIX + "\n\n# 本项目已沉淀的证明方法论（智慧结晶库，必须遵守）\n" + _read(CRYSTAL)
 
 def build_messages(task_brief, layer_files=("Layer1.v","Layer2.v"),
-                   strategy_docs=(), coqc_error="", history=(), extra_notes=""):
-    """层序"越稳定越靠前"：system | 稳定材料(Layer全文+策略) | 历史 | 本轮任务/错误。"""
+                   strategy_docs=(), philos_docs=(), coqc_error="", history=(), extra_notes=""):
+    """层序"越稳定越靠前"：system | 稳定材料(Layer全文+策略+哲学) | 历史 | 本轮任务/错误。
+    strategy_docs 相对 docs/协作机制；philos_docs 相对 docs/notes（生命论哲学智慧，让DS理解存在论主线）。"""
     msgs = [{"role":"system","content":stable_knowledge()}]
     mat = ["# 材料 A：Coq 源文件全文（权威，引理以这里为准）"]
     for lf in layer_files:
@@ -47,6 +48,12 @@ def build_messages(task_brief, layer_files=("Layer1.v","Layer2.v"),
         mat.append("\n# 材料 B：S01/S00 策略文档（参考，其断言需与材料A核对，可能有错）")
         for sd in strategy_docs:
             mat.append(f"\n## ----- {sd} -----\n" + _read(DOCS / sd))
+    if philos_docs:
+        mat.append("\n# 材料 C：生命论哲学智慧（S01研判/方法论，帮助你理解每个定义与证明步骤的存在论内涵，数学对错仍以coqc为准）")
+        for pd in philos_docs:
+            p = NOTES / pd
+            if p.exists():
+                mat.append(f"\n## ----- {pd} -----\n" + _read(p))
     msgs.append({"role":"user","content":"\n".join(mat)})
     for role, content in history:
         msgs.append({"role":role,"content":content})

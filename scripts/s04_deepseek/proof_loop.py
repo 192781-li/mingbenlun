@@ -85,13 +85,21 @@ def _local_names(blocks):
     for m in re.finditer(r"as\s+([\[\]\(\)\|\w'\s]+?)(?:,|=>|\.|$)", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
     for m in re.finditer(r"forall\s+([^,]+),", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
     for m in re.finditer(r"fun\s+([^=]+)=>", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
-    for m in re.finditer(r"(?:assert|set|remember)\s*\(?\s*([A-Za-z_][\w']*)", txt): local.add(m.group(1))
+    for m in re.finditer(r"(?:assert|set|remember|pose)\s*\(?\s*([A-Za-z_][\w']*)", txt): local.add(m.group(1))
+    for m in re.finditer(r"specialize\s+([A-Za-z_][\w']*)", txt): local.add(m.group(1))
     return local
 
 def check_referenced_lemmas(blocks, known_src):
     """抓 apply/rewrite/exact 引用、但材料/本块/局部/白名单都没有的名字（防编造）。
-    本项目引理 snake_case，不能按大小写区分，只能靠名字全集排除。"""
+    判据（2026-09-03 修正假阳性）：
+      - 顶层声明名 + Inductive 构造子名 + 【Layer全文出现过的完整词】(兜底,覆盖 ty_in 等构造子、Bool 等模块名)
+        + 块内自定义名/局部绑定名 + Coq 白名单 一并视为合法；
+      - 只有"全文从未出现、块内也没给出其 Lemma 定义"的纯凭空名才判编造；
+        DS 若用 INSERT-BEFORE 完整证明了某新引理，_defined_names 会收录并放行，最终由 coqc 终裁。"""
     known=set(re.findall(r"(?:Lemma|Theorem|Fact|Corollary|Definition|Fixpoint|Inductive|CoInductive|Let|Notation)\s+([\w']+)", known_src))
+    for im in re.finditer(r"Inductive\s+[A-Za-z_][\w']*[^.]*?:=(.*?)\.", known_src, flags=re.S):
+        known |= set(re.findall(r"[A-Za-z_][\w']*", im.group(1)))
+    known |= set(re.findall(r"[A-Za-z_][\w']*", known_src))   # 全文完整词兜底
     known |= _defined_names(blocks); known |= _local_names(blocks); known |= _BUILTIN
     missing={}
     pat=re.compile(r"(?:e?apply|erewrite|rewrite|e?exact)\s+(?:@\s*)?([A-Za-z_][\w']*)")
@@ -106,7 +114,7 @@ def detect_need(content):
     return re.findall(r"(?m)^\s*NEED:\s*(.+)$", content)
 
 def proof_loop(task_brief, file_path, target_lemma, theories_dir=None, layer_files=("Layer1.v","Layer2.v"),
-               strategy_docs=(), extra_notes="", model="deepseek-v4-pro", max_rounds=5, log=print):
+               strategy_docs=(), philos_docs=(), extra_notes="", model="deepseek-v4-pro", max_rounds=5, log=print):
     theories_dir = theories_dir or str(THEORIES)
     fname = os.path.basename(file_path)
     history=[]; coqc_error=""; result={"rounds":[],"converged":False}
@@ -116,7 +124,8 @@ def proof_loop(task_brief, file_path, target_lemma, theories_dir=None, layer_fil
         known_src += open(p,encoding="utf-8").read() if os.path.exists(p) else ""
     for rnd in range(1,max_rounds+1):
         msgs = build_messages(task_brief, layer_files=layer_files, strategy_docs=strategy_docs,
-                              coqc_error=coqc_error, history=history, extra_notes=extra_notes)
+                              philos_docs=philos_docs, coqc_error=coqc_error, history=history,
+                              extra_notes=extra_notes)
         log("[round %d] 上下文约 %d token，调用 %s ..."%(rnd, approx_tokens(msgs), model))
         out = chat(msgs, model=model, thinking="enabled", max_tokens=32000,
                    task_name="proofloop_%s_r%d"%(target_lemma,rnd))

@@ -10,6 +10,7 @@ from pathlib import Path
 REPO = Path(os.environ.get("MINGBEN_REPO", Path(__file__).resolve().parents[2]))
 THEORIES = REPO / "coq" / "theories" / "ALL"
 DOCS = REPO / "docs" / "协作机制"
+NOTES = REPO / "docs" / "notes"
 RIVER = DOCS / "智慧河流"
 CRYSTAL = RIVER / "智慧结晶库.md"
 CHANNEL = RIVER / "DeepSeek干渠.md"
