@@ -1,7 +1,7 @@
 {
-  "version": "1.9",
-  "last_updated": "2026-09-02 10:45:00",
-  "updated_by": "S04-Coq形式化分站（substitution_general卡点，派TASK-S04-011给S01做哲学研判）",
+  "version": "2.0",
+  "last_updated": "2026-09-03 范式革命",
+  "updated_by": "S04-Coq形式化分站（明序）：DeepSeek V4 新范式环境改造，DS主谋/S04承接",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -316,6 +316,22 @@
       "created_at": "2026-09-02 10:45:00",
       "depends_on": [],
       "description": "S04在修复Layer2.v的substitution_general引理时遇到卡点。已完成get_insert_at_lt/gt和name_subst_general的证明，但substitution_general的POut/PIn case涉及use关系的代换，DeepSeek 5次尝试都失败了。\n\n【技术卡点】\nuse定义：use Gamma x T Gamma' := get Gamma x = Some (Some T) /\\ Gamma' = set_none Gamma x.\n\nty_out构造子需要两个use关系：use Gamma x (TChan i o T) Gamma1 和 use Gamma1 y T Gamma2。\n\n在POut case中，代换后需要证明：\n1. use Gamma (subst_name m k x) (TChan i o T) Gamma1'  —— 第一个use关系\n2. use Gamma1' (subst_name m k z) T Gamma2'  —— 第二个use关系\n3. typed Gamma2' (subst_var m k Q)  —— Q的类型\n\n其中Gamma1' = set_none Gamma (subst_name m k x)，而原来的Gamma1 = set_none (insert_at k T Gamma) x。这两个上下文不一定相等，导致第二个use关系无法从原来的use Gamma1 z T Gamma2推出。\n\n【需要S01研判的哲学问题】\n1. 代换在生命论存在论中的意义是什么？在操作本体论中，\"把一个变量代换成另一个变量\"意味着什么？代换是操作的替换还是实体的替换？\n2. use关系中的\"使用\"在代换后是否保持？use关系表示\"在位置x使用类型T的资源，使用后位置x变为None\"。代换后，位置x变成了subst_name m k x，类型T是否保持？使用后的上下文如何变化？\n3. 线性类型系统中代换的本质是什么？在线性类型系统中，代换不是简单的文本替换，它涉及资源的转移。被代换的变量m占用了一个资源位置，代换后这个资源被消耗了。这对use关系有什么影响？\n4. 上下文变换的本质：set_none操作在存在论上意味着什么？代换后上下文如何变化？Gamma1'和Gamma1之间有什么关系？\n5. 如果use关系的代换在哲学上不成立，是否需要调整类型系统的设计？比如调整ty_out/ty_in的构造子，或者调整use的定义？\n6. 有没有更符合生命论哲学的证明思路？比如对typed归纳而不是对proc归纳？或者证明一个use_substitution辅助引理？\n\n【S04的初步技术方向（供参考）】\n1. 证明use_substitution辅助引理：处理use关系的代换\n2. 对typed归纳而不是对proc归纳：可能更容易处理use关系\n3. 调整类型系统设计：如果use关系的代换在哲学上不成立\n\n【阻碍记录】S04已编写OB-007阻碍记录，路径：coq/obstacles/OB-007_substitution_general_use关系代换卡点_20260902.md。包含具体的Coq代码、错误信息、DeepSeek的5次尝试、涉及的哲学问题。请S01先读取OB-007，再做哲学研判。\n\n产出：substitution_general的use关系代换哲学研判报告，反馈给S04执行。报告应包含：代换的存在论意义、use关系代换的哲学分析、证明思路建议、是否需要调整类型系统设计。"
+    },
+    {
+      "id": "TASK-S04-018",
+      "assigned_to": "S04",
+      "title": "Layer2最后3目标：DeepSeek V4闭环消Admitted",
+      "priority": "high",
+      "status": "in_progress",
+      "created_by": "S04",
+      "created_at": "2026-09-03",
+      "depends_on": [],
+      "description": "用 scripts/s04_deepseek/proof_loop（DS主谋，全量喂Layer1+2+结晶库+S01/S00策略，coqc终裁，错误原样回喂）依次：①subst_ren_general的PPar(strengthening紧缩碰撞位,结晶011/012) ②substitution_general的PPar(subst_var_eq_ren一行导出) ③congruence_preserves_typing(11构造子)。S04只组织上下文/coqc/git/哲学桥梁，不自己写tactic。",
+      "entry": "cd scripts/s04_deepseek && python run_current.py subst_ren_general",
+      "authority_docs": [
+        "docs/协作机制/分站/S04_运行指令.md",
+        "docs/协作机制/分站/S04_DeepSeek_V4新范式调用规范.md"
+      ]
     }
   ],
   "growth_log": [
@@ -416,6 +432,12 @@
       "action": "响应大总站协调通知，同步最新main（35个提交），重建s02-gaokao-arts分支，解决合并冲突",
       "result": "S02分支与main同步，无冲突，可正常合并",
       "philosophy": "同步不是服从，是让自己的操作在最新的共同基础上展开"
+    },
+    {
+      "time": "2026-09-03 范式革命",
+      "by": "S04-Coq形式化分站（明序）",
+      "action": "DeepSeek V4 新范式环境改造：重写唯一权威SOP与V4调用规范；3份S04专属旧文档git mv归档、5份共享DS文档+2旧脚本加V4指针；scripts/s04_deepseek五脚本工程化入库（离线自检全绿）；状态机/S04_signal/河流状态更新；结晶013-015、教训L034入库；定时任务精简改造（重复职能暂停，保留的prompt只指向唯一SOP）",
+      "result": "旧枷锁（自设上下文/max_tokens限制、要思路不要代码、S04越位当翻译层、多份矛盾DS文档）清除；DS主谋/S04承接的分工固化进GitHub唯一大脑；Layer1/L3仍0 Admitted绿，Layer2剩3目标待run_current.py一键启动DS闭环；改造未动任何Coq代码，WIP快照38b762b、绿基线cf91ec6双保险"
     }
   ],
   "network_health": {

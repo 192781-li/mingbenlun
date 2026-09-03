@@ -54,3 +54,8 @@ archive/old_editions/backups/
 # S04临时文件
 commit_msg*.txt
 s01_temp_docs/
+
+# ========== S04 DeepSeek V4 工具链：密钥与运行产物不入库 ==========
+.deepseek_key
+ds_v4_traces/
+*.bak_r*

@@ -1,3 +1,4 @@
+# [2026-09-03 已弃用于S04] V4 新客户端与 agentic 闭环见 scripts/s04_deepseek/（ds_v4.py/s04_context.py/proof_loop.py）；本文件为历史工具，参数(旧模型名/默认max_tokens/美元定价)已过时，勿再用于S04写码。
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """

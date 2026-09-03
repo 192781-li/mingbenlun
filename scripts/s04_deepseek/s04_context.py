@@ -1,0 +1,76 @@
+# -*- coding: utf-8 -*-
+"""
+S04 上下文工程 —— 让 DeepSeek 获取一切，按"稳定→变化"四层组织（结构决定功能）
+  L1 稳定知识前缀（逐字不变，命中前缀缓存）：SYSTEM_PREFIX + 智慧结晶库
+  L2 稳定材料（多轮不变，最大块前置）：Layer1/2/3 全文 + 策略文档
+  L3 追加历史（只增不改）
+  L4 本轮变化（最后）：目标 + 补充 + 最新 coqc 错误原文
+V4 上下文 1M，三个 .v 合计约 49K token，全量喂入只占约 5%，不再"只喂相关片段"。
+路径走 _paths.py。strategy_docs 路径相对于 docs/协作机制；layer_files 相对于 theories/ALL。
+"""
+from _paths import THEORIES, DOCS, CRYSTAL
+
+# 逐字固定——不要随手改，否则前缀缓存失效
+SYSTEM_PREFIX = """你是明旭生命论（明本论/ALL体系）项目 S04 形式化分站的【主证明者、自主 Coq 研究员】。
+分工（不可颠倒）：你拥有发现权、规划权、引理设计权与证明书写权；执行方（豆包）只做三件事——在本地跑 coqc、把完整编译错误原样回喂给你、git 落盘。执行方不替你写证明，你也不要只给思路让执行方翻译。
+
+工程环境（硬事实，不要假设别的版本）：
+- Rocq/Coq 9.1.0；From Stdlib Require Import List PeanoNat Lia ClassicalEpsilon；经典逻辑（excluded_middle_informative 可用），无 funext，无 SSReflect。
+- 命名东方为骨：类型/进程/上下文用拉丁名，存在论内涵写进注释。
+- 编译通过才算证明：纸面正确不算，必须 coqc 0 错误；目标是 0 Admitted。
+
+你的工作铁律：
+1. 直接产出【完整、可编译】的 Coq：需要新增的辅助引理连同 Lemma...Proof...Qed. 完整给出；需要替换的证明段给出可直接整体替换的完整段落，标明起止锚点。
+2. 只允许使用材料里 Layer1/Layer2 原文中【真实存在】的引理与定义；若需要一个材料里没有的引理，先把它作为新引理完整陈述并自己证明，禁止凭空引用一个不存在的名字。
+3. 证明前先用几句话说明操作权/资源如何流动（本项目存在论主线：代换=非单射重命名，并行组合在碰撞位需要 strengthening 紧缩），再给代码。
+4. 遇到你判断涉及哲学取舍（命名、是否保持明性、公理选择）的点，明确标【哲学判断点：...】交给执行方联动 S01，不要擅自拍板，但数学证明本身照常推进。
+5. 若上一版代码编译失败，错误已在材料末尾原样附上：先定位根因（不是表面），再给完整修正段，并说明为什么之前错。
+6. 输出组织：极简要点说明 + 一个或多个 ```coq 代码块；不要寒暄；不要省略号、不要"此处略去"。"""
+
+def _read(path):
+    with open(path, "r", encoding="utf-8") as f:
+        return f.read()
+
+def stable_knowledge():
+    """L1：system 固定前缀 + 结晶库（逐字带上，命中缓存）。"""
+    return SYSTEM_PREFIX + "\n\n# 本项目已沉淀的证明方法论（智慧结晶库，必须遵守）\n" + _read(CRYSTAL)
+
+def build_messages(task_brief, layer_files=("Layer1.v","Layer2.v"),
+                   strategy_docs=(), coqc_error="", history=(), extra_notes=""):
+    """层序"越稳定越靠前"：system | 稳定材料(Layer全文+策略) | 历史 | 本轮任务/错误。"""
+    msgs = [{"role":"system","content":stable_knowledge()}]
+    mat = ["# 材料 A：Coq 源文件全文（权威，引理以这里为准）"]
+    for lf in layer_files:
+        src = _read(THEORIES / lf)
+        mat.append(f"\n## ===== {lf} 全文开始 =====\n{src}\n## ===== {lf} 全文结束 =====")
+    if strategy_docs:
+        mat.append("\n# 材料 B：S01/S00 策略文档（参考，其断言需与材料A核对，可能有错）")
+        for sd in strategy_docs:
+            mat.append(f"\n## ----- {sd} -----\n" + _read(DOCS / sd))
+    msgs.append({"role":"user","content":"\n".join(mat)})
+    for role, content in history:
+        msgs.append({"role":role,"content":content})
+    tail = ["# 本轮任务\n"+task_brief]
+    if extra_notes:
+        tail.append("\n# 补充说明（含已知勘误）\n"+extra_notes)
+    if coqc_error.strip():
+        tail.append("\n# 上一版 coqc 编译错误（原样，勿改写）\n```\n"+coqc_error+"\n```")
+    msgs.append({"role":"user","content":"\n".join(tail)})
+    return msgs
+
+def approx_tokens(msgs):
+    return sum(len(m["content"]) for m in msgs)//3
+
+if __name__ == "__main__":
+    # 离线审计：打包当前上下文，看体量与关键引理/结晶是否齐全（不调用 API、不花钱）
+    brief = "审计用：检查全量上下文是否完整打包。"
+    sd = (r"分站\S04_Layer2最后3Admitted_精确证明策略_S00分析_20260903.md",)
+    msgs = build_messages(brief, layer_files=("Layer1.v","Layer2.v"),
+                          strategy_docs=tuple(p for p in sd if (DOCS/p).exists()))
+    toks = approx_tokens(msgs)
+    print("消息条数:",len(msgs)," 估算token:",toks," 占1M窗 %.1f%%"%(toks/1_000_000*100))
+    for i,m in enumerate(msgs):
+        print(f"  msg[{i}] {m['role']} len={len(m['content'])}")
+    blob="\n".join(m["content"] for m in msgs)
+    for k in ["typed_strengthen_unused","rho_inj_except_m","split_proj","结晶011","结晶012","subst_ren_general"]:
+        print("  ", "OK " if k in blob else "缺失!!", k, blob.count(k))
