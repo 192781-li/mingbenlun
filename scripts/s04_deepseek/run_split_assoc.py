@@ -101,7 +101,13 @@ setby 精确定义（Layer1）：
 硬性自检（你最近几轮全栽在这）：
 1) f 的类型是 nat->option ty->option ty，内层每个 match 都写 “as r return option ty” 标注，分支里 G2 有资源给 Some a（元素层），绝不写 Some(Some a)/Some None；get G3 n 是 get 层，先 destruct as [[b|]|] 再取元素层值。
 2) bullet 层级（- + * ++ **）前后一致、每一层都闭合，不许出现 “Current bullet * is not finished”——交之前自己按缩进走一遍每个分支是否都收尾。
-3) 交付前逐行标注每个 Some/None 属于元素层还是 get 层（见系统铁律第8条）。"""
+3) 交付前逐行标注每个 Some/None 属于元素层还是 get 层（见系统铁律第8条）。
+4) 【set/pose 语法铁事实，你前两轮连续栽在这】f 是你【新建】的局部定义（证明目标里原本没有 f），必须用 pose 不是 set；pose 允许类型标注写在名字后：
+     pose (f : nat -> option ty -> option ty :=
+             fun n (_:option ty) => match get G2 n with Some (Some a) => Some a
+                                    | _ => match get G3 n with Some v => v | None => None end end).
+   严禁写 set (f : T := ...)（set 不接受“名字:类型:=”，正会报 line: Syntax error ',' or ')' expected after term）。后续 exists (setby f G 0) 与逐点证明不变。
+   另：本项目已定义 Inductive congruence（结构同余关系），不要把 congruence 当内置 tactic 用；需要等式闭合用 reflexivity/f_equal/lia，别写裸 congruence。"""
 
 if __name__ == "__main__":
     res = proof_loop(BRIEF, FILE, TARGET, layer_files=("Layer1.v","Layer2.v"),
