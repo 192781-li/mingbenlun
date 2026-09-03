@@ -36,11 +36,15 @@ def _top_defined_names(text):
 def apply_patch(file_path, target_lemma, blocks):
     """按协议应用 DS 代码块，返回 (ok, msg, new_src, inserted, mode)。
     mode: "replace"=本轮交了目标lemma并替换；"insert_only"=本轮只交辅助引理，先插到目标前沉淀；"none"=无可应用。
-    INSERT 辅助引理若与文件中已有顶层定义同名则去重跳过（修重复堆积）。
-    允许 DS 分步交：先逐轮把辅助引理证入文件，某轮再交主引理，避免已证对的辅助引理被整轮丢弃重证。"""
+    辅助引理允许分步交（insert_only 逐轮沉淀）；若 DS 重发【同名】辅助引理，视为修正版：切除文件中旧同名段、
+    以新版替换（这样已沉淀但有编译错的辅助引理修得动，不会被"去重"跳过锁死）；纯噪声块（markdown 残留）丢弃。"""
     src = open(file_path, encoding="utf-8").read()
     existing = _top_defined_names(src)
+    work = src                       # 动态工作串：同名旧段在此切除
     insert_before, new_lemma, skipped = [], None, []
+    def _cut_name(text, name):
+        sp = lemma_span(text, name)
+        return (text[:sp[0]]+text[sp[1]:], True) if sp else (text, False)
     for b in blocks:
         body = re.sub(r"(?m)^\s*\(\*\s*INSERT-BEFORE:.*?\*\)\s*\n","",b).strip()
         if re.search(r"(?m)^(?:Lemma|Theorem)\s+"+re.escape(target_lemma)+r"\b", body):
@@ -52,11 +56,11 @@ def apply_patch(file_path, target_lemma, blocks):
             if not re.search(r"(?m)^\s*(?:Lemma|Theorem|Fact|Corollary|Definition|Fixpoint|Inductive|Let)\b", body):
                 skipped.append(["<噪声块,非顶层定义,丢弃>"]); continue
             names = _top_defined_names(body)
-            dup = names & existing
-            if dup:                      # 上一轮已证入，本轮又给 -> 去重，保留文件现有版本
-                skipped.append(sorted(dup)); existing |= names; continue
+            for nm in sorted(names & existing):   # 同名：切除旧段，以本轮新版替换（修正错误版）
+                work, did = _cut_name(work, nm)
+                if did: skipped.append(["替换旧版:"+nm])
             insert_before.append(body); existing |= names
-    span = lemma_span(src, target_lemma)
+    span = lemma_span(work, target_lemma)
     if new_lemma is None:
         if not insert_before:
             return False, "DS 输出中没有目标 lemma %s 的完整新版本，也没有任何新引理" % target_lemma, src, [], "none"
@@ -64,15 +68,15 @@ def apply_patch(file_path, target_lemma, blocks):
             return False, "源文件中定位不到 lemma %s 的起止" % target_lemma, src, [], "none"
         ins = "\n\n".join(insert_before)+"\n\n"
         msg = "仅插入辅助引理%d段（本轮未交主引理，先沉淀，下一轮交主引理）"%len(insert_before)
-        if skipped: msg += "；去重跳过已存在:%s"%skipped
-        return True, msg, src[:span[0]]+ins+src[span[0]:], insert_before, "insert_only"
+        if skipped: msg += "；处理:%s"%skipped
+        return True, msg, work[:span[0]]+ins+work[span[0]:], insert_before, "insert_only"
     if not span:
         return False, "源文件中定位不到 lemma %s 的起止" % target_lemma, src, [], "none"
     s,e = span
     ins = ("\n\n".join(insert_before)+"\n\n") if insert_before else ""
     msg = "替换目标lemma并插入%d段新引理"%len(insert_before)
-    if skipped: msg += "；去重跳过已存在:%s"%skipped
-    return True, msg, src[:s]+ins+new_lemma+src[e:], insert_before, "replace"
+    if skipped: msg += "；处理:%s"%skipped
+    return True, msg, work[:s]+ins+new_lemma+work[e:], insert_before, "replace"
 
 def run_coqc(theories_dir, fname):
     cmd = ("set PATH=%s;%%PATH%% && set COQLIB=%s && cd /d %s && coqc.exe -R .. ALL %s 2>&1"
@@ -268,6 +272,12 @@ Proof. exact I. Qed.
         f.write("Lemma foo : False.\nProof. admit.\nAdmitted.\n"); tmp2=f.name
     ok2,msg2,new2,ins2,mode2=apply_patch(tmp2,"foo",blks[:1])
     print("apply(insert_only):",ok2,mode2,msg2,"| helper在foo前:", new2.index("helper")<new2.index("Lemma foo"), "| foo仍Admitted:", "Admitted." in new2)
+    # 同名替换：文件里已有错误版 helper(Admitted)，本轮给 Qed 新版，应切除旧版、只留一份新版
+    with tempfile.NamedTemporaryFile("w",suffix=".v",delete=False,encoding="utf-8") as f:
+        f.write("Lemma helper : True. Proof. Admitted.\n\nLemma foo : False.\nProof. admit.\nAdmitted.\n"); tmp3=f.name
+    ok3,msg3,new3,ins3,mode3=apply_patch(tmp3,"foo",blks)
+    print("apply(同名替换):",ok3,mode3,msg3,"| helper只出现一次:", new3.count("Lemma helper")==1,
+          "| 旧Admitted版已切除:", "Proof. Admitted." not in new3)
     abort=blks+["Lemma x:True. Proof. Abort."]
     print("卫生(应抓到Abort):",check_hygiene(abort))
-    import os as _os; _os.remove(tmp); _os.remove(tmp2)
+    import os as _os; _os.remove(tmp); _os.remove(tmp2); _os.remove(tmp3)

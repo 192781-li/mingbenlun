@@ -75,10 +75,29 @@ injection 对双层 option 一次剥到底（不要连续两次 injection）。
 - 交付前自己当 coqc 逐行核对：每个引用名有着落、option 层级正确、每块以 Qed. 结尾、可直接编译 0 错误。
 
 ======== 当前状态（重要，别推倒重来）========
-材料A里已有你上一版的 split_assoc 完整证明与三个辅助引理（get_setby_None_uncond/get_repeat_None_lt/length_repeat_None），
-逐点结构是对的，只剩编译错误（如 repeat None len 里 None 推断不出类型——元素是 option ty，应写 repeat (None:option ty) len；
-类似隐式参数推断不出的地方都显式标类型）。请基于材料末尾的 coqc 错误做【最小修正】，保留已正确的证明结构，
-给出修正后的完整 Lemma 块（辅助引理用 INSERT-BEFORE 块、split_assoc 用独立主块）；不要改路线、不要删正确引理。
+材料A里已有你上一版的 split_assoc 与辅助引理 get_setby_None_uncond/get_repeat_None_lt/length_repeat_None，
+辅助引理已编译通过；逐点结构正确。现在只剩主证明里 f 的【类型层级】错误（coqc：f 被写成返回 option(option ty)，
+但 setby 要求 f : nat -> option ty -> option ty）。
+
+setby 精确定义（Layer1）：
+  Fixpoint setby (f : nat -> option ty -> option ty) (Gamma : ctx) (k:nat) : ctx :=
+    match Gamma with [] => [] | t::Gamma' => f k t :: setby f Gamma' (S k) end.
+  Lemma get_setby_get : get Gamma n = Some u -> get (setby f Gamma k) n = Some (f (k+n) u).  (* u:option ty 是该位“元素” *)
+关键层级：setby 的 f 吃的是【列表元素 t:option ty】、返回【列表元素 option ty】；它【不是】 get 的返回层 option(option ty)。
+所以构造 G23 的 f 必须返回 option ty（None | Some T），正确写法形如：
+  set (f : nat -> option ty -> option ty := fun n (_u:option ty) =>
+     match get G2 n with
+     | Some (Some a) => Some a                 (* G2 该位有资源 a:ty，元素层就是 Some a，绝不是 Some(Some a) *)
+     | _ => match get G3 n with
+            | Some v => v                     (* G3 该位元素 v:option ty，直接用，不要再包 Some *)
+            | None => None
+            end
+     end).
+  exists (setby f G 0).
+然后 get_setby_get 改写时：get G23 n = Some (f n u)，f n u 是 option ty；与 get G2 n/get G3 n（option(option ty)）
+对照时注意“元素层 Some a”对应“get 层 Some (Some a)”，destruct get G2 n as [[a|]|] 分三层，别再混。
+请做【最小修正】：只重写 split_assoc 主证明块（独立 coq 块从 Lemma split_assoc 到 Qed.），
+辅助引理若无需改就不要重发；保留逐点 A/B1/B2 结构。交付前自己逐行核对 f 的返回类型是 option ty。
 """
 
 if __name__ == "__main__":
