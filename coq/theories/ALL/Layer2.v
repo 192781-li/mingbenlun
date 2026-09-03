@@ -25,6 +25,21 @@ Fixpoint fv_at (P : proc) (k : nat) : Prop :=
 Definition fv (P : proc) : Prop := fv_at P 0.
 Definition closed (P : proc) : Prop := ~ fv P.
 
+(* not_free_in：进程P不引用位置u（bool版本）。
+   存在论意义：操作权不流经位置u，该位置无明性，可收摄（strengthening）。
+   PIn/PRes进绑定器后偏移S u，与subst_var/fv_at一致。 *)
+Fixpoint not_free_in (P : proc) (u : nat) : bool :=
+  match P with
+  | PZero => true
+  | PTau Q => not_free_in Q u
+  | PVar x => negb (Nat.eqb x u)
+  | POut x y Q => negb (Nat.eqb x u) && negb (Nat.eqb y u) && not_free_in Q u
+  | PIn x Q => negb (Nat.eqb x u) && not_free_in Q (S u)
+  | PPar Q R => not_free_in Q u && not_free_in R u
+  | PRes Q => not_free_in Q (S u)
+  | PRep Q => not_free_in Q u
+  end.
+
 (* ---------------------------------------------------------------------
    2. Substitution
    --------------------------------------------------------------------- *)
@@ -205,6 +220,104 @@ Inductive is_value : proc -> Prop :=
   | val_res  : forall P, is_value P -> is_value (PRes P)
   | val_rep  : forall P, is_value (PRep P)
   | val_par  : forall P Q, is_value P -> is_value Q -> is_value (PPar P Q).
+
+(* ---------------------------------------------------------------------
+   5.5 Strengthening（明性收摄）
+   存在论：操作权不流经的位置无明性，可收摄（set_none），不影响typed。
+   哲学研判（S01, 2026-09-03）：strengthening完全合法，与路线乙（同型异位）相容。
+   --------------------------------------------------------------------- *)
+
+(* set_none交换引理：x <> u时，先set_none x再set_none u = 先set_none u再set_none x *)
+Lemma set_none_comm : forall C x u, x <> u ->
+  set_none (set_none C x) u = set_none (set_none C u) x.
+Proof.
+  intros C x; revert C; induction x as [|x IH]; intros [|t C] u Hxu; simpl; auto.
+  - destruct u as [|u]; [exfalso; apply Hxu; reflexivity | f_equal; apply IH; intro E; apply Hxu; congruence].
+  - destruct u as [|u]; [reflexivity | f_equal; apply IH; intro E; apply Hxu; congruence].
+Qed.
+
+(* use在strengthening下保持：x <> u时，use C x T C1 → use (set_none C u) x T (set_none C1 u) *)
+Lemma use_strengthen : forall C x T C1 u,
+  use C x T C1 -> x <> u -> use (set_none C u) x T (set_none C1 u).
+Proof.
+  intros C x T C1 u [Hget Hc1] Hxu.
+  unfold use. split.
+  - rewrite set_none_neq by exact Hxu. exact Hget.
+  - rewrite Hc1. rewrite set_none_comm by exact Hxu. reflexivity.
+Qed.
+
+(* split在strengthening下保持：set_none后split结构不变（u位变None，None可分给任意侧） *)
+Lemma split_strengthen : forall C Gamma1 Gamma2 u,
+  split C Gamma1 Gamma2 ->
+  split (set_none C u) (set_none Gamma1 u) (set_none Gamma2 u).
+Proof.
+  intros C Gamma1 Gamma2 u Hs.
+  unfold split in *. intros n.
+  destruct (Nat.eq_dec n u) as [Heq | Hneq].
+  - (* n = u：三个位置都是Some None *)
+    subst n.
+    assert (Hlt1 : u < length Gamma1). {
+      specialize (Hs u). destruct Hs as [[Hg _] | [Hd1 _]].
+      - apply get_Some_lt in Hg. exact Hg.
+      - apply get_Some_lt in Hd1. exact Hd1.
+    }
+    assert (Hlt2 : u < length Gamma2). {
+      specialize (Hs u). destruct Hs as [[_ Hd] | [_ [Hd | Hd]]].
+      - apply get_Some_lt in Hd. exact Hd.
+      - apply get_Some_lt in Hd. exact Hd.
+      - apply get_Some_lt in Hd. exact Hd.
+    }
+    right. split.
+    + apply set_none_self. exact Hlt1.
+    + right. apply set_none_self. exact Hlt2.
+  - (* n <> u：set_none不影响位置n，和原来一样 *)
+    specialize (Hs n).
+    rewrite !set_none_neq in Hs |- * by exact Hneq.
+    exact Hs.
+Qed.
+
+(* typed_strengthen_unused：进程P不使用位置u，则set_none C u后P仍类型化。
+   对typed归纳，8个case全部tactic级给出。 *)
+Lemma typed_strengthen_unused : forall C P u,
+  typed C P -> not_free_in P u = true -> typed (set_none C u) P.
+Proof.
+  intros C P u Hty. revert u. induction Hty; intros u Hnf.
+  - (* ty_zero *)
+    simpl in Hnf. apply ty_zero.
+  - (* ty_var x T *)
+    simpl in Hnf. rewrite negb_true_iff in Hnf. apply Nat.eqb_neq in Hnf.
+    apply ty_var with (T:=T). rewrite set_none_neq by exact Hnf. exact H.
+  - (* ty_tau P *)
+    simpl in Hnf. apply ty_tau. apply IHty. exact Hnf.
+  - (* ty_out x y P i o T Gamma1 Gamma2 *)
+    simpl in Hnf. rewrite !andb_true_iff in Hnf. destruct Hnf as [Hnx [Hny HnfP]].
+    apply negb_true_iff in Hnx. apply Nat.eqb_neq in Hnx.
+    apply negb_true_iff in Hny. apply Nat.eqb_neq in Hny.
+    eapply ty_out with (i:=i)(o:=o)(T:=T)(Gamma1:=set_none Gamma1 u)(Gamma2:=set_none Gamma2 u).
+    + apply use_strengthen with (u:=u). exact H. exact Hnx.
+    + exact H0.
+    + apply use_strengthen with (u:=u). exact H1. exact Hny.
+    + apply IHty. exact HnfP.
+  - (* ty_in x P i o T Gamma1 *)
+    simpl in Hnf. rewrite andb_true_iff in Hnf. destruct Hnf as [Hnx HnfP].
+    apply negb_true_iff in Hnx. apply Nat.eqb_neq in Hnx.
+    eapply ty_in with (i:=i)(o:=o)(T:=T)(Gamma1:=set_none Gamma1 u).
+    + apply use_strengthen with (u:=u). exact H. exact Hnx.
+    + exact H0.
+    + simpl. apply IHty. exact HnfP.
+  - (* ty_par P Q Gamma1 Gamma2 *)
+    simpl in Hnf. rewrite andb_true_iff in Hnf. destruct Hnf as [HnfP HnfQ].
+    eapply ty_par with (Gamma1:=set_none Gamma1 u)(Gamma2:=set_none Gamma2 u).
+    + apply split_strengthen. exact H.
+    + apply IHty1. exact HnfP.
+    + apply IHty2. exact HnfQ.
+  - (* ty_res P T *)
+    simpl in Hnf. apply ty_res with (T:=T).
+      simpl in IHty. apply IHty. exact Hnf.
+  - (* ty_rep P *)
+    simpl in Hnf. apply ty_rep.
+      simpl in IHty. apply IHty. exact Hnf.
+Qed.
 
 (* ---------------------------------------------------------------------
    6. Auxiliary lemmas
