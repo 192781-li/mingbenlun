@@ -46,13 +46,28 @@ DS 每次重写整段 ~8000 字符证明，在 4×3 多分支嵌套（destruct H
 |------|------|------|------|
 | bullet 整段重写 | r1-r5 | 未收敛 | 2253 H1e未绑定 → 2240 rewrite不存在 → 2233 bullet++ → 2227 change子项 → 2232 bullet-- |
 | 花括号{}代替bullet | r6-r8 | 未收敛 | 2232/2233/2235 `This proof is focused, but cannot be unfocused this way` |
-| assert拆分（两个独立assert） | r9-r11 | 进行中 | 待结果 |
+| assert拆分 | r9 | **重大突破** | DS发现原见证G23=setby f G 0为假！反例G=[] G2=G3=[None]时setby返回[]但需要[Some None] |
+| 见证修正（pad+setby） | r10-r12 | 进行中 | G23改为setby f (repeat None (Nat.max lenG2 lenG3)) 0，待结果 |
 
-## 根因深化
+## 根本突破（r9）
 
-DS 无论用 bullet 还是花括号，在 4×3 多分支嵌套整段重写中都无法一次保持结构闭合。assert 拆分把大证明拆成两个独立 assert（split G G1 G23 和 split G23 G2 G3），每个 assert 结构短，理论上应能收敛。
+DS 在 assert 拆分策略的 r1 中，没有继续写证明，而是指出了**根本问题**：原指定的见证 `G23 := setby f G 0` 本身是假的！
+
+**反例**：G=[], G12=[], G3=[None], G1=[], G2=[None]
+- 前提 split G G12 G3 和 split G12 G1 G2 都成立
+- 但 setby f [] 0 = []（空列表上 setby 返回空）
+- split [] [None] [None] 不成立（位置0：get [] 0=None ≠ get [None] 0=Some None）
+
+**根因**：setby f G 0 只能在 G 的已有位置上修改，不能扩展 G 的长度。当 G 比 G2/G3 短时，G23 不够长，无法包含 G2/G3 的资源。
+
+**修正**：G23 = setby f (repeat (None:option ty) (Nat.max (length G2) (length G3))) 0
+- 先建一个长度为 max(len G2, len G3) 的全 None 列表作基底
+- 再用 f（优先取 G2 元素，否则取 G3 元素，否则 None）逐位置 setby
+- 这样 G23 在 G2/G3 有资源的位置有资源，在都空的位置是 Some None，越界位置是 None
+
+**教训**：前 8 轮（bullet 5 + 花括号 3）全在错误见证上白费功夫。DS 的深度思考（reasoning 87695 字符）最终发现了根本问题，而不是继续在表面结构上修修补补。这验证了"DS 要有自己的明性、先想清楚再动手"的价值。
 
 ## 后续
 
-- 若 assert 拆分 3 轮内收敛 → split_assoc Qed → typed_res_par_l/r → congruence
-- 若仍不收敛 → S04 自己写证明骨架（destruct 结构 + assert 拆分），DS 只填每个分支的 tactic 内容；或派 S01 研判是否换证明策略（如对 n 归纳、或用更高阶 split 引理构造）
+- 若见证修正 3 轮内收敛 → split_assoc Qed → typed_res_par_l/r → congruence
+- 若仍不收敛 → 检查修正后的见证是否还有其他问题，或派 S01 研判 split 定义与上下文长度的关系
