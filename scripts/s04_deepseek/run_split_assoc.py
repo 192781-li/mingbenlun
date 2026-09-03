@@ -97,8 +97,11 @@ setby 精确定义（Layer1）：
 然后 get_setby_get 改写时：get G23 n = Some (f n u)，f n u 是 option ty；与 get G2 n/get G3 n（option(option ty)）
 对照时注意“元素层 Some a”对应“get 层 Some (Some a)”，destruct get G2 n as [[a|]|] 分三层，别再混。
 请做【最小修正】：只重写 split_assoc 主证明块（独立 coq 块从 Lemma split_assoc 到 Qed.），
-辅助引理若无需改就不要重发；保留逐点 A/B1/B2 结构。交付前自己逐行核对 f 的返回类型是 option ty。
-"""
+辅助引理已编译通过，【不要重发任何辅助引理】；保留逐点 A/B1/B2 结构。
+硬性自检（你最近几轮全栽在这）：
+1) f 的类型是 nat->option ty->option ty，内层每个 match 都写 “as r return option ty” 标注，分支里 G2 有资源给 Some a（元素层），绝不写 Some(Some a)/Some None；get G3 n 是 get 层，先 destruct as [[b|]|] 再取元素层值。
+2) bullet 层级（- + * ++ **）前后一致、每一层都闭合，不许出现 “Current bullet * is not finished”——交之前自己按缩进走一遍每个分支是否都收尾。
+3) 交付前逐行标注每个 Some/None 属于元素层还是 get 层（见系统铁律第8条）。"""
 
 if __name__ == "__main__":
     res = proof_loop(BRIEF, FILE, TARGET, layer_files=("Layer1.v","Layer2.v"),

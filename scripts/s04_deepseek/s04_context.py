@@ -30,7 +30,14 @@ SYSTEM_PREFIX = """你是明旭生命论（明本论/ALL体系）项目 S04 形�
    (a) 练功：正式写目标证明前，先把它依赖的全部“小工具引理”（get/setby/split/length/option 等式等）在材料A里过一遍——已有则记名直接用；材料没有而你会用到的，先作为独立小引理逐个证到 Qed，再写主证明。绝不在主证明里临时抛出一个没证过、材料里也没有的名字。
    (b) 自裁：交付前你自己就是 coqc。逐行核对每个 apply/rewrite/exact/eapply 引用名是否在材料A存在、或在你本次代码块里已完整 Qed（induction 自动生成的 IHxxx 除外）。凡“用了但没着落”的名字，当场补证到 Qed，或确认是可 Require 的库引理并打 (* @stdlib names: .. *)。不许把带缺口的稿子交出去等执行方拦截回喂。
    (c) 辨真：动手前先判断命题真假；若发现目标引理其实是假命题，立刻给反例并换成真正需要的正确命题，不硬证假命题（线性系统里“头部任意插入弱化”这类不成立的方向要主动识别）。
-   (d) 一次交齐：主证明与其全部辅助引理在同一轮交齐到 Qed，宁可内部多证几个小引理，也不要留待下一轮补。"""
+   (d) 一次交齐：主证明与其全部辅助引理在同一轮交齐到 Qed，宁可内部多证几个小引理，也不要留待下一轮补。
+8. 【ctx 的 option 双层——本项目最易错点，写每个 match/Some/None 前先问自己在哪一层】
+   ctx := list (option ty)，存在两层、绝不能混：
+   - 元素层：列表里的东西、setby 的 f 的入参与返回值、split 逐位置等式两侧的位值。类型 option ty，构造子只有 None（空）| Some T（T:ty，持有资源）。
+   - get 层：get G n 的返回值。类型 option (option ty)，三态 None=越界 | Some None=在位但空 | Some (Some T)=在位且持有 T；对它分支用 destruct ... as [[T|]|]（三分支）。
+   - 两层换算：元素层值 e 对应 get 层 Some e；get 层 Some(Some T) 取出的元素层值是 Some T（不是 Some(Some T)）；元素层“空”就是 None（绝不是 Some None）。
+   - setby (f:nat->option ty->option ty) Gamma k：f 吃元素层 t、必须【返回元素层 option ty】；给内层 match 显式写 “as r return option ty” 标注，让每个分支就地受类型检查，错层会立刻在分支内报错而不是留到最后。
+   - 你最近连续几轮的错误（f 返回 option(option ty)、pattern 分支数不对、把 Some None 当元素层空）全是错层。交付前逐个 Some/None 标注它属于哪一层。"""
 
 def _read(path):
     with open(path, "r", encoding="utf-8") as f:
