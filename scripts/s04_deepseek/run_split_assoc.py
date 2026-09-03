@@ -73,11 +73,17 @@ injection 对双层 option 一次剥到底（不要连续两次 injection）。
 - 一个 coq 块只放一个 Lemma；不许 induction G 证本体；不许 excluded_middle；
 - 库引理若材料确无打 (* @stdlib names: .. *)，否则必须自证；
 - 交付前自己当 coqc 逐行核对：每个引用名有着落、option 层级正确、每块以 Qed. 结尾、可直接编译 0 错误。
+
+======== 当前状态（重要，别推倒重来）========
+材料A里已有你上一版的 split_assoc 完整证明与三个辅助引理（get_setby_None_uncond/get_repeat_None_lt/length_repeat_None），
+逐点结构是对的，只剩编译错误（如 repeat None len 里 None 推断不出类型——元素是 option ty，应写 repeat (None:option ty) len；
+类似隐式参数推断不出的地方都显式标类型）。请基于材料末尾的 coqc 错误做【最小修正】，保留已正确的证明结构，
+给出修正后的完整 Lemma 块（辅助引理用 INSERT-BEFORE 块、split_assoc 用独立主块）；不要改路线、不要删正确引理。
 """
 
 if __name__ == "__main__":
     res = proof_loop(BRIEF, FILE, TARGET, layer_files=("Layer1.v","Layer2.v"),
                      strategy_docs=STRATEGY, philos_docs=PHILOS, extra_notes=EXTRA,
-                     model="deepseek-v4-pro", max_rounds=3)
+                     model="deepseek-v4-pro", max_rounds=4)
     print("="*60); print("收敛" if res["converged"] else "未收敛")
     for r in res["rounds"]: print(r)

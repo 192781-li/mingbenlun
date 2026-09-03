@@ -48,6 +48,9 @@ def apply_patch(file_path, target_lemma, blocks):
                 return False, "多个代码块都定义了目标lemma，拒绝盲改", src, [], "none"
             new_lemma = body
         elif body:
+            # 噪声块（markdown 标题/纯说明，不含任何 Coq 顶层定义）直接丢弃，不插入 .v
+            if not re.search(r"(?m)^\s*(?:Lemma|Theorem|Fact|Corollary|Definition|Fixpoint|Inductive|Let)\b", body):
+                skipped.append(["<噪声块,非顶层定义,丢弃>"]); continue
             names = _top_defined_names(body)
             dup = names & existing
             if dup:                      # 上一轮已证入，本轮又给 -> 去重，保留文件现有版本
@@ -107,7 +110,9 @@ def _local_names(blocks):
     local=set(); txt="\n".join(blocks)
     for m in re.finditer(r"intros\s+([^.]*)\.", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
     for m in re.finditer(r"(?:induction|destruct)\s+([A-Za-z_][\w']*)", txt): local.add(m.group(1))
-    for m in re.finditer(r"as\s+([\[\]\(\)\|\w'\s]+?)(?:,|=>|\.|$)", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
+    # as 模式：把 as 后整段绑定模式（允许 [[..]|[..]] 嵌套、(|..&..)、| , 空格）吃到 . ; 换行，再提标识符
+    for m in re.finditer(r"\bas\s+([\[\]\(\)\|\w'\s&,]+?)[.;\n]", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
+    for m in re.finditer(r"\bas\s+([A-Za-z_][\w']*)", txt): local.add(m.group(1))  # as name（不带括号）
     for m in re.finditer(r"forall\s+([^,]+),", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
     for m in re.finditer(r"fun\s+([^=]+)=>", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
     for m in re.finditer(r"(?:assert|set|remember|pose)\s*\(?\s*([A-Za-z_][\w']*)", txt): local.add(m.group(1))
