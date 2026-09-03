@@ -77,16 +77,24 @@ injection 对双层 option 一次剥到底（不要连续两次 injection）。
 ======== 当前状态（重要，从零写主证明，别再走老路）========
 4 个辅助引理 get_setby_None_uncond / get_repeat_None_lt / length_repeat_None / get_setby_None 已全部 Qed 且编译通过，
 【直接用、不要重发、不要再新造任何辅助引理】（你上轮抽的 get_setby_merge_spec 把 get 层 match 和 Some(元素) 混层，已删除，禁止再抽这类引理）。
-split_assoc 主引理现在是 Admitted 占位，你这一轮只交它一个完整 Lemma 块。
+材料A里 split_assoc 已有你上一版的完整证明（三态穷尽思路正确、f 已改成正确的无类型标注 pose），
+现在 coqc 的【唯一】错误是：line 2229 `[Focus] Wrong bullet --: Current bullet ** is not finished`——
+即某个 ** 分支还没证完就退到了 --，bullet 层级没有逐层闭合。
+你这一轮：以材料A里现有证明为基础，重交【一个】完整 Lemma split_assoc..Qed. 块，把 bullet 层级彻底理顺
+（建议固定：最外层用 -，下一层 +，再下一层 *，再深 ++；进入一层就把这一层每个分支都证完再退，绝不在 ** 未结束时写 --）。
+除 bullet 闭合外不要改动已正确的 f 定义与三态穷尽骨架，也不要重发/新造辅助引理。
 
 setby/get 精确事实（Layer1）：
   Fixpoint setby (f:nat->option ty->option ty) Gamma k := match Gamma with []=>[] | t::G'=>f k t::setby f G'(S k) end.
   Lemma get_setby_get : get Gamma n = Some u -> get (setby f Gamma k) n = Some (f (k+n) u).  (* u:option ty 元素层；右侧 Some(元素层值) *)
-f 必须返回【元素层 option ty】，且因为是新建局部定义，用 pose（严禁 set(f:T:=..) 语法）：
-  pose (f : nat -> option ty -> option ty :=
-          fun n (_:option ty) => match get G2 n with Some (Some a) => Some a
-                                 | _ => match get G3 n with Some v => v | None => None end end).
+f 必须返回【元素层 option ty】，且因为是新建局部定义，用 pose。【pose 类型标注语法已用 coqc 验证，严格照这个写法】：
+  pose (f := fun (n:nat) (_:option ty) =>
+               match get G2 n with Some (Some a) => Some a
+               | _ => match get G3 n with Some v => v | None => None end end).
   exists (setby f G 0).
+严禁 set(f:T:=..)（set 不接受名字:类型:=）；也严禁 pose (f : T := ..)（pose 同样不接受名字后类型）；
+也不要写 fun...end : T 这种“后置返回标注”，它会被 Coq 误绑到内层 match 导致分支被要求成函数类型。
+返回类型让 Coq 从分支自动推断（三个分支都是 option ty，自会推出 nat->option ty->option ty），只需给形参 (n:nat)(_:option ty) 标注。
 
 【你前几轮唯一卡住点：f 的 match 在证明里没归约掉（2230/2226 Unable to unify Some None with Some (match...)）。标准手法，严格照做】
 要证逐位置等式时，get G23 n 经 get_setby_get 变成 Some (f n u)，两边都是 Some(元素层值)，只需证括号内元素层相等。

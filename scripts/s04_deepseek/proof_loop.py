@@ -121,6 +121,8 @@ def _local_names(blocks):
     for m in re.finditer(r"fun\s+([^=]+)=>", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
     for m in re.finditer(r"(?:assert|set|remember|pose)\s*\(?\s*([A-Za-z_][\w']*)", txt): local.add(m.group(1))
     for m in re.finditer(r"specialize\s+([A-Za-z_][\w']*)", txt): local.add(m.group(1))
+    # eqn:NAME / eqn : NAME / eqn:(NAME)：destruct/inversion/case 用 eqn 绑定的等式假设名（如 destruct .. eqn:EG）
+    for m in re.finditer(r"\beqn\s*:\s*\(?([A-Za-z_][\w']*)", txt): local.add(m.group(1))
     return local
 
 def parse_stdlib_names(content, blocks):
