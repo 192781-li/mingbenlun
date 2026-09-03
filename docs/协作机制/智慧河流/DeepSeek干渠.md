@@ -4624,3 +4624,124 @@ split G G1 G23:
 - 根据 get G n 分层。但注意 split G G1 G23 的目标是 forall n, (get G1 n = get G n /\ (get G23 n = None \/ get G23 n = Some None)) \/ (get G23 n = get G n /\ (get G1 n = None \/ get G1 n = Some None)).
 所以我们需要证明 G23 在 n 位的行为。根据情形：
   情况：资源在 G3 时，G23 n = G n? 因为 G23 取 G2 or G3，若 G2 空而 G3 有资源，则 G23 n = G3 n = G n。但 split G G1 G23 需要什么？如果资源在 G3（即 split G G12 G3 的右支），则 G12 n 为空，G3 n = G n。由 Hs2 n，因为 G12 n 为空，Hs2 必须右支或左支？Hs2: split G12 G1 G2。如果 
+
+
+## 2026-09-04 07:42:57 [proof_loop] split_assoc · round1 · DS输出
+
+不能按指定 `setby f G 0` 骨架交付 `split_assoc` 证明——该见证对原命题不足，存在反例。
+
+反例：  
+`G = []`, `G12 = []`, `G3 = [None]`, `G1 = []`, `G2 = [None]`。  
+此时 `split G G12 G3` 与 `split G12 G1 G2` 都成立；但按指定 `f`，`setby f G 0 = []`，而要求 `split [] [None] [None]` 不成立。
+
+```coq
+(* COUNTEREXAMPLE: the prescribed witness cannot prove split_assoc as stated *)
+
+Lemma split_nil_nil_None_hold :
+  split [] [] [None] /\ split [] [] [None].
+Proof.
+  split; unfold split; intros [|n]; simpl; auto.
+Qed.
+
+Lemma split_empty_None_None_false :
+  ~ split [] [None] [None].
+Proof.
+  intros H. unfold split in H. specialize (H 0). simpl in H.
+  destruct H as [[Hl _] | [Hr _]]; discriminate.
+Qed.
+```
+
+所以问题不是 bullet 闭合，也不是 assert 拆分：是指定 `G23 := setby f G 0` 这个存在性见证本身是假的。  
+要继续证明原 `split_assoc`，必须换见证：源上下文需要 pad 到 `max (length G2) (length G3)`，且 `f` 须在 `get G2 n = Some v`（含 `Some None`）时优先取 `G2` 的 `v`，否则会丢失 `Some None` 空位。或者给 `split_assoc` 补长度/形状前提后再用原路线。
+[reasoning摘要]
+We need answer with Coq proof for split_assoc only, following instructions. We are "证明者" but user likely wants code. Need inspect existing material. They provided entire Layer2 including split_assoc existing attempt with Admitted? Actually in Layer2.v they included split_assoc proof? Let's inspect: In Material A Layer2.v, there is already a big split_assoc proof after get_setby_None etc? The provided Layer2 includes:
+```
+Lemma split_assoc : ...
+Proof.
+  intros...
+  pose (f := ...)
+  exists ...
+  split.
+  { ... big proof ... }
+  { ... big proof ... }
+Qed.
+```
+Actually in Material A at end, before typed_res_par_l Admitted, there is `Lemma split_assoc ... Proof. ... Qed.`? Wait they include a huge split_assoc proof with `Qed.`? Let's check: The material includes from `Lemma split_assoc : ...` to `Qed.` then `Lemma typed_res_par_l ... Admitted.` Yes there is a full split_assoc proof already in Layer2.v, but maybe it's currently in file and compiled? User says "证明 Lemma split_assoc（替换其 Admitted 占位）" and "材料A里 split_assoc 已有你多版证明 ...但已连续 8 轮未收敛". Wait material A appears to include a completed split_assoc proof with Qed? It starts after `Lemma get_setby_None : ... Proof... Qed.` then `Lemma split_assoc ...` with large proof and `Qed.`. But maybe this is one of failed multi-version? The provided Layer2.v in prompt includes split_assoc with `Qed.` but maybe it's candidate and not compiled? They say current state: 4 auxiliary lemmas already Qed; split_assoc existing has multi-version p
+
+
+## 2026-09-04 07:46:09 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  pose (f := fun (n : nat) (_ : option ty) =>
+               match get G2 n with
+               | Some (Some a) => Some a
+               | _ => match get G3 n with
+                      | Some v => v
+                      | None => None
+                      end
+               end).
+  exists (setby f G 0).
+  split.
+  - assert (Hl : split G G1 (setby f G 0)).
+    { unfold split. intro n. specialize (Hs1 n); specialize (Hs2 n).
+      destruct (Hs1 n) as [[HG12 HG3empty] | [HG3 HG12empty]].
+      + destruct (Hs2 n) as [[HG1 HG2empty] | [HG2 HG1empty]].
+        * left. split.
+          -- rewrite HG1, HG12. reflexivity.
+          -- right. destruct (get G n) as [[T|]|] eqn:EG.
+             ++ apply get_setby_None. exact EG.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f.
+                destruct HG2empty as [HG2n | HG2s]; destruct HG3empty as [HG3n | HG3s];
+                  rewrite HG2n || rewrite HG2s; rewrite HG3n || rewrite HG3s.
+                all: try (left; reflexivity); try (right; reflexivity).
+             ++ rewrite get_setby_get with (u := None) by exact EG.
+                unfold f.
+                destruct HG2empty as [HG2n | HG2s]; destruct HG3empty as [HG3n | HG3s];
+                  rewrite HG2n || rewrite HG2s; rewrite HG3n || rewrite HG3s.
+                all: try (left; reflexivity); try (right; reflexivity).
+        * right. split.
+          -- destruct (get G n) as [[T|]|] eqn:EG.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. rewrite HG12 in HG2. rewrite HG2. cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. rewrite HG12 in HG2. rewrite HG2. cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := None) 
+[reasoning摘要]
+我们需要回答用户。用户要求继续证明 split_assoc，且已经有很多约束。材料中 Layer2 尾部存在 split_assoc 已实现？但用户说上一版编译错误在 line 2250 focusing。我们要提供修正：按照 assert 拆分骨架重写 split_assoc 主引理。注意用户说不要重发辅助引理，只交一个 split_assoc 块。但材料A中已经有 split_assoc 的大证明，且错误是 focused unfocused。我们需要给出正确、可编译的 split_assoc。
+
+我们需要非常仔细。先理解 split_assoc 命题和已有定义。
+
+split 定义：
+Definition split Gamma Gamma1 Gamma2 := forall n,
+  (get Gamma1 n = get Gamma n /\ (get Gamma2 n = None \/ get Gamma2 n = Some None))
+  \/ (get Gamma2 n = get Gamma n /\ (get Gamma1 n = None \/ get Gamma1 n = Some None)).
+
+目标：
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+构造 f 和 G23 := setby f G 0。要证明 split G G1 G23 和 split G23 G2 G3。
+
+我们需要证明这两个 split 引理独立。我们可用 assert 拆分：第一个 assert 证明 split G G1 G23，第二个证明 split G23 G2 G3。每个 assert 内对 n 逐位置拆 Hs1 n 和 Hs2 n，并按 A/B1/B2 情形。
+
+注意用户说：f 定义正确是：
+pose (f := fun (n:nat) (_:option ty) =>
+  match get G2 n with Some (Some a) => Some a
+  | _ => match get G3 n with Some v => v | None => None end end).
+
+注意 match get G2 n with Some (Some a) => Some a | _ => ... end。对 get G2 n 返回 option(option ty)。如果 get G2 n 是 Some (Some a)，返回 Some a (element层资源)；否则（包括 Some None 和 None）取 get G3 n 的值，如果 get G3 n 是 Some v 返回 v，如果 None 返回 None。这定义了 f n t，但 t 参数被忽略。实际上返回元素层 option ty。
+
+我们需要证明 split G G1 G23：即对于任意 n，要么 G1 持有 G 的资源且 G23 空，要么 G23 持有 G 的资源且 G1 空。根据 Hs1 和 Hs2：
+
+具体展开：
+
+Hs1 n : split G G12 G3 at n:
+ (get G12 n = get G n /\ (get G3 n = None \/ get G3 n = Some None))
+ \/ (get G3 n

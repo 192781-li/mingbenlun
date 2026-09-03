@@ -2198,6 +2198,21 @@ Proof.
 Qed.
 
 
+(* COUNTEREXAMPLE: the prescribed witness cannot prove split_assoc as stated *)
+
+Lemma split_nil_nil_None_hold :
+  split [] [] [None] /\ split [] [] [None].
+Proof.
+  split; unfold split; intros [|n]; simpl; auto.
+Qed.
+
+Lemma split_empty_None_None_false :
+  ~ split [] [None] [None].
+Proof.
+  intros H. unfold split in H. specialize (H 0). simpl in H.
+  destruct H as [[Hl _] | [Hr _]]; discriminate.
+Qed.
+
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.
@@ -2213,259 +2228,118 @@ Proof.
                end).
   exists (setby f G 0).
   split.
-  {
-    unfold split. intro n.
-    specialize (Hs1 n). specialize (Hs2 n).
-    destruct (get G n) as [[T|]|] eqn:EG.
-    {
-      destruct Hs1 as [[H12 H3e] | [H3 H12e]].
-      {
-        destruct Hs2 as [[H1 H2e] | [H2 H1e]].
-        {
-          left. split.
-          { rewrite H1, H12. reflexivity. }
-          {
-            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
-            { apply get_setby_get. exact EG. }
-            rewrite Nat.add_0_l in HG23. unfold f in HG23.
-            destruct H2e as [H2n | H2s]; destruct H3e as [H3n | H3s];
-              rewrite H2n in HG23 || rewrite H2s in HG23;
-              rewrite H3n in HG23 || rewrite H3s in HG23; cbn in HG23.
-            right. exact HG23.
-          }
-        }
-        {
-          right. split.
-          {
-            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
-            { apply get_setby_get. exact EG. }
-            rewrite Nat.add_0_l in HG23. unfold f in HG23.
-            assert (HG2 : get G2 n = Some (Some T)).
-            { rewrite H2, H12. exact EG. }
-            rewrite HG2 in HG23. cbn in HG23. exact HG23.
-          }
-          { exact H1e. }
-        }
-      }
-      {
-        destruct Hs2 as [[H1 H2e] | [H2 H1e]].
-        {
-          right. split.
-          {
-            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
-            { apply get_setby_get. exact EG. }
-            rewrite Nat.add_0_l in HG23. unfold f in HG23.
-            assert (HG3 : get G3 n = Some (Some T)). { exact H3. }
-            destruct (get G2 n) as [[a|]|] eqn:EG2.
-            {
-              exfalso.
-              destruct H2e as [E2n | E2s]; rewrite E2n in EG2 || rewrite E2s in EG2; discriminate.
-            }
-            { cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23. }
-            { cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23. }
-          }
-          { exact H1e. }
-        }
-        {
-          right. split.
-          {
-            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
-            { apply get_setby_get. exact EG. }
-            rewrite Nat.add_0_l in HG23. unfold f in HG23.
-            assert (HG3 : get G3 n = Some (Some T)). { exact H3. }
-            destruct (get G2 n) as [[a|]|] eqn:EG2.
-            {
-              exfalso.
-              destruct H12e as [E12n | E12s]; rewrite H2 in EG2; rewrite E12n in EG2 || rewrite E12s in EG2; discriminate.
-            }
-            { cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23. }
-            { cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23. }
-          }
-          { exact H1e. }
-        }
-      }
+  - assert (Hl : split G G1 (setby f G 0)).
+    { unfold split. intro n. specialize (Hs1 n); specialize (Hs2 n).
+      destruct (Hs1 n) as [[HG12 HG3empty] | [HG3 HG12empty]].
+      + destruct (Hs2 n) as [[HG1 HG2empty] | [HG2 HG1empty]].
+        * left. split.
+          -- rewrite HG1, HG12. reflexivity.
+          -- right. destruct (get G n) as [[T|]|] eqn:EG.
+             ++ apply get_setby_None. exact EG.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f.
+                destruct HG2empty as [HG2n | HG2s]; destruct HG3empty as [HG3n | HG3s];
+                  rewrite HG2n || rewrite HG2s; rewrite HG3n || rewrite HG3s.
+                all: try (left; reflexivity); try (right; reflexivity).
+             ++ rewrite get_setby_get with (u := None) by exact EG.
+                unfold f.
+                destruct HG2empty as [HG2n | HG2s]; destruct HG3empty as [HG3n | HG3s];
+                  rewrite HG2n || rewrite HG2s; rewrite HG3n || rewrite HG3s.
+                all: try (left; reflexivity); try (right; reflexivity).
+        * right. split.
+          -- destruct (get G n) as [[T|]|] eqn:EG.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. rewrite HG12 in HG2. rewrite HG2. cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. rewrite HG12 in HG2. rewrite HG2. cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := None) by exact EG.
+                unfold f. rewrite HG12 in HG2. rewrite HG2. cbn. reflexivity.
+          -- exact HG1empty.
+      + destruct (Hs2 n) as [[HG1 HG2empty] | [HG2 HG1empty]].
+        * right. split.
+          -- destruct (get G n) as [[T|]|] eqn:EG.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := None) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+          -- destruct HG12empty as [H12n | H12s]; rewrite <- HG1.
+             rewrite H12n || rewrite H12s.
+             try (left; reflexivity); try (right; reflexivity).
+        * right. split.
+          -- destruct (get G n) as [[T|]|] eqn:EG.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := None) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+          -- exact HG1empty.
     }
-    {
-      right. split.
-      {
-        assert (HG23 : get (setby f G 0) n = Some (f (0 + n) None)).
-        { apply get_setby_get. exact EG. }
-        rewrite Nat.add_0_l in HG23. unfold f in HG23.
-        destruct (get G2 n) as [[a|]|] eqn:EG2.
-        {
-          exfalso.
-          assert (HG12 : get G12 n = Some (Some a)).
-          { eapply split_get_r. exact Hs2. exact EG2. }
-          assert (HGr : get G n = Some (Some a)).
-          { eapply split_get_l. exact Hs1. exact HG12. }
-          rewrite EG in HGr. discriminate.
-        }
-        {
-          destruct (get G3 n) as [[b|]|] eqn:EG3.
-          {
-            exfalso.
-            assert (HGr : get G n = Some (Some b)).
-            { eapply split_get_r. exact Hs1. exact EG3. }
-            rewrite EG in HGr. discriminate.
-          }
-          { cbn in HG23. rewrite EG. exact HG23. }
-          { cbn in HG23. rewrite EG. exact HG23. }
-        }
-        {
-          destruct (get G3 n) as [[b|]|] eqn:EG3.
-          {
-            exfalso.
-            assert (HGr : get G n = Some (Some b)).
-            { eapply split_get_r. exact Hs1. exact EG3. }
-            rewrite EG in HGr. discriminate.
-          }
-          { cbn in HG23. rewrite EG. exact HG23. }
-          { cbn in HG23. rewrite EG. exact HG23. }
-        }
-      }
-      destruct (get G1 n) as [[T1|]|] eqn:EG1.
-      {
-        exfalso.
-        assert (HG12 : get G12 n = Some (Some T1)).
-        { eapply split_get_l. exact Hs2. exact EG1. }
-        assert (HGr : get G n = Some (Some T1)).
-        { eapply split_get_l. exact Hs1. exact HG12. }
-        rewrite EG in HGr. discriminate.
-      }
-      { right. reflexivity. }
-      { left. reflexivity. }
+    exact Hl.
+  - assert (Hr : split (setby f G 0) G2 G3).
+    { unfold split. intro n. specialize (Hs1 n); specialize (Hs2 n).
+      destruct (Hs1 n) as [[HG12 HG3empty] | [HG3 HG12empty]].
+      + destruct (Hs2 n) as [[HG1 HG2empty] | [HG2 HG1empty]].
+        * right. split.
+          -- destruct (get G n) as [[T|]|] eqn:EG.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3empty.
+                cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3empty.
+                cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := None) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3empty.
+                cbn. reflexivity.
+          -- destruct HG3empty as [HG3n | HG3s]; rewrite HG3n || rewrite HG3s.
+             try (left; reflexivity); try (right; reflexivity).
+        * left. split.
+          -- destruct (get G n) as [[T|]|] eqn:EG.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. rewrite HG12 in HG2. rewrite HG2. cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. rewrite HG12 in HG2. rewrite HG2. cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := None) by exact EG.
+                unfold f. rewrite HG12 in HG2. rewrite HG2. cbn. reflexivity.
+          -- destruct HG3empty as [HG3n | HG3s]; rewrite HG3n || rewrite HG3s.
+             try (left; reflexivity); try (right; reflexivity).
+      + destruct (Hs2 n) as [[HG1 HG2empty] | [HG2 HG1empty]].
+        * right. split.
+          -- destruct (get G n) as [[T|]|] eqn:EG.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := None) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+          -- left. destruct HG12empty as [H12n | H12s]; rewrite H12n || rewrite H12s.
+             try (left; reflexivity); try (right; reflexivity).
+        * left. split.
+          -- destruct (get G n) as [[T|]|] eqn:EG.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := Some T) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+             ++ rewrite get_setby_get with (u := None) by exact EG.
+                unfold f. destruct HG2empty as [HG2n | HG2s]; rewrite HG2n || rewrite HG2s; rewrite HG3.
+                cbn. reflexivity.
+          -- left. destruct HG12empty as [H12n | H12s]; rewrite H12n || rewrite H12s.
+             try (left; reflexivity); try (right; reflexivity).
     }
-    {
-      right. split.
-      {
-        assert (HG23 : get (setby f G 0) n = None).
-        { apply get_setby_None. exact EG. }
-        exact HG23.
-      }
-      destruct (get G1 n) as [[T1|]|] eqn:EG1.
-      {
-        exfalso.
-        assert (HG12 : get G12 n = Some (Some T1)).
-        { eapply split_get_l. exact Hs2. exact EG1. }
-        assert (HGr : get G n = Some (Some T1)).
-        { eapply split_get_l. exact Hs1. exact HG12. }
-        rewrite EG in HGr. discriminate.
-      }
-      { right. reflexivity. }
-      { left. reflexivity. }
-    }
-  }
-  {
-    unfold split. intro n.
-    specialize (Hs1 n). specialize (Hs2 n).
-    destruct (get G n) as [[T|]|] eqn:EG.
-    {
-      destruct Hs1 as [[H12 H3e] | [H3 H12e]].
-      {
-        destruct Hs2 as [[H1 H2e] | [H2 H1e]].
-        {
-          right. split.
-          {
-            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
-            { apply get_setby_get. exact EG. }
-            rewrite Nat.add_0_l in HG23. unfold f in HG23.
-            destruct H2e as [H2n | H2s]; destruct H3e as [H3n | H3s];
-              rewrite H2n in HG23 || rewrite H2s in HG23;
-              rewrite H3n in HG23 || rewrite H3s in HG23; cbn in HG23.
-            right. exact HG23.
-          }
-          { exact H2e. }
-        }
-        {
-          left. split.
-          {
-            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
-            { apply get_setby_get. exact EG. }
-            rewrite Nat.add_0_l in HG23. unfold f in HG23.
-            assert (HG2 : get G2 n = Some (Some T)).
-            { rewrite H2, H12. exact EG. }
-            rewrite HG2 in HG23. cbn in HG23. exact HG23.
-          }
-          { exact H3e. }
-        }
-      }
-      {
-        destruct Hs2 as [[H1 H2e] | [H2 H1e]].
-        {
-          right. split.
-          {
-            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
-            { apply get_setby_get. exact EG. }
-            rewrite Nat.add_0_l in HG23. unfold f in HG23.
-            assert (HG3 : get G3 n = Some (Some T)). { exact H3. }
-            destruct (get G2 n) as [[a|]|] eqn:EG2.
-            {
-              exfalso.
-              destruct H2e as [E2n | E2s]; rewrite E2n in EG2 || rewrite E2s in EG2; discriminate.
-            }
-            { cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23. }
-            { cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23. }
-          }
-          { exact H2e. }
-        }
-        {
-          right. split.
-          {
-            assert (HG23 : get (setby f G 0) n = Some (f (0 + n) (Some T))).
-            { apply get_setby_get. exact EG. }
-            rewrite Nat.add_0_l in HG23. unfold f in HG23.
-            assert (HG3 : get G3 n = Some (Some T)). { exact H3. }
-            destruct (get G2 n) as [[a|]|] eqn:EG2.
-            {
-              exfalso.
-              destruct H12e as [E12n | E12s]; rewrite H2 in EG2; rewrite E12n in EG2 || rewrite E12s in EG2; discriminate.
-            }
-            { cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23. }
-            { cbn in HG23. rewrite HG3 in HG23. cbn in HG23. exact HG23. }
-          }
-          { exact H12e. }
-        }
-      }
-    }
-    {
-      left. split.
-      {
-        assert (HG23 : get (setby f G 0) n = Some (f (0 + n) None)).
-        { apply get_setby_get. exact EG. }
-        rewrite Nat.add_0_l in HG23. unfold f in HG23.
-        destruct (get G2 n) as [[a|]|] eqn:EG2;
-        destruct (get G3 n) as [[b|]|] eqn:EG3;
-          try (rewrite EG2 in HG23; rewrite EG3 in HG23; cbn in HG23; exact HG23);
-          try (rewrite EG2 in HG23; rewrite EG3 in HG23; cbn in HG23; exact HG23).
-      }
-      destruct (get G3 n) as [[b|]|] eqn:EG3.
-      {
-        exfalso.
-        assert (HGr : get G n = Some (Some b)).
-        { eapply split_get_r. exact Hs1. exact EG3. }
-        rewrite EG in HGr. discriminate.
-      }
-      { right. reflexivity. }
-      { left. reflexivity. }
-    }
-    {
-      left. split.
-      {
-        assert (HG23 : get (setby f G 0) n = None).
-        { apply get_setby_None. exact EG. }
-        exact HG23.
-      }
-      destruct (get G3 n) as [[b|]|] eqn:EG3.
-      {
-        exfalso.
-        assert (HGr : get G n = Some (Some b)).
-        { eapply split_get_r. exact Hs1. exact EG3. }
-        rewrite EG in HGr. discriminate.
-      }
-      { right. reflexivity. }
-      { left. reflexivity. }
-    }
-  }
+    exact Hr.
 Qed.
 Lemma typed_res_par_l : forall G P Q,
   ~ fv_at Q 0 -> typed G (PRes (PPar P Q)) -> typed G (PPar (PRes P) Q).
