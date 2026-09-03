@@ -77,12 +77,14 @@ injection 对双层 option 一次剥到底（不要连续两次 injection）。
 ======== 当前状态（重要，从零写主证明，别再走老路）========
 4 个辅助引理 get_setby_None_uncond / get_repeat_None_lt / length_repeat_None / get_setby_None 已全部 Qed 且编译通过，
 【直接用、不要重发、不要再新造任何辅助引理】（你上轮抽的 get_setby_merge_spec 把 get 层 match 和 Some(元素) 混层，已删除，禁止再抽这类引理）。
-材料A里 split_assoc 已有你上一版的完整证明（三态穷尽思路正确、f 已改成正确的无类型标注 pose），
-现在 coqc 的【唯一】错误是：line 2229 `[Focus] Wrong bullet --: Current bullet ** is not finished`——
-即某个 ** 分支还没证完就退到了 --，bullet 层级没有逐层闭合。
-你这一轮：以材料A里现有证明为基础，重交【一个】完整 Lemma split_assoc..Qed. 块，把 bullet 层级彻底理顺
-（建议固定：最外层用 -，下一层 +，再下一层 *，再深 ++；进入一层就把这一层每个分支都证完再退，绝不在 ** 未结束时写 --）。
-除 bullet 闭合外不要改动已正确的 f 定义与三态穷尽骨架，也不要重发/新造辅助引理。
+材料A里 split_assoc 已有你上一版(r4)的完整证明（三态穷尽思路正确、f 是正确的无类型标注 pose、bullet 层级已闭合、4个辅助引理已 Qed），
+现在 coqc 的【唯一】错误是：line 2224 `Found no subterm matching "get G n" in the current goal.`
+该行代码是：`-- rewrite H1. rewrite H12. rewrite EG. reflexivity.`
+根因（执行方观察，供你参考，最终以你判断为准）：这是 Hs1 left / Hs2 left 分支（资源在 G1），目标经 left.split 后第一支是某侧等式；
+你先 rewrite H1 再 rewrite H12，这两步把目标里的 get G n 提前替换掉了，导致第三步 rewrite EG（EG: get G n = Some(Some T)）找不到子项。
+请检查这一支（以及后续所有类似分支）的 rewrite 顺序与方向：要么先 rewrite EG 把 get G n 化成 Some(Some T)，要么用 symmetry 调整等式方向，要么改用 exact/rewrite <-。
+你这一轮：以材料A里现有 r4 证明为基础，重交【一个】完整 Lemma split_assoc..Qed. 块，只修 2224 这一处及连带的同类 rewrite 顺序问题；
+不要重写已正确的 f 定义、三态穷尽骨架、bullet 结构，也不要重发/新造辅助引理。
 
 setby/get 精确事实（Layer1）：
   Fixpoint setby (f:nat->option ty->option ty) Gamma k := match Gamma with []=>[] | t::G'=>f k t::setby f G'(S k) end.
@@ -114,6 +116,6 @@ f 必须返回【元素层 option ty】，且因为是新建局部定义，用 p
 if __name__ == "__main__":
     res = proof_loop(BRIEF, FILE, TARGET, layer_files=("Layer1.v","Layer2.v"),
                      strategy_docs=STRATEGY, philos_docs=PHILOS, extra_notes=EXTRA,
-                     model="deepseek-v4-pro", max_rounds=4)
+                     model="deepseek-v4-pro", max_rounds=5)
     print("="*60); print("收敛" if res["converged"] else "未收敛")
     for r in res["rounds"]: print(r)
