@@ -153,3 +153,8 @@
 2026-09-04 06:29:28,S04,deepseek-v4-pro,A,proofloop_split_assoc_r2,45440,16969,14587,0,success,209.55,0.13956,0.7281,stop,proofloop_split_assoc_r2
 2026-09-04 06:32:35,S04,deepseek-v4-pro,A,proofloop_split_assoc_r3,45440,20042,13329,0,success,185.41,0.14124,0.6939,stop,proofloop_split_assoc_r3
 2026-09-04 06:43:21,S04,deepseek-v4-pro,A,proofloop_split_assoc_r4,112128,21334,41539,1,success,644.32,0.31604,0.8401,stop,proofloop_split_assoc_r4
+2026-09-04 06:49:28,S04,deepseek-v4-pro,A,proofloop_split_assoc_r1,45440,15383,17709,0,success,217.31,0.15354,0.7471,stop,proofloop_split_assoc_r1
+2026-09-04 06:54:31,S04,deepseek-v4-pro,A,proofloop_split_assoc_r2,45440,17473,23936,0,success,300.83,0.19717,0.7223,stop,proofloop_split_assoc_r2
+2026-09-04 06:58:41,S04,deepseek-v4-pro,A,proofloop_split_assoc_r3,45440,19697,17702,0,success,247.81,0.16644,0.6976,stop,proofloop_split_assoc_r3
+2026-09-04 07:06:34,S04,deepseek-v4-pro,A,proofloop_split_assoc_r4,45568,21406,29909,0,success,471.77,0.24481,0.6804,stop,proofloop_split_assoc_r4
+2026-09-04 07:07:50,S04,deepseek-v4-pro,A,proofloop_split_assoc_r5,45568,24171,6139,0,success,73.92,0.11049,0.6534,stop,proofloop_split_assoc_r5
