@@ -105,3 +105,834 @@ DeepSeek的智慧 = 你的上下文 × 你的问题质量 × 你的批判性理�
 - 不批判 → DeepSeek的错误被当成真理
 
 干渠的作用就是：让每一次DeepSeek调用都可追溯、可检验、可沉淀。不是"用了DeepSeek"，而是"DeepSeek的智慧通过这条干渠流入了河流"。
+
+
+## 2026-09-03 23:39:44 [proof_loop] subst_ren_general · round1 · DS输出
+
+```coq
+(* INSERT-BEFORE: subst_ren_general *)
+
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n|_|P IHP|x y P IHP|x P IHP|P IHP Q IHQ|P IHP|P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|? x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := true) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_name m k y)).
+    + unfold use. sp
+[reasoning摘要]
+我们需要给出 subst_ren_general 完整修正版。必须先看材料里当前 subst_ren_general 文本。材料中已经给了完整 Layer2.v 全文，其中 subst_ren_general 有 admit，且确实许多地方源上下文写成了 Gamma（应为 D）。任务要求给出从 Lemma 声明到 Qed. 的完整可编译版本，可插入新辅助引理在前。
+
+我们需要在脑子里完整构造证明。Coq 版本 9.1，无 SSReflect，有 Stdlib List PeanoNat Lia ClassicalEpsilon。已有引理很多。我们要确保所有引用真实存在。
+
+关键：subst_ren_general 对 Q 归纳，源 D 任意，目标 Gamma 参数名 G（但 lambda 引入名为 G）。签名：
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (Gamma : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (ren (subst_name m k) Q).
+
+证明里 induction Q as [n|pz|P IHP|x y P IHP|x P IHP|P IHP Q IHQ|P IHP|P IHP];
+intros D HTD m k G Hpts Hnu; simpl in *.
+
+注意 induction Q 产生 P 等名字？我们看现有证明里：
+induction Q as [n|pz|P IHP|x y P IHP|x P IHP|P IHP Q IHQ|P IHP|P IHP];
+所以 P 对应第三个？实际上 proc 构造子顺序：PVar nat, PZero, PTau proc, POut nat nat proc, PIn nat proc, PPar proc proc, PRes proc, PRep proc。模式：n | pz | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP。POut 的 body 名为 P，PIn body P，PPar 左 P 右 Q。可以。
+
+当前代码里 POut 分支有 Gamma 错。另外需要完整 PPar case，当前 admit。我们必须自己写完整证明，不能留 Admitted。可以新增辅助引理吗？材料中已经有很多辅助引理包括 typed_strengthen_unused / typed_strengthen_collisions / strengthened_has_not_rhom / split_disjoint_some / strengthened_disjoint 等。需要仔细利用这些来证 PPar。S00 文档说用 strengthening 减弱碰撞位再 split_proj。材料里已经有 typed_strengthen_collisions:
+Lemma typed_strengthen_collisions : forall (C : ctx) (P : proc) m k
+
+
+## 2026-09-03 23:55:04 [proof_loop] subst_ren_general · round1 · DS输出
+
+```coq
+(* REPLACE: Lemma subst_ren_general ... Admitted. *)
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (Gamma : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n|pz|P IHP|x y P IHP|x P IHP|P IHP Q IHQ|P IHP|P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := true) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_name m k
+[reasoning摘要]
+We need output complete new version of subst_ren_general lemma from declaration to Qed. We need inspect context. We have full Layer2 material. Need produce correct proof for whole lemma, especially PPar case no admit, and fix Gamma->D errors.
+
+We need be careful: We cannot invent nonexistent lemmas. We can use all lemmas in Layer1/Layer2. Existing subst_ren_general has Admitted at end, with PPar admit; others. We need replace entire lemma with full proof.
+
+Our role: DS main proof author. Need provide complete compilable Coq. We need reason here to solve. Let's understand definitions and available lemmas. We have Layer2 full, with subst_ren_general skeleton mostly complete except PPar. Need fix variable errors.
+
+Goal:
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (Gamma : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get Gamma (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed Gamma (ren (subst_name m k) Q).
+
+Note variable Gamma in forall is target. So target context name Gamma exists. Wait the task says target context G? They note environment has no Gamma in POut? Actually declaration has forall Gamma : ctx, so inside it's named Gamma. But in current original code, after intros D Q. revert D. induction Q ...; intros D HTD m k G Hpts Hnu; simpl in *. They likely intros D HTD m k G Hpts Hnu, so target context is named G, not Gamma. But theorem statement says forall ... (Gamma : ctx) ...
+
+
+## 2026-09-03 23:58:00 [proof_loop] subst_ren_general · round2 · DS输出
+
+```coq
+(* REPLACE: from the declaration "Lemma subst_ren_general" down to the Qed. of this lemma only. *)
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := true) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (s
+[reasoning摘要]
+我们需要修正 subst_ren_general 的完整版本。用户说当前 coqc 真实输出 line 1455 Gamma not found。上一版错误还有 P0 not found。但材料中当前代码应该是用户提供的“本轮任务”引出。我们需要产出完整 Lemma subst_ren_general ... Qed. 确保所有 case 正确，源上下文 D、目标 G，没有 Gamma。尤其需要补 PPar case 不再 admit。
+
+我们需要基于 Layer2.v 中的已有引理构建完整证明。材料A中已经存在很多辅助引理。我们只需替换 subst_ren_general 块。注意用户说“目标段含admit=False”，要求无 admit。当前材料中 subst_ren_general 的 PPar 分支是 admit？用户引文里展示的 PPar 分支实际上是完整的？等等我们看材料A末尾：subst_ren_general 已经包含了 PPar 的完整证明（在 `Lemma subst_ren_general` 之后，有 PPar 分支代码，最后 Qed）。在用户提供材料A中 subst_ren_general 是完整 Qed 的（包括 PPar），没有 admit。但它有 Gamma 错误？行 1455 等。我们来分析材料A中 subst_ren_general 内容，看看哪里用了 Gamma，修一下并补完整。
+
+材料A中 subst_ren_general 从 `(* REPLACE: Lemma subst_ren_general ... Admitted. *)` 之后开始：
+
+```
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (Gamma : ctx),
+...
+```
+
+这里参数叫 Gamma，不是 G？注意声明中 `(Gamma : ctx)`。但在 induction intro 中用户写的是 `intros D Q. revert D. induction Q ...; intros D HTD m k G Hpts Hnu`，把目标上下文命名为 G，而不是 Gamma。如果声明使用 Gamma，那么 after intros 变量应也是 Gamma？但用户在本轮任务明确说“环境中根本没有名为 Gamma 的变量”，要求用 D 和 G。所以我们要统一：声明中用 `(G : ctx)` 而非 `(Gamma : ctx)`，或者保留声明 Gamma 但 induction intro 不去重命名？ 应该用声明中用 G 以符合要求。材料A中声明用了 `(Gamma : ctx)`，但 induction intro 之后可能证明体内写成 `G`，而一些地方错写 Gamma。这是编译错误。我们改声明为 `(G : ctx)`，并全部使用 G。源 D 已正确，目标是 G。
+
+需要提供完整替换版本。最好从材料A已有 subst_ren_general 内容中逐字修改 Gamma 错误，且 PPar 使用完整已给代码？材料A中 PPar 分支完整，没有 admit。但可能材料A中的 PPar 分支也包含一些潜在问题？编译错误只报了 Gamma not found，未报 PPar P0 not found？材料A末尾的错误是 line1548 P0 not found，这是因为 inversion HTD
+
+
+## 2026-09-03 23:59:02 [proof_loop] subst_ren_general · round3 · DS输出
+
+```coq
+(* REPLACE: from the declaration "Lemma subst_ren_general" down to the Qed. of this lemma only. *)
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := true) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (s
+[reasoning摘要]
+我们需要给用户一个完整可编译的 subst_ren_general 证明。当前材料 A 里有 subst_ren_general 已经有完整证明，但用户在上一轮给了一个替换片段不完整被截断，且面临命名错误 Gamma vs D。现在用户给了真实错误：line 1455 variable Gamma not found。我们需要输出 subst_ren_general 完整新版本，修正 Gamma -> D。并且 PPar case 当前在材料 A 中 subst_ren_general 已经 Qed 了？看材料A Layer2.v：有一段 subst_ren_general 完整 Qed，但结尾是 Qed. 然后后面还有 substitution_none_strengthen 等，然后 substitution_general 有 admit。这很奇怪：材料 A 中 subst_ren_general 已经完整 Qed，没有再 admit，而且 PPar case 也在其中（用 typed_strengthen_collisions 等）。所以也许我们只需要把材料 A 那段 subst_ren_general 拿来，确保行号和命名正确。但用户说当前目标段含 admit=False? 可能当前文件里 subst_ren_general 是错误版本，需要用完整新版替换。材料 A 中 subst_ren_general 的 Qed 是否真实存在？仔细看开头：
+
+```
+(* REPLACE: Lemma subst_ren_general ... Admitted. *)
+(* REPLACE: from the declaration "Lemma subst_ren_general" down to the Qed. of this lemma only. *)
+Lemma subst_ren_general : ...
+Proof.
+...
+Qed.
+(* =====================================================================
+   None版strengthening的基础设施...
+```
+
+所以材料 A 中 subst_ren_general 已经完整 Qed，包含 PPar case。这个应该可以编译（是历史版本）。我们可以直接给出材料 A 原文的 subst_ren_general 段，修正 Gamma->D 问题。但需确认里面是否还有 Gamma 变量使用：在材料 A 的 subst_ren_general 中 POut case 有 `rewrite (set_none_neq D x y Hyx)`? 看材料 A 原文：
+
+```
+    + unfold use. split; [| reflexivity].
+      rewrite (set_none_neq D x y Hyx) in Hy1.
+```
+
+是 D。后续也使用 D。所以材料 A 那段本身已经是正确的？用户上一版可能把某些 D 写成了 Gamma 导致错误。所以我们只需提供材料 A 中的完整 subst_ren_general 证明（已 Qed），并确保和现有环境一致。材料 A 中已经包含这段，但用户要在当前文件替换，应该不会有问题。
+
+注意用户给的错误输出：Line 1427 未使用 pz；line 1455 Gamma not found。说明当前文件中的 subst_ren_gene
+
+
+## 2026-09-04 00:00:56 [proof_loop] subst_ren_general · round4 · DS输出
+
+```coq
+(* INSERT-BEFORE: subst_ren_general *)
+(* 修正版：源上下文统一为 D，目标上下文统一为 G；并补上 POut/PIn 中 i/o 的 true 归约。 *)
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    subst o.  (* 关键：POut 规则要求 o = true *)
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := true) (T := T)
+      (Gamma1 := set_none G (subs
+[reasoning摘要]
+我们需要给出完整修正版 subst_ren_general。需要仔细阅读现有代码。材料中有 Layer2.v 全文，包括 subst_ren_general 现有证明直到 PIn 尾部截断？实际上材料里已给出了完整的 subst_ren_general 证明片段？在 Layer2.v 全文内，subst_ren_general 是完整的（从 REPLACE 标记到 Qed.），但之前用户给的是截断版本。现在我们需要修复当前错误。
+
+首先定位错误：当前 coqc 真实输出：
+File ".\Layer2.v", line 1427, characters 2-115:
+Warning: Unused introduction pattern: pz
+File ".\Layer2.v", line 1455, characters 28-33:
+Error: The variable Gamma was not found in the current environment.
+
+这意味着当前文件中的 subst_ren_general 里，在 POut 分支中把源上下文 D 写成了 Gamma。我们需要将那些 Gamma 改为 D。也要检查 PIn、PRes 等。
+
+而且当前 PPar case 是 admit，需要补完并 Qed。用户要求给出完整新版本，不需要改动其他部分。
+
+我们需要基于材料 A 中 Layer2.v 已有的完整 subst_ren_general（从材料看，似乎已经 Qed 了？但用户说当前 PPar 是 admit，且有 Gamma 错误）。材料中给出的 Layer2.v 全文里，subst_ren_general 证明似乎是完整的，且 PPar case 已经写好了？我们看材料：在 Layer2.v 全文里，subst_ren_general 的证明在约1419-1561行，其中 PPar case 似乎已经包含 typed_strengthen_collisions 等，最终 Qed。但用户说当前文件 line1542 是 admit。可能材料是旧版本？但任务要求是给出完整新版本。
+
+我们需要仔细从材料里提取 subst_ren_general 的完整证明，并修正 Gamma->D 的错误。但材料中提供的 subst_ren_general 内部 POut 分支里写的是 `rewrite (set_none_neq D x y Hyx)` 还是 Gamma？材料原文 Layer2.v 中在 subst_ren_general 里，POut 分支中 second use 那一段写的是：
+```
+rewrite (set_none_neq D x y Hyx) in Hy1.
+...
+rewrite (set_none_neq (set_none D x) y n Hny) in Hn.
+rewrite (set_none_neq D x n Hnx) in Hn.
+```
+看起来材料中已经是 D 了？但用户说 line1455 报 Gamma 不存在，意味着用户当前文件不是材料完全一致，而是之前截断版本被应用了？不管，我们直接给出正确完整版本，确保源上下文 D 不写错。
+
+还需要补 PPar case。材料中 Layer2.v 给出的 subst_ren_general 包含完整 PPar case，用 typed_strengthen_collisions 和 split_proj 等。我们可以直接照抄，但要确保没有 G
+
+
+## 2026-09-04 00:03:46 [proof_loop] subst_ren_general · round5 · DS输出
+
+主要问题定位：旧版 POut/PIn/PRes 中把源上下文误写为 `Gamma`（环境中只有源 `D` 与目标 `G`），且 `subst o`/`subst i` 会因 inversion 后无对应自由假设而失败。修正版去掉 `subst o/i`，统一在 `ty_out`/`ty_in` 中保留 `o/i` 变量并用 `Ho/Hi` 关掉布尔前提；源上下文一律用 `D`，目标上下文一律用 `G`。
+
+```coq
+(* REPLACE: from the declaration "Lemma subst_ren_general" down to the Qed. of this lemma only. *)
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapp
+[reasoning摘要]
+我们需要理解任务：用户要求输出完整新版本 subst_ren_general，把已有的片段变成完整可编译证明，包含 PPar case。注意材料里 Layer2.v 已有大量已证引理。用户说第一编译错误是变量 Gamma 误写，但之前版本也可能有。现在用户提供的“上一版 coqc 编译错误”是 line 1444 no such hypothesis: o。这可能是我上次尝试里 subst o 不适用，因为 inversion HTD 之后没有 o 假设？需要分析。
+
+我们需要从提供的材料中看到 Layer2.v 里已经有 `subst_ren_general` 的旧版本（有 admit 在 PPar）。用户要求完整替换。
+
+我作为助手需要产出 Coq 代码。但这里没有实际 coqc，只能依靠逻辑。需要确保引理可编译。材料 Layer2.v 包含大量引理定义可引用。我需要仔细写完整证明，尤其是 PPar case，不能有 admit。
+
+已知可用引理 (Layer2.v 中已证)：
+- typed_strengthen_unused: forall C P u, typed C P -> not_free_in P u = true -> typed (set_none C u) P.
+- nouse_excludes_rhom: forall (P : proc) (m k u : nat), no_use_at_subst P m k = true -> subst_name m k u = m -> not_free_in P u = true.
+- rho_collision_k: subst_name m k k = m.
+- rho_collision_other: subst_name m k (collision_other m k) = m.
+- typed_strengthen_collisions: forall (C : ctx) (P : proc) m k, typed C P -> no_use_at_subst P m k = true -> typed (set_none (set_none C k) (collision_other m k)) P.
+- strengthened_has_not_rhom: forall C m k n, has (set_none (set_none C k) (collision_other m k)) n -> subst_name m k n <> m.
+- split_disjoint_some, strengthened_disjoint 等。
+- split_proj: forall Gamma1 xi Delta, split Delta (proj1 Gamma1 xi Delta) (proj2 ...) /\ (forall m, has Gamma1 m -> get (proj1 ... ) (xi m) = get Delta (xi m)) /\ (forall m, ~ img1 Gamma1 xi (xi m) -> get (proj2 ...) (xi m) = get Delta (xi m)).
+- split_get_l/r.
+- rho_inj_except_m.
+- set_none_neq, set_none_self 等 Layer1。
+- collision_distinct: k <> collision_other m 
+
+
+## 2026-09-04 00:06:09 [proof_loop] subst_ren_general · round6 · DS输出
+
+```coq
+(* REPLACE: from the declaration "Lemma subst_ren_general" down to the Qed. of this lemma only. *)
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_
+[reasoning摘要]
+我们收到任务：让 Lemma subst_ren_general 整体 Qed，可编译。当前给的原文有错误：POut 分支中把源上下文 D 写成 Gamma，导致 `The variable Gamma was not found`。而且之前尝试中 POut/PIn 的 bool 参数处理有错。需要重新给出完整正确版本的 subst_ren_general。
+
+我需要仔细阅读材料 A 中 Layer2.v 的 subst_ren_general 现有版本（用户已经给出，其中 PPar case 是 admit，POut/PIn/PRes 有一些 Gamma 命名错误）。我们需要纠正所有错误，并完整证明所有 case，尤其是 PPar case。
+
+目标：只替换 Lemma subst_ren_general 声明到 Qed 的完整段落，不修改其他 admit。确保编译通过。
+
+材料中已有大量辅助引理，我可以使用：subst_name_eq, subst_name_lt, subst_name_gt, subst_name_succ, upren_subst_name_pt, ren_ext, rho_inj_except_m, rho_collision_k, rho_collision_other, rhom_classify, collision_distinct, set_none_preserves_some, get_set_none_self_not_some, strengthened_has_not_rhom, split_disjoint_some, strengthened_disjoint, typed_strengthen_unused, typed_strengthen_collisions, split_proj, etc. 还有 split_get_l, split_get_r, use_neq, set_none_comm, set_none_neq, etc.
+
+PPar case 需要参考 Layer1 ren_typed 的 ty_par 分支，但结合 strengthening 来处理非单射。用户已经说明已有 typed_strengthen_collisions 可用：`typed_strengthen_collisions : forall C P m k, typed C P -> no_use_at_subst P m k = true -> typed (set_none (set_none C k) (collision_other m k)) P.` 而且还有一个 `strengthened_has_not_rhom` 和 `rho_inj_except_m`。材料 A 中 subst_ren_general 已经包含了一个 PPar 分支实现（用户在作业中贴出了完整正文中 PPar case 有部分代码），但它被 admit 了，我们需要把那个 admit 替换为完整证明，或者自己补完。
+
+用户说明书提示：PPar 分支可用已 Qed 的 typed_strengthen_collisions / split_proj。在已有的 subst_ren_general 版本中，PPar case 已经有一些实现（大约在 1542 行 admit），用户提供的原文就是该类代码，但 PPar case 是 admit，所以我们需要补全。注意在用户提供的当前错误版本中，PPar case 已经从 ad
+
+
+## 2026-09-04 00:12:25 [proof_loop] subst_ren_general · round1 · DS输出
+
+```coq
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 y0 P0 Gamma1 Gamma2.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_name m k y)).
+    + unfold use. split; [| reflexivity]. e
+[reasoning摘要]
+我们需要给出完整修正的 subst_ren_general 证明段。问题：材料里已有 subst_ren_general 完整证明，但其中 POut/PIn 使用了 `subst.` 吃掉 o/Hi，以及 PPar 用了 eapply rho_inj_except_m; eassumption 不行。需要替换这些部分。不能新增辅助引理，现有足够。需要输出完整 Lemma...Qed. 的新版本，只改两个根因，其他保持。
+
+先仔细看材料中 subst_ren_general 现有代码，找出需要修改的精确位置。我们有材料全文，其中 subst_ren_general 已有代码。需要复制完整 lemma 并修正。
+
+需要遵守：不新增引理；只修改两处。注意冻结约束：PVar/PZero/PTau/PRes/PRep 五个 case 一字不改。PPar 只改一处 exact。POut/PIn 改策略。
+
+当前 subst_ren_general 代码中：
+
+POut case:
+```
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+...
+```
+之后引用 Ho, o？看后续代码：
+
+```
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+...
+    + exact Ho.
+```
+如果 subst 删除了 o/Ho，则错误。需要改 inversion 后 subst 只 subst 结构项：Gamma x0 y0 P0 Gamma1 Gamma2. 注意 inversion 式子中变量名：Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H. 还需要保留 i/o/T/Ho etc。我们可以写 `subst Gamma x0 y0 P0 Gamma1 Gamma2.` 但要确认 Gamma1 Gamma2 是 inversion 中的变量名，没有与上下文冲突？原代码在 inversion 前上下文 m k G etc。`Gamma` 是 inversion 引入的源上下文名，但外层有 `D` 作为源。原代码已经用了 `Gamma` 作为 inversion 变量，后续 `subst.` 全部替换。行得通。我们改成显式 subst 不会影响。
+
+注意原代码还 `unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2]. subst Gamma1 Gamma2.` 这里有额外 `subst Gamma1 Gamma2.` 但如果我们已经在 inversion 后 subst Gamma1 Gamma2，那么它们已不存在，不能再 subst。但由于我们修改为不全局 subst，我们需要保留这些？原代码中 inversion as 引入 Gamma1 Gamma2，然后无参数 subst 会全局替
+
+
+## 2026-09-04 00:15:37 [proof_loop] subst_ren_general · round2 · DS输出
+
+```coq
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 y0 P0.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_name m k y)).
+    + unfold use. split; [| refl
+[reasoning摘要]
+我们需要理解任务：给出 subst_ren_general 完整新版本，修复两处根因，不新增引理。用户提供了根因诊断非常详细。我们需要写完整 Lemma ... Proof ... Qed.
+
+注意当前材料中 Layer2.v 包含了很多，但在最终给出的“材料 A”的 Layer2 全文末尾有 `subst_ren_general` 的完整证明（但里面 POut/PIn 用 subst 后报错？看材料中的版本已经包含了用户说的上一版？实际上材料 A 显示了 Layer2 完整内容，其中 subst_ren_general 的证明使用了 `inversion HTD as [...]; subst.` 导致 i/o 消失的问题吗？让我仔细看材料 A 中 subst_ren_general 证明。
+
+材料 A 中 subst_ren_general 证明：
+
+```
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  ...
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 y0 P0 Gamma1 Gamma2.
+    ...
+```
+
+材料 A 中已经写了 `subst Gamma x0 y0 P0 Gamma1 Gamma2.` 而不是无参数 subst？但是看材料 A 中 POut case 后续：
+
+```
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_name m k y)).
+    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i o T) Hx1).
+    + exact Ho.
+```
+
+问题：`subst Gamma x0 y0 P0 Gamma1 Gamma2.` 其中 `x0 y0 P0 Gamma1 Gamma2` 是哪些？但 ty_out 构造子的参数顺序是 `Gamma x y P i o T Gamma1 Gamma2`。实际上 inversion pattern 中 `
+
+
+## 2026-09-04 00:17:34 [proof_loop] subst_ren_general · round3 · DS输出
+
+```coq
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 y0 P0 Gamma1 Gamma2.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_name m k y)).
+    + unfold use. split; [| reflexivity]. e
+[reasoning摘要]
+我们需要产出 subst_ren_general 完整新版本，修复两处错误。用户要求直接给出完整 Lemma 到 Qed. 的代码。不能新增辅助引理，只能使用材料中真实存在的引理。我必须确保代码正确。
+
+首先理解当前已有材料中 subst_ren_general 现状：用户在之前版本中大部分正确，但有两处错误。需要给出完整替换。
+
+我需要从材料 A 中找到 subst_ren_general 当前版本？材料没有完整展示，但材料末尾说 PPar 有 admit。然而用户又说当前文件经 6 轮迭代后 PPar 主体正确 admit 已消，只剩两处 tactic 级错误：POut/PIn 的无参数 subst 吃掉 i/o 标志位，PPar 的 eapply rho_inj_except_m; eassumption 需改显式 exact。
+
+我需要写出完整 subst_ren_general 的新版本，覆盖所有 case，确保修复两处错误，并且其他 case 保持正确。我们不能对材料中不存在的引理引用。注意：材料 A 中已经包含 subst_ren_general 的完整文本，但是其中有些问题？材料中 Layer2.v 全文在末尾显示了 subst_ren_general 完整代码，但是那个代码中 POut/PIn 可能没有错误？我们看看材料中 subst_ren_general 代码。
+
+在材料末尾，用户提供了 Layer2.v 全文，其中包含 subst_ren_general 的代码。该代码中 POut 和 PIn case 使用了 `subst Gamma x0 y0 P0 Gamma1 Gamma2.` 然后继续用 `(o := o)` 和 `exact Ho`？我们检查一下材料中给出的代码：
+
+材料中 subst_ren_general 部分（从 "Lemma subst_ren_general : forall..." 开始的代码），POut case 如下（在材料中）：
+
+```
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 y0 P0.
+    assert (Hxy : x <> y). ...
+```
+
+注意：材料代码中 POut 的 `subst` 只替换了 `Gamma x0 y0 P0`，没有替换 `Gamma1 Gamma2`，而是后面有单独 `subst Gamma1 Gamma2.` 吗？看代码：
+
+在材料中 POut case 之后：
+```
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    subst Gamma1 Gamma2.
+```
+因此材料中的代码是 `subst Gamma x0 y0 P0.` 然后后面的 `subst Gamma1 Gamma2.`。但是用户给的最新版代码（在我需要生成的 replacement）中说 root cause 1 是因为 `subst.` 无参数。实际上材料中显示的版本可能已经有错：它执行了 `subst Gamma x0
+
+
+## 2026-09-04 00:19:19 [proof_loop] subst_ren_general · round4 · DS输出
+
+修复点：
+1. POut/PIn 采用方案甲：`inversion HTD as [...];` 后只做显式结构替换 `subst Gamma x0 y0 P0 Gamma1 Gamma2.`（POut）或 `subst Gamma x0 P0 Gamma1.`（PIn），保留 `i/o/Ho/Hi`，后续 `(i:=i)(o:=o)` 与 `exact Ho`/`exact Hi` 正常。
+2. PPar 中 `rho_inj_except_m` 改为显式参数 `exact (rho_inj_except_m m k m0 n Hm0_nk Hn_nk Hm0_not_rhom Hn_not_rhom Em0).`，不用 `eapply ...; eassumption`。
+
+完整 `Lemma subst_ren_general` 如下：
+
+```coq
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 y0 P0 Gamma1 Gamma2.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq 
+[reasoning摘要]
+我们需要给完整新版本 Lemma subst_ren_general ... Qed. 但材料A中已有的完整 subst_ren_general 版本（在 Layer2.v 中）其实除了两处错误外其余已正确。注意材料A中的 subst_ren_general 当前版本并非最终？材料A里显示的 subst_ren_general 完整证明中 POut 和 PIn 部分包含了根因1的 `subst.` 问题？我们来看材料A中 subst_ren_general 源码：在 Layer2.v 全文里面给出了一个完整版本，其中 POut case 和 PIn case 都用了 `inversion HTD as [...]; subst.`？材料A中 subst_ren_general 的代码段落：
+
+- POut: inversion HTD as [... Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H ...]. subst Gamma x0 y0 P0 Gamma1 Gamma2. 这里没用无参数 subst，而是 subst Gamma x0 y0 P0 Gamma1 Gamma2. 这样 i o T Ho Huse1 Huse2 H 保留。所以材料A里 POut 是方案甲。然后后续 eapply ty_out with ... (i:=i)(o:=o)... exact Ho. 没问题。
+- PIn: inversion HTD as [... Gamma x0 P0 i o T Gamma1 Huse Hi H ...]. subst Gamma x0 P0 Gamma1. 保留 i o T Hi. 后续 eapply ty_in with ... (i:=i)(o:=o)... exact Hi. 没问题。
+
+材料A里的 subst_ren_general 看起来已经是修正后的版本！但用户当前说“当前文件就是你前 6 轮迭代后的版本：... PPar 的 admit 已消。你现在只剩【两处确定的 tactic 级错误】” 并给出了当前 coqc 错误 line1455 variable o not found。材料A中的 POut case 可能没有？等等材料A里的 subst_ren_general 在 POut case 中确实有 `inversion HTD as [... i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|...]; subst Gamma x0 y0 P0 Gamma1 Gamma2.` 这保留 o。但错误 line1455 variable o not found 表明当前文件不是材料A的版本？或者材料A版本是之前某次生成的，但用户说“当前文件就是你前 6 轮迭代后的版本”并给出错误行号与材料A不符？材料A中的 line1444 附近可能没有 `subst o`。用户说“上一版 coqc 编译错误（原样，勿改写）`line 1446 Error: Cannot find any non-recursive equality over Gamma1.`” 这又是另一错误。我们需要最终输出修正版本。材料A中 subst_ren_general 完整证明看起来已经是正确的（可能包含我们需要的所有 case）。但为了确保没有任何 admit 和错误，我们应基于材料A中已有的 subst_ren_general 全文，检查是否真的 Qed 且无
+
+
+## 2026-09-04 00:23:07 [proof_loop] subst_ren_general · round1 · DS输出
+
+要点：仅修改 POut/PIn 分支的 `subst` 列表，去掉 `Gamma1/Gamma2`（inversion 不会为普通参数产生等式）；其余所有 case 原样保留。PPar 的 `rho_inj_except_m` 已为显式 `exact`，不动。
+
+```coq
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 y0 P0.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+    
+[reasoning摘要]
+我们现在需要给出修复后的完整 `subst_ren_general` 版本。要求：从 `Lemma subst_ren_general` 声明行到列0 `Qed.` 完整代码，不省略，不新增辅助引理，不使用材料A不存在的名字。
+
+我们需要基于当前 Layer2.v 的 subst_ren_general 内容和补充说明进行最小修复：
+
+- POut 分支：`inversion ...; subst Gamma x0 y0 P0 Gamma1 Gamma2.` 报错在 Gamma1，因为 inversion 不会产生 Gamma1 等式。改成 `subst Gamma x0 y0 P0.`
+- PIn 分支：同样把 `subst Gamma x0 P0 Gamma1.` 改成 `subst Gamma x0 P0.`
+- PPar 分支：把 `eapply rho_inj_except_m; eassumption` 改成显式 `exact (rho_inj_except_m m k m0 n Hm0_nk Hn_nk Hm0_not_rhom Hn_not_rhom Em0).` 注意签名和前提顺序。
+
+另外，PPar 中可能有 IHP/IHQ 实参对齐问题，但补充说明说“若过了 subst 后 PPar 报 No product”才需要处理。我们需确保代码中 IHP/IHQ 应用正确。当前 subst_ren_general 内容在材料A中已给出，我们需在它的基础上修改。注意材料A中的 subst_ren_general 是完整版本，但其中 POut/PIn 的 subst 行是 `subst Gamma x0 y0 P0 Gamma1 Gamma2.` 和 `subst Gamma x0 P0 Gamma1.`，需要修正；PPar 的 rho_inj 处写的是 `exact (rho_inj_except_m m k m0 n Hm0_nk Hn_nk Hm0_not_rhom Hn_not_rhom Em0).` 看起来已经是显式 exact？我们要检查材料A中当前版本是否已经是这样。在材料A Layer2.v 末尾，subst_ren_general 的 PPar 部分确实是显式 exact：
+
+```
+          assert (Hinj : m0 = n) by
+            (exact (rho_inj_except_m m k m0 n Hm0_nk Hn_nk Hm0_not_rhom Hn_not_rhom Em0)).
+```
+
+所以 PPar 的 exact 已经正确。补充说明说需要改成 exact，但材料A中已经是 exact。或许材料A 是上一版已经包含部分修复？但用户还说“离通过只差【一个 subst 列表错误】+【一处 eapply 改 exact】”，所以可能当前文件里 PPar 仍是 eapply？但从材料A看，PPar 是 exact。我们需要确认。可能材料A展示的是最新版本，但用户给的补充说明说“上一版方向对了，只剩这一个 subst 错误”，而且“已含已知勘误”。可能材料A中的 subst_ren_general 就是上一版，其中 PPar 已经是 exact，而 subst 错误还未修。所以我们需要修复 subst 两处。PPar 的 exact 已正确。
+
+但是要注意材料A 的 subst_ren_general 中还有一些细节可能已经过 revise：例如 POut 分支的 `s
+
+
+## 2026-09-04 00:24:58 [proof_loop] subst_ren_general · round2 · DS输出
+
+要点：仅修复两处显式 `subst` 列表中不存在的 `Gamma1/Gamma2`，其余保持原样；PPar 的 `rho_inj_except_m` 已是显式 `exact`，无需改动。
+
+```coq
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 y0 P0.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_none G (s
+[reasoning摘要]
+我们需要给完整替换段。但材料里当前版本已经包含我上一轮的完整 lemma，其中 subst 列表需要改。用户要求输出 subst_ren_general 完整新版本。但这里有很多内容，且必须确保不引入不存在名字。材料末尾附有“上一版 coqc 编译错误”，显示 line1461 Error: Found no subterm matching "get (set_none D x) y" in Hy1. 这似乎是更早或某版本。但是用户说明：当前文件是你前两轮迭代后的版本，离通过只差一个 subst 列表错误 + 一处 eapply 改 exact，并给出真实 coqc 输出 line1446 Cannot find any non-recursive equality over Gamma1。末尾“上一版 coqc 编译错误”显示 line1461 Found no subterm matching... 这可能是上一版错误的另一个片段？不管，我们根据修正要求。
+
+需要找到 lemma subst_ren_general 的完整代码，修改：
+- POut: subst Gamma x0 y0 P0.  (删掉 Gamma1 Gamma2)
+- PIn: subst Gamma x0 P0.  (删掉 Gamma1)
+- PPar: 如果有 eapply rho_inj_except_m; eassumption，改成 exact (rho_inj_except_m m k m0 n Hm0_nk Hn_nk Hm0_not_rhom Hn_not_rhom Em0).
+但是材料中 subst_ren_general 的 PPar case 已经证明完毕，不是 admit，且代码中确实使用了 `eapply rho_inj_except_m; eassumption`? 我们检查材料中 subst_ren_general PPar 部分：在 PPar 分支里，有 `assert (Hinj : m0 = n) by (exact (rho_inj_except_m m k m0 n Hm0_nk Hn_nk Hm0_not_rhom Hn_not_rhom Em0)).` 已经是 exact。所以可能当前文件里已经改了？但用户说“并补上 eapply 改 exact”，材料里面的当前 lemma 已经改好了 exact。那只需要改 subst 列表。但用户说“上一版 coqc 编译错误”显示 line1461 Found no subterm matching "get (set_none D x) y" in Hy1。这可能是在 POut 中 `rewrite (set_none_neq D x y Hyx) in Hy1` 出错。但材料中这一行还在。这说明当前版本可能还没修？但用户明确说上一版方向对了，只剩 subst 错误。我们需要以材料 A 中的完整 lemma 为基底，仅改 subst。
+
+仔细看材料中 subst_ren_general POut/PIn 的 subst 行：
+POut：`subst Gamma x0 y0 P0 Gamma1 Gamma2.` 确实有错。PIn：`subst Gamma x0 P0 Gamma1.` 有错。需要删掉。
+注意，POut 中 `subst Gamma x0 y0 P0 Gamma1 Gamma2.` 位置在 inversion 之后。材料中显示：
+```
+    inversion HTD 
+
+
+## 2026-09-04 00:29:05 [proof_loop] subst_ren_general · round3 · DS输出
+
+```coq
+Lemma subst_ren_general : forall (D : ctx) (Q : proc),
+  typed D Q -> forall (m k : nat) (G : ctx),
+  (forall n T', get D n = Some (Some T') ->
+               get G (subst_name m k n) = Some (Some T')) ->
+  no_use_at_subst Q m k = true ->
+  typed G (ren (subst_name m k) Q).
+Proof.
+  intros D Q. revert D.
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+  intros D HTD m k G Hpts Hnu; simpl in *.
+  - (* PVar n = ty_var *)
+    inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    eapply ty_var. apply Hpts. exact Hget.
+  - (* PZero = ty_zero *)
+    inversion HTD as [Gamma|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_zero.
+  - (* PTau P = ty_tau *)
+    inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+    apply ty_tau. exact (IHP D H m k G Hpts Hnu).
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 y0 P0.
+    assert (Hxy : x <> y). { eapply use_neq; eassumption. }
+    assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
+    unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+    rewrite Hx2 in Hy1.
+    rewrite Hy2 in H.
+    rewrite Hx2 in H.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
+    apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
+    apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
+    apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
+    eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
+      (Gamma1 := set_none G (subst_name m k x))
+      (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_nam
+[reasoning摘要]
+我们需要给出 subst_ren_general 完整新版。但必须仔细：用户给了上一版 coqc 编译错误原样在最后：
+```
+File ".\Layer2.v", line 1461, characters 6-45:
+Error: Found no subterm matching "get (set_none D x) y" in Hy1.
+```
+而补充说明说是更早一版 line1446/1511 subst Gamma1 错误，但最后“上一版 coqc 编译错误（原样，勿改写）”是 line1461 Found no subterm matching "get (set_none D x) y" in Hy1。这可能是当前版本已经删掉 Gamma1 subst 但还有 rewrite (set_none_neq D x y Hyx) in Hy1 失败？我们需要定位根因：Hy1 is get (set_none (set_none D x) y?)? Let's inspect POut case code. In previous code, after inversion, Huse1 : use ? ? x? Actually after inversion as [Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H], subst Gamma x0 y0 P0. Then use hypotheses:
+unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
+But after subst Gamma x0 y0 P0, what are Huse1/Huse2 types? In inversion pattern, Huse1 : use Gamma1? Need check. typed ty_out constructor:
+
+ty_out : forall Gamma x y P i o T Gamma1 Gamma2,
+    use Gamma x (TChan i o T) Gamma1 -> o = true ->
+    use Gamma1 y T Gamma2 -> typed Gamma2 P -> typed Gamma (POut x y P).
+
+So inversion HTD as pattern [...|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|...]. Here names assigned: Gamma (for original source D), x0, y0, P0, i, o, T, Gamma1, Gamma2, Huse1, Ho, Huse2, H. Then subst Gamma x0 y0 P0 (not Gamma1/Gamma2). After subst, Gamma becomes D, x0 -> x, y0->y, P0->P. But Gamma1/2 are terms? Actually in constructor, Gamma1 and Gamma2 are parameters bound by forall. In inversion, those are eigenvariables? When we destruct an 

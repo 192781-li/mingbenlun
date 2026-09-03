@@ -1416,15 +1416,21 @@ Qed.
    源 D 经 rho=subst_name m k 到目标 Gamma；资源保持 Hpts + no_use 局部单射。
    PPar 用 split_proj 重划，源块 Ga/Gb 直接作子进程源（无需 insert 形状）。
    ===================================================================== *)
+(* REPLACE: Lemma subst_ren_general ... Admitted. *)
+(* REPLACE: from the declaration "Lemma subst_ren_general" down to the Qed. of this lemma only. *)
+(* REPLACE: from the declaration "Lemma subst_ren_general" down to the Qed. of this lemma only. *)
+(* 修正版：源上下文统一为 D，目标上下文统一为 G；并补上 POut/PIn 中 i/o 的 true 归约。 *)
+(* REPLACE: from the declaration "Lemma subst_ren_general" down to the Qed. of this lemma only. *)
+(* REPLACE: from the declaration "Lemma subst_ren_general" down to the Qed. of this lemma only. *)
 Lemma subst_ren_general : forall (D : ctx) (Q : proc),
-  typed D Q -> forall (m k : nat) (Gamma : ctx),
+  typed D Q -> forall (m k : nat) (G : ctx),
   (forall n T', get D n = Some (Some T') ->
-               get Gamma (subst_name m k n) = Some (Some T')) ->
+               get G (subst_name m k n) = Some (Some T')) ->
   no_use_at_subst Q m k = true ->
-  typed Gamma (ren (subst_name m k) Q).
+  typed G (ren (subst_name m k) Q).
 Proof.
   intros D Q. revert D.
-  induction Q as [n|pz|P IHP|x y P IHP|x P IHP|P IHP Q IHQ|P IHP|P IHP];
+  induction Q as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
   intros D HTD m k G Hpts Hnu; simpl in *.
   - (* PVar n = ty_var *)
     inversion HTD as [?|Gamma x T Hget|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
@@ -1435,47 +1441,54 @@ Proof.
   - (* PTau P = ty_tau *)
     inversion HTD as [?|? ? ? ?|Gamma P0 H|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
     apply ty_tau. exact (IHP D H m k G Hpts Hnu).
-  - (* POut x y P = ty_out：两通道经rho；局部单射由rho_inj_except_m+no_use通道分量 *)
-    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
+  - (* POut x y P = ty_out *)
+    inversion HTD as [?|? ? ? ?|? ? ?|Gamma x0 y0 P0 i o T Gamma1 Gamma2 Huse1 Ho Huse2 H|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 y0 P0.
     assert (Hxy : x <> y). { eapply use_neq; eassumption. }
     assert (Hyx : y <> x). { intro E; apply Hxy; symmetry; exact E. }
     unfold use in Huse1, Huse2. destruct Huse1 as [Hx1 Hx2], Huse2 as [Hy1 Hy2].
-    subst Gamma1 Gamma2.
+    rewrite Hx2 in Hy1.
+    rewrite Hy2 in H.
+    rewrite Hx2 in H.
     apply Bool.andb_true_iff in Hnu. destruct Hnu as [H1 Hnub].
     apply Bool.andb_true_iff in H1. destruct H1 as [Hnux Hnuy].
     apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
     apply Bool.negb_true_iff in Hnuy. apply Nat.eqb_neq in Hnuy.
     eapply ty_out with (x := subst_name m k x) (y := subst_name m k y)
-      (P := ren (subst_name m k) P) (i := i) (o := true) (T := T)
+      (P := ren (subst_name m k) P) (i := i) (o := o) (T := T)
       (Gamma1 := set_none G (subst_name m k x))
       (Gamma2 := set_none (set_none G (subst_name m k x)) (subst_name m k y)).
-    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i true T) Hx1).
-    + reflexivity.
+    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i o T) Hx1).
+    + exact Ho.
     + unfold use. split; [| reflexivity].
-      rewrite (set_none_neq Gamma x y Hyx) in Hy1.
-      assert (HyDelta : get G (subst_name m k y) = Some (Some T)) by exact (Hpts y T Hy1).
+      assert (HyDelta : get G (subst_name m k y) = Some (Some T)).
+      { rewrite (set_none_neq D x y Hyx) in Hy1.
+        exact (Hpts y T Hy1). }
       assert (Hxi : subst_name m k x <> subst_name m k y).
       { intro E.
         assert (Rkk : subst_name m k k = m).
         { exact (subst_name_eq m k k (eq_refl : k = k)). }
         assert (Hxk : x <> k) by (intro F; subst x; exact (Hnux Rkk)).
         assert (Hyk : y <> k) by (intro F; subst y; exact (Hnuy Rkk)).
-        enough (x = y) by contradiction.
+        apply Hxy.
         exact (rho_inj_except_m m k x y Hxk Hyk Hnux Hnuy E). }
       assert (Hxi' : subst_name m k y <> subst_name m k x) by
         (intro E; apply Hxi; symmetry; exact E).
       rewrite (set_none_neq G (subst_name m k x) (subst_name m k y) Hxi'). exact HyDelta.
-    + apply (IHP (set_none (set_none Gamma x) y) H m k (set_none (set_none G (subst_name m k x)) (subst_name m k y))).
+    + apply (IHP (set_none (set_none D x) y) H m k 
+        (set_none (set_none G (subst_name m k x)) (subst_name m k y))).
       * intros n T' Hn.
         assert (Hny : n <> y).
-        { intro F; subst n; rewrite set_none_self in Hn;
-          [injection Hn as Hc; discriminate | apply get_Some_lt in Hy1; exact Hy1]. }
+        { intro F; subst n.
+          apply (get_set_none_self_not_some (set_none D x) y T').
+          exact Hn. }
         assert (Hnx : n <> x).
-        { intro F; subst n; rewrite (set_none_neq (set_none Gamma x) y x Hxy) in Hn;
-          rewrite set_none_self in Hn;
-          [injection Hn as Hc; discriminate | apply get_Some_lt in Hx1; exact Hx1]. }
-        rewrite (set_none_neq (set_none Gamma x) y n Hny) in Hn.
-        rewrite (set_none_neq Gamma x n Hnx) in Hn.
+        { intro F; subst n.
+          rewrite (set_none_neq (set_none D x) y x Hxy) in Hn.
+          apply (get_set_none_self_not_some D x T').
+          exact Hn. }
+        rewrite (set_none_neq (set_none D x) y n Hny) in Hn.
+        rewrite (set_none_neq D x n Hnx) in Hn.
         assert (HnDelta : get G (subst_name m k n) = Some (Some T')) by exact (Hpts n T' Hn).
         assert (Hxinx : subst_name m k n <> subst_name m k x).
         { intro E.
@@ -1485,7 +1498,7 @@ Proof.
             (intro F; subst n; rewrite Rkk in E; exact (Hnux (eq_sym E))).
           assert (Hxk : x <> k) by (intro F; subst x; exact (Hnux Rkk)).
           assert (Hrnnm : subst_name m k n <> m) by (rewrite E; exact Hnux).
-          enough (n = x) by contradiction. exact (rho_inj_except_m m k n x Hnk Hxk Hrnnm Hnux E). }
+          apply Hnx. exact (rho_inj_except_m m k n x Hnk Hxk Hrnnm Hnux E). }
         assert (Hxiny : subst_name m k n <> subst_name m k y).
         { intro E.
           assert (Rkk : subst_name m k k = m).
@@ -1494,14 +1507,16 @@ Proof.
             (intro F; subst n; rewrite Rkk in E; exact (Hnuy (eq_sym E))).
           assert (Hyk : y <> k) by (intro F; subst y; exact (Hnuy Rkk)).
           assert (Hrnnm : subst_name m k n <> m) by (rewrite E; exact Hnuy).
-          enough (n = y) by contradiction. exact (rho_inj_except_m m k n y Hnk Hyk Hrnnm Hnuy E). }
+          apply Hny. exact (rho_inj_except_m m k n y Hnk Hyk Hrnnm Hnuy E). }
         rewrite (set_none_neq (set_none G (subst_name m k x)) (subst_name m k y) (subst_name m k n) Hxiny).
         rewrite (set_none_neq G (subst_name m k x) (subst_name m k n) Hxinx).
         exact HnDelta.
       * exact Hnub.
-  - (* PIn x P = ty_in：通道经rho，body进绑定器；局部单射由rho_inj_except_m+no_use通道分量 *)
-    inversion HTD as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|Gamma x0 P0 i o T Gamma1 Huse Hi H|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?]. subst.
-    unfold use in Huse. destruct Huse as [Hx1 Hx2]. subst Gamma1.
+  - (* PIn x P = ty_in *)
+    inversion HTD as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|Gamma x0 P0 i o T Gamma1 Huse Hi H|? ? ? ? ? ? ? ?|? ? ? ?|? ? ?].
+    subst Gamma x0 P0.
+    unfold use in Huse. destruct Huse as [Hx1 Hx2].
+    rewrite Hx2 in H.
     apply Bool.andb_true_iff in Hnu. destruct Hnu as [Hnux Hnub].
     apply Bool.negb_true_iff in Hnux. apply Nat.eqb_neq in Hnux.
     replace (ren (upren (subst_name m k)) P)
@@ -1509,27 +1524,26 @@ Proof.
       by (symmetry; apply ren_ext with (f:=upren (subst_name m k)) (g:=subst_name (S m) (S k));
           intros q; exact (upren_subst_name_pt m k q)).
     eapply ty_in with (x := subst_name m k x) (P := ren (subst_name (S m) (S k)) P)
-      (i := true) (o := o) (T := T)
+      (i := i) (o := o) (T := T)
       (Gamma1 := set_none G (subst_name m k x)).
-    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan true o T) Hx1).
-    + reflexivity.
-    + apply (IHP (Some T :: set_none Gamma x) H (S m) (S k) (Some T :: set_none G (subst_name m k x))).
+    + unfold use. split; [| reflexivity]. exact (Hpts x (TChan i o T) Hx1).
+    + exact Hi.
+    + apply (IHP (Some T :: set_none D x) H (S m) (S k) (Some T :: set_none G (subst_name m k x))).
       * intros n T' Hn. destruct n as [|n].
         -- simpl in *. exact Hn.
         -- simpl in Hn.
            assert (Hnx : n <> x).
            { intro F; subst n; rewrite set_none_self in Hn;
              [injection Hn as Hc; discriminate | apply get_Some_lt in Hx1; exact Hx1]. }
-           rewrite (set_none_neq Gamma x n Hnx) in Hn.
-           assert (Hrk : forall z, z = k -> subst_name m k z = m) by
-             (intros z Hz; apply subst_name_eq; exact Hz).
+           rewrite (set_none_neq D x n Hnx) in Hn.
            assert (Hr : subst_name m k n <> subst_name m k x).
            { intro E.
              assert (Hnk : n <> k) by
-               (intro F; subst n; pose (Rk := Hrk k eq_refl); rewrite Rk in E;
-                exact (Hnux (eq_sym E))).
+               (intro F; subst n; pose (Rk := subst_name_eq m k k (eq_refl : k = k));
+                rewrite Rk in E; exact (Hnux (eq_sym E))).
              assert (Hxk : x <> k) by
-               (intro F; subst x; pose (Rk := Hrk k eq_refl); exact (Hnux Rk)).
+               (intro F; subst x; pose (Rk := subst_name_eq m k k (eq_refl : k = k));
+                exact (Hnux Rk)).
              assert (Hrnnm : subst_name m k n <> m) by (rewrite E; exact Hnux).
              assert (Hnx2 : n = x) by exact (rho_inj_except_m m k n x Hnk Hxk Hrnnm Hnux E).
              contradiction. }
@@ -1537,17 +1551,60 @@ Proof.
            rewrite (set_none_neq G (subst_name m k x) (subst_name m k n) Hr).
            exact (Hpts n T' Hn).
       * exact Hnub.
-  - (* PPar P Q = ty_par —— 核心，收摄后IHP/IHQ源任意 *)
-    inversion HTD as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|Gamma P0 Q0 Gamma1 Gamma2 Hs HP HQ|? ? ? ?|? ? ?]. subst.
-    admit.
-  - (* PRes P = ty_res：进绑定器，rho升级为upren rho=subst_name(Sm)(Sk) *)
+  - (* PPar P Q = ty_par *)
+    simpl in Hnu.
+    apply Bool.andb_true_iff in Hnu. destruct Hnu as [HnuP HnuQ].
+    inversion HTD as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|D0 P0 Q0 D1 D2 Hs HP HQ|? ? ? ?|? ? ?]. subst D0 P0 Q0.
+    pose (D1' := set_none (set_none D1 k) (collision_other m k)).
+    pose (D2' := set_none (set_none D2 k) (collision_other m k)).
+    assert (HP' : typed D1' P) by (apply typed_strengthen_collisions with (C:=D1)(m:=m)(k:=k); assumption).
+    assert (HQ' : typed D2' Q) by (apply typed_strengthen_collisions with (C:=D2)(m:=m)(k:=k); assumption).
+    destruct (split_proj D1' (subst_name m k) G) as [Hs' [Hp1 Hp2]].
+    eapply ty_par with (Gamma1:=proj1 D1' (subst_name m k) G) (Gamma2:=proj2 D1' (subst_name m k) G).
+    + exact Hs'.
+    + apply (IHP D1' HP' m k (proj1 D1' (subst_name m k) G)).
+      * intros n T' Hn1.
+        assert (HnD1 : get D1 n = Some (Some T')).
+        { apply set_none_preserves_some in Hn1. apply set_none_preserves_some in Hn1. exact Hn1. }
+        assert (HnD : get D n = Some (Some T')) by (eapply split_get_l; [exact Hs | exact HnD1]).
+        assert (Hpt : get G (subst_name m k n) = Some (Some T')) by (apply Hpts; exact HnD).
+        assert (Hhas1 : has D1' n) by (exists T'; exact Hn1).
+        rewrite (Hp1 n Hhas1). exact Hpt.
+      * exact HnuP.
+    + apply (IHQ D2' HQ' m k (proj2 D1' (subst_name m k) G)).
+      * intros n T' Hn2.
+        assert (HnD2 : get D2 n = Some (Some T')).
+        { apply set_none_preserves_some in Hn2. apply set_none_preserves_some in Hn2. exact Hn2. }
+        assert (HnD : get D n = Some (Some T')) by (eapply split_get_r; [exact Hs | exact HnD2]).
+        assert (Hpt : get G (subst_name m k n) = Some (Some T')) by (apply Hpts; exact HnD).
+        assert (Hhas2 : has D2' n) by (exists T'; exact Hn2).
+        assert (Hn_not_rhom : subst_name m k n <> m) by (apply strengthened_has_not_rhom with (C:=D2)(m:=m)(k:=k); exact Hhas2).
+        assert (Hni : ~ img1 D1' (subst_name m k) (subst_name m k n)).
+        { intro Him. destruct Him as [m0 [Am0 Em0]].
+          assert (Hm0_not_rhom : subst_name m k m0 <> m) by (apply strengthened_has_not_rhom with (C:=D1)(m:=m)(k:=k); exact Am0).
+          assert (Hm0_nk : m0 <> k) by (intro Eq; subst m0; apply Hm0_not_rhom; apply rho_collision_k).
+          assert (Hn_nk : n <> k) by (intro Eq; subst n; apply Hn_not_rhom; apply rho_collision_k).
+          assert (Hm0_nc : m0 <> collision_other m k) by (intro Eq; subst m0; apply Hm0_not_rhom; apply rho_collision_other).
+          assert (Hn_nc : n <> collision_other m k) by (intro Eq; subst n; apply Hn_not_rhom; apply rho_collision_other).
+          assert (Hinj : m0 = n) by
+            (exact (rho_inj_except_m m k m0 n Hm0_nk Hn_nk Hm0_not_rhom Hn_not_rhom Em0)).
+          subst m0.
+          destruct Am0 as [T0 Hm0get].
+          eapply strengthened_disjoint with (Gamma:=D)(G1:=D1)(G2:=D2)(m:=m)(k:=k)(n:=n)(T1:=T0)(T2:=T').
+          * exact Hs.
+          * exact Hm0get.
+          * exact Hn2.
+        }
+        rewrite (Hp2 n Hni). exact Hpt.
+      * exact HnuQ.
+  - (* PRes P = ty_res *)
     inversion HTD as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|Gamma P0 T H|? ? ?]. subst.
     replace (ren (upren (subst_name m k)) P)
       with (ren (subst_name (S m) (S k)) P)
       by (symmetry; apply ren_ext with (f:=upren (subst_name m k)) (g:=subst_name (S m) (S k));
           intros n; exact (upren_subst_name_pt m k n)).
     apply (ty_res G (ren (subst_name (S m) (S k)) P) T).
-    apply (IHP (Some T :: Gamma) H (S m) (S k) (Some T :: G)).
+    apply (IHP (Some T :: D) H (S m) (S k) (Some T :: G)).
     + intros n T' Hn. destruct n as [|n'].
       * simpl in Hn. injection Hn as E. subst T'. simpl. reflexivity.
       * simpl in Hn. rewrite subst_name_succ. simpl. exact (Hpts n' T' Hn).
@@ -1558,10 +1615,7 @@ Proof.
     apply (IHP [] H m k []).
     + intros n T' Hn. simpl in Hn. discriminate.
     + exact Hnu.
-Admitted.
-
-
-
+Qed.
 (* =====================================================================
    None版strengthening的基础设施（DS#10骨架 + S04数学把关）
    空绑定 insert_none_at 的 get/set_none/cons 套件，平行于 insert_at 版。
