@@ -77,17 +77,23 @@ injection 对双层 option 一次剥到底（不要连续两次 injection）。
 ======== 当前状态（重要，从零写主证明，别再走老路）========
 4 个辅助引理 get_setby_None_uncond / get_repeat_None_lt / length_repeat_None / get_setby_None 已全部 Qed 且编译通过，
 【直接用、不要重发、不要再新造任何辅助引理】（你上轮抽的 get_setby_merge_spec 把 get 层 match 和 Some(元素) 混层，已删除，禁止再抽这类引理）。
-材料A里 split_assoc 已有你上一版(r5)的完整证明（三态穷尽思路正确、f 是正确的无类型标注 pose、4个辅助引理已 Qed），
-现在 coqc 错误是：line 2232 `[Focus] Wrong bullet *: Current bullet -- is not finished.`
-根因（执行方观察，供你参考）：你在多分支嵌套里用 `--`/`*`/`++` 等 bullet，每轮修一处 tactic 就破坏另一处的 bullet 闭合，已连续多轮在 bullet 上反复横跳。
-【本轮强制要求：用花括号 `{ }` 代替所有 bullet 层级】
-- 每个子目标用 `{ ... }` 显式聚焦，`{` 开始、`}` 结束，不依赖 bullet 的隐式层级。
-- destruct 创建的多个子目标：每个都用 `{ }` 包裹，如 `destruct Hs1 as [[H12 H3e]|[H3 H12e]]; destruct Hs2 as [[H1 H2e]|[H2 H1e]]; [> { ... } | { ... } | { ... } | { ... } ].`
-  （用 `[> ... | ... | ... | ... ]` goal selector 或依次 `all: idtac.` 后逐个 `{ }`，选你最有把握的写法，关键是每个子目标显式闭合。）
-- split 创建的两个子目标同样用 `{ }` 包裹。
-- 绝对不要再用 `- + * ++ --` bullet。
-你这一轮：以材料A里现有 r5 证明为基础，重交【一个】完整 Lemma split_assoc..Qed. 块，把所有 bullet 换成花括号，同时修 2232 的未闭合问题；
-不要重写已正确的 f 定义与三态穷尽骨架，也不要重发/新造辅助引理。
+材料A里 split_assoc 已有你多版证明（f 构造正确、4个辅助引理已 Qed、三态穷尽思路正确），
+但已连续 8 轮未收敛：前 5 轮 bullet 未闭合反复横跳，后 3 轮换花括号后报 `This proof is focused, but cannot be unfocused this way`（2232/2233/2235）。
+根因（执行方观察，供你参考）：你每次重写整段 ~8000 字符证明，在 4×3 多分支嵌套（destruct Hs1 × destruct Hs2 × split 两子目标 × destruct H2e/H3e）里，无论用 bullet 还是花括号，都无法一次保持所有分支的结构闭合。
+【本轮强制要求：assert 拆分，把大证明拆成两个独立 assert】
+- 主证明骨架固定为：
+  ```
+  pose (f := ...).  (* 你已写对的 f 构造，不要改 *)
+  exists (setby f G 0). split.
+  - assert (Hl : split G G1 (setby f G 0)). { (* 第一个 assert：逐位置证明 split G G1 G23 *) }
+    exact Hl.
+  - assert (Hr : split (setby f G 0) G2 G3). { (* 第二个 assert：逐位置证明 split G23 G2 G3 *) }
+    exact Hr.
+  ```
+- 每个 assert 内部独立证明，用你最有把握的 bullet 或花括号（二选一，不要混用），结构短（每个 assert 只处理一个 split 目标，不是两个同时）。
+- 关键：两个 assert 是独立的，第一个 assert 的证明不影响第二个，不会出现"修一个分支破坏另一个"的问题。
+- 不要重写已正确的 f 定义，也不要重发/新造辅助引理。
+你这一轮：重交【一个】完整 Lemma split_assoc..Qed. 块，按上面的 assert 拆分骨架写。
 
 setby/get 精确事实（Layer1）：
   Fixpoint setby (f:nat->option ty->option ty) Gamma k := match Gamma with []=>[] | t::G'=>f k t::setby f G'(S k) end.
