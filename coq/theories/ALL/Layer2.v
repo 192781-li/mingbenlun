@@ -2221,7 +2221,6 @@ Qed.
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.
-Proof.
 Proof. Admitted.
 
 (* ---------------------------------------------------------------------
