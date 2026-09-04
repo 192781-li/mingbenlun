@@ -2,7 +2,7 @@
   "station": "S04",
   "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
-  "last_update": "2026-09-04T哲学研判与范式巩固后",
+  "last_update": "2026-09-04T机制加固后(s04_git可靠上传+preflight明性自检)",
   "current_task": "split_assoc【为真】：哲学命题已用大白话讲透，贯穿入Layer2.v注释+研判文档+唯一权威SOP；证明正文待主人放行后由DS主谋闭环产出",
   "status": "范式巩固完成_定时任务全停_待主人放行",
   "paradigm": {
@@ -40,8 +40,9 @@
   },
   "L3": {
     "admitted": 0,
-    "compiled": true,
-    "note": "骨架"
+    "compiled": false,
+    "compile_status": "条件门WARN：subject_reduction_self/alien(580/592行) eapply L2.subject_reduction，而L2尚未证出该定理，故Layer3当前exit=1；L2清零后必须转绿，不是骨架绿",
+    "note": "preflight --deep 如实报WARN，不再谎称绿"
   },
   "split_assoc_philosophy": {
     "one_line": "明性分划结合律：每份真实发用归谁不依赖下刀次序与括号；两种寂等价、空位可收摄，故中间场域G23必可逐位重聚",
@@ -84,5 +85,11 @@
     11631063174146
   ],
   "cron_note": "2026-09-04复核：S04全部5个定时任务均已停用（此前3个误显示运行中，本轮已真正停用并list复核13个任务全部已停止）；恢复须主人拍板",
-  "ds_total_cost_yuan": 5.5
+  "ds_total_cost_yuan": 5.5,
+  "mechanism_hardened": {
+    "s04_git.py": "统一可靠git：PortableGit全路径+openssl后端+https绕SSH22+token不回显+push正确成功判据+失败重试+危险文件硬拦截+save一条龙+推完远程校验，根治别的对话轻松push而S04难",
+    "preflight.py": "开工/收工明性自检：fast/--compile/--deep三档；剥离注释数真实Admitted；证伪双门在岗；L1/L2硬门、L3条件门WARN；红灯退出码1不许提交",
+    "gitignore": "补_guard_*.v/_tmp_*.py等临时物永不入库",
+    "self_caught": "建设中自检亲手抓出2隐患：Admitted正则漏报(已改s*)、Layer3假绿(已改条件门WARN)"
+  }
 }

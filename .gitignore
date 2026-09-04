@@ -59,3 +59,10 @@ s01_temp_docs/
 .deepseek_key
 ds_v4_traces/
 *.bak_r*
+
+# ========== S04 机制加固（2026-09-04）：临时/探针/自检产物一律不入库 ==========
+_guard_*.v
+_guard_challenge_*
+_tmp_*.py
+_tmp_*.txt
+scripts/s04_deepseek/*.log
