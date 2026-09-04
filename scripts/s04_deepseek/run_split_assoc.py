@@ -133,6 +133,17 @@ f 必须返回【元素层 option ty】，且因为是新建局部定义，用 p
   5) 每个幸存分支里 f 的 match 已落到确定构造子（Some a / v / None），此时 cbn 后 reflexivity（或 rewrite 对应假设再 reflexivity）。
 一句话：先把两个 get 都三态拆开、用 split 假设砍掉矛盾支，match 自然坍缩成构造子，再 reflexivity；不要对着含 match 的目标直接 reflexivity/eauto。
 
+
+======== 2026-09-04 V4闭环3轮错误模式（必须避免重蹈覆辙）========
+3轮DS输出都给出了完整无admit的证明，但编译都在证明早期（2245-2251行）失败：
+- r1错误：line 2245 rewrite方向反了——写了rewrite HG12（类型get G12 n=get G n）在假设get G1 n=get G12 n上，应该用rewrite <- HG12或先symmetry。
+  【铁律】rewrite前先看等式方向：H:A=B，rewrite H把A换成B，rewrite <- H把B换成A。目标/假设里是A还是B，决定用哪个方向。
+- r2错误：line 2247 bullet结构混乱——Current bullet + is not finished。destruct Hs1 as [Hs1l|Hs1r]; destruct Hs2 as [Hs2l|Hs2r]创建4个分支，必须用4个--（或-）分支逐一收尾，不能跳。
+  【铁律】每加一层destruct就多一层bullet，交前按缩进走一遍每个分支都有收尾tactic（exact/reflexivity/discriminate/exfalso+...）。
+- r3错误：line 2251 f的match没归约——环境里f:=fun...match get G2 n with...，目标里含Some (f n u)，直接reflexivity会报Unable to unify。必须先unfold f或cbn delta [f]，再destruct get G2 n让match坍缩。
+  【铁律】f是pose的局部定义，Coq不会自动unfold。涉及f的等式必须先unfold f，再destruct get G2/G3 n，match才会坍缩成构造子，然后才能reflexivity。
+
+【本轮要求】先写一个最小骨架验证编译通过（只处理G2=Some(Some a),G3=Some(Some b)矛盾分支，用exfalso+discriminate），确认骨架和bullet结构正确后，再逐个补充其余8个分支。不要一次写完全部9个分支然后发现bullet结构错了要全部重写。
 硬性自检：
 1) bullet 层级（- + * ++ **）前后一致、每层闭合，交前按缩进走一遍每个分支都收尾（不许 Current bullet not finished）。
 2) 逐个 Some/None 标注元素层还是 get 层（系统铁律第8条）；f 每个分支返回元素层 option ty。
@@ -141,6 +152,6 @@ f 必须返回【元素层 option ty】，且因为是新建局部定义，用 p
 if __name__ == "__main__":
     res = proof_loop(BRIEF, FILE, TARGET, layer_files=("Layer1.v","Layer2.v"),
                      strategy_docs=STRATEGY, philos_docs=PHILOS, extra_notes=EXTRA,
-                     model="deepseek-v4-pro", max_rounds=3)
+                     model="deepseek-v4-pro", max_rounds=5)
     print("="*60); print("收敛" if res["converged"] else "未收敛")
     for r in res["rounds"]: print(r)
