@@ -74,19 +74,41 @@ injection 对双层 option 一次剥到底（不要连续两次 injection）。
 - 库引理若材料确无打 (* @stdlib names: .. *)，否则必须自证；
 - 交付前自己当 coqc 逐行核对：每个引用名有着落、option 层级正确、每块以 Qed. 结尾、可直接编译 0 错误。
 
-======== 当前状态（重要，从零写主证明，别再走老路）========
+======== 当前状态（2026-09-04 根本原因发现，必须从零写完整9分支证明）========
 4 个辅助引理 get_setby_None_uncond / get_repeat_None_lt / length_repeat_None / get_setby_None 已全部 Qed 且编译通过，
-【直接用、不要重发、不要再新造任何辅助引理】（你上轮抽的 get_setby_merge_spec 把 get 层 match 和 Some(元素) 混层，已删除，禁止再抽这类引理）。
-材料A里 split_assoc 已有你多版证明（f 构造正确、4个辅助引理已 Qed、三态穷尽思路正确），
-【当前状态：证明已应用到Layer2，G3/G2分支已修，只剩G12分支逻辑错误】
-执行方已把你r3的完整证明应用到Layer2，并机械修正了G3/G2分支的rewrite方向（把rewrite EG3 in G3n改为rewrite G3n in EG3，因为EG3一定含get G3 n子项）。现在coqc唯一错误是：
-  line 2264 `Error: Found no subterm matching "get G12 n" in EG2.`
-该行代码在Hs1r/Hs2r分支：
-  `destruct Hs1r as [_ G12e]; destruct Hs2r as [_ G1e]; destruct G12e as [G12n | G12s]; [ rewrite G12n in EG2; discriminate | rewrite G12s in EG2; discriminate ].`
-根本问题：你用 `_` 忽略了 Hs2r 左合取支 `get G2 n = get G12 n`！这个等式是连接 EG2（关于G2：get G2 n = Some(Some a)）和 G12n（关于G12：get G12 n = None）的桥梁。没有它，EG2和G12n是关于不同变量的等式，无法直接矛盾。
-修法：不要用 `_` 忽略 Hs2r 的左合取支，给它命名（如 HG2G12），然后用它把 EG2 转成关于 G12 的等式（rewrite <- HG2G12 in EG2 得 get G12 n = Some(Some a)），再与 G12n（get G12 n = None）矛盾。
-检查所有Hs1r/Hs2r分支（约4个），都有同样的问题——忽略了连接G2和G12的等式。
-你这一轮：以材料A里现有证明为基础，重交【一个】完整 Lemma split_assoc..Qed. 块，只修Hs1r/Hs2r分支的逻辑错误（保留并使用get G2 n = get G12 n等式），不要重写已正确的f定义、见证构造、G3/G2分支和证明骨架。
+【直接用、不要重发、不要再新造任何辅助引理】。
+当前 split_assoc 在 Layer2.v 中是 Admitted 占位（之前的r3证明因结构性缺陷已被回退）。
+
+【根本原因——你之前的r3证明只处理了4/9个分支，这是致命的结构性缺陷】
+在主证明中你写了：
+  destruct (get G2 n) as [[a|]|] eqn:EG2;   (* 3种情况：Some(Some a)/Some None/None *)
+  destruct (get G3 n) as [[b|]|] eqn:EG3.   (* 3种情况 *)
+这创建【9个分支】（3×3），但你每个目标只写了【4个】* 分支，省略了5个：
+  - G2=Some None 的全部3个分支（G3=Some(Some b)/Some None/None）
+  - G2=Some(Some a), G3=Some None 的1个分支
+  - G2=None, G3=Some None 的1个分支
+后果：bullet结构混乱，后续分支中Hs1/Hs1l变量不存在（"Hs1l not found"），所有机械修正都无法解决——因为缺的是整个分支，不是某个tactic错误。
+
+【本轮要求：必须处理全部9个分支，一个都不能少】
+9个分支的证明策略：
+  1. G2=Some(Some a), G3=Some(Some b)：矛盾（G2和G3都有资源，split要求其中一个为空），exfalso+discriminate/injection
+  2. G2=Some(Some a), G3=Some None：valid或矛盾，取决于Hs1/Hs2组合；G3在位空(Some None)等价于空，资源在G2
+  3. G2=Some(Some a), G3=None：valid，资源在G1（split G G1 G23右支）
+  4. G2=Some None, G3=Some(Some b)：valid，G2在位空等价于空，资源在G3
+  5. G2=Some None, G3=Some None：矛盾或valid，取决于具体位置；两个都在位空
+  6. G2=Some None, G3=None：valid或矛盾，G2在位空等价于空
+  7. G2=None, G3=Some(Some b)：valid，资源在G3（split G G1 G23左支）
+  8. G2=None, G3=Some None：valid或矛盾，G3在位空等价于空
+  9. G2=None, G3=None：不可能（n<max_len意味着G2或G3至少一个有资源），exfalso+lia
+注意：Some None（在位空）和None（越界）在split的空判断中是等价的（split定义里写的是"= None \/ = Some None"），所以涉及Some None的分支可以用split假设直接处理。
+
+【已验证的机械修正经验（供你写证明时参考，避免重蹈覆辙）】
+- destruct (get G3 n) as [[b|]|] 会把上下文中所有 get G3 n 替换为构造子，所以后续假设中 get G3 n 已不存在，直接用 discriminate/inversion 处理构造子等式，不要 rewrite EG3 in G3n（会报"Found no subterm"）
+- G3s/G2s/G12s 分支（= Some None）需要 inversion 而非 discriminate（Some(Some x)=Some None 需先 injection 再 discriminate）
+- Hs1r/Hs2r 分支【不能忽略】左合取支 get G2 n = get G12 n，必须保留为 HG2G12 用于连接 EG2 和 G12n
+- 目标中 get G2 n 已被 destruct 替换为 Some(Some a)，rewrite 方向要注意（用 <- 从右往左）
+- simpl 会改变 Hs1 类型导致 destruct as 模式不匹配，G2=None 分支应避免 simpl
+- bullet 层级必须前后一致、每层闭合，交前按缩进走一遍每个分支都收尾
 
 setby/get 精确事实（Layer1）：
   Fixpoint setby (f:nat->option ty->option ty) Gamma k := match Gamma with []=>[] | t::G'=>f k t::setby f G'(S k) end.
