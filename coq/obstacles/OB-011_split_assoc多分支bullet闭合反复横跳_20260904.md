@@ -91,3 +91,33 @@ DS 在 r1 中给出第二个反例 G=[], G12=[None], G3=[], G1=[None], G2=[None]
 
 - 第三轮闭环修 G12 分支后应收敛 → split_assoc Qed → typed_res_par_l/r → congruence
 - 若仍不收敛 → 派 S01 研判 split_assoc 命题陈述与 G23 构造的数学正确性
+
+
+## 2026-09-04 最新发现：DS证明结构性不完整
+
+### 根本原因
+DS r3修正版证明（split_assoc_r3_fixed.v，14788字符）中，
+\\coq
+destruct (get G2 n) as [[a|]|] eqn:EG2;
+destruct (get G3 n) as [[b|]|] eqn:EG3.
+\创建**9个分支**（G2: Some(Some a)/Some None/None × G3: Some(Some b)/Some None/None），
+但DS每个目标只写了**4个**\*\分支，省略了5个：
+- G2=Some None的3个分支
+- G2=Some(Some a), G3=Some None的1个分支
+- G2=None, G3=Some None的1个分支
+
+### 后果
+bullet结构混乱，后续分支中Hs1/Hs1l变量不存在（\Hs1l not found\），
+所有机械修正（rewrite方向/congruence/inversion/discriminate替换）都无法解决，
+因为根本问题是分支缺失，不是单个tactic错误。
+
+### 解决方案
+必须让DS重新生成包含全部9个分支的完整证明，不能再用不完整的r3版本。
+调用DS时需明确指出：\destruct (get G2 n) as [[a|]|]; destruct (get G3 n) as [[b|]|]\创建9个分支，必须全部处理。
+
+### 已验证的机械修正（供新证明参考）
+- ewrite EG3 in G3n; discriminate\ → \discriminate G3n\（G3n中get G3 n已被destruct替换）
+- G3s/G2s/G12s分支需要\inversion\而非\discriminate\（Some(Some x)=Some None，需先injection）
+- Hs1r/Hs2r分支不能忽略左合取支\get G2 n = get G12 n\，需保留为HG2G12用于连接
+- 目标中\get G2 n\已被destruct替换为\Some(Some a)\，rewrite方向需注意
+- simpl会改变Hs1类型导致destruct as模式不匹配，G2=None分支应避免simpl

@@ -2,8 +2,8 @@
   "station": "S04",
   "name": "Coq形式化分站",
   "branch": "s04-coq",
-  "last_update": "2026-09-04 split_assoc攻坚: subst_ren_general/substitution_general已Qed,4辅助引理Qed,split_assoc主证明5轮未收敛已切花括号策略",
-  "current_task": "split_assoc主证明Qed(花括号策略重启中)->typed_res_par_l/r->congruence_preserves_typing",
+  "last_update": "2026-09-04T08:58:59.434982",
+  "current_task": "split_assoc - DS证明不完整，需重新生成",
   "status": "split_assoc攻坚中_花括号策略第6轮",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic",
@@ -47,9 +47,10 @@
     "congruence依赖split_assoc+typed_res_par_l/r"
   ],
   "needs_s01": false,
-  "s01_should_read": "split_assoc攻坚进展; 若花括号策略仍不收敛需S01研判是否换证明策略",
-  "progress_score": "L1/L3绿；L2 7/8主引理+工具引理群就位，剩3目标；范式与工具链已就绪，可一键run_current.py启动DS闭环",
+  "s01_should_read": "split_assoc证明结构性缺陷，需DS重新生成完整9分支证明",
+  "progress_score": 30,
   "blockers": [
-    "待执行：python scripts/s04_deepseek/run_current.py subst_ren_general"
-  ]
+    "DS r3证明只处理4/9个destruct分支，省略G2=Some None的3个+G2/G3=Some None的2个，导致bullet结构混乱"
+  ],
+  "next_action": "重新调用DS，明确要求处理全部9个get G2/G3组合分支"
 }
