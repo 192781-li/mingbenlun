@@ -143,6 +143,36 @@ f 必须返回【元素层 option ty】，且因为是新建局部定义，用 p
 - r3错误：line 2251 f的match没归约——环境里f:=fun...match get G2 n with...，目标里含Some (f n u)，直接reflexivity会报Unable to unify。必须先unfold f或cbn delta [f]，再destruct get G2 n让match坍缩。
   【铁律】f是pose的局部定义，Coq不会自动unfold。涉及f的等式必须先unfold f，再destruct get G2/G3 n，match才会坍缩成构造子，然后才能reflexivity。
 
+
+======== 2026-09-04 强制分解策略（8轮未收敛后的根本性调整）========
+之前8轮DS都在证明早期（2244-2253行）遇f定义归约问题，根本原因是split假设和f的match
+交织在一起，复杂度太高。【强制分解为两步，不许一步到位】：
+
+第一步：先证辅助引理 H23_val（单独一个Lemma，INSERT-BEFORE: split_assoc）：
+  Lemma H23_val : forall G2 G3 f max_len n,
+    f = (fun (n:nat) (_:option ty) => match get G2 n with Some (Some a) => Some a | _ => match get G3 n with Some v => v | None => None end end) ->
+    get (setby f (repeat (None:option ty) max_len) 0) n =
+    match get G2 n with Some (Some a) => Some (Some a) | _ => get G3 n end.
+  这个引理【只涉及get/setby/repeat，不涉及split假设】，证明时：
+  - destruct (Nat.ltb n max_len) eqn:Elt
+  - n < max_len分支：用get_repeat_None_lt得get (repeat None max_len) n = Some None，
+    再用get_setby_get改写，unfold f，destruct (get G2 n) as [[a|]|]，每个分支reflexivity
+  - n >= max_len分支：用get_overflow_none得get G2 n = None和get G3 n = None，
+    再用get_setby_None，reflexivity
+  【这个引理必须先单独Qed，编译通过后才能开始证split_assoc本体】
+
+第二步：用H23_val证split_assoc本体：
+  - pose f, set max_len, pose G23 := setby f (repeat None max_len) 0
+  - exists G23
+  - assert (H23v := H23_val G2 G3 f max_len) （应用已证的辅助引理）
+  - split. 两个目标都是unfold split; intro n; specialize Hs1 n; specialize Hs2 n;
+    rewrite (H23v n)（用辅助引理把get G23 n替换成match表达式，【此时目标里不再有f！】）
+  - 然后destruct (get G n) as [[g|]|]，再destruct Hs1, Hs2，逐分支处理
+  - 【关键】因为rewrite (H23v n)后目标里已经没有f了，所以不需要unfold f，
+    也不会遇到f的match归约问题！这就是分解的意义。
+
+【铁律】不许在split_assoc本体里直接unfold f或destruct f的match——f的所有复杂性都封装在H23_val里。
+本体里只通过H23_val引理来访问G23的get值。这是8轮未收敛后唯一可行的路线。
 【本轮要求】先写一个最小骨架验证编译通过（只处理G2=Some(Some a),G3=Some(Some b)矛盾分支，用exfalso+discriminate），确认骨架和bullet结构正确后，再逐个补充其余8个分支。不要一次写完全部9个分支然后发现bullet结构错了要全部重写。
 硬性自检：
 1) bullet 层级（- + * ++ **）前后一致、每层闭合，交前按缩进走一遍每个分支都收尾（不许 Current bullet not finished）。
