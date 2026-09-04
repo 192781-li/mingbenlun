@@ -1,3 +1,8 @@
+> ⚠️【已推翻·作废 2026-09-04 傍晚】本文结论（split_assoc 为假命题/四条出路）**错误，已被 coqc 证伪双门推翻**：
+> DS 的 split_assoc_false 独立编译 exit=1（右支把越界 None 错当在位 Some None，option 双层错层）；
+> 反例参数下取 G23=[] 即 `exists` 使两个 split 结论 Qed。**split_assoc 为真**。
+> 正确结论与固化见《20260904_八点彻底固化_证伪双门与split_assoc为真裁定.md》、结晶016、教训L035。本文仅作事故痕迹保留，结论勿再引用。
+
 # 2026-09-04 重大发现：split_assoc 是假命题——DS 反例证明
 
 ## 事实

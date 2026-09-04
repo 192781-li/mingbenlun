@@ -151,3 +151,14 @@ bullet结构混乱，后续分支中Hs1/Hs1l变量不存在（\Hs1l not found\�
 - 或者换一种分解策略（不用 H23_val，直接证 split_assoc）
 - 或者给 DS 更明确的指导（H23_val 引理的正确类型和证明策略）
 - 已 signal 通知 S01 研判 split_assoc 命题陈述与 G23 构造的数学正确性
+
+
+---
+
+## 最终结论（2026-09-04 傍晚，证伪双门推翻"假命题"误判）
+
+- v8 DS 交 `split_assoc_false` 声称本引理为假，S04 一度盲信停机——**此判断错误**。
+- **门1（反例独立编译）**：split_assoc_false 剥离后单独 coqc，exit=1；错误在右支 `Hright: None=get G23 0` 被 symmetry/exact 误用于目标 `Some None=get G23 0`——把 G3=[] 的越界空 None 与 G2=[None] 的在位空 Some None 混为一谈（option 双层错层）。
+- **门2（反向候选解）**：DS 给的参数 G=[],G12=[None],G3=[],G1=[None],G2=[None] 下，取 **G23=[]**，`exists []; split; unfold split; intros [|n]; simpl; auto` 使 `split [] [None] G23 /\ split G23 [None] []` 编译通过（exit=0）。"不存在 G23"不成立。
+- **裁定：split_assoc 为真**（明性分划结合律）。回到证明为真路线；v6/v7 的 H23_val 分解策略需在为真路线下重新核对，排除"假命题误判期"的认识污染。
+- 固化：`scripts/s04_deepseek/falsification_guard.py`（双门+事故回归）、结晶016、教训L035、八点固化文档。本卡点状态：命题真假已决（真），剩余纯证明技术问题。

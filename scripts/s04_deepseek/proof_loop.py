@@ -15,6 +15,7 @@ import os, re, shutil, subprocess, datetime
 from ds_v4 import chat
 from s04_context import build_messages, approx_tokens
 from _paths import COQC, COQBIN, COQLIB, THEORIES, CHANNEL
+from falsification_guard import adjudicate as falsify_adjudicate
 
 def extract_coq_blocks(content):
     return [b.strip() for b in re.findall(r"```(?:coq|Coq)?\s*\n(.*?)```", content, flags=re.S)]
@@ -197,6 +198,23 @@ def proof_loop(task_brief, file_path, target_lemma, theories_dir=None, layer_fil
                         ("user","材料A已包含 %s 完整全文，请在其中检索；若确属外部缺失，按来源规范打 @stdlib/@cite 标签，不要用无名未定义名。"%("、".join(layer_files)))]
             result["rounds"].append({"r":rnd,"need":needs}); continue
         blocks = extract_coq_blocks(out["content"])
+        # 证伪守卫（最高优先，先于一切应用）：DS 若宣布目标命题为假/交 ~forall 反例，必须过双门，
+        # 禁止凭自然语言或一份没编译过的反例就盲信"命题为假"（2026-09-04 split_assoc 事故固化）。
+        verdict = falsify_adjudicate(out["content"], blocks, target_lemma,
+                                     layer_files=layer_files, log=log)
+        if verdict["verdict"] == "refuted_claim":
+            log("[round %d] 证伪守卫推翻 DS 的为假主张（gate1_rc=%s winner=%s），不改文件，回喂继续证真"
+                % (rnd, verdict.get("gate1_rc"), verdict.get("gate2_winner")))
+            history += [("assistant", out["content"][:6000]),
+                        ("user", "[证伪守卫·机械验证] " + verdict["feedback"])]
+            result["rounds"].append({"r": rnd, "guard": "refuted_claim",
+                                     "gate1_rc": verdict.get("gate1_rc"),
+                                     "gate2_winner": verdict.get("gate2_winner")})
+            continue
+        if verdict["verdict"] == "plausibly_false":
+            log("[round %d] 证伪守卫：反例独立编译通过且候选解均证不出，疑似为假，halt 冻结烧钱，交人工/S01/S00裁决（永不自动改判）" % rnd)
+            result.update(converged=False, halted_falsification=verdict)
+            break
         hyg = check_hygiene(blocks)
         if hyg:
             log("[round %d] 卫生检查不过 %s，不改文件，回喂"%(rnd,hyg))

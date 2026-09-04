@@ -2,8 +2,8 @@
   "station": "S04",
   "name": "Coq形式化分站",
   "branch": "s04-coq",
-  "last_update": "2026-09-04T12:58:21.294207",
-  "current_task": "【已停机·等待主人方向】split_assoc假命题困境翻译已入库，定时任务全部停用，不再自动推进",
+  "last_update": "2026-09-04T傍晚_证伪双门固化后",
+  "current_task": "split_assoc 经 coqc 双门裁定【为真】；证伪守卫已固化入工具链；定时任务仍停用，等主人放行后回到证明为真路线",
   "status": "split_assoc攻坚中_花括号策略第6轮",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic",
@@ -46,18 +46,17 @@
     "split_assoc主证明: DS整段重写长证明无法一次保持多分支bullet闭合,5轮横跳,已切花括号{}策略",
     "congruence依赖split_assoc+typed_res_par_l/r"
   ],
-  "needs_s01": true,
-  "s01_should_read": "请读困境翻译文档，研判：两种寂(未生None/生而即寂Some None)的存在论关系；弱结合律\"场域已齐\"前提的东方命名；明性开辟单向性的哲学表述",
-  "progress_score": 55,
+  "needs_s01": false,
+  "s01_should_read": "结论更新：两种寂(None越界/Some None在位)在'无操作权流经'上等价且形态可选，不构成冲突，split_assoc为真；无需再研判'假命题四条出路'",
+  "progress_score": 58,
   "blockers": [
-    "split_assoc是假命题（DS v8反例证明），四条出路：甲弱结合律加前提/乙改split定义(不推荐)/丙显式构造G23/丁强弱双轨(明序倾向)",
-    "困境哲学翻译已写：docs/notes/Coq形式化/反身思考记录/20260904_困境翻译_split_assoc假命题的存在论困境与四条出路.md",
-    "等待主人拍板大方向 + S01哲学研判（两种寂的关系、弱结合律命名）+ S00架构决策（选哪条路、下游依赖评估）"
+    "split_assoc 证明本身仍待写出（唯一真 Admitted）；路线=逐位归属构造G23，DS主谋，v6/v7的H23_val分解需在为真路线下重核",
+    "其后 typed_res_par_l/r、congruence_preserves_typing 待补"
   ],
-  "next_action": "停机等待。主人指方向后：按选定方案处理split_assoc，再推进typed_res_par_l/r和congruence_preserves_typing",
+  "next_action": "等主人放行→先跑三连离线自检确认证伪双门在岗→DS主谋证 split_assoc 为真→typed_res_par_l/r→congruence",
   "layer2_admitted": 1,
   "layer2_admitted_list": [
-    "split_assoc（已确认假命题，待方向裁定）"
+    "split_assoc（命题为真，证明待写，非假命题）"
   ],
   "ds_total_cost_yuan": 5.5,
   "ds_v6_rounds": 5,
@@ -68,13 +67,23 @@
   "ds_v8_rounds": 2,
   "ds_v8_converged": false,
   "ds_v8_running": false,
-  "needs_s00": true,
-  "s00_should_read": "请评估四条出路选哪条：甲弱结合律/乙改split定义/丙显式构造/丁强弱双轨；下游congruence_preserves_typing、typed_res_par_l/r、L3是否只依赖弱结合律",
-  "major_discovery": "split_assoc是假命题，两种空无(未生/生而即寂)在分划重组中不对称",
+  "needs_s00": false,
+  "s00_should_read": "四条出路全部作废，不需要架构选路；仅待主人决定何时恢复定时任务",
+  "major_discovery": "split_assoc 为真（明性分划结合律：实资源逐位归属不依赖分划次序与括号，中间层G23必可构造）",
   "cron_stopped": true,
   "cron_stopped_list": [
     11641354361346,
     11686205527810,
     11686205635074
-  ]
+  ],
+  "major_discovery_corrected": "【纠正前结论作废】曾据 DS v8 假反例误判 split_assoc 为假；门1反例独立编译 exit=1（option双层错层），门2 exists [] 使结论 Qed，命题为真",
+  "guard_hardened": {
+    "module": "scripts/s04_deepseek/falsification_guard.py",
+    "gate1": "反例否定引理必须独立coqc exit=0",
+    "gate2": "反向候选解(nil/前提ctx/repeat None)逐个exists，任一成立即推翻反例",
+    "verdict_rule": "refuted_claim回喂继续证真 / plausibly_false才halt交人且永不自动改判",
+    "regression": "事故原文已做成__main__夹具，改工具链必跑三连离线自检",
+    "crystal": "结晶016",
+    "lesson": "L035"
+  }
 }
