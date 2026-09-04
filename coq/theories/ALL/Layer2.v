@@ -2218,6 +2218,44 @@ Qed.
 
 (* split_assoc 反例：
    G=[]  G12=[None]  G3=[]  G1=[None]  G2=[None] *)
+Lemma H23_val : forall (G2 G3 : ctx) (f : nat -> option ty -> option ty) (max_len n : nat),
+    n < max_len ->
+    f = (fun (n:nat) (_:option ty) =>
+           match get G2 n with
+           | Some (Some a) => Some a
+           | _ => match get G3 n with
+                  | Some v => v
+                  | None => None
+                  end
+           end) ->
+    get (setby f (repeat (None:option ty) max_len) 0) n =
+    match get G2 n with
+    | Some (Some a) => Some (Some a)
+    | _ => match get G3 n with
+           | Some v => Some v
+           | None => Some None
+           end
+    end.
+Proof.
+  intros G2 G3 f max_len n Hnlt Hf.
+  rewrite Hf.
+  assert (Hget : get (repeat (None : option ty) max_len) n = Some None).
+  { apply get_repeat_None_lt. exact Hnlt. }
+  rewrite (get_setby_get (repeat (None:option ty) max_len)
+    (fun n _ => match get G2 n with
+                | Some (Some a) => Some a
+                | _ => match get G3 n with
+                       | Some v => v
+                       | None => None
+                       end
+                end) 0 n None Hget).
+  replace (0 + n) with n by lia.
+  destruct (get G2 n) as [[a|]|] eqn:EG2.
+  - simpl. reflexivity.
+  - destruct (get G3 n) as [[b|]|] eqn:EG3; simpl; reflexivity.
+  - destruct (get G3 n) as [[b|]|] eqn:EG3; simpl; reflexivity.
+Qed.
+
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.
