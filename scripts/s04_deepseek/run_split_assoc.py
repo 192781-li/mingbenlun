@@ -78,18 +78,14 @@ injection 对双层 option 一次剥到底（不要连续两次 injection）。
 4 个辅助引理 get_setby_None_uncond / get_repeat_None_lt / length_repeat_None / get_setby_None 已全部 Qed 且编译通过，
 【直接用、不要重发、不要再新造任何辅助引理】（你上轮抽的 get_setby_merge_spec 把 get 层 match 和 Some(元素) 混层，已删除，禁止再抽这类引理）。
 材料A里 split_assoc 已有你多版证明（f 构造正确、4个辅助引理已 Qed、三态穷尽思路正确），
-【重大修正：你上一轮(r1)发现了根本问题，执行方已确认并修正见证】
-你在 r1 中指出：原指定的 `G23 := setby f G 0` 是假见证——反例 G=[]、G2=G3=[None] 时，setby f [] 0 = []，但 split [] [None] [None] 不成立。执行方核实反例正确。
-命题 split_assoc 本身成立，问题出在见证构造。已修正为：
-  `let max_len := Nat.max (length G2) (length G3) in exists (setby f (repeat (None:option ty) max_len) 0).`
-即：先建一个长度为 max(len G2, len G3) 的全 None 列表作基底，再用 f（优先取 G2 元素，否则取 G3 元素，否则 None）逐位置 setby。这样 G23 在 G2/G3 有资源的位置有资源，在都空的位置是 Some None（在位空），越界位置是 None。
-f 定义不变（你已写对）。4个辅助引理已 Qed，不要重发。
-【本轮要求】
-- 用修正后的见证（setby f (repeat None max_len) 0，不是 setby f G 0）重新证明。
-- 建议用 assert 拆分：先 assert (split G G1 G23)，再 assert (split G23 G2 G3)，两个独立 assert，每个结构短。
-- 证明逐位置等式时注意：G23 基底是 repeat None max_len，所以 n < max_len 时 get G23 n = Some (f n None)（经 get_setby_get），n >= max_len 时 get G23 n = None（越界）。
-- 不要重写 f 定义，不要重发辅助引理。
-你这一轮：重交【一个】完整 Lemma split_assoc..Qed. 块，用修正后的见证。
+【当前状态：你上一轮(r3)已交完整主证明，只差一个假设名错误】
+你在 r3 中终于交了完整的 split_assoc 主证明（17978 字符，用修正后的见证 setby f (repeat None max_len) 0），coqc 唯一错误是：
+  line 2279 `Error: No such hypothesis: G3s`
+该行代码是：
+  `destruct Hs1l as [_ G3e]; destruct G3e as [G3n | G3s]; rewrite EG3 in G3n || rewrite EG3 in G3s; discriminate.`
+问题：在 `destruct G3e as [G3n | G3s]` 的第一个分支（G3n 分支）中，G3s 不存在，所以 `rewrite EG3 in G3s` 报 No such hypothesis。虽然用了 `||`，但第一个 `rewrite EG3 in G3n` 可能也失败了（请检查 G3n 的类型和 EG3 的方向）。
+请检查这一处（以及后续所有类似的 `destruct ... as [A|B]; rewrite ... in A || rewrite ... in B` 模式），确保每个分支里引用的假设名都存在。可能需要把 `||` 改成分别处理两个分支，或者检查 destruct 模式是否正确绑定了假设名。
+你这一轮：以材料A里现有 r3 证明为基础，重交【一个】完整 Lemma split_assoc..Qed. 块，只修 2279 这一处及连带的同类假设名错误，不要重写已正确的 f 定义、见证构造和证明骨架。
 
 setby/get 精确事实（Layer1）：
   Fixpoint setby (f:nat->option ty->option ty) Gamma k := match Gamma with []=>[] | t::G'=>f k t::setby f G'(S k) end.
