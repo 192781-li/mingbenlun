@@ -171,6 +171,25 @@ f 必须返回【元素层 option ty】，且因为是新建局部定义，用 p
   - 【关键】因为rewrite (H23v n)后目标里已经没有f了，所以不需要unfold f，
     也不会遇到f的match归约问题！这就是分解的意义。
 
+
+======== 2026-09-04 v7 强制要求（r4/r5 反复犯错后的修正）========
+【r4/r5 错误模式】：
+- r4: 输出了H23_val引理+split_assoc证明，但split_assoc证明line 2252语法错误（Syntax error: ',' or ')' expected）
+- r5: 只输出了split_assoc证明，没有输出H23_val引理！导致H23_val未定义，编译失败
+- 两轮都在同一个地方犯错
+
+【v7 强制要求，严格照做】：
+1. 【必须先输出H23_val引理，再输出split_assoc证明】，顺序不能反，两个都要有
+2. H23_val引理必须以 `(* INSERT-BEFORE: split_assoc *)` 开头，完整Lemma声明+Proof+Qed
+3. H23_val引理的类型【必须】和split_assoc中使用的完全一致，建议类型：
+   Lemma H23_val : forall (G2 G3 : ctx) (f : nat -> option ty -> option ty) (max_len n : nat),
+     f = (fun (n:nat) (_:option ty) => match get G2 n with Some (Some a) => Some a | _ => match get G3 n with Some v => v | None => None end end) ->
+     get (setby f (repeat (None:option ty) max_len) 0) n =
+     match get G2 n with Some (Some a) => Some (Some a) | _ => get G3 n end.
+   【注意】用match表达式，不要用if-then-else（if-then-else在assert类型中容易导致语法错误）
+4. split_assoc证明中，assert (H23v : forall n, ...) 后，用 `apply (H23_val G2 G3 f max_len n Hf_eq)` 证明
+5. 【语法铁律】assert的类型中如果有复杂表达式，用match不用if-then-else；括号要逐对匹配
+6. 先写H23_val引理，coqc验证通过（在脑子里模拟），再写split_assoc证明
 【铁律】不许在split_assoc本体里直接unfold f或destruct f的match——f的所有复杂性都封装在H23_val里。
 本体里只通过H23_val引理来访问G23的get值。这是8轮未收敛后唯一可行的路线。
 【本轮要求】先写一个最小骨架验证编译通过（只处理G2=Some(Some a),G3=Some(Some b)矛盾分支，用exfalso+discriminate），确认骨架和bullet结构正确后，再逐个补充其余8个分支。不要一次写完全部9个分支然后发现bullet结构错了要全部重写。
