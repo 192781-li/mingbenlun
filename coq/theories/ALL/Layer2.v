@@ -2221,58 +2221,8 @@ Qed.
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.
-Proof. Admitted.
-Lemma typed_res_par_l : forall G P Q,
-  ~ fv_at Q 0 -> typed G (PRes (PPar P Q)) -> typed G (PPar (PRes P) Q).
-Proof. Admitted.
-
-Lemma typed_res_par_r : forall G P Q,
-  ~ fv_at Q 0 -> typed G (PPar (PRes P) Q) -> typed G (PRes (PPar P Q)).
-Proof. Admitted.
-
-Theorem congruence_preserves_typing : forall P P' Gamma,
-  congruence P P' -> typed Gamma P -> typed Gamma P'.
-Proof. Admitted.
-
-(* ---------------------------------------------------------------------
-   9. Subject Reduction (FULLY PROVED)
-   KEY INSIGHT: red_comm's premise is impossible in this linear system
-   because split does not allow a channel to appear in both sub-contexts.
-   --------------------------------------------------------------------- *)
-Theorem subject_reduction : forall Gamma P P',
-  typed Gamma P -> reduce P P' -> typed Gamma P'.
 Proof.
-  intros Gamma P P' Ht Hr. revert Gamma Ht.
-  induction Hr as [
-    P
-    | x y P Q
-    | P P' Q Hr IH
-    | P Q Q' Hr IH
-    | P P' Hr IH
-    | P Q P' Q' Hc1 Hc2 Hr IH
-  ]; intros Gamma Ht.
-  - (* red_tau *)
-    inversion Ht; subst; assumption.
-  - (* red_comm: impossible by no_parallel_channel_sharing *)
-    exfalso. eapply no_parallel_channel_sharing. exact Ht.
-  - (* red_par_l *)
-    apply par_elim in Ht. destruct Ht as [Gamma1 [Gamma2 [Hs [HP HQ]]]].
-    eapply ty_par; [exact Hs | eapply IH; exact HP | exact HQ].
-  - (* red_par_r *)
-    apply par_elim in Ht. destruct Ht as [Gamma1 [Gamma2 [Hs [HP HQ]]]].
-    eapply ty_par; [exact Hs | exact HP | eapply IH; exact HQ].
-  - (* red_res *)
-    inversion Ht; subst; clear Ht.
-    eapply ty_res. eapply IH. eassumption.
-  - (* red_cong *)
-    assert (H1 : typed Gamma P').
-    { eapply congruence_preserves_typing. exact Hc1. exact Ht. }
-    assert (H2 : typed Gamma Q').
-    { apply IH. exact H1. }
-    assert (Hc2' : congruence Q' Q).
-    { apply cong_sym. exact Hc2. }
-    eapply congruence_preserves_typing. exact Hc2'. exact H2.
-Qed.
+Proof. Admitted.
 
 (* ---------------------------------------------------------------------
    10. Progress
