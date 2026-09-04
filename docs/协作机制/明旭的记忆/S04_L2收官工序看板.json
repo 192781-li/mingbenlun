@@ -47,9 +47,23 @@
       "depends": [],
       "owner": "S04验/S01知会",
       "ds_round_budget": 0,
-      "status": "pending",
+      "status": "done",
       "gate": "蓝图引理能Check通过、见证存在性独立coqc",
-      "brief_hint": "独立.v(铁模板文件头 From Stdlib...+Require ALL.Layer1/Layer2+Import ListNotations)写 split_assoc_cell 类型并 Check；确认见证 G23=setby f (repeat None L) 0 与已Qed的 H23_val"
+      "brief_hint": "独立.v(铁模板文件头 From Stdlib...+Require ALL.Layer1/Layer2+Import ListNotations)写 split_assoc_cell 类型并 Check；确认见证 G23=setby f (repeat None L) 0 与已Qed的 H23_val",
+      "history": [
+        {
+          "at": "2026-09-04 15:13",
+          "to": "in_progress",
+          "note": ""
+        },
+        {
+          "at": "2026-09-04 15:15",
+          "to": "done",
+          "note": "蓝图类型层coqc exit0: cell_split/split_assoc_cell/主定理见证骨架/H23_val全部类型通过,排除见证为假与option错层风险"
+        }
+      ],
+      "finished_at": "2026-09-04 15:15",
+      "note": "蓝图类型层coqc exit0: cell_split/split_assoc_cell/主定理见证骨架/H23_val全部类型通过,排除见证为假与option错层风险"
     },
     {
       "id": "J1",
@@ -64,9 +78,16 @@
         1,
         4
       ],
-      "status": "pending",
+      "status": "in_progress",
       "gate": "独立coqc Qed，Layer2 admitted 1->0",
-      "brief_hint": "先证 split_assoc_cell：固定单n，destruct(get G2 n) as [[a|]|]、(get G3 n) as [[b|]|] 共9格，先用两个split前提在n的析取消去不可能格，余下 discriminate/injection/auto，约9行case表；再主定理 exists(setby f(repeat None L)0)，两合取各 intros n 后 apply cell + H23_val。禁嵌套bullet、禁整段上万字符重写、每小引理独立coqc先过"
+      "brief_hint": "先证 split_assoc_cell：固定单n，destruct(get G2 n) as [[a|]|]、(get G3 n) as [[b|]|] 共9格，先用两个split前提在n的析取消去不可能格，余下 discriminate/injection/auto，约9行case表；再主定理 exists(setby f(repeat None L)0)，两合取各 intros n 后 apply cell + H23_val。禁嵌套bullet、禁整段上万字符重写、每小引理独立coqc先过",
+      "history": [
+        {
+          "at": "2026-09-04 15:18",
+          "to": "in_progress",
+          "note": ""
+        }
+      ]
     },
     {
       "id": "J3",

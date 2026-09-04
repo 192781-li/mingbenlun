@@ -2293,6 +2293,51 @@ Qed.
    证明由 DeepSeek 主谋闭环产出（结晶014：S04 不自写 tactic），当前保留
    Admitted 作为 Layer2 唯一待证目标。
    ===================================================================== *)
+(* =====================================================================
+   INSERT-BEFORE: Lemma split_assoc : forall G G12 G3 G1 G2, ...
+   J1-a：cell_split 的有限逐位结合引理。
+   存在论：中间场域 g23 是"g2 优先、否则 g3 兜底"的逐位重聚结果；
+   None/Some None 同属寂然空位，故空位析取不展开即可保持双层不错位。
+   ===================================================================== *)
+
+Definition cell_split (g a b : option (option ty)) : Prop :=
+  (a = g /\ (b = None \/ b = Some None))
+  \/ (b = g /\ (a = None \/ a = Some None)).
+
+Lemma split_assoc_cell : forall (g g12 g3 g1 g2 : option (option ty)),
+  cell_split g g12 g3 -> cell_split g12 g1 g2 ->
+  exists g23 : option (option ty),
+    cell_split g g1 g23 /\ cell_split g23 g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 H1 H2.
+  unfold cell_split in H1, H2.
+  destruct H1 as [[Hg12 He3] | [Hg3 He12]].
+  - (* H1 左：g12 = g，g3 寂然 *)
+    destruct H2 as [[Hg1 He2] | [Hg2 He1]].
+    + (* H2 左：g1 = g12，g2 寂然；取 g23 := g2 *)
+      subst g12. subst g1. exists g2. unfold cell_split.
+      split.
+      * left. split; [reflexivity | exact He2].
+      * left. split; [reflexivity | exact He3].
+    + (* H2 右：g2 = g12，g1 寂然；取 g23 := g *)
+      subst g12. subst g2. exists g. unfold cell_split.
+      split.
+      * right. split; [reflexivity | exact He1].
+      * left. split; [reflexivity | exact He3].
+  - (* H1 右：g3 = g，g12 寂然 *)
+    destruct H2 as [[Hg1 He2] | [Hg2 He1]].
+    + (* H2 左：g1 = g12，g2 寂然；取 g23 := g *)
+      subst g1. exists g. unfold cell_split.
+      split.
+      * right. split; [reflexivity | exact He12].
+      * right. split; [exact Hg3 | exact He2].
+    + (* H2 右：g2 = g12，g1 寂然；取 g23 := g *)
+      subst g2. exists g. unfold cell_split.
+      split.
+      * right. split; [reflexivity | exact He1].
+      * right. split; [exact Hg3 | exact He12].
+Qed.
+
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.
