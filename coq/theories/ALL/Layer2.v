@@ -2198,7 +2198,14 @@ Proof.
 Qed.
 
 
-(* COUNTEREXAMPLE: the prescribed witness cannot prove split_assoc as stated *)
+(* =====================================================================
+   split_assoc（明性分划结合律）——为真路线的逐位准备事实
+   曾被 DS v8 误判为假（交 split_assoc_false 反例），已被证伪双门
+   falsification_guard 以 coqc 推翻：反例独立编译 exit=1（option 双层
+   错层），反例参数下取 G23=[] 即使结论 Qed。见结晶016 与
+   S04研判_split_assoc哲学命题与结晶贯穿核对_20260904。
+   下列两个小引理是逐位归属的基础事实，不是反例。
+   ===================================================================== *)
 
 Lemma split_nil_nil_None_hold :
   split [] [] [None] /\ split [] [] [None].
@@ -2213,11 +2220,12 @@ Proof.
   destruct H as [[Hl _] | [Hr _]]; discriminate.
 Qed.
 
-(* split_assoc 反例：
-   G=[]  G12=[None]  G3=[]  G1=[None]  G2=[None] *)
-
-(* split_assoc 反例：
-   G=[]  G12=[None]  G3=[]  G1=[None]  G2=[None] *)
+(* H23_val：逐位构造中间场域 G23 的核心工具引理（为真路线）。
+   存在论含义：G23 第 n 位 = G2 在该位有真实发用 Some(Some a) 则持之，
+   否则承接 G3 该位（G3 越界的 None 在此补成在位空 Some None）。
+   中间块不是现成实体，是"G2 优先、G3 兜底"逐位重新聚拢的产物，正是
+   split_assoc 中 exists G23 的见证构造。空位形态可选、可收摄（结晶012：
+   明性可不保持），故重组不被空位阻塞。 *)
 Lemma H23_val : forall (G2 G3 : ctx) (f : nat -> option ty -> option ty) (max_len n : nat),
     n < max_len ->
     f = (fun (n:nat) (_:option ty) =>
@@ -2256,6 +2264,35 @@ Proof.
   - destruct (get G3 n) as [[b|]|] eqn:EG3; simpl; reflexivity.
 Qed.
 
+(* =====================================================================
+   split_assoc —— 明性分划的结合律（Layer2 并行语义的地基）
+
+   【大白话】一整片操作权场域 G 要分给三个并行生命过程 P/Q/R。可以先切
+   (G1,G2)|G3（前提 split G G12 G3；再 split G12 G1 G2），也可以先切
+   G1|(G2,G3)（结论 exists G23, split G G1 G23 且 split G23 G2 G3）。
+   本定理断言：第一种切法做得到，第二种就一定做得到——中间块 G23 必能
+   逐位重新聚拢，且两种切法下每份真实发用 Some(Some T) 归谁完全一致，
+   与下刀次序、括号方式无关。
+
+   【存在论命题】多者并行共在的客观性：多个生命同时发用、各据其明而互不
+   夺资源，其合法性属于各自的发用与资源归属本身，不属于外部如何捆绑。
+   中间聚合块可自由解散重组（寂然空位 None 越界 / Some None 在位二态在
+   "无操作权流经"上等价、冗余明性可收摄），唯一被严格保持的是真实资源的
+   逐位归属。这是 ty_par 可嵌套、并行成为良定义存在方式的前提；后续
+   congruence/交换/一切多进程理论皆压于此。
+
+   【为真路线】见证 G23 = setby f (repeat None L) 0，f 逐位 G2 优先、
+   G3 兜底（工具引理 H23_val 已 Qed）；两个 split 皆逐位 unfold，按 get
+   三态（None 越界 / Some None 在位空 / Some(Some T) 实有）分情况。
+
+   【DS 误判的精确数学根因】把 G3=[] 越界的 None 与 G2=[None] 在位的
+   Some None 错当同一层而要求相等（违反结晶010：跨上下文层比较先做层级
+   核对）；取 G23=[] 让该位越界即消解。改判真假必过证伪双门（结晶016），
+   coqc 是唯一终裁（结晶014）。
+
+   证明由 DeepSeek 主谋闭环产出（结晶014：S04 不自写 tactic），当前保留
+   Admitted 作为 Layer2 唯一待证目标。
+   ===================================================================== *)
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.

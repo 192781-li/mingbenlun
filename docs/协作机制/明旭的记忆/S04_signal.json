@@ -1,89 +1,88 @@
 {
   "station": "S04",
-  "name": "Coq形式化分站",
+  "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
-  "last_update": "2026-09-04T傍晚_证伪双门固化后",
-  "current_task": "split_assoc 经 coqc 双门裁定【为真】；证伪守卫已固化入工具链；定时任务仍停用，等主人放行后回到证明为真路线",
-  "status": "split_assoc攻坚中_花括号策略第6轮",
+  "last_update": "2026-09-04T哲学研判与范式巩固后",
+  "current_task": "split_assoc【为真】：哲学命题已用大白话讲透，贯穿入Layer2.v注释+研判文档+唯一权威SOP；证明正文待主人放行后由DS主谋闭环产出",
+  "status": "范式巩固完成_定时任务全停_待主人放行",
   "paradigm": {
-    "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic",
+    "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
     "authority_docs": [
-      "docs/协作机制/分站/S04_运行指令.md（唯一权威SOP）",
+      "docs/协作机制/分站/S04_运行指令.md（唯一权威SOP，已更新至split_assoc为真+证伪双门）",
       "docs/协作机制/分站/S04_DeepSeek_V4新范式调用规范.md（DS调用唯一权威）"
     ],
-    "toolchain": "scripts/s04_deepseek/（ds_v4/s04_context/proof_loop/run_current）",
-    "v4_facts": "上下文1M/输出384K；三层全文约49K token占4.9%全量喂；空输出=reasoning吃额度非掐断；pro证明max_tokens>=32000自动续写"
+    "toolchain": "scripts/s04_deepseek/（ds_v4/s04_context/proof_loop/falsification_guard/run_current）",
+    "v4_facts": "上下文1M/输出384K；三层全文约49K token占4.9%全量喂；空输出=reasoning吃额度非掐断；证明max_tokens>=32000自动续写"
   },
   "L1": {
     "admitted": 0,
     "compiled": true
   },
   "L2": {
-    "new_main_lemma": "subst_ren_general已Qed; 当前攻坚split_assoc",
-    "subst_ren_general_cases": "8/8 Qed",
-    "top_level_Admitted": 4,
-    "remaining": [
-      "split_assoc(主证明: 逐点destruct三态,5轮整段重写未收敛,已切花括号{}代替bullet策略)",
-      "typed_res_par_l(~fv_at Q 0做split重划)",
-      "typed_res_par_r(对称)",
-      "congruence_preserves_typing(11构造子,依赖split_assoc+typed_res_par_l/r)"
+    "admitted": 1,
+    "compiled": true,
+    "compile_note": "2026-09-04 coqc exit=0（仅改注释后复编译仍绿）",
+    "only_admitted": "split_assoc（明性分划结合律，命题为真，证明待DS主谋写出）",
+    "already_qed": [
+      "subst_ren_general(8/8)",
+      "substitution_general",
+      "strengthening全套(含typed_strengthen_unused)",
+      "progress_general",
+      "progress",
+      "H23_val(split_assoc见证工具)"
     ],
-    "note": "split_assoc 4辅助引理Qed(get_setby_None_uncond/get_repeat_None_lt/length_repeat_None);主证明卡在多分支bullet闭合,已切花括号策略",
-    "compiled": false
+    "not_yet_written_future": [
+      "typed_res_par_l/r",
+      "congruence_preserves_typing(11构造子)",
+      "subject_reduction"
+    ],
+    "note": "typed_res_par/congruence/subject_reduction 尚未写入Layer2，属未来新增，不是当前Admitted"
   },
   "L3": {
     "admitted": 0,
     "compiled": true,
     "note": "骨架"
   },
+  "split_assoc_philosophy": {
+    "one_line": "明性分划结合律：每份真实发用归谁不依赖下刀次序与括号；两种寂等价、空位可收摄，故中间场域G23必可逐位重聚",
+    "witness": "G23=setby f (repeat None L) 0，f逐位G2优先G3兜底，工具引理H23_val已Qed",
+    "ds_error_root": "DS v8把G3=[]越界None与G2=[None]在位Some None跨层错配（违反结晶010）；取G23=[]即证（结晶012）",
+    "doc": "docs/notes/Coq形式化/S04研判_split_assoc哲学命题与结晶贯穿核对_20260904.md",
+    "in_code_comment": "Layer2.v split_assoc上方已写入大白话+存在论命题+为真路线+误判根因（骨贯穿到发指）"
+  },
+  "crystal_crosscheck": "结晶001-016逐条核对：8条贯穿数学论证/5条贯穿操作范式/3条不适用不冲突；为真路线无一条突破范式，事故=违反010+014/016",
   "key_achievements": [
-    "代换本质=非单射重命名subst_var=ren(subst_name m k)，主引理subst_ren_general 7/8 Qed",
-    "strengthening紧缩工具引理群全Qed：typed_strengthen_unused/collisions、rho_inj_except_m、split_proj等",
-    "DeepSeek V4三轮原地打磨：ds_v4(自动续跑去接缝/人民币计费/reasoning存档)、s04_context(四层全量,实测缓存hit216064/miss328/0.0069元)、proof_loop(编造引理拦截+备份+coqc闭环,顺风/逆风两路径实测通过)",
-    "环境改造：唯一权威SOP+V4规范；3份S04专属旧文档归档；5份共享DS文档加V4指针；工具链工程化入库(离线自检全绿)"
+    "证伪双门falsification_guard焊入proof_loop（结晶016+教训L035），事故原文做回归夹具，三连离线自检全绿",
+    "split_assoc经coqc双门裁定为真，错误'假命题/四条出路'文档作废、OB-011补最终结论",
+    "哲学命题三层讲透并贯穿：Layer2注释 + S04研判文档(含16结晶核对表) + 唯一权威SOP当前任务段更新",
+    "subst_ren_general 8/8、substitution_general、strengthening全套、progress均Qed"
   ],
-  "key_blockers": [
-    "split_assoc主证明: DS整段重写长证明无法一次保持多分支bullet闭合,5轮横跳,已切花括号{}策略",
-    "congruence依赖split_assoc+typed_res_par_l/r"
+  "blockers": [
+    "split_assoc证明正文尚未写出（唯一真Admitted）；待主人放行后DS主谋，S04不越位自写"
   ],
   "needs_s01": false,
-  "s01_should_read": "结论更新：两种寂(None越界/Some None在位)在'无操作权流经'上等价且形态可选，不构成冲突，split_assoc为真；无需再研判'假命题四条出路'",
-  "progress_score": 58,
-  "blockers": [
-    "split_assoc 证明本身仍待写出（唯一真 Admitted）；路线=逐位归属构造G23，DS主谋，v6/v7的H23_val分解需在为真路线下重核",
-    "其后 typed_res_par_l/r、congruence_preserves_typing 待补"
-  ],
-  "next_action": "等主人放行→先跑三连离线自检确认证伪双门在岗→DS主谋证 split_assoc 为真→typed_res_par_l/r→congruence",
-  "layer2_admitted": 1,
-  "layer2_admitted_list": [
-    "split_assoc（命题为真，证明待写，非假命题）"
-  ],
-  "ds_total_cost_yuan": 5.5,
-  "ds_v6_rounds": 5,
-  "ds_v6_converged": false,
-  "ds_v7_running": false,
-  "ds_v7_rounds": 5,
-  "ds_v7_converged": false,
-  "ds_v8_rounds": 2,
-  "ds_v8_converged": false,
-  "ds_v8_running": false,
+  "s01_should_read": "split_assoc为真已成定案（coqc双门）；两种寂等价不冲突，无需再研判假命题/四条出路。若S01对'明性分划结合律'的存在论表述有深化可补充",
   "needs_s00": false,
-  "s00_should_read": "四条出路全部作废，不需要架构选路；仅待主人决定何时恢复定时任务",
-  "major_discovery": "split_assoc 为真（明性分划结合律：实资源逐位归属不依赖分划次序与括号，中间层G23必可构造）",
-  "cron_stopped": true,
-  "cron_stopped_list": [
-    11641354361346,
-    11686205527810,
-    11686205635074
-  ],
-  "major_discovery_corrected": "【纠正前结论作废】曾据 DS v8 假反例误判 split_assoc 为假；门1反例独立编译 exit=1（option双层错层），门2 exists [] 使结论 Qed，命题为真",
+  "s00_should_read": "四条出路全部作废，不需架构选路；仅待主人决定何时恢复定时任务",
+  "next_action": "等主人放行→先跑falsification_guard/proof_loop/s04_context三连离线自检→全量喂DS证split_assoc为真→typed_res_par_l/r→congruence",
+  "progress_score": 62,
   "guard_hardened": {
     "module": "scripts/s04_deepseek/falsification_guard.py",
-    "gate1": "反例否定引理必须独立coqc exit=0",
+    "gate1": "反例否定引理必须独立coqc exit=0（自动补正确文件头，编译后清理临时文件）",
     "gate2": "反向候选解(nil/前提ctx/repeat None)逐个exists，任一成立即推翻反例",
     "verdict_rule": "refuted_claim回喂继续证真 / plausibly_false才halt交人且永不自动改判",
-    "regression": "事故原文已做成__main__夹具，改工具链必跑三连离线自检",
+    "regression": "事故原文__main__夹具；改工具链必跑三连离线自检",
     "crystal": "结晶016",
     "lesson": "L035"
-  }
+  },
+  "cron_stopped": true,
+  "cron_all_S04_stopped": [
+    11641354361346,
+    11686205527810,
+    11686205635074,
+    11623690303490,
+    11631063174146
+  ],
+  "cron_note": "2026-09-04复核：S04全部5个定时任务均已停用（此前3个误显示运行中，本轮已真正停用并list复核13个任务全部已停止）；恢复须主人拍板",
+  "ds_total_cost_yuan": 5.5
 }
