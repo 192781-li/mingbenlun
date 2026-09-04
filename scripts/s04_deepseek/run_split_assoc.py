@@ -78,14 +78,15 @@ injection 对双层 option 一次剥到底（不要连续两次 injection）。
 4 个辅助引理 get_setby_None_uncond / get_repeat_None_lt / length_repeat_None / get_setby_None 已全部 Qed 且编译通过，
 【直接用、不要重发、不要再新造任何辅助引理】（你上轮抽的 get_setby_merge_spec 把 get 层 match 和 Some(元素) 混层，已删除，禁止再抽这类引理）。
 材料A里 split_assoc 已有你多版证明（f 构造正确、4个辅助引理已 Qed、三态穷尽思路正确），
-【当前状态：你上一轮(r3)已交完整主证明，只差一个假设名错误】
-你在 r3 中终于交了完整的 split_assoc 主证明（17978 字符，用修正后的见证 setby f (repeat None max_len) 0），coqc 唯一错误是：
-  line 2279 `Error: No such hypothesis: G3s`
-该行代码是：
-  `destruct Hs1l as [_ G3e]; destruct G3e as [G3n | G3s]; rewrite EG3 in G3n || rewrite EG3 in G3s; discriminate.`
-问题：在 `destruct G3e as [G3n | G3s]` 的第一个分支（G3n 分支）中，G3s 不存在，所以 `rewrite EG3 in G3s` 报 No such hypothesis。虽然用了 `||`，但第一个 `rewrite EG3 in G3n` 可能也失败了（请检查 G3n 的类型和 EG3 的方向）。
-请检查这一处（以及后续所有类似的 `destruct ... as [A|B]; rewrite ... in A || rewrite ... in B` 模式），确保每个分支里引用的假设名都存在。可能需要把 `||` 改成分别处理两个分支，或者检查 destruct 模式是否正确绑定了假设名。
-你这一轮：以材料A里现有 r3 证明为基础，重交【一个】完整 Lemma split_assoc..Qed. 块，只修 2279 这一处及连带的同类假设名错误，不要重写已正确的 f 定义、见证构造和证明骨架。
+【当前状态：证明已应用到Layer2，G3/G2分支已修，只剩G12分支逻辑错误】
+执行方已把你r3的完整证明应用到Layer2，并机械修正了G3/G2分支的rewrite方向（把rewrite EG3 in G3n改为rewrite G3n in EG3，因为EG3一定含get G3 n子项）。现在coqc唯一错误是：
+  line 2264 `Error: Found no subterm matching "get G12 n" in EG2.`
+该行代码在Hs1r/Hs2r分支：
+  `destruct Hs1r as [_ G12e]; destruct Hs2r as [_ G1e]; destruct G12e as [G12n | G12s]; [ rewrite G12n in EG2; discriminate | rewrite G12s in EG2; discriminate ].`
+根本问题：你用 `_` 忽略了 Hs2r 左合取支 `get G2 n = get G12 n`！这个等式是连接 EG2（关于G2：get G2 n = Some(Some a)）和 G12n（关于G12：get G12 n = None）的桥梁。没有它，EG2和G12n是关于不同变量的等式，无法直接矛盾。
+修法：不要用 `_` 忽略 Hs2r 的左合取支，给它命名（如 HG2G12），然后用它把 EG2 转成关于 G12 的等式（rewrite <- HG2G12 in EG2 得 get G12 n = Some(Some a)），再与 G12n（get G12 n = None）矛盾。
+检查所有Hs1r/Hs2r分支（约4个），都有同样的问题——忽略了连接G2和G12的等式。
+你这一轮：以材料A里现有证明为基础，重交【一个】完整 Lemma split_assoc..Qed. 块，只修Hs1r/Hs2r分支的逻辑错误（保留并使用get G2 n = get G12 n等式），不要重写已正确的f定义、见证构造、G3/G2分支和证明骨架。
 
 setby/get 精确事实（Layer1）：
   Fixpoint setby (f:nat->option ty->option ty) Gamma k := match Gamma with []=>[] | t::G'=>f k t::setby f G'(S k) end.
