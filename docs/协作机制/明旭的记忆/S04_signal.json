@@ -2,7 +2,7 @@
   "station": "S04",
   "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
-  "last_update": "2026-09-04T鞍钢宪法三结合收官计划+工序看板制定，待主人放行",
+  "last_update": "2026-09-04T看板驱动绑定完成+外部知识四分类注入DS系统提示",
   "current_task": "split_assoc【为真】：哲学命题已用大白话讲透，贯穿入Layer2.v注释+研判文档+唯一权威SOP；证明正文待主人放行后由DS主谋闭环产出",
   "status": "规划完成_定时任务全停_待主人拍板L2收官路线",
   "paradigm": {
@@ -110,5 +110,42 @@
       13
     ],
     "eta": "集中放行一个专注工作日内L2清零L3转绿"
-  }
+  },
+  "board_driven": {
+    "board_script": "scripts/s04_deepseek/board.py (next/start/done/block/status/check)",
+    "bound_into": [
+      "SOP铁律第7条",
+      "DS系统提示s04_context",
+      "主力定时任务query"
+    ],
+    "rule": "每轮board.py next取唯一工序，Qed才done固化，无可做只同步不烧DS"
+  },
+  "cron": {
+    "11641354361346": {
+      "name": "S04主力-看板驱动",
+      "schedule": "*/20 * * * *",
+      "enable": true
+    },
+    "11686205527810": {
+      "name": "S04每日推进",
+      "enable": false,
+      "note": "职能并入主力看板循环"
+    },
+    "11686205635074": {
+      "name": "S04收工总结",
+      "enable": false,
+      "note": "并入主力"
+    },
+    "11623690303490": {
+      "name": "S04全流程监控",
+      "enable": false,
+      "note": "并入主力"
+    },
+    "11631063174146": {
+      "name": "S04-DS检查",
+      "enable": false,
+      "note": "并入proof_loop"
+    }
+  },
+  "external_knowledge_policy": "大胆用Stdlib/MathComp已Qed库定理(@stdlib L1)；文献结论@cite借思路本库重证；来源不明拦截；加强归纳是自由证明技术非Axiom。详见外部引理登记规范第八节"
 }
