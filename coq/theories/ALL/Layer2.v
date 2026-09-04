@@ -2338,6 +2338,63 @@ Proof.
       * right. split; [exact Hg3 | exact He12].
 Qed.
 
+(* =====================================================================
+   INSERT-BEFORE: Lemma split_assoc
+   J1-d 第一步：choose 与 choose_correct
+   存在论：中间场域的逐位选择。只有"左-左格"（g12=g 且 g3 空，且
+   g1=g12 且 g2 空）需要取 g2 作见证；其余三格皆取 g。空位（None 越界
+   或 Some None 在位）在无操作权流经上等价，因此寂然侧可整体取 g。
+   ===================================================================== *)
+
+Definition is_empty_get (v : option (option ty)) : Prop :=
+  v = None \/ v = Some None.
+
+Definition choose
+  (g g12 g3 g1 g2 : option (option ty)) : option (option ty) :=
+  if excluded_middle_informative
+       (g12 = g /\ is_empty_get g3 /\ g1 = g12 /\ is_empty_get g2)
+  then g2
+  else g.
+
+Lemma choose_correct : forall (g g12 g3 g1 g2 : option (option ty)),
+  cell_split g g12 g3 ->
+  cell_split g12 g1 g2 ->
+  cell_split g g1 (choose g g12 g3 g1 g2) /\
+  cell_split (choose g g12 g3 g1 g2) g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 H1 H2.
+  unfold choose.
+  destruct (excluded_middle_informative
+    (g12 = g /\ is_empty_get g3 /\ g1 = g12 /\ is_empty_get g2))
+  as [Hll | Hnll].
+  - (* 左-左格：choose = g2 *)
+    destruct Hll as [Hg12 [Hg3 [Hg1 Hg2]]].
+    subst g12 g1.
+    split.
+    + exact H2.
+    + left. split; [reflexivity | exact Hg3].
+  - (* 其余：choose = g *)
+    destruct H1 as [[Hg12 Hg3] | [Hg3 Hempty12]];
+    destruct H2 as [[Hg1 Hempty2] | [Hg2 Hempty1]].
+    + (* 左-左格：与 Hnll 矛盾 *)
+      exfalso. apply Hnll. repeat split; assumption.
+    + (* 左-右格 *)
+      subst g12 g2.
+      split.
+      * right. split; [reflexivity | exact Hempty1].
+      * left. split; [reflexivity | exact Hg3].
+    + (* 右-左格 *)
+      subst g3 g1.
+      split.
+      * right. split; [reflexivity | exact Hempty12].
+      * right. split; [reflexivity | exact Hempty2].
+    + (* 右-右格 *)
+      subst g3 g2.
+      split.
+      * right. split; [reflexivity | exact Hempty1].
+      * right. split; [reflexivity | exact Hempty12].
+Qed.
+
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.
