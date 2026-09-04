@@ -77,6 +77,17 @@ DS 在 r1 中给出第二个反例 G=[], G12=[None], G3=[], G1=[None], G2=[None]
 
 ## 后续
 
-- 见证修正策略 r2-r3 进行中，DS 会收到 r1 编译错误反馈继续修正
-- 若 3 轮内收敛 → split_assoc Qed → typed_res_par_l/r → congruence
-- 若仍不收敛 → 派 S01 研判 split_assoc 命题陈述与 G23 构造的数学正确性，或考虑修改命题（如补长度前提）
+## 最新进展（见证修正策略 r3 后）
+
+见证修正策略 r3（第二轮闭环）DS 终于交了完整主证明（24812 字符输出，其中修正版 14788 字符），但因输出中含 3 个 `Lemma split_assoc`（2 个完整证明 + 1 个分析文字提及）被 proof_loop 卫生检查拦下。执行方手动提取修正版应用到 Layer2.v。
+
+应用后编译错误序列：
+1. **2253 `Found no subterm matching "get G3 n" in G3n`**：DS 用 `[ rewrite EG3 in G3n; discriminate | rewrite EG3 in G3s; discriminate ]` 分支语法，但 G3n 中可能不含 `get G3 n` 子项（方向/简化问题）。执行方机械替换为 `rewrite G3n in EG3; discriminate`（EG3 一定含 `get G3 n`），G3/G2 分支共 36 处全部修正。
+2. **2264 `Found no subterm matching "get G12 n" in EG2`**（当前唯一错误）：G12 分支逻辑错误——DS 用 `_` 忽略了 Hs2r 左合取支 `get G2 n = get G12 n`，导致 EG2（关于 G2）和 G12n（关于 G12）是关于不同变量的等式，无法直接矛盾。修法：保留并命名该等式（如 HG2G12），用 `rewrite <- HG2G12 in EG2` 把 EG2 转成关于 G12 的等式，再与 G12n 矛盾。
+
+第三轮闭环已启动，EXTRA 精准指出 G12 分支逻辑错误，要求 DS 只修这一处。
+
+## 后续
+
+- 第三轮闭环修 G12 分支后应收敛 → split_assoc Qed → typed_res_par_l/r → congruence
+- 若仍不收敛 → 派 S01 研判 split_assoc 命题陈述与 G23 构造的数学正确性
