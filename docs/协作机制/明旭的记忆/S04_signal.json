@@ -2,9 +2,9 @@
   "station": "S04",
   "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
-  "last_update": "2026-09-04T机制加固后(s04_git可靠上传+preflight明性自检)",
+  "last_update": "2026-09-04T鞍钢宪法三结合收官计划+工序看板制定，待主人放行",
   "current_task": "split_assoc【为真】：哲学命题已用大白话讲透，贯穿入Layer2.v注释+研判文档+唯一权威SOP；证明正文待主人放行后由DS主谋闭环产出",
-  "status": "范式巩固完成_定时任务全停_待主人放行",
+  "status": "规划完成_定时任务全停_待主人拍板L2收官路线",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
     "authority_docs": [
@@ -91,5 +91,24 @@
     "preflight.py": "开工/收工明性自检：fast/--compile/--deep三档；剥离注释数真实Admitted；证伪双门在岗；L1/L2硬门、L3条件门WARN；红灯退出码1不许提交",
     "gitignore": "补_guard_*.v/_tmp_*.py等临时物永不入库",
     "self_caught": "建设中自检亲手抓出2隐患：Admitted正则漏报(已改s*)、Layer3假绿(已改条件门WARN)"
+  },
+  "l2_finish_plan": {
+    "plan_doc": "docs/协作机制/分站/S04_L2收官攻坚计划_鞍钢宪法三结合_20260904.md",
+    "board": "docs/协作机制/明旭的记忆/S04_L2收官工序看板.json",
+    "why_so_long": "split_assoc数学难度低(有限枚举,H23_val已Qed)，拖10h是组织错误：蓝图未验/整段巨型重写/5轮重启丢记忆/把HTTP success当进展/分工越位；68个trace净增长0",
+    "remedy": "小引理流水线+逐位判定引理关9格+Qed净增长度量+看板驱动不重启",
+    "jobs_order": [
+      "J0蓝图冻结",
+      "J1 split_assoc",
+      "J3 typed_res_par_l/r",
+      "J2 congruence_preserves_typing",
+      "J4 subject_reduction",
+      "J5 Layer3转绿"
+    ],
+    "ds_round_estimate": [
+      7,
+      13
+    ],
+    "eta": "集中放行一个专注工作日内L2清零L3转绿"
   }
 }

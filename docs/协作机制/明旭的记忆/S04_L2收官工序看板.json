@@ -1,0 +1,33 @@
+{
+  "board": "S04_L2收官工序看板",
+  "version": "1.0",
+  "updated": "2026-09-04",
+  "status": "待主人拍板放行（定时任务全停中，不擅自启动DS）",
+  "plan_doc": "docs/协作机制/分站/S04_L2收官攻坚计划_鞍钢宪法三结合_20260904.md",
+  "sole_metric": "coqc Qed净增长（API success不算进展）",
+  "current_baseline": {
+    "Layer1": {"admitted": 0, "compile_exit": 0, "done": true},
+    "Layer2": {"declared": 108, "qed": 107, "admitted": 1, "only_admitted": "split_assoc", "compile_exit": 0, "lines": 2370},
+    "Layer3": {"admitted": 0, "compile_exit": 1, "blocked_waiting_L2_theorem": "subject_reduction", "lines": 636}
+  },
+  "lesson_from_history": {
+    "split_assoc_traces": 68,
+    "trace_window": "2026-09-04 02:57-12:50 约10小时",
+    "qed_net_gain": 0,
+    "root_causes": ["蓝图见证未先验证(前8轮白费)", "整段巨型重写导致bullet横跳", "5轮重启丢记忆", "把HTTP success误当进展", "DS越界判假/S04越界盲信"]
+  },
+  "pipeline_rule": "小引理流水线：每个引理先独立.coqc通过再并入；已Qed立即标done固化；绝不从r1空转；9格组合爆炸关进逐位判定引理",
+  "jobs": [
+    {"id": "J0", "name": "蓝图冻结", "target": "split_assoc_cell陈述与见证类型先Check", "depends": [], "owner": "S04验/S01知会", "ds_round_budget": 0, "status": "pending", "gate": "蓝图引理能Check通过、见证存在性独立coqc"},
+    {"id": "J1", "name": "split_assoc补洞", "target": "J1-a split_assoc_cell(有限9格枚举) -> J1-c主定理", "depends": ["J0"], "already_have": "H23_val已Qed(2229-2265)", "owner": "DS写/S04 coqc终裁", "ds_round_budget": [1, 4], "status": "pending", "gate": "独立coqc Qed，Layer2 admitted 1->0"},
+    {"id": "J3", "name": "typed_res_par_l/r", "target": "限制-并行交换下typed保持(两短引理)", "depends": [], "owner": "DS写/S04裁", "ds_round_budget": [1, 2], "status": "pending", "gate": "coqc Qed，可与J1并行"},
+    {"id": "J2", "name": "congruence_preserves_typing", "target": "6小辅助+主定理对congruence 11构造子；sym/trans用加强/mutual归纳", "depends": ["J3"], "owner": "DS写/S04裁", "ds_round_budget": [3, 5], "status": "pending", "gate": "coqc Qed"},
+    {"id": "J4", "name": "subject_reduction", "target": "对reduce 6构造子归纳(red_tau/red_comm用substitution_general已Qed/par用J3/res用J3/cong用J2)", "depends": ["J2", "J3"], "owner": "DS组装/S04裁", "ds_round_budget": [2, 3], "status": "pending", "gate": "coqc Qed"},
+    {"id": "J5", "name": "Layer3转绿", "target": "subject_reduction_self/alien编译通过，删L2尾部FULLY PROVED假话注释", "depends": ["J4"], "owner": "S04", "ds_round_budget": 0, "status": "pending", "gate": "preflight --deep三层全PASS，L3条件门WARN->PASS"}
+  ],
+  "critical_path": ["J0", "J1"],
+  "parallel_track": ["J3", "J2", "J4", "J5"],
+  "total_ds_round_estimate": [7, 13],
+  "eta": "集中放行一个专注工作日内L2清零L3转绿；稀疏触发约4-6次触发",
+  "quality_gates": ["小引理独立coqc先过", "每J一次preflight --deep", "证伪双门三态挡越界判假", "s04_git.py save每J一commit", "看板回填实际轮次"]
+}
