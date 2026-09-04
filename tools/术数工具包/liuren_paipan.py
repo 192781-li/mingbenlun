@@ -248,6 +248,34 @@ def is_ke_upper(upper, lower):
     return overcomes.get(BRANCH_ELEMENT[upper]) == BRANCH_ELEMENT[lower]
 
 
+def calc_shehai_depth(day_stem, heaven_branch, earth_branch):
+    """计算涉害深度（标准算法）
+    从日干寄宫开始，顺时针数到天盘神的地盘位置，
+    经过的地支中五行克日干的数量，即为涉害深度。
+    克日干的五行=官杀（如日干木，金克木，申酉为官杀）
+    """
+    overcomes = {"木": "土", "土": "水", "水": "火", "火": "金", "金": "木"}
+    stem_palace = STEM_TO_BRANCH[day_stem]
+    day_element = STEM_ELEMENT[day_stem]
+    # 找克日干的五行（官杀）：如日干木，金克木，ke_element=金
+    ke_element = None
+    for k, v in overcomes.items():
+        if v == day_element:
+            ke_element = k
+            break
+
+    start_idx = BRANCHES.index(stem_palace)
+    end_idx = BRANCHES.index(earth_branch)
+
+    depth = 0
+    count = (end_idx - start_idx) % 12
+    for i in range(1, count + 1):
+        b = BRANCHES[(start_idx + i) % 12]
+        if BRANCH_ELEMENT[b] == ke_element:
+            depth += 1
+    return depth
+
+
 def get_three_transmissions(four_lessons, day_stem, day_branch, heaven_plate, month_general, hour_branch):
     """起三传（九宗门）
     返回：(初传, 中传, 末传, 起法名称)
@@ -342,19 +370,31 @@ def get_three_transmissions(four_lessons, day_stem, day_branch, heaven_plate, mo
             return (first, second, third, "比用法")
         elif len(bihe_list) > 1:
             # 涉害法：多个比和，取涉害深者为初传
-            # 涉害：从日干寄宫数到该天盘地盘位置，经过的克数
-            # 简化：取第一个
-            first = bihe_list[0][2]
+            # 标准算法：从日干寄宫数到天盘地盘位置，经过的克日干地支数
+            best = None
+            best_depth = -1
+            for name, earth, heaven in bihe_list:
+                depth = calc_shehai_depth(day_stem, heaven, earth)
+                if depth > best_depth:
+                    best_depth = depth
+                    best = (name, earth, heaven)
+            first = best[2]
             second = heaven_plate[first]
             third = heaven_plate[second]
-            return (first, second, third, "涉害法(简化)")
+            return (first, second, third, f"涉害法(深度{best_depth})")
         else:
             # 涉害法：无比和，取涉害深者
-            # 简化：取第一个下克上
-            first = xia_ke_shang[0][2]
+            best = None
+            best_depth = -1
+            for name, earth, heaven in xia_ke_shang:
+                depth = calc_shehai_depth(day_stem, heaven, earth)
+                if depth > best_depth:
+                    best_depth = depth
+                    best = (name, earth, heaven)
+            first = best[2]
             second = heaven_plate[first]
             third = heaven_plate[second]
-            return (first, second, third, "涉害法")
+            return (first, second, third, f"涉害法(深度{best_depth})")
 
     elif len(xia_ke_shang) == 0 and len(shang_ke_xia) > 0:
         # 遥克法：无下克上，有上克下
@@ -437,7 +477,7 @@ def judge_keti(four_lessons, three_transmissions, method, month_general, hour_br
         keti.append("昴星课")
     elif method == "遥克法(蒿矢/弹射)":
         keti.append("遥克课")
-    elif method == "涉害法" or method == "涉害法(简化)":
+    elif method.startswith("涉害法"):
         keti.append("涉害课")
     elif method == "比用法":
         keti.append("比用课")
@@ -453,9 +493,36 @@ def judge_keti(four_lessons, three_transmissions, method, month_general, hour_br
     return keti
 
 
+# ==================== 年命行年 ====================
+
+def get_nianming(birth_year):
+    """计算年命（出生年份地支）"""
+    # 天干地支纪年：公元4年为甲子年
+    stem_idx = (birth_year - 4) % 10
+    branch_idx = (birth_year - 4) % 12
+    return STEMS[stem_idx] + BRANCHES[branch_idx], BRANCHES[branch_idx]
+
+
+def get_xingnian(birth_year, current_year, gender="男"):
+    """计算行年
+    男命：从寅起，一岁在寅，顺行
+    女命：从申起，一岁在申，逆行
+    """
+    age = current_year - birth_year
+    if gender == "男":
+        # 男命顺行，一岁在寅（index=2）
+        start_idx = 2
+        xingnian_idx = (start_idx + age - 1) % 12
+    else:
+        # 女命逆行，一岁在申（index=8）
+        start_idx = 8
+        xingnian_idx = (start_idx - (age - 1)) % 12
+    return BRANCHES[xingnian_idx], age
+
+
 # ==================== 主排盘函数 ====================
 
-def paipan(year, month, day, hour, question=""):
+def paipan(year, month, day, hour, question="", birth_year=None, gender="男"):
     """大六壬完整排盘"""
     result = {
         "基本信息": {
@@ -501,6 +568,14 @@ def paipan(year, month, day, hour, question=""):
     # 5. 驿马
     horse = HORSE_STAR.get(day_branch, "寅")
     result["基本信息"]["驿马"] = horse
+
+    # 6. 年命行年（如果提供了出生年份）
+    if birth_year:
+        nianming_ganzhi, nianming_branch = get_nianming(birth_year)
+        xingnian_branch, age = get_xingnian(birth_year, year, gender)
+        result["基本信息"]["年命"] = f"{nianming_ganzhi}（{nianming_branch}）"
+        result["基本信息"]["行年"] = f"{xingnian_branch}（{age}岁）"
+        result["基本信息"]["性别"] = gender
 
     # 6. 月将加时，排布天盘
     heaven_plate = setup_heaven_plate(mg, hour_branch)
@@ -577,6 +652,9 @@ def print_paipan(result):
     print(f"  日柱：{info['日柱']}（日干{info['日干']}，日支{info['日支']}）")
     print(f"  旬空：{info['旬空']}")
     print(f"  驿马：{info['驿马']}")
+    if '年命' in info:
+        print(f"  年命：{info['年命']}")
+        print(f"  行年：{info['行年']}")
     if info['占问']:
         print(f"  占问：{info['占问']}")
 
@@ -654,15 +732,24 @@ if __name__ == "__main__":
         month = int(sys.argv[2])
         day = int(sys.argv[3])
         hour = int(sys.argv[4])
-        question = sys.argv[5] if len(sys.argv) > 5 else ""
+        question = sys.argv[5] if len(sys.argv) > 5 and not sys.argv[5].startswith("--") else ""
 
-        result = paipan(year, month, day, hour, question)
+        # 解析可选参数
+        birth_year = None
+        gender = "男"
+        for i, arg in enumerate(sys.argv):
+            if arg.startswith("--birth="):
+                birth_year = int(arg.split("=")[1])
+            elif arg.startswith("--gender="):
+                gender = arg.split("=")[1]
+
+        result = paipan(year, month, day, hour, question, birth_year, gender)
         print_paipan(result)
 
         if "--json" in sys.argv:
             print("\n\n=== JSON 输出 ===")
             print(json.dumps(result, ensure_ascii=False, indent=2))
     else:
-        print("用法：python liuren_paipan.py 年 月 日 时 [占问内容] [--json]")
+        print("用法：python liuren_paipan.py 年 月 日 时 [占问内容] [--birth=出生年] [--gender=男/女] [--json]")
         print("示例：python liuren_paipan.py 2026 9 2 16 感情")
-        print("示例：python liuren_paipan.py 2026 8 18 2 事业 --json")
+        print("示例：python liuren_paipan.py 2026 8 18 2 事业 --birth=2008 --gender=男 --json")
