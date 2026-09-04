@@ -31,6 +31,13 @@ def lemma_span(src, name):
     if not tail: return None
     return m.start(), m.end()+tail.end()
 
+def def_span(src, name):
+    """单行占位 Definition/Fixpoint/Let 的切除区间（从 ^Definition name 非贪婪到第一个行尾句点）。
+    仅用于切除 S04 预立的【单行占位实现】，好让 DS 交来的同名正式 Definition 不产生重复定义；
+    DS 自己交的多行成品 Definition 走插入、不经过这里切除。找不到 None。"""
+    m = re.search(r"(?ms)^(?:Definition|Fixpoint|Let)\s+"+re.escape(name)+r"\b.*?\.\s*$", src)
+    return (m.start(), m.end()) if m else None
+
 def _top_defined_names(text):
     return set(re.findall(r"(?m)^\s*"+_TOP+r"\s+([\w']+)", text))
 
@@ -40,12 +47,8 @@ def apply_patch(file_path, target_lemma, blocks):
     辅助引理允许分步交（insert_only 逐轮沉淀）；若 DS 重发【同名】辅助引理，视为修正版：切除文件中旧同名段、
     以新版替换（这样已沉淀但有编译错的辅助引理修得动，不会被"去重"跳过锁死）；纯噪声块（markdown 残留）丢弃。"""
     src = open(file_path, encoding="utf-8").read()
-    existing = _top_defined_names(src)
     work = src                       # 动态工作串：同名旧段在此切除
     insert_before, new_lemma, skipped = [], None, []
-    def _cut_name(text, name):
-        sp = lemma_span(text, name)
-        return (text[:sp[0]]+text[sp[1]:], True) if sp else (text, False)
     for b in blocks:
         body = re.sub(r"(?m)^\s*\(\*\s*INSERT-BEFORE:.*?\*\)\s*\n","",b).strip()
         if re.search(r"(?m)^(?:Lemma|Theorem)\s+"+re.escape(target_lemma)+r"\b", body):
@@ -56,11 +59,22 @@ def apply_patch(file_path, target_lemma, blocks):
             # 噪声块（markdown 标题/纯说明，不含任何 Coq 顶层定义）直接丢弃，不插入 .v
             if not re.search(r"(?m)^\s*(?:Lemma|Theorem|Fact|Corollary|Definition|Fixpoint|Inductive|Let)\b", body):
                 skipped.append(["<噪声块,非顶层定义,丢弃>"]); continue
-            names = _top_defined_names(body)
-            for nm in sorted(names & existing):   # 同名：切除旧段，以本轮新版替换（修正错误版）
-                work, did = _cut_name(work, nm)
-                if did: skipped.append(["替换旧版:"+nm])
-            insert_before.append(body); existing |= names
+            insert_before.append(body)
+    # 写入前统一清场：本轮任何块（含目标块内嵌的 Definition/Fixpoint）要引入的顶层名，
+    # 把 work 中其【所有】旧同名段循环全切（lemma_span/def_span 都试），杜绝 DS 分块方式
+    # 不同或历史残留多份导致的 "already exists"（2026-09-04 pick_prefix 三轮累积重复定义固化）。
+    incoming = _top_defined_names("\n".join(insert_before + ([new_lemma] if new_lemma else [])))
+    incoming.discard(target_lemma)   # 目标 lemma 由下方 span 整段替换，不在此切
+    def _cut_all(text, name):
+        cnt = 0
+        while True:
+            sp = lemma_span(text, name) or def_span(text, name)
+            if not sp: break
+            text = text[:sp[0]] + text[sp[1]:]; cnt += 1
+        return text, cnt
+    for nm in sorted(incoming):
+        work, c = _cut_all(work, nm)
+        if c: skipped.append(["切除旧同名%d份:%s"%(c, nm)])
     span = lemma_span(work, target_lemma)
     if new_lemma is None:
         if not insert_before:

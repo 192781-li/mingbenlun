@@ -2395,6 +2395,87 @@ Proof.
       * right. split; [reflexivity | exact Hempty12].
 Qed.
 
+(* =====================================================================
+   J1g placeholder: S04 only states the goal spec (no tactic). The Some-first
+   implementation and proof are produced by DeepSeek loop: the one-line
+   Definition placeholder is cut by def_span, the Lemma by lemma_span.
+   ===================================================================== *)
+
+(* =====================================================================
+   J1g 替换：pick_prefix —— Some 优先逐位选择
+   pick（中间场域候选）在所有同时满足
+     cell_split g g1 z /\ cell_split z g2 g3
+   的 z 中，优先取在位值（z <> None）；仅当全无在位候选才取 None。
+   这纠正了旧 choose 在左-左格机械取越界 g2=None 导致非 None 位不成前缀
+   的错误（见 J1g 机器定案：g 在位时左-左格应取 Some None 承续）。
+   存在论：中间场域不是死板继承，而是在"满足资源分划"的候选里主动选
+   在位之寂（Some None）以保持操作权连续；无在位候选才落入越界空无。
+   ===================================================================== *)
+
+(* =====================================================================
+   J1g 核心：pick_prefix 的正确性
+   对任意满足 cell_split g g12 g3 与 cell_split g12 g1 g2 的五元组，
+   pick_prefix 产生的中间场域确实同时满足两侧 cell_split。
+   证明完全依赖构造性不定描述：若有在位候选则直接取其正确性；
+   若无在位候选，split_assoc_cell 给出的存在见证必为 None，故取 None 合法。
+   ===================================================================== *)
+(* =====================================================================
+   J1g 替换：pick_prefix —— Some 优先逐位选择
+   pick（中间场域候选）在所有同时满足
+     cell_split g g1 z /\ cell_split z g2 g3
+   的 z 中，优先取在位值（z <> None）；仅当全无在位候选才取 None。
+   这纠正了旧 choose 在左-左格机械取越界 g2=None 导致非 None 位不成前缀
+   的错误（见 J1g 机器定案：g 在位时左-左格应取 Some None 承续）。
+   ===================================================================== *)
+Definition pick_prefix (g g12 g3 g1 g2 : option (option ty)) : option (option ty) :=
+  match excluded_middle_informative
+          (exists z : option (option ty),
+             z <> None /\ cell_split g g1 z /\ cell_split z g2 g3) with
+  | left Hex =>
+      proj1_sig
+        (constructive_indefinite_description
+           (fun z : option (option ty) =>
+              z <> None /\ cell_split g g1 z /\ cell_split z g2 g3)
+           Hex)
+  | right Hnone => @None (option ty)
+  end.
+
+(* =====================================================================
+   J1g 核心：pick_prefix 的正确性
+   对任意满足 cell_split g g12 g3 与 cell_split g12 g1 g2 的五元组，
+   pick_prefix 产生的中间场域确实同时满足两侧 cell_split。
+   ===================================================================== *)
+Lemma pick_prefix_correct : forall (g g12 g3 g1 g2 : option (option ty)),
+  cell_split g g12 g3 ->
+  cell_split g12 g1 g2 ->
+  cell_split g g1 (pick_prefix g g12 g3 g1 g2) /\
+  cell_split (pick_prefix g g12 g3 g1 g2) g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 H1 H2.
+  unfold pick_prefix.
+  destruct (excluded_middle_informative
+             (exists z : option (option ty),
+                z <> None /\ cell_split g g1 z /\ cell_split z g2 g3))
+    as [Hex | Hnone].
+  - (* 存在非 None 候选：constructive_indefinite_description 选一个 *)
+    destruct (constructive_indefinite_description
+                (fun z : option (option ty) =>
+                   z <> None /\ cell_split g g1 z /\ cell_split z g2 g3)
+                Hex) as [z Hz].
+    simpl.
+    destruct Hz as [Hzne [Hz1 Hz2]].
+    split; [exact Hz1 | exact Hz2].
+  - (* 不存在非 None 候选：split_assoc_cell 的见证必为 None *)
+    destruct (split_assoc_cell g g12 g3 g1 g2 H1 H2) as [z Hz].
+    destruct z as [e|].
+    + (* 若见证为 Some e，则它正是非 None 候选，与 Hnone 矛盾 *)
+      exfalso.
+      apply Hnone.
+      exists (Some e).
+      split; [discriminate | exact Hz].
+    + (* z = None：取 None 满足结论 *)
+      exact Hz.
+Qed.
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.

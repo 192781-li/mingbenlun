@@ -2,9 +2,9 @@
   "station": "S04",
   "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
-  "last_update": "2026-09-04T看板驱动绑定完成+外部知识四分类注入DS系统提示",
-  "current_task": "split_assoc【为真】：哲学命题已用大白话讲透，贯穿入Layer2.v注释+研判文档+唯一权威SOP；证明正文待主人放行后由DS主谋闭环产出",
-  "status": "规划完成_定时任务全停_待主人拍板L2收官路线",
+  "last_update": "2026-09-05T J1g选择层(A)pick_prefix+(B)pick_prefix_correct Qed落袋，coqc exit0，L2仅剩split_assoc；机制根治def_span+同名循环全切+结晶018派活前预检",
+  "current_task": "J1 split_assoc收官：选择层A/B已Qed，下一步(C)pick_prefix_none_suffix(None位向后闭)→固定长度G23逐位读出→主定理拼装Qed",
+  "status": "J1攻坚中_选择层落袋_机制两修_看板驱动正常运行",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
     "authority_docs": [
@@ -29,7 +29,9 @@
       "strengthening全套(含typed_strengthen_unused)",
       "progress_general",
       "progress",
-      "H23_val(split_assoc见证工具)"
+      "H23_val(split_assoc见证工具)",
+      "pick_prefix(Some优先选择算子,经典选择子)",
+      "pick_prefix_correct(逐位正确性,复用split_assoc_cell)"
     ],
     "not_yet_written_future": [
       "typed_res_par_l/r",
@@ -53,20 +55,21 @@
   },
   "crystal_crosscheck": "结晶001-016逐条核对：8条贯穿数学论证/5条贯穿操作范式/3条不适用不冲突；为真路线无一条突破范式，事故=违反010+014/016",
   "key_achievements": [
+    "J1g选择层pick_prefix+pick_prefix_correct经DS主谋2轮Qed(Some优先/经典选择子/复用split_assoc_cell)，coqc exit0，L2仅剩split_assoc；proof_loop新增def_span+同名循环全切根治already exists(两单测过)，结晶018派活前命题预检+SOP铁律8",
     "证伪双门falsification_guard焊入proof_loop（结晶016+教训L035），事故原文做回归夹具，三连离线自检全绿",
     "split_assoc经coqc双门裁定为真，错误'假命题/四条出路'文档作废、OB-011补最终结论",
     "哲学命题三层讲透并贯穿：Layer2注释 + S04研判文档(含16结晶核对表) + 唯一权威SOP当前任务段更新",
     "subst_ren_general 8/8、substitution_general、strengthening全套、progress均Qed"
   ],
   "blockers": [
-    "split_assoc证明正文尚未写出（唯一真Admitted）；待主人放行后DS主谋，S04不越位自写"
+    "split_assoc主引理尚未Qed（L2唯一Admitted）：选择层A/B已落袋，剩(C)None位后缀引理、固定长度G23逐位读出、主定理拼装，均交DS主谋闭环"
   ],
   "needs_s01": false,
   "s01_should_read": "split_assoc为真已成定案（coqc双门）；两种寂等价不冲突，无需再研判假命题/四条出路。若S01对'明性分划结合律'的存在论表述有深化可补充",
   "needs_s00": false,
   "s00_should_read": "四条出路全部作废，不需架构选路；仅待主人决定何时恢复定时任务",
-  "next_action": "等主人放行→先跑falsification_guard/proof_loop/s04_context三连离线自检→全量喂DS证split_assoc为真→typed_res_par_l/r→congruence",
-  "progress_score": 62,
+  "next_action": "先为(C)pick_prefix_none_suffix写_precheck机器验证(结晶018派活前预检)→DS主谋证(C)→固定长度G23逐位读出→split_assoc主定理Qed→board done J1→J3 typed_res_par→J2 congruence",
+  "progress_score": 68,
   "guard_hardened": {
     "module": "scripts/s04_deepseek/falsification_guard.py",
     "gate1": "反例否定引理必须独立coqc exit=0（自动补正确文件头，编译后清理临时文件）",

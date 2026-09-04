@@ -9,11 +9,20 @@ DeepSeek V4 客户端（S04 形式化专用）—— 2026-09-03 三轮原地打�
 机制：thinking 开关 / 人民币定价 / reasoning 单独存档 / length 自动续跑去接缝 / JSON+CSV 留痕
 路径与 key 全部走 _paths.py（环境变量可覆盖），不写死机器目录。
 """
-import json, time, os, csv, urllib.request
+import json, time, os, csv, socket, ssl, urllib.request
+from urllib.error import URLError, HTTPError
+from http.client import IncompleteRead, RemoteDisconnected
 from datetime import datetime
 from _paths import read_api_key, TRACE_DIR, METABOLISM_CSV
 
 URL = "https://api.deepseek.com/chat/completions"
+
+# 可安全重试的网络/服务端瞬时异常（chat completion 无状态，同请求重发幂等）
+_NET_ERR = (ConnectionResetError, ConnectionAbortedError, BrokenPipeError,
+            TimeoutError, socket.timeout, URLError, IncompleteRead,
+            RemoteDisconnected, ssl.SSLError, OSError)
+_RETRY_HTTP = (429, 500, 502, 503, 504)
+_MAX_NET_RETRY = 5
 
 # V4 人民币定价（元/百万 token），官方 pricing 2026-09-03；若官方调价，改这里并注明日期
 PRICING = {
@@ -33,14 +42,30 @@ def _join_overlap(a, b, max_ol=24):
             return a + b[k:]
     return a + b
 
-def _one_request(model, messages, max_tokens, temperature, thinking, timeout):
+def _one_request(model, messages, max_tokens, temperature, thinking, timeout, _attempt=0):
     payload = {"model": model, "messages": messages, "max_tokens": max_tokens,
                "temperature": temperature, "thinking": {"type": thinking}}
     data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
     req = urllib.request.Request(URL, data=data, headers={
         "Content-Type": "application/json", "Authorization": f"Bearer {read_api_key()}"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read().decode("utf-8"))
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read().decode("utf-8"))
+    except HTTPError as e:
+        retryable = e.code in _RETRY_HTTP
+        if retryable and _attempt < _MAX_NET_RETRY:
+            wait = min(2 ** (_attempt + 1), 30)
+            print(f"[net] HTTP {e.code}，{wait}s 后第 {_attempt+2} 次重试", flush=True)
+            time.sleep(wait)
+            return _one_request(model, messages, max_tokens, temperature, thinking, timeout, _attempt+1)
+        raise
+    except _NET_ERR as e:
+        if _attempt < _MAX_NET_RETRY:
+            wait = min(2 ** (_attempt + 1), 30)
+            print(f"[net] 连接异常 {type(e).__name__}，{wait}s 后第 {_attempt+2} 次重试", flush=True)
+            time.sleep(wait)
+            return _one_request(model, messages, max_tokens, temperature, thinking, timeout, _attempt+1)
+        raise
 
 def chat(messages, model="deepseek-v4-flash", thinking="enabled",
          max_tokens=32000, temperature=0.1, task_name="task",
