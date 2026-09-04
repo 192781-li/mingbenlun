@@ -214,8 +214,7 @@ def arrange_dipan(jushu, yin_yang):
         # 阳遁顺排：戊从局数宫开始，顺排
         start = jushu
         for i, yi in enumerate(YI_QI):
-            palace = ((start - 1 + i - 1) % 9) + 1
-            # 跳过中5？不，三奇六仪排9宫，中5也排
+            palace = ((start - 1 + i) % 9) + 1
             dipan[palace] = yi
     else:
         # 阴遁逆排：戊从局数宫开始，逆排
@@ -227,37 +226,70 @@ def arrange_dipan(jushu, yin_yang):
             dipan[palace] = yi
     return dipan
 
-def arrange_tianpan_stars(dipan, shigan):
+def get_xunshou(hour_ganzhi):
+    """确定时干支的旬首，返回旬首六仪（戊己庚辛壬癸）"""
+    # 六十甲子索引
+    gan = hour_ganzhi[0]
+    zhi = hour_ganzhi[1]
+    gi = HEAVENLY_STEMS.index(gan)
+    zi = EARTHLY_BRANCHES.index(zhi)
+    # 找到六十甲子索引
+    idx = -1
+    for i in range(60):
+        if i % 10 == gi and i % 12 == zi:
+            idx = i
+            break
+    # 旬首：每10个一旬
+    xun_idx = (idx // 10) * 10
+    xun_gan = HEAVENLY_STEMS[xun_idx % 10]
+    xun_zhi = EARTHLY_BRANCHES[xun_idx % 12]
+    # 旬首隐六仪：甲子→戊、甲戌→己、甲申→庚、甲午→辛、甲辰→壬、甲寅→癸
+    xunshou_yi_map = {"甲": "戊", "乙": "己", "丙": "庚", "丁": "辛", "戊": "壬", "己": "癸"}
+    # 旬首天干都是甲（甲子、甲戌、甲申、甲午、甲辰、甲寅）
+    xunshou_yi = {"子": "戊", "戌": "己", "申": "庚", "午": "辛", "辰": "壬", "寅": "癸"}[xun_zhi]
+    return xunshou_yi, xun_gan + xun_zhi
+
+
+def arrange_tianpan_stars(dipan, shigan, hour_ganzhi, yin_yang):
     """排天盘九星和天盘三奇六仪"""
-    # 时干所在宫
+    # 1. 时干所在宫
     shigan_palace = None
     for p, yi in dipan.items():
         if yi == shigan:
             shigan_palace = p
             break
-    
-    # 值符 = 时干宫的地盘九星
-    zhifu_star = PALACES[shigan_palace]["star"]
-    
-    # 天盘九星：值符星移到时干宫，其他星顺排
+
+    # 2. 确定旬首六仪，找到值符宫（旬首六仪所在宫）
+    xunshou_yi, xunshou_ganzhi = get_xunshou(hour_ganzhi)
+    zhifu_palace = None
+    for p, yi in dipan.items():
+        if yi == xunshou_yi:
+            zhifu_palace = p
+            break
+
+    # 3. 值符星 = 值符宫的地盘九星
+    zhifu_star = PALACES[zhifu_palace]["star"]
+
+    # 4. 天盘九星：值符星移到时干宫，其他星按阳顺阴逆排列
     tianpan_stars = {}
     star_idx = STARS.index(zhifu_star)
-    # 从时干宫开始，顺排九星
     palace_order = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    # 找到时干宫在顺序中的位置
     start_pos = palace_order.index(shigan_palace)
     for i in range(9):
-        palace = palace_order[(start_pos + i) % 9]
+        if yin_yang == "阳":
+            palace = palace_order[(start_pos + i) % 9]
+        else:
+            palace = palace_order[(start_pos - i) % 9]
         star = STARS[(star_idx + i) % 9]
         tianpan_stars[palace] = star
-    
-    # 天盘三奇六仪：跟着九星走，每个星带着它原来宫位的地盘三奇六仪
+
+    # 5. 天盘三奇六仪：跟着九星走，每个星带着它原来宫位的地盘三奇六仪
     tianpan_yi = {}
     for palace, star in tianpan_stars.items():
         original_palace = STAR_PALACE[star]
         tianpan_yi[palace] = dipan[original_palace]
-    
-    return tianpan_stars, tianpan_yi, zhifu_star, shigan_palace
+
+    return tianpan_stars, tianpan_yi, zhifu_star, shigan_palace, zhifu_palace
 
 def arrange_tianpan_doors(shizhi):
     """排天盘八门"""
@@ -310,29 +342,47 @@ def qimen_pan(year, month, day, hour_branch):
     dipan = arrange_dipan(jushu, yin_yang)
     
     # 7. 天盘九星和三奇六仪
-    tianpan_stars, tianpan_yi, zhifu_star, shigan_palace = arrange_tianpan_stars(dipan, shigan)
+    tianpan_stars, tianpan_yi, zhifu_star, shigan_palace, zhifu_palace = arrange_tianpan_stars(dipan, shigan, hour_ganzhi, yin_yang)
     
-    # 8. 值使门
-    zhishi_door = PALACES[shigan_palace]["door"]
+    # 8. 值使门 = 值符宫的地盘门（不是时干宫）
+    zhishi_door = PALACES[zhifu_palace]["door"]
     if zhishi_door == "寄坤":
         zhishi_door = "死门"  # 中5寄坤2，死门
     
-    # 9. 天盘八门：值使门移到时支宫，其他门顺排（8门，中5寄坤2）
-    shizhi_palace = BRANCH_PALACE[shizhi]
-    tianpan_doors = {}
+    # 9. 天盘八门：值使门从本宫（值符宫）数到时支（阳顺阴逆），其他门按序排列
+    zhishi_palace = zhifu_palace
+    # 九宫顺序（含中5）
+    palace_order_9 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    # 八宫顺序（不含中5，中5寄坤2）
+    palace_order_8 = [1, 2, 3, 4, 6, 7, 8, 9]
+    # 从子时开始数，数到时支
+    hour_branches_list = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
+    hour_idx = hour_branches_list.index(shizhi)
+    # 从值使门本宫开始，阳顺阴逆数hour_idx步
+    start_idx_9 = palace_order_9.index(zhishi_palace)
+    if yin_yang == "阳":
+        zhishi_idx_9 = (start_idx_9 + hour_idx) % 9
+    else:
+        zhishi_idx_9 = (start_idx_9 - hour_idx) % 9
+    zhishi_actual_palace = palace_order_9[zhishi_idx_9]
+    if zhishi_actual_palace == 5:
+        zhishi_actual_palace = 2  # 中5寄坤2
+    # 值使门落在实际宫位，其他门按阳顺阴逆排列
     door_idx = DOORS.index(zhishi_door)
-    # 八宫顺序（不含中5）
-    palace_order = [1, 2, 3, 4, 6, 7, 8, 9]
-    start_pos = palace_order.index(shizhi_palace)
+    start_pos_8 = palace_order_8.index(zhishi_actual_palace)
+    tianpan_doors = {}
     for i in range(8):
-        palace = palace_order[(start_pos + i) % 8]
+        if yin_yang == "阳":
+            palace = palace_order_8[(start_pos_8 + i) % 8]
+        else:
+            palace = palace_order_8[(start_pos_8 - i) % 8]
         door = DOORS[(door_idx + i) % 8]
         tianpan_doors[palace] = door
     # 中5寄坤2
     tianpan_doors[5] = tianpan_doors[2]
     
-    # 10. 八神
-    spirits = arrange_spirits(shigan_palace, yin_yang)
+    # 10. 八神（从值符宫开始排，阳顺阴逆）
+    spirits = arrange_spirits(zhifu_palace, yin_yang)
     
     # 11. 判断是否伏吟/反吟
     fuyin = True
@@ -353,7 +403,8 @@ def qimen_pan(year, month, day, hour_branch):
         "zhifu_star": zhifu_star,
         "zhishi_door": zhishi_door,
         "shigan_palace": shigan_palace,
-        "shizhi_palace": shizhi_palace,
+        "zhifu_palace": zhifu_palace,
+        "shizhi_palace": zhishi_palace,
         "fuyin": fuyin,
         "dipan": dipan,
         "tianpan_stars": tianpan_stars,
@@ -404,6 +455,24 @@ def print_pan(pan):
 # ==================== 测试 ====================
 
 if __name__ == "__main__":
-    # 测试：2026年8月29日亥时
-    pan = qimen_pan(2026, 8, 29, "亥")
-    print_pan(pan)
+    import sys
+    if len(sys.argv) >= 5:
+        year = int(sys.argv[1])
+        month = int(sys.argv[2])
+        day = int(sys.argv[3])
+        hour = int(sys.argv[4])
+        # 时辰转换（23-1点子时，1-3点丑时...）
+        if hour == 23 or hour == 0:
+            hour_branch = "子"
+        else:
+            hour_branches = ["丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
+            hour_branch = hour_branches[(hour - 1) // 2]
+        pan = qimen_pan(year, month, day, hour_branch)
+        print_pan(pan)
+    else:
+        print("用法：python qimen_paipan.py 年 月 日 时(24小时制)")
+        print("示例：python qimen_paipan.py 2026 9 5 10")
+        print()
+        # 默认测试
+        pan = qimen_pan(2026, 8, 29, "亥")
+        print_pan(pan)
