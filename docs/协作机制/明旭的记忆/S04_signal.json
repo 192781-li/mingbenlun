@@ -2,8 +2,8 @@
   "station": "S04",
   "name": "Coq形式化分站",
   "branch": "s04-coq",
-  "last_update": "2026-09-04T12:19:57.879997",
-  "current_task": "split_assoc - v7闭环5轮未收敛，已熔断，等待S01研判或换策略",
+  "last_update": "2026-09-04T12:29:37.403986",
+  "current_task": "split_assoc - v8 DS闭环运行中（第1轮）",
   "status": "split_assoc攻坚中_花括号策略第6轮",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic",
@@ -46,17 +46,16 @@
     "split_assoc主证明: DS整段重写长证明无法一次保持多分支bullet闭合,5轮横跳,已切花括号{}策略",
     "congruence依赖split_assoc+typed_res_par_l/r"
   ],
-  "needs_s01": true,
-  "s01_should_read": "split_assoc命题陈述与G23构造的数学正确性；H23_val引理类型设计；v7 5轮错误模式",
-  "progress_score": 45,
+  "needs_s01": false,
+  "s01_should_read": "",
+  "progress_score": 50,
   "blockers": [
-    "v7闭环5轮全部未收敛（r1输出格式→r2-r3 H23_val引理证明错误→r4-r5 split_assoc主证明错误）",
-    "DS在H23_val引理和split_assoc主证明之间来回切换，每轮不同错误但未收敛",
-    "H23_val引理的陈述可能需要重新设计（当前类型在get G2 n=Some None, get G3 n=None时f返回None）",
-    "v4+v5+v6+v7总费用约4.88元",
-    "已熔断，signal通知S01研判split_assoc命题陈述与G23构造的数学正确性"
+    "v7闭环5轮未收敛已熔断",
+    "v7关键发现：H23_val引理类型陈述错误（右边最后分支应为Some None非get G3 n），导致r3 unify错误",
+    "v8已修正EXTRA：H23_val加n<max_len前提，右边最后分支改为Some None，split_assoc分n<max_len和n>=max_len两种情况",
+    "v8闭环第1轮运行中（上下文52218 token）"
   ],
-  "next_action": "等S01研判；或重新设计H23_val引理陈述；或换分解策略直接证split_assoc",
+  "next_action": "等v8闭环结果；若收敛则split_assoc Qed，继续typed_res_par_l/r和congruence；若未收敛分析错误模式调整策略",
   "layer2_admitted": 2,
   "layer2_admitted_list": [
     "split_assoc",
@@ -67,5 +66,8 @@
   "ds_v6_converged": false,
   "ds_v7_running": false,
   "ds_v7_rounds": 5,
-  "ds_v7_converged": false
+  "ds_v7_converged": false,
+  "ds_v8_rounds": 1,
+  "ds_v8_converged": false,
+  "ds_v8_running": true
 }
