@@ -172,31 +172,80 @@ f 必须返回【元素层 option ty】，且因为是新建局部定义，用 p
     也不会遇到f的match归约问题！这就是分解的意义。
 
 
-======== 2026-09-04 v7 强制要求（r4/r5 反复犯错后的修正）========
-【r4/r5 错误模式】：
-- r4: 输出了H23_val引理+split_assoc证明，但split_assoc证明line 2252语法错误（Syntax error: ',' or ')' expected）
-- r5: 只输出了split_assoc证明，没有输出H23_val引理！导致H23_val未定义，编译失败
-- 两轮都在同一个地方犯错
+======== 2026-09-04 v8 关键修正（H23_val引理类型错误，v7 r3的unify错误根因）========
+【v7 5轮错误模式】：
+- r1: H23_val输出格式问题（DS把引理写在markdown正文不在coq代码块）→ r2已修正
+- r2: H23_val引理inversion错误
+- r3: H23_val引理unify错误（Unable to unify "None" with "Some None"）← 【根因：H23_val类型陈述错误】
+- r4: split_assoc主证明Illegal application（Hs1被当作函数应用）
+- r5: split_assoc主证明rewrite目标不存在
 
-【v7 强制要求，严格照做】：
-1. 【必须先输出H23_val引理，再输出split_assoc证明】，顺序不能反，两个都要有
-2. H23_val引理必须以 `(* INSERT-BEFORE: split_assoc *)` 开头，完整Lemma声明+Proof+Qed
-3. H23_val引理的类型【必须】和split_assoc中使用的完全一致，建议类型：
-   Lemma H23_val : forall (G2 G3 : ctx) (f : nat -> option ty -> option ty) (max_len n : nat),
-     f = (fun (n:nat) (_:option ty) => match get G2 n with Some (Some a) => Some a | _ => match get G3 n with Some v => v | None => None end end) ->
-     get (setby f (repeat (None:option ty) max_len) 0) n =
-     match get G2 n with Some (Some a) => Some (Some a) | _ => get G3 n end.
-   【注意】用match表达式，不要用if-then-else（if-then-else在assert类型中容易导致语法错误）
-4. split_assoc证明中，assert (H23v : forall n, ...) 后，用 `apply (H23_val G2 G3 f max_len n Hf_eq)` 证明
-5. 【语法铁律】assert的类型中如果有复杂表达式，用match不用if-then-else；括号要逐对匹配
-6. 先写H23_val引理，coqc验证通过（在脑子里模拟），再写split_assoc证明
-【铁律】不许在split_assoc本体里直接unfold f或destruct f的match——f的所有复杂性都封装在H23_val里。
-本体里只通过H23_val引理来访问G23的get值。这是8轮未收敛后唯一可行的路线。
-【本轮要求】先写一个最小骨架验证编译通过（只处理G2=Some(Some a),G3=Some(Some b)矛盾分支，用exfalso+discriminate），确认骨架和bullet结构正确后，再逐个补充其余8个分支。不要一次写完全部9个分支然后发现bullet结构错了要全部重写。
-硬性自检：
-1) bullet 层级（- + * ++ **）前后一致、每层闭合，交前按缩进走一遍每个分支都收尾（不许 Current bullet not finished）。
-2) 逐个 Some/None 标注元素层还是 get 层（系统铁律第8条）；f 每个分支返回元素层 option ty。
-3) 只交 split_assoc 一个块、从 Lemma 到 Qed.；不重发辅助、不新造辅助；不用裸 congruence tactic（与 Inductive congruence 同名，需要闭合用 reflexivity/f_equal/lia）。"""
+【H23_val类型错误的详细分析】：
+当前H23_val右边写的是：
+  match get G2 n with Some (Some a) => Some (Some a) | _ => get G3 n end.
+但这是【错误的】！
+
+f的定义：
+  f n None = match get G2 n with
+    | Some (Some a) => Some a
+    | _ => match get G3 n with
+           | Some v => v
+           | None => None   (* ← 关键：G3越界时f返回None元素层值 *)
+           end
+    end.
+
+当n < max_len时，get (repeat None max_len) n = Some None，
+由get_setby_get得：get (setby f (repeat None max_len) 0) n = Some (f n None).
+
+【关键情形】get G2 n = Some None, get G3 n = None：
+- f n None = None（G2在位空走_分支，G3越界走None分支，返回None）
+- 左边 get(setby f...)n = Some None
+- 当前右边：match Some None with Some(Some a)=>... | _=> get G3 n end = None
+- 左边Some None ≠ 右边None → unify失败！
+
+【正确的H23_val右边】（当n < max_len时）：
+  match get G2 n with
+  | Some (Some a) => Some (Some a)
+  | _ => match get G3 n with
+         | Some v => Some v       (* G3有值，Some(元素层值) *)
+         | None => Some None      (* ← 关键修正：G3越界时是Some None，不是None！ *)
+         end
+  end.
+
+【n >= max_len的情形】：
+此时get G2 n = None且get G3 n = None（越界），get(setby f...)n = None（越界）。
+所以H23_val必须【加上n < max_len的前提】，或者分别处理两种情况。
+
+【v8 强制要求的H23_val正确类型】（推荐方案A）：
+  Lemma H23_val : forall (G2 G3 : ctx) (f : nat -> option ty -> option ty) (max_len n : nat),
+    n < max_len ->
+    f = (fun (n:nat) (_:option ty) => match get G2 n with Some (Some a) => Some a | _ => match get G3 n with Some v => v | None => None end end) ->
+    get (setby f (repeat (None:option ty) max_len) 0) n =
+    match get G2 n with
+    | Some (Some a) => Some (Some a)
+    | _ => match get G3 n with
+           | Some v => Some v
+           | None => Some None
+           end
+    end.
+  证明：destruct (get G2 n) as [[a|]|]; destruct (get G3 n) as [[b|]|]; 9个分支，每个unfold f后reflexivity（f的match和右边的match同步坍缩）。
+
+【split_assoc主证明中使用H23_val的正确方式】：
+- pose f, set max_len, exists (setby f (repeat None max_len) 0)
+- split. 两个目标都是unfold split; intro n; specialize Hs1 n; specialize Hs2 n
+- 【关键】分两种情况：destruct (Nat.ltb n max_len) eqn:Hlt
+  - n < max_len分支：rewrite (H23_val G2 G3 f max_len n Hlt Hf_eq)，然后目标里不再有f，destruct (get G n) as [[g|]|]，再destruct Hs1, Hs2逐分支处理
+  - n >= max_len分支：此时get G2 n = None且get G3 n = None（越界），由split假设可推出get G n = None且get G1 n = None，直接用get_setby_None或lia处理
+- 【铁律】不许在split_assoc本体里直接unfold f或destruct f的match——f的所有复杂性都封装在H23_val里。
+
+【v8 输出纪律】：
+1. 必须先输出H23_val引理（带n < max_len前提），再输出split_assoc证明
+2. H23_val引理必须以 (* INSERT-BEFORE: split_assoc *) 开头，完整Lemma+Proof+Qed
+3. 两个引理分开放在不同的coq代码块中
+4. 先写H23_val，在脑子里模拟coqc验证通过（9个分支都reflexivity），再写split_assoc
+5. split_assoc证明中用destruct (Nat.ltb n max_len)分情况，n < max_len用H23_val，n >= max_len用越界性质
+6. 硬性自检：H23_val右边最后一个分支是Some None（不是None，不是get G3 n）；split_assoc中n >= max_len分支有处理
+"""
 
 if __name__ == "__main__":
     res = proof_loop(BRIEF, FILE, TARGET, layer_files=("Layer1.v","Layer2.v"),
