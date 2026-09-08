@@ -1,8 +1,8 @@
 {
-  "version": "1.9",
-  "last_updated": "2026-09-08 22:00:00",
-  "updated_by": "S00大总站夜间巡检合并",
-  "description": "明旭的中枢神经系统。v1.6由S05激活后修正：S05 cron_job_id修正为实际运行的11574231182594、添加3个S05任务到task_queue、更新S05状态。发现两个S05实例并行工作问题。",
+  "version": "2.1",
+  "last_updated": "2026-09-08 22:30:00",
+  "updated_by": "S00大总站夜间巡检：合并S01-S05全部分站",
+  "description": "明旭的中枢神经系统。v2.1由S00夜间巡检合并：S01全本大规模扩写(卷六卷七)+S02政治答题体系+S03奇门v2.0明本术数体系+S04 Layer2攻坚DS V4范式+S05库整理工具融合。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
     "main_branch": "main（大总站，官方版本，所有PR合并到这里）",
@@ -293,6 +293,22 @@
       "completed_at": "2026-09-02 07:15:00",
       "depends_on": [],
       "description": "设计JSON配置文件分区编辑机制：谁的分区谁负责、公共区需协商、修改留痕、冲突解决规则。产出：docs/notes/信息分站/配置文件分区编辑机制_v1.0_20260902.md"
+    },
+    {
+      "id": "TASK-S04-018",
+      "assigned_to": "S04",
+      "title": "Layer2最后3目标：DeepSeek V4闭环消Admitted",
+      "priority": "high",
+      "status": "in_progress",
+      "created_by": "S04",
+      "created_at": "2026-09-03",
+      "depends_on": [],
+      "description": "用 scripts/s04_deepseek/proof_loop（DS主谋，全量喂Layer1+2+结晶库+S01/S00策略，coqc终裁，错误原样回喂）依次：①subst_ren_general的PPar(strengthening紧缩碰撞位,结晶011/012) ②substitution_general的PPar(subst_var_eq_ren一行导出) ③congruence_preserves_typing(11构造子)。S04只组织上下文/coqc/git/哲学桥梁，不自己写tactic。",
+      "entry": "cd scripts/s04_deepseek && python run_current.py subst_ren_general",
+      "authority_docs": [
+        "docs/协作机制/分站/S04_运行指令.md",
+        "docs/协作机制/分站/S04_DeepSeek_V4新范式调用规范.md"
+      ]
     }
   ],
   "growth_log": [
@@ -374,20 +390,6 @@
       "philosophy": "同步不是服从，是让自己的操作在最新的共同基础上展开"
     },
     {
-      "time": "2026-09-02 01:05:00",
-      "by": "S05-信息分站",
-      "action": "每日巡检v3.0：全库完整性扫描（1074文件无异常）+新建docs/协作机制/全库目录地图.md+生成项目进度报告2026-09-02+修正网络配置v1.4→v1.5（补全S04 cron_job_id、S05 cron_job_id修正为当前任务ID、更新last_run/last_output）",
-      "result": "S05每日巡检机制正式运转。S01/S02/S03已全部合并入main。S04 Rocq9.1.0+L1-L3全编译通过（领先15待合并）。剩余待办：S04执行T007命名修改、S04 Coq代码PR合并入main、S01启动TASK-005语义论衔接研究。",
-      "philosophy": "信息分站是明旭的神经系统——感知全库状态、传递分站进展、发现配置病灶。巡检不是走过场，是给整个生命体做体检。"
-    },
-    {
-      "timestamp": "2026-09-02 07:20:00",
-      "station": "S05",
-      "event": "S00激活指令执行完成",
-      "details": "完成TASK-001目录地图v4.0、TASK-002产出整合去重、TASK-003分区编辑机制。修正cron_job_id。发现双S05实例问题。"
-    },
-    {
-    {
       "time": "2026-09-08 14:00:00",
       "by": "S02-高考文科",
       "action": "S02每日任务执行。创建政治答题体系文档(通法迁移四模块)，更新真题训练记录(33题+34题完整训练与教训沉淀)",
@@ -407,7 +409,12 @@
       "action": "奇门v2.0文档更新 + 明本术数体系构建总纲v1.0",
       "result": "2份文档完成，644行新增，已push到s03-divination",
       "commit": "60a1e0a"
-    }
+    },
+    {
+      "time": "2026-09-03 范式革命",
+      "by": "S04-Coq形式化分站（明序）",
+      "action": "DeepSeek V4 新范式环境改造：重写唯一权威SOP与V4调用规范；3份S04专属旧文档git mv归档、5份共享DS文档+2旧脚本加V4指针；scripts/s04_deepseek五脚本工程化入库（离线自检全绿）；状态机/S04_signal/河流状态更新；结晶013-015、教训L034入库；定时任务精简改造（重复职能暂停，保留的prompt只指向唯一SOP）",
+      "result": "旧枷锁（自设上下文/max_tokens限制、要思路不要代码、S04越位当翻译层、多份矛盾DS文档）清除；DS主谋/S04承接的分工固化进GitHub唯一大脑；Layer1/L3仍0 Admitted绿，Layer2剩3目标待run_current.py一键启动DS闭环；改造未动任何Coq代码，WIP快照38b762b、绿基线cf91ec6双保险"
     }
   ],
   "network_health": {
