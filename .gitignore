@@ -53,4 +53,11 @@ archive/old_editions/backups/
 
 # S04临时文件
 commit_msg*.txt
+
+# 分站临时/日志目录（不入库，归档到archive/temp_logs/）
 s01_temp_docs/
+s04_monitor_logs/
+deepseek_check_logs/
+*_monitor_logs/
+*_check_logs/
+*_temp_docs/
