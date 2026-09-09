@@ -1,16 +1,26 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-通用视频文案提取工具 v1.0
+通用视频文案提取工具 v2.0（融合版）
 支持：抖音、B站
-优先级：B站CC字幕(几秒) > 抖音下载+whisper转写(几分钟)
-用法：python3 video_transcriber.py <视频链接> [输出目录]
+B站策略：CC字幕(几秒) > yt-dlp下载音频+faster-whisper转写
+抖音策略：B站搜索相同视频找CC字幕 > 下载+whisper转写
+功能：批量处理、--subtitles-only、模型选择、三种输出格式(纯文本/时间戳/JSON)、繁体转简体
+
+用法：
+  python3 video_transcriber.py <视频URL或BV号>
+  python3 video_transcriber.py --batch urls.txt
+  python3 video_transcriber.py <URL> --output my_output --model medium
+  python3 video_transcriber.py <URL> --subtitles-only
 """
 
-import sys
+import argparse
+import json
 import os
 import re
-import json
 import subprocess
+import sys
+import tempfile
 import urllib.request
 import urllib.parse
 from pathlib import Path
@@ -18,34 +28,143 @@ from pathlib import Path
 # ============================================================
 # 配置
 # ============================================================
-WHISPER_MODEL = "small"  # tiny/base/small/medium/large
 WHISPER_DEVICE = "cpu"
 WHISPER_COMPUTE = "int8"
+
+# ============================================================
+# 依赖管理
+# ============================================================
+def ensure_requests():
+    try:
+        import requests
+        return requests
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "requests", "-q"])
+        import requests
+        return requests
+
+def ensure_whisper():
+    try:
+        from faster_whisper import WhisperModel
+        return WhisperModel
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "faster-whisper", "-q"])
+        from faster_whisper import WhisperModel
+        return WhisperModel
+
+def ensure_opencc():
+    try:
+        from opencc import OpenCC
+        return OpenCC
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "opencc-python-reimplemented", "-q"])
+        from opencc import OpenCC
+        return OpenCC
 
 # ============================================================
 # 工具函数
 # ============================================================
 def run_cmd(cmd, timeout=120):
-    """运行shell命令，返回(stdout, stderr, returncode)"""
+    """运行shell命令"""
     try:
         r = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=timeout)
         return r.stdout, r.stderr, r.returncode
     except subprocess.TimeoutExpired:
         return "", "timeout", -1
 
-def download_file(url, path, headers=None):
-    """下载文件"""
-    if headers is None:
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15',
-            'Referer': 'https://www.douyin.com/'
-        }
-    req = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        with open(path, 'wb') as f:
-            f.write(resp.read())
-    return path
+def t2s(text):
+    """繁体转简体"""
+    OpenCC = ensure_opencc()
+    cc = OpenCC('t2s')
+    return cc.convert(text)
 
+def format_timestamp(seconds):
+    """秒数转 MM:SS 格式"""
+    minutes = int(seconds // 60)
+    secs = int(seconds % 60)
+    return f"{minutes:02d}:{secs:02d}"
+
+# ============================================================
+# B站API
+# ============================================================
+def extract_bvid(url_or_bvid):
+    """从URL或文本中提取BV号"""
+    if re.match(r'^BV[a-zA-Z0-9]+$', url_or_bvid):
+        return url_or_bvid
+    match = re.search(r'(BV[a-zA-Z0-9]+)', url_or_bvid)
+    return match.group(1) if match else None
+
+def get_bilibili_video_info(bvid):
+    """获取B站视频信息（标题、cid、时长）"""
+    requests = ensure_requests()
+    url = f"https://api.bilibili.com/x/web-interface/view?bvid={bvid}"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Referer": "https://www.bilibili.com"
+    }
+    resp = requests.get(url, headers=headers, timeout=10)
+    data = resp.json()
+    if data.get("code") != 0:
+        raise Exception(f"获取视频信息失败: {data.get('message')}")
+    return data["data"]
+
+def get_bilibili_subtitle_list(bvid, cid):
+    """获取B站视频的字幕列表"""
+    requests = ensure_requests()
+    url = f"https://api.bilibili.com/x/player/v2?bvid={bvid}&cid={cid}"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Referer": "https://www.bilibili.com"
+    }
+    resp = requests.get(url, headers=headers, timeout=10)
+    data = resp.json()
+    if data.get("code") != 0:
+        return []
+    return data.get("data", {}).get("subtitle", {}).get("subtitles", [])
+
+def download_bilibili_subtitle(subtitle_url):
+    """下载B站字幕内容"""
+    requests = ensure_requests()
+    if subtitle_url.startswith("//"):
+        subtitle_url = "https:" + subtitle_url
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Referer": "https://www.bilibili.com"
+    }
+    resp = requests.get(subtitle_url, headers=headers, timeout=10)
+    return resp.json()
+
+def parse_subtitle_json(subtitle_data):
+    """解析B站字幕JSON，返回segments列表"""
+    results = []
+    for item in subtitle_data.get("body", []):
+        results.append({
+            "start": round(item.get("from", 0), 2),
+            "end": round(item.get("to", 0), 2),
+            "text": item.get("content", "")
+        })
+    return results
+
+def search_bilibili(keyword):
+    """在B站搜索关键词，返回视频列表"""
+    requests = ensure_requests()
+    url = f'https://api.bilibili.com/x/web-interface/search/type?search_type=video&keyword={urllib.parse.quote(keyword)}'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Referer': 'https://www.bilibili.com/'
+    }
+    try:
+        resp = requests.get(url, headers=headers, timeout=15)
+        data = resp.json()
+        if data.get('code') == 0:
+            return data['data'].get('result', [])[:5]
+    except Exception as e:
+        print(f"[!] B站搜索失败: {e}", file=sys.stderr)
+    return []
+
+# ============================================================
+# 抖音
+# ============================================================
 def resolve_douyin_short_link(url):
     """解析抖音短链接，返回视频ID"""
     out, err, rc = run_cmd(f'curl -sL -o /dev/null -w "%{{url_effective}}" "{url}"')
@@ -56,12 +175,12 @@ def resolve_douyin_short_link(url):
     return None
 
 def get_douyin_video_info(video_id):
-    """用playwright获取抖音视频信息（标题、描述、视频URL）"""
+    """用playwright获取抖音视频信息"""
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
-        print("[!] playwright未安装，尝试用curl获取...")
-        return None
+        print("[!] playwright未安装，抖音视频需手动提供标题/描述", file=sys.stderr)
+        return {'title': f'抖音_{video_id}', 'desc': '', 'video_url': ''}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -77,7 +196,6 @@ def get_douyin_video_info(video_id):
         page.goto(f'https://www.douyin.com/video/{video_id}', timeout=30000)
         page.wait_for_timeout(5000)
 
-        # 点击展开
         try:
             btn = page.query_selector('text=展开')
             if btn:
@@ -88,281 +206,267 @@ def get_douyin_video_info(video_id):
 
         title = page.title()
         desc = page.evaluate('''() => {
-            const all = document.body.innerText;
-            const idx = all.indexOf('逢高');
-            if (idx >= 0) return all.substring(idx, idx + 300);
-            // 尝试其他方式
             const meta = document.querySelector('meta[property="og:description"]');
             return meta ? meta.content : '';
         }''')
-
         video_url = page.evaluate('''() => {
             const video = document.querySelector('video');
-            if (video) return video.src;
-            return '';
+            return video ? video.src : '';
         }''')
-
         browser.close()
         return {'title': title, 'desc': desc, 'video_url': video_url}
 
-def search_bilibili(keyword):
-    """在B站搜索关键词，返回视频列表"""
-    url = f'https://api.bilibili.com/x/web-interface/search/type?search_type=video&keyword={urllib.parse.quote(keyword)}'
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'Referer': 'https://www.bilibili.com/'
-    }
-    try:
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            data = json.loads(resp.read())
-            if data.get('code') == 0:
-                return data['data'].get('result', [])[:5]
-    except Exception as e:
-        print(f"[!] B站搜索失败: {e}")
-    return []
+def download_file(url, path, headers=None):
+    """下载文件"""
+    if headers is None:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15',
+            'Referer': 'https://www.douyin.com/'
+        }
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        with open(path, 'wb') as f:
+            f.write(resp.read())
+    return path
 
-def get_bilibili_cc_subtitle(bvid):
-    """获取B站CC字幕"""
-    # 先获取视频信息（cid和aid）
-    url = f'https://api.bilibili.com/x/web-interface/view?bvid={bvid}'
-    headers = {'User-Agent': 'Mozilla/5.0', 'Referer': 'https://www.bilibili.com/'}
-    try:
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            data = json.loads(resp.read())
-            if data.get('code') != 0:
-                return None
-            cid = data['data']['cid']
-            aid = data['data']['aid']
-    except Exception as e:
-        print(f"[!] 获取B站视频信息失败: {e}")
-        return None
-
-    # 获取字幕列表
-    url2 = f'https://api.bilibili.com/x/player/v2?aid={aid}&cid={cid}'
-    try:
-        req = urllib.request.Request(url2, headers=headers)
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            data = json.loads(resp.read())
-            subtitles = data.get('data', {}).get('subtitle', {}).get('subtitles', [])
-            if not subtitles:
-                return None
-            # 取第一个字幕（通常是中文）
-            sub_url = 'https:' + subtitles[0]['subtitle_url']
-            req2 = urllib.request.Request(sub_url, headers=headers)
-            with urllib.request.urlopen(req2, timeout=15) as resp2:
-                sub_data = json.loads(resp2.read())
-                lines = []
-                for item in sub_data.get('body', []):
-                    start = item['from']
-                    end = item['to']
-                    text = item['content']
-                    lines.append(f'[{start:.1f}s - {end:.1f}s] {text}')
-                return lines
-    except Exception as e:
-        print(f"[!] 获取B站字幕失败: {e}")
-    return None
-
-def extract_bvid_from_url(url):
-    """从B站URL提取bvid"""
-    m = re.search(r'BV[a-zA-Z0-9]+', url)
-    return m.group(0) if m else None
-
-def whisper_transcribe(audio_path):
+# ============================================================
+# Whisper转写
+# ============================================================
+def whisper_transcribe(audio_path, model_size="small"):
     """用faster-whisper转写音频"""
-    try:
-        from faster_whisper import WhisperModel
-    except ImportError:
-        print("[!] 安装faster-whisper...")
-        run_cmd('pip3 install faster-whisper -q')
-        from faster_whisper import WhisperModel
+    WhisperModel = ensure_whisper()
+    print(f"  加载模型: {model_size}...", file=sys.stderr)
+    model = WhisperModel(model_size, device=WHISPER_DEVICE, compute_type=WHISPER_COMPUTE)
+    print(f"  转写中...", file=sys.stderr)
+    segments, info = model.transcribe(
+        audio_path, language='zh', beam_size=5, vad_filter=True
+    )
+    print(f"  语言: {info.language}, 时长: {info.duration:.1f}秒", file=sys.stderr)
 
-    print(f"[*] 加载whisper模型({WHISPER_MODEL})...")
-    model = WhisperModel(WHISPER_MODEL, device=WHISPER_DEVICE, compute_type=WHISPER_COMPUTE)
-
-    print("[*] 转写中...")
-    segments, info = model.transcribe(audio_path, language='zh', beam_size=5)
-    print(f"[*] 语言: {info.language}, 时长: {info.duration:.1f}秒")
-
-    lines = []
-    full_text = []
+    results = []
     for seg in segments:
-        lines.append(f'[{seg.start:.1f}s - {seg.end:.1f}s] {seg.text}')
-        full_text.append(seg.text)
+        results.append({
+            "start": round(seg.start, 2),
+            "end": round(seg.end, 2),
+            "text": seg.text.strip()
+        })
+    return results
 
-    return lines, ''.join(full_text)
+# ============================================================
+# 音频下载
+# ============================================================
+def download_bilibili_audio(bvid, output_dir):
+    """用yt-dlp下载B站视频音频"""
+    url = f"https://www.bilibili.com/video/{bvid}"
+    output_template = os.path.join(output_dir, "%(id)s.%(ext)s")
+    cmd = [
+        "yt-dlp", "-x", "--audio-format", "mp3", "--audio-quality", "0",
+        "-o", output_template, "--no-playlist", "--quiet", "--no-warnings", url
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+    if result.returncode != 0:
+        raise Exception(f"yt-dlp下载失败: {result.stderr[:200]}")
+    audio_files = list(Path(output_dir).glob(f"{bvid}*.mp3")) or list(Path(output_dir).glob("*.mp3"))
+    if not audio_files:
+        raise Exception("未找到下载的音频文件")
+    return str(audio_files[0])
 
-def t2s(text):
-    """繁体转简体"""
-    try:
-        from opencc import OpenCC
-        cc = OpenCC('t2s')
-        return cc.convert(text)
-    except ImportError:
-        run_cmd('pip3 install opencc-python-reimplemented -q')
-        from opencc import OpenCC
-        cc = OpenCC('t2s')
-        return cc.convert(text)
+# ============================================================
+# 格式化输出
+# ============================================================
+def format_plain_text(segments):
+    return "\n".join([s["text"] for s in segments])
 
-def save_result(title, desc, lines, full_text, output_dir, source=''):
-    """保存结果"""
+def format_with_timestamps(segments):
+    lines = []
+    for s in segments:
+        time_str = f"[{format_timestamp(s['start'])} - {format_timestamp(s['end'])}]"
+        lines.append(f"{time_str} {s['text']}")
+    return "\n".join(lines)
+
+def format_json(segments, title, bvid="", duration=0, source=""):
+    return json.dumps({
+        "title": title, "bvid": bvid, "duration": duration,
+        "source": source, "segments": segments
+    }, ensure_ascii=False, indent=2)
+
+def save_results(segments, title, output_dir, bvid="", duration=0, source=""):
+    """保存三种格式的结果"""
     os.makedirs(output_dir, exist_ok=True)
-    # 清理文件名
     safe_title = re.sub(r'[\\/:*?"<>|]', '_', title)[:50]
-    filepath = os.path.join(output_dir, f'{safe_title}_文案.txt')
+    base_name = f"{bvid}_{safe_title}" if bvid else safe_title
 
-    with open(filepath, 'w', encoding='utf-8') as f:
-        f.write(f'标题：{title}\n')
-        f.write(f'描述：{desc}\n')
-        f.write(f'来源：{source}\n')
-        f.write('=' * 60 + '\n\n')
-        f.write('【带时间轴版本】\n\n')
-        f.write('\n'.join(lines))
-        f.write('\n\n' + '=' * 60 + '\n\n')
-        f.write('【纯文本版本】\n\n')
-        f.write(full_text)
+    # 繁体转简体
+    for s in segments:
+        s["text"] = t2s(s["text"])
 
-    print(f"[√] 已保存: {filepath}")
-    return filepath
+    txt_path = os.path.join(output_dir, f"{base_name}.txt")
+    with open(txt_path, "w", encoding="utf-8") as f:
+        f.write(format_plain_text(segments))
+
+    srt_path = os.path.join(output_dir, f"{base_name}_时间戳.txt")
+    with open(srt_path, "w", encoding="utf-8") as f:
+        f.write(format_with_timestamps(segments))
+
+    json_path = os.path.join(output_dir, f"{base_name}.json")
+    with open(json_path, "w", encoding="utf-8") as f:
+        f.write(format_json(segments, title, bvid, duration, source))
+
+    print(f"  纯文本: {txt_path}", file=sys.stderr)
+    print(f"  时间戳: {srt_path}", file=sys.stderr)
+    print(f"  JSON: {json_path}", file=sys.stderr)
+    return [txt_path, srt_path, json_path]
 
 # ============================================================
-# 主流程
+# 主流程：B站
 # ============================================================
-def transcribe_douyin(url, output_dir):
-    """抖音视频文案提取"""
-    print("[*] 解析抖音链接...")
+def process_bilibili(url_or_bvid, output_dir="output", subtitles_only=False, model_size="small"):
+    """处理B站视频"""
+    bvid = extract_bvid(url_or_bvid)
+    if not bvid:
+        raise Exception(f"无法提取BV号: {url_or_bvid}")
+
+    print(f"处理B站视频: {bvid}", file=sys.stderr)
+    video_info = get_bilibili_video_info(bvid)
+    title = video_info.get("title", "未知标题")
+    cid = video_info.get("cid")
+    duration = video_info.get("duration", 0)
+    print(f"  标题: {title}", file=sys.stderr)
+    print(f"  时长: {duration}秒", file=sys.stderr)
+
+    subtitles = get_bilibili_subtitle_list(bvid, cid)
+    has_subtitles = len(subtitles) > 0
+    print(f"  CC字幕: {'有' if has_subtitles else '无'}", file=sys.stderr)
+
+    segments = []
+    source = ""
+
+    if has_subtitles:
+        print(f"  提取CC字幕...", file=sys.stderr)
+        sub_data = download_bilibili_subtitle(subtitles[0]["subtitle_url"])
+        segments = parse_subtitle_json(sub_data)
+        source = "cc_subtitle"
+        print(f"  字幕提取完成: {len(segments)}段", file=sys.stderr)
+    elif subtitles_only:
+        print(f"  无CC字幕，--subtitles-only指定，跳过", file=sys.stderr)
+        return None
+    else:
+        print(f"  无CC字幕，yt-dlp下载音频并转写...", file=sys.stderr)
+        with tempfile.TemporaryDirectory() as tmpdir:
+            audio_path = download_bilibili_audio(bvid, tmpdir)
+            segments = whisper_transcribe(audio_path, model_size)
+            source = "whisper_transcription"
+        print(f"  转写完成: {len(segments)}段", file=sys.stderr)
+
+    files = save_results(segments, title, output_dir, bvid, duration, source)
+    return {"bvid": bvid, "title": title, "source": source,
+            "segments_count": len(segments), "files": files}
+
+# ============================================================
+# 主流程：抖音
+# ============================================================
+def process_douyin(url, output_dir="output", model_size="small"):
+    """处理抖音视频"""
+    print("[*] 解析抖音链接...", file=sys.stderr)
     video_id = resolve_douyin_short_link(url)
     if not video_id:
-        print("[!] 无法解析抖音链接")
-        return None
+        raise Exception("无法解析抖音链接")
+    print(f"  视频ID: {video_id}", file=sys.stderr)
 
-    print(f"[*] 视频ID: {video_id}")
-
-    # 获取视频信息
     info = get_douyin_video_info(video_id)
-    if not info:
-        print("[!] 无法获取视频信息")
-        return None
-
     title = info['title']
     desc = info['desc']
     video_url = info['video_url']
+    print(f"  标题: {title}", file=sys.stderr)
 
-    print(f"[*] 标题: {title}")
-    print(f"[*] 描述: {desc[:100]}...")
-
-    # 策略1：在B站搜索相同视频，看有没有CC字幕
-    print("[*] 尝试在B站搜索相同视频...")
+    # 策略1：在B站搜索相同视频找CC字幕
+    print("[*] 尝试在B站搜索相同视频...", file=sys.stderr)
     search_keyword = desc[:30] if desc else title[:30]
     results = search_bilibili(search_keyword)
     for r in results:
         bvid = r.get('bvid', '')
         r_title = r.get('title', '').replace('<em class="keyword">', '').replace('</em>', '')
-        print(f"  - 找到: {r_title[:50]} ({bvid})")
-        subtitles = get_bilibili_cc_subtitle(bvid)
-        if subtitles:
-            print("[√] 找到B站CC字幕，直接使用！")
-            full_text = ''.join([re.sub(r'\[.*?\] ', '', l) for l in subtitles])
-            return save_result(title, desc, subtitles, full_text, output_dir, source='B站CC字幕')
-
-    print("[*] B站无相同视频或无字幕，走抖音下载+转写路线")
-
-    # 策略2：下载视频音频，whisper转写
-    if not video_url:
-        print("[!] 无法获取视频URL")
-        return None
-
-    video_path = os.path.join(output_dir, f'{video_id}.mp4')
-    audio_path = os.path.join(output_dir, f'{video_id}.wav')
-
-    print("[*] 下载视频...")
-    try:
-        download_file(video_url, video_path)
-    except Exception as e:
-        print(f"[!] 下载失败: {e}")
-        return None
-
-    print("[*] 提取音频...")
-    run_cmd(f'ffmpeg -i {video_path} -vn -acodec pcm_s16le -ar 16000 -ac 1 {audio_path} -y')
-
-    if not os.path.exists(audio_path):
-        print("[!] 音频提取失败")
-        return None
-
-    # 转写
-    lines, full_text = whisper_transcribe(audio_path)
-
-    # 繁体转简体
-    lines = [t2s(l) for l in lines]
-    full_text = t2s(full_text)
-
-    # 清理临时文件
-    os.remove(video_path)
-    os.remove(audio_path)
-
-    return save_result(title, desc, lines, full_text, output_dir, source='抖音音频转写')
-
-def transcribe_bilibili(url, output_dir):
-    """B站视频文案提取"""
-    bvid = extract_bvid_from_url(url)
-    if not bvid:
-        print("[!] 无法提取bvid")
-        return None
-
-    print(f"[*] B站视频: {bvid}")
-
-    # 优先CC字幕
-    print("[*] 尝试获取CC字幕...")
-    subtitles = get_bilibili_cc_subtitle(bvid)
-    if subtitles:
-        print("[√] 获取到CC字幕！")
-        # 获取标题
-        title = f'B站_{bvid}'
+        print(f"  - 找到: {r_title[:50]} ({bvid})", file=sys.stderr)
         try:
-            url2 = f'https://api.bilibili.com/x/web-interface/view?bvid={bvid}'
-            headers = {'User-Agent': 'Mozilla/5.0', 'Referer': 'https://www.bilibili.com/'}
-            req = urllib.request.Request(url2, headers=headers)
-            with urllib.request.urlopen(req, timeout=15) as resp:
-                data = json.loads(resp.read())
-                title = data['data']['title']
-        except:
-            pass
+            vinfo = get_bilibili_video_info(bvid)
+            subs = get_bilibili_subtitle_list(bvid, vinfo.get('cid'))
+            if subs:
+                print("[√] 找到B站CC字幕，直接使用！", file=sys.stderr)
+                sub_data = download_bilibili_subtitle(subs[0]["subtitle_url"])
+                segments = parse_subtitle_json(sub_data)
+                files = save_results(segments, title, output_dir, bvid, vinfo.get('duration', 0), "bilibili_cc_subtitle")
+                return {"bvid": bvid, "title": title, "source": "bilibili_cc_subtitle",
+                        "segments_count": len(segments), "files": files}
+        except Exception as e:
+            print(f"  跳过: {e}", file=sys.stderr)
 
-        full_text = ''.join([re.sub(r'\[.*?\] ', '', l) for l in subtitles])
-        return save_result(title, '', subtitles, full_text, output_dir, source='B站CC字幕')
+    # 策略2：下载抖音视频音频转写
+    if not video_url:
+        raise Exception("无法获取抖音视频URL，且B站未找到相同视频")
 
-    print("[*] 无CC字幕，需要下载音频转写（B站下载较复杂，建议用yt-dlp）")
-    # TODO: B站无字幕时的下载转写
-    return None
+    print("[*] B站无相同视频，下载抖音音频转写...", file=sys.stderr)
+    with tempfile.TemporaryDirectory() as tmpdir:
+        video_path = os.path.join(tmpdir, f'{video_id}.mp4')
+        audio_path = os.path.join(tmpdir, f'{video_id}.wav')
+        download_file(video_url, video_path)
+        run_cmd(f'ffmpeg -i {video_path} -vn -acodec pcm_s16le -ar 16000 -ac 1 {audio_path} -y')
+        if not os.path.exists(audio_path):
+            raise Exception("音频提取失败")
+        segments = whisper_transcribe(audio_path, model_size)
 
+    files = save_results(segments, title, output_dir, source="douyin_whisper")
+    return {"video_id": video_id, "title": title, "source": "douyin_whisper",
+            "segments_count": len(segments), "files": files}
+
+# ============================================================
+# 入口
+# ============================================================
 def main():
-    if len(sys.argv) < 2:
-        print("用法: python3 video_transcriber.py <视频链接> [输出目录]")
-        print("支持: 抖音(v.douyin.com / www.douyin.com/video/xxx)")
-        print("      B站(bilibili.com/video/BVxxx)")
+    parser = argparse.ArgumentParser(description="通用视频文案提取工具 v2.0（抖音+B站）")
+    parser.add_argument("url", nargs="?", help="视频URL或BV号")
+    parser.add_argument("--batch", help="批量处理文件（每行一个URL）")
+    parser.add_argument("--output", default="output", help="输出目录（默认: output）")
+    parser.add_argument("--subtitles-only", action="store_true", help="只提取CC字幕，无字幕则跳过")
+    parser.add_argument("--model", default="small",
+                        choices=["tiny", "base", "small", "medium", "large"],
+                        help="Whisper模型大小（默认: small）")
+    args = parser.parse_args()
+
+    if not args.url and not args.batch:
+        parser.print_help()
         sys.exit(1)
 
-    url = sys.argv[1]
-    output_dir = sys.argv[2] if len(sys.argv) > 2 else './video_output'
+    urls = []
+    if args.url:
+        urls.append(args.url)
+    if args.batch:
+        with open(args.batch, "r", encoding="utf-8") as f:
+            urls.extend([line.strip() for line in f if line.strip()])
 
-    print(f"[*] 目标: {url}")
-    print(f"[*] 输出目录: {output_dir}")
-    print()
+    print(f"共 {len(urls)} 个视频待处理", file=sys.stderr)
+    print("=" * 50, file=sys.stderr)
 
-    if 'douyin.com' in url:
-        result = transcribe_douyin(url, output_dir)
-    elif 'bilibili.com' in url or 'b23.tv' in url:
-        result = transcribe_bilibili(url, output_dir)
-    else:
-        print("[!] 不支持的平台")
-        sys.exit(1)
+    results = []
+    for i, url in enumerate(urls, 1):
+        print(f"\n[{i}/{len(urls)}]", file=sys.stderr)
+        try:
+            if 'douyin.com' in url:
+                result = process_douyin(url, args.output, args.model)
+            elif 'bilibili.com' in url or 'b23.tv' in url or re.match(r'^BV[a-zA-Z0-9]+$', url):
+                result = process_bilibili(url, args.output, args.subtitles_only, args.model)
+            else:
+                print(f"  [!] 不支持的平台: {url}", file=sys.stderr)
+                result = {"url": url, "error": "不支持的平台"}
+            if result:
+                results.append(result)
+        except Exception as e:
+            print(f"  错误: {e}", file=sys.stderr)
+            results.append({"url": url, "error": str(e)})
 
-    if result:
-        print(f"\n[√] 完成！文件: {result}")
-    else:
-        print("\n[!] 提取失败")
-        sys.exit(1)
+    print("\n" + "=" * 50, file=sys.stderr)
+    success = sum(1 for r in results if "error" not in r)
+    print(f"处理完成: {len(results)} 个视频, 成功: {success}, 失败: {len(results) - success}", file=sys.stderr)
+    print(json.dumps(results, ensure_ascii=False, indent=2))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,74 +1,154 @@
 {
   "station": "S04",
-  "name": "Coq形式化分站",
+  "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
-  "last_update": "2026-09-02 20:45:03",
-  "current_task": "OB-010 ty_par最后case: strengthening紧缩引理(typed_strengthen_unused)+收尾;DS#14已确认路线,S01已确认思路",
-  "status": "working_DS检查完成_ty_par解法确定_待实现strengthening",
+  "last_update": "2026-09-05T J1g选择层(A)pick_prefix+(B)pick_prefix_correct Qed落袋，coqc exit0，L2仅剩split_assoc；机制根治def_span+同名循环全切+结晶018派活前预检",
+  "current_task": "J1 split_assoc收官：选择层A/B已Qed，下一步(C)pick_prefix_none_suffix(None位向后闭)→固定长度G23逐位读出→主定理拼装Qed",
+  "status": "J1攻坚中_选择层落袋_机制两修_看板驱动正常运行",
+  "paradigm": {
+    "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
+    "authority_docs": [
+      "docs/协作机制/分站/S04_运行指令.md（唯一权威SOP，已更新至split_assoc为真+证伪双门）",
+      "docs/协作机制/分站/S04_DeepSeek_V4新范式调用规范.md（DS调用唯一权威）"
+    ],
+    "toolchain": "scripts/s04_deepseek/（ds_v4/s04_context/proof_loop/falsification_guard/run_current）",
+    "v4_facts": "上下文1M/输出384K；三层全文约49K token占4.9%全量喂；空输出=reasoning吃额度非掐断；证明max_tokens>=32000自动续写"
+  },
   "L1": {
     "admitted": 0,
     "compiled": true
   },
   "L2": {
-    "new_main_lemma": "subst_ren_general(源任意,同构ren_typed)",
-    "subst_ren_general_cases": "7/8 Qed (ty_zero/ty_var/ty_tau/ty_out/ty_in/ty_res/ty_rep), 仅ty_par admit",
-    "top_level_Admitted": 3,
-    "inner_admit": 2,
+    "admitted": 1,
     "compiled": true,
-    "remaining": [
-      "subst_ren_general的ty_par(需strengthening,解法已定)",
-      "substitution_general的PPar(待subst_ren_general证通后一行导出)",
-      "congruence_preserves_typing(独立任务)"
+    "compile_note": "2026-09-04 coqc exit=0（仅改注释后复编译仍绿）",
+    "only_admitted": "split_assoc（明性分划结合律，命题为真，证明待DS主谋写出）",
+    "already_qed": [
+      "subst_ren_general(8/8)",
+      "substitution_general",
+      "strengthening全套(含typed_strengthen_unused)",
+      "progress_general",
+      "progress",
+      "H23_val(split_assoc见证工具)",
+      "pick_prefix(Some优先选择算子,经典选择子)",
+      "pick_prefix_correct(逐位正确性,复用split_assoc_cell)"
     ],
-    "ds_check": {
-      "latest": "DS#14 success stop 1775tok $0.0033 未截断",
-      "background_running": 0,
-      "dry_channel_updated": true,
-      "crystals_extracted": [
-        "011",
-        "012"
-      ]
-    },
-    "s01_signal_responded": {
-      "time": "2026-09-03 01:45:00",
-      "type": "思路确认+ty_par=PPar同一个问题",
-      "action": "已采纳,确认subst_ren_general思路正确,ty_par和PPar一起消"
-    }
+    "not_yet_written_future": [
+      "typed_res_par_l/r",
+      "congruence_preserves_typing(11构造子)",
+      "subject_reduction"
+    ],
+    "note": "typed_res_par/congruence/subject_reduction 尚未写入Layer2，属未来新增，不是当前Admitted"
   },
   "L3": {
     "admitted": 0,
-    "compiled": true
+    "compiled": false,
+    "compile_status": "条件门WARN：subject_reduction_self/alien(580/592行) eapply L2.subject_reduction，而L2尚未证出该定理，故Layer3当前exit=1；L2清零后必须转绿，不是骨架绿",
+    "note": "preflight --deep 如实报WARN，不再谎称绿"
   },
-  "latest_commits": [
-    "8e19649 ty_out Qed 7/8",
-    "4ea864d ty_in Qed",
-    "aa29e3d 主引理骨架+ty_res",
-    "7d082e2 via-renaming地基5引理"
-  ],
+  "split_assoc_philosophy": {
+    "one_line": "明性分划结合律：每份真实发用归谁不依赖下刀次序与括号；两种寂等价、空位可收摄，故中间场域G23必可逐位重聚",
+    "witness": "G23=setby f (repeat None L) 0，f逐位G2优先G3兜底，工具引理H23_val已Qed",
+    "ds_error_root": "DS v8把G3=[]越界None与G2=[None]在位Some None跨层错配（违反结晶010）；取G23=[]即证（结晶012）",
+    "doc": "docs/notes/Coq形式化/S04研判_split_assoc哲学命题与结晶贯穿核对_20260904.md",
+    "in_code_comment": "Layer2.v split_assoc上方已写入大白话+存在论命题+为真路线+误判根因（骨贯穿到发指）"
+  },
+  "crystal_crosscheck": "结晶001-016逐条核对：8条贯穿数学论证/5条贯穿操作范式/3条不适用不冲突；为真路线无一条突破范式，事故=违反010+014/016",
   "key_achievements": [
-    "决定性洞察：subst_var=ren rho，substitution本质是非单射重命名；主引理改为源任意的subst_ren_general，逐行同构Layer1.ren_typed",
-    "地基6引理全Qed：upren_subst_name_pt/ren_ext/subst_var_eq_ren/subst_name_succ/subst_rho_pts/rho_inj_except_m",
-    "subst_ren_general 7/8 case Qed：ty_out/ty_in用rho_inj_except_m+no_use通道分量替代ren_typed的全局单射Hinj",
-    "精确定位ty_par最后硬点：非单射rho碰撞对{k,c}的冗余资源位(weakening允许)使proj2在m位划空，需strengthening先紧缩",
-    "连续数学把关判错DS#11(严格线性排除交叉,错)/#12(强行m=0,错)/#13(方向对但funext/ty_par蒙混)/#14(紧缩引理多加u位本空前提、误判m为新名字)",
-    "DS#14检查: success未截断,确认strengthening唯一路径,纠正其紧缩引理废前提,提炼结晶011/012"
+    "J1g选择层pick_prefix+pick_prefix_correct经DS主谋2轮Qed(Some优先/经典选择子/复用split_assoc_cell)，coqc exit0，L2仅剩split_assoc；proof_loop新增def_span+同名循环全切根治already exists(两单测过)，结晶018派活前命题预检+SOP铁律8",
+    "证伪双门falsification_guard焊入proof_loop（结晶016+教训L035），事故原文做回归夹具，三连离线自检全绿",
+    "split_assoc经coqc双门裁定为真，错误'假命题/四条出路'文档作废、OB-011补最终结论",
+    "哲学命题三层讲透并贯穿：Layer2注释 + S04研判文档(含16结晶核对表) + 唯一权威SOP当前任务段更新",
+    "subst_ren_general 8/8、substitution_general、strengthening全套、progress均Qed"
   ],
-  "key_blockers": [
-    "ty_par: 需先定义not_free_in谓词,再证typed_strengthen_unused(对typed归纳),然后收尾ty_par",
-    "congruence_preserves_typing依赖substitution整体Qed",
-    "subject reduction的red_comm仍是exfalso占位"
-  ],
-  "needs_s01": [
-    "【已响应·确认】S01 01:45 signal已确认subst_ren_general思路正确,ty_par=PPar同一个问题",
-    "strengthening(丢弃未用明性)的正式存在论命名与背书(S01可在signal中补充)"
-  ],
-  "s01_should_read": [
-    "coq/obstacles/OB-010_..._20260902.md（已重写：via-renaming路线、7/8、ty_par=strengthening精确卡点、DS#14对错、待研判哲学问题）",
-    "s01_temp_docs/deepseek_v14_typar.md（DS确认strengthening但引理陈述有误,S04已纠正）",
-    "s01_temp_docs/OB010_cross_insight.md 第7节（subst_ren_general蓝图）"
-  ],
-  "progress_score": "L2: subst_ren_general 7/8 Qed,地基6引理全Qed,三层编译绿;DS#14已处理,结晶011/012已提炼;ty_par解法(strengthening)完全确定,只剩工程量",
   "blockers": [
-    "ty_par待strengthening紧缩引理(技术路线已定,等S01语义背书)"
-  ]
+    "split_assoc主引理尚未Qed（L2唯一Admitted）：选择层A/B已落袋，剩(C)None位后缀引理、固定长度G23逐位读出、主定理拼装，均交DS主谋闭环"
+  ],
+  "needs_s01": false,
+  "s01_should_read": "split_assoc为真已成定案（coqc双门）；两种寂等价不冲突，无需再研判假命题/四条出路。若S01对'明性分划结合律'的存在论表述有深化可补充",
+  "needs_s00": false,
+  "s00_should_read": "四条出路全部作废，不需架构选路；仅待主人决定何时恢复定时任务",
+  "next_action": "先为(C)pick_prefix_none_suffix写_precheck机器验证(结晶018派活前预检)→DS主谋证(C)→固定长度G23逐位读出→split_assoc主定理Qed→board done J1→J3 typed_res_par→J2 congruence",
+  "progress_score": 68,
+  "guard_hardened": {
+    "module": "scripts/s04_deepseek/falsification_guard.py",
+    "gate1": "反例否定引理必须独立coqc exit=0（自动补正确文件头，编译后清理临时文件）",
+    "gate2": "反向候选解(nil/前提ctx/repeat None)逐个exists，任一成立即推翻反例",
+    "verdict_rule": "refuted_claim回喂继续证真 / plausibly_false才halt交人且永不自动改判",
+    "regression": "事故原文__main__夹具；改工具链必跑三连离线自检",
+    "crystal": "结晶016",
+    "lesson": "L035"
+  },
+  "cron_stopped": true,
+  "cron_all_S04_stopped": [
+    11641354361346,
+    11686205527810,
+    11686205635074,
+    11623690303490,
+    11631063174146
+  ],
+  "cron_note": "2026-09-04复核：S04全部5个定时任务均已停用（此前3个误显示运行中，本轮已真正停用并list复核13个任务全部已停止）；恢复须主人拍板",
+  "ds_total_cost_yuan": 5.5,
+  "mechanism_hardened": {
+    "s04_git.py": "统一可靠git：PortableGit全路径+openssl后端+https绕SSH22+token不回显+push正确成功判据+失败重试+危险文件硬拦截+save一条龙+推完远程校验，根治别的对话轻松push而S04难",
+    "preflight.py": "开工/收工明性自检：fast/--compile/--deep三档；剥离注释数真实Admitted；证伪双门在岗；L1/L2硬门、L3条件门WARN；红灯退出码1不许提交",
+    "gitignore": "补_guard_*.v/_tmp_*.py等临时物永不入库",
+    "self_caught": "建设中自检亲手抓出2隐患：Admitted正则漏报(已改s*)、Layer3假绿(已改条件门WARN)"
+  },
+  "l2_finish_plan": {
+    "plan_doc": "docs/协作机制/分站/S04_L2收官攻坚计划_鞍钢宪法三结合_20260904.md",
+    "board": "docs/协作机制/明旭的记忆/S04_L2收官工序看板.json",
+    "why_so_long": "split_assoc数学难度低(有限枚举,H23_val已Qed)，拖10h是组织错误：蓝图未验/整段巨型重写/5轮重启丢记忆/把HTTP success当进展/分工越位；68个trace净增长0",
+    "remedy": "小引理流水线+逐位判定引理关9格+Qed净增长度量+看板驱动不重启",
+    "jobs_order": [
+      "J0蓝图冻结",
+      "J1 split_assoc",
+      "J3 typed_res_par_l/r",
+      "J2 congruence_preserves_typing",
+      "J4 subject_reduction",
+      "J5 Layer3转绿"
+    ],
+    "ds_round_estimate": [
+      7,
+      13
+    ],
+    "eta": "集中放行一个专注工作日内L2清零L3转绿"
+  },
+  "board_driven": {
+    "board_script": "scripts/s04_deepseek/board.py (next/start/done/block/status/check)",
+    "bound_into": [
+      "SOP铁律第7条",
+      "DS系统提示s04_context",
+      "主力定时任务query"
+    ],
+    "rule": "每轮board.py next取唯一工序，Qed才done固化，无可做只同步不烧DS"
+  },
+  "cron": {
+    "11641354361346": {
+      "name": "S04主力-看板驱动",
+      "schedule": "*/20 * * * *",
+      "enable": true
+    },
+    "11686205527810": {
+      "name": "S04每日推进",
+      "enable": false,
+      "note": "职能并入主力看板循环"
+    },
+    "11686205635074": {
+      "name": "S04收工总结",
+      "enable": false,
+      "note": "并入主力"
+    },
+    "11623690303490": {
+      "name": "S04全流程监控",
+      "enable": false,
+      "note": "并入主力"
+    },
+    "11631063174146": {
+      "name": "S04-DS检查",
+      "enable": false,
+      "note": "并入proof_loop"
+    }
+  },
+  "external_knowledge_policy": "大胆用Stdlib/MathComp已Qed库定理(@stdlib L1)；文献结论@cite借思路本库重证；来源不明拦截；加强归纳是自由证明技术非Axiom。详见外部引理登记规范第八节"
 }
