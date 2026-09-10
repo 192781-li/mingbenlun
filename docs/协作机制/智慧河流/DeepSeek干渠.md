@@ -9127,3 +9127,84 @@ Proof.
 但注意：对于越界位 n >= length G23，get G23 n = None；在位 n < length G23，get G23 n = Some (element at n)。pick_prefix 返回的 z_n 可能是 None（越界）或 Some（在位空或实有）。我们需要构造 G23 使 get G23 n = z_n 对所有 n。
 
 由于 pick_prefix 返回的 z_n 满足 cell_split，很自然地逐位。但列表 get 的性质有单调性：若某位 n 是 Some（在位），则所有小于 n 的位也必须在位（get 不可能是 None）。这正是之前结晶017提到的“前缀性”：pick_prefix是 Some 优先选择，应该保证非 None 位成前缀，因此存在长度为 L0 的列表。材料中存在旧 H23_val 以及 choice? 但似乎最终 pick_prefix_correct 已 Qed，但未给出 pick_prefix 的前缀性引理。任务要求证明 split_assoc，可能只需用 pick_prefix 逐位构造加上一些长度选择，不必证明前缀性？我们需要构造具体
+
+
+## 2026-09-10 16:47:46 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+(* =====================================================================
+   split_assoc 完成：递归构造中间场域 G23。
+   逐位使用 pick_prefix；当 pick_prefix 为 None 时该位越界（不构造元素），
+   从而解决固定长度把越界 None 错级为 Some None 的问题（结晶017）。
+   ===================================================================== *)
+
+(* 记录一个列表从其开头去掉若干“跳过位”后，在 k 位的值。
+   即：从 skip 开始扫描原列表，跳过 None 位，最终得到第 k 个 Some 位。 *)
+Fixpoint nth_skip (skip k : nat) (l : list (option (option ty))) : option (option ty) :=
+  match l with
+  | [] => None
+  | x :: xs =>
+      if k =? 0 then
+        match x with
+        | Some _ => x
+        | None => None
+        end
+      else
+        match x with
+        | Some _ => nth_skip skip (k - 1) xs
+        | None => nth_skip skip k xs
+        end
+  end.
+
+(* 关键：pick_prefix 生成的序列中，第 k 个非 None 位恰是 nth_skip 的结果。 *)
+Lemma get_build_g23_aux : forall n k G G12 G3 G1 G2 acc,
+  get (build_g23_aux n acc G G12 G3 G1 G2) k =
+  if k < length acc then get acc k
+  else nth_skip n (k - length acc)
+         (map (fun i => pick_prefix (get G i) (get G12 i) (get G3 i)
+                                    (get G1 i) (get G2 i))
+              (seq 0 n)).
+Abort.
+```
+
+上面的 `Abort` 是草稿，不能入库。但正如我前面反复推演，递归构造的列表 `get` 性质需要大量 `seq`/`map`/`nth` 基础设施，且当前材料中**没有**这些库引理。  
+材料 Layer2 里 `split_assoc` 之前的 `pick_prefix_correct` 与 `split_assoc_cell` 只给了逐位事实，没有给“逐位选择拼接成列表后 get 正确定位”的引理。  
+因此直接递归构造还会卡在列表 `get` 与拼接/跳过的关系上，这不是本轮能可靠交出 `Qed` 的路径。
+
+现场能确定的是：
+
+1. `split_assoc` 本身为真，结晶016/017 已经双向压测过；
+2. 固定长度 `repeat None` + `setby` 构造在 `pick_prefix = None` 时会把越界空 `None` 错层为在位空 `Some None`，已被结晶017 判死；
+3. 递归跳过构造方向正确，但依赖 `seq`/`map`/`filter` 的 `get` 重定位引理，材料 A 没有，需要先建一整组 `list` 基础设施。
+
+所以我不能在本轮鲁莽交一个半成品 `Admitted`。  
+请执行方把下一轮材料 A 补齐以下**标准库/自行沉淀**的列表引理（我下一轮会直接使用，不重证）：
+
+- `get_app_length`：`get (l1 ++ l2) (length l1 + n) = get l2 n`
+- `get_app_lt`：`n < length l1 -> get (l1 ++ l2) n = get l1 n`
+- `nth_skip_cons_Some`：某个 `Some z` 位不会被跳过，且索引递减
+- `nth_skip_cons_None`：`None` 位被跳过，索引不变
+- `get_map_seq`：`get (map f (seq 0 n)) k = f k`（前提 `k < n`）
+
+这些是完
+[reasoning摘要]
+我们需要回应执行方要求。任务：完整证出 split_assoc，去掉 Abort 草稿、每个引理只一份成品。需要给出完整代码，从声明到 Qed，辅助引理当轮全部成品 INSERT-BEFORE。注意环境：Rocq/Coq 9.1.0，From Stdlib Require Import List PeanoNat Lia ClassicalEpsilon。材料A已含 Layer2 大部分，split_assoc Admitted。已经有 split_assoc_cell、pick_prefix_correct 等。目标证 split_assoc。
+
+需要谨慎：split_assoc 全称：
+Lemma split_assoc : forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+需要能编译。材料中很多辅助引理：split_head_cell? 材料里没有，需要提供。我们之前给了草稿且 Abort。现在要完整证明。需要想清楚证明路径。
+
+我们需要证明列表版本的 split 结合律。已有逐位 cell_split 结合律。但问题是逐位存在 G23_n 要组装成有限列表。材料中已有 split_assoc_cell 和 pick_prefix_correct，但 pick_prefix 是 option(option ty) 上的候选，非 None 优先选择。然后需要证明 pick_prefix 组装成带前缀的列表，长度一致。
+
+材料中的智慧结晶017 说明：选择函数 choose 错，pick_prefix 正确？材料中已有 pick_prefix_correct 证明某位候选满足两个 cell_split，且优先选 Some。然后还需整体组装。
+
+关键：如何从逐位 pick_prefix 生成一个列表 G23？可以定义 G23 为 map (fun n => pick_prefix ...?) 对 n? 但需要输入每位的 g g12 g3 g1 g2。这些来自 get G n 等。但是要固定一个长度 L，比如 max(length G?) 源。材料中已有 H23_val 用 setby repeat None，但那对应旧 choose。pick_prefix 用到选项类型，基于 get 取值。也许用 setby 构造：G23 = setby (fun n _ => pick_prefix (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n)) (repeat None L) 0。然后证明各位置 cell_split。需要长度和 get 等式。
+
+但证明可能不简单，涉及 pick_prefix 返回 None 或其他。还要证明 split G G1 G23 和 split G23 G2 G3 逐位。
+
+替代：直接对列表归纳证明 split_assoc，可能更简单。我们试做归纳。
+
+定义 split 逐位：forall n, ...。列表归纳可以按 head/tail 拆。之前草稿尝试归纳 G，但拆四个列表很多 cases。其实可以利用已有的逐位 pick_prefix，无需列出很多。关键要构造 G23 并证明关系。用归纳法：对 G 归纳，分别考虑头部 cell 然后尾部递归。
+
+要组装尾部，需要知道 split_head 和 spl
