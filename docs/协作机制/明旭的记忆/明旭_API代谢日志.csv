@@ -234,3 +234,4 @@
 2026-09-10 18:36:38,S04,deepseek-v4-pro,A,proofloop_typed_res_par_l_r2,107392,2144,49589,1,success,820.43,0.30665,0.9804,stop,proofloop_typed_res_par_l_r2
 2026-09-10 18:41:14,S04,deepseek-v4-pro,A,proofloop_typed_res_par_l_r3,52992,3672,19281,0,success,276.01,0.12803,0.9352,stop,proofloop_typed_res_par_l_r3
 2026-09-10 18:43:31,S04,deepseek-v4-pro,A,proofloop_typed_res_par_l_r4,54528,4315,11907,0,success,137.6,0.08575,0.9267,stop,proofloop_typed_res_par_l_r4
+2026-09-10 18:44:56,S04,deepseek-v4-pro,A,proofloop_typed_res_par_l_r5,56448,4152,7963,0,success,84.7,0.06165,0.9315,stop,proofloop_typed_res_par_l_r5

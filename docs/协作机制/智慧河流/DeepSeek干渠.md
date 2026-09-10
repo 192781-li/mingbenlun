@@ -9677,3 +9677,84 @@ ty_par: split Gamma Gamma1 Gamma2 -> typed Gamma1 P -> typed Gamma2 Q -> typed G
 从假设 inversion 得到：
 Hty: typed Gamma (PRes (PPar P Q))
 inversion Hty as [Gamma' P0 T Hbody]. Hbod
+
+
+## 2026-09-10 18:44:56 [proof_loop] typed_res_par_l · round5 · DS输出
+
+```coq
+(* =====================================================================
+   INSERT-BEFORE: 辅助引理——不引用位置 k 的进程在代换下不变。
+   存在论意义：操作权完全不流经位置 k 时，撤除该位置的代换是恒等变换。
+   ===================================================================== *)
+Lemma subst_var_id_under_no_fv : forall P, forall k m,
+  ~ fv_at P k -> subst_var m k P = P.
+Proof.
+  induction P as [n | | P IHP | x y P IHP | x P IHP | P1 IHP1 P2 IHP2 | P IHP | P IHP];
+    intros k m Hnf; simpl in *.
+  - (* PVar n *)
+    assert (n < k) by lia.
+    rewrite (subst_name_lt m k n H). reflexivity.
+  - (* PZero *) reflexivity.
+  - (* PTau P *)
+    f_equal. apply IHP. exact Hnf.
+  - (* POut x y P *)
+    assert (Hxlt : x < k) by (intro Hge; apply Hnf; left; exact Hge).
+    assert (Hylt : y < k) by (intro Hge; apply Hnf; right; left; exact Hge).
+    assert (HnFP : ~ fv_at P k) by (intro Hp; apply Hnf; right; right; exact Hp).
+    rewrite (subst_name_lt m k x Hxlt), (subst_name_lt m k y Hylt).
+    f_equal. apply IHP. exact HnFP.
+  - (* PIn x P *)
+    assert (Hxlt : x < k) by (intro Hge; apply Hnf; left; exact Hge).
+    assert (HnFP : ~ fv_at P (S k)) by (intro Hp; apply Hnf; right; exact Hp).
+    rewrite (subst_name_lt m k x Hxlt).
+    f_equal. apply IHP. exact HnFP.
+  - (* PPar P1 P2 *)
+    assert (Hnf1 : ~ fv_at P1 k) by (intro H; apply Hnf; left; exact H).
+    assert (Hnf2 : ~ fv_at P2 k) by (intro H; apply Hnf; right; exact H).
+    f_equal; [apply IHP1; exact Hnf1 | apply IHP2; exact Hnf2].
+  - (* PRes P *)
+    f_equal. apply IHP. exact Hnf.
+  - (* PRep P *)
+    f_equal. apply IHP. exact Hnf.
+Qed.
+
+(* =====================================================================
+   REPLACE: typed_res_par_l（移除 Admitted）
+   存在论意义：PRes 的绑定作用域可收缩到 P 一侧，只要 Q 不引用该绑定。
+   ===================================================================== *)
+Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
+Proof.
+  intros Gamma P Q HnfQ Hty.
+  inversion Hty as [| | | | | | Gamm
+[reasoning摘要]
+我们现在需要证明 typed_res_par_l。用户反复指出引用了不存在的引理，如 Hp。还有守卫要求。我们需要自主完成证明。
+
+首先回顾材料A。Layer2 末尾：
+Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
+Proof. Admitted.
+
+Lemma typed_res_par_r : similar. Admitted.
+
+我们需要完整证明 typed_res_par_l。目标：从 typed Gamma (PRes (PPar P Q)) 推出 typed Gamma (PPar (PRes P) Q)，前提 ~ fv_at Q 0。
+
+在 Layer1/Layer2 中，已有：
+- split_remove_at_both
+- remove_at, insert_at, insert_none_at
+- insert_remove_at_id: get G k = Some (Some T) -> G = insert_at k T (remove_at k G)
+- insert_none_remove_id: get G k = Some None -> G = insert_none_at k (remove_at k G)
+- substitution_none_strengthen：typed (insert_none_at k D) Q -> typed D (subst_var m k Q)，前提 k <= length D。
+- typed_res_par_l 上次尝试中用到 subst_var_id_under_no_fv 和 substitution_none_strengthen，但守卫说引用 Hp 等。
+
+我们需要给出完整证明，确保所有引用存在。最好避免使用未定义引理，仅用材料A已有引理。
+
+结构：inversion typed Gamma (PRes (PPar P Q)) -> 得到 exists T, typed (Some T :: Gamma) (PPar P Q)。
+再 inversion typed (Some T :: Gamma) (PPar P Q) -> 得到 split (Some T :: Gamma) D1 D2, typed D1 P, typed D2 Q。
+用 split_remove_at_both 去掉头部，得到 split Gamma (remove_at 0 D1) (remove_at 0 D2)。
+现在需要在 split 位置0上确定某个子上下文持有 T。
+
+unfold split in Hs, specialize Hs 0. 由于 get (Some T::Gamma) 0 = Some (Some T)，所以 Hs 0 的形式只有两类：左支 D1 0 = Some T, D2 0 空；或右支 D2 0 = Some T, D1 0 空。
+
+我们分别处理。
+若 D1 0 = Some T：则 D1 = insert_at 0 T (remove_at 0 D1) = Some T :: remove_at 0 D1（由 insert_remove_at_id）。于是 typed (Some T :: remove_at 0 D1) P，所以 typed (r
