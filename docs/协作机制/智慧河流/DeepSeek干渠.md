@@ -9208,3 +9208,59 @@ Lemma split_assoc : forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> 
 定义 split 逐位：forall n, ...。列表归纳可以按 head/tail 拆。之前草稿尝试归纳 G，但拆四个列表很多 cases。其实可以利用已有的逐位 pick_prefix，无需列出很多。关键要构造 G23 并证明关系。用归纳法：对 G 归纳，分别考虑头部 cell 然后尾部递归。
 
 要组装尾部，需要知道 split_head 和 spl
+
+
+## 2026-09-10 17:03:31 [proof_loop] split_assoc · round3 · DS输出
+
+```coq
+(* =====================================================================
+   INSERT-BEFORE: split_cons_inv —— split 在头部位置的结构逆推。
+   用于对主世界列表做归纳构造中间场域。
+   ===================================================================== *)
+Lemma split_cons_inv : forall (g0 : option ty) G G12 G3,
+  split (g0 :: G) G12 G3 ->
+  (exists G12', G12 = g0 :: G12' /\ split G G12' G3)
+  \/ (exists G3', G3 = g0 :: G3' /\ split G G12 G3').
+Proof.
+  intros g0 G G12 G3 Hs.
+  destruct G12 as [|g12 G12']; destruct G3 as [|g3 G3'];
+    unfold split in Hs; specialize (Hs 0); simpl in Hs.
+  - (* G12=[], G3=[] *)
+    destruct Hs as [[H _]|[H _]]; discriminate.
+  - (* G12=[], G3=g3::G3' *)
+    destruct Hs as [[H _]|[Hg Hd]]; simpl in H; discriminate.
+  - (* G12=g12::G12', G3=[] *)
+    destruct Hs as [[Hg Hd]|[H _]]; simpl in Hg; injection Hg as E12 E3; subst g12 g3;
+      left. eexists G12'. split; [reflexivity|].
+      unfold split. intros n. specialize (Hs (S n)). simpl in Hs. exact Hs.
+  - (* G12=g12::G12', G3=g3::G3' *)
+    destruct Hs as [[Hg Hd]|[Hg Hd]]; simpl in Hg.
+    + injection Hg as E12 E3. subst g12 g3. left. eexists G12'. split; [reflexivity|].
+      unfold split. intros n. specialize (Hs (S n)). simpl in Hs. exact Hs.
+    + injection Hg as E3 E12. subst g3 g12. right. eexists G3'. split; [reflexivity|].
+      unfold split. intros n. specialize (Hs (S n)). simpl in Hs. exact Hs.
+Qed.
+
+(* =====================================================================
+   split_nil_inv —— split [] 的结构逆推。此处用于归纳基。
+   ===================================================================== *)
+Lemma split_nil_inv : forall G1 G2, split [] G1 G2 -> G1 = [] /\ G2 = [].
+Proof.
+  intros G1 G2 Hs.
+  destruct G1 as [|g1 G1']; destruct G2 as [|g2 G2'];
+    unfold split in Hs; specialize (Hs 0); simpl in Hs;
+    destruct Hs as [[H _]|[H _]]; discriminate.
+Qed.
+
+(* =====================================================================
+   REPLACE: Lemma split_assoc —— 完整证明。
+   通过在主世界列表上归纳，头部用 split_assoc_cell 决
+[reasoning摘要]
+我们需要回应用户。要求：完整证出 split_assoc，当前 Layer2 中 split_assoc 是 Admitted。必须给从声明行到 Qed. 的完整新版本，辅助引理齐全，无 Abort，每个引理一份。材料 A 已给完整 Layer1/Layer2。我们之前试图递归构造但失败。现在需要真正证明 split_assoc。上下文有大量引理，特别是 split_assoc_cell 和 pick_prefix_correct。我们需要用它们证明 split_assoc。
+
+我们作为 DeepSeek 主证明者，需要给出可编译 Coq。我们不能假装。我们需要自己写出证明。目标：forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+材料中已有 split_assoc_cell：逐位对任意 get 值存在 g23 满足 cell_split g g1 g23 /\ cell_split g23 g2 g3。
+还有 pick_prefix_correct：从 cell_split g g12 g3 -> cell_split g12 g1 g2 -> cell_split g g1 (pick_prefix ...) /\ cell_split (pick_prefix ...) g2 g3。pick_prefix 返回 option(option ty)，在每个位上选择 Some z 如果存在非 None 候选，否则 None。这保证选择的值在该位满足 cell_split。我们需要构造 G23 列表，使得在对应位上 get G23 n = pick_prefix ... n，同时要处理 None 越界与 Some None。 pick_prefix 可能返回 None，代表该位越界空；如果列表元素为 None 呢？get G23 n = Some None 是“在位空”。因此构造 G23 时，对于某个位置 n，如果 pick_prefix 返回 None，那我们不应该在 G23 中该位放 Some None；应让 get G23 n = None，即该位越界。但列表 get 的 None 只有列表长度不够时才产生。如果我们固定长度等于某个 L，超出 L 才会 None；在 L 内元素层不能是 None 吗？可以元素为 None，但 get G23 n = Some None，不同于 None。因此要精确对应 pick_prefix 的 None，需要让 G23 在某个位置截断，后续越界。
+
+但注意：split 定义是逐位对所有 n 性质。如果 G23 在某些位置越界，则 get G23 n = None，需要满足 cell_split g g1 None 和 cell_split None g2 g3。如果 pick_prefix = None 确实合法，那 cell 性质满足；越界 None 是合法的（在 split 中 None 可以分配给空侧）。但列表必须有有限长度，如何让 G23 在某个 n 位之后全越界，而之前 pick_prefix 可能 Some、可能 None。关键：pick_prefix 选择有“Some 优先”，保证了 pick_prefix 的非 None 位形成前缀吗？结晶017 指出“Some 优先选出的 G23 非 None 位自然是前缀，None 只落在 
