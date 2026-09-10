@@ -2550,4 +2550,18 @@ Qed.
      admitted for next iteration (standard technical lemmas)
    ===================================================================== *)
 
+
+
+(* =====================================================================
+   J3: typed_res_par_l/r —— 限制-并行交换下 typed 保持
+   对应 cong_res_par: ~ fv_at Q 0 -> congruence (PRes (PPar P Q)) (PPar (PRes P) Q)
+   ===================================================================== *)
+Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
+Proof. Admitted.
+
+Lemma typed_res_par_r : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PPar (PRes P) Q) -> typed Gamma (PRes (PPar P Q)).
+Proof. Admitted.
+
 (* === END === *)
