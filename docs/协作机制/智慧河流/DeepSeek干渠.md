@@ -11549,3 +11549,232 @@ We need respond to user. They want complete Coq proof of typed_any_ctx in Layer2
 Need consider existing lemmas in Layer2 material. We have typed_strengthen_unused, weaken_none_head, weaken_nil, typed_any_ctx Admitted. Need prove. We need possibly use existing lemmas. Let's reason.
 
 typed_any_ctx: forall P Gamma, ~ fv_at P 0 -> typed Gamma P. This says if process has no free variable at depth 0, then typed in any context. Since fv_at P 0 means P references some identifier/sends/receives at or above 0: any PVar n with n >= 0 (all variables), any POut x y (x>=0 or y>=0 or body...), any PIn x (x>=0 or body at depth1). So ~ fv_at P 0 means P contains no PVar, no POut, no PIn anywhere? Let's inspect iteration: if PZero True false; PTau same; POut requires any x/y or body, so no POut anywhere; PIn no PIn anywhere; PPar both no; PRes body at S 0, eventually catches POut/PIn/PVar shifted? For PRes nested, fv_at P 0 = fv_at body 1. If body = PVar 0, fv_at (PVar 0) 1 = False. So PRes (PVar 0) has no fv_at at 0, because bound variable. But typed any context? PRes (PVar 0) can be typed? ty_res requires typed (Some T :: Gamma) (PVar 0), which requires get (Some T :: Gamma) 0 = Some(Some T), true. So ye
+
+
+## 2026-09-11 00:29:47 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma pick_prefix_Some_when_has : forall g g12 g3 g1 g2,
+  g <> None ->
+  cell_split g g12 g3 ->
+  cell_split g12 g1 g2 ->
+  exists z, z <> None /\ cell_split g g1 z /\ cell_split z g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 Hg H1 H2.
+  unfold cell_split in *.
+  destruct g as [g'|]; [|contradiction Hg; reflexivity].
+  destruct H1 as [[Hg12 He3]|[Hg3 He12]].
+  - subst g12.
+    destruct H2 as [[Hg1 He2]|[Hg2 He1]].
+    + subst g1.
+      destruct He2 as [E2 | E2]; [|discriminate]; subst.
+      destruct He3 as [E3 | E3]; [|discriminate]; subst.
+      destruct Hg2 as [[T|] | ]; destruct Hg3 as [[T0|] | ];
+        try (exists (Some (None : option ty)); split; [discriminate|]);
+        try (exists (Some (Some T)); split; [discriminate|]);
+        unfold cell_split; simpl; auto.
+    + subst g2.
+      destruct He1 as [E1 | E1]; [|discriminate]; subst.
+      destruct He3 as [E3 | E3]; [|discriminate]; subst.
+      destruct Hg1 as [[T|] | ]; destruct Hg3 as [[T0|] | ];
+        try (exists (Some (None : option ty)); split; [discriminate|]);
+        try (exists (Some (Some T)); split; [discriminate|]);
+        unfold cell_split; simpl; auto.
+  - subst g3.
+    destruct H2 as [[Hg1 He2]|[Hg2 He1]].
+    + subst g1.
+      destruct He12 as [E12 | E12]; [|discriminate]; subst.
+      destruct He2 as [E2 | E2]; [|discriminate]; subst.
+      destruct Hg12 as [[T|] | ]; destruct Hg2 as [[T0|] | ];
+        try (exists (Some (None : option ty)); split; [discriminate|]);
+        try (exists (Some (Some T)); split; [discriminate|]);
+        unfold cell_split; simpl; auto.
+    + subst g2.
+      destruct He1 as [E1 | E1]; [|discriminate]; subst.
+      destruct He12 as [E12 | E12]; [|discriminate]; subst.
+      destruct Hg12 as [[T|] | ]; destruct Hg1 as [[T0|] | ];
+        try (exists (Some (None : option ty)); split; [discriminate|]);
+        try (exists (Some (Some T)); split; [discriminate|]);
+        unfold cell_split; simpl; auto.
+Qed.
+
+Lemma pick_prefix_None_suffix : forall G G12 G3 G1 
+[reasoning摘要]
+We need produce complete Coq proof for split_assoc replacing Admitted. We have material A Layer1/2 full. Need design proof. We must follow user rules: direct complete compilable Coq, using existing Qed lemmas or prove new. Need be careful with Layer2 content: It has many existing lemmas including H23_val, split_assoc_cell, choose/pick_prefix etc, assoc_build flawed. Need provide new proof, likely replace Admitted.
+
+But note Layer2.v full material seems inconsistent at end: split_assoc currently has comment and `Proof. ... Admitted.` Actually snippet line: "Lemma split_assoc : ... Proof. (* comment *) Admitted." There are also comments before and failed assoc_build. Need produce replacement from declaration to Qed. Can include new auxiliary lemmas before split_assoc? User asks complete new version from declaration to Qed. We can give block that includes a new proof relying on existing lemmas and perhaps new lemmas prior? We can modify around split_assoc. Must ensure compile with current Layer2. Need know exact current state in file: There are already `split_assoc_cell`, `choose`, `choose_correct`, `pick_prefix`, `pick_prefix_correct`, `assoc_build` (flawed), `split_assoc` Admitted. The task: complete proof of split_assoc. We can use existing `pick_prefix_correct` and `pick_prefix`? Need construct finite list. Maybe use `assoc_build`? It's flawed. Better construct with setby repeat. Need prove robust.
+
+Let's understand definitions and available lemmas.
+
+Definitions:
+split G A B
+
+
+## 2026-09-11 00:42:40 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+(* =====================================================================
+   INSERT-BEFORE: Lemma split_assoc
+   需要新增辅助引理/定义，全部在本块内 Qed，随后重写 split_assoc。
+   ===================================================================== *)
+
+(* 逐位选择函数已存在于材料A：choose, pick_prefix, choose_correct,
+   pick_prefix_correct, split_assoc_cell, H23_val 等。
+
+   这里我们再补一个“choose 为 None 的位置是后缀”的关键引理，
+   以及用 fuel 构造 G23 的列表构造器，再证 split_assoc。
+   ===================================================================== *)
+
+(* 局部记号：第 n 位的 choose 值 *)
+Definition wcell (G G12 G3 G1 G2 : ctx) (n : nat) : option (option ty) :=
+  choose (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n).
+
+(* get 越界尾随：n >= length Gamma -> get Gamma n = None *)
+(* 材料A已证 get_overflow_none / get_none_overflow，可直接用。 *)
+
+(* 后缀性引理 *)
+Lemma wcell_None_suffix : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  forall n,
+    wcell G G12 G3 G1 G2 n = None ->
+    wcell G G12 G3 G1 G2 (S n) = None.
+Proof.
+  intros G G12 G3 G1 G2 H1 H2 n Hw.
+  unfold wcell in *.
+  unfold choose in *.
+  (* 在 n 处 choose = None *)
+  destruct (excluded_middle_informative
+    (get G12 n = get G n /\
+     is_empty_get (get G3 n) /\
+     get G1 n = get G12 n /\
+     is_empty_get (get G2 n))) as [L|R];
+  simpl in Hw.
+  - (* n 处是左-左格，choose = get G2 n，故 get G2 n = None *)
+    subst.
+    destruct L as [E12 [E3 [E1 E2]]].
+    unfold is_empty_get in E3, E2.
+    destruct (get G2 n) as [u2|] eqn:EG2; [|done].
+    destruct u2 as [[]|]; simpl in Hw; inversion Hw.
+    (* EG2_none : get G2 n = None *)
+    assert (EG2_none : get G2 n = None) by (rewrite EG2; simpl; reflexivity).
+    clear Hw EG2.
+    (* 由 EG2_none 推导 get G2 (S n) = None *)
+    assert (EG2_S : get G2 (S n) = None).
+    { apply get_overflow_none.
+      apply get_none_overflow in EG2_none.
+      lia. }
+    (* 分析 S n 处的 choose *)
+    unfold choose.
+    destruct (excluded_middle_informative
+      (get G12 (S n) = get G (S n) /\
+       is_empty_get (get G3 (S n)) /\
+       get G1 (S 
+[reasoning摘要]
+我们需要给出 split_assoc 的完整 Coq 证明。目标: Layer2.v 中 split_assoc 当前 Admitted。必须交付 Lemma split_assoc ... Proof ... Qed. 及本轮需要的辅助引理，全部 Qed，无 Abort/admit。
+
+需要理解材料 A 中已有的定义与引理。我们只允许使用 Layer1/Layer2 中已 Qed 的引理，以及标准库已 require 的 List PeanoNat Lia ClassicalEpsilon。不能使用 Admitted 引理。需要证 split_assoc : forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+Layer2.v 已有 split_assoc_cell (逐位) Qed (Lemma split_assoc_cell)。还有 pick_prefix / pick_prefix_correct Qed。但 pick_prefix 的定义可能与最终直接构造有关。注意 Layer2.v 中 split_assoc 之前有 H23_val Qed, choose/choose_correct Qed, pick_prefix/pick_prefix_correct, assoc_build 定义（未用，可能有问题）。也有 split_assoc 的 Admitted 注释说旧证明用 assoc_build 失败。
+
+我们需要提供新的完整证明，可以绕开 assoc_build 和 pick_prefix 的路子，使用 H23_val 路线或更强的构造。但是注意 S01 策略中说 H23_val 路线在特定格会错，但材料 A 中 H23_val 是已 Qed 的引理描述一个特定函数。可我们也许能直接构造一个列表 G23 满足两个 split。
+
+核心思路：split 是逐位 forall n，exists G23 可以构造为一个列表。我们需要构造 witness。
+
+已知 split_assoc_cell 对于每个 n 从两个 split 的逐位关系得到 exists g23_n, cell_split g g1 g23 / cell_split g23 g2 g3。这给了逐位见证。需要把这些逐位见证组装成一个列表，保证 split 的 forall n 成立。
+
+难点：需要列表长度足够，且在越界/在位空语义上正确。可能有尾部问题（OB-015）。我们需要仔细设计 witness。
+
+材料 A 中有很多已 Qed 引理：get_repeat_None_lt, length_repeat_None, get_setby_get, get_setby_None, H23_val。还有 split_assoc_cell。
+
+S01 最近建议可能使用 choose_correct + 前缀引理，但 choose 的定义在材料中：choose 在左-左格返回 g2，否则 g。choose_correct Qed 语句正确（cell_split g g1 choose /\ cell_split choose g2 g3）。pick_prefix 更复杂。但我们可以不用 pick_prefix，直接用 choose_correct 逐位构造。但 结晶017 说旧 choose 左-左取 g2 
+
+
+## 2026-09-11 00:45:41 [proof_loop] split_assoc · round3 · DS输出
+
+
+[reasoning摘要]
+我们需要完成 split_assoc。用户要求给出从 Lemma split_assoc 到 Qed 完整证明。材料A中已有大量辅助引理，包括 choose, choose_correct, pick_prefix, pick_prefix_correct, split_assoc_cell, H23_val, 以及 setby/get 等。还有 split 定义。需要证明 forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+之前的历史：split_assoc 现在 Admitted。材料A中已有很多辅助：split_assoc_cell (逐位cell_split)，choose_correct (确定性选择每位的见证)，也提到 H23_val (G2优先G3兜底构造列表，但S01后来指出 H23_val 可能不适用于边界? 材料中 H23_val 已 Qed，它给出的 get (setby f (repeat None max_len) 0) n = match get G2 n, get G3 n ...；它只是外延等式，应该可以用于构造，但需处理长度/终止）。
+
+关键挑战：从逐位 exist 到全局列表。我们拥有 choose_correct：对任意位，choose (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n) 满足两侧 cell_split。如果我们能构造一个列表 G23，使得 get G23 n = choose ... n（以适当方式，且 chose=None 时 get G23 n = None 或 Some None？注意 choose 返回 option(option ty)，它可能是 None 越界，也可能是 Some None。列表元素类型 option ty。希望 choose 的 Some x 情况对应元素 x，None 情况对应列表在该位越界，即 get G23 n = None。但 choose 返回的 Some None 是在位空。可以。
+
+因此需要定义一个列表 G23，其第 n 位（若存在）等于 choose 的 Some 部分；如果 choose = None，则列表长度不超过 n（即选择 None 之后所有位都不存在）。这需要后缀性：choose None 位是后续所有位都 None。这样列表长度 = 第一个 choose=None 的位置。我们上一轮尝试证 wcell 后缀性失败，因为搞复杂。也许用不同构造：不用 choose，用 fuel 从 G 的长度递归构造，或者直接用 split_assoc_cell + 经典选择，再用可判定终止来构造列表？由于存在性命题，可以用 excluded middle 和 indefinite description 随便选一个 witness。但最终要 exists G23，必须给一个具体列表。有可能使用经典逻辑：证明存在见证，通过选择公理构造列表。标准库 ClassicalEpsilon 有 constructive_indefinite_description? 已用于 pick_prefix。但我们最终 exists 一个 ctx，可以对每个 n 选择 g23 n，然后需要把 option(option ty) 序列打包成 ctx。打包要
+
+
+## 2026-09-11 00:56:28 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+(* =====================================================================
+   split_assoc 完整证明（结构归纳路线）
+   辅助引理：get_tl、split_tl、split_cons_iff、assoc_base_correct
+   ===================================================================== *)
+
+(* 尾部读取：tl 列表的第 n 位 = 原列表的第 S n 位 *)
+Lemma get_tl : forall (L : ctx) (n : nat),
+  get (tl L) n = get L (S n).
+Proof.
+  intros L n. destruct L; simpl; reflexivity.
+Qed.
+
+(* split 关系对 tl 保持 *)
+Lemma split_tl : forall (A B C : ctx),
+  split A B C -> split (tl A) (tl B) (tl C).
+Proof.
+  intros A B C Hs. unfold split. intros n.
+  specialize (Hs (S n)).
+  rewrite !get_tl in Hs.
+  exact Hs.
+Qed.
+
+(* 头部与尾部的等价分解 *)
+Lemma split_cons_iff : forall (a b c : option ty) (A B C : ctx),
+  split (a :: A) (b :: B) (c :: C) <->
+  cell_split (Some a) (Some b) (Some c) /\ split A B C.
+Proof.
+  intros a b c A B C. unfold split. unfold cell_split. split.
+  - intros Hs. split.
+    + specialize (Hs 0). simpl in Hs. exact Hs.
+    + intros n. specialize (Hs (S n)). simpl in Hs. exact Hs.
+  - intros [Hhead Htail] n. destruct n as [|n'].
+    + simpl. exact Hhead.
+    + simpl. apply Htail.
+Qed.
+
+(* 基例：G = [] 时的见证构造 *)
+Definition assoc_base (G1 G3 : ctx) : ctx :=
+  if G1 =? [] then G3 else [].
+
+(* 基例正确性：当 G=[] 且两条 split 成立时，assoc_base 是合法见证 *)
+Lemma assoc_base_correct : forall (G12 G3 G1 G2 : ctx),
+  split [] G12 G3 -> split G12 G1 G2 ->
+  split [] G1 (assoc_base G1 G3) /\
+  split (assoc_base G1 G3) G2 G3.
+Proof.
+  intros G12 G3 G1 G2 H1 H2.
+  unfold assoc_base.
+  destruct (G1 =? []) eqn:E.
+  - (* G1 = [] *)
+    apply Nat.eqb_eq in E. subst G1.
+    split.
+    + (* split [] [] G3 *)
+      unfold split. intros n. simpl.
+      left. split; [reflexivity |].
+      destruct (get G3 n) as [[|]|]; simpl; auto.
+    + (* split G3 G2 G3 *)
+      unfold split. intros n.
+      right. split; [reflexivity |].
+      destruct (get G2 n) as [[|]|]; simpl; auto.
+  - (* G1 <> [] *)
+    apply Nat.eqb_neq in E.
+    assert (HlenG1 : length G1 > 0).
+    { destruct G1; [simpl in E; e
+[reasoning摘要]
+We need answer in Chinese. Need produce complete Coq proof for split_assoc from Lemma declaration to Qed, replacing Admitted. Need obey rules: direct produce complete compilable, inspect material. Need reason deeply.
+
+We have environment: Layer1/Layer2 full. split_assoc currently Admitted at end with assoc_build defined buggy. Need prove split_assoc using existing lemmas Qed. We can add auxiliary lemmas as needed maybe in one code block. Need ensure coqc pass in Rocq 9.1, stdlib. We need not reproduce whole file, just replacement lemma with auxiliary lemmas maybe can include before lemma? Instruction says complete new version from declaration to Qed. We can provide replacement block. If need new auxiliary lemmas, include fully Qed before split_assoc. We cannot alter definitions maybe can add. Need use material A existing lemmas. Need ensure all referenced names exist and Qed. We can create new lemmas before split_assoc.
+
+Goal:
+forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+This is associative reassociation. We already have split_assoc_cell for single option(option ty). Need lift to lists with exist. Existing H23_val constructs setby f (repeat None max_len) with f based G2/G3. But S01 notes H23_val route maybe dead for certain g due to padding out-of-bound None to Some None? Let's analyze. H23_val gives if n<max_len, get constructed = match get G2 n with Some(Some a)=>Some(Some a) | _ => match get G3 n with Some v=>S
