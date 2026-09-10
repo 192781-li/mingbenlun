@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第一篇 PTC公理系统：操作范畴论的基础 · 生命论</title>
+<style>
+:root{--gold:#d4a574;--gold-dark:#8a6d2f;--bg:#faf8f5;--text:#2c2416;--muted:#6b5d4f;--border:#e0d5c5;--accent:#c44040}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Serif SC","Source Han Serif SC",Georgia,serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:17px}
+.topbar{position:sticky;top:0;background:rgba(250,248,245,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100;display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:var(--gold-dark);text-decoration:none;font-weight:600}
+.topbar .title{font-size:1.1em;color:var(--gold-dark)}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0;z-index:200;transition:width .1s}
+.container{max-width:800px;margin:0 auto;padding:40px 24px 80px}
+.index-container{max-width:900px}
+h1{font-size:2em;margin-bottom:.5em;color:var(--gold-dark);border-bottom:2px solid var(--gold);padding-bottom:.3em}
+h2{font-size:1.5em;margin:1.5em 0 .8em;color:var(--gold-dark)}
+h3{font-size:1.25em;margin:1.2em 0 .6em;color:var(--text)}
+h4{font-size:1.1em;margin:1em 0 .5em}
+p{margin:.8em 0}
+blockquote{border-left:4px solid var(--gold);padding:8px 20px;margin:1em 0;background:#f5f0e8;color:var(--muted);font-style:italic}
+code{background:#f0ebe0;padding:2px 6px;border-radius:3px;font-size:.9em}
+pre{background:#2c2416;color:#e0d5c5;padding:16px;border-radius:6px;overflow-x:auto;margin:1em 0}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;margin:1em 0}
+th,td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+th{background:#f5f0e8;color:var(--gold-dark)}
+ul,ol{margin:.8em 0;padding-left:2em}
+li{margin:.3em 0}
+hr{border:none;border-top:1px solid var(--border);margin:2em 0}
+a{color:var(--gold-dark);text-decoration:none}
+a:hover{text-decoration:underline}
+.toc-list{list-style:none;padding:0}
+.toc-list li{margin:.4em 0}
+.toc-list .volume{font-weight:600;color:var(--gold-dark);font-size:1.1em;margin-top:1em}
+.toc-list .chapter{padding-left:1.5em;font-size:.95em}
+.toc-list .chapter a{color:var(--text)}
+.nav-links{display:flex;justify-content:space-between;margin-top:3em;padding-top:1em;border-top:1px solid var(--border)}
+.nav-links a{color:var(--gold-dark);font-weight:600}
+.hero{text-align:center;padding:60px 20px 40px}
+.hero h1{border:none;font-size:2.5em;margin-bottom:.2em}
+.hero .subtitle{color:var(--muted);font-size:1.1em;font-style:italic}
+.hero .meta{margin-top:1em;color:var(--muted);font-size:.9em}
+.volume-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:2em 0}
+.volume-card{border:1px solid var(--border);border-radius:8px;padding:20px;background:#fff;transition:box-shadow .2s}
+.volume-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.volume-card h3{margin:0 0 .5em;color:var(--gold-dark)}
+.volume-card p{font-size:.9em;color:var(--muted);margin:0}
+@media(max-width:600px){body{font-size:16px}.container{padding:20px 16px 60px}.hero h1{font-size:1.8em}.volume-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress"></div>
+<div class="topbar"><span class="title">生命论（明本论）</span><a href="../index.html">目录</a></div>
+<div class="container">
+<h2 id="ptc">第一篇 PTC公理系统：操作范畴论的基础</h2>
+<blockquote>
+<p>数学是阴，哲学是阳。数学不证明哲学是对的——数学证明的是<strong>自洽性</strong>：你的哲学在形式上没有结构性硬伤。真正的裁判是践演。</p>
+<p>完整论文见 <code>references/operational_category.pdf</code>（v2.1，23页，52定理，5猜想），验证脚本见 <code>scripts/</code>。</p>
+</blockquote>
+<h3 id="_1">第一章 为什么要数学化</h3>
+<p>生命论的核心命题——"生命不可资本化（T001）""实践先于理论""异化是运行权被夺走"——在纯哲学语言中是论断，别人可以说"这是你的看法"。</p>
+<p>数学化把这些论断变成公理系统中的定理：如果你接受公理（操作先于实体、资源敏感、自指存在），你就必须接受结论。反驳它要先推翻公理，而公理直接扎在"在活着"这个践演事实上。</p>
+<p>这和马克思做的事一脉相承。马克思在《资本论》中用数学语言（价值形式、剩余价值率、利润率趋向下降）把"资本剥削人"从道德义愤变成科学分析。这里用范畴论和线性逻辑，把"生命不可资本化（T001）"从哲学论断变成可检验的形式定理。</p>
+<h3 id="_2">第二章 核心工具</h3>
+<h3 id="21">2.1 线性逻辑：资源敏感</h3>
+<p>线性逻辑和经典逻辑的根本区别：<strong>资源不能随便复制和丢弃。</strong></p>
+<ul>
+<li>线性蕴含 $A \multimap B$：消耗 $A$ 产生 $B$，$A$ 没了</li>
+<li>
+<p>张量 $A \otimes B$：同时拥有 $A$ 和 $B$</p>
+</li>
+<li>
+<p>加法 $A \oplus B$ / $A \&amp; B$：选择/合取</p>
+</li>
+<li>感叹号 $\bang A$：$A$ 可被任意复制和丢弃（沉积/资本化）</li>
+</ul>
+<p>$\bang$ 就是资本化的逻辑对应：把一次性的、消耗性的东西变成可无限复制的死物。</p>
+<h3 id="22">2.2 范畴论：变换的科学</h3>
+<p>范畴论不研究"东西是什么"，研究"东西之间怎么变换"。</p>
+<ul>
+<li><strong>对称幺半闭范畴（SMCC）</strong>：对象可并列（$\otimes$），有线性函数空间（$\multimap$）</li>
+<li>
+<p><strong>余单子 $\bang$</strong>：沉积/复制/存储，对应资本化</p>
+</li>
+<li>
+<p><strong>迹（trace）</strong>：把反馈线藏起来——$f: A \otimes X \to B \otimes X$ 有反馈线 $X$，迹 $\mathrm{Tr}^X(f): A \to B$ 把 $X$ 藏起来</p>
+</li>
+<li><strong>不动点</strong>：$\mu F$（归纳，有限终止）和 $\nu F$（余归纳，无限生产）</li>
+</ul>
+<h3 id="23-geometry-of-interactiongoi">2.3 Geometry of Interaction（GoI）：执行的语义</h3>
+<p>GoI（吉拉德，线性逻辑发明者）把证明解释为<strong>带反馈回路的连线网络</strong>。执行就是让信号在反馈回路中跑。</p>
+<p>关键创新：<strong>余归纳GoI</strong>。标准GoI要求幂零性（反馈有限步终止），但生命过程永不停机。用<strong>生产性</strong>（productivity，每步都有产出）替换幂零性，处理无限生命过程。</p>
+<h3 id="24-ptc">2.4 生产性迹范畴（PTC）</h3>
+<p>这是本文构造的新范畴论概念。一个PTC是SMCC，配备流对象 $A^\omega = \nu X.(A \otimes X)$ 和行为映射 $\mathrm{beh}(f, x_0): A^\omega \to B^\omega$，满足四条公理：</p>
+<ol>
+<li><strong>Yanking</strong>：反馈线直接穿过等于没反馈</li>
+<li><strong>Tightening</strong>：前后处理不影响反馈</li>
+<li><strong>Composition</strong>：两个反馈盒子串联 = 行为函数复合</li>
+<li><strong>Productivity</strong>：完全的转移产生完全的因果流函数</li>
+</ol>
+<p>$\mathbf{Rel}$（关系范畴）、$\mathbf{Hilb}^\omega$（无限维Hilbert空间，严格压缩条件下）、$\mathbf{Coh}^\omega$（相干空间，条件推论）是PTC的三个实例。</p>
+<h3 id="_3">第三章 公理系统</h3>
+<table>
+<thead>
+<tr>
+<th>公理</th>
+<th>内容</th>
+<th>哲学对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>公理0</strong></td>
+<td>践演位置：每个态射发生在位置p，位置不可物化（定理0）</td>
+<td>感是第一人称原初事实，先于主客分化</td>
+</tr>
+<tr>
+<td><strong>公理1</strong></td>
+<td>闭范畴性（SMCC + $\multimap$）</td>
+<td>操作有输入输出，可并列</td>
+</tr>
+<tr>
+<td><strong>公理2</strong></td>
+<td>无自然收缩 $A \to A \otimes A$</td>
+<td>生命不可自我复制（践演元预设）</td>
+</tr>
+<tr>
+<td><strong>公理3</strong></td>
+<td>指数余单子 $\bang$ + Seely同构</td>
+<td>沉积/资本化的结构</td>
+</tr>
+<tr>
+<td><strong>公理4</strong></td>
+<td>不动点（线性公式函子的 $\mu$/$\nu$）</td>
+<td>生命自指可有限可无限</td>
+</tr>
+<tr>
+<td><strong>公理5</strong></td>
+<td>守护递归 $\triangleright$（生产性，每步必须产出）</td>
+<td>生命过程永不停机但每步都有产出</td>
+</tr>
+<tr>
+<td><strong>公理6</strong></td>
+<td>增长规则 $\nu^*F = \mathrm{colim}(\nu F_0 \to \nu F_1 \to \dots)$（GLL）</td>
+<td>生命成长：类型空间在运行时扩展</td>
+</tr>
+</tbody>
+</table>
+<p><strong>一致性</strong>：$\mathbf{Rel}$ 满足公理1-4，系统不是空的。</p>
+<h3 id="0">公理0的特殊性</h3>
+<p>公理0（践演位置）和其他公理不同。其他公理（1-6）是系统内的形式公理，可以被对象化、被研究。但公理0不是——它是"在运行"这个事实本身，不可还原为系统内命题。</p>
+<p>这就是为什么"感先于操作"：感（公理0的践演位置）是形式化的前提，不是形式化的对象。你可以用形式化描述感的结构，但你不能把感本身变成一个形式对象——因为形式化本身就在感之中。</p>
+<p>这和哥德尔不完备定理是同一个结构：足够强的形式系统不能证明自己的一致性。PTC公理系统不能把公理0对象化——因为对象化这个操作本身就在公理0之中。</p>
+<h3 id="_4">第四章 哲学→数学的翻译表</h3>
+<table>
+<thead>
+<tr>
+<th>哲学概念</th>
+<th>数学对应</th>
+<th>所在公理/定理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在感（第一人称原初事实）</td>
+<td>践演位置p，位置不可物化</td>
+<td>公理0，定理0</td>
+</tr>
+<tr>
+<td>操作</td>
+<td>态射 $f: A \to B$</td>
+<td>公理1</td>
+</tr>
+<tr>
+<td>自指 $S=f(S)$</td>
+<td>不动点 $\mu F$/$\nu F$</td>
+<td>公理4</td>
+</tr>
+<tr>
+<td>生命流（持续回应、持续成长）</td>
+<td>$\nu F_2$（余归纳不动点）</td>
+<td>公理4，T001</td>
+</tr>
+<tr>
+<td>有限过程（可记录、可停止）</td>
+<td>$\mu F_2$（归纳不动点）</td>
+<td>公理4，定理17</td>
+</tr>
+<tr>
+<td>沉积/资本化/死劳动</td>
+<td>$!$-模态（!-余单子）</td>
+<td>公理3</td>
+</tr>
+<tr>
+<td>活劳动/消耗性资源</td>
+<td>线性资源A（无!）</td>
+<td>公理2</td>
+</tr>
+<tr>
+<td>异化（阴主阳从）</td>
+<td>!-模态穿透线性操作</td>
+<td>定理1，定理13</td>
+</tr>
+<tr>
+<td>生命不可资本化（T001）</td>
+<td>不存在 $\nu F_2 \to !\nu F_2$</td>
+<td>T001</td>
+</tr>
+<tr>
+<td>病毒/资本（!-寄生）</td>
+<td>$G \to G+g$，!-纯收缩</td>
+<td>定理28</td>
+</tr>
+<tr>
+<td>明性f³（看见模型是模型）</td>
+<td>位置转换，$明(A)=TReflected(A)$</td>
+<td>公理0，f-层级定理</td>
+</tr>
+<tr>
+<td>生产性（每步都有产出）</td>
+<td>守护递归 $\triangleright$</td>
+<td>公理5</td>
+</tr>
+<tr>
+<td>成长（类型空间扩展）</td>
+<td>$\nu^*F$ 余极限</td>
+<td>公理6（GLL）</td>
+</tr>
+<tr>
+<td>慢性死亡（N&lt;1时M有限）</td>
+<td>$M=\alpha/(1-N)&lt;\infty$</td>
+<td>定理40</td>
+</tr>
+<tr>
+<td>量论N（负熵比率）</td>
+<td>反馈矩阵谱半径 $\rho$</td>
+<td>量论篇</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>（PTC公理系统完。下一篇讲核心定理链：从生命不可复制（T001）到资本同构。）</em></p>
+<div class="nav-links">
+<a href="../11_卷十一_践演论/00_卷标题.html">← 第十一卷 践演论：操作论的数学形式化</a>
+<a href="../11_卷十一_践演论/篇三_量论的数学基础.html">第三篇 量论的数学基础 →</a>
+</div>
+</div>
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.querySelector('.progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>
