@@ -9395,3 +9395,58 @@ Proof.
 关键问题：pick_prefix 返回单个 option(option ty) 值，其正确性依赖 exists 候选的非越界。为构造列表，需要对每个位置 n 取 pick_prefix 的结果的元素层值，组成列表。但 pick_prefix 返回值可能 None（越界）或 Some e（在位）。我们需要一个 ctx 列表，其长度多少？split 要求对任意 n 比较 get 值。如果 G23 长度有限，get 越界返回 None，且 cell_split 相应成立。可以取长度为 max 的列表，使用 repeat None 并 setby 填充，类似 H23_val 已有。但材料中已有 H23_val 工具？是的 H23_val 已 Qed，它是 setby f repeat None max_len，f 是 G2 优先 G3 兜底。但 pick_prefix 与 H23_val 不一定对齐。我们需要证明构造出的 G23 满足。另一个思路：使用 choose 或 pick_prefix 逐位，并用 setby f repeat None L 构造。材料中已有 get_repeat_None_lt, get_setby_get, get_setby_None 等。可以构造。
 
 需要仔细定义 G23 长度。希望对于每个 n 都能满足 cell_split。如果取 L = max (length G) (max (length G2) (length G3))？或者更简单，取 L = max (length G) (max (length G2) (length G3))，则对 n >= L，所有相关 get 都是 None（越界），cell_split None None None 成立。对 n < L，有些 get 可能越界，但 pick_prefix 处理。如果 pick_prefix 返回 None，element level None，setby f repea
+
+
+## 2026-09-10 18:22:57 [proof_loop] typed_res_par_l · round1 · DS输出
+
+```coq
+(* =====================================================================
+   typed_res_par_l —— 证明尝试
+   核心: 利用 split_remove_at_both 把头部 Some T 去掉, 配合
+   typed_strengthen_unused 清空 Q 对位置0的引用, 再构造 ty_par。
+   注意: 由于 de Bruijn 索引在 PRes 移出时需整体减1, Q 的语法保持不变
+   在现有 typed 规则下无法直接证明, 因此本节给出的是基于已有引理
+   的直证路径, 并附上失败原因。
+   ===================================================================== *)
+Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
+Proof.
+  intros Gamma P Q Hnf Hty.
+  (* 从 PRes 拆出 body 的 typed *)
+  inversion Hty as [| | | | | | Gamma' P0 T Hbody |]; subst.
+  (* Hbody : typed (Some T :: Gamma) (PPar P Q) *)
+  inversion Hbody as [| | | | | D0 P1 Q1 D1 D2 Hs HP HQ | |]; subst.
+  (* HP : typed D1 P, HQ : typed D2 Q, Hs : split (Some T :: Gamma) D1 D2 *)
+
+  (* 关键: 用 split_remove_at_both 去掉头部 Some T, 得到 split Gamma *)
+  assert (Hsplit_rem : split Gamma (remove_at 0 D1) (remove_at 0 D2)).
+  { eapply split_remove_at_both; eassumption. }
+
+  (* 分支1: D1 在位置0持有 Some T, 则 remove_at 0 D1 可用于 PRes P *)
+  assert (HD1_opt : get D1 0 = Some T \/ get D1 0 <> Some T)
+    by (destruct (get D1 0) as [[T'|]|] eqn:E; [left; inversion E; reflexivity | right; intro H; discriminate | right; intro H; discriminate]).
+  destruct HD1_opt as [HD1T | HD1nT].
+  - (* D1 持有 Some T, 所以 D1 = Some T :: remove_at 0 D1 *)
+    assert (HD1_eq : D1 = Some T :: remove_at 0 D1).
+    { rewrite <- (insert_remove_at_id 0 T D1 HD1T). simpl. reflexivity. }
+    rewrite HD1_eq in HP.
+    (* typed (Some T :: remove_at 0 D1) P, 由 ty_res 得 typed (remove_at 0 D1) (PRes P) *)
+    assert (HP_res : typed (remove_at 0 D1) (PRes P)).
+    { apply ty_res with (T := T). exact HP. }
+
+    (* 处理 Q 侧: 用 strengthening 清空位置0, 但保持 remove_at 0 D2 *)
+    assert (Hnf_bool : not_free_in Q 0 = true).
+    { (* 需要证明 ~ fv_at Q 0 -> not_free_in Q 0 = true *)
+      (* 此引理缺失, 我们在此补齐: 对 Q 归纳证明 not_free_in Q u = true <-> ~ fv_at Q u *)
+      (* admit 作为占位, 实际应证明该双向等价 *) a
+[reasoning摘要]
+We need answer with Coq proof for typed_res_par_l only. Need inspect material. Need provide complete Lemma from declaration to Qed. Need likely use Layer2 existing lemmas. We need prove:
+
+Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
+
+We need from Layer1/Layer2. Need understand typed rules and context lemmas.
+
+Goal: Given typed Gamma (PRes (PPar P Q)). Inversion gives exists T, typed (Some T :: Gamma) (PPar P Q). Then inversion/par_elim gives split (Some T::Gamma) Γ1 Γ2, typed Γ1 P and typed Γ2 Q, with ~ fv_at Q 0. Need produce typed Gamma (PPar (PRes P) Q). Need split Gamma ? ? such that typed (some context) (PRes P) and typed another Q. For PRes P needs typed (Some S :: Γ1') P. Since typed Γ1 P under split of Some T::Gamma. We can perhaps set Γ1 with head T? Wait P is typed under Γ1 where split (Some T::Gamma) Γ1 Γ2. Since Q not free at 0, strengthen Q wrt position 0 in Γ2, and maybe move resource at head? We need build split Gamma (Some T? maybe?) ... Let's reason.
+
+We need prove typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q). In linear type, if P doesn't use the new bound channel? Actually P may or may not use x=0? Congruence requires ~ fv_at Q 0, so Q doesn't use channel 0; P may use it. Then restriction of parallel P|Q equals P res with Q outside: (νx)(P|Q) ≡ (νx)P | Q when Q not free x. Since Q not use x, the newly bound x belongs to P side (possibly), and other resources split
