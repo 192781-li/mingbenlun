@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>平均利润、生产价格与三位一体公式：剩余价值的现象化转化 · 生命论</title>
+<style>
+:root{--gold:#d4a574;--gold-dark:#8a6d2f;--bg:#faf8f5;--text:#2c2416;--muted:#6b5d4f;--border:#e0d5c5;--accent:#c44040}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Serif SC","Source Han Serif SC",Georgia,serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:17px}
+.topbar{position:sticky;top:0;background:rgba(250,248,245,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100;display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:var(--gold-dark);text-decoration:none;font-weight:600}
+.topbar .title{font-size:1.1em;color:var(--gold-dark)}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0;z-index:200;transition:width .1s}
+.container{max-width:800px;margin:0 auto;padding:40px 24px 80px}
+.index-container{max-width:900px}
+h1{font-size:2em;margin-bottom:.5em;color:var(--gold-dark);border-bottom:2px solid var(--gold);padding-bottom:.3em}
+h2{font-size:1.5em;margin:1.5em 0 .8em;color:var(--gold-dark)}
+h3{font-size:1.25em;margin:1.2em 0 .6em;color:var(--text)}
+h4{font-size:1.1em;margin:1em 0 .5em}
+p{margin:.8em 0}
+blockquote{border-left:4px solid var(--gold);padding:8px 20px;margin:1em 0;background:#f5f0e8;color:var(--muted);font-style:italic}
+code{background:#f0ebe0;padding:2px 6px;border-radius:3px;font-size:.9em}
+pre{background:#2c2416;color:#e0d5c5;padding:16px;border-radius:6px;overflow-x:auto;margin:1em 0}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;margin:1em 0}
+th,td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+th{background:#f5f0e8;color:var(--gold-dark)}
+ul,ol{margin:.8em 0;padding-left:2em}
+li{margin:.3em 0}
+hr{border:none;border-top:1px solid var(--border);margin:2em 0}
+a{color:var(--gold-dark);text-decoration:none}
+a:hover{text-decoration:underline}
+.toc-list{list-style:none;padding:0}
+.toc-list li{margin:.4em 0}
+.toc-list .volume{font-weight:600;color:var(--gold-dark);font-size:1.1em;margin-top:1em}
+.toc-list .chapter{padding-left:1.5em;font-size:.95em}
+.toc-list .chapter a{color:var(--text)}
+.nav-links{display:flex;justify-content:space-between;margin-top:3em;padding-top:1em;border-top:1px solid var(--border)}
+.nav-links a{color:var(--gold-dark);font-weight:600}
+.hero{text-align:center;padding:60px 20px 40px}
+.hero h1{border:none;font-size:2.5em;margin-bottom:.2em}
+.hero .subtitle{color:var(--muted);font-size:1.1em;font-style:italic}
+.hero .meta{margin-top:1em;color:var(--muted);font-size:.9em}
+.volume-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:2em 0}
+.volume-card{border:1px solid var(--border);border-radius:8px;padding:20px;background:#fff;transition:box-shadow .2s}
+.volume-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.volume-card h3{margin:0 0 .5em;color:var(--gold-dark)}
+.volume-card p{font-size:.9em;color:var(--muted);margin:0}
+@media(max-width:600px){body{font-size:16px}.container{padding:20px 16px 60px}.hero h1{font-size:1.8em}.volume-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress"></div>
+<div class="topbar"><span class="title">生命论（明本论）</span><a href="../index.html">目录</a></div>
+<div class="container">
+<h1 id="_1">平均利润、生产价格与三位一体公式：剩余价值的现象化转化</h1>
+<blockquote>
+<p>2026-09-08 ｜ 卷六·异化论（理论地基·非命题链学术体）
+篇二讲了剩余价值如何在生产中被创造，篇二之二讲了它如何在总资本运动中实现。本篇讲剩余价值如何在资本家阶级内部被<strong>分配</strong>——转化为利润、平均利润、产业利润、商业利润、利息、地租。这是从本质到现象的转化链条：本质是工人创造的剩余价值被全体资本家瓜分，现象是"资本生利润、土地生地租、劳动生工资"的三位一体公式。揭穿这个公式，是第三卷的核心任务。</p>
+</blockquote>
+<hr />
+<h2 id="_2">第一章 剩余价值转化为利润：本质被遮蔽的第一步</h2>
+<h3 id="11">1.1 两个公式的区别</h3>
+<p>生产中实际耗费的是 <strong>c + v</strong>（成本价格，用 k 表示），但资本家预付的是 <strong>c + v</strong> 全部（他不区分不变和可变，只算"我投了多少钱"）。剩余价值 m 本来是可变资本 v 的产物，但在资本家眼里，它是全部预付资本（c+v）的产物。</p>
+<p>于是：
+- <strong>本质公式</strong>：m = 工人剩余劳动的凝结，m′ = m/v（剥削率）；
+- <strong>现象公式</strong>：p = m = 全部预付资本的"收益"，p′ = m/(c+v)（利润率）。</p>
+<p>剩余价值转化为利润，不是名称的改变，是<strong>本质被遮蔽的第一步</strong>：
+- m 与 v 的关系被切断了，m 表现为 c+v 共同的产物；
+- 剥削率 m′ 被利润率 p′ 掩盖（p′ 总是小于 m′，因为分母多了 c）；
+- 不变资本和可变资本的区别消失了，全部资本都表现为利润的源泉。</p>
+<h3 id="12">1.2 为什么这是必然的转化</h3>
+<p>这不是资本家"故意撒谎"，是资本主义生产关系的必然现象：
+- 资本家只关心"投多少、赚多少"，不关心价值是哪部分资本创造的；
+- 成本价格 k=c+v 是他实际的耗费，是他定价的底线；
+- 超过 k 的余额（m），在他看来自然是全部预付资本"带来的"。</p>
+<p><strong>本质不直接显现，必须通过一系列中介环节转化为现象。</strong> 剩余价值→利润，是这个转化链的第一环。</p>
+<hr />
+<h2 id="_3">第二章 利润转化为平均利润：部门间竞争</h2>
+<h3 id="21">2.1 问题的提出</h3>
+<p>不同生产部门的资本有机构成不同（c/v 不同），在剩余价值率相同的情况下，利润率必然不同：
+- 有机构成低的部门（如纺织业，v比重大），利润率高；
+- 有机构成高的部门（如钢铁业，c比重大），利润率低。</p>
+<p>但资本主义现实中，等量资本获得等量利润——不管投在哪个部门，利润率趋于一致。这是怎么回事？</p>
+<h3 id="22">2.2 利润率平均化的机制：资本流动</h3>
+<p>答案是<strong>部门间的竞争和资本自由流动</strong>：
+- 资本从利润率低的部门（有机构成高）撤出，流向利润率高的部门（有机构成低）；
+- 高利润率部门因资本涌入、生产扩大，供给增加，价格下跌，利润率下降；
+- 低利润率部门因资本撤出、生产缩减，供给减少，价格上涨，利润率上升；
+- 反复流动，直到各部门利润率趋于一致，形成<strong>平均利润率</strong>。</p>
+<p>平均利润率 = 全社会剩余价值总额 / 全社会预付总资本。</p>
+<h3 id="23">2.3 一个数字示例</h3>
+<p>设三个部门，剩余价值率均为100%，预付资本均为100：</p>
+<table>
+<thead>
+<tr>
+<th>部门</th>
+<th>c</th>
+<th>v</th>
+<th>m</th>
+<th>个别利润率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>食品（有机构成低）</td>
+<td>70</td>
+<td>30</td>
+<td>30</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>纺织（中等）</td>
+<td>80</td>
+<td>20</td>
+<td>20</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>钢铁（有机构成高）</td>
+<td>90</td>
+<td>10</td>
+<td>10</td>
+<td>10%</td>
+</tr>
+</tbody>
+</table>
+<p>总剩余价值=60，总资本=300，平均利润率=20%。</p>
+<p>资本流动后，每个部门都获得20%的平均利润=20。于是：
+- 食品部门：得到20（少于它创造的30，少得10）；
+- 纺织部门：得到20（等于它创造的20）；
+- 钢铁部门：得到20（多于它创造的10，多得10）。</p>
+<p><strong>食品部门工人创造的10单位剩余价值，通过竞争被转移到了钢铁部门。</strong> 有机构成高的部门资本家，占有了有机构成低的部门工人创造的一部分剩余价值。</p>
+<h3 id="24">2.4 这一过程的阶级含义</h3>
+<p>利润率平均化揭示了一个深刻事实：<strong>全体资本家阶级共同剥削全体工人阶级。</strong>
+- 每个资本家得到的利润，不仅取决于他自己工厂里的剥削程度，还取决于整个资本家阶级对整个工人阶级的剥削程度；
+- 资本家之间在瓜分剩余价值上有矛盾（你多分我就少分），但在剥削工人阶级这个根本问题上利益一致；
+- 工人不仅受自己雇主的剥削，还受整个资本家阶级的剥削。因此工人阶级的解放必须是阶级对阶级的斗争，不是个别工人对个别雇主的斗争。</p>
+<hr />
+<h2 id="_4">第三章 价值转化为生产价格</h2>
+<h3 id="31">3.1 生产价格的形成</h3>
+<p>平均利润形成后，商品不再按价值（c+v+m）出售，而是按<strong>生产价格</strong>出售：</p>
+<blockquote>
+<p><strong>生产价格 = 成本价格 + 平均利润 = k + p̄</strong></p>
+</blockquote>
+<p>接上例：
+- 食品：成本70+30=100，平均利润20，生产价格=120（价值=130，低于价值10）；
+- 纺织：成本80+20=100，平均利润20，生产价格=120（价值=120，等于价值）；
+- 钢铁：成本90+10=100，平均利润20，生产价格=120（价值=110，高于价值10）。</p>
+<h3 id="32">3.2 两个总量等式</h3>
+<p>虽然每个商品的生产价格偏离其价值，但全社会总量不变：
+- <strong>总生产价格 = 总价值</strong>（120×3=360 = 130+120+110=360）；
+- <strong>总平均利润 = 总剩余价值</strong>（20×3=60 = 30+20+10=60）。</p>
+<p>这就是篇三转形问题中讨论的两个总量等式。TSSI 从时间单一体系角度严格证明了它们在动态过程中始终成立。这里是静态均衡下的直观展示。</p>
+<h3 id="33">3.3 价值规律没有被否定，是转化了形式</h3>
+<p>生产价格形成后，市场价格不再围绕价值波动，而是围绕<strong>生产价格</strong>波动。这不是对价值规律的否定，是价值规律在资本主义充分发展后的<strong>转化形式</strong>：
+- 价值仍然是生产价格的基础（生产价格的总量等于价值总量，平均利润的总量等于剩余价值总量）；
+- 生产价格的变动归根到底由价值的变动决定（生产商品的社会必要劳动时间变了，生产价格迟早跟着变）；
+- 直接按价值交换是简单商品经济的规律，按生产价格交换是资本主义商品经济的规律——后者是前者的发展了的形式。</p>
+<p><strong>本质（价值）通过中介（竞争、资本流动、平均利润率）转化为现象（生产价格），现象偏离本质但总量由本质决定。</strong> 这就是本质-现象关系的经典范例（篇一之一第七章、卷五名实论）。</p>
+<hr />
+<h2 id="_5">第四章 剩余价值的进一步分割：产业利润、商业利润、利息、地租</h2>
+<p>平均利润形成后，剩余价值在资本家阶级内部进一步分割：</p>
+<h3 id="41">4.1 产业利润与商业利润</h3>
+<ul>
+<li><strong>产业资本家</strong>：从事生产，创造剩余价值；</li>
+<li><strong>商业资本家</strong>：不从事生产，只从事商品流通（买和卖），不创造剩余价值，但要获得平均利润。</li>
+</ul>
+<p>商业利润从哪里来？是产业资本家把商品<strong>低于生产价格</strong>卖给商业资本家，商业资本家再按<strong>生产价格</strong>卖给消费者，差额就是商业利润。本质上，商业利润是产业工人创造的剩余价值的一部分，被商业资本家凭商业资本的占有权瓜分。</p>
+<p><strong>流通不创造价值，但参与剩余价值的分配。</strong> 这就揭穿了"商业创造价值""流通产生利润"的假象。</p>
+<h3 id="42">4.2 利息与企业主收入</h3>
+<p>职能资本家（产业或商业）如果使用借入资本，就要把平均利润的一部分以<strong>利息</strong>形式付给借贷资本家，剩下的部分叫<strong>企业主收入</strong>（企业利润）。</p>
+<ul>
+<li>利息表现为"资本本身的产物"——好像钱能生钱（G—G′），与生产过程无关；</li>
+<li>企业主收入表现为"资本家劳动的工资"——好像资本家是靠自己的"管理劳动"赚钱。</li>
+</ul>
+<p>这双重假象把剩余价值的起源彻底遮蔽了：
+- 利息：资本→利息，好像资本本身有生产力（篇二之三已揭穿"钱不能生钱"）；
+- 企业主收入：管理→工资，好像资本家的收入是劳动报酬（篇二之六已揭穿企业家神话）。</p>
+<p><strong>生息资本 G—G′ 是最迷惑人的形式：中间的生产过程和流通过程都看不见了，直接表现为货币生出更多货币。</strong> 这是资本拜物教的极致。</p>
+<h3 id="43">4.3 地租</h3>
+<p>土地所有者不从事任何经营，仅凭土地所有权获得<strong>地租</strong>。地租是农业工人创造的剩余价值中，超过平均利润的部分（超额利润），被土地所有者凭土地垄断占有。</p>
+<ul>
+<li><strong>级差地租</strong>：土地肥力、位置不同，优等地的个别生产价格低于社会生产价格，差额形成级差地租；</li>
+<li><strong>绝对地租</strong>：土地私有权垄断，即使最劣等地也要交租，来源于农业有机构成低于社会平均、农产品价值高于生产价格的差额。</li>
+</ul>
+<p>地租的存在表明：<strong>除了资本家阶级，土地所有者阶级也参与瓜分工人创造的剩余价值。</strong> 三大阶级（工人、资本家、地主）的收入结构由此清晰。</p>
+<hr />
+<h2 id="_6">第五章 三位一体公式：资本主义意识形态的总公式</h2>
+<h3 id="51">5.1 公式的内容</h3>
+<p>经过上述全部转化，资本主义社会的收入分配在现象上表现为：</p>
+<blockquote>
+<p><strong>资本—利润（利息），土地—地租，劳动—工资</strong></p>
+</blockquote>
+<p>这就是<strong>三位一体公式</strong>。它把三种收入说成三种生产要素各自的"自然报酬"：资本有生产力所以生利润，土地有肥力所以生地租，劳动有贡献所以生工资。三者各得其所，公平合理。</p>
+<h3 id="52">5.2 这个公式的三重谬误</h3>
+<p><strong>谬误一：把不同质的东西并列。</strong>
+资本、土地、劳动属于完全不同的领域：资本是社会关系（死劳动支配活劳动），土地是自然物质，劳动是人的生命活动。把它们并列成"三种生产要素"，就像把"公证人、甜菜、音乐"并列一样荒谬——它们没有共同的尺度，不可能各自"产生"出可以通约的收入。</p>
+<p><strong>谬误二：把社会关系自然化、永恒化。</strong>
+资本不是物，是特定历史阶段的社会关系；地租不是土地的自然产物，是土地私有权垄断的结果；工资不是"劳动的报酬"，是劳动力的价格。三位一体公式把这些历史的、社会的关系，说成自然的、永恒的秩序——好像资本主义的分配方式是天经地义的。</p>
+<p><strong>谬误三：遮蔽了剩余价值的唯一源泉。</strong>
+利润、利息、地租的唯一源泉是工人的剩余劳动。三位一体公式把它们分别归于资本、土地、劳动，于是：
+- 剥削消失了（各要素按贡献取酬）；
+- 阶级对立消失了（资本家、地主、工人各得其所）；
+- 历史性消失了（资本主义成了自然秩序）。</p>
+<h3 id="53">5.3 公式的意识形态功能</h3>
+<p>三位一体公式是<strong>资本主义社会最精致的意识形态</strong>。它不是某个人的谎言，是资本主义生产关系在人脑中的必然反映——因为在现象界，收入确实表现为三种要素的产物，本质被层层中介遮蔽了。</p>
+<p>古典政治经济学（李嘉图）曾试图透过现象找本质，把三种收入还原为劳动，但它不彻底，最终仍陷入矛盾。庸俗经济学则直接停在现象界，把三位一体公式当成理论终点——<strong>它的任务不是揭示本质，是把现象说成本质，为现存秩序辩护。</strong></p>
+<hr />
+<h2 id="_7">第六章 从本质到现象的完整转化链</h2>
+<p>把本篇全部内容串起来，剩余价值从本质到现象经历了<strong>五次转化</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>本质</th>
+<th>现象</th>
+<th>遮蔽了什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>剩余价值 m</td>
+<td>利润 p</td>
+<td>不变/可变资本的区别，m 只来源于 v</td>
+</tr>
+<tr>
+<td>2</td>
+<td>各部门不同利润率</td>
+<td>平均利润率</td>
+<td>各部门剥削程度的差异，剩余价值在部门间转移</td>
+</tr>
+<tr>
+<td>3</td>
+<td>价值 c+v+m</td>
+<td>生产价格 k+p̄</td>
+<td>价值决定价格，价格直接表现为成本加利润</td>
+</tr>
+<tr>
+<td>4</td>
+<td>产业利润（总剩余价值）</td>
+<td>产业利润+商业利润+利息</td>
+<td>流通不创造价值，利息是剩余价值的分割</td>
+</tr>
+<tr>
+<td>5</td>
+<td>工人剩余劳动</td>
+<td>资本-利润、土地-地租、劳动-工资</td>
+<td>剩余价值的唯一源泉，阶级剥削关系</td>
+</tr>
+</tbody>
+</table>
+<p>每一次转化都让本质更深地被遮蔽，到第五次（三位一体公式），本质已经完全看不见了——工人创造的剩余价值被全体剥削者瓜分，却表现为三种要素各自的自然报酬。</p>
+<p><strong>科学的任务，就是从现象回溯到本质，再从本质说明现象</strong>——这就是从第一篇到本篇的全部工作。揭穿三位一体公式，不是为了道德义愤，是为了让工人阶级看清：利润、利息、地租都不是什么"要素贡献"，全是自己的剩余劳动被别人拿走了。</p>
+<hr />
+<h2 id="_8">第七章 生命论的存在论收束</h2>
+<h3 id="71">7.1 五次转化的生命论本质</h3>
+<p>从剩余价值到三位一体公式的五次转化，在生命论里是同一个过程的不同表现：<strong>死劳动（!，沉积的过去操作）不断把自己表现为价值的源泉，把活劳动（νF₂，当下的生命操作）的贡献遮蔽掉。</strong></p>
+<ul>
+<li>利润：!（全部预付资本）表现为价值源泉；</li>
+<li>平均利润：!的竞争重新分配 νF₂ 创造的价值；</li>
+<li>生产价格：!的成本+!的平均利润，νF₂ 完全消失在公式里；</li>
+<li>利息：!直接生出!（G—G′），连生产过程都跳过了；</li>
+<li>地租：自然物（土地）被!赋予索取权，参与瓜分 νF₂。</li>
+</ul>
+<p><strong>整个转化链，就是 νF₂ 被!层层遮蔽、层层吞噬的过程。</strong> 到三位一体公式，νF₂（活劳动）只得到一个"工资"的名义，而它创造的全部剩余价值被!和土地垄断瓜分殆尽。</p>
+<h3 id="72">7.2 揭穿公式就是恢复操作权</h3>
+<p>三位一体公式是资本主义最精致的名实遮蔽（卷五名实论）：名（要素贡献）遮蔽了实（剩余价值瓜分）。揭穿它，就是<strong>名实复归</strong>——让利润、利息、地租重新被承认为"对他人生命时间的无偿占有"，而不是什么"要素报酬"。</p>
+<p>当工人阶级看清了这一点，"各得其所"的公平假象就崩溃了：原来不是三要素各得其所，是一个阶级（工人）创造了全部新价值，另外两个阶级（资本家、地主）凭所有权瓜分其中的剩余部分。<strong>看清了这一点，改变操作关系（卷七篇四）就不再是道德诉求，是名实相符的必然要求。</strong></p>
+<hr />
+<h2 id="_9">本篇在全库的位置与联动</h2>
+<ul>
+<li><strong>位置</strong>：卷六异化论，篇二（剩余价值生产）→篇二之二（实现）→本篇（分配），构成《资本论》一、二、三卷核心的完整生命论重述；</li>
+<li><strong>上游地基</strong>：篇一之二（价值实体）、篇二（c/v/m、有机构成、利润率下降）、篇二之二（再生产与危机）；</li>
+<li><strong>平行防守</strong>：篇三（转形问题TSSI，本篇第三章两个总量等式的防守回应）、篇二之三（钱不能生钱，本篇第四章利息假象的展开）、篇二之六（企业家神话，本篇第四章企业主收入假象的展开）；</li>
+<li><strong>下游</strong>：篇五（拜物教，三位一体公式是拜物教的完成形式）、篇十一（辩经术，庸俗经济学的方法论批判）；</li>
+<li><strong>正面替代</strong>：卷七篇五之三（按劳分配与按需分配萌芽，取代按要素分配）。</li>
+</ul>
+<div class="nav-links">
+<a href="../06_卷六_异化论/篇二_剩余价值与剥削.html">← 剩余价值与剥削：从劳动力商品到资本积累规律的严密范畴推演</a>
+<a href="../06_卷六_异化论/篇二之二_社会总资本再生产与经济危机_两大部类图式与生产过剩必然性.html">社会总资本再生产与经济危机：两大部类图式与生产过剩的必然性 →</a>
+</div>
+</div>
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.querySelector('.progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>

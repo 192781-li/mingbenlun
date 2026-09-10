@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第四篇 f-层级的数学形式化 · 生命论</title>
+<style>
+:root{--gold:#d4a574;--gold-dark:#8a6d2f;--bg:#faf8f5;--text:#2c2416;--muted:#6b5d4f;--border:#e0d5c5;--accent:#c44040}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Serif SC","Source Han Serif SC",Georgia,serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:17px}
+.topbar{position:sticky;top:0;background:rgba(250,248,245,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100;display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:var(--gold-dark);text-decoration:none;font-weight:600}
+.topbar .title{font-size:1.1em;color:var(--gold-dark)}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0;z-index:200;transition:width .1s}
+.container{max-width:800px;margin:0 auto;padding:40px 24px 80px}
+.index-container{max-width:900px}
+h1{font-size:2em;margin-bottom:.5em;color:var(--gold-dark);border-bottom:2px solid var(--gold);padding-bottom:.3em}
+h2{font-size:1.5em;margin:1.5em 0 .8em;color:var(--gold-dark)}
+h3{font-size:1.25em;margin:1.2em 0 .6em;color:var(--text)}
+h4{font-size:1.1em;margin:1em 0 .5em}
+p{margin:.8em 0}
+blockquote{border-left:4px solid var(--gold);padding:8px 20px;margin:1em 0;background:#f5f0e8;color:var(--muted);font-style:italic}
+code{background:#f0ebe0;padding:2px 6px;border-radius:3px;font-size:.9em}
+pre{background:#2c2416;color:#e0d5c5;padding:16px;border-radius:6px;overflow-x:auto;margin:1em 0}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;margin:1em 0}
+th,td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+th{background:#f5f0e8;color:var(--gold-dark)}
+ul,ol{margin:.8em 0;padding-left:2em}
+li{margin:.3em 0}
+hr{border:none;border-top:1px solid var(--border);margin:2em 0}
+a{color:var(--gold-dark);text-decoration:none}
+a:hover{text-decoration:underline}
+.toc-list{list-style:none;padding:0}
+.toc-list li{margin:.4em 0}
+.toc-list .volume{font-weight:600;color:var(--gold-dark);font-size:1.1em;margin-top:1em}
+.toc-list .chapter{padding-left:1.5em;font-size:.95em}
+.toc-list .chapter a{color:var(--text)}
+.nav-links{display:flex;justify-content:space-between;margin-top:3em;padding-top:1em;border-top:1px solid var(--border)}
+.nav-links a{color:var(--gold-dark);font-weight:600}
+.hero{text-align:center;padding:60px 20px 40px}
+.hero h1{border:none;font-size:2.5em;margin-bottom:.2em}
+.hero .subtitle{color:var(--muted);font-size:1.1em;font-style:italic}
+.hero .meta{margin-top:1em;color:var(--muted);font-size:.9em}
+.volume-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:2em 0}
+.volume-card{border:1px solid var(--border);border-radius:8px;padding:20px;background:#fff;transition:box-shadow .2s}
+.volume-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.volume-card h3{margin:0 0 .5em;color:var(--gold-dark)}
+.volume-card p{font-size:.9em;color:var(--muted);margin:0}
+@media(max-width:600px){body{font-size:16px}.container{padding:20px 16px 60px}.hero h1{font-size:1.8em}.volume-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress"></div>
+<div class="topbar"><span class="title">生命论（明本论）</span><a href="../index.html">目录</a></div>
+<div class="container">
+<h2 id="f-">第四篇 f-层级的数学形式化</h2>
+<h3 id="f-_1">第一章 f-层级的范畴论语义</h3>
+<p>f-层级（f¹自在/f²自为/f³自觉）在PTC公理系统中有精确的范畴论对应。</p>
+<h3 id="f1">f¹：无模型的直接计算</h3>
+<p><strong>f¹ = 没有!-模态反射的纯线性操作。</strong></p>
+<p>在范畴论中，f¹对应没有!-模态的纯线性态射：$f: A \to B$，资源直接被消耗，不被复制、不被对象化。</p>
+<p>f¹的特点：</p>
+<ul>
+<li>无模型：操作直接进行，不需要先建构一个关于世界的模型</li>
+<li>
+<p>缄默：知道，但说不出来自己是怎么知道的</p>
+</li>
+<li>
+<p>高效：因为不需要反思，所以反应快、消耗少</p>
+</li>
+</ul>
+<p><strong>数学对应</strong>：f¹ = 纯线性范畴（没有!-余单子）中的态射。</p>
+<h3 id="f2">f²：有模型，但被模型支配</h3>
+<p><strong>f² = 有!-模态反射，但把!-模态当成了现实。</strong></p>
+<p>在范畴论中，f²对应有!-模态的态射：$f: !A \to B$，资源被复制、被对象化，但对象化的结果（!A）被当成了现实本身（A）。</p>
+<p>f²的特点：</p>
+<ul>
+<li>有模型：能建构理论、能反思、能说"我认为"</li>
+<li>
+<p>被模型支配：把自己的模型当成了现实，模型和现实不符时否认现实</p>
+</li>
+<li>
+<p>意识形态：把特定历史条件下的观念当成永恒真理</p>
+</li>
+</ul>
+<p><strong>数学对应</strong>：f² = 有!-余单子的线性范畴中的态射，但!A和A被等同（!A ≅ A的错误识别）。这就是意识形态的范畴论结构：名(!A)遮蔽了实(A)。</p>
+<h3 id="f3">f³：看见模型是模型</h3>
+<p><strong>f³ = 能转换位置，能看见!A是!A而不是A。</strong></p>
+<p>在范畴论中，f³对应位置转换操作：能从模型内部（!A）跳到模型外部，看见模型是模型（!A是!A，不是A）。</p>
+<p>f³的特点：</p>
+<ul>
+<li>能对象化任何模型，包括自己正在用的模型</li>
+<li>
+<p>不否认模型的用处，但知道模型是模型不是现实</p>
+</li>
+<li>
+<p>明性常昭：知道自己在使用什么模型，知道模型的边界和局限</p>
+</li>
+</ul>
+<p><strong>数学对应</strong>：f³ = 公理0（践演位置）的位置转换操作。在G^ω(C)紧闭合范畴中，f³对应反射操作 <code>reflect: A → 明(A)</code>，其中 <code>明(A) = TReflected(A)</code> 是"被看见的A"类型。</p>
+<h3 id="gcf-">第二章 G^ω(C)：f-层级的范畴论基础</h3>
+<p><strong>G^ω(C)是f-层级的范畴论语义基础。</strong></p>
+<p>G^ω(C)是从基础范畴C构造的"弯线范畴"（goi-category），它支持：</p>
+<ul>
+<li>自我引用（弯线/反馈线）</li>
+<li>
+<p>自我建模（!-模态反射）</p>
+</li>
+<li>
+<p>位置转换（f³操作）</p>
+</li>
+</ul>
+<h3 id="gc">G^ω(C)的构造</h3>
+<p>G^ω(C)的对象是 $A^\omega = \nu X.(A \otimes X)$（流对象，无限序列）。</p>
+<p>G^ω(C)的态射是 $f: A^\omega \to B^\omega$，即流之间的函数。</p>
+<p>G^ω(C)是<strong>紧闭合范畴</strong>（compact closed category）——这意味着它有对偶对象 $A^*$，有弯线（自我引用），有迹（反馈）。</p>
+<h3 id="_1">紧闭合的哲学含义</h3>
+<p>紧闭合意味着：<strong>自我引用在范畴内部是合法的态射，不是从外部硬加的。</strong></p>
+<p>这对应f-层级的核心洞见：f³（看见模型是模型）不是一个超自然的能力，是范畴结构本身支持的操作。一旦范畴有紧闭合结构，位置转换就是内禀的。</p>
+<h3 id="f3_1">第三章 f³不动点定理</h3>
+<p><strong>核心定理：f³是不动点，不存在f⁴。</strong></p>
+<h3 id="_2">定理陈述</h3>
+<p>对任何类型A，反射操作 <code>reflect: A → 明(A)</code> 满足：</p>
+<p>$$明(明(A)) \cong 明(A)$$</p>
+<p>即对"被看见的A"再反射，得到的还是"被看见的A"——f³之后没有f⁴。</p>
+<h3 id="_3">证明思路</h3>
+<ol>
+<li><code>明(A) = TReflected(A)</code> 是"被看见的A"类型</li>
+<li>对<code>明(A)</code>再反射：<code>reflect: 明(A) → 明(明(A))</code></li>
+<li>但"看见'看见A是模型'是模型"和"看见A是模型"是同一个操作——因为f³就是"看见模型是模型"这个操作本身</li>
+<li>所以 <code>明(明(A)) ≅ 明(A)</code>——f³是不动点</li>
+</ol>
+<h3 id="_4">哲学含义</h3>
+<ul>
+<li>f¹→f²：从无模型到有模型——质变</li>
+<li>
+<p>f²→f³：从被模型支配到看见模型是模型——质变</p>
+</li>
+<li>
+<p>f³→f⁴：不是质变——f³已经能对象化任何模型，包括它自己的模型</p>
+</li>
+</ul>
+<p>"明性"不是可以继续升级的状态，是一种操作。一旦你能看见模型是模型，你就能递归地看见"看见模型"也是模型。α只取{1,2,3}。</p>
+<p><strong>见山还是山之后没有第四段。</strong></p>
+<h3 id="aptl">第四章 明(A)类型与PTL反射</h3>
+<p>在PTL践演迹语言中，f³对应<code>明(A)=TReflected(A)</code>类型和四个反射操作：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reflect</code></td>
+<td><code>A → 明(A)</code></td>
+<td>把A反射为"被看见的A"</td>
+</tr>
+<tr>
+<td><code>self-caps</code></td>
+<td><code>明(A) → 明(A) × Capabilities</code></td>
+<td>查看自己的能力（能做什么操作）</td>
+</tr>
+<tr>
+<td><code>self-history</code></td>
+<td><code>明(A) → 明(A) × History</code></td>
+<td>查看自己的历史（做过什么操作）</td>
+</tr>
+<tr>
+<td><code>reify</code></td>
+<td><code>明(A) → A</code></td>
+<td>把"被看见的A"还原为A（取消反射）</td>
+</tr>
+</tbody>
+</table>
+<p>这四个操作构成了f³的完整操作集：</p>
+<ul>
+<li><code>reflect</code>：进入f³（看见模型是模型）</li>
+<li>
+<p><code>self-caps</code>：在f³中查看自己的能力</p>
+</li>
+<li>
+<p><code>self-history</code>：在f³中查看自己的历史</p>
+</li>
+<li><code>reify</code>：退出f³（回到模型内部，但知道自己在模型内部）</li>
+</ul>
+<h3 id="810">8个示例+10个拒绝测试</h3>
+<p>PTL解释器实现了这四个操作，8个示例全部通过，10个非法操作全部被类型检查器拒绝。</p>
+<p>被拒绝的典型非法操作：</p>
+<ul>
+<li>在f¹中调用<code>reflect</code>（f¹没有反射能力）</li>
+<li>
+<p>在f²中调用<code>self-caps</code>（f²被模型支配，不能查看自己的能力）</p>
+</li>
+<li>
+<p>把<code>明(A)</code>当成<code>A</code>使用（f²的错误：把模型当现实）</p>
+</li>
+</ul>
+<h3 id="f-_2">第五章 f-层级与解放的对应</h3>
+<table>
+<thead>
+<tr>
+<th>f-层级</th>
+<th>状态</th>
+<th>解放路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>f¹</td>
+<td>自在——缄默操作，无模型</td>
+<td>不需要解放，但需要发展到f²才能有自我意识</td>
+</tr>
+<tr>
+<td>f²</td>
+<td>自为——有模型，但被模型支配</td>
+<td><strong>解蔽</strong>：从f²到f³，看见意识形态是意识形态</td>
+</tr>
+<tr>
+<td>f³</td>
+<td>自觉——看见模型是模型</td>
+<td><strong>收权+立序</strong>：在f³基础上拿回操作权，建立自由人联合体</td>
+</tr>
+</tbody>
+</table>
+<p>f³不是终点。f³是不动点，但不动点不是"完成了"——f³是一种持续的操作，是永远保持"看见模型是模型"的姿态。一旦你以为自己"到达了f³"，你就退回了f²——因为你把"f³"变成了一个新的模型，一个新的教条。</p>
+<p><strong>f³是动词，不是名词。</strong></p>
+<hr />
+<p><em>（f-层级数学形式化完。下一篇讲PTL践演迹语言：语法、类型规则、操作语义、Progress+Preservation证明。）</em></p>
+<div class="nav-links">
+<a href="../11_卷十一_践演论/篇六_量子对应与前沿方向.html">← 第六篇 量子对应与前沿方向</a>
+<a href="../12_附录/00_附录标题.html">附录 →</a>
+</div>
+</div>
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.querySelector('.progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>
