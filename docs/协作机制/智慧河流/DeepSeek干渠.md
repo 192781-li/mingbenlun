@@ -11216,3 +11216,245 @@ x = x
 y = y
 ren id P = P
 Yes third is `ren id P = P`, IHP matches exactly. So why earlier error? The previous patch had `symmetry. exact IHP` and error persists at line 2638 characters 6-17 likely `symmetry. ex
+
+
+## 2026-09-10 23:53:42 [proof_loop] weaken_nil · round3 · DS输出
+
+根因：上一版 `ren_id` 的 POut/PIn/PRes 分支依赖 `f_equal` 生成的子目标方向，实际生成了对称等式（`P = ren id P`），`apply IH` 无法匹配，于是报 `Unable to unify "P" with "ren (fun n : nat => n) P"`。  
+修正：完全不用 `f_equal`，改用 `replace` 把目标中的代换项按已知等式逐步替换成原项，最后 `reflexivity`。这样不依赖子目标顺序/方向。
+
+直接替换从 `Lemma upren_id_pt` 到 `weaken_nil` 结束的整段：
+
+```coq
+Lemma upren_id_pt : forall n, upren (fun n : nat => n) n = n.
+Proof.
+  intros [|n]; reflexivity.
+Qed.
+
+Lemma ren_id : forall P, ren (fun n : nat => n) P = P.
+Proof.
+  induction P as [| | P IH | x y P IH | x P IH | P IH Q IHQ | P IH | P IH].
+  - simpl. reflexivity. (* PVar *)
+  - simpl. reflexivity. (* PZero *)
+  - simpl. (* PTau *)
+    replace (ren (fun n : nat => n) P) with P by exact IH.
+    reflexivity.
+  - simpl. (* POut *)
+    replace (ren (fun n : nat => n) P) with P by exact IH.
+    reflexivity.
+  - simpl. (* PIn *)
+    replace (ren (upren (fun n : nat => n)) P) with (ren (fun n : nat => n) P)
+      by (apply (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P);
+          intro q; apply upren_id_pt).
+    replace (ren (fun n : nat => n) P) with P by exact IH.
+    reflexivity.
+  - simpl. (* PPar *)
+    replace (ren (fun n : nat => n) P) with P by exact IH.
+    replace (ren (fun n : nat => n) Q) with Q by exact IHQ.
+    reflexivity.
+  - simpl. (* PRes *)
+    replace (ren (upren (fun n : nat => n)) P) with (ren (fun n : nat => n) P)
+      by (apply (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P);
+          intro q; apply upren_id_pt).
+    replace (ren (fun n : nat => n) P) with P by exact IH.
+    reflexivity.
+  - simpl. (* PRep *)
+    replace (ren (fun n : nat => n) P) with P by exact IH.
+    reflexivity.
+Qed.
+
+Lemma weaken_nil : forall P T, typed [] P -> typed [Some T] P.
+Proof.
+  intros P T H.
+  assert (Hinj : forall n m, has [] n -> has [] m ->
+    (fun n : nat => n) n = (fun n : nat => n) m -> n = m).
+  { intros n m Hn Hm E. destruct Hn as [T' Hget]. simpl in Hget. discriminate. }
+  assert (Hpts : forall n T', get [] n = Some (Some T') ->
+    get [So
+[reasoning摘要]
+我们需要理解错误。用户说上一版 coqc 编译错误在 Layer2.v line 2610, characters 13-24:
+```
+File ".\Layer2.v", line 2610, characters 13-24:
+Error:
+In environment
+n, n0 : nat
+P : proc
+IHP : ren (fun n : nat => n) P = P
+Unable to unify "P" with "ren (fun n : nat => n) P".
+```
+
+这个错误是关于 ren_id 的某个 case，环境中 n, n0 : nat? 看起来是 PIn 的 x 和 P? 因为 PIn x P 中有两个 nat？ 实际上 PIn : nat -> proc -> proc，所以 induction 后 P 是 proc，没有 n n0。错误环境里有 n, n0 : nat，说明可能是 POut 的 x y。 Wait POut : nat -> nat -> proc -> proc, induction 后会有 x y n? environment: n, n0 : nat, P : proc, IHP : ren id P = P. Unable to unify "P" with "ren id P". 这发生在某个 f_equal 或 apply IHP 时。上个版本我们给 POut case 直接 `f_equal. reflexivity. reflexivity. apply IHP.` 这可能出错？ 但错误环境中有 n, n0 : nat，这可能是 POut 的 x y? IHP : ren id P = P，目标是 ren id (POut n n0 P) = POut n n0 P，simpl 后目标 POut n n0 (ren id P) = POut n n0 P。 `f_equal` 生成三个子目标：n=n, n0=n0, ren id P=P。前两个 reflexivity，第三个 apply IHP 应该成功，因为 IHP : ren id P = P，目标 ren id P = P。那错误不应该。
+
+也许错误来自我们 assert Hup 后 rewrite Hup，然后 apply IHP 时方向不对？ PIn case: 目标 ren id (PIn n P) = PIn n P. simpl 后 PIn n (ren (upren id) P) = PIn n P。 `f_equal` 生成两个子目标： n=n; ren (upren id) P = P。前一个 reflexivity；后一个我们需要证明 ren(upren id) P = P。我们 assert Hup : ren (upren id) P = ren id P。然后 `rewrite Hup.` 这会把目标中的 `ren (upren id) P` 替换为 `ren id P`，目标变为 `ren id P = P`。然后 `apply IHP.` 应该成功，因为 IHP : ren id P = P。环境中 n, n0 : nat? PIn 只有一个 n，错误环境里有 n, n0，所以不是 PIn 或 PRes?
+
+PRes case 目标 ren id (PRes P) = PRes P，simpl 后 PRes (ren (upren id) P) = PRes P。类似。环境中应该只有
+
+
+## 2026-09-10 23:54:31 [proof_loop] weaken_nil · round4 · DS输出
+
+**根因**：`ren_id` 中 PIn/PRes 分支使用了 `replace` + `exact IH`，而某个分支实际需要的等式方向是 `P = ren id P`，与 IH `ren id P = P` 相反，导致 `exact IH` 报错。  
+**修正**：改用 `rewrite IH` 直接重写，完全避免方向不匹配；并在绑定器分支先显式断言 `ren_ext` 等式再 `rewrite`。
+
+直接替换从 `Lemma upren_id_pt` 到 `weaken_nil` 结束的整段：
+
+```coq
+Lemma upren_id_pt : forall n, upren (fun n : nat => n) n = n.
+Proof.
+  intros [|n]; reflexivity.
+Qed.
+
+Lemma ren_id : forall P, ren (fun n : nat => n) P = P.
+Proof.
+  induction P as [n | | P IH | x y P IH | x P IH | P IH Q IHQ | P IH | P IH].
+  - simpl. reflexivity. (* PVar *)
+  - simpl. reflexivity. (* PZero *)
+  - simpl. rewrite IH. reflexivity. (* PTau *)
+  - simpl. rewrite IH. reflexivity. (* POut *)
+  - simpl. (* PIn *)
+    assert (Hup : ren (upren (fun n : nat => n)) P = ren (fun n : nat => n) P).
+    { apply ren_ext. intro q. apply upren_id_pt. }
+    rewrite Hup. rewrite IH. reflexivity.
+  - simpl. rewrite IH. rewrite IHQ. reflexivity. (* PPar *)
+  - simpl. (* PRes *)
+    assert (Hup : ren (upren (fun n : nat => n)) P = ren (fun n : nat => n) P).
+    { apply ren_ext. intro q. apply upren_id_pt. }
+    rewrite Hup. rewrite IH. reflexivity.
+  - simpl. rewrite IH. reflexivity. (* PRep *)
+Qed.
+
+Lemma weaken_nil : forall P T, typed [] P -> typed [Some T] P.
+Proof.
+  intros P T H.
+  assert (Hinj : forall n m, has [] n -> has [] m ->
+    (fun n : nat => n) n = (fun n : nat => n) m -> n = m).
+  { intros n m Hn Hm E. destruct Hn as [T' Hget]. simpl in Hget. discriminate. }
+  assert (Hpts : forall n T', get [] n = Some (Some T') ->
+    get [Some T] ((fun n : nat => n) n) = Some (Some T')).
+  { intros n T' Hn. simpl in Hn. discriminate. }
+  pose proof (ren_typed [] P H (fun n : nat => n) [Some T] Hinj Hpts) as Hr.
+  rewrite ren_id in Hr.
+  exact Hr.
+Qed.
+```
+[reasoning摘要]
+我们被要求完整证出 weaken_nil。但错误显示的是 ren_id 中的 IH 使用问题。用户提供的是上一版 coqc 编译错误：在 ren_id 某处 `exact IH` 尝试用 `IH : ren id P = P` 作为 `P = ren id P`。这显然是方向不对。用户说“应用后未收敛”但错误只有一条。需要定位根因然后给完整修正版。可能是之前我在 POut/PIn/PRes 用了 `replace ... with P by exact IH`，其中 by exact IH 需要的是 `P = ren ...` 或者 `ren ... = P`？`replace (ren ... P) with P by exact IH` 期望证明 `ren ... P = P`，这正和 IH 方向一致，应该可以。错误信息却显示期待 `P = ren ... P`，即在某个地方可能用了 `replace P with (ren ... P) by exact IH`？或者用了 `symmetry`？要检查。
+
+从用户给出的错误行号不确定，但错误来自 ren_id 的某个分支。错误信息：
+```
+The term "IH" has type "ren (fun n : nat => n) P = P"
+while it is expected to have type "P = ren (fun n : nat => n) P".
+```
+所以某个 `exact IH` 出现在需要反向等式的上下文中。在 `replace (ren (fun n : nat => n) P) with P by exact IH` 中，by 后面的 tactic 需要证明 `ren (fun n : nat => n) P = P`，IH 正是这个方向，所以没问题。在 `replace (P) with (ren ... P) by ...` 需要 `P = ren ... P`，IH 反了，错误出现。所以之前版本里可能有 `replace P with (ren ... P) by exact IH` 之类的。但上一版代码中，我写的是 `replace (ren ...) with P by exact IH`，没有问题。那错误可能来自另一个分支：比如 PIn/PRes 里 `replace (ren (upren ...)) with (ren id ...) by (apply ren_ext...)` 没问题，然后 `replace (ren id ...) with P by exact IH` 也没问题。所以应无错。但用户说错误在 line 2615 characters 55-57，是我们上一版代码中的 `exact IH` 某个位置。可能 line 2615 是某个 `by exact IH` 中，但具体是哪个分支需要看逻辑。
+
+让我回忆我上一版给出的代码：我写了 POut 分支：
+```
+  - simpl. (* POut *)
+    replace (ren (fun n : nat => n) P) with P by exact IH.
+    reflexivity.
+```
+这个 by exact IH 确实方向正确，不应该报错。除非 `replace (ren ... P) with P by exact IH` 在 Coq 8.13+ 中解读为 `replace term with term' by tactic`，其中 goa
+
+
+## 2026-09-10 23:54:44 [proof_loop] weaken_none_head · round1 · DS输出
+
+头部从在位空 `None` 改为 `Some T` 不改变进程实际使用的资源位：位置 0 若持有实资源会与前提 `get (None::Gamma') 0 = Some None` 矛盾；非 0 位完全一致。因此可用已 Qed 的 `ren_typed`（取重命名为恒等映射）加 `ren_id` 直接完成，无需新增引理。
+
+```coq
+(* weaken_none_head：上下文头位置为在位空位(None)时，替换为任意类型不影响类型化。
+   存在论：头位置无操作权流经（明性收摄），填入新操作权不改变既有进程的类型结构。
+   证明路线：ren_typed 配恒等重命名 + ren_id；不重证 typed 归纳。 *)
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+  intros Gamma' P T H.
+  pose proof (ren_typed (None :: Gamma') P H
+                (fun n : nat => n) (Some T :: Gamma')) as Hr.
+  - intros n m An Am E. exact E.
+  - intros n T' Hg.
+    destruct n as [|n].
+    + simpl in Hg. discriminate.
+    + exact Hg.
+  rewrite (ren_id P) in Hr.
+  exact Hr.
+Qed.
+```
+[reasoning摘要]
+We need respond with complete Coq proof for weaken_none_head. Need inspect existing definitions in Layer2 material. We have full Layer2 text. weaken_none_head currently Admitted at near end:
+
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+Admitted.
+
+Need prove full code. Need understand environment: Layer2 imports Layer1: typed definitions, use, split, get, set_none. Need prove.
+
+We are S04 main proof researcher, need output complete code. We must be careful with all names available from material: get_Some_lt, set_none_self, set_none_neq, use_neq, split_get_l/r, typed_strengthen_unused, etc. But weaken_none_head maybe perhaps can be proven via typed induction or via renaming? Need formulate proof.
+
+Goal: weaken_none_head: forall Gamma' P T, typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+
+We can prove by induction on typed derivation. Need handle all 8 cases. Since head position changes from None to Some T. The process P is typed in context None :: Gamma'. In a linear system, if head position is None (in-position empty), process cannot use it for a resource (Some T'). For PIn/out use at position 0 would demand get (None::Gamma') 0 = Some (Some TChan) impossible. Thus all references to 0 are impossible; changing to Some T doesn't affect any used positions (>0? If position variables shift? Wait context is None :: Gamma', position 0 is empty. Processes can reference position 0? No because no resource; can refe
+
+
+## 2026-09-10 23:56:44 [proof_loop] weaken_none_head · round2 · DS输出
+
+根因：上一版 `pose proof (ren_typed ...)` 只给了前三组参数，后面单射与资源保持前提没有提供；随后用 `- intros ...` 试图“补参数”，但此时主目标仍然是 `typed (Some T :: Gamma') P`，不是函数类型，`intros` 对非 product 目标报 `No product even after head-reduction`。另一个隐藏问题是 `ren_id` 在 `weaken_none_head` 后才定义，不能引用。修正为：在证明内部先构造 `ren id P = P` 的局部恒等事实 `Hid`，再分别以 `assert` 给出 `ren_typed` 需要的单射与资源保持条件，然后一次性应用 `ren_typed`。
+
+```coq
+(* weaken_none_head：上下文头位置为在位空位(None)时，替换为任意类型不影响类型化。
+   存在论：头位置无操作权流经（明性收摄），填入新操作权不改变既有进程的类型结构。
+   证明路线：ren_typed 配恒等重命名；恒等重命名引理在证明内部完成，避免引用后置的 ren_id。 *)
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+  intros Gamma' P T H.
+  assert (Hid : ren (fun n : nat => n) P = P).
+  {
+    clear H T.
+    induction P as [n | | P IH | x y P IH | x P IH | P IH Q IHQ | P IH | P IH].
+    - simpl. reflexivity.                                  (* PVar *)
+    - simpl. reflexivity.                                  (* PZero *)
+    - simpl. rewrite IH. reflexivity.                      (* PTau *)
+    - simpl. rewrite IH. reflexivity.                      (* POut *)
+    - simpl.                                               (* PIn *)
+      assert (Hup : ren (upren (fun n : nat => n)) P = ren (fun n : nat => n) P).
+      { apply ren_ext. intros [|q]; reflexivity. }
+      rewrite Hup. rewrite IH. reflexivity.
+    - simpl. rewrite IH. rewrite IHQ. reflexivity.        (* PPar *)
+    - simpl.                                               (* PRes *)
+      assert (Hup : ren (upren (fun n : nat => n)) P = ren (fun n : nat => n) P).
+      { apply ren_ext. intros [|q]; reflexivity. }
+      rewrite Hup. rewrite IH. reflexivity.
+    - simpl. rewrite IH. reflexivity.                      (* PRep *)
+  }
+  assert (Hinj : forall n m, has (None :: Gamma') n -> has (None :: Gamma') m ->
+                (fun n : nat => n) n = (fun n : nat => n) m -> n = m).
+  { intros n m Hn Hm E. exact E. }
+  assert (Hpts : forall n T', get (None :: Gamma') n = Some (Some T') ->
+                 get (Some T :
+[reasoning摘要]
+我们需要回应用户。任务：证 weaken_none_head。材料中已有 weaken_none_head 版本在 Layer2.v 里：一个用 ren_typed + ren_id 的证明。用户上一版报错：File ".\Layer2.v", line 2604, characters 4-22: Error: No product even after head-reduction.
+
+我们需要定位根因并给完整修正版。需要看代码位置。上一版给的 weaken_none_head 代码里用了 pose proof (ren_typed ...) as Hr. 随后用 - bullets? 这有问题：pose proof 是单个 tactic，后面用 - intros... 是把它当成多个子目标？实际上 pose proof (ren_typed _ _ _ _ _ _) as Hr 产生单一目标，不能用 bullet - 来填参数？如果目标需要在 pose proof 之前提供两个前提？错误“No product even after head-reduction”出现在 line 2604 chars 4-22，可能在 `rewrite (ren_id P) in Hr.`? 让我们分析。
+
+上一版代码：
+
+```
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+  intros Gamma' P T H.
+  pose proof (ren_typed (None :: Gamma') P H
+                (fun n : nat => n) (Some T :: Gamma')) as Hr.
+  - intros n m An Am E. exact E.
+  - intros n T' Hg.
+    destruct n as [|n].
+    + simpl in Hg. discriminate.
+    + exact Hg.
+  rewrite (ren_id P) in Hr.
+  exact Hr.
+Qed.
+```
+
+看 ren_typed 定义：`Theorem ren_typed : forall Gamma P, typed Gamma P -> forall xi Delta, (forall n m, has Gamma n -> has Gamma m -> xi n = xi m -> n = m) -> (forall n T, get Gamma n = Some (Some T) -> get Delta (xi n) = Some (Some T)) -> typed Delta (ren xi P).`
+
+所以 ren_typed 需要参数：Gamma, P, H, xi, Delta, Hinj, Hpts。我们要构造 Hr : typed (Some T :: Gamma') (ren (fun n=>n) P)。但是 pose proof (ren_typed ... ) as Hr 只给了前三个参数，后面 xi Delta 还没给，所以 Hr 是一个蕴含类型：forall Delta xi...? 实际是 `(fun n=>n)` 是 xi, `(Some T::Gamma')` 是 Delta，但

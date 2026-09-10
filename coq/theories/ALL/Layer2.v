@@ -2592,20 +2592,91 @@ Qed.
    存在论：头位置无操作权流经（明性收摄），填入新操作权不改变既有进程的类型结构。
    对typed归纳，8个case。ty_out/ty_par中split两侧头亦空，可分别弱化。
    ty_res中偏移到S 0，递归弱化。 *)
+(* weaken_none_head：上下文头位置为在位空位(None)时，替换为任意类型不影响类型化。
+   存在论：头位置无操作权流经（明性收摄），填入新操作权不改变既有进程的类型结构。
+   证明路线：ren_typed 配恒等重命名 + ren_id；不重证 typed 归纳。 *)
+(* weaken_none_head：上下文头位置为在位空位(None)时，替换为任意类型不影响类型化。
+   存在论：头位置无操作权流经（明性收摄），填入新操作权不改变既有进程的类型结构。
+   证明路线：ren_typed 配恒等重命名；恒等重命名引理在证明内部完成，避免引用后置的 ren_id。 *)
 Lemma weaken_none_head : forall Gamma' P T,
   typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
 Proof.
-  (* S01直接证明有多处语法错误(revert顺序/T重名等)，重置为Admitted。
-     这是typed_res_par_l/r的前置引理，后续交DS主谋重新证明。 *)
-Admitted.
-
+  intros Gamma' P T H.
+  assert (Hid : ren (fun n : nat => n) P = P).
+  {
+    clear H T.
+    induction P as [n | | P IH | x y P IH | x P IH | P IH Q IHQ | P IH | P IH].
+    - simpl. reflexivity.                                  (* PVar *)
+    - simpl. reflexivity.                                  (* PZero *)
+    - simpl. rewrite IH. reflexivity.                      (* PTau *)
+    - simpl. rewrite IH. reflexivity.                      (* POut *)
+    - simpl.                                               (* PIn *)
+      assert (Hup : ren (upren (fun n : nat => n)) P = ren (fun n : nat => n) P).
+      { apply ren_ext. intros [|q]; reflexivity. }
+      rewrite Hup. rewrite IH. reflexivity.
+    - simpl. rewrite IH. rewrite IHQ. reflexivity.        (* PPar *)
+    - simpl.                                               (* PRes *)
+      assert (Hup : ren (upren (fun n : nat => n)) P = ren (fun n : nat => n) P).
+      { apply ren_ext. intros [|q]; reflexivity. }
+      rewrite Hup. rewrite IH. reflexivity.
+    - simpl. rewrite IH. reflexivity.                      (* PRep *)
+  }
+  assert (Hinj : forall n m, has (None :: Gamma') n -> has (None :: Gamma') m ->
+                (fun n : nat => n) n = (fun n : nat => n) m -> n = m).
+  { intros n m Hn Hm E. exact E. }
+  assert (Hpts : forall n T', get (None :: Gamma') n = Some (Some T') ->
+                 get (Some T :: Gamma') ((fun n : nat => n) n) = Some (Some T')).
+  {
+    intros n T' Hg.
+    destruct n as [|n].
+    + simpl in Hg. discriminate.
+    + exact Hg.
+  }
+  pose proof (ren_typed (None :: Gamma') P H (fun n : nat => n)
+                (Some T :: Gamma') Hinj Hpts) as Hr.
+  rewrite Hid in Hr.
+  exact Hr.
+Qed.
 (* weaken_nil：空上下文中类型化的进程，在单元素上下文中仍类型化。
    空上下文无任何资源可用，填入头不影响。是weaken_none_head的越界版。 *)
+
+Lemma upren_id_pt : forall n, upren (fun n : nat => n) n = n.
+Proof.
+  intros [|n]; reflexivity.
+Qed.
+
+Lemma ren_id : forall P, ren (fun n : nat => n) P = P.
+Proof.
+  induction P as [n | | P IH | x y P IH | x P IH | P IH Q IHQ | P IH | P IH].
+  - simpl. reflexivity. (* PVar *)
+  - simpl. reflexivity. (* PZero *)
+  - simpl. rewrite IH. reflexivity. (* PTau *)
+  - simpl. rewrite IH. reflexivity. (* POut *)
+  - simpl. (* PIn *)
+    assert (Hup : ren (upren (fun n : nat => n)) P = ren (fun n : nat => n) P).
+    { apply ren_ext. intro q. apply upren_id_pt. }
+    rewrite Hup. rewrite IH. reflexivity.
+  - simpl. rewrite IH. rewrite IHQ. reflexivity. (* PPar *)
+  - simpl. (* PRes *)
+    assert (Hup : ren (upren (fun n : nat => n)) P = ren (fun n : nat => n) P).
+    { apply ren_ext. intro q. apply upren_id_pt. }
+    rewrite Hup. rewrite IH. reflexivity.
+  - simpl. rewrite IH. reflexivity. (* PRep *)
+Qed.
+
 Lemma weaken_nil : forall P T, typed [] P -> typed [Some T] P.
 Proof.
-  (* S01直接证明有语法错误，重置为Admitted，后续交DS主谋重新证明。 *)
-Admitted.
-
+  intros P T H.
+  assert (Hinj : forall n m, has [] n -> has [] m ->
+    (fun n : nat => n) n = (fun n : nat => n) m -> n = m).
+  { intros n m Hn Hm E. destruct Hn as [T' Hget]. simpl in Hget. discriminate. }
+  assert (Hpts : forall n T', get [] n = Some (Some T') ->
+    get [Some T] ((fun n : nat => n) n) = Some (Some T')).
+  { intros n T' Hn. simpl in Hn. discriminate. }
+  pose proof (ren_typed [] P H (fun n : nat => n) [Some T] Hinj Hpts) as Hr.
+  rewrite ren_id in Hr.
+  exact Hr.
+Qed.
 (* typed_any_ctx：完全无变量的进程(~fv_at P 0)可在任意上下文中类型化。
    ~fv_at P 0意味着P不含PVar/POut/PIn（所有nat index>=0），
    仅由PZero/PTau/PPar/PRes/PRep构成，不消耗上下文资源。 *)
