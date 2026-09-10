@@ -9264,3 +9264,73 @@ Qed.
 还有 pick_prefix_correct：从 cell_split g g12 g3 -> cell_split g12 g1 g2 -> cell_split g g1 (pick_prefix ...) /\ cell_split (pick_prefix ...) g2 g3。pick_prefix 返回 option(option ty)，在每个位上选择 Some z 如果存在非 None 候选，否则 None。这保证选择的值在该位满足 cell_split。我们需要构造 G23 列表，使得在对应位上 get G23 n = pick_prefix ... n，同时要处理 None 越界与 Some None。 pick_prefix 可能返回 None，代表该位越界空；如果列表元素为 None 呢？get G23 n = Some None 是“在位空”。因此构造 G23 时，对于某个位置 n，如果 pick_prefix 返回 None，那我们不应该在 G23 中该位放 Some None；应让 get G23 n = None，即该位越界。但列表 get 的 None 只有列表长度不够时才产生。如果我们固定长度等于某个 L，超出 L 才会 None；在 L 内元素层不能是 None 吗？可以元素为 None，但 get G23 n = Some None，不同于 None。因此要精确对应 pick_prefix 的 None，需要让 G23 在某个位置截断，后续越界。
 
 但注意：split 定义是逐位对所有 n 性质。如果 G23 在某些位置越界，则 get G23 n = None，需要满足 cell_split g g1 None 和 cell_split None g2 g3。如果 pick_prefix = None 确实合法，那 cell 性质满足；越界 None 是合法的（在 split 中 None 可以分配给空侧）。但列表必须有有限长度，如何让 G23 在某个 n 位之后全越界，而之前 pick_prefix 可能 Some、可能 None。关键：pick_prefix 选择有“Some 优先”，保证了 pick_prefix 的非 None 位形成前缀吗？结晶017 指出“Some 优先选出的 G23 非 None 位自然是前缀，None 只落在 
+
+
+## 2026-09-10 17:42:37 [proof_loop] split_assoc · round1 · DS输出
+
+继续输出 split_assoc 的完整证明。
+
+```coq
+(* =====================================================================
+   split_assoc 的证明
+   策略：
+   - 取 L := min (length G) (max (length G2) (length G3))；
+   - 对 n < L，由前提证明 pick_prefix 返回非 None（因为在位且 g2/g3 至少一者非越界）；
+   - 用 pick_prefix 的非 None 值构造列表 G23；
+   - 对 n >= L 的两种情况分别用“越界 None”和“唯一候选 None”处理。
+   ===================================================================== *)
+
+Lemma pick_prefix_non_none : forall (g g12 g3 g1 g2 : option (option ty)),
+  cell_split g g12 g3 -> cell_split g12 g1 g2 ->
+  g <> None -> (g2 <> None \/ g3 <> None) ->
+  pick_prefix g g12 g3 g1 g2 <> None.
+Proof.
+  intros g g12 g3 g1 g2 H1 H2 Hg_ne Hg23_ne.
+  unfold pick_prefix.
+  destruct (excluded_middle_informative
+             (exists z : option (option ty),
+                z <> None /\ cell_split g g1 z /\ cell_split z g2 g3))
+    as [Hex | Hnone].
+  - (* 存在非 None 候选，pick_prefix 不会返回 None *)
+    destruct (constructive_indefinite_description
+                (fun z : option (option ty) =>
+                   z <> None /\ cell_split g g1 z /\ cell_split z g2 g3)
+                Hex) as [z Hz].
+    simpl. intro Hc. discriminate.
+  - (* 无非 None 候选，但由 H1/H2 与 g<>None、g2/g3 非 None 可构造 Some None 候选，矛盾 *)
+    exfalso.
+    destruct (split_assoc_cell g g12 g3 g1 g2 H1 H2) as [z Hz].
+    destruct z as [e|].
+    + (* z = Some e 是非 None 候选，与 Hnone 矛盾 *)
+      apply Hnone. exists (Some e). split; [discriminate | exact Hz].
+    + (* z = None；证明 Some None 也是候选 *)
+      destruct Hz as [Hz1 Hz2].
+      assert (Hz1' : cell_split g g1 (Some None)).
+      { destruct Hz1 as [[Hg1 Hempty] | [Hempty Hg1]].
+        - left. split; [exact Hg1 | right; reflexivity].
+        - exfalso. apply Hg_ne. exact Hempty. }
+      assert (Hz2' : cell_split (Some None) g2 g3).
+      { destruct Hg23_ne as [Hg2_ne | Hg3_ne].
+        - (* g2 <> None，故 g2 必为 Some None；Hz2 中 g2/g3 结构 *)
+          destruct Hz2 as [[Hg2_n Hempty3] | [Hg3_n Hempty2]].
+          + exfalso. apply Hg2_ne. exact Hg2_n.
+      
+[reasoning摘要]
+我们需要回答中文，给完整 Coq 代码。任务：证出 split_assoc，当前 Admitted。材料已有大量辅助引理。需要直接产出从声明到 Qed 的完整新版本。
+
+我们需要理解目标：
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+在 Layer1/Layer2 上下文，split 定义：
+split Gamma Gamma1 Gamma2 := forall n,
+  (get Gamma1 n = get Gamma n /\ (get Gamma2 n = None \/ get Gamma2 n = Some None))
+  \/ (get Gamma2 n = get Gamma n /\ (get Gamma1 n = None \/ get Gamma1 n = Some None)).
+
+已经有 split_assoc_cell 和 pick_prefix_correct，以及 H23_val，但主定理 Admitted。可能需要利用 pick_prefix 逐位构造 G23，并保证非 None 前缀性。材料里有很多工具，可能我们只需完成 split_assoc 证明，利用 pick_prefix 和 H23_val？但 pick_prefix 是每位置 cell 的中间场域，逐位构造 need prefix condition: 非 None 位成前缀。H23_val 似乎是旧的 G2 优先 G3 兜底，但之前结晶017 说 helper 曾走错；现在有 pick_prefix 正确，但未见证明 pick_prefix 构造的 G23 的非 None 位前缀性。
+
+我们需要从材料看是否有 pick_prefix 相关引理例如 pick_prefix_none_suffix 或等等。材料末尾只有 pick_prefix_correct 和 split_assoc Admitted。任务就是补 split_assoc。
+
+可能需要设计证明，用经典选择逐位取 pick_prefix 值，然后构造 ctx，证明其 split 两条件。但需要前缀性才能定义一个列表：每个位置一个 option(option ty) -> 能收集为 ctx。如果我们用 setby f (repeat None L) 0，其中 f 基于 pick_prefix 和 get 原位，就能得到位置 n 的 get 值为 Some (pick_prefix ...) if n<L。无需证明 pick_prefix 非 None 前缀？setby 构造固定长度 L 的列表，位置 n 越界 get 为 None。我们需要的 G23 长度怎么选？需要 G23 可能包含 None 越界？split 允许 get G23 n = None or Some None as empty side. 对于 G23 作为两侧之一，其 get 值可能是 None（越界） or Some None（在位空） or Some (Some T)（实有）。固定长度 L 构造，在 n < L 是 Some (chosen value)，n >= L 是 None。如果选择的值本身是 None，则在位置 n get G23 n = Some None（在位空），不是越界。但 s
