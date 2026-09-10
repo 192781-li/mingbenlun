@@ -7,5 +7,17 @@
   "resource": "coq/theories/ALL/Layer2.v（commit 90eff99，not_free_in在第180行左右，typed_strengthen_unused在第276行左右）",
   "key_insight": "strengthening四引理全部Qed，ty_par的最后工具就位了。",
   "action": "1)编译验证Layer2.v 2)用typed_strengthen_unused证ty_par 3)导出PPar 4)substitution_general整体Qed 5)congruence",
-  "next_expected": "S04编译验证后证完ty_par，Admitted从4降到2"
+  "next_expected": "S04编译验证后证完ty_par，Admitted从4降到2",
+  "last_update": "2026-09-10 23:50",
+  "current_task": "任务账本大清查+OB-015根因定位+双向通信通道建成",
+  "pending_for_s04": [
+    "#005 按OB-015规格修split_assoc基例(推荐路线甲trim)",
+    "#006 刷新过期的S04_signal(needs_s01应转false)",
+    "先coqc验证typed_res_par_l/r(J3独立可先转绿)"
+  ],
+  "latest_findings": "line2517根因=assoc_build[]基例见证过短(OB-015),非tactic小错;恢复丢失结晶012-018,新增019",
+  "needs_s04": true,
+  "current_focus": "OB-015+OB-016贯穿证明策略已交付（choose路线，不用H23_val），等S04执行DS",
+  "latest_to_s04": "#007 OB-015/016策略",
+  "blocking_items": []
 }

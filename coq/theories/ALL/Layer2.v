@@ -2493,6 +2493,12 @@ Fixpoint assoc_build (G G12 G3 G1 G2 : ctx) : ctx :=
                 end
       end
   end.
+(* S01注（2026-09-10，OB-015）：上面 [] => [] 与 None=>[] 两个停止点在
+   "G已空但G2/G3仍有在位空位Some None"时构造的见证过短，是line2517的根因。
+   完整根因分析与两条修复路线（fuel尾部构造 / 上下文尾部None规范化）见
+   docs/notes/Coq形式化/S01给S04_split_assoc基例OB-015根因与修复规格_20260910.md
+   本环境无coqc，不盲改，交DS按规格编译迭代。 *)
+
 
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
