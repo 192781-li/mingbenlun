@@ -9450,3 +9450,230 @@ We need from Layer1/Layer2. Need understand typed rules and context lemmas.
 Goal: Given typed Gamma (PRes (PPar P Q)). Inversion gives exists T, typed (Some T :: Gamma) (PPar P Q). Then inversion/par_elim gives split (Some T::Gamma) Γ1 Γ2, typed Γ1 P and typed Γ2 Q, with ~ fv_at Q 0. Need produce typed Gamma (PPar (PRes P) Q). Need split Gamma ? ? such that typed (some context) (PRes P) and typed another Q. For PRes P needs typed (Some S :: Γ1') P. Since typed Γ1 P under split of Some T::Gamma. We can perhaps set Γ1 with head T? Wait P is typed under Γ1 where split (Some T::Gamma) Γ1 Γ2. Since Q not free at 0, strengthen Q wrt position 0 in Γ2, and maybe move resource at head? We need build split Gamma (Some T? maybe?) ... Let's reason.
 
 We need prove typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q). In linear type, if P doesn't use the new bound channel? Actually P may or may not use x=0? Congruence requires ~ fv_at Q 0, so Q doesn't use channel 0; P may use it. Then restriction of parallel P|Q equals P res with Q outside: (νx)(P|Q) ≡ (νx)P | Q when Q not free x. Since Q not use x, the newly bound x belongs to P side (possibly), and other resources split
+
+
+## 2026-09-10 18:36:38 [proof_loop] typed_res_par_l · round2 · DS输出
+
+```coq
+(* =====================================================================
+   新增辅助引理：在 ~ fv_at P k 条件下，subst_var m k P 是恒等代换。
+   存在论意义：操作权不流经位置 k（且其后无任何真实名字被引用）时，
+   撤除该位置只带来名字的重编号，对不引用它的进程不产生实质改变。
+   ===================================================================== *)
+Lemma subst_var_id_under_no_fv : forall (P : proc), forall k m,
+  ~ fv_at P k -> subst_var m k P = P.
+Proof.
+  induction P as [n | | P IHP | x y P IHP | x P IHP | P1 IHP1 P2 IHP2 | P IHP | P IHP];
+    intros k m Hnf; simpl in *.
+  - (* PVar n *)
+    apply f_equal. apply subst_name_lt.
+    unfold fv_at in Hnf. assert (Hlt : n < k) by lia. exact Hlt.
+  - (* PZero *)
+    reflexivity.
+  - (* PTau P *)
+    f_equal. exact (IHP k m Hnf).
+  - (* POut x y P *)
+    assert (Hxlt : x < k) by (intro Hge; apply Hnf; left; exact Hge).
+    assert (Hylt : y < k) by (intro Hge; apply Hnf; right; left; exact Hge).
+    assert (HnFP : ~ fv_at P k) by (intro Hp; apply Hnf; right; right; exact Hp).
+    rewrite (subst_name_lt m k x Hxlt).
+    rewrite (subst_name_lt m k y Hylt).
+    f_equal. exact (IHP k m HnFP).
+  - (* PIn x P *)
+    assert (Hxlt : x < k) by (intro Hge; apply Hnf; left; exact Hge).
+    assert (HnFP : ~ fv_at P (S k)) by (intro Hp; apply Hnf; right; exact Hp).
+    rewrite (subst_name_lt m k x Hxlt).
+    f_equal. exact (IHP (S k) (S m) HnFP).
+  - (* PPar P1 P2 *)
+    destruct (Classical_Prop.not_or_and _ _ Hnf) as [Hnf1 Hnf2].
+    f_equal; [exact (IHP1 k m Hnf1) | exact (IHP2 k m Hnf2)].
+  - (* PRes P *)
+    f_equal. exact (IHP (S k) (S m) Hnf).
+  - (* PRep P *)
+    f_equal. exact (IHP k m Hnf).
+Qed.
+
+(* =====================================================================
+   typed_res_par_l：限制-并行交换下 typing 保持（左向）
+   存在论：当右侧进程 Q 完全不引用绑定位（~ fv_at Q 0）时，PRes 的绑定
+   可移出 PPar 而不改变两侧进程的类型——限制的作用域在并行组合中可收缩。
+   证明要点：
+   - 用 split_remove_at_both 去掉头部 Some T 得到 split Gamma；
+   - P 所在侧在位置 0 持有 Some T，由 insert_remove_at_id 恢复其头部
+     结构，从而得到 typed (remove_at 0 D_P) (PRes P)；
+   - Q 所在侧位置 0 为空（None 或 Some None），若
+[reasoning摘要]
+我们需要回答用户。用户要求证明 typed_res_par_l，当前 Admitted。需要给完整新版本从声明到 Qed。但前面我们（DeepSeek？）之前尝试说可能不成立并 admit。现在证伪守卫要求不能声称假而无反例，默认真，继续构造证明。
+
+需要查看材料。我们在 S04 主证明者。目标：证明 typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 -> typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
+
+这是 Layer2 结构性同余保持 typing 的一部分。我们有 cong_res_par : forall P Q, ~ fv_at Q 0 -> congruence (PRes (PPar P Q)) (PPar (PRes P) Q). 需要 typed_res_par_l/r 分别保持。但注意 de Bruijn 索引：PRes 绑定器下 PPar P Q 中 Q 的 free variable 索引相对 S。在外层 PPar (PRes P) Q，Q 的索引没有绑定器偏移。因此同一个 Q 从绑定器内移到外，索引需要减1（或用 ren）。然而 cong_res_par 规则没有重命名，只是直接移动。这可能确实不保 typed，除非 typing 允许悬空？实际上在 de Bruijn 线性类型系统中，PRes (PPar P Q) 规则：typed (Some T :: Gamma) (PPar P Q)，即 Q 在 Some T::Gamma 下类型化。目标 typed Gamma (PPar (PRes P) Q)，要求 Q 在 Gamma 下类型化（某些子上下文）。同一个 Q 可能不在 Gamma 下类型化。标准 pi-calculus 中 scope extrusion: (νa)(P|Q) ≡ P|νa Q if a not free in P，需要把 Q 里的 a 索引调整？通常 de Bruijn 需显式 rename Q 中 0 到其他。这里 typed 规则 Q 可能引用 0，在 PRes 内 Q 可引用位置0（由 split 分配 Some T?），移出后位置0不再是绑定存在，需要 Q 经过 weakening/strengthening。但前提 ~fv_at Q 0 只说明 Q 不引用位置0（在 PRes 内也需从1开始？ fv_at Q 0 表示 no free vars >=0? 实际上 fv_at Q 0 表示任何 var >=0，即所有变量？不对 fv_at Q0 True if any variable n>=0? 那~fv_at Q 0 表示没有变量，即 Q closed? 这个定义在 Layer2：fv_at P k: POut x y Q => x >= k \/ y >= k \/ fv_at Q k. Therefore fv_at Q 0 = any var >=0 = all variables. ~fv_at Q 0 iff no free variables at all = closed. 那 cong_res_par 允许 Q closed（不引用0层任何变量），那么 Q 在内/外层索引一致，因为不引用0，但可能有绑定器？closed 无自由变量，绑定器内子项可引用其自身绑定，索引与外部相同。类型化也应保持。
+
+因此证明可行：Q closed. 需要从 t
+
+
+## 2026-09-10 18:41:14 [proof_loop] typed_res_par_l · round3 · DS输出
+
+```coq
+(* =====================================================================
+   辅助引理：不引用位置 k 的进程中，代换变更为恒等。
+   ===================================================================== *)
+Lemma subst_var_id_under_no_fv : forall (P : proc), forall k m,
+  ~ fv_at P k -> subst_var m k P = P.
+Proof.
+  induction P as [n | | P IHP | x y P IHP | x P IHP | P1 IHP1 P2 IHP2 | P IHP | P IHP];
+    intros k m Hnf; simpl in *.
+  - (* PVar n *)
+    assert (Hlt : n < k) by lia.
+    rewrite (subst_name_lt m k n Hlt). reflexivity.
+  - (* PZero *) reflexivity.
+  - (* PTau P *) f_equal. exact (IHP k m Hnf).
+  - (* POut x y P *)
+    assert (Hxlt : x < k) by (intro Hge; apply Hnf; left; exact Hge).
+    assert (Hylt : y < k) by (intro Hge; apply Hnf; right; left; exact Hge).
+    assert (HnFP : ~ fv_at P k) by (intro Hp; apply Hnf; right; right; exact Hp).
+    rewrite (subst_name_lt m k x Hxlt).
+    rewrite (subst_name_lt m k y Hylt).
+    f_equal. exact (IHP k m HnFP).
+  - (* PIn x P *)
+    assert (Hxlt : x < k) by (intro Hge; apply Hnf; left; exact Hge).
+    assert (HnFP : ~ fv_at P (S k)) by (intro Hp; apply Hnf; right; exact Hp).
+    rewrite (subst_name_lt m k x Hxlt).
+    f_equal. exact (IHP (S k) (S m) HnFP).
+  - (* PPar P1 P2 *)
+    assert (Hnf1 : ~ fv_at P1 k) by (intro H; apply Hnf; left; exact H).
+    assert (Hnf2 : ~ fv_at P2 k) by (intro H; apply Hnf; right; exact H).
+    f_equal; [exact (IHP1 k m Hnf1) | exact (IHP2 k m Hnf2)].
+  - (* PRes P *)
+    f_equal. exact (IHP (S k) (S m) Hnf).
+  - (* PRep P *)
+    f_equal. exact (IHP k m Hnf).
+Qed.
+
+(* =====================================================================
+   关键引理：若 P 在头部为空（None 或 Some None）的上下文 C 中类型化，
+   则在头部添加类型 T 且去掉原空位后的上下文中仍类型化。
+   ===================================================================== *)
+Lemma typed_weaken_none_head : forall P C T,
+  typed C P ->
+  get C 0 = None \/ get C 0 = Some None ->
+  typed (Some T :: remove_at 0 C) P.
+Proof.
+  intros P C T Hty Hempty.
+  induction Hty as [
+    Gamma
+  | Gamma x 
+[reasoning摘要]
+我们被要求给出 typed_res_par_l 的完整证明。之前的尝试中提到了一个辅助引理 subst_var_id_under_no_fv，但里面使用了 Classical_Prop.not_or_and 可能是幻觉？我们需确保所有引用存在。材料中没有 Classical_Prop。我们需要从 Stdlib 可能 Classical? 我们 Require Import ClassicalEpsilon，但没有 Classical_Prop。也许可以使用 not_or_and 吗？标准库中可能有。但为了安全，我们应自证所需的析取否定。我们还要修复辅助引理中的 'Hp' 错误？用户说引用了 ['Hp'] 不存在。可能是在 subst_var_id_under_no_fv 的证明中? 让我检查。在 POut 分支中，我写了：
+
+```
+assert (HnFP : ~ fv_at P k) by (intro Hp; apply Hnf; right; right; exact Hp).
+```
+
+这里的 Hp 是 intro 引入的局部变量，不是引用材料。用户说 “你引用了 ['Hp']，但材料A、本轮代码块定义中都不存在。” 可能是指我在某个地方用了 Hp 但未绑定？我在 POut 的最终 `exact (IHP k m HnFP)` 没问题。但在 PRes 分支中：
+
+```
+- (* PRes P *)
+    f_equal. exact (IHP (S k) (S m) Hnf).
+```
+
+这没问题。可能是在之前的 typed_res_par_l 中？我检查 typed_res_par_l 的证明，没有 Hp。或许用户指的是我引用了 Classical_Prop.not_or_and，而该名称不存在，或者 not_or_and 里的参数？用户说引用了 ['Hp'] 不存在，也许是看串了。我们最好重新给出完整、确保每个名称都存在且可编译。
+
+我们需要证明 typed_res_par_l。我们需要谨慎，因为之前的证明可能仍有漏洞。
+
+先审题：材料A中已有许多引理，包括 split_remove_at_both, split_remove_none_both, insert_remove_at_id, insert_none_remove_id, substitution_none_strengthen, subst_var_id_under_no_fv? 实际上 submaterial 里没有 subst_var_id_under_no_fv，是我们自己添加的。但我们需要它。
+
+需要检查 subst_var_id_under_no_fv 的证明是否可行。关键是 fv_at 定义：``fv_at P k`` 表示 P 在深度 k 处是否引用某个变量？定义是：
+- PVar n => n >= k
+- POut x y Q => x >= k \/ y >= k \/ fv_at Q k
+- PIn x Q => x >= k \/ fv_at Q (S k)
+- PPar Q R => fv_at Q k \/ fv_at R k
+- PRes Q => fv_at Q (S k)
+- PRep Q => fv_at Q k
+- PTau Q => fv_at Q k
+- PZero False
+
+因此 ~ fv_at P k 意味着所有自由变量都在 k 以下（相对当前深度）。我们需要证明 subst_var m k P = P 当 ~ f
+
+
+## 2026-09-10 18:43:31 [proof_loop] typed_res_par_l · round4 · DS输出
+
+```coq
+(* =====================================================================
+   INSERT-BEFORE: Lemma subst_var_id_under_no_fv.
+   存在论意义：进程完全不引用位置 k 时，撤除该位置（代换）不改变进程本身。
+   ===================================================================== *)
+Lemma subst_var_id_under_no_fv : forall (P : proc), forall k m,
+  ~ fv_at P k -> subst_var m k P = P.
+Proof.
+  induction P as [n | | P IHP | x y P IHP | x P IHP | P1 IHP1 P2 IHP2 | P IHP | P IHP];
+    intros k m Hnf; simpl in *.
+  - (* PVar n *)
+    assert (Hlt : n < k) by lia.
+    rewrite (subst_name_lt m k n Hlt). reflexivity.
+  - (* PZero *) reflexivity.
+  - (* PTau P *)
+    f_equal. exact (IHP k m Hnf).
+  - (* POut x y P *)
+    assert (Hxlt : x < k) by (intro Hge; apply Hnf; left; exact Hge).
+    assert (Hylt : y < k) by (intro Hge; apply Hnf; right; left; exact Hge).
+    assert (HnFP : ~ fv_at P k) by (intro Hp; apply Hnf; right; right; exact Hp).
+    rewrite (subst_name_lt m k x Hxlt).
+    rewrite (subst_name_lt m k y Hylt).
+    f_equal. exact (IHP k m HnFP).
+  - (* PIn x P *)
+    assert (Hxlt : x < k) by (intro Hge; apply Hnf; left; exact Hge).
+    assert (HnFP : ~ fv_at P (S k)) by (intro Hp; apply Hnf; right; exact Hp).
+    rewrite (subst_name_lt m k x Hxlt).
+    f_equal. exact (IHP (S k) (S m) HnFP).
+  - (* PPar P1 P2 *)
+    assert (Hnf1 : ~ fv_at P1 k) by (intro H; apply Hnf; left; exact H).
+    assert (Hnf2 : ~ fv_at P2 k) by (intro H; apply Hnf; right; exact H).
+    f_equal; [exact (IHP1 k m Hnf1) | exact (IHP2 k m Hnf2)].
+  - (* PRes P *)
+    f_equal. exact (IHP (S k) (S m) Hnf).
+  - (* PRep P *)
+    f_equal. exact (IHP k m Hnf).
+Qed.
+
+(* =====================================================================
+   替换 Lemma typed_res_par_l 的 Admitted 为以下完整证明。
+   存在论意义：PRes 的绑定作用域可收缩到 P 一侧，只要 Q 不引用该绑定。
+   ===================================================================== *)
+Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
+Proof.
+  intros Ga
+[reasoning摘要]
+我们需要理清当前任务和材料。用户要求：完整证出 typed_res_par_l（当前 Admitted），给从声明行到 Qed 的完整新版本。上一轮我给了一个证明，但里面有 admit 和引用了不存在的 Hp, use_weaken_none_head，被拦截。现在要重新给出完整可编译的证明，不允许 admit。
+
+需要分析材料 A 中已有的引理和定义。我们要证明：
+
+Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
+
+注意 Layer2.v 中 typed_res_par_r 也是 Admitted。本轮只要求 typed_res_par_l？任务说“请完整证出 typed_res_par_l（当前为 Admitted/admit），给从声明行到 Qed. 的完整新版本。”当前 Layer2.v 里 typed_res_par_l 是 Admitted。对。
+
+我们需要构造一个完整证明，使用材料A已有引理，不能再引入未定义引理。必要时自己补小引理并证到 Qed。
+
+回顾已有引理：
+- typed_strengthen_unused：typed C P -> not_free_in P u = true -> typed (set_none C u) P.
+- subst_var_id_under_no_fv？ 这个上一轮我定义并证明了，但还没在材料A中？我要再次完整给出，可以。
+- substitution_none_strengthen：D k m Q, k <= length D -> typed (insert_none_at k D) Q -> typed D (subst_var m k Q).
+- split_remove_none_both：split (insert_none_at k D) G1 G2 -> split D (remove_at k G1) (remove_at k G2).
+- split_remove_at_both：split (insert_at k T Gamma) G1 G2 -> split Gamma (remove_at k G1) (remove_at k G2)。
+- insert_remove_at_id, insert_none_remove_id.
+- set_none_preserves_some, etc.
+- get/ remove_at 引理。
+
+核心问题：typed_res_par_l 是否可证？让我们仔细分析。
+
+规则：
+ty_res: typed (Some T :: Gamma) P -> typed Gamma (PRes P).
+ty_par: split Gamma Gamma1 Gamma2 -> typed Gamma1 P -> typed Gamma2 Q -> typed Gamma (PPar P Q).
+
+要证 typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q)，前提 ~ fv_at Q 0。
+
+从假设 inversion 得到：
+Hty: typed Gamma (PRes (PPar P Q))
+inversion Hty as [Gamma' P0 T Hbody]. Hbod
