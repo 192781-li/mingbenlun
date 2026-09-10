@@ -382,7 +382,8 @@
         "docs/notes/Coq形式化/S01给S04_split_assoc基例OB-015根因与修复规格_20260910.md"
       ],
       "s01_strategy": "choose_correct+G结构归纳，不用H23_val，见docs/notes/Coq形式化/S01给S04_OB015_OB016贯穿证明策略_choose路线_20260910.md",
-      "last_update": "2026-09-10 23:50"
+      "last_update": "2026-09-11 00:20",
+      "ob017_verdict": "typed_any_ctx为假,路线A改typed[]P前提;typed_res_par_l/r为真;见#008"
     }
   ],
   "growth_log": [
