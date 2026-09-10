@@ -122,10 +122,11 @@
 ## 快速导航
 
 ### 下载合订本
-| 格式 | 下载 |
-|---|---|
-| Markdown | [生命论_合订本_v1.1.md](https://github.com/192781-li/mingbenlun/releases/download/v1.1-20260910/shengminglun_combined_v1.1.md) |
-| 纯文本 | [生命论_合订本_v1.1.txt](https://github.com/192781-li/mingbenlun/releases/download/v1.1-20260910/shengminglun_combined_v1.1.txt) |
+| 格式 | 下载 | 说明 |
+|---|---|---|
+| **网页版** | [生命论_合订本_v1.1.html](https://github.com/192781-li/mingbenlun/releases/download/v1.1-20260910/shengminglun_combined_v1.1.html) | **推荐**：下载后双击用浏览器打开，排版精美直接阅读 |
+| Markdown | [生命论_合订本_v1.1.md](https://github.com/192781-li/mingbenlun/releases/download/v1.1-20260910/shengminglun_combined_v1.1.md) | 源码格式，适合编辑 |
+| 纯文本 | [生命论_合订本_v1.1.txt](https://github.com/192781-li/mingbenlun/releases/download/v1.1-20260910/shengminglun_combined_v1.1.txt) | 无格式，适合阅读器 |
 
 > 12卷+卷首+尾声，119篇，59.7万字。v1.1已过滤"待入全本"等过程性状态标注，内容全部融入全本。由S05信息分站自动构建，通过GitHub Releases发布。
 
