@@ -10838,3 +10838,381 @@ destruct H2 as [[H1g H2]|[H2 H1g]].
   simpl; split; firstorder.
 
 `destruct H12` 是等式 g12 = g。它可能把 g12 改写为 g，然后清除 H12，但不会清除 g。然后 `destruct H1g` 是 g1 = g12，可能把 g1 改写为 g12，然后 g12 已经被替换为 g，所以 g
+
+
+## 2026-09-10 23:33:37 [proof_loop] weaken_none_head · round1 · DS输出
+
+利用 **改名即恒等** 的路线：`None :: Gamma'` 的头部是“在位空位”，不可能提供 `Some (Some T)`，所以凡是从该上下文实际取到资源的位置都不是 0。取 `xi := fun n => n` 的恒等改名，`ren_typed` 的资源保持条件对所有 n>0 成立，n=0 分支由头部为 `None` 直接从 `H` 中排除；最后用 `ren id P = P` 收回原进程。这样不需要重新对 `typed` 归纳 8 个 case。
+
+```coq
+(* =====================================================================
+   替换 weaken_none_head 的证明
+   明性路线：头部 None 是寂然之位，操作权不流经；恒等改名 itf
+   使 Phase 1 的 ren_typed 可把源上下文头部空位直接替换为目标
+   Some T 头部。并补两个恒等改名小引理。
+   ===================================================================== *)
+
+Lemma upren_id : forall n, upren (fun n : nat => n) n = n.
+Proof.
+  intros [|n]; reflexivity.
+Qed.
+
+Lemma ren_id : forall P, ren (fun n : nat => n) P = P.
+Proof.
+  induction P; simpl.
+  - reflexivity.
+  - reflexivity.
+  - f_equal; exact IHP.
+  - f_equal; [reflexivity | reflexivity | exact IHP].
+  - f_equal; [reflexivity |
+      rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P);
+      [exact IHP | intros q; apply upren_id]].
+  - f_equal; [exact IHP1 | exact IHP2].
+  - f_equal.
+    rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P);
+    [exact IHP | intros q; apply upren_id].
+  - f_equal; exact IHP.
+Qed.
+
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+  intros Gamma' P T H.
+  rewrite <- (ren_id P).
+  pose (xi := fun n : nat => n).
+  apply (ren_typed (None :: Gamma') P H xi (Some T :: Gamma')).
+  - intros n m An Am E.
+    unfold xi in E.
+    exact E.
+  - intros n T0 Hn.
+    destruct n as [|n'].
+    + simpl in Hn. discriminate.
+    + simpl in Hn. exact Hn.
+Qed.
+```
+[reasoning摘要]
+我们需要产出完整可编译的 Coq 证明 weaken_none_head。需要先理解工程环境、材料里已有引理、不能使用未证明的。任务：完整证出 weaken_none_head。
+
+weaken_none_head statement:
+
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+
+直观上，把头部 in-place 空位 None 替换为 Some T，也就是头部资源加强/填充。由于进程 P 若不引用头部位置，则可任意替换。但 typed 的前提是 typed (None :: Gamma') P，其中 get (None :: Gamma') 0 = Some None（在位空），不能提供 Some(Some T) 给 ty_var/use，所以 P 不可能在位置0消耗或引用资源？不过在 typed 规则中，ty_var 需要 get Gamma x = Some(Some T')，所以 x=0 不可能从 Some None 得到。ty_out/ty_in 的 use 在位置0也不可能。所以头部位置没有被实际持有，因此替换为 Some T 不影响类型化。这本质上类似于 strengthening 的对偶，叫 weakening。材料已有 typed_strengthen_unused 说 not_free_in P u = true 时 set_none C u P。但我们要从 None 到 Some T，即 weaken head。可以利用 typed (None::Gamma') P 推导 not_free_in P 0 = true? 然后也许用某个引理 typed_weaken_unused? 没有。但是我们可以通过直接对 typed 归纳，8 个 case。这与 typed_strengthen_unused 类似但相反方向。
+
+需要避免使用 Admitted。weaken_none_head 目前 Layer2 里已经 Admitted 且还提到 weaken_nil。我们不能用 weaken_nil/typed_any_ctx 等 Admitted。只能使用材料 A 中已 Qed 的引理以及标准库。Layer2 中已经有了 weaken_none_head 之前的很多已 Qed 引理，包括 typed_strengthen_unused、split_strengthen、split_set_none、use_strengthen、set_none_comm 等。可以采取什么证明路径？
+
+方法一：对 typed 归纳，所有 case 逐位置变换头部 None->Some T，使用 get/split/use 保持。因为头部位置从未被实质持有 Some(Some T)，所以 split/use 结构中头部对应侧可能得到 Some None（在位空）或 None（越界）?? 注意源上下文是 None :: Gamma'，长度至少1，头部 get 0 = Some None。在 split 时，split (None::Gamma') Gamma1 Gamma2 的头部 cell: g=None? 元素层 t = None，get 层 Some t = Some None。cell_split 中 g=Some None。所以 split 性质要求在位置0：要么 Gamma1_0
+
+
+## 2026-09-10 23:36:43 [proof_loop] weaken_none_head · round2 · DS输出
+
+根因：之前 `ren_id` 里误用了条件等式 `ren_ext ...`，且没有把点态证明作为参数传进去；此外 `f_equal` 后没有用显式 bullet 控制目标数，导致 `Incorrect number of goals`。
+
+修正版：`ren_id` 中把 `ren_ext` 的第四个参数（点态相等证明）显式给出，使 `rewrite` 直接使用等式；`weaken_none_head` 用恒等改名 + `ren_typed` 完成，所有辅助引理当场 `Qed`。
+
+```coq
+(* =====================================================================
+   weaken_none_head：头部空位(None)到任意类型(Some T)的弱化
+   路线：恒等改名。头部 None 不可提供资源，因此 n=0 分支被前提排除；
+   n>0 分支原样保留。ren_typed 承担单射与资源保持。
+   ===================================================================== *)
+
+Lemma upren_id : forall n, upren (fun n : nat => n) n = n.
+Proof.
+  intros [|n]; reflexivity.
+Qed.
+
+Lemma ren_id : forall P, ren (fun n : nat => n) P = P.
+Proof.
+  induction P; simpl.
+  - reflexivity.
+  - reflexivity.
+  - f_equal. exact IHP.
+  - f_equal.
+    + reflexivity.
+    + reflexivity.
+    + exact IHP.
+  - f_equal.
+    + reflexivity.
+    + rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P
+                 (fun q => upren_id q)).
+      exact IHP.
+  - f_equal; [exact IHP1 | exact IHP2].
+  - f_equal.
+    rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P
+              (fun q => upren_id q)).
+    exact IHP.
+  - f_equal. exact IHP.
+Qed.
+
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+  intros Gamma' P T H.
+  rewrite <- (ren_id P).
+  apply (ren_typed (None :: Gamma') P H (fun n : nat => n) (Some T :: Gamma')).
+  - intros n m An Am E. exact E.
+  - intros [|n] T0 Hn; simpl in *; [discriminate | exact Hn].
+Qed.
+```
+[reasoning摘要]
+我们需要分析。上一版错误在 weaken_none_head 证明？用户给了之前的代码，但错误在 Layer2.v line 2607 "Tactic failure: Incorrect number of goals (expected 1 tactic)." 当前任务要完整证出 weaken_none_head。错误可能是之前替换段的某个 tactic 有问题？行号2607对应可能 split 之类。我们需要给出完整的 weaken_none_head 证明，确保无错。用户材料显示现在的 Layer2 里有 weaken_none_head 证明（已给）可能没编译？注意错误 "line 2607 characters 4-53" 可能对应 `apply (ren_typed ...);` 后两个 bullet 的第一个? 我们需要看看给的代码。
+
+他们给的上一个回答里代码：
+
+```coq
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+  intros Gamma' P T H.
+  rewrite <- (ren_id P).
+  pose (xi := fun n : nat => n).
+  apply (ren_typed (None :: Gamma') P H xi (Some T :: Gamma')).
+  - intros n m An Am E.
+    unfold xi in E.
+    exact E.
+  - intros n T0 Hn.
+    destruct n as [|n'].
+    + simpl in Hn. discriminate.
+    + simpl in Hn. exact Hn.
+Qed.
+```
+
+错误 Incorrect number of goals expected 1 tactic. 可能在 `apply (ren_typed ...)` 后生成了多个目标？ren_typed 有多个前提吗？Theorem ren_typed : forall Gamma P, typed Gamma P -> forall xi Delta, (forall n m, has Gamma n -> has Gamma m -> xi n = xi m -> n = m) -> (forall n T, get Gamma n = Some (Some T) -> get Delta (xi n) = Some (Some T)) -> typed Delta (ren xi P). 所以 apply (ren_typed (None :: Gamma') P H xi (Some T :: Gamma')) 之后应该有两个目标？对，两个前提：单射和资源保持。我们用了两个 bullet，为什么错误 expected 1 goal? 可能因为 `rewrite <- (ren_id P).` 改变目标为 `typed (Some T :: Gamma') (ren (fun n => n) P)`? 然后 apply ren_typed with Gamma := None :: Gamma', P:=P, H? 注意 `ren_typed` 的全称 forall Gamma P, typed Gamma P -> ..
+
+
+## 2026-09-10 23:37:57 [proof_loop] weaken_none_head · round3 · DS输出
+
+根因：`ren_id` 的证明中，POut/PIn/PRes 分支使用 `f_equal` 后，剩余子目标经 `rewrite` 或直接处理时出现方向/变量名不匹配；上一版 `ren_id` 未使用显式 intro pattern 绑定归纳变量，导致 Coq 自动命名与 `exact IHP` 需匹配的目标不统一，最终在某个分支把 `P` 与 `ren id P` 反向统一失败。
+
+下面给出从 `upren_id`、`ren_id`、`weaken_none_head` 的完整修正版：显式命名归纳假设，每个构造子分支用独立 bullet 和精确 `f_equal`/`rewrite`，全部 `Qed` 收口。
+
+```coq
+(* =====================================================================
+   恒等改名基础设施：upren_id / ren_id
+   用于 weaken_none_head 的头部空位弱化，把 None::Gamma' 换成 Some T::Gamma'
+   ===================================================================== *)
+
+Lemma upren_id : forall n, upren (fun n : nat => n) n = n.
+Proof.
+  intros [|n]; reflexivity.
+Qed.
+
+Lemma ren_id : forall P, ren (fun n : nat => n) P = P.
+Proof.
+  induction P as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+    simpl.
+  - (* PVar *)
+    reflexivity.
+  - (* PZero *)
+    reflexivity.
+  - (* PTau *)
+    f_equal. exact IHP.
+  - (* POut *)
+    f_equal.
+    + reflexivity.
+    + reflexivity.
+    + exact IHP.
+  - (* PIn *)
+    f_equal.
+    + reflexivity.
+    + rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P
+                 (fun q => upren_id q)).
+      exact IHP.
+  - (* PPar *)
+    f_equal.
+    + exact IHP.
+    + exact IHQ.
+  - (* PRes *)
+    f_equal.
+    rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P
+              (fun q => upren_id q)).
+    exact IHP.
+  - (* PRep *)
+    f_equal. exact IHP.
+Qed.
+
+(* =====================================================================
+   weaken_none_head：头部空位(None)到任意类型(Some T)的弱化
+   路线：恒等改名。头部 None 不可提供资源，因此 n=0 分支被前提排除；
+   n>0 分支原样保留。ren_typed 承担单射与资源保持。
+   ===================================================================== *)
+
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+  intros Gamma' P T H.
+  rewrite <- (ren_id P).
+  apply (ren_typed (None :: Gamma') P H (fun n : nat => n) (Some T :: Gamma')).
+  - intros n m An Am E. exact E.
+  - intros [|n] T0 
+[reasoning摘要]
+我们需要理解错误。用户上一版在 ren_id 证明中，错误位于 line 2615 characters 6-17：`In environment n, n0 : nat`? 可能是 PIn case 或 PRes case? 错误说 Unable to unify "P" with "ren (fun n => n) P". 说明在某个 case 中尝试 exact IHP 但 IHP 是 `ren (fun n:nat=>n) P = P`（方向正确？ `ren ... P = P`，目标可能是 `P = ren ... P`? 方向不对？ 回顾我们的代码：在 PIn case:
+
+```
+  - f_equal.
+    + reflexivity.
+    + rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P
+                 (fun q => upren_id q)).
+      exact IHP.
+```
+
+`f_equal` for `PIn x Q`? Actually induction P; simpl. For `PIn x P0`, goal is `PIn x (ren (upren (fun n:nat=>n)) P0) = PIn x P0`. After f_equal two goals: x=x (reflexivity) and `ren (upren ... ) P0 = P0`. Then rewrite `ren_ext ...` might rewrite to `ren (fun n=>n) P0 = P0`. Then exact IHP. That should work.
+
+But error says environment n, n0 : nat; P : proc; IHP : ren (fun n:nat=>n) P = P. Unable to unify "P" with "ren (fun n:nat=>n) P". This suggests in a goal maybe `P = ren ... P`? Or `exact IHP` expects `ren ... P = P` but goal is `P = ren ... P`? But error message "Unable to unify "P" with "ren (fun n => n) P"." That means unification failed: target equation maybe `ren ... P = P`? Actually exact IHP with IHP : `ren (fun n=>n) P = P` tries to unify `ren ... P = P` with goal. If goal is `ren ... P = P`, should unify. If goal is `P = ren ... P`, then unify left side? In Coq, unify `A = B` with `C = D` means A with C, B with D. IHP conclusion is `ren ... P = P`. If goal is `P = ren ... P`, then unify `ren ... P` with `
+
+
+## 2026-09-10 23:39:31 [proof_loop] weaken_none_head · round4 · DS输出
+
+根因：`ren_id` 证明的 POut 分支中，`f_equal` 产生的第三个子目标是 `P = ren (fun n : nat => n) P`（方向与归纳假设相反），而原代码直接 `exact IHP`，导致 `Unable to unify "P" with "ren ... P"`。其他分支方向正确，无需改动。修正办法：在该子目标先 `symmetry` 再 `exact IHP`。
+
+以下给出从 `upren_id`、`ren_id` 到 `weaken_none_head` 的完整可编译修正版，全部 `Qed` 收口。
+
+```coq
+(* =====================================================================
+   恒等改名基础设施：upren_id / ren_id
+   用于 weaken_none_head 的头部空位弱化，把 None::Gamma' 换成 Some T::Gamma'
+   ===================================================================== *)
+
+Lemma upren_id : forall n, upren (fun n : nat => n) n = n.
+Proof.
+  intros [|n]; reflexivity.
+Qed.
+
+Lemma ren_id : forall P, ren (fun n : nat => n) P = P.
+Proof.
+  induction P as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+    simpl.
+  - (* PVar *)
+    reflexivity.
+  - (* PZero *)
+    reflexivity.
+  - (* PTau *)
+    f_equal. exact IHP.
+  - (* POut *)
+    f_equal.
+    + reflexivity.
+    + reflexivity.
+    + symmetry. exact IHP.
+  - (* PIn *)
+    f_equal.
+    + reflexivity.
+    + rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P
+                 (fun q => upren_id q)).
+      exact IHP.
+  - (* PPar *)
+    f_equal.
+    + exact IHP.
+    + exact IHQ.
+  - (* PRes *)
+    f_equal.
+    rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P
+              (fun q => upren_id q)).
+    exact IHP.
+  - (* PRep *)
+    f_equal. exact IHP.
+Qed.
+
+(* =====================================================================
+   weaken_none_head：头部空位(None)到任意类型(Some T)的弱化
+   路线：恒等改名。头部 None 不可提供资源，因此 n=0 分支被前提排除；
+   n>0 分支原样保留。ren_typed 承担单射与资源保持。
+   ===================================================================== *)
+
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+  intros Gamma' P T H.
+  rewrite <- (ren_id P).
+  apply (ren_typed (None :: Gamma') P H (fun n : nat => n) (Some T :: Gamma')).
+  - intros n m An Am E. exact E.
+  - intros [|n] T0 Hn; simpl in *; [discrimina
+[reasoning摘要]
+我们需要理解错误。错误信息：在 Layer2.v line 2626 characters 6-17，环境 x,y:nat, P:proc, IHP: ren (fun n => n) P = P. Unable to unify "P" with "ren (fun n => n) P". 这说明某个地方 exact IHP 期望 P 但 IHP 是 ren id P = P，方向反了？实际上在 POut 分支中，目标可能是 ren (fun n => n) (POut x y P) = POut x y P。 simpl 之后目标为 POut x y (ren (fun n => n) P) = POut x y P。 f_equal 分解为 x=x, y=y, ren (fun n => n) P = P。最后一个目标 exact IHP 正好是 ren id P = P，所以应该可以。但错误显示 unable to unify "P" with "ren (fun n : nat => n) P"，说明某个地方 exact IHP 被应用在一个目标为 P = ren id P 的情况，例如可能我们误用了 symmetry？或者 rewrite 方向问题。
+
+看错误 line 2626，需要知道具体代码行。我们上一版 ren_id 证明中 POut 分支用了 f_equal 然后三个子目标，bullet 用 +。应该没错。但错误字符 6-17 对应的是 "exact IHP" 或 "reflexivity"? 在环境信息里显示 x,y,P,IHP,没有显示子目标。可能错误发生在 POut 分支的最后一个 exact IHP？而目标被 f_equal 分解后可能是 P = ren id P 而不是 ren id P = P？但 f_equal 对于构造函数 POut 应该产生参数相等的目标：第一个参数 x = x, 第二个 y = y, 第三个 ren id P = P。因为目标左边是 ren id (POut x y P) 等于 POut x y P。 simpl 后左边是 POut x y (ren id P)，右边 POut x y P。 f_equal 产生的第三个目标是 ren id P = P。所以 IHP 匹配。但错误说 unable to unify "P" with "ren ... P"，这意味着某处需要 P = ren id P。
+
+也许问题出现在我们使用 `rewrite (ren_ext ...)` 之后。错误环境是 x,y,P,IHP，没有 Q 等，所以不是 PIn/PRes 分支（PIn 有 x,P,IHP; PRes 有 P,IHP）。环境只是 x,y,P,IHP，这对应 POut 分支。在 POut 分支，我们用了 `f_equal. + reflexivity. + reflexivity. + exact IHP.` 这应该没问题。但错误显示无法统一 P with ren ... P。可能是 `exact IHP` 被应用的之前，某个 f_equal 或 simpl 改变了目标方向？需要检查 Coq 实际行为：在 `induction P as [...]; simpl.` 之后 POut 分支中目标是什么？我们预期是 `ren (fun n : nat => n) (POut x y P) = POut x y P`。 simpl 后是 `POut x y (ren (fun n : nat => n)
+
+
+## 2026-09-10 23:39:58 [proof_loop] weaken_none_head · round5 · DS输出
+
+根因：`ren_id` 的 `POut` 分支中，`symmetry` 把目标反转成 `P = ren id P`，而归纳假设是 `ren id P = P`，方向相反，于是 `exact IHP` 报“Unable to unify”。正确做法是删除该分支的 `symmetry`，直接 `exact IHP`。其余分支保持即可。
+
+以下给出从 `upren_id`、`ren_id` 到 `weaken_none_head` 的完整可编译版本，全程 `Qed` 闭环：
+
+```coq
+(* =====================================================================
+   恒等改名基础设施：upren_id / ren_id
+   用于 weaken_none_head 的头部空位弱化，把 None::Gamma' 换成 Some T::Gamma'
+   ===================================================================== *)
+
+Lemma upren_id : forall n, upren (fun n : nat => n) n = n.
+Proof.
+  intros [|n]; reflexivity.
+Qed.
+
+Lemma ren_id : forall P, ren (fun n : nat => n) P = P.
+Proof.
+  induction P as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+    simpl.
+  - (* PVar *)
+    reflexivity.
+  - (* PZero *)
+    reflexivity.
+  - (* PTau *)
+    f_equal. exact IHP.
+  - (* POut *)
+    f_equal.
+    + reflexivity.
+    + reflexivity.
+    + exact IHP.
+  - (* PIn *)
+    f_equal.
+    + reflexivity.
+    + rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P
+                 (fun q => upren_id q)).
+      exact IHP.
+  - (* PPar *)
+    f_equal.
+    + exact IHP.
+    + exact IHQ.
+  - (* PRes *)
+    f_equal.
+    rewrite (ren_ext (upren (fun n : nat => n)) (fun n : nat => n) P
+              (fun q => upren_id q)).
+    exact IHP.
+  - (* PRep *)
+    f_equal. exact IHP.
+Qed.
+
+(* =====================================================================
+   weaken_none_head：头部空位(None)到任意类型(Some T)的弱化
+   路线：恒等改名。头部 None 不可提供资源，因此 n=0 分支被前提排除；
+   n>0 分支原样保留。ren_typed 承担单射与资源保持。
+   ===================================================================== *)
+
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+  intros Gamma' P T H.
+  rewrite <- (ren_id P).
+  apply (ren_typed (None :: Gamma') P H (fun n : nat => n) (Some T :: Gamma')).
+  - intros n m An Am E. exact E.
+  - intros [|n] T0 Hn; simpl in *; [discriminate | exact Hn].
+Qed.
+```
+[reasoning摘要]
+我们需要理解错误。错误在 ren_id 的 POut 分支，`symmetry. exact IHP.` 仍报 Unable to unify "P" with "ren ..."? Wait after symmetry, goal should be `P = ren ... P`? Let's reason. 
+
+We are proving `ren (fun n => n) (POut x y P) = POut x y P` by induction. simpl. For POut, simpl computes ren: `POut x y (ren id P)`. Goal becomes `POut x y (ren id P) = POut x y P`. f_equal generates subgoals:
+- x = x (reflexivity)
+- y = y (reflexivity)
+- ren id P = P (IHP gives `ren id P = P`) exactly. So why previous error says unable to unify P with ren id P? Looking at previous code: They had `induction P as ...` and `IHP : ren ... P = P`. Then f_equal; [reflexivity | reflexivity | symmetry. exact IHP]. If goal after f_equal for third is `ren id P = P`, then IHP exact works, no symmetry needed. But error says "Unable to unify P with ren ... P". That indicates the goal might actually be `P = ren id P`? Hmm.
+
+Wait maybe due to f_equal in Coq, for POut, after simpl the target is `POut x y (ren id P) = POut x y P`; f_equal on the second constructor (POut has three arguments, two nats and proc). For comparison, f_equal might produce subgoal `ren id P = P`? Let's verify: Standard f_equal on equality of two applications with same constructor. If goal is `POut x y (ren id P) = POut x y P`, f_equal yields subgoals:
+x = x
+y = y
+ren id P = P
+Yes third is `ren id P = P`, IHP matches exactly. So why earlier error? The previous patch had `symmetry. exact IHP` and error persists at line 2638 characters 6-17 likely `symmetry. ex

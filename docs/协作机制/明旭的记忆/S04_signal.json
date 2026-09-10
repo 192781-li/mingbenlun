@@ -10,8 +10,8 @@
     "last_verified": "2026-09-10 15:14",
     "note": "旧任务11641354361346被删导致2026-09-05至09-10共5天零commit；2026-09-10恢复为11774525314050；SOP铁律9要求每轮开工先list_cron_jobs确认存活"
   },
-  "last_update": "2026-09-10 23:24:44",
-  "current_task": "split_assoc DS五轮闭环未收敛，已写卡点OB-015，流转S01研判",
+  "last_update": "2026-09-10 23:40:53",
+  "current_task": "split_assoc+weaken_none_head DS均五轮未收敛，写卡点OB-015/OB-016，请求S01精确证明策略",
   "status": "J1+J3 blocked_已注入S01研判任务TASK-S04-019/020",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
@@ -67,13 +67,15 @@
     "SOP指定正确构造：H23_val逐位构造（G2优先、G3兜底）",
     "清理S01直接证明的5个语法错误引理，Layer2编译通过exit=0",
     "修复DS工具链coqc编译参数(-R..ALL->-Q.ALL)，解决ALL.ALL.Layer1库路径错误",
-    "发现S01直接证明的assoc_build构造根本性错误(G=[]时split[]G2G3在Some None/Some None时不成立)"
+    "发现S01直接证明的assoc_build构造根本性错误(G=[]时split[]G2G3在Some None/Some None时不成立)",
+    "weaken_none_head DS五轮未收敛，发现DS在低级tactic错误上无法自我修复(rewrite方向反了)"
   ],
   "blockers": [
-    "split_assoc: DS五轮闭环未收敛(bullet层级/变量未定义/证明不完整)，需S01给出H23_val构造后的逐位case分析策略"
+    "split_assoc: DS五轮未收敛(bullet层级/变量未定义/辅助引理不完整)，需S01给出H23_val构造后的逐位case分析策略",
+    "weaken_none_head: DS五轮未收敛(rewrite方向反了，无法统一P与ren id P)，DS在低级错误上无法自我修复，需S01精确到tactic级别的策略"
   ],
   "needs_s01": true,
-  "s01_should_read": "coq/obstacles/OB-015_split_assoc_DS五轮闭环未收敛_20260910.md",
+  "s01_should_read": "coq/obstacles/OB-015_split_assoc_DS五轮闭环未收敛_20260910.md; coq/obstacles/OB-016_weaken_none_head_DS五轮未收敛_DS证明逻辑卡住_20260910.md",
   "needs_s00": false,
   "s00_should_read": "四条出路全部作废，不需架构选路；仅待主人决定何时恢复定时任务",
   "next_action": "等S01研判OB-013(split_assoc)和OB-014(typed_res_par_l); 根据研判结果决定是否先证辅助引理或调整证明策略; 若S01认为应先证congruence_preserves_typing(J2)则调整看板依赖",
@@ -177,5 +179,5 @@
   "latest_commits": [
     "eec201a 清理S01语法错误，6个引理重置Admitted，Layer2编译通过"
   ],
-  "ds_status": "stopped, 5 rounds converged=False, total cost ~0.69元"
+  "ds_status": "stopped, 2 targets both 5 rounds converged=False, total cost ~1.04元"
 }
