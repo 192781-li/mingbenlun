@@ -39,6 +39,10 @@ PHILOS = (
     r"哲学研究\S01对S04_substitution_general卡点研判_use关系代换_20260902.md",
     r"哲学研究\S01给S04_DeepSeek逐个证明指令包_4个引理一次只证一个_20260902.md",
     r"哲学研究\S01_OB001补充_ren_typed单射性障碍与代换的存在论本质_20260902.md",
+    # 2026-09-10 S01最新研判（针对OB-015/016，精确到tactic级别）
+    r"Coq形式化\S01给S04_OB015_OB016贯穿证明策略_choose路线_20260910.md",
+    r"Coq形式化\S01给S04_split_assoc基例OB-015根因与修复规格_20260910.md",
+    r"Coq形式化\S01给S04_L3-L8哲学预判总纲_证明强度渐进策略_20260910.md",
 )
 
 EXTRA = ("已知勘误：S00 策略中'm≥k 时 rho 单射'不成立，碰撞统一按 collision_other / rho_inj_except_m 处理；"
