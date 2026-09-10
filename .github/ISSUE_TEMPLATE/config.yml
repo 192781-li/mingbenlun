@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 明旭协作机制
+    url: https://github.com/192781-li/mingbenlun/tree/main/docs/协作机制
+    about: 先读协作机制文档，再提Issue
