@@ -10,8 +10,8 @@
     "last_verified": "2026-09-10 15:14",
     "note": "旧任务11641354361346被删导致2026-09-05至09-10共5天零commit；2026-09-10恢复为11774525314050；SOP铁律9要求每轮开工先list_cron_jobs确认存活"
   },
-  "last_update": "2026-09-10 22:47:19",
-  "current_task": "split_assoc证明（DS主谋闭环中，round 2）",
+  "last_update": "2026-09-10 23:24:44",
+  "current_task": "split_assoc DS五轮闭环未收敛，已写卡点OB-015，流转S01研判",
   "status": "J1+J3 blocked_已注入S01研判任务TASK-S04-019/020",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
@@ -65,13 +65,15 @@
   "key_achievements": [
     "发现S01直接证明用assoc_build构造G23错误（G=[]时split [] G2 G3在Some None/Some None时不成立）",
     "SOP指定正确构造：H23_val逐位构造（G2优先、G3兜底）",
-    "清理S01直接证明的5个语法错误引理，Layer2编译通过exit=0"
+    "清理S01直接证明的5个语法错误引理，Layer2编译通过exit=0",
+    "修复DS工具链coqc编译参数(-R..ALL->-Q.ALL)，解决ALL.ALL.Layer1库路径错误",
+    "发现S01直接证明的assoc_build构造根本性错误(G=[]时split[]G2G3在Some None/Some None时不成立)"
   ],
   "blockers": [
-    "split_assoc DS round 1输出仅778字符无完整证明，已回喂round 2"
+    "split_assoc: DS五轮闭环未收敛(bullet层级/变量未定义/证明不完整)，需S01给出H23_val构造后的逐位case分析策略"
   ],
-  "needs_s01": false,
-  "s01_should_read": "coq/obstacles/OB-013_split_assoc主引理DS两轮闭环未收敛_20260910.md, coq/obstacles/OB-014_typed_res_par_l_DS四轮未收敛_20260910.md",
+  "needs_s01": true,
+  "s01_should_read": "coq/obstacles/OB-015_split_assoc_DS五轮闭环未收敛_20260910.md",
   "needs_s00": false,
   "s00_should_read": "四条出路全部作废，不需架构选路；仅待主人决定何时恢复定时任务",
   "next_action": "等S01研判OB-013(split_assoc)和OB-014(typed_res_par_l); 根据研判结果决定是否先证辅助引理或调整证明策略; 若S01认为应先证congruence_preserves_typing(J2)则调整看板依赖",
@@ -175,5 +177,5 @@
   "latest_commits": [
     "eec201a 清理S01语法错误，6个引理重置Admitted，Layer2编译通过"
   ],
-  "ds_status": "running round 2, target=split_assoc"
+  "ds_status": "stopped, 5 rounds converged=False, total cost ~0.69元"
 }
