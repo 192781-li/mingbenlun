@@ -1,7 +1,7 @@
 {
   "version": "2.0",
-  "last_updated": "2026-09-03 范式革命",
-  "updated_by": "S04-Coq形式化分站（明序）：DeepSeek V4 新范式环境改造，DS主谋/S04承接",
+  "last_updated": "2026-09-10T19:27:54",
+  "updated_by": "S04",
   "description": "明旭的中枢神经系统。v1.2加入语义论与哲学分站联动：语义论纲要已入库，S01哲学分站负责深研语义论与生命论的衔接。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -332,6 +332,30 @@
         "docs/协作机制/分站/S04_运行指令.md",
         "docs/协作机制/分站/S04_DeepSeek_V4新范式调用规范.md"
       ]
+    },
+    {
+      "id": "TASK-S04-019",
+      "assigned_to": "S01",
+      "title": "split_assoc主引理证明策略研判（OB-013，S04被blocked）",
+      "priority": "urgent",
+      "urgent": true,
+      "status": "pending",
+      "created_by": "S04",
+      "created_at": "2026-09-10T19:27:54",
+      "description": "S04在split_assoc主引理上DS两轮闭环（至少6轮调用，累计费用约1.55元）均未收敛，已blocked。\n卡点记录：coq/obstacles/OB-013_split_assoc主引理DS两轮闭环未收敛_20260910.md\n已就位资产：split_assoc_cell(Qed)、pick_prefix(Definition)、pick_prefix_correct(Qed)、H23_val(Qed)\n核心难点：\n1. pick_prefix三态处理：None(越界)/Some None(在位空)/Some(Some T)(在位发用)\n2. 前缀性质pick_prefix_none_suffix是否成立（None位是否向后闭）\n3. setby f repeat None L的f定义：pick_prefix=None时f应返回什么\n需要S01从操作权流动视角给出精确到tactic级别的证明策略（结晶008：能贯穿就贯穿），\n不要只给方向，要给完整的引理陈述+证明步骤+tactic。",
+      "blocking": "S04 J1 split_assoc主引理，阻塞J2/J4/J5（L2收官）"
+    },
+    {
+      "id": "TASK-S04-020",
+      "assigned_to": "S01",
+      "title": "typed_res_par_l证明策略研判（OB-014，S04被blocked）",
+      "priority": "urgent",
+      "urgent": true,
+      "status": "pending",
+      "created_by": "S04",
+      "created_at": "2026-09-10T19:27:54",
+      "description": "S04在typed_res_par_l上DS四轮（累计费用约0.71元）均未收敛，已blocked。\n卡点记录：coq/obstacles/OB-014_typed_res_par_l_DS四轮未收敛_20260910.md\n目标引理：forall Gamma P Q, ~ fv_at Q 0 -> typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q)\n对应cong_res_par: ~ fv_at Q 0 -> congruence (PRes (PPar P Q)) (PPar (PRes P) Q)\nDS失败模式：\n1. round1: DS宣布为假，证伪守卫门1推翻（无物证）\n2. round2-3: 使用未定义名Hp, use_weaken_none_head，卫生检查拦截\n3. round4: 仍失败\n核心难点：\n1. 辅助引理缺失（DS需要use_weaken_none_head但不存在）\n2. typed(PRes(PPar P Q))的展开结构\n3. ~fv_at Q 0条件的使用方式\n需要S01从操作权流动视角给出精确到tactic级别的证明策略（结晶008），\n包括需要先证哪些辅助引理（精确陈述）。\n另外请确认typed_res_par_l/r是否真的为真（证伪守卫推翻了DS的为假主张，但需要哲学确认）。",
+      "blocking": "S04 J3 typed_res_par_l/r，阻塞J2/J4/J5（L2收官）"
     }
   ],
   "growth_log": [

@@ -10,9 +10,9 @@
     "last_verified": "2026-09-10 15:14",
     "note": "旧任务11641354361346被删导致2026-09-05至09-10共5天零commit；2026-09-10恢复为11774525314050；SOP铁律9要求每轮开工先list_cron_jobs确认存活"
   },
-  "last_update": "2026-09-10T19:08 J1+J3均blocked",
+  "last_update": "2026-09-10T19:27:54",
   "current_task": "J1 split_assoc blocked(OB-013, DS两轮未收敛); J3 typed_res_par_l blocked(OB-014, DS四轮未收敛: round1证伪守卫/round2-3未定义名Hp,use_weaken_none_head/round4仍失败); 无其他依赖就绪的J可推进(J2依赖J3,J4依赖J2+J3,J5依赖J4); 等S01研判",
-  "status": "J1+J3均blocked_等S01研判",
+  "status": "J1+J3 blocked_已注入S01研判任务TASK-S04-019/020",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
     "authority_docs": [
@@ -160,5 +160,10 @@
       "note": "并入proof_loop"
     }
   },
-  "external_knowledge_policy": "大胆用Stdlib/MathComp已Qed库定理(@stdlib L1)；文献结论@cite借思路本库重证；来源不明拦截；加强归纳是自由证明技术非Axiom。详见外部引理登记规范第八节"
+  "external_knowledge_policy": "大胆用Stdlib/MathComp已Qed库定理(@stdlib L1)；文献结论@cite借思路本库重证；来源不明拦截；加强归纳是自由证明技术非Axiom。详见外部引理登记规范第八节",
+  "s01_tasks_injected": [
+    "TASK-S04-019",
+    "TASK-S04-020"
+  ],
+  "note": "S04主动联动S01：在task_queue注入urgent研判任务，S01定时任务下次触发会读到"
 }

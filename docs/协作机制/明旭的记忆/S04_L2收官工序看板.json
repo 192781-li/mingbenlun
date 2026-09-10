@@ -1,7 +1,7 @@
 {
   "board": "S04_L2收官工序看板",
   "version": "1.1",
-  "updated": "2026-09-04 18:42",
+  "updated": "2026-09-10T19:27:54",
   "status": "J1主引理split_assoc DS推进中: 选择层A/B(pick_prefix+pick_prefix_correct)已Qed, split_assoc_cell已Qed, H23_val已Qed; 2026-09-10首次自动触发, DS round1推理中(上下文46790token, v4-pro thinking), 后台task_id=6c25a1d9, 下轮触发取结果",
   "plan_doc": "docs/协作机制/分站/S04_L2收官攻坚计划_鞍钢宪法三结合_20260904.md",
   "sole_metric": "coqc Qed净增长（API success不算进展）",
@@ -78,7 +78,7 @@
         1,
         4
       ],
-      "status": "in_progress",
+      "status": "blocked",
       "gate": "独立coqc Qed，Layer2 admitted 1->0",
       "brief_hint": "先证 split_assoc_cell：固定单n，destruct(get G2 n) as [[a|]|]、(get G3 n) as [[b|]|] 共9格，先用两个split前提在n的析取消去不可能格，余下 discriminate/injection/auto，约9行case表；再主定理 exists(setby f(repeat None L)0)，两合取各 intros n 后 apply cell + H23_val。禁嵌套bullet、禁整段上万字符重写、每小引理独立coqc先过",
       "history": [
@@ -92,7 +92,8 @@
           "to": "in_progress",
           "note": ""
         }
-      ]
+      ],
+      "blocked_reason": "DS两轮闭环未收敛，OB-013，已转S01研判(TASK-S04-019)"
     },
     {
       "id": "J3",
@@ -104,9 +105,10 @@
         1,
         2
       ],
-      "status": "pending",
+      "status": "blocked",
       "gate": "coqc Qed，可与J1并行",
-      "brief_hint": "证 PRes(PPar P Q) 与 PPar(PRes P)Q 交换两侧的 typed 保持（对应 cong_res_par），用 split 逐位定义+set_none，短引理"
+      "brief_hint": "证 PRes(PPar P Q) 与 PPar(PRes P)Q 交换两侧的 typed 保持（对应 cong_res_par），用 split 逐位定义+set_none，短引理",
+      "blocked_reason": "DS四轮未收敛，OB-014，已转S01研判(TASK-S04-020)"
     },
     {
       "id": "J2",
