@@ -221,3 +221,7 @@
 2026-09-05 00:25:50,S04,deepseek-v4-pro,A,proofloop_pick_prefix_correct_r4,51072,7410,5519,0,success,83.75,0.05662,0.8733,stop,proofloop_pick_prefix_correct_r4
 2026-09-05 00:30:15,S04,deepseek-v4-pro,A,proofloop_pick_prefix_correct_r1,54400,73,7151,0,success,120.2,0.04448,0.9987,stop,proofloop_pick_prefix_correct_r1
 2026-09-05 00:31:22,S04,deepseek-v4-pro,A,proofloop_pick_prefix_correct_r2,51072,5225,4228,0,success,64.86,0.04232,0.9072,stop,proofloop_pick_prefix_correct_r2
+2026-09-10 15:25:30,S04,deepseek-v4-pro,A,proofloop_--help_r1,0,52965,24395,0,success,461.74,0.30527,0.0,stop,proofloop_--help_r1
+2026-09-10 15:34:07,S04,deepseek-v4-pro,A,proofloop_--help_r2,44672,10430,28674,0,success,517.23,0.20445,0.8107,stop,proofloop_--help_r2
+2026-09-10 15:42:45,S04,deepseek-v4-pro,A,proofloop_--help_r3,57088,26,22203,0,success,517.88,0.13472,0.9995,stop,proofloop_--help_r3
+2026-09-10 15:43:10,S04,deepseek-v4-pro,A,proofloop_--help_r4,54912,4192,856,0,success,24.91,0.01908,0.9291,stop,proofloop_--help_r4

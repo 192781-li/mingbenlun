@@ -8756,3 +8756,292 @@ From Stdlib Require Import ClassicalEpsilon.
 The lemma `constructive_indefinite_description` might have type:
 `forall (A : Type) (P : A -> Prop), (exists x, P x) -> {x : A | P x}`.
 No, if that's the case then applying `constructive_indefinite_description (option (option ty)) (fun z => ...)` should be okay; error not there? But error points at "option (option ty)" expected to be ?A0 -> Prop, meaning maybe the function is `constructive_indefinite_description : forall P : ?A -> Prop, (exists x : ?A, P x) -> {x : ?A | P x}` with implicit A, so first explicit argument is P. Then `constructive_ind
+
+
+## 2026-09-10 15:25:30 [proof_loop] --help · round1 · DS输出
+
+**操作权流动与资源重划说明**  
+`split_assoc` 是并行组合结合律在明性分划上的地基：把一片世界 `G` 先切给 `G12` 与 `G3`，再把 `G12` 切给 `G1` 与 `G2`，则必可重新选一个中间场域 `G23`，使 `G` 先切 `G1` 与 `G23`，再切 `G2` 与 `G3`。中间块是“G2 优先、G3 兜底”逐位重聚的产物，空位（`None` 越界 / `Some None` 在位）在无操作权流经上等价，可主动选择以保持连续性。这份代码把 `split_assoc` 从 `Admitted` 补全为 `Qed`，证明只依赖已经 `Qed` 的 `split_assoc_cell`、`H23_val` 及前述 split/列表基础引理。
+
+```coq
+(* =====================================================================
+   split_assoc 完整证明（替换原 Admitted）
+   存在论路线：见证 G23 为 setby f (repeat None L) 0，
+   其中 L := length G + length G12 + length G1 + length G2 + length G3，
+   f := fun n _ =>
+          match get G2 n with
+          | Some (Some a) => Some a
+          | _ => match get G3 n with
+                 | Some v => v
+                 | None => None
+                 end
+          end.
+   恒取 G2 优先、G3 兜底的生成规则，H23_val 保证其 get 层对应值。
+   ===================================================================== *)
+
+Lemma cell_split_from_split : forall G G12 G3 G1 G2 n,
+  split G G12 G3 -> split G12 G1 G2 ->
+  cell_split (get G n) (get G12 n) (get G3 n) /\
+  cell_split (get G12 n) (get G1 n) (get G2 n).
+Proof.
+  intros G G12 G3 G1 G2 n Hs1 Hs2.
+  unfold split in Hs1, Hs2. specialize (Hs1 n). specialize (Hs2 n).
+  unfold cell_split. auto.
+Qed.
+
+Lemma get_setby_assoc_ext : forall G G12 G1 G2 G3 L n,
+  n < L ->
+  get (setby (fun (n:nat) (_:option ty) =>
+                match get G2 n with
+                | Some (Some a) => Some a
+                | _ => match get G3 n with
+                       | Some v => v
+                       | None => None
+                       end
+                end)
+             (repeat (None:option ty) L) 0) n =
+  match get G2 n with
+  | Some (Some a) => Some (Some a)
+  | _ => match get G3 n with
+         | Some v => Some v
+         | None => Some None
+         end
+  end.
+Proof.
+  intros. eapply H23_val; eauto.
+Qed.
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  i
+[reasoning摘要]
+我们被要求证明 `split_assoc`，当前在 Layer2.v 中是 Admitted。目标：完整证出 `split_assoc : forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3`。
+
+但注意，材料中已有很多辅助引理，包括 `split_assoc_cell`（逐位 cell_split 的结合）和 `pick_prefix` 以及 `pick_prefix_correct`。这些辅助引理和选择函数 `pick_prefix` 似乎是专门为 `split_assoc` 服务的。`pick_prefix_correct` 已经 Qed，它对 option (option ty) 层上的 cell_split 和 pick_prefix 给出了结论。之前还有 `H23_val` 等，似乎本应构造整体 G23。但目前材料中 `split_assoc` 仍是 Admitted，而 `pick_prefix` 和 `pick_prefix_correct` 已经证明完毕。这些可能是为了最终用 `setby` 和 `pick_prefix` 逐位构造 G23。
+
+观察：`pick_prefix_correct` 对任意单个位置的值（option (option ty)）给出了中间值的存在。要证明 split_assoc，我们需要从逐位 cell_split 提升到整体 ctx 的 split。注意 `split` 的定义是逐位：forall n, ...。所以我们可以用 `pick_prefix` 和 `pick_prefix_correct` 构造 G23 为某个 `setby` 或类似函数，并用 `H23_val` 之类的引理来证明逐位 split。
+
+关键辅助引理：
+- `split_assoc_cell`：给定两个 cell_split，存在一个 Z 满足两个 cell_split。
+- `pick_prefix_correct`：给定两个 cell_split，pick_prefix 产生的 Z 满足两个 cell_split，并且 pick_prefix 优先取非 None 值（但正确性不依赖优先性，只依赖选择函数）。
+
+然而，split 是 ∀ n, 在 n 上的性质，所以我们要对每个 n 构造一个独立的中间值，然后组合成一个 ctx。组合需要处理前缀性质：split 的定义要求两个上下文的长度和 get 值关系，且 split 的证明要求 ∀ n 都成立。通常我们枚举 n：n 可以从 0 到某个长度，但 ctx 可以有不同的长度，且 split 要求长度满足某种结构？实际上 split 定义为逐位：∀ n, (get Gamma1 n = get Gamma n ∧ (get Gamma2 n = None ∨ get Gamma2 n = Some None)) ∨ (get Gamma2 n = get Gamma n ∧ (get Gamma1 n = None ∨ get Gamma1 n = Some None)). 它没有明确要求长度相等，但每个位置 n 必须满足。因为两边 ctx 可能是不同长度，但 get 越界返回 None。这样我们构造 G23 时，可以设定一个长度，使得对任意 n 都满足。但是 split 的构造并不要求 G23 的长度是某个上界，只要逐
+
+
+## 2026-09-10 15:34:07 [proof_loop] --help · round2 · DS输出
+
+**操作权流动与资源重划说明**  
+`split_assoc` 是并行组合结合律在明性分划上的地基：把一片世界 `G` 先切给 `G12` 与 `G3`，再把 `G12` 切给 `G1` 与 `G2`，则必可重新选一个中间场域 `G23`，使 `G` 先切 `G1` 与 `G23`，再切 `G2` 与 `G3`。中间块是“G2 优先、G3 兜底”逐位重聚的产物，空位（`None` 越界 / `Some None` 在位）在无操作权流经上等价，可主动选择以保持连续性。这份代码把 `split_assoc` 从 `Admitted` 补全为 `Qed`，证明只依赖已经 `Qed` 的 `cell_split`、`H23_val` 及前述 split/列表基础引理。
+
+```coq
+(* =====================================================================
+   INSERT-BEFORE: Lemma length_setby
+   辅助：setby 不改变列表长度。
+   ===================================================================== *)
+Lemma length_setby : forall (Gamma : ctx) f k,
+  length (setby f Gamma k) = length Gamma.
+Proof.
+  induction Gamma as [|t Gamma IH]; intros f k; simpl.
+  - reflexivity.
+  - rewrite IH. reflexivity.
+Qed.
+
+(* =====================================================================
+   INSERT-BEFORE: Lemma cell_split_from_split
+   把 split 的逐位条件提取为两个 cell_split。
+   ===================================================================== *)
+Lemma cell_split_from_split : forall G G12 G3 G1 G2 n,
+  split G G12 G3 -> split G12 G1 G2 ->
+  cell_split (get G n) (get G12 n) (get G3 n) /\
+  cell_split (get G12 n) (get G1 n) (get G2 n).
+Proof.
+  intros G G12 G3 G1 G2 n Hs1 Hs2.
+  unfold split in Hs1, Hs2. specialize (Hs1 n). specialize (Hs2 n).
+  unfold cell_split in *. auto.
+Qed.
+
+(* =====================================================================
+   INSERT-BEFORE: Lemma assoc_cell_chosen_in
+   在 g 非 None（即该位在世界 G 之内）时，下面这条由
+      f := fun n _ => match get G2 n with
+                      | Some (Some a) => Some a
+                      | _ => match get G3 n with
+                             | Some v => v
+                             | None => None
+                             end
+                      end
+   产生的中间值 pick 确实同时满足两侧 cell_split。
+   这正是问题位的唯一难点：当 g=None 时 pick 必须改为越界 None，
+   所以外层构造只在 g 非 None 的位上使用这个 pick。
+   ===================================================================== *)
+Lemma assoc_cell_chosen_in : forall (g g12 g3 g1 
+[reasoning摘要]
+我们需要理解用户请求。用户是S04主证明者，需要我（DeepSeek）产出完整可编译Coq证明。上一轮我输出了一段被截断的证明草稿，其中可能包含 Abort 块，且尚未完成。现在要求：去掉Abort草稿，每个引理只保留一份成品 Lemma..Qed.，主定理用到的辅助引理当轮全部以 INSERT-BEFORE 成品块交齐，重给完整版本。本轮任务：完整证出 --help？ 语句“请完整证出 --help（当前为 Admitted/admit），给从声明行到 Qed. 的完整新版本。” 看起来可能是占位符？“--help”可能指目标 split_assoc？ 需要看上下文。材料A末尾有 `Lemma split_assoc : ... Proof. Admitted.` 是 Layer2 中唯一 Admitted。用户任务说“当前为 Admitted/admit”的目标可能是 split_assoc。标题有“请完整证出 --help”，也许实际命令提示里替换为 split_assoc。我们要证出 split_assoc。
+
+但是需要仔细阅读材料A，已经有很多基础设施。上一轮我给出了一个不完整证明草稿，被截断。现在需要给出完整正确版本。不能有 Abort。必须确保能编译。
+
+我们需要证明：
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+虽然已有 split_assoc_cell 和 H23_val 等，但上一轮证明路线可能有问题。材料 A 中有大量关于 split_assoc 的叙述和已被证明的 cell_split lemmas、choose/pick_prefix 等。特别注意到材料中已有：
+
+- `cell_split` 定义
+- `split_assoc_cell` Qed
+- `choose` 和 `choose_correct` Qed
+- `pick_prefix` 和 `pick_prefix_correct` Qed
+- `H23_val` Qed
+
+但是最后 `Lemma split_assoc : ... Proof. Admitted.` 仍是 Admitted。
+
+我们需要补全它。也许可以直接用 pick_prefix_correct 逐位构造 G23？ 但问题在于需要整体列表，而 pick_prefix 只是逐位选择。我们可以类似 H23_val 的路线：定义 f 逐位用 pick_prefix 选择，对 repeat None L 做 setby。然后证明 split G G1 G23 和 split G23 G2 G3。
+
+因为已有 split_assoc_cell 给我们每个位置 n 存在一个 g23_n 满足 cell_split (get G n) (get G1 n) g23_n 和 cell_split g23_n (get G2 n) (get G3 n)。但注意 split_assoc_cell 陈述：`cell_split g g12 g3 -> cell_split g12 g1 g2 -> exists g23, cell_split g g1 g23 /\ cell_split g23 g2 g3`，其中 g,g12,g3,g1,g2 是 get 层的 option (option 
+
+
+## 2026-09-10 15:42:45 [proof_loop] --help · round3 · DS输出
+
+```coq
+(* =====================================================================
+   split_assoc 完整证明（替换原 Admitted）
+   存在论路线：见证 G23 为 setby f (repeat None L) 0，
+   其中 L := length G，
+   f := fun n _ =>
+          match get G2 n with
+          | Some (Some a) => Some a
+          | _ => match get G3 n with
+                 | Some v => v
+                 | None => None
+                 end
+          end.
+   恒取 G2 优先、G3 兜底的生成规则，H23_val 保证其 get 层对应值。
+   ===================================================================== *)
+
+(* 辅助：setby 不改变上下文长度 *)
+Lemma length_setby : forall (Gamma : ctx) f k,
+  length (setby f Gamma k) = length Gamma.
+Proof.
+  induction Gamma as [|t Gamma IH]; intros f k; simpl.
+  - reflexivity.
+  - rewrite IH. reflexivity.
+Qed.
+
+(* 辅助：从两个 split 前提提取逐位 cell_split *)
+Lemma cell_split_from_split : forall G G12 G3 G1 G2 n,
+  split G G12 G3 -> split G12 G1 G2 ->
+  cell_split (get G n) (get G12 n) (get G3 n) /\
+  cell_split (get G12 n) (get G1 n) (get G2 n).
+Proof.
+  intros G G12 G3 G1 G2 n Hs1 Hs2.
+  unfold split in Hs1, Hs2. specialize (Hs1 n). specialize (Hs2 n).
+  unfold cell_split in *. auto.
+Qed.
+
+(* 辅助：g 非 None 时，G2 优先、G3 兜底所选的值满足两个 cell_split *)
+Lemma assoc_cell_chosen_in : forall (g g12 g3 g1 g2 : option (option ty)),
+  g <> None ->
+  cell_split g g12 g3 -> cell_split g12 g1 g2 ->
+  let pick := match g2 with
+              | Some (Some a) => Some (Some a)
+              | _ => match g3 with
+                     | Some v => Some v
+                     | None => Some None
+                     end
+              end in
+  cell_split g g1 pick /\ cell_split pick g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 Hg Hc1 Hc2.
+  unfold cell_split in *.
+  destruct Hc1 as [[Hg12 He3] | [Hg3 He12]];
+  destruct Hc2 as [[Hg1 He2] | [Hg2 He1]];
+  subst; simpl in *.
+  - (* left-left *)
+    split.
+    + left. split; [reflexivity |].
+      destruct He2 as [He2|He2]; destruct He3 as [He3|He3];
+      rewrite He2, He3; simpl; right; reflexivity.
+    + destruct He2 as [He2|He2]; destruct
+[reasoning摘要]
+我们需要先理解用户需求。用户要求“请完整证出 --help（当前为 Admitted/admit），给从声明行到 Qed. 的完整新版本。”但--help可能是指某个定理？材料中只有一个 Admitted：`split_assoc`。用户上一轮提到“主定理用到的辅助引理当轮全部以 INSERT-BEFORE 成品块交齐，重给完整版本。”且输出卫生提示已有重复定义。所以本轮需要交付清理后的完整成品：辅助引理+主定理，不重复，全部 Lemma...Proof...Qed.。
+
+我们需要完成 split_assoc 的证明。材料 A 中已经有很多已 Qed 的引理：
+
+- H23_val 已经 Qed（材料末尾附近）。
+- split_assoc_cell 已经 Qed。
+- choose_correct 已 Qed 但在当前证明中可能不需要。
+- cell_split 定义。
+- pick_prefix_correct 已 Qed。
+- get_setby_* 等。
+
+我们需要证 split_assoc。注意当前材料中有一个 `Lemma split_assoc : ... Proof. Admitted.` 需要替换。我们需要写完整证明。注意不能重复定义已经存在的辅助引理？输出卫生说同名定义在本轮重复出现：assoc_cell_chosen_in, cell_split_from_split, length_setby, split_assoc。这意味着我们本轮不应该再定义这些名字？但这些是我们要新增的辅助引理，如果材料中没有，我们需要定义；但材料中已经有 `length_setby`? 我们需要检查材料：Layer2 中有 `length_setby`? 搜索材料A：Layer2 中未看到 `length_setby`（Layer1? 没有）。但输出卫生提示“同名定义在本轮重复出现”，说明上一轮我可能给了多个版本导致重复。现在应该只给一份新定义。用户说“本轮任务：请完整证出 --help（当前为 Admitted/admit），给从声明行到 Qed. 的完整新版本。”我理解“--help”可能是打字错误，指的是 `split_assoc`。
+
+因此我们需要提供一个干净代码块，包含：
+- 辅助引理（如 length_setby? 材料中没有但需要。但材料已有 `H23_val`、`get_repeat_None_lt`、`length_repeat_None`、`get_setby_get`、`get_setby_None` 等。我们可能不需要 length_setby。我们需要哪些辅助引理？）
+- 主定理 split_assoc 完整证明。
+
+让我们仔细研究现有材料和可直接使用的引理。
+
+我们需要证：
+
+```
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+```
+
+已有 `cell_split` 定义：
+```
+Definition cell_split (g a b : option (option ty)) : Prop :=
+  (a = g /\ (b = None \/ b = Some None))
+  \/ (b = g /\ (a = None \/ a = Some None)).
+```
+
+已有 `split_a
+
+
+## 2026-09-10 15:43:10 [proof_loop] --help · round4 · DS输出
+
+目标引理 `--help` 在材料 A（Layer1.v / Layer2.v 全文）中不存在，无法定位其 `Lemma ... Qed.` 起止，也不能为不存在的目标交付证明。
+
+材料中当前唯一 `Proof. Admitted.` 的目标是：
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof. Admitted.
+```
+
+请确认本轮实际要证的目标是否为 `split_assoc`。若是，我下一轮直接交付从该 `Lemma` 行到 `Qed.` 的完整成品，并以 `INSERT-BEFORE` 交齐全部辅助引理。
+[reasoning摘要]
+我们需要回应：用户说“输出无法应用：源文件中定位不到 lemma --help”。看起来这是任务协议错乱。“--help”不是一个真实 lemma。用户可能是自动化流程误发，或者是要求我们证“--help”。我们不应该编造。任务描述：本轮任务“请完整证出 --help（当前为 Admitted/admit）”。但材料里没有 --help。已知勘误讲的是 subst 相关。
+
+我们需要遵守：不要胡编。回应应该说明：目标 `--help` 在材料中不存在，不是 Layer1/Layer2 中任何引理；无法定位。请求重新核对目标名，或者提供正确锚点。我们不能交付代码证明不存在的引理。
+
+但是 question 可能期望我们作为证明者，识别问题错误并拒绝。按照系统规则：“不允许编造引理”。我们应反馈。
+
+另外对话历史中之前有 split_assoc 多次卫生问题。但现在用户给了新任务名称“--help”。可能是占位符没替换。我们要明确：无法处理，需要正确 lemma 名。
+
+需要给出简洁说明，不寒暄。指出材料中唯一 Admitted 是 `split_assoc`（Layer2 末尾有 `Proof. Admitted.`）。我们之前一直在证 split_assoc。也许该证 split_assoc？但用户任务说“--help”，可能是占位符出了bug。我们应要求修正目标。也可以提供我已完成的 split_assoc 证明（如果环境需要）。但用户说“源文件中定位不到 lemma --help 的起止。请严格按协议给目标 Lemma --help 从 Lemma 行到 Qed. 的完整新版本”。这显然逻辑混乱。
+
+我们不能假设“--help”指 split_assoc，因为用户说源文件定位不到 --help，所以不是 split_assoc。我们应该拒绝：目标不存在，请提供正确名。
+
+但同时项目铁律说输出要完整可编译；目标不存在无法编译。因此反馈。
+
+最终回答应简短：目标 `--help` 不存在，材料中唯一 Admitted 目标是 `split_assoc`（如需要可为其交付证明）；请重发正确目标名或确认是否为 split_assoc。不输出代码。
+
+需要包含“哲学判断点”？可能不需要。
+
+注意用户之前有多次卫生错误，可能希望对 split_assoc 给完整证明。我再看材料：Layer2.v 末尾有 `Lemma split_assoc : forall G G12 G3 G1 G2, ... Proof. Admitted.`，并且前面的辅助引理 H23_val、cell_split 等已 Qed。我们上一轮尝试证 split_assoc，但系统反馈“同名定义重复出现”。现在用户改口说 “target Lemma --help”，可能自动化错误。应该要求明确。
+
+但也许我们需要利用这次机会完成 split_assoc 的证明？因为历史显示一直卡在 split_assoc，而用户最后任务错名。我们应明确：如果目标实际是 split_assoc，请确认，我即交付完整 Qed。否则无法进行。
+
+这样比较稳妥。
+
+我们要输出“极简要点说明 + 代码块”？但此轮无需代码。可以只给说明。但可能系统要求必须带代码？没有强制。我们要按规则。
+
+好。
