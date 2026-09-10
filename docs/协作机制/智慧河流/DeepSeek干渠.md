@@ -9334,3 +9334,64 @@ split Gamma Gamma1 Gamma2 := forall n,
 我们需要从材料看是否有 pick_prefix 相关引理例如 pick_prefix_none_suffix 或等等。材料末尾只有 pick_prefix_correct 和 split_assoc Admitted。任务就是补 split_assoc。
 
 可能需要设计证明，用经典选择逐位取 pick_prefix 值，然后构造 ctx，证明其 split 两条件。但需要前缀性才能定义一个列表：每个位置一个 option(option ty) -> 能收集为 ctx。如果我们用 setby f (repeat None L) 0，其中 f 基于 pick_prefix 和 get 原位，就能得到位置 n 的 get 值为 Some (pick_prefix ...) if n<L。无需证明 pick_prefix 非 None 前缀？setby 构造固定长度 L 的列表，位置 n 越界 get 为 None。我们需要的 G23 长度怎么选？需要 G23 可能包含 None 越界？split 允许 get G23 n = None or Some None as empty side. 对于 G23 作为两侧之一，其 get 值可能是 None（越界） or Some None（在位空） or Some (Some T)（实有）。固定长度 L 构造，在 n < L 是 Some (chosen value)，n >= L 是 None。如果选择的值本身是 None，则在位置 n get G23 n = Some None（在位空），不是越界。但 s
+
+
+## 2026-09-10 17:51:07 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+(* =====================================================================
+   split_assoc：完整证明
+   方法：取 L 为第一个满足“pick_prefix 越界”的位置，前 L 位用 pick_prefix
+   的非越界值构造，后段越界；辅助引理证明该 L 存在且后段 cell_split 成立。
+   ===================================================================== *)
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 Hs1 Hs2.
+  (* 前 L 位有非越界候选，后段越界 *)
+  assert (H_exists_L : exists L,
+    (forall n, n < L ->
+      pick_prefix (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n) <> None)
+    /\ (forall n, n >= L ->
+      pick_prefix (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n) = None)).
+  {
+    (* 后段越界候选存在性：取 N = max (length G) (max (length G2) (length G3)) *)
+    set (N := max (length G) (max (length G2) (length G3))).
+    assert (H_late : forall n, n >= N ->
+      pick_prefix (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n) = None).
+    {
+      intros n Hn.
+      (* 当 n >= N 时，G、G2、G3 均越界 None，故 pick_prefix 无候选 *)
+      assert (Hg : get G n = None).
+      { apply get_overflow_none. unfold N in Hn. lia. }
+      assert (Hg2 : get G2 n = None).
+      { apply get_overflow_none. unfold N in Hn. lia. }
+      assert (Hg3 : get G3 n = None).
+      { apply get_overflow_none. unfold N in Hn. lia. }
+      unfold pick_prefix.
+      destruct (excluded_middle_informative
+        (exists z : option (option ty),
+           z <> None /\
+           cell_split (get G n) (get G1 n) z /\
+           cell_split z (get G2 n) (get G3 n))) as [Hex | Hnone].
+      - (* 若有非 None 候选，证其不可能 *)
+        destruct Hex as [z [Hzne [Hz1 Hz2]]].
+        (* 当 g = None 且 g2/g3 均 None 时，z 必为 None *)
+        rewrite Hg in Hz1.
+        destruct Hz1 as [[Hg1 _] | [Hgz _]].
+        + discriminate.
+        + destruct z as [e|]; [discriminate| contradiction].
+      - reflexivity.
+    }
+    (* 在 0..N 中寻找第一个 pick_prefix=None 的位置 *)
+    assert (H_N_none : pick_prefix (get G N) (
+[reasoning摘要]
+我们需要回答用户。用户指出上一轮输出卫生问题：同名定义重复，要求去掉草稿，每个引理只保留一份成品，主定理辅助引理当轮全部以 INSERT-BEFORE 成品块交齐，重给完整版本。本轮任务：完整证出 split_assoc，从声明行到 Qed 完整新版本。注意材料中 Layer2 已有很多辅助引理，包括 split_assoc_cell、choose、pick_prefix、pick_prefix_correct 等已 Qed；split_assoc 是 Admitted。需要给出完整证明。我们作为主证明者，需要写出可编译 Coq 代码，不重复已有定义，只给 split_assoc 的完整 Lemma...Proof...Qed，以及可能新增辅助引理但若已有不要重复。需要检查材料中已有 split_assoc_cell 和 pick_prefix_correct。这些已 Qed。我们可以直接用它们。split_assoc 的目标： forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+我们需要利用逐位 pick_prefix 构造 G23。但 pick_prefix 只针对 option option ty 的 cell 版本。我们需要把 split 逐位转化为 cell_split，构造 G23 列表，证两个 split。
+
+关键问题：pick_prefix 返回单个 option(option ty) 值，其正确性依赖 exists 候选的非越界。为构造列表，需要对每个位置 n 取 pick_prefix 的结果的元素层值，组成列表。但 pick_prefix 返回值可能 None（越界）或 Some e（在位）。我们需要一个 ctx 列表，其长度多少？split 要求对任意 n 比较 get 值。如果 G23 长度有限，get 越界返回 None，且 cell_split 相应成立。可以取长度为 max 的列表，使用 repeat None 并 setby 填充，类似 H23_val 已有。但材料中已有 H23_val 工具？是的 H23_val 已 Qed，它是 setby f repeat None max_len，f 是 G2 优先 G3 兜底。但 pick_prefix 与 H23_val 不一定对齐。我们需要证明构造出的 G23 满足。另一个思路：使用 choose 或 pick_prefix 逐位，并用 setby f repeat None L 构造。材料中已有 get_repeat_None_lt, get_setby_get, get_setby_None 等。可以构造。
+
+需要仔细定义 G23 长度。希望对于每个 n 都能满足 cell_split。如果取 L = max (length G) (max (length G2) (length G3))？或者更简单，取 L = max (length G) (max (length G2) (length G3))，则对 n >= L，所有相关 get 都是 None（越界），cell_split None None None 成立。对 n < L，有些 get 可能越界，但 pick_prefix 处理。如果 pick_prefix 返回 None，element level None，setby f repea
