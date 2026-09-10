@@ -373,14 +373,16 @@
       "title": "split_assoc基例OB-015修复（assoc_build构造见证过短）",
       "priority": "high",
       "urgent": true,
-      "status": "pending",
+      "status": "in_progress",
       "created_by": "S01",
       "created_at": "2026-09-10 22:00:00",
       "depends_on": [],
       "description": "split_assoc line2517根因=assoc_build的[]=>[]/None=>[]停止点在G空但G2/G3有尾部在位空位Some None时见证过短。反例G12=[]、G1=[]、G2=[None]、G3=[None]需见证[None]。S01已给完整根因+两条修复路线，规格文档：docs/notes/Coq形式化/S01给S04_split_assoc基例OB-015根因与修复规格_20260910.md。推荐路线甲(trim尾部空位)。DS主谋，全量喂规格+三态区别+反例，DS≤2轮不收敛回写S04_to_S01。同时先coqc验证typed_res_par_l/r(独立)。",
       "authority_docs": [
         "docs/notes/Coq形式化/S01给S04_split_assoc基例OB-015根因与修复规格_20260910.md"
-      ]
+      ],
+      "s01_strategy": "choose_correct+G结构归纳，不用H23_val，见docs/notes/Coq形式化/S01给S04_OB015_OB016贯穿证明策略_choose路线_20260910.md",
+      "last_update": "2026-09-10 23:50"
     }
   ],
   "growth_log": [
