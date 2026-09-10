@@ -2,9 +2,17 @@
   "station": "S04",
   "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
-  "last_update": "2026-09-05T J1g选择层(A)pick_prefix+(B)pick_prefix_correct Qed落袋，coqc exit0，L2仅剩split_assoc；机制根治def_span+同名循环全切+结晶018派活前预检",
-  "current_task": "J1 split_assoc收官：选择层A/B已Qed，下一步(C)pick_prefix_none_suffix(None位向后闭)→固定长度G23逐位读出→主定理拼装Qed",
-  "status": "J1攻坚中_选择层落袋_机制两修_看板驱动正常运行",
+  "cron_alive": {
+    "main_task_id": 11641354361346,
+    "main_task_title": "明旭-S04-Coq形式化（看板驱动）",
+    "schedule": "*/20 * * * *",
+    "status": "已被删除(不在运行也不在停用列表)，待恢复",
+    "last_verified": "2026-09-10",
+    "note": "2026-09-05至09-10整整5天零commit因主力任务被删；SOP铁律9要求每轮开工先list_cron_jobs确认存活"
+  },
+  "last_update": "2026-09-10T 错误根治系统性完成：39个历史错误梳理(31已固化+8本轮补固化)，SOP加铁律9(cron_alive)/铁律10(定时任务操作)，用户硬要求卡10条，输出前冷峻自检，教训库L036",
+  "current_task": "错误根治已完成；下一步：恢复S04主力看板驱动任务(被删5天)→J1收尾(C)None位后缀引理→固定长度G23→split_assoc主定理Qed→J3→J2→J4",
+  "status": "错误根治完成_主力任务待恢复_L2仅剩split_assoc",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
     "authority_docs": [
