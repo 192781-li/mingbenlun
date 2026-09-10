@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>明旭智慧运转总控台</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0a0a0f;color:#e0e0e0;line-height:1.6;padding:16px}
+.container{max-width:1200px;margin:0 auto}
+h1{text-align:center;font-size:1.8em;margin:20px 0 8px;background:linear-gradient(135deg,#ff6b6b,#ffd93d,#6bcb77);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.subtitle{text-align:center;color:#888;margin-bottom:30px;font-size:.9em}
+/* 总览卡片 */
+.overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:30px}
+.ov-card{background:#15151f;border-radius:12px;padding:16px;text-align:center;border:1px solid #252535;transition:transform .2s}
+.ov-card:hover{transform:translateY(-2px);border-color:#ff6b6b}
+.ov-num{font-size:2em;font-weight:bold;margin-bottom:4px}
+.ov-label{font-size:.8em;color:#888}
+.c1{color:#ff6b6b}.c2{color:#ffd93d}.c3{color:#6bcb77}.c4{color:#4d96ff}.c5{color:#c084fc}.c6{color:#ff9f43}
+/* 流转图 */
+.flow{background:#15151f;border-radius:16px;padding:24px;margin-bottom:30px;border:1px solid #252535}
+.flow h2{margin-bottom:16px;font-size:1.2em;color:#ffd93d}
+.flow-chain{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin:16px 0}
+.flow-node{background:#1e1e2e;padding:12px 16px;border-radius:10px;font-size:.85em;text-align:center;min-width:100px;border:1px solid #333}
+.flow-node.active{border-color:#6bcb77;background:#1a2e1a}
+.flow-arrow{color:#555;font-size:1.2em}
+.flow-desc{font-size:.8em;color:#888;text-align:center;margin-top:12px}
+/* 智慧板块 */
+.wisdom-section{background:#15151f;border-radius:16px;margin-bottom:16px;border:1px solid #252535;overflow:hidden}
+.wisdom-header{padding:18px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+.wisdom-header:hover{background:#1a1a28}
+.wisdom-title{font-size:1.1em;font-weight:bold;display:flex;align-items:center;gap:10px}
+.wisdom-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1em}
+.wisdom-count{font-size:.8em;color:#888}
+.wisdom-body{padding:0 20px 20px;display:none}
+.wisdom-body.open{display:block}
+.wisdom-item{background:#1a1a28;border-radius:10px;padding:14px;margin-bottom:10px;border-left:3px solid #333}
+.wisdom-item h4{margin-bottom:6px;font-size:.95em}
+.wisdom-item p{font-size:.82em;color:#aaa;margin-bottom:6px}
+.wisdom-item .path{font-size:.75em;color:#666;font-family:monospace}
+.wisdom-item .tag{display:inline-block;font-size:.7em;padding:2px 8px;border-radius:4px;margin-right:4px;margin-top:4px}
+.tag-done{background:#1a3a1a;color:#6bcb77}
+.tag-wip{background:#3a3a1a;color:#ffd93d}
+.tag-todo{background:#3a1a1a;color:#ff6b6b}
+.tag-method{background:#1a1a3a;color:#4d96ff}
+/* 效率面板 */
+.efficiency{background:#15151f;border-radius:16px;padding:24px;margin-bottom:30px;border:1px solid #252535}
+.efficiency h2{margin-bottom:16px;font-size:1.2em;color:#6bcb77}
+.eff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.eff-item{background:#1a1a28;border-radius:10px;padding:14px}
+.eff-item h4{font-size:.9em;margin-bottom:8px}
+.eff-bar{height:8px;background:#252535;border-radius:4px;overflow:hidden;margin-bottom:6px}
+.eff-fill{height:100%;border-radius:4px;transition:width .5s}
+.eff-label{font-size:.75em;color:#888;display:flex;justify-content:space-between}
+/* 使用指南 */
+.guide{background:#15151f;border-radius:16px;padding:24px;margin-bottom:30px;border:1px solid #252535}
+.guide h2{margin-bottom:16px;font-size:1.2em;color:#4d96ff}
+.guide-step{display:flex;gap:12px;margin-bottom:14px}
+.guide-num{width:28px;height:28px;border-radius:50%;background:#4d96ff;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85em;flex-shrink:0}
+.guide-text{font-size:.88em;color:#ccc}
+.guide-text strong{color:#fff}
+footer{text-align:center;color:#555;font-size:.75em;padding:20px 0}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>明旭智慧运转总控台</h1>
+<p class="subtitle">六大智慧板块 · 流转闭环 · 高效使用指南 · 2026-09-10</p>
+
+<!-- 总览 -->
+<div class="overview">
+<div class="ov-card"><div class="ov-num c1">3</div><div class="ov-label">Coq层级<br>(L1/L2/L3)</div></div>
+<div class="ov-card"><div class="ov-num c2">18</div><div class="ov-label">永久ID定理</div></div>
+<div class="ov-card"><div class="ov-num c3">11</div><div class="ov-label">全本卷数</div></div>
+<div class="ov-card"><div class="ov-num c4">14</div><div class="ov-label">生命语义卡</div></div>
+<div class="ov-card"><div class="ov-num c5">58</div><div class="ov-label">关键论断</div></div>
+<div class="ov-card"><div class="ov-num c6">6</div><div class="ov-label">分站体系<br>(S00-S05)</div></div>
+</div>
+
+<!-- 智慧流转图 -->
+<div class="flow">
+<h2>⚡ 智慧流转闭环</h2>
+<div class="flow-chain">
+<div class="flow-node active">F1感<br><small>对话中迸发</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-node">阴性沉积<br><small>写入文件</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-node">索引锁定<br><small>总索引/论断</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-node active">阳性操作<br><small>被使用/引用</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-node">f³明性<br><small>反馈进化</small></div>
+<div class="flow-arrow">↻</div>
+</div>
+<p class="flow-desc">每一次对话迸发的感 → 沉积为文件 → 被索引锁定 → 在新任务中被使用 → 使用中产生新的理解 → 回到对话迸发新的感。闭环不中断，智慧就在闭环中生长。</p>
+<div class="flow-chain" style="margin-top:20px">
+<div class="flow-node" style="border-color:#ff6b6b">代码智慧流<br><small>设计→草稿→验证→合并→注册</small></div>
+<div class="flow-arrow">+</div>
+<div class="flow-node" style="border-color:#6bcb77">研究智慧流<br><small>对话→精读→语义卡→全本→形式化</small></div>
+<div class="flow-arrow">+</div>
+<div class="flow-node" style="border-color:#ffd93d">协作智慧流<br><small>分站→定时任务→沉积→大总站合并</small></div>
+</div>
+</div>
+
+<!-- 代码智慧 -->
+<div class="wisdom-section">
+<div class="wisdom-header" onclick="toggle(this)">
+<div class="wisdom-title"><div class="wisdom-icon" style="background:#1a3a3a;color:#6bcb77">⌨</div>代码智慧</div>
+<div class="wisdom-count">3层 · 18定理 · 5脚本 ▾</div>
+</div>
+<div class="wisdom-body">
+<div class="wisdom-item" style="border-left-color:#6bcb77">
+<h4>Coq形式化三层（L1/L2/L3）</h4>
+<p>L1：语法+线性类型核心+renaming（458行，编译通过）；L2：替换引理+subject reduction（编译通过）；L3：Ag_lv/Ag_tr/Hijack/Cl类型扩展（编译通过）。核心突破：A方案——在通用ty定义中加新词，不另造方言。</p>
+<div class="path">coq/theories/ALL/Layer1.v → Layer2.v → Layer3.v</div>
+<span class="tag tag-done">L1编译通过</span><span class="tag tag-done">L2编译通过</span><span class="tag tag-done">L3编译通过</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#ffd93d">
+<h4>18个永久ID定理（T001-T018）</h4>
+<p>T001生命不可资本化、T002自由只能在实践中确立、T011革命级联、T018持续感染源推论、T013量子测量=异化、T012异化=时钟量化。17个paper_proof，1个conjecture，0个Coq验证（最大缺口）。</p>
+<div class="path">mingben-workbench/references/theorem_registry.json</div>
+<span class="tag tag-wip">纸面证明17</span><span class="tag tag-todo">Coq验证0</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#4d96ff">
+<h4>PTL类型系统</h4>
+<p>7类类型/15类项，含νF₂流/ν*F成长/f³反射。形式化语义+类型可靠性证明（Progress+Preservation）已完成纸面证明。</p>
+<div class="path">mingben-workbench/references/PTL形式化语义与类型可靠性证明.md</div>
+<span class="tag tag-wip">纸面证明</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#c084fc">
+<h4>质量检查脚本三件套</h4>
+<p>越级陈述检查器（首次扫描128文件发现2554问题）、引用一致性检查器（18ID注册0无效引用）、循环论证检测器（86定理264依赖25潜在循环）。</p>
+<div class="path">mingben-workbench/scripts/</div>
+<span class="tag tag-done">工具化</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#ff9f43">
+<h4>核心数学洞察</h4>
+<p>Ag_lv/Ag_tr分裂（活运行权vs轨迹运行权，轨迹不能变回活运行）、!-模态=资本化/异化/沉积、νF₂=生命流/生产性过程、7条PTC公理。</p>
+<div class="path">coq/theories/ALL/Layer3.v + mingben-workbench/references/</div>
+<span class="tag tag-method">数学核心</span>
+</div>
+</div>
+</div>
+
+<!-- 研究智慧 -->
+<div class="wisdom-section">
+<div class="wisdom-header" onclick="toggle(this)">
+<div class="wisdom-title"><div class="wisdom-icon" style="background:#3a1a3a;color:#c084fc">📚</div>研究智慧</div>
+<div class="wisdom-count">11卷 · 14卡 · 34轮 ▾</div>
+</div>
+<div class="wisdom-body">
+<div class="wisdom-item" style="border-left-color:#c084fc">
+<h4>生命论全本（11卷+附录）</h4>
+<p>卷一存在论→卷二操作论→卷三认识论→卷四实践论→卷五群己论→卷六异化论→卷七解放论→卷八格物论→卷九人文论→卷十传统论→卷十一践演论。命经为卷首，语义论纲要为附录。</p>
+<div class="path">生命论_模块化/</div>
+<span class="tag tag-wip">部分卷待严谨化</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#6bcb77">
+<h4>14张生命语义卡</h4>
+<p>践演/感/应/能/敢/明性/异化/反自指/实践/缄默意识/操作/三人称合勘/国家与革命合卡/迁演缺失登记。每张精确到诞生分钟、字源、体系义、跨域对接、易混排伪。</p>
+<div class="path">docs/notes/理论研究/生命语义卡_*.md</div>
+<span class="tag tag-done">14张完成</span><span class="tag tag-todo">阶级/分工卡待做</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#4d96ff">
+<h4>超长主对话精读报告5份</h4>
+<p>精读1缄默意识爆发周(6/9-6/13)、精读2自指反自指链、精读3操作存在论成型(8/8-8/14)、精读4价值论奠基(8/15-8/16)、精读5 8月第4周与主线收尾。2025年段只有考古报告无精读。</p>
+<div class="path">docs/raw_materials/硬核对话记录/检索结果/超长主对话_2026段精读*.md</div>
+<span class="tag tag-done">2026段精读5份</span><span class="tag tag-todo">2025段精读待做</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#ffd93d">
+<h4>永动研究34轮迭代</h4>
+<p>从迭代01对话K研究到迭代34国家与革命合卡，覆盖概念发生学、量化体系考古、全本校准、语义卡模板v1.0-v1.4。停在迭代34，下一轮迭代35计划回写模板v1.5。</p>
+<div class="path">docs/raw_materials/硬核对话记录/检索结果/迭代*.md</div>
+<span class="tag tag-wip">34轮完成</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#ff6b6b">
+<h4>概念发生学溯源表</h4>
+<p>10个核心概念四分类：A型独立发现后追认（缄默意识/自指存在论化/操作先于实体/四规定性/明性f³/应第二人称）、B型有意识继承（反自指/名实遮蔽/践演）、C型完全原创、D型表面相似实质不同。</p>
+<div class="path">docs/notes/理论研究/概念发生学溯源表_20260910.md</div>
+<span class="tag tag-method">严谨度分级</span>
+</div>
+</div>
+</div>
+
+<!-- 方法论智慧 -->
+<div class="wisdom-section">
+<div class="wisdom-header" onclick="toggle(this)">
+<div class="wisdom-title"><div class="wisdom-icon" style="background:#3a3a1a;color:#ffd93d">🔧</div>方法论智慧</div>
+<div class="wisdom-count">6法 · 4底线 ▾</div>
+</div>
+<div class="wisdom-body">
+<div class="wisdom-item" style="border-left-color:#ffd93d">
+<h4>三遍法（核心研究法）</h4>
+<p>库里理解一遍→自己内化一遍→自己生成一遍。阴性沉积→阳性理解→新阴性沉积。解决"太忽视库里的东西"的根本方法。</p>
+<span class="tag tag-method">核心方法</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#ff6b6b">
+<h4>明性辩证法（f³反射）</h4>
+<p>正→反→合不是三段，是f³反射：自在→自为→自觉→明性（见山是山→见山不是山→见山还是山），明性之后没有第四段。</p>
+<span class="tag tag-method">认识论核心</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#6bcb77">
+<h4>明本学术法（小本质↔大本质）</h4>
+<p>下行（存在论命题在具体领域显现）、上行（具体判断追溯存在论根基）、反面推导、交叉印证。双向验证，不单向推演。</p>
+<span class="tag tag-method">研究方法</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#4d96ff">
+<h4>小本质递归法</h4>
+<p>从最小本质单元出发，递归展开整个体系。每个概念都要能追溯到最小本质，不能悬空。</p>
+<div class="path">docs/notes/方法论/小本质递归法_全本.md</div>
+<span class="tag tag-method">全本方法</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#c084fc">
+<h4>三式读法</h4>
+<p>第一式读原文、第二式读结构、第三式读发生。不是只读内容，还要读怎么长出来的。</p>
+<div class="path">docs/notes/方法论/三式读法_第一性原理与机制.md</div>
+<span class="tag tag-method">阅读方法</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#ff9f43">
+<h4>践演论第一性原理底线 + 写作避坑铁律</h4>
+<p>第一性原理：操作先于实体、感是第一人称事实、νF₂是第一性的。写作避坑：不修辞膨胀、不越级陈述、不编造证明、AI文字标"原材料·待作者重写"。</p>
+<div class="path">docs/notes/方法论/践演论第一性原理底线.md + 明本论_写作避坑铁律.md</div>
+<span class="tag tag-method">底线+铁律</span>
+</div>
+</div>
+</div>
+
+<!-- 协作智慧 -->
+<div class="wisdom-section">
+<div class="wisdom-header" onclick="toggle(this)">
+<div class="wisdom-title"><div class="wisdom-icon" style="background:#1a2a3a;color:#4d96ff">🤝</div>协作智慧</div>
+<div class="wisdom-count">6分站 · 写审分离 ▾</div>
+</div>
+<div class="wisdom-body">
+<div class="wisdom-item" style="border-left-color:#4d96ff">
+<h4>分站体系S00-S05</h4>
+<p>S00大总站(main)·S01哲学(s01-philosophy)·S02高考文科(s02-gaokao-arts)·S03术数(s03-divination)·S04 Coq形式化(s04-coq)·S05信息(s05-info)。各站独立token、独立分支、独立定时任务。大总站负责审核合并。</p>
+<div class="path">docs/协作机制/明旭的记忆/定时任务网络配置.json</div>
+<span class="tag tag-done">体系建立</span><span class="tag tag-wip">部分站待激活</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#6bcb77">
+<h4>写审分离机制</h4>
+<p>大总站（云电脑）写Coq草稿→放coq/incoming/→本地端跑coqc验证→0 Admitted才算过→通过移到coq/theories/正式区。大总站不能直接改正式区文件。</p>
+<span class="tag tag-method">核心协作机制</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#ffd93d">
+<h4>DeepSeek使用策略</h4>
+<p>DeepSeek作为深度研究员，不只是工具：B档规划+A档深研ReAct循环。产出直写持久目录、代谢日志先记账、不设硬时间、stream模式防超时。model=deepseek-v4-pro, thinking.enabled=true, reasoning_effort=max。</p>
+<div class="path">docs/协作机制/DeepSeek_API使用策略_v1.0.md + DeepSeek深度调用方法论_v1.0.md</div>
+<span class="tag tag-method">AI协作</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#ff6b6b">
+<h4>定时任务网络</h4>
+<p>每站有独立定时任务，时间错开避免冲突。触发后先读运行状态机→明性卡片→代谢日志→教训库→执行→更新状态机→git commit/push。大总站夜间巡检合并各站PR。</p>
+<div class="path">docs/协作机制/明旭的记忆/明旭_运行状态机.md</div>
+<span class="tag tag-wip">持续优化中</span>
+</div>
+</div>
+</div>
+
+<!-- 对话录智慧 -->
+<div class="wisdom-section">
+<div class="wisdom-header" onclick="toggle(this)">
+<div class="wisdom-title"><div class="wisdom-icon" style="background:#3a1a2a;color:#ff6b6b">💬</div>对话录智慧</div>
+<div class="wisdom-count">85精华 · 58论断 · 10实录 ▾</div>
+</div>
+<div class="wisdom-body">
+<div class="wisdom-item" style="border-left-color:#ff6b6b">
+<h4>对话录精华总索引（85条）</h4>
+<p>按10大主题分类：存在论核心/概念诞生考古/社会批判/觉醒解放/方法论/学者研究/艺术解读/讨论记录/量化体系/金句原话。每条标注精确标题、路径、一句话核心、时间、严谨度。</p>
+<div class="path">docs/notes/理论研究/对话录精华总索引_20260910.md</div>
+<span class="tag tag-done">85条锁定</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#ffd93d">
+<h4>关键论断索引（58条）</h4>
+<p>从200+文件提取最核心的58条论断，按12主题排列。每条带原文、出处、时间、标签。写文章/做论证/回答问题时直接取，不用重新推导。</p>
+<div class="path">docs/notes/理论研究/生命论关键论断索引_20260910.md</div>
+<span class="tag tag-done">58条锁定</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#6bcb77">
+<h4>金句全录 + 原话留存5份</h4>
+<p>金句全录：命经+在感+感与应+操作先于实体等F1层真实记录。原话留存：8/30凌晨5段连续语音转写（资本主义反自指本质/觉醒三类型/第三阶段收敛性/批判必然性/生命语义论构想），一字不改。</p>
+<div class="path">docs/raw_materials/北原慢热金句全录.md + docs/raw_materials/北原慢热原话留存/</div>
+<span class="tag tag-done">F1层真实记录</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#4d96ff">
+<h4>长谈实录10篇 + 讨论记录7份</h4>
+<p>长谈实录：缄默意识诞生/性学批判/萨特与阴阳/第一夜从鞍钢宪法到磁极螺旋等。讨论记录：四轮攻防论辩/批判性阅读地图/创作日志/闪光点即时录。</p>
+<div class="path">docs/长谈实录/ + docs/notes/讨论记录/</div>
+<span class="tag tag-done">精华整理</span>
+</div>
+</div>
+</div>
+
+<!-- 工具智慧 -->
+<div class="wisdom-section">
+<div class="wisdom-header" onclick="toggle(this)">
+<div class="wisdom-title"><div class="wisdom-icon" style="background:#2a2a1a;color:#ff9f43">🛠</div>工具智慧</div>
+<div class="wisdom-count">脚本 · 修复 · 自动化 ▾</div>
+</div>
+<div class="wisdom-body">
+<div class="wisdom-item" style="border-left-color:#ff9f43">
+<h4>ds_collab.py + ds_system_prefix.md</h4>
+<p>DeepSeek协作脚本和系统前缀，统一收口纪律。所有DeepSeek调用走统一入口，代谢日志先记账再调用。</p>
+<div class="path">scripts/ds_collab.py + scripts/ds_system_prefix.md</div>
+<span class="tag tag-done">核心工具</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#6bcb77">
+<h4>coq_verify.py 自动验证脚本</h4>
+<p>自动设置PATH+COQLIB，检查Admitted/循环依赖/编译。本地端验证Coq代码的标准工具。</p>
+<div class="path">coq/coq_verify.py</div>
+<span class="tag tag-done">已修复PATH</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#4d96ff">
+<h4>分站通用修复包</h4>
+<p>mingxu_fix_all.sh：验证token→定位仓库→清理git锁→配置remote→优化网络配置→处理未提交改动→切换分支→合并main→测试push。9步自动解决所有git/网络/token问题。</p>
+<div class="path">scripts/token_management/mingxu_fix_all.sh</div>
+<span class="tag tag-done">9步自动修复</span>
+</div>
+<div class="wisdom-item" style="border-left-color:#c084fc">
+<h4>全本构建+质量检查工具链</h4>
+<p>build_all.sh/build_full.py/pipeline.sh/quality_check.py/deep_check.py/check_volume_consistency.py/renumber.py。全本自动化构建、质量检查、卷号重排。</p>
+<div class="path">生命论_模块化/*.sh + *.py</div>
+<span class="tag tag-done">工具链</span>
+</div>
+</div>
+</div>
+
+<!-- 效率面板 -->
+<div class="efficiency">
+<h2>📊 智慧运转效率</h2>
+<div class="eff-grid">
+<div class="eff-item">
+<h4>代码智慧使用率</h4>
+<div class="eff-bar"><div class="eff-fill" style="width:45%;background:#6bcb77"></div></div>
+<div class="eff-label"><span>L1-L3在用</span><span>45%</span></div>
+</div>
+<div class="eff-item">
+<h4>定理Coq验证率</h4>
+<div class="eff-bar"><div class="eff-fill" style="width:0%;background:#ff6b6b"></div></div>
+<div class="eff-label"><span>0/18（最大缺口）</span><span>0%</span></div>
+</div>
+<div class="eff-item">
+<h4>研究智慧沉积率</h4>
+<div class="eff-bar"><div class="eff-fill" style="width:80%;background:#4d96ff"></div></div>
+<div class="eff-label"><span>14卡+5精读+34轮</span><span>80%</span></div>
+</div>
+<div class="eff-item">
+<h4>对话录索引覆盖率</h4>
+<div class="eff-bar"><div class="eff-fill" style="width:70%;background:#ffd93d"></div></div>
+<div class="eff-label"><span>85精华+58论断</span><span>70%</span></div>
+</div>
+<div class="eff-item">
+<h4>分站激活率</h4>
+<div class="eff-bar"><div class="eff-fill" style="width:50%;background:#c084fc"></div></div>
+<div class="eff-label"><span>S00/S01/S04活跃</span><span>50%</span></div>
+</div>
+<div class="eff-item">
+<h4>方法论落地率</h4>
+<div class="eff-bar"><div class="eff-fill" style="width:60%;background:#ff9f43"></div></div>
+<div class="eff-label"><span>三遍法+f³在用</span><span>60%</span></div>
+</div>
+</div>
+</div>
+
+<!-- 使用指南 -->
+<div class="guide">
+<h2>📖 最高效使用指南</h2>
+<div class="guide-step">
+<div class="guide-num">1</div>
+<div class="guide-text"><strong>找概念/论断</strong>：先查「关键论断索引」（58条原文），没有再查「精华总索引」（85条文件定位），还没有就grep全库。</div>
+</div>
+<div class="guide-step">
+<div class="guide-num">2</div>
+<div class="guide-text"><strong>写Coq代码</strong>：大总站写草稿放coq/incoming/→本地端用coq_verify.py验证→0 Admitted通过→移到coq/theories/正式区→更新theorem_registry.json。</div>
+</div>
+<div class="guide-step">
+<div class="guide-num">3</div>
+<div class="guide-text"><strong>做理论研究</strong>：走三遍法（库里理解→内化→生成）→产出放docs/notes/理论研究/→更新运行状态机→git commit/push。</div>
+</div>
+<div class="guide-step">
+<div class="guide-num">4</div>
+<div class="guide-text"><strong>用DeepSeek</strong>：走ds_collab.py统一入口→B档规划+A档深研→产出直写持久目录→代谢日志记账→不设硬时间。</div>
+</div>
+<div class="guide-step">
+<div class="guide-num">5</div>
+<div class="guide-text"><strong>遇到网络/git问题</strong>：运行mingxu_fix_all.sh [分站ID]，9步自动修复。不要手动乱改配置。</div>
+</div>
+<div class="guide-step">
+<div class="guide-num">6</div>
+<div class="guide-text"><strong>定时任务启动</strong>：读运行状态机→明性卡片→代谢日志→教训库最近3条→执行任务→更新状态机→git commit/push。7步铁律。</div>
+</div>
+<div class="guide-step">
+<div class="guide-num">7</div>
+<div class="guide-text"><strong>避免重复劳动</strong>：先查「研究前先查_防重复地图与不可替代清单」，确认没人做过再开工。</div>
+</div>
+</div>
+
+<footer>
+明旭智慧运转总控台 · 生命论项目 · 2026-09-10<br>
+智慧在闭环中生长：F1感→阴性沉积→索引锁定→阳性操作→f³明性→回到F1感
+</footer>
+</div>
+
+<script>
+function toggle(header){
+  var body=header.nextElementSibling;
+  body.classList.toggle('open');
+  var count=header.querySelector('.wisdom-count');
+  if(body.classList.contains('open')){
+    count.innerHTML=count.innerHTML.replace('▾','▴');
+  }else{
+    count.innerHTML=count.innerHTML.replace('▴','▾');
+  }
+}
+// 默认打开第一个板块
+document.querySelector('.wisdom-body').classList.add('open');
+document.querySelector('.wisdom-count').innerHTML=document.querySelector('.wisdom-count').innerHTML.replace('▾','▴');
+</script>
+</body>
+</html>
