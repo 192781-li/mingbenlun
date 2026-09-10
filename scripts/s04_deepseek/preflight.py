@@ -83,7 +83,7 @@ def coqc_layer(f):
     env = os.environ.copy()
     env["PATH"] = COQBIN + os.pathsep + env.get("PATH", "")
     env["COQLIB"] = COQLIB
-    p = subprocess.run([COQC, "-R", "..", "ALL", f], cwd=str(THEORIES),
+    p = subprocess.run([COQC, "-Q", ".", "ALL", f], cwd=str(THEORIES),
                        env=env, capture_output=True, text=True, encoding="utf-8", errors="replace")
     return p.returncode, ((p.stdout or "") + (p.stderr or ""))
 

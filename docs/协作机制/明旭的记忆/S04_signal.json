@@ -10,8 +10,8 @@
     "last_verified": "2026-09-10 15:14",
     "note": "旧任务11641354361346被删导致2026-09-05至09-10共5天零commit；2026-09-10恢复为11774525314050；SOP铁律9要求每轮开工先list_cron_jobs确认存活"
   },
-  "last_update": "2026-09-10T19:27:54",
-  "current_task": "J1 split_assoc blocked(OB-013, DS两轮未收敛); J3 typed_res_par_l blocked(OB-014, DS四轮未收敛: round1证伪守卫/round2-3未定义名Hp,use_weaken_none_head/round4仍失败); 无其他依赖就绪的J可推进(J2依赖J3,J4依赖J2+J3,J5依赖J4); 等S01研判",
+  "last_update": "2026-09-10 22:47:19",
+  "current_task": "split_assoc证明（DS主谋闭环中，round 2）",
   "status": "J1+J3 blocked_已注入S01研判任务TASK-S04-019/020",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
@@ -63,18 +63,14 @@
   },
   "crystal_crosscheck": "结晶001-016逐条核对：8条贯穿数学论证/5条贯穿操作范式/3条不适用不冲突；为真路线无一条突破范式，事故=违反010+014/016",
   "key_achievements": [
-    "J1g选择层pick_prefix+pick_prefix_correct经DS主谋2轮Qed(Some优先/经典选择子/复用split_assoc_cell)，coqc exit0，L2仅剩split_assoc；proof_loop新增def_span+同名循环全切根治already exists(两单测过)，结晶018派活前命题预检+SOP铁律8",
-    "证伪双门falsification_guard焊入proof_loop（结晶016+教训L035），事故原文做回归夹具，三连离线自检全绿",
-    "split_assoc经coqc双门裁定为真，错误'假命题/四条出路'文档作废、OB-011补最终结论",
-    "哲学命题三层讲透并贯穿：Layer2注释 + S04研判文档(含16结晶核对表) + 唯一权威SOP当前任务段更新",
-    "subst_ren_general 8/8、substitution_general、strengthening全套、progress均Qed"
+    "发现S01直接证明用assoc_build构造G23错误（G=[]时split [] G2 G3在Some None/Some None时不成立）",
+    "SOP指定正确构造：H23_val逐位构造（G2优先、G3兜底）",
+    "清理S01直接证明的5个语法错误引理，Layer2编译通过exit=0"
   ],
   "blockers": [
-    "J1 split_assoc blocked(OB-013, DS两轮闭环未收敛累计6轮费用1.55元), 核心难点: pick_prefix三态处理+前缀性质+setby f定义",
-    "J3 typed_res_par_l blocked(OB-014, DS四轮未收敛累计费用约0.71元), 核心难点: 辅助引理缺失(Hp,use_weaken_none_head), typed(PRes(PPar P Q))展开结构, ~fv_at Q 0条件使用",
-    "J2依赖J3, J4依赖J2+J3, J5依赖J4, 无其他依赖就绪的J可推进"
+    "split_assoc DS round 1输出仅778字符无完整证明，已回喂round 2"
   ],
-  "needs_s01": true,
+  "needs_s01": false,
   "s01_should_read": "coq/obstacles/OB-013_split_assoc主引理DS两轮闭环未收敛_20260910.md, coq/obstacles/OB-014_typed_res_par_l_DS四轮未收敛_20260910.md",
   "needs_s00": false,
   "s00_should_read": "四条出路全部作废，不需架构选路；仅待主人决定何时恢复定时任务",
@@ -165,5 +161,19 @@
     "TASK-S04-019",
     "TASK-S04-020"
   ],
-  "note": "S04主动联动S01：在task_queue注入urgent研判任务，S01定时任务下次触发会读到"
+  "note": "S04主动联动S01：在task_queue注入urgent研判任务，S01定时任务下次触发会读到",
+  "L1_admitted": 0,
+  "L2_admitted": 6,
+  "L2_admitted_list": [
+    "split_assoc",
+    "weaken_none_head",
+    "weaken_nil",
+    "typed_any_ctx",
+    "typed_res_par_l",
+    "typed_res_par_r"
+  ],
+  "latest_commits": [
+    "eec201a 清理S01语法错误，6个引理重置Admitted，Layer2编译通过"
+  ],
+  "ds_status": "running round 2, target=split_assoc"
 }

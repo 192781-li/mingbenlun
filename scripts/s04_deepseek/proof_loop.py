@@ -94,7 +94,7 @@ def apply_patch(file_path, target_lemma, blocks):
     return True, msg, work[:s]+ins+new_lemma+work[e:], insert_before, "replace"
 
 def run_coqc(theories_dir, fname):
-    cmd = ("set PATH=%s;%%PATH%% && set COQLIB=%s && cd /d %s && coqc.exe -R .. ALL %s 2>&1"
+    cmd = ("set PATH=%s;%%PATH%% && set COQLIB=%s && cd /d %s && coqc.exe -Q . ALL %s 2>&1"
            % (COQBIN, COQLIB, theories_dir, fname))
     p = subprocess.run(["cmd","/c",cmd], capture_output=True, text=True, encoding="utf-8", errors="replace")
     return p.returncode, (p.stdout or "")+(p.stderr or "")

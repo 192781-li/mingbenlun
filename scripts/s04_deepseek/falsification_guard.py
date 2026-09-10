@@ -60,7 +60,7 @@ def extract_negation_block(blocks, neg_name=None):
 
 # ---------------------------------------------------------------- 独立编译
 def _compile_v(theories_dir, fname):
-    cmd = ("set PATH=%s;%%PATH%% && set COQLIB=%s && cd /d %s && coqc.exe -R .. ALL %s 2>&1"
+    cmd = ("set PATH=%s;%%PATH%% && set COQLIB=%s && cd /d %s && coqc.exe -Q . ALL %s 2>&1"
            % (COQBIN, COQLIB, theories_dir, fname))
     p = subprocess.run(["cmd", "/c", cmd], capture_output=True, text=True, encoding="utf-8", errors="replace")
     return p.returncode, (p.stdout or "") + (p.stderr or "")
