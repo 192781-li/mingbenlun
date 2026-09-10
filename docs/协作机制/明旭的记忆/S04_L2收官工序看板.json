@@ -2,7 +2,7 @@
   "board": "S04_L2收官工序看板",
   "version": "1.1",
   "updated": "2026-09-04 18:42",
-  "status": "J1进行中: J1g选择层(A)pick_prefix定义+(B)pick_prefix_correct已Qed(Some优先,经典选择子,复用split_assoc_cell),coqc exit0,L2仅剩split_assoc 1个Admitted; 下一步(C)pick_prefix None位后缀引理→固定长度G23逐位读出→主定理拼装。机制修复:proof_loop新增def_span+同名循环全切(根治already exists)、ds_v4网络重试;结晶018派活前命题预检",
+  "status": "J1主引理split_assoc DS推进中: 选择层A/B(pick_prefix+pick_prefix_correct)已Qed, split_assoc_cell已Qed, H23_val已Qed; 2026-09-10首次自动触发, DS round1推理中(上下文46790token, v4-pro thinking), 后台task_id=6c25a1d9, 下轮触发取结果",
   "plan_doc": "docs/协作机制/分站/S04_L2收官攻坚计划_鞍钢宪法三结合_20260904.md",
   "sole_metric": "coqc Qed净增长（API success不算进展）",
   "current_baseline": {

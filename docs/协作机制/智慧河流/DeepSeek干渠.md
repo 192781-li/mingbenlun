@@ -9045,3 +9045,85 @@ Proof. Admitted.
 我们要输出“极简要点说明 + 代码块”？但此轮无需代码。可以只给说明。但可能系统要求必须带代码？没有强制。我们要按规则。
 
 好。
+
+
+## 2026-09-10 16:34:17 [proof_loop] split_assoc · round1 · DS输出
+
+我们先把任务说透再给代码。  
+`split_assoc` 当前 `Admitted`，但 Layer2 已备好逐位零件：`split_assoc_cell`（对单个 `option(option ty)` 位构造中间候选）与 `pick_prefix_correct`（“Some 优先”的逐位选择）。  
+难点在于逐位选择必须组装成**有限列表**，并且要处理 `None`（越界空）与 `Some None`（在位空）两层错位。  
+策略：对主世界 `G` 的**长度归纳**，把每个 `split` 的头部逐位拆开，用 `split_assoc_cell` 定头部候选，再由归纳假设处理尾部；候选若为 `None`，则中间列表头部为空（即直接进入尾部，长度不增）。  
+这样做比固定长度 `repeat None` 更贴合列表 `get` 的后缀越界语义，避免把越界 `None` 强塞成元素层 `None`。
+
+我们新增一个辅助引理：`split_head_cell`，把 `split` 在头部 `0` 位的性质翻译成 `cell_split`，以便调用 `split_assoc_cell`。  
+主证明直接对 `G` 归纳，头部三态 `None`/`Some None`/`Some T` 分别处理。
+
+```coq
+(* =====================================================================
+   补齐 split_assoc 证明所需的地基
+   ===================================================================== *)
+
+(* split 在 0 位转化为 cell_split 的桥梁。 *)
+Lemma split_head_cell : forall (G G1 G2 : ctx),
+  split G G1 G2 ->
+  cell_split (get G 0) (get G1 0) (get G2 0).
+Proof.
+  intros G G1 G2 Hs.
+  unfold split in Hs. specialize (Hs 0).
+  destruct Hs as [[Hg Hd] | [Hg Hd]].
+  - left. split; [exact Hg | exact Hd].
+  - right. split; [exact Hg | exact Hd].
+Qed.
+
+(* 尾部拆分：若 split G G1 G2，则去掉头部后，尾部仍保持 split。
+   注意：所有列表的头部去掉后，位置整体前移一位。 *)
+Lemma split_tail : forall (g g1 g2 : option ty) G G1 G2,
+  split (g :: G) (g1 :: G1) (g2 :: G2) ->
+  split G G1 G2.
+Proof.
+  intros g g1 g2 G G1 G2 Hs.
+  unfold split in *. intros n.
+  specialize (Hs (S n)).
+  destruct Hs as [[Hg Hd] | [Hg Hd]].
+  - left. split; [exact Hg | exact Hd].
+  - right. split; [exact Hg | exact Hd].
+Qed.
+
+(* 当头部候选为 Some e 时，cons 出来；为 None 时直接返回尾部。
+   这保证 None 对应列表越界，不产生 Some None 的错层。 *)
+Definition cons_if_some {A : Type} (z : option A) (tail : list A) : list A :=
+  match z with
+  | None => tail
+  | Some e => e :: tail
+  end.
+
+(* split 在头部为 None 时的归约：若 split G G1 G2，且 get G 0 = None，
+   则 G1/G2 在 0 位也都必然是 None（不可能在位）。 *)
+Lemma split_none_head : forall g1 g2 G G1 G2,
+  split (None :: G) (g1 :: G1) (g2 :: G2) ->
+  False.
+Proof.
+  intros g1 g2 G G1 G2 Hs.
+  unfold split in Hs. specialize (Hs 0). simpl in 
+[reasoning摘要]
+我们需要证明 split_assoc，当前 Admitted。需要给完整新版本。我们有材料中大量引理，特别 split_assoc_cell, choose_correct, pick_prefix 等已证。要完成 split_assoc：对于列表层的 split 结合律。
+
+我们需要理解问题。
+
+定义 split Gamma Gamma1 Gamma2 := forall n, (get Gamma1 n = get Gamma n /\ (get Gamma2 n = None \/ get Gamma2 n = Some None)) \/ (get Gamma2 n = get Gamma n /\ (get Gamma1 n = None \/ get Gamma1 n = Some None)).
+
+这叫明性分划：整体 Gamma 每个位置的 get 值（option (option ty) 三态）要么赋给 Gamma1 且 Gamma2 为空（None 或 Some None），要么赋给 Gamma2 且 Gamma1 为空。注意 get 返回 option (option ty)。
+
+目标 split_assoc: forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+材料已有逐位 cell_split 结合引理 split_assoc_cell 和 pick_prefix_correct，以及 H23_val 等。
+
+我们需要构造 G23 作为列表，并证明两个 split。
+
+方法应该是对每个位置 n，利用 split 逐位条件得到 cell_split (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n)。然后用 pick_prefix_correct 得到 z_n，构造列表 G23 = map? 但长度问题。
+
+关键：G23 应该是个 ctx，即 list (option ty)。pick_prefix 返回 option (option ty)，即 get 层值。我们需要一个列表，其 get 层等于这些 z_n。
+
+但注意：对于越界位 n >= length G23，get G23 n = None；在位 n < length G23，get G23 n = Some (element at n)。pick_prefix 返回的 z_n 可能是 None（越界）或 Some（在位空或实有）。我们需要构造 G23 使 get G23 n = z_n 对所有 n。
+
+由于 pick_prefix 返回的 z_n 满足 cell_split，很自然地逐位。但列表 get 的性质有单调性：若某位 n 是 Some（在位），则所有小于 n 的位也必须在位（get 不可能是 None）。这正是之前结晶017提到的“前缀性”：pick_prefix是 Some 优先选择，应该保证非 None 位成前缀，因此存在长度为 L0 的列表。材料中存在旧 H23_val 以及 choice? 但似乎最终 pick_prefix_correct 已 Qed，但未给出 pick_prefix 的前缀性引理。任务要求证明 split_assoc，可能只需用 pick_prefix 逐位构造加上一些长度选择，不必证明前缀性？我们需要构造具体

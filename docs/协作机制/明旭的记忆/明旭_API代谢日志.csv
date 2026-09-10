@@ -225,3 +225,4 @@
 2026-09-10 15:34:07,S04,deepseek-v4-pro,A,proofloop_--help_r2,44672,10430,28674,0,success,517.23,0.20445,0.8107,stop,proofloop_--help_r2
 2026-09-10 15:42:45,S04,deepseek-v4-pro,A,proofloop_--help_r3,57088,26,22203,0,success,517.88,0.13472,0.9995,stop,proofloop_--help_r3
 2026-09-10 15:43:10,S04,deepseek-v4-pro,A,proofloop_--help_r4,54912,4192,856,0,success,24.91,0.01908,0.9291,stop,proofloop_--help_r4
+2026-09-10 16:34:17,S04,deepseek-v4-pro,A,proofloop_split_assoc_r1,105600,370,54325,1,success,759.56,0.3297,0.9965,stop,proofloop_split_assoc_r1
