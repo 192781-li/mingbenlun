@@ -3,16 +3,16 @@
   "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
   "cron_alive": {
-    "main_task_id": 11641354361346,
+    "main_task_id": 11774525314050,
     "main_task_title": "明旭-S04-Coq形式化（看板驱动）",
     "schedule": "*/20 * * * *",
-    "status": "已被删除(不在运行也不在停用列表)，待恢复",
-    "last_verified": "2026-09-10",
-    "note": "2026-09-05至09-10整整5天零commit因主力任务被删；SOP铁律9要求每轮开工先list_cron_jobs确认存活"
+    "status": "运行中（已恢复）",
+    "last_verified": "2026-09-10 15:14",
+    "note": "旧任务11641354361346被删导致2026-09-05至09-10共5天零commit；2026-09-10恢复为11774525314050；SOP铁律9要求每轮开工先list_cron_jobs确认存活"
   },
-  "last_update": "2026-09-10T 错误根治系统性完成：39个历史错误梳理(31已固化+8本轮补固化)，SOP加铁律9(cron_alive)/铁律10(定时任务操作)，用户硬要求卡10条，输出前冷峻自检，教训库L036",
-  "current_task": "错误根治已完成；下一步：恢复S04主力看板驱动任务(被删5天)→J1收尾(C)None位后缀引理→固定长度G23→split_assoc主定理Qed→J3→J2→J4",
-  "status": "错误根治完成_主力任务待恢复_L2仅剩split_assoc",
+  "last_update": "2026-09-10T15:14 主力任务恢复+快速验证跑通",
+  "current_task": "J1 split_assoc收尾：选择层A/B已Qed，下一步(C)None位后缀引理→固定长度G23→主定理Qed",
+  "status": "主力任务已恢复_看板驱动正常_L2仅剩split_assoc",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
     "authority_docs": [
@@ -76,7 +76,7 @@
   "s01_should_read": "split_assoc为真已成定案（coqc双门）；两种寂等价不冲突，无需再研判假命题/四条出路。若S01对'明性分划结合律'的存在论表述有深化可补充",
   "needs_s00": false,
   "s00_should_read": "四条出路全部作废，不需架构选路；仅待主人决定何时恢复定时任务",
-  "next_action": "先为(C)pick_prefix_none_suffix写_precheck机器验证(结晶018派活前预检)→DS主谋证(C)→固定长度G23逐位读出→split_assoc主定理Qed→board done J1→J3 typed_res_par→J2 congruence",
+  "next_action": "主力任务*/20自动推进J1收尾→J3→J2→J4；每轮先cron_alive检查+preflight+board取活",
   "progress_score": 68,
   "guard_hardened": {
     "module": "scripts/s04_deepseek/falsification_guard.py",
