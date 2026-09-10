@@ -58,11 +58,12 @@ jobs:
       - name: 冲突标记检查
         run: |
           echo "=== Git冲突标记检查 ==="
-          CONFLICTS=$(grep -rn '<<<<<<<\|=======\|>>>>>>>' docs/协作机制/ 2>/dev/null | wc -l)
+          # 只匹配真正的git冲突：<<<<<<< 后面跟分支名(HEAD/main/master/s0X-origin)，>>>>>>> 后面跟分支名
+          CONFLICTS=$(grep -rEn '^(<<<<<<< (HEAD|main|master|s0[0-9]|origin/)|>>>>>>> (HEAD|main|master|s0[0-9]|origin/))' docs/ 2>/dev/null | wc -l)
           if [ "$CONFLICTS" -gt 0 ]; then
             echo "::error::发现未解决的Git冲突标记！"
-            grep -rn '<<<<<<<\|=======\|>>>>>>>' docs/协作机制/ | head -5
+            grep -rEn '^(<<<<<<< (HEAD|main|master|s0[0-9]|origin/)|>>>>>>> (HEAD|main|master|s0[0-9]|origin/))' docs/ | head -5
             exit 1
           else
-            echo "无冲突标记: OK"
+            echo "无真实冲突标记: OK（文档中的冲突说明文字已忽略）"
           fi
