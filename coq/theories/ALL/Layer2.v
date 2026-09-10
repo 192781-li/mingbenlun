@@ -2476,6 +2476,24 @@ Proof.
     + (* z = None：取 None 满足结论 *)
       exact Hz.
 Qed.
+
+Fixpoint assoc_build (G G12 G3 G1 G2 : ctx) : ctx :=
+  match G with
+  | [] => []
+  | g :: G' =>
+      let g12 := match G12 with [] => None | x :: _ => Some x end in
+      let g3  := match G3  with [] => None | x :: _ => Some x end in
+      let g1  := match G1  with [] => None | x :: _ => Some x end in
+      let g2  := match G2  with [] => None | x :: _ => Some x end in
+      match pick_prefix (Some g) g12 g3 g1 g2 with
+      | Some t => t :: assoc_build G' (tl G12) (tl G3) (tl G1) (tl G2)
+      | None => match g3 with
+                | None => []
+                | Some _ => None :: assoc_build G' (tl G12) (tl G3) (tl G1) (tl G2)
+                end
+      end
+  end.
+
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.
@@ -2483,22 +2501,7 @@ Proof.
   (* 递归构造 G23：逐位取 pick_prefix；若 pick_prefix=None 且 G3 越界(None)则截断，
      否则取 None（在位空位 Some None）承续。存在论：中间场域在满足分划的候选里
      主动选在位之寂，仅当两侧皆越界才落入空无。 *)
-  let fix assoc_build (G G12 G3 G1 G2 : ctx) : ctx :=
-    match G with
-    | [] => []
-    | g :: G' =>
-        let g12 := match G12 with [] => None | x :: _ => Some x end in
-        let g3  := match G3  with [] => None | x :: _ => Some x end in
-        let g1  := match G1  with [] => None | x :: _ => Some x end in
-        let g2  := match G2  with [] => None | x :: _ => Some x end in
-        match pick_prefix (Some g) g12 g3 g1 g2 with
-        | Some t => t :: assoc_build G' (tl G12) (tl G3) (tl G1) (tl G2)
-        | None => match g3 with
-                  | None => []
-                  | Some _ => None :: assoc_build G' (tl G12) (tl G3) (tl G1) (tl G2)
-                  end
-        end
-    end in
+
   assert (Hmain : forall G G12 G3 G1 G2,
     split G G12 G3 -> split G12 G1 G2 ->
     split G G1 (assoc_build G G12 G3 G1 G2) /\
