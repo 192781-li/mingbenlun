@@ -9758,3 +9758,175 @@ unfold split in Hs, specialize Hs 0. 由于 get (Some T::Gamma) 0 = Some (Some T
 
 我们分别处理。
 若 D1 0 = Some T：则 D1 = insert_at 0 T (remove_at 0 D1) = Some T :: remove_at 0 D1（由 insert_remove_at_id）。于是 typed (Some T :: remove_at 0 D1) P，所以 typed (r
+
+
+## 2026-09-10 20:43:53 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  assert (Hmain : forall G G12 G3 G1 G2,
+    split G G12 G3 -> split G12 G1 G2 ->
+    split G G1 (assoc_build G G12 G3 G1 G2) /\
+    split (assoc_build G G12 G3 G1 G2) G2 G3).
+  { intros G. induction G as [| g G' IH].
+    - (* G = [] *)
+      intros G12 G3 G1 G2 H1 H2.
+      split; unfold split; intro n; specialize (H1 n); specialize (H2 n);
+        unfold cell_split in *; destruct H1 as [[Hg12 Hg3]|[Hg3 Hg12]];
+        destruct H2 as [[Hg1 Hg2]|[Hg2 Hg1]];
+        (try (left; split; [assumption|tauto])).
+      + (* H1左 H2左 *)
+        left. split; [assumption|tauto].
+      + (* H1左 H2右 *)
+        right. split; [reflexivity|tauto].
+      + (* H1右 H2左 *)
+        right. split; [assumption|tauto].
+      + (* H1右 H2右 *)
+        right. split; [assumption|tauto].
+    - (* G = g :: G' *)
+      intros G12 G3 G1 G2 H1 H2.
+      assert (H10 := H1 0). assert (H20 := H2 0).
+      set (g12 := match G12 with [] => None | x :: _ => Some x end) in *.
+      set (g3  := match G3  with [] => None | x :: _ => Some x end) in *.
+      set (g1v := match G1  with [] => None | x :: _ => Some x end) in *.
+      set (g2v := match G2  with [] => None | x :: _ => Some x end) in *.
+      set (cell := pick_prefix (Some g) g12 g3 g1v g2v) in *.
+      assert (Hcell := pick_prefix_correct (Some g) g12 g3 g1v g2v H10 H20).
+      destruct Hcell as [Hc1 Hc2].
+      split.
+      + (* split (g::G') G1 (assoc_build ...) *)
+        unfold split. intro n. destruct n as [| n'].
+        * (* n=0 *)
+          simpl. unfold cell in Hc1.
+          destruct cell as [t|].
+          -- (* cell=Some t *) exact Hc1.
+          -- (* cell=None *) destruct g3 as [g3v|].
+             ++ (* g3=Some _ *) unfold cell_split in Hc1.
+                destruct Hc1 as [[Hge _]|[_ Hempty]].
+                ** left. split; [exact Hge| left; reflexivity].
+                ** exfalso. congruen
+[reasoning摘要]
+We need answer user. They want complete proof of split_assoc (currently admitted). We have big Layer2.v with existing lemmas, including split_assoc_cell, choose/pick_prefix correct, assoc_build, and a proof of split_assoc that may be flawed? They ask "请完整证出 split_assoc（当前为 Admitted/admit），给从声明行到 Qed. 的完整新版本。"
+
+Need analyze current code. We are S04 main prover. Need deliver complete compilable Coq replacement. We need inspect existing definitions/proofs. The split_assoc proof in material is already there (not Admitted?) It has Lemma split_assoc : ... Proof. assert ... exact ... Qed. Maybe it is admitted? The material includes a full proof but may not compile? Need provide "完整新版本" from declaration to Qed. We need ensure it compiles in Rocq 9.1.0 with given Layer1/Layer2. We need reason and possibly produce corrected proof.
+
+We need inspect exact Coq definitions around split, cell_split, choose, pick_prefix, assoc_build, split_assoc. The existing split_assoc proof uses many things and may have errors. Need understand and produce robust proof.
+
+Let's analyze. The target:
+```
+Definition split (Gamma Gamma1 Gamma2 : ctx) : Prop :=
+  forall n,
+    (get Gamma1 n = get Gamma n /\ (get Gamma2 n = None \/ get Gamma2 n = Some None))
+    \/ (get Gamma2 n = get Gamma n /\ (get Gamma1 n = None \/ get Gamma1 n = Some None)).
+```
+
+Want: forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+This is associativity of resource splitting. Need 
+
+
+## 2026-09-10 20:47:56 [proof_loop] split_assoc · round2 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 H1 H2.
+  (* 选择足够覆盖所有上下文长度的上界 *)
+  set (max_len := max (length G) (max (length G12) (max (length G3) (max (length G1) (length G2))))).
+  (* 构造中间场域：在每个位置 n 用 pick_prefix 选取 *)
+  exists (setby
+           (fun n _ =>
+              match pick_prefix (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n) with
+              | Some v => v
+              | None => None
+              end)
+           (repeat (None : option ty) max_len)
+           0).
+  split.
+  - (* split G G1 G23 *)
+    unfold split. intro n.
+    destruct (Nat.ltb n max_len) eqn:El.
+    + (* n < max_len：使用 pick_prefix_correct *)
+      apply Nat.ltb_lt in El.
+      assert (HnG : get G n = get G n) by reflexivity.
+      assert (HnG1 : get G1 n = get G1 n) by reflexivity.
+      assert (HnG2 : get G2 n = get G2 n) by reflexivity.
+      assert (HnG3 : get G3 n = get G3 n) by reflexivity.
+      assert (HnG12 : get G12 n = get G12 n) by reflexivity.
+      (* 用 setby get 引理得到构造值的 get *)
+      assert (Hget23 : get (setby (fun n0 _ => match pick_prefix (get G n0) (get G12 n0) (get G3 n0) (get G1 n0) (get G2 n0) with Some v => v | None => None end) (repeat (None : option ty) max_len) 0) n =
+                       Some (match pick_prefix (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n) with Some v => v | None => None end)).
+      { eapply get_setby_get with (u := (None : option ty)).
+        apply get_repeat_None_lt. exact El. }
+      rewrite Hget23.
+      (* 根据 pick_prefix 的返回值分支 *)
+      destruct (pick_prefix (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n)) as [v|] eqn:Ep.
+      * (* pick 返回 Some v *)
+        assert (Hpick := pick_prefix_correct (get G n) (get G12 n) (get G3 n) (get G1 n) (get G2 n) H1 n H2 n).
+        (* 注意：这里 H1 n H2 n 是 cell_split，但 pick_prefix_correct 需要完整 split 的逐位，我们直接 apply 全局 H1 H2 对位？ 需要调整 *)
+        (* 由于 H1 和 H2 是
+[reasoning摘要]
+我们需要分析上一版编译错误：File ".\Layer2.v", line 7, characters 0-26: Error: The file C:\...\Layer1.vo contains library ALL.Layer1 and not library ALL.ALL.Layer1.
+
+这个错误说明 Layer2.v 中 Require Import ALL.Layer1. 但当前编译环境库路径导致逻辑名不一致？ 错误信息：contains library ALL.Layer1 and not library ALL.ALL.Layer1. 意思是命令行/coq_makefile 期望找到逻辑名 ALL.ALL.Layer1？ 或者 Layer2.v 中 Require Import ALL.Layer1. 但 Layer1.vo 的逻辑名是 ALL.Layer1? 它说 contains library ALL.Layer1 and not library ALL.ALL.Layer1. 意味着 Coq 在找逻辑名 ALL.ALL.Layer1，但找到的 vo 逻辑名是 ALL.Layer1。可能是编译命令用了 -R 某路径 ALL 导致库名变成 ALL.Layer1；而 Layer2.v 里 Require Import ALL.Layer1 导致它找 ALL.Layer1? 等等：错误 "The file ... contains library ALL.Layer1 and not library ALL.ALL.Layer1." 通常发生在 Coq 根据 Require Import ALL.Layer1 在文件系统找到 Layer1.vo，但该 vo 的库名（在编译时用 -R ... ALL 或 -Q ... ALL 等）是 ALL.Layer1，而当前请求是 ALL.ALL.Layer1？ 实际上如果编译 Layer2.v 时使用 -R . ALL，则当前模块是 ALL.Layer2；Require Import ALL.Layer1 会去找库名 ALL.Layer1，应该没问题。如果使用 -Q . ALL，库名也是 ALL.Layer1。错误说 not library ALL.ALL.Layer1，期待的是 ALL.ALL.Layer1？ 或许编译命令用了 -R theories ALL，且 Layer2.v 在 theories/ALL 子目录？ 文件路径：C:\Users\lison\Desktop\mingbenlun_git\coq\theories\ALL\Layer2.v；Require Import ALL.Layer1. 在 Coq 8.13+，逻辑路径 ALL.Layer1 对应文件 ALL/Layer1.vo。错误说文件 Layer1.vo 包含库 ALL.Layer1 而不是 ALL.ALL.Layer1。这表明它在找逻辑名 ALL.ALL.Layer1，但文件里是 ALL.Layer1。为什么它会找 ALL.ALL.Layer1？因为编译 Layer2.v 时，模块的当前目录可能被映射成 ALL.ALL？ 也许是使用了 cygwin 的 make，-R . ALL 但源文件在 ALL 子目录，所以 Coq 根据源文件相对路径得到模块名 ALL.Layer2；但 Require Import ALL.Layer1 中的 ALL 是另一个前缀？ Wait: 如果 -R 参数给的是 "." 映射为
+
+
+## 2026-09-10 20:57:59 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  assert (Hmain : forall G G12 G3 G1 G2,
+    split G G12 G3 -> split G12 G1 G2 ->
+    split G G1 (assoc_build G G12 G3 G1 G2) /\
+    split (assoc_build G G12 G3 G1 G2) G2 G3).
+  { intros G. induction G as [| g G' IH].
+    - (* G = [] *)
+      intros G12 G3 G1 G2 H1 H2.
+      split; unfold split; intro n; specialize (H1 n); specialize (H2 n);
+        unfold cell_split in *; destruct H1 as [[Hg12 Hg3]|[Hg3 Hg12]];
+        destruct H2 as [[Hg1 Hg2]|[Hg2 Hg1]];
+        (try (left; split; [assumption|tauto])).
+      + (* H1左 H2左 *)
+        left. split; [assumption|tauto].
+      + (* H1左 H2右 *)
+        right. split; [reflexivity|tauto].
+      + (* H1右 H2左 *)
+        right. split; [assumption|tauto].
+      + (* H1右 H2右 *)
+        right. split; [assumption|tauto].
+    - (* G = g :: G' *)
+      intros G12 G3 G1 G2 H1 H2.
+      assert (H10 := H1 0). assert (H20 := H2 0).
+      set (g12 := match G12 with [] => None | x :: _ => Some x end) in *.
+      set (g3  := match G3  with [] => None | x :: _ => Some x end) in *.
+      set (g1v := match G1  with [] => None | x :: _ => Some x end) in *.
+      set (g2v := match G2  with [] => None | x :: _ => Some x end) in *.
+      set (cell := pick_prefix (Some g) g12 g3 g1v g2v) in *.
+      assert (Hcell := pick_prefix_correct (Some g) g12 g3 g1v g2v H10 H20).
+      destruct Hcell as [Hc1 Hc2].
+      split.
+      + (* split (g::G') G1 (assoc_build ...) *)
+        unfold split. intro n. destruct n as [| n'].
+        * (* n=0 *)
+          simpl. unfold cell in Hc1.
+          destruct cell as [t|].
+          -- (* cell=Some t *) exact Hc1.
+          -- (* cell=None *) destruct g3 as [g3v|].
+             ++ (* g3=Some _ *) unfold cell_split in Hc1.
+                destruct Hc1 as [[Hge _]|[_ Hempty]].
+                ** left. split; [exact Hge| left; reflexivity].
+                ** exfalso. congruen
+[reasoning摘要]
+We need answer user asks: prove split_assoc fully, current in Layer2 material has already Qed? Looking at material, split_assoc appears with full proof Qed after assoc_build. But task says current is Admitted/admit ask complete proof from declaration to Qed. Maybe in current file, split_assoc already Qed? The provided Layer2 includes Lemma split_assoc with proof ending Qed. And before it includes cell_split, choose_correct, pick_prefix_correct, assoc_build. Is there something incomplete? Need analyze.
+
+Need produce complete Coq code for split_assoc from declaration to Qed. Must ensure compiles Rocq 9.1.0. User gives full material. We can rely on all previously Qed in Layer1/Layer2. Need no Admitted. We need provide complete version. Could probably simply paste existing split_assoc + dependencies? But task maybe wants clean robust proof. Need verify existing proof proof compiles. We need self-check. The material already has a proof but perhaps has issues? We need produce new full version. Need obey instruction: direct complete compilable Coq, include auxiliary lemmas, rely on material A Qed. We need not re-prove already Qed lemmas if in material. But task asks prove split_assoc. There is already implementation. We can output replacement lemma. Need maybe ensure no admission.
+
+Let's analyze existing split_assoc proof in material for correctness and possible compile issues. We need provide "from declaration line to Qed" complete new version. We can reuse existing auxiliary lemma

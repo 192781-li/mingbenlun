@@ -2498,29 +2498,22 @@ Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.
 Proof.
-  (* 递归构造 G23：逐位取 pick_prefix；若 pick_prefix=None 且 G3 越界(None)则截断，
-     否则取 None（在位空位 Some None）承续。存在论：中间场域在满足分划的候选里
-     主动选在位之寂，仅当两侧皆越界才落入空无。 *)
-
   assert (Hmain : forall G G12 G3 G1 G2,
     split G G12 G3 -> split G12 G1 G2 ->
     split G G1 (assoc_build G G12 G3 G1 G2) /\
     split (assoc_build G G12 G3 G1 G2) G2 G3).
   { intros G. induction G as [| g G' IH].
-    - (* G = [] *)
+    - (* G = []：cell_split None a None右支只需a=None\/a=Some None，从H1/H2可推出 *)
       intros G12 G3 G1 G2 H1 H2.
-      split; unfold split; intro n; specialize (H1 n); specialize (H2 n);
-        unfold cell_split in *; destruct H1 as [[Hg12 Hg3]|[Hg3 Hg12]];
-        destruct H2 as [[Hg1 Hg2]|[Hg2 Hg1]];
-        (try (left; split; [assumption|tauto])).
-      + (* H1左 H2左：g12=None,g1=None → split [] G1 [] 左支 *)
-        left. split; [assumption|tauto].
-      + (* H1左 H2右：g2=g12=None,g1空 → split [] G1 [] 右支 *)
-        right. split; [reflexivity|tauto].
-      + (* H1右 H2左：g3=None,g1=g12空 → split [] G2 G3 右支 *)
-        right. split; [assumption|tauto].
-      + (* H1右 H2右：g3=None,g2=g12空 → split [] G2 G3 右支 *)
-        right. split; [assumption|tauto].
+      assert (Hgn : forall n, (get G1 n = None \/ get G1 n = Some None) /\ (get G2 n = None \/ get G2 n = Some None)).
+      { intro n. specialize (H1 n). specialize (H2 n).
+        unfold cell_split in *. destruct H1 as [[Hg12 Hg3]|[Hg3 Hg12]];
+        destruct H2 as [[Hg1 Hg2]|[Hg2 Hg1]].
+        - split; [left; rewrite Hg1; exact Hg12|exact Hg2].
+        - split; [exact Hg1|left; rewrite Hg2; exact Hg12].
+        - split; [rewrite Hg1; exact Hg12|exact Hg2].
+        - split; [exact Hg1|rewrite Hg2; exact Hg12]. }
+      split; unfold split; intro n; specialize (Hgn n); right; split; [reflexivity|tauto|reflexivity|tauto].
     - (* G = g :: G' *)
       intros G12 G3 G1 G2 H1 H2.
       assert (H10 := H1 0). assert (H20 := H2 0).
@@ -2534,35 +2527,28 @@ Proof.
       split.
       + (* split (g::G') G1 (assoc_build ...) *)
         unfold split. intro n. destruct n as [| n'].
-        * (* n=0：细胞层 *)
+        * (* n=0 *)
           simpl. unfold cell in Hc1.
           destruct cell as [t|].
-          -- (* cell=Some t：get G23 0 = Some t = cell，直接用 Hc1 *)
-             exact Hc1.
-          -- (* cell=None：分 g3 是否越界 *)
-             destruct g3 as [g3v|].
-             ++ (* g3=Some _：G23 0=None → get=Some None，
-                   Hc1 给 cell_split (Some g) g1v None；因 Some g≠None，
-                   Hc1 必左支 g1v=Some g，None 空 → Some None 也空 *)
-                unfold cell_split in Hc1. destruct Hc1 as [[Hge _]|[_ Hempty]].
+          -- (* cell=Some t *) exact Hc1.
+          -- (* cell=None *) destruct g3 as [g3v|].
+             ++ (* g3=Some _ *) unfold cell_split in Hc1.
+                destruct Hc1 as [[Hge _]|[_ Hempty]].
                 ** left. split; [exact Hge| left; reflexivity].
                 ** exfalso. congruence.
-             ++ (* g3=None：G23=[] → get G23 0=None，直接用 Hc1 *)
-                exact Hc1.
-        * (* n=S n'：归约到尾部 *)
+             ++ (* g3=None *) exact Hc1.
+        * (* n=S n' *)
           simpl. destruct (pick_prefix (Some g) g12 g3 g1v g2v) as [t|].
-          -- (* cell=Some t：G23 = t::tail，get (S n') = get tail n' *)
+          -- (* cell=Some t *)
              apply (IH (tl G12) (tl G3) (tl G1) (tl G2)).
              ++ unfold split. intro k. specialize (H1 (S k)). simpl in H1. exact H1.
              ++ unfold split. intro k. specialize (H2 (S k)). simpl in H2. exact H2.
           -- (* cell=None *) destruct g3 as [g3v|].
-             ++ (* g3=Some _：G23 = None::tail *)
+             ++ (* g3=Some _ *)
                 apply (IH (tl G12) (tl G3) (tl G1) (tl G2)).
                 ** unfold split. intro k. specialize (H1 (S k)). simpl in H1. exact H1.
                 ** unfold split. intro k. specialize (H2 (S k)). simpl in H2. exact H2.
-             ++ (* g3=None：G23=[]，get (S n')=None；
-                   由 H1(S n') G3越界→G12空，H2(S n')→G1空或越界，
-                   cell_split (get G (S n')) (get G1 (S n')) None 右支成立 *)
+             ++ (* g3=None *)
                 unfold split. specialize (H1 (S n')). specialize (H2 (S n')).
                 unfold cell_split in *. destruct H1 as [[Hg12 Hg3]|[Hg3 Hg12]].
                 ** destruct H2 as [[Hg1 Hg2]|[Hg2 Hg1]].
@@ -2578,24 +2564,11 @@ Proof.
           destruct cell as [t|].
           -- exact Hc2.
           -- destruct g3 as [g3v|].
-             ++ (* g3=Some _：get G23 0=Some None；
-                   Hc2: cell_split None g2v g3。因 g3=Some g3v≠None，
-                   Hc2 必右支 g3=None? 不，g3=Some g3v。
-                   重新分析：cell_split None g2v (Some g3v)。
-                   左支: g2v=None /\ Some g3v空→不可能。
-                   右支: Some g3v=None→不可能。
-                   所以 Hc2 在 cell=None, g3=Some _ 时不可能？
-                   但 pick_prefix=None 时 g2v 必为 None（越界），g3 空。
-                   若 g3=Some None（在位空），则 cell_split None None (Some None)：
-                   右支 Some None=None? 不。左支 None=None ✓, Some None空 ✓。
-                   所以 Hc2 左支。替换为 Some None：
-                   cell_split (Some None) None (Some None)：
-                   右支 Some None=Some None ✓, None空 ✓。 *)
-                unfold cell_split in Hc2. destruct Hc2 as [[Hg2e Hg3e]|[Hg3e Hg2e]].
+             ++ (* g3=Some _ *) unfold cell_split in Hc2.
+                destruct Hc2 as [[Hg2e Hg3e]|[Hg3e Hg2e]].
                 ** right. split; [reflexivity|tauto].
                 ** exfalso. congruence.
-             ++ (* g3=None：G23=[]，get=None，直接 Hc2 *)
-                exact Hc2.
+             ++ (* g3=None *) exact Hc2.
         * (* n=S n' *)
           simpl. destruct (pick_prefix (Some g) g12 g3 g1v g2v) as [t|].
           -- apply (IH (tl G12) (tl G3) (tl G1) (tl G2)).
@@ -2605,8 +2578,7 @@ Proof.
              ++ apply (IH (tl G12) (tl G3) (tl G1) (tl G2)).
                 ** unfold split. intro k. specialize (H1 (S k)). simpl in H1. exact H1.
                 ** unfold split. intro k. specialize (H2 (S k)). simpl in H2. exact H2.
-             ++ (* G23=[]，get=None；G2,G3 均越界，cell_split None None None *)
-                unfold split. specialize (H1 (S n')). specialize (H2 (S n')).
+             ++ unfold split. specialize (H1 (S n')). specialize (H2 (S n')).
                 unfold cell_split in *.
                 destruct H1 as [[Hg12 Hg3]|[Hg3 Hg12]];
                 destruct H2 as [[Hg1 Hg2]|[Hg2 Hg1]];
@@ -2616,7 +2588,6 @@ Proof.
   exists (assoc_build G G12 G3 G1 G2).
   exact (Hmain G G12 G3 G1 G2 H1 H2).
 Qed.
-
 (* ---------------------------------------------------------------------
    10. Progress
    --------------------------------------------------------------------- *)
