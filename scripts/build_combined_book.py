@@ -49,12 +49,24 @@ FRONT_MATTER = [
     "00_推导链总览.md",
 ]
 
+CN_NUM = {"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9,"十":10,"十一":11,"十二":12}
+
+def chapter_sort_key(f):
+    """按篇号排序：00_卷标题最前，然后篇一、篇二...篇十一、篇十二，篇三之一排在篇三之后篇四之前。"""
+    name = f.stem
+    if name.startswith("00_"):
+        return (0, 0, name)
+    m = re.match(r"篇([一二三四五六七八九十]+)(?:之([一二三四五六七八九十]+))?", name)
+    if m:
+        main = CN_NUM.get(m.group(1), 99)
+        sub = CN_NUM.get(m.group(2), 0) if m.group(2) else 0
+        return (1, main * 100 + sub, name)
+    return (2, 0, name)
+
 def collect_md_files(directory):
-    """收集目录下所有md文件，按文件名排序"""
-    files = []
-    for f in sorted(directory.glob("*.md")):
-        if f.is_file():
-            files.append(f)
+    """收集目录下所有md文件，按篇号排序"""
+    files = [f for f in directory.glob("*.md") if f.is_file()]
+    files.sort(key=chapter_sort_key)
     return files
 
 def normalize_headings(content, is_volume_title=False):
@@ -86,37 +98,20 @@ def build_combined():
     total_chars = 0
     total_files = 0
     
-    # 封面
+    # 封面（元信息不用blockquote，避免HTML里变成引用块）
     date_str = datetime.now().strftime("%Y-%m-%d")
     parts.append(f"""# 生命论（明本论）· 合订本
 
-> 生成时间：{date_str}
-> 作者：北原慢热
-> 来源：https://github.com/192781-li/mingbenlun
-> 本合订本由S05信息分站自动生成，按卷顺序合并全部正文。
-> 已自动过滤研究笔记元注释（原话/展开/语境/状态等），输出干净全本。
-> 标题层级统一：卷=H1，篇=H2，章=H3，节=H4。
+生成时间：{date_str}
+作者：北原慢热
+来源：https://github.com/192781-li/mingbenlun
+本合订本由S05信息分站自动生成，按卷顺序合并全部正文。
+已自动过滤研究笔记元注释（原话/展开/语境/状态等），输出干净全本。
+标题层级统一：卷=H1，篇=H2，章=H3，节=H4。
 
 ---
 
-# 目录
-
 """)
-    
-    # 生成目录
-    toc_lines = []
-    for vol in VOLUMES:
-        vol_dir = BOOK_DIR / vol
-        if vol_dir.exists():
-            title = vol.split("_", 2)[-1] if "_" in vol else vol
-            toc_lines.append(f"- **{title}**")
-            for f in collect_md_files(vol_dir):
-                name = f.stem
-                if name.startswith("00_"):
-                    continue  # 卷标题文件不列入目录
-                toc_lines.append(f"  - {name}")
-    parts.append("\n".join(toc_lines))
-    parts.append("\n---\n")
     
     # 卷首文件（降级为H2）
     for fm in FRONT_MATTER:
