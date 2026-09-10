@@ -2479,7 +2479,140 @@ Qed.
 Lemma split_assoc : forall G G12 G3 G1 G2,
   split G G12 G3 -> split G12 G1 G2 ->
   exists G23, split G G1 G23 /\ split G23 G2 G3.
-Proof. Admitted.
+Proof.
+  (* 递归构造 G23：逐位取 pick_prefix；若 pick_prefix=None 且 G3 越界(None)则截断，
+     否则取 None（在位空位 Some None）承续。存在论：中间场域在满足分划的候选里
+     主动选在位之寂，仅当两侧皆越界才落入空无。 *)
+  let fix assoc_build (G G12 G3 G1 G2 : ctx) : ctx :=
+    match G with
+    | [] => []
+    | g :: G' =>
+        let g12 := match G12 with [] => None | x :: _ => Some x end in
+        let g3  := match G3  with [] => None | x :: _ => Some x end in
+        let g1  := match G1  with [] => None | x :: _ => Some x end in
+        let g2  := match G2  with [] => None | x :: _ => Some x end in
+        match pick_prefix (Some g) g12 g3 g1 g2 with
+        | Some t => t :: assoc_build G' (tl G12) (tl G3) (tl G1) (tl G2)
+        | None => match g3 with
+                  | None => []
+                  | Some _ => None :: assoc_build G' (tl G12) (tl G3) (tl G1) (tl G2)
+                  end
+        end
+    end in
+  assert (Hmain : forall G G12 G3 G1 G2,
+    split G G12 G3 -> split G12 G1 G2 ->
+    split G G1 (assoc_build G G12 G3 G1 G2) /\
+    split (assoc_build G G12 G3 G1 G2) G2 G3).
+  { intros G. induction G as [| g G' IH].
+    - (* G = [] *)
+      intros G12 G3 G1 G2 H1 H2.
+      split; unfold split; intro n; specialize (H1 n); specialize (H2 n);
+        unfold cell_split in *; destruct H1 as [[Hg12 Hg3]|[Hg3 Hg12]];
+        destruct H2 as [[Hg1 Hg2]|[Hg2 Hg1]];
+        (try (left; split; [assumption|tauto])).
+      + (* H1左 H2左：g12=None,g1=None → split [] G1 [] 左支 *)
+        left. split; [assumption|tauto].
+      + (* H1左 H2右：g2=g12=None,g1空 → split [] G1 [] 右支 *)
+        right. split; [reflexivity|tauto].
+      + (* H1右 H2左：g3=None,g1=g12空 → split [] G2 G3 右支 *)
+        right. split; [assumption|tauto].
+      + (* H1右 H2右：g3=None,g2=g12空 → split [] G2 G3 右支 *)
+        right. split; [assumption|tauto].
+    - (* G = g :: G' *)
+      intros G12 G3 G1 G2 H1 H2.
+      assert (H10 := H1 0). assert (H20 := H2 0).
+      set (g12 := match G12 with [] => None | x :: _ => Some x end) in *.
+      set (g3  := match G3  with [] => None | x :: _ => Some x end) in *.
+      set (g1v := match G1  with [] => None | x :: _ => Some x end) in *.
+      set (g2v := match G2  with [] => None | x :: _ => Some x end) in *.
+      set (cell := pick_prefix (Some g) g12 g3 g1v g2v) in *.
+      assert (Hcell := pick_prefix_correct (Some g) g12 g3 g1v g2v H10 H20).
+      destruct Hcell as [Hc1 Hc2].
+      split.
+      + (* split (g::G') G1 (assoc_build ...) *)
+        unfold split. intro n. destruct n as [| n'].
+        * (* n=0：细胞层 *)
+          simpl. unfold cell in Hc1.
+          destruct cell as [t|].
+          -- (* cell=Some t：get G23 0 = Some t = cell，直接用 Hc1 *)
+             exact Hc1.
+          -- (* cell=None：分 g3 是否越界 *)
+             destruct g3 as [g3v|].
+             ++ (* g3=Some _：G23 0=None → get=Some None，
+                   Hc1 给 cell_split (Some g) g1v None；因 Some g≠None，
+                   Hc1 必左支 g1v=Some g，None 空 → Some None 也空 *)
+                unfold cell_split in Hc1. destruct Hc1 as [[Hge _]|[_ Hempty]].
+                ** left. split; [exact Hge| left; reflexivity].
+                ** exfalso. congruence.
+             ++ (* g3=None：G23=[] → get G23 0=None，直接用 Hc1 *)
+                exact Hc1.
+        * (* n=S n'：归约到尾部 *)
+          simpl. destruct (pick_prefix (Some g) g12 g3 g1v g2v) as [t|].
+          -- (* cell=Some t：G23 = t::tail，get (S n') = get tail n' *)
+             apply (IH (tl G12) (tl G3) (tl G1) (tl G2)).
+             ++ unfold split. intro k. specialize (H1 (S k)). simpl in H1. exact H1.
+             ++ unfold split. intro k. specialize (H2 (S k)). simpl in H2. exact H2.
+          -- (* cell=None *) destruct g3 as [g3v|].
+             ++ (* g3=Some _：G23 = None::tail *)
+                apply (IH (tl G12) (tl G3) (tl G1) (tl G2)).
+                ** unfold split. intro k. specialize (H1 (S k)). simpl in H1. exact H1.
+                ** unfold split. intro k. specialize (H2 (S k)). simpl in H2. exact H2.
+             ++ (* g3=None：G23=[]，get (S n')=None；
+                   由 H1(S n') G3越界→G12空，H2(S n')→G1空或越界，
+                   cell_split (get G (S n')) (get G1 (S n')) None 右支成立 *)
+                unfold split. specialize (H1 (S n')). specialize (H2 (S n')).
+                unfold cell_split in *. destruct H1 as [[Hg12 Hg3]|[Hg3 Hg12]].
+                ** destruct H2 as [[Hg1 Hg2]|[Hg2 Hg1]].
+                   *** left. split; [assumption|tauto].
+                   *** right. split; [reflexivity|tauto].
+                ** destruct H2 as [[Hg1 Hg2]|[Hg2 Hg1]].
+                   *** right. split; [reflexivity|tauto].
+                   *** right. split; [reflexivity|tauto].
+      + (* split (assoc_build ...) G2 G3 *)
+        unfold split. intro n. destruct n as [| n'].
+        * (* n=0 *)
+          simpl. unfold cell in Hc2.
+          destruct cell as [t|].
+          -- exact Hc2.
+          -- destruct g3 as [g3v|].
+             ++ (* g3=Some _：get G23 0=Some None；
+                   Hc2: cell_split None g2v g3。因 g3=Some g3v≠None，
+                   Hc2 必右支 g3=None? 不，g3=Some g3v。
+                   重新分析：cell_split None g2v (Some g3v)。
+                   左支: g2v=None /\ Some g3v空→不可能。
+                   右支: Some g3v=None→不可能。
+                   所以 Hc2 在 cell=None, g3=Some _ 时不可能？
+                   但 pick_prefix=None 时 g2v 必为 None（越界），g3 空。
+                   若 g3=Some None（在位空），则 cell_split None None (Some None)：
+                   右支 Some None=None? 不。左支 None=None ✓, Some None空 ✓。
+                   所以 Hc2 左支。替换为 Some None：
+                   cell_split (Some None) None (Some None)：
+                   右支 Some None=Some None ✓, None空 ✓。 *)
+                unfold cell_split in Hc2. destruct Hc2 as [[Hg2e Hg3e]|[Hg3e Hg2e]].
+                ** right. split; [reflexivity|tauto].
+                ** exfalso. congruence.
+             ++ (* g3=None：G23=[]，get=None，直接 Hc2 *)
+                exact Hc2.
+        * (* n=S n' *)
+          simpl. destruct (pick_prefix (Some g) g12 g3 g1v g2v) as [t|].
+          -- apply (IH (tl G12) (tl G3) (tl G1) (tl G2)).
+             ++ unfold split. intro k. specialize (H1 (S k)). simpl in H1. exact H1.
+             ++ unfold split. intro k. specialize (H2 (S k)). simpl in H2. exact H2.
+          -- destruct g3 as [g3v|].
+             ++ apply (IH (tl G12) (tl G3) (tl G1) (tl G2)).
+                ** unfold split. intro k. specialize (H1 (S k)). simpl in H1. exact H1.
+                ** unfold split. intro k. specialize (H2 (S k)). simpl in H2. exact H2.
+             ++ (* G23=[]，get=None；G2,G3 均越界，cell_split None None None *)
+                unfold split. specialize (H1 (S n')). specialize (H2 (S n')).
+                unfold cell_split in *.
+                destruct H1 as [[Hg12 Hg3]|[Hg3 Hg12]];
+                destruct H2 as [[Hg1 Hg2]|[Hg2 Hg1]];
+                (try (left; split; [reflexivity|tauto])).
+  }
+  intros G G12 G3 G1 G2 H1 H2.
+  exists (assoc_build G G12 G3 G1 G2).
+  exact (Hmain G G12 G3 G1 G2 H1 H2).
+Qed.
 
 (* ---------------------------------------------------------------------
    10. Progress
@@ -2556,12 +2689,260 @@ Qed.
    J3: typed_res_par_l/r —— 限制-并行交换下 typed 保持
    对应 cong_res_par: ~ fv_at Q 0 -> congruence (PRes (PPar P Q)) (PPar (PRes P) Q)
    ===================================================================== *)
+
+(* weaken_none_head：上下文头位置为在位空位(None)时，替换为任意类型不影响类型化。
+   存在论：头位置无操作权流经（明性收摄），填入新操作权不改变既有进程的类型结构。
+   对typed归纳，8个case。ty_out/ty_par中split两侧头亦空，可分别弱化。
+   ty_res中偏移到S 0，递归弱化。 *)
+Lemma weaken_none_head : forall Gamma' P T,
+  typed (None :: Gamma') P -> typed (Some T :: Gamma') P.
+Proof.
+  intros Gamma' P T Hty. revert Gamma' T.
+  induction Hty as [
+    | Gamma x T0 H
+    | Gamma P0 IH
+    | Gamma x y P0 i o T0 Gamma1 Gamma2 H1 H2 H3 IH
+    | Gamma x P0 i o T0 Gamma1 H1 H2 IH
+    | Gamma P0 Q0 Gamma1 Gamma2 Hs IH1 IH2
+    | Gamma P0 T0 IH
+    | Gamma P0 IH
+  ]; intros G' T Hctx.
+  - (* ty_zero *) apply ty_zero.
+  - (* ty_var x T0：x≠0（头为None不可能有类型），x>0时get不变 *)
+    inversion Hctx. subst. destruct x as [| x'].
+    + inversion H.
+    + apply ty_var with (T:=T0). simpl in H. exact H.
+  - (* ty_tau *) apply ty_tau. apply IH. exact Hctx.
+  - (* ty_out：split两侧头亦空，分别弱化 *)
+    inversion Hctx. subst.
+    assert (H1' : exists G1', Gamma1 = None :: G1' \/ Gamma1 = []).
+    { destruct Gamma1 as [| g1 G1'].
+      + right. reflexivity.
+      + left. exists G1'. reflexivity. }
+    assert (H2' : exists G2', Gamma2 = None :: G2' \/ Gamma2 = []).
+    { destruct Gamma2 as [| g2 G2'].
+      + right. reflexivity.
+      + left. exists G2'. reflexivity. }
+    destruct H1' as [G1' [H1eq|H1eq]].
+    + (* Gamma1 = None :: G1' *)
+      destruct H2' as [G2' [H2eq|H2eq]].
+      * (* Gamma2 = None :: G2' *)
+        eapply ty_out with (i:=i)(o:=o)(T:=T0)(Gamma1:=Some T :: G1')(Gamma2:=Some T :: G2').
+        -- rewrite H1eq in H1. simpl in H1. exact H1.
+        -- exact H2.
+        -- rewrite H2eq in H3. simpl in H3. exact H3.
+        -- apply IH. rewrite H1eq, H2eq. reflexivity.
+      * (* Gamma2 = [] *)
+        eapply ty_out with (i:=i)(o:=o)(T:=T0)(Gamma1:=Some T :: G1')(Gamma2:=[]).
+        -- rewrite H1eq in H1. simpl in H1. exact H1.
+        -- exact H2.
+        -- exact H3.
+        -- apply IH. rewrite H1eq. reflexivity.
+    + (* Gamma1 = [] *)
+      destruct H2' as [G2' [H2eq|H2eq]].
+      * (* Gamma2 = None :: G2' *)
+        eapply ty_out with (i:=i)(o:=o)(T:=T0)(Gamma1:=[])(Gamma2:=Some T :: G2').
+        -- exact H1.
+        -- exact H2.
+        -- rewrite H2eq in H3. simpl in H3. exact H3.
+        -- apply IH. rewrite H2eq. reflexivity.
+      * (* Gamma2 = [] *)
+        eapply ty_out with (i:=i)(o:=o)(T:=T0)(Gamma1:=[])(Gamma2:=[]).
+        -- exact H1. -- exact H2. -- exact H3.
+        -- apply IH. reflexivity.
+  - (* ty_in：Gamma1头空，弱化 *)
+    inversion Hctx. subst.
+    assert (H1' : exists G1', Gamma1 = None :: G1' \/ Gamma1 = []).
+    { destruct Gamma1 as [| g1 G1'].
+      + right. reflexivity.
+      + left. exists G1'. reflexivity. }
+    destruct H1' as [G1' [H1eq|H1eq]].
+    + eapply ty_in with (i:=i)(o:=o)(T:=T0)(Gamma1:=Some T :: G1').
+      * rewrite H1eq in H1. simpl in H1. exact H1.
+      * exact H2.
+      * apply IH. rewrite H1eq. reflexivity.
+    + eapply ty_in with (i:=i)(o:=o)(T:=T0)(Gamma1:=[]).
+      * exact H1. * exact H2. * apply IH. reflexivity.
+  - (* ty_par：split两侧头空，分别弱化 *)
+    inversion Hctx. subst.
+    assert (H1' : exists G1', Gamma1 = None :: G1' \/ Gamma1 = []).
+    { destruct Gamma1 as [| g1 G1'].
+      + right. reflexivity. + left. exists G1'. reflexivity. }
+    assert (H2' : exists G2', Gamma2 = None :: G2' \/ Gamma2 = []).
+    { destruct Gamma2 as [| g2 G2'].
+      + right. reflexivity. + left. exists G2'. reflexivity. }
+    destruct H1' as [G1' [H1eq|H1eq]].
+    + destruct H2' as [G2' [H2eq|H2eq]].
+      * eapply ty_par with (Gamma1:=Some T :: G1')(Gamma2:=Some T :: G2').
+        -- rewrite H1eq, H2eq in Hs. simpl in Hs. exact Hs.
+        -- apply IH1. rewrite H1eq. reflexivity.
+        -- apply IH2. rewrite H2eq. reflexivity.
+      * eapply ty_par with (Gamma1:=Some T :: G1')(Gamma2:=[]).
+        -- rewrite H1eq in Hs. simpl in Hs. exact Hs.
+        -- apply IH1. rewrite H1eq. reflexivity.
+        -- apply IH2. reflexivity.
+    + destruct H2' as [G2' [H2eq|H2eq]].
+      * eapply ty_par with (Gamma1:=[])(Gamma2:=Some T :: G2').
+        -- rewrite H2eq in Hs. simpl in Hs. exact Hs.
+        -- apply IH1. reflexivity.
+        -- apply IH2. rewrite H2eq. reflexivity.
+      * eapply ty_par with (Gamma1:=[])(Gamma2:=[]).
+        -- exact Hs. -- apply IH1. reflexivity. -- apply IH2. reflexivity.
+  - (* ty_res：偏移到S 0，上下文为Some T0 :: None :: G'，弱化位置1 *)
+    inversion Hctx. subst.
+    apply ty_res with (T:=T0).
+    apply IH with (Gamma':=None :: G') (T:=T).
+    reflexivity.
+  - (* ty_rep：子进程在[]中类型化，不受头影响 *)
+    apply ty_rep. apply IH. reflexivity.
+Qed.
+
+(* weaken_nil：空上下文中类型化的进程，在单元素上下文中仍类型化。
+   空上下文无任何资源可用，填入头不影响。是weaken_none_head的越界版。 *)
+Lemma weaken_nil : forall P T, typed [] P -> typed [Some T] P.
+Proof.
+  intros P T Hty. revert T.
+  induction Hty as [
+    | Gamma x T0 H
+    | Gamma P0 IH
+    | Gamma x y P0 i o T0 Gamma1 Gamma2 H1 H2 H3 IH
+    | Gamma x P0 i o T0 Gamma1 H1 H2 IH
+    | Gamma P0 Q0 Gamma1 Gamma2 Hs IH1 IH2
+    | Gamma P0 T0 IH
+    | Gamma P0 IH
+  ]; intros T.
+  - apply ty_zero.
+  - inversion H. (* []中不可能有ty_var *)
+  - apply ty_tau. apply IH.
+  - (* ty_out：split [] Gamma1 Gamma2 → Gamma1=Gamma2=[] *)
+    assert (Hg1 : Gamma1 = []). { clear H1 H2 H3 IH. induction Gamma1. reflexivity.
+      specialize (Hs 0). simpl in Hs. unfold cell_split in Hs. tauto. }
+    assert (Hg2 : Gamma2 = []). { clear H1 H2 H3 IH. induction Gamma2. reflexivity.
+      specialize (Hs 0). simpl in Hs. unfold cell_split in Hs. tauto. }
+    subst. eapply ty_out with (i:=i)(o:=o)(T:=T0)(Gamma1:=[])(Gamma2:=[]).
+    + exact H1. + exact H2. + exact H3. + apply IH.
+  - (* ty_in *)
+    assert (Hg1 : Gamma1 = []). { clear H1 H2 IH. induction Gamma1. reflexivity.
+      specialize (Hs 0). simpl in Hs. unfold cell_split in Hs. tauto. }
+    subst. eapply ty_in with (i:=i)(o:=o)(T:=T0)(Gamma1:=[]).
+    + exact H1. + exact H2. + apply IH.
+  - (* ty_par：split [] Gamma1 Gamma2 → 两侧空 *)
+    assert (Hg1 : Gamma1 = []). { clear IH1 IH2. induction Gamma1. reflexivity.
+      specialize (Hs 0). simpl in Hs. unfold cell_split in Hs. tauto. }
+    assert (Hg2 : Gamma2 = []). { clear IH1 IH2. induction Gamma2. reflexivity.
+      specialize (Hs 0). simpl in Hs. unfold cell_split in Hs. tauto. }
+    subst. eapply ty_par with (Gamma1:=[])(Gamma2:=[]).
+    + exact Hs. + apply IH1. + apply IH2.
+  - (* ty_res：子进程在[Some T0]中类型化，需弱化为[Some T0; Some T] *)
+    apply ty_res with (T:=T0).
+    apply weaken_none_head with (T:=T). exact Hty.
+  - (* ty_rep *)
+    apply ty_rep. apply IH.
+Qed.
+
+(* typed_any_ctx：完全无变量的进程(~fv_at P 0)可在任意上下文中类型化。
+   ~fv_at P 0意味着P不含PVar/POut/PIn（所有nat index>=0），
+   仅由PZero/PTau/PPar/PRes/PRep构成，不消耗上下文资源。 *)
+Lemma typed_any_ctx : forall P Gamma, ~ fv_at P 0 -> typed Gamma P.
+Proof.
+  intros P. induction P as [
+    | n
+    | P0 IH
+    | x y P0 IH
+    | x P0 IH
+    | P0 IH1 Q0 IH2
+    | P0 IH
+    | P0 IH
+  ]; intros Gamma Hnf.
+  - (* PZero *) apply ty_zero.
+  - (* PVar n：fv_at (PVar n) 0 = n >= 0 = True，矛盾 *)
+    exfalso. apply Hnf. simpl. lia.
+  - (* PTau P0 *) apply ty_tau. apply IH. simpl in Hnf. exact Hnf.
+  - (* POut x y P0：fv_at含x>=0，矛盾 *)
+    exfalso. apply Hnf. simpl. left. lia.
+  - (* PIn x P0：fv_at含x>=0，矛盾 *)
+    exfalso. apply Hnf. simpl. left. lia.
+  - (* PPar P0 Q0 *)
+    eapply ty_par with (Gamma1:=Gamma)(Gamma2:=[]).
+    + (* split Gamma Gamma []：左支恒成立 *)
+      unfold split. intro n. left. split. reflexivity. left. reflexivity.
+    + apply IH1. simpl in Hnf. tauto.
+    + apply IH2. simpl in Hnf. tauto.
+  - (* PRes P0 *)
+    apply ty_res with (T:=TUnit). apply IH. simpl in Hnf. exact Hnf.
+  - (* PRep P0 *)
+    apply ty_rep. apply IH. simpl in Hnf. exact Hnf.
+Qed.
+
 Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
   typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
-Proof. Admitted.
+Proof.
+  intros Gamma P Q Hnf H.
+  (* invert PRes *)
+  inversion H as [T Hpar | | | | | | |].
+  (* invert PPar *)
+  inversion Hpar as [Gamma1 Gamma2 Hsplit HP HQ | | | | | | |].
+  (* 分析split在位置0：Some T分给Gamma1或Gamma2 *)
+  assert (H0 := Hsplit 0). simpl in H0.
+  unfold cell_split in H0.
+  destruct H0 as [[Hg1 Hg2] | [Hg2 Hg1]].
+  - (* Case A: Some T在Gamma1侧 → Gamma1 = Some T :: tl Gamma1 *)
+    destruct Gamma1 as [| g1 G1'].
+    + inversion Hg1. (* Gamma1=[]不可能有Some T *)
+    + inversion Hg1. subst.
+      (* Gamma1 = Some T :: G1'，取GammaA=G1'，则typed (Some T::G1') P = HP *)
+      eapply ty_par with (Gamma1:=G1')(Gamma2:=tl Gamma2).
+      * (* split Gamma G1' (tl Gamma2)：由原split在S n位置推得 *)
+        unfold split. intro n. specialize (Hsplit (S n)). simpl in Hsplit. exact Hsplit.
+      * (* typed G1' (PRes P)：ty_res from typed (Some T :: G1') P = HP *)
+        apply ty_res with (T:=T). exact HP.
+      * (* typed (tl Gamma2) Q：Q无变量，任意上下文可类型化 *)
+        apply typed_any_ctx. exact Hnf.
+  - (* Case B: Some T在Gamma2侧 → Gamma1头为空(None或越界) *)
+    destruct Gamma1 as [| g1 G1'].
+    + (* Gamma1 = []：typed [] P，需弱化为typed [Some TUnit] P *)
+      eapply ty_par with (Gamma1:=[])(Gamma2:=Gamma).
+      * (* split Gamma [] Gamma：右支恒成立 *)
+        unfold split. intro n. right. split. reflexivity. left. reflexivity.
+      * (* typed [] (PRes P)：ty_res需要typed (Some TUnit :: []) P，由weaken_nil *)
+        apply ty_res with (T:=TUnit). apply weaken_nil. exact HP.
+      * (* typed Gamma Q：无变量 *)
+        apply typed_any_ctx. exact Hnf.
+    + (* Gamma1 = g1 :: G1'，由Hg1知g1为空(None或越界)，实际g1=None *)
+      inversion Hg1. subst.
+      (* Gamma1 = None :: G1'，需typed (Some TUnit :: G1') P，由weaken_none_head *)
+      eapply ty_par with (Gamma1:=G1')(Gamma2:=tl Gamma2).
+      * (* split Gamma G1' (tl Gamma2) *)
+        unfold split. intro n. specialize (Hsplit (S n)). simpl in Hsplit. exact Hsplit.
+      * (* typed G1' (PRes P) *)
+        apply ty_res with (T:=TUnit). apply weaken_none_head with (T:=TUnit). exact HP.
+      * (* typed (tl Gamma2) Q *)
+        apply typed_any_ctx. exact Hnf.
+Qed.
 
 Lemma typed_res_par_r : forall Gamma P Q, ~ fv_at Q 0 ->
   typed Gamma (PPar (PRes P) Q) -> typed Gamma (PRes (PPar P Q)).
-Proof. Admitted.
+Proof.
+  intros Gamma P Q Hnf H.
+  (* invert PPar *)
+  inversion H as [Gamma1 Gamma2 Hsplit HP HQ | | | | | | |].
+  (* invert PRes in HP *)
+  inversion HP as [T HP' | | | | | | |].
+  (* 构造：typed (Some T :: Gamma) (PPar P Q)
+     split (Some T :: Gamma) (Some T :: Gamma1) Gamma2
+     位置0：Some T分给左；位置S n：由原split Gamma Gamma1 Gamma2推得 *)
+  apply ty_res with (T:=T).
+  eapply ty_par with (Gamma1:=Some T :: Gamma1)(Gamma2:=Gamma2).
+  - (* split (Some T :: Gamma) (Some T :: Gamma1) Gamma2 *)
+    unfold split. intro n. destruct n as [| n'].
+    + (* n=0：左支Some T，右支空 *)
+      simpl. left. split. reflexivity. left. reflexivity.
+    + (* n=S n'：由原split推得 *)
+      simpl. specialize (Hsplit n'). exact Hsplit.
+  - (* typed (Some T :: Gamma1) P = HP' *)
+    exact HP'.
+  - (* typed Gamma2 Q = HQ *)
+    exact HQ.
+Qed.
 
 (* === END === *)
