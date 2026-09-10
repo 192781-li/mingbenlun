@@ -57,6 +57,30 @@ def collect_md_files(directory):
             files.append(f)
     return files
 
+def normalize_headings(content, is_volume_title=False):
+    """统一标题层级：卷标题文件保持H1，其他文件若首标题为H1则整体降一级。
+    确保合订本中：卷=H1，篇=H2，章=H3，节=H4。"""
+    if is_volume_title:
+        return content
+    lines = content.split("\n")
+    # 检测第一个标题的层级
+    first_level = None
+    for line in lines:
+        m = re.match(r"^(#{1,6})\s", line.strip())
+        if m:
+            first_level = len(m.group(1))
+            break
+    if first_level is None or first_level >= 2:
+        return content  # 已经是H2+，不需要改
+    # 首标题是H1，全部降一级
+    result = []
+    for line in lines:
+        m = re.match(r"^(#{1,5})\s", line)
+        if m:
+            line = "#" + line  # 加一个#，H1→H2, H2→H3...
+        result.append(line)
+    return "\n".join(result)
+
 def build_combined():
     parts = []
     total_chars = 0
@@ -71,6 +95,7 @@ def build_combined():
 > 来源：https://github.com/192781-li/mingbenlun
 > 本合订本由S05信息分站自动生成，按卷顺序合并全部正文。
 > 已自动过滤研究笔记元注释（原话/展开/语境/状态等），输出干净全本。
+> 标题层级统一：卷=H1，篇=H2，章=H3，节=H4。
 
 ---
 
@@ -84,20 +109,25 @@ def build_combined():
         vol_dir = BOOK_DIR / vol
         if vol_dir.exists():
             title = vol.split("_", 2)[-1] if "_" in vol else vol
-            toc_lines.append(f"- [{vol}](#{vol.replace('_', '-')})")
+            toc_lines.append(f"- **{title}**")
             for f in collect_md_files(vol_dir):
                 name = f.stem
-                toc_lines.append(f"  - [{name}](#{name.replace('_', '-')})")
+                if name.startswith("00_"):
+                    continue  # 卷标题文件不列入目录
+                toc_lines.append(f"  - {name}")
     parts.append("\n".join(toc_lines))
     parts.append("\n---\n")
     
-    # 卷首文件
+    # 卷首文件（降级为H2）
     for fm in FRONT_MATTER:
         fp = BOOK_DIR / fm
         if fp.exists():
-            parts.append(f"\n# {fm.replace('.md', '')}\n\n")
-            parts.append(fp.read_text(encoding="utf-8"))
+            content = fp.read_text(encoding="utf-8")
+            content = strip_meta_notes(content)
+            content = normalize_headings(content)
+            parts.append(content)
             parts.append("\n\n---\n")
+            total_chars += len(content)
             total_files += 1
     
     # 各卷
@@ -105,13 +135,14 @@ def build_combined():
         vol_dir = BOOK_DIR / vol
         if not vol_dir.exists():
             continue
-        title = vol.split("_", 2)[-1] if "_" in vol else vol
-        parts.append(f"\n# {vol}\n\n")
         print(f"  处理: {vol}")
         
         for f in collect_md_files(vol_dir):
             content = f.read_text(encoding="utf-8")
             content = strip_meta_notes(content)
+            # 00_卷标题.md保持H1，其他文件降级
+            is_vol_title = f.name.startswith("00_")
+            content = normalize_headings(content, is_volume_title=is_vol_title)
             parts.append(content)
             parts.append("\n\n")
             total_chars += len(content)
@@ -120,8 +151,11 @@ def build_combined():
     # 尾声
     tail = BOOK_DIR / "00_尾声.md"
     if tail.exists():
-        parts.append("\n# 尾声\n\n")
-        parts.append(tail.read_text(encoding="utf-8"))
+        content = tail.read_text(encoding="utf-8")
+        content = strip_meta_notes(content)
+        content = normalize_headings(content)
+        parts.append(content)
+        total_chars += len(content)
         total_files += 1
     
     combined = "".join(parts)
