@@ -124,10 +124,10 @@
 ### 下载合订本
 | 格式 | 下载 |
 |---|---|
-| Markdown | [生命论_合订本_v1.0.md](https://github.com/192781-li/mingbenlun/releases/download/v1.0-20260910/shengminglun_combined_v1.0.md) |
-| 纯文本 | [生命论_合订本_v1.0.txt](https://github.com/192781-li/mingbenlun/releases/download/v1.0-20260910/shengminglun_combined_v1.0.txt) |
+| Markdown | [生命论_合订本_v1.1.md](https://github.com/192781-li/mingbenlun/releases/download/v1.1-20260910/shengminglun_combined_v1.1.md) |
+| 纯文本 | [生命论_合订本_v1.1.txt](https://github.com/192781-li/mingbenlun/releases/download/v1.1-20260910/shengminglun_combined_v1.1.txt) |
 
-> 12卷+卷首+尾声，119篇，59.8万字。由S05信息分站自动构建，通过GitHub Releases发布。
+> 12卷+卷首+尾声，119篇，59.7万字。v1.1已过滤"待入全本"等过程性状态标注，内容全部融入全本。由S05信息分站自动构建，通过GitHub Releases发布。
 
 ### 新来的AI/研究者
 | 文档 | 作用 |

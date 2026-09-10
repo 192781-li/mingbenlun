@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""生命论合订本生成器 — 按卷顺序合并所有Markdown"""
+"""生命论合订本生成器 — 按卷顺序合并所有Markdown，自动过滤研究笔记元注释"""
 import os
+import re
 from pathlib import Path
 from datetime import datetime
 
@@ -8,6 +9,21 @@ REPO = Path("/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun"
 BOOK_DIR = REPO / "生命论_模块化"
 OUT = REPO / "build_output"
 OUT.mkdir(exist_ok=True)
+
+def strip_meta_notes(content):
+    """移除过程性状态标注（状态：待入全本/待核实），保留原话/展开/语境等思想内容。
+    源文件保留完整元注释，合订本输出时只去掉状态行，内容融入全本。"""
+    lines = content.split("\n")
+    result = []
+    for line in lines:
+        stripped = line.strip()
+        # 只去掉状态标注行，保留原话/展开/语境/核心/出处等内容
+        if re.match(r'^[-*]\s+\*\*状态\*\*', stripped) and ("待入全本" in stripped or "待核实" in stripped):
+            continue
+        if re.match(r'^>\s*\*\*状态\*\*', stripped) and ("待入全本" in stripped or "待核实" in stripped):
+            continue
+        result.append(line)
+    return "\n".join(result)
 
 # 卷顺序（目录名）
 VOLUMES = [
@@ -54,6 +70,7 @@ def build_combined():
 > 作者：北原慢热
 > 来源：https://github.com/192781-li/mingbenlun
 > 本合订本由S05信息分站自动生成，按卷顺序合并全部正文。
+> 已自动过滤研究笔记元注释（原话/展开/语境/状态等），输出干净全本。
 
 ---
 
@@ -94,6 +111,7 @@ def build_combined():
         
         for f in collect_md_files(vol_dir):
             content = f.read_text(encoding="utf-8")
+            content = strip_meta_notes(content)
             parts.append(content)
             parts.append("\n\n")
             total_chars += len(content)
