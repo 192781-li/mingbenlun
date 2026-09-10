@@ -98,6 +98,9 @@ strong{{color:var(--gold)}}
 </body>
 </html>"""
 
-out = Path("/tmp/shengminglun_combined_v1.1.html")
-out.write_text(html, encoding="utf-8")
+out = Path("/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun/build_output/生命论_合订本.html")
+out.parent.mkdir(exist_ok=True)
+# 写UTF-8 BOM，确保浏览器正确识别编码
+out.write_bytes(b"\xef\xbb\xbf" + html.encode("utf-8"))
 print(f"HTML生成完成: {len(html):,} 字符, {out.stat().st_size//1024}KB")
+print(f"输出: {out}")
