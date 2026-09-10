@@ -45,13 +45,14 @@ jobs:
       - name: Token泄露检查
         run: |
           echo "=== Token泄露检查 ==="
-          LEAKS=$(grep -rn "ghp_" --include="*.md" --include="*.json" --include="*.py" --include="*.sh" . 2>/dev/null | grep -v ".git/" | wc -l)
+          # 只匹配真实token格式：ghp_ + 36位字母数字，排除全x占位符和说明文字
+          LEAKS=$(grep -rEn "ghp_[A-Za-z0-9]{36}" --include="*.md" --include="*.json" --include="*.py" --include="*.sh" . 2>/dev/null | grep -v ".git/" | grep -v "ghp_[xX]\{36\}" | grep -v "ghp_\*" | wc -l)
           if [ "$LEAKS" -gt 0 ]; then
-            echo "::error::发现 $LEAKS 处疑似token泄露！"
-            grep -rn "ghp_" --include="*.md" --include="*.json" --include="*.py" --include="*.sh" . 2>/dev/null | grep -v ".git/" | head -5
+            echo "::error::发现 $LEAKS 处疑似真实token泄露！"
+            grep -rEn "ghp_[A-Za-z0-9]{36}" --include="*.md" --include="*.json" --include="*.py" --include="*.sh" . 2>/dev/null | grep -v ".git/" | grep -v "ghp_[xX]\{36\}" | head -5
             exit 1
           else
-            echo "无token泄露: OK"
+            echo "无真实token泄露: OK（文档中的ghp_xxxx占位符已忽略）"
           fi
 
       - name: 冲突标记检查
