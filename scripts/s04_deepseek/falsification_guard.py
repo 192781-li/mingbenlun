@@ -131,6 +131,34 @@ DEFAULT_TACTICS = [
     "firstorder",
 ]
 
+# -------------------------------------------------- 门1.5 反例证明完整性检查（E29 增强）
+# 反例证明没写完/写错 ≠ 引理本身假。区分：
+#   - 含 admit/Admitted/abstract/admit_omega 等未完成证明 → 反例不完整
+#   - 没有矛盾终结 tactic（contradiction/exfalso/discriminate/inversion/congruence/lia 等）→ 可能没推完矛盾
+# 完整反例 = 无未完成标记 且 至少一个矛盾终结 tactic
+_ADMIT_PAT = re.compile(r"\b(admit|Admitted|abstract|admit_omega|apply _)\b", re.I)
+_CONTRA_TACTICS = ["contradiction", "exfalso", "discriminate", "inversion", "congruence",
+                    "lia", "omega", "contradict", "destruct False", "elim False", "case False"]
+
+def proof_completeness(neg_block):
+    """门1.5：检查反例证明体是否完整。返回 (is_complete, reason)。
+    完整 = 无 admit/Admitted 等未完成标记 且 证明体含至少一个矛盾终结 tactic。
+    不完整 = 反例证明没写完/写错，此时命题未被证伪（refuted_claim），不应判 plausibly_false。"""
+    # 只看 Proof. 到 Qed./Admitted. 之间的证明体
+    parts = re.split(r"\bProof\b", neg_block, maxsplit=1)
+    if len(parts) < 2:
+        return False, "no Proof block"
+    proof_body = parts[1]
+    # 检查未完成标记
+    if _ADMIT_PAT.search(proof_body):
+        m = _ADMIT_PAT.search(proof_body)
+        return False, "proof contains unfinished marker '%s' — 反例证明没写完，不是完整反例" % m.group(0)
+    # 检查矛盾终结 tactic
+    has_contra = any(t in proof_body for t in _CONTRA_TACTICS)
+    if not has_contra:
+        return False, "proof has no contradiction-terminating tactic (contradiction/exfalso/discriminate/inversion/...) — 可能没推完矛盾"
+    return True, "proof complete (no unfinished markers, has contradiction tactic)"
+
 def build_challenges(neg_block, instance_args, candidates=None, tactics=None):
     """门2：把具体反例参数代入原命题，对每个候选解×tactic 生成独立 Example 源串。
     返回 [(candidate, tactic, src)]；若结构解析不出来返回 []（调用方据此退化为只跑门1）。"""
@@ -208,17 +236,36 @@ def adjudicate(content, blocks, target, layer_files=("Layer1.v", "Layer2.v"),
                                 "（特别小心 option 双层：None=越界空 与 Some None=在位空 不可混；symmetry/exact 前核对等式两边到底是哪一层的值），"
                                 "修正后要么交出编译通过的反例，要么回到证明目标引理为真的轨道。" % (rc1, err1[:800]))
         return evidence
-    log("[guard] 门1通过：反例否定引理独立编译 exit=0，进入门2反向候选解压测")
+    log("[guard] 门1通过：反例否定引理独立编译 exit=0，进入门1.5 证明完整性检查")
+
+    # 门1.5（E29 增强）：反例证明完整性检查——编译通过只说明语法对，不说明证明完整
+    is_complete, complete_reason = proof_completeness(neg_block)
+    evidence["gate15_complete"] = is_complete
+    evidence["gate15_reason"] = complete_reason
+    if not is_complete:
+        log("[guard] 门1.5：反例证明不完整 → %s → 反例不成立，refuted_claim（不是引理假，是反例没写完/写错）" % complete_reason)
+        evidence["verdict"] = "refuted_claim"
+        evidence["feedback"] = ("你的反例否定引理虽然语法编译通过，但【证明体不完整】：%s。\n"
+                                "这意味着反例证明没写完或写错了，不是目标引理本身为假。"
+                                "请补全反例证明（去掉 admit/Admitted，用 contradiction/exfalso/discriminate 等终结矛盾），"
+                                "或者回到证明目标引理为真的轨道。在交出完整可编译的反例之前，命题默认仍为真。" % complete_reason)
+        return evidence
+    log("[guard] 门1.5通过：反例证明完整，进入门2反向候选解压测")
 
     # 门2：反向候选解
     inst = parse_instance_args(content + "\n" + neg_block)
     evidence["instance_args"] = inst
     challenges = build_challenges(neg_block, inst, candidates=candidates, tactics=tactics)
     if not challenges:
-        # 解析不出对抗实例：不静默放行，判疑似为假交人，但标注门2未机械执行
-        evidence["gate2"] = "unparsed"
+        # E29 增强：门2解析不出参数时，不直接判 plausibly_false。
+        # 门1.5已确认反例证明完整，此时才判 plausibly_false 交人工；
+        # 同时标注门2未机械执行，要求人工复核反例参数。
+        evidence["gate2"] = "unparsed_but_proof_complete"
         evidence["verdict"] = "plausibly_false"
-        log("[guard] 门2：无法从反例解析实例化参数，未机械执行候选压测 → plausibly_false 交人工，禁止自动改判")
+        log("[guard] 门2：无法从反例解析实例化参数（门1.5已确认证明完整）→ plausibly_false 交人工复核，禁止自动改判")
+        evidence["feedback"] = ("你的反例否定引理编译通过且证明体完整（门1/门1.5通过），但守卫无法从证明中自动解析出"
+                                "实例化参数以做反向候选压测（门2 unparsed）。这可能是真反例，也可能是反例结构非常规。"
+                                "已 halt 交人工裁决：请人工复核反例参数，确认目标引理是否真为假。守卫不会自动改判命题真假、不会自动改定理陈述。")
         return evidence
     winner, records = run_challenges(challenges)
     evidence["gate2_attempts"] = len(records)
