@@ -17,7 +17,7 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 
-REPO = Path("/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun")
+REPO = Path(__file__).resolve().parent.parent.parent
 BOOK_DIR = REPO / "生命论_模块化"
 BUILD_DIR = REPO / "build_output"
 
