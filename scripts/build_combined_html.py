@@ -1,11 +1,25 @@
 #!/usr/bin/env python3
-"""合订本转HTML v2 — 用pandoc转换，精美排版，带目录锚点，单文件"""
+"""合订本转HTML v2 — 用pandoc转换，精美排版，带目录锚点，单文件
+生成前自动跑硬门禁，不通过则中止。"""
 import subprocess
+import sys
 from pathlib import Path
 
 REPO = Path("/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun")
 MD = REPO / "build_output/生命论_合订本.md"
 OUT = REPO / "build_output/生命论_合订本.html"
+
+# 生成前硬门禁：不通过则中止
+print("🔍 运行硬门禁检查...")
+gate = subprocess.run(
+    [sys.executable, str(REPO / "scripts/质量检查/run_all_checks.py")],
+    capture_output=True, text=True, cwd=str(REPO)
+)
+print(gate.stdout[-500:] if gate.stdout else "")
+if gate.returncode != 0:
+    print("❌ 硬门禁未通过，中止HTML生成")
+    sys.exit(1)
+print("✅ 硬门禁通过，开始生成HTML\n")
 
 CSS = """
 :root{--gold:#b8860b;--gold-light:#d4a574;--bg:#faf8f5;--text:#2c2416;--muted:#6b5d4f;--border:#e0d5c5}
@@ -45,8 +59,8 @@ th{background:#f0e8d8;color:var(--gold)}
 """
 
 result = subprocess.run(
-    ["pandoc", str(MD), "-f", "markdown-yaml_metadata_block", "-t", "html",
-     "--standalone", "--toc", "--toc-depth=2"],
+    ["pandoc", str(MD), "-f", "markdown-yaml_metadata_block-tex_math_dollars-tex_math_single_backslash", "-t", "html",
+     "--standalone", "--toc", "--toc-depth=2", "--wrap=none"],
     capture_output=True, text=True
 )
 full_html = result.stdout
