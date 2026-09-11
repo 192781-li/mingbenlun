@@ -136,54 +136,71 @@ def check_profiles():
 
 
 def check_registry(snapshot=None):
+    """定时任务对账。cron状态唯一权威=平台快照文件，注册表只存分站映射和任务队列。
+    snapshot: 可选，传入新导出的平台快照JSON路径，与库内快照对比（验证是否最新）。
+    """
     conf = json.load(open(os.path.join(REPO, NETCONF), encoding='utf-8'))
-    jobs = conf.get('cron_jobs', [])
     stations = conf.get('stations', {})
     station_names = set(stations.keys())
+
+    # 从平台快照读 cron 状态（唯一权威）
+    snap_ref = conf.get('cron_snapshot_ref', 'docs/协作机制/明旭的记忆/平台快照_latest.json')
+    snap_path = os.path.join(REPO, snap_ref)
+    if not os.path.exists(snap_path):
+        err('registry', f'平台快照不存在: {snap_ref}')
+        return
+    snap = json.load(open(snap_path, encoding='utf-8'))
+    jobs = snap.get('active', []) + snap.get('stopped', [])
+
     # ID 唯一
     ids = [j.get('id') for j in jobs]
     for i in set(ids):
         if ids.count(i) > 1:
-            err('registry', f'cron_jobs 中 ID {i} 重复 {ids.count(i)} 次')
+            err('registry', f'快照中 ID {i} 重复 {ids.count(i)} 次')
     # station 合法
     for j in jobs:
         if j.get('station') not in station_names:
             err('registry', f'定时任务 {j.get("id")} 的 station={j.get("station")} 不在 stations 列表')
-    # active 与 stopped_jobs 不矛盾
-    stopped = {s.get('id') for s in conf.get('stopped_jobs', [])}
-    for j in jobs:
-        if j.get('status') == 'active' and j.get('id') in stopped:
-            err('registry', f'{j.get("id")} 在 cron_jobs 标 active 却又出现在 stopped_jobs')
-    # task_queue 状态合法
+    # active 与 stopped 不矛盾（快照内 active/stopped 分两组，检查ID不重叠）
+    active_ids = {j.get('id') for j in snap.get('active', [])}
+    stopped_ids = {j.get('id') for j in snap.get('stopped', [])}
+    overlap = active_ids & stopped_ids
+    if overlap:
+        err('registry', f'ID 同时出现在 active 和 stopped: {overlap}')
+    # task_queue 状态合法（注册表里保留，非cron状态）
     legal = {'pending', 'in_progress', 'completed', 'blocked', 'done'}
     for t in conf.get('task_queue', []):
         if isinstance(t, dict) and str(t.get('status', '')).lower() not in legal:
             warn('registry', f'task_queue {t.get("id")} 状态非法：{t.get("status")}')
-    # stations.cron_job_id 必须能在 cron_jobs 找到（注册表内部对账）
+    # stations.cron_job_id 必须能在快照找到（分站→任务映射对账）
     job_ids = {j.get('id') for j in jobs}
     for st, info in stations.items():
         cid = info.get('cron_job_id')
         if cid and cid not in job_ids:
-            err('registry', f'stations.{st}.cron_job_id={cid} 在 cron_jobs 表中找不到（幽灵登记）')
-    # 平台快照对账（权威源）
+            err('registry', f'stations.{st}.cron_job_id={cid} 在平台快照中找不到（幽灵登记）')
+    # 新导出快照对账（如果传入了 --cron-snapshot，验证库内快照是否最新）
     if snapshot:
-        snap = json.load(open(snapshot, encoding='utf-8'))
-        plat = {str(x['id']): x for x in snap}
-        reg = {str(j['id']): j for j in jobs}
-        for pid, x in plat.items():
-            if pid not in reg:
-                err('registry', f'平台有任务 {pid}（{x.get("title","")[:24]}）但注册表漏登')
-            else:
-                rs = reg[pid].get('status')
-                ps = 'active' if str(x.get('status','')).startswith(('运','active','enabled')) else 'stopped'
-                if rs != ps:
-                    err('registry', f'{pid} 状态不符：注册表={rs}，平台={ps}')
-                if x.get('schedule') and reg[pid].get('schedule') and \
-                   reg[pid]['schedule'] != x['schedule']:
-                    err('registry', f'{pid} 时间不符：注册表={reg[pid]["schedule"]}，平台={x["schedule"]}')
-        for rid in reg:
-            if rid not in plat:
-                err('registry', f'注册表登记 {rid}，但平台 list_cron_jobs 中不存在（幽灵ID）')
+        new_snap = json.load(open(snapshot, encoding='utf-8'))
+        # 兼容两种格式：直接是列表，或带 active/stopped 字段
+        if isinstance(new_snap, list):
+            new_jobs = new_snap
+        else:
+            new_jobs = new_snap.get('active', []) + new_snap.get('stopped', [])
+        new_ids = {str(j.get('id')) for j in new_jobs}
+        old_ids = {str(j.get('id')) for j in jobs}
+        if new_ids != old_ids:
+            added = new_ids - old_ids
+            removed = old_ids - new_ids
+            if added:
+                err('registry', f'平台新任务未在库内快照: {added}（请重新导出快照）')
+            if removed:
+                warn('registry', f'库内快照有任务但平台已不存在: {removed}（可能已删除，需确认）')
+        # 状态对比
+        new_status = {str(j.get('id')): j.get('status') for j in new_jobs}
+        for j in jobs:
+            jid = str(j.get('id'))
+            if jid in new_status and j.get('status') != new_status[jid]:
+                err('registry', f'{jid} 状态不符：库内快照={j.get("status")}，平台={new_status[jid]}（请重新导出）')
 
 
 def main():

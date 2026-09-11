@@ -41,22 +41,20 @@ python3 scripts/s00_patrol.py all
   - 关键目录文件数
 - **sync**：列出各分支 main 缺失的共享文档（白名单：智慧河流/分站通道/S01给S04/哲学研究/高考数学）
 
-## 3. 定时任务平台对账（防 L037 复发）
+## 3. 定时任务平台对账（防 L037 复发——快照是唯一权威）
 
-夜间巡检是唯一能接触 cron 平台的时机，必须做一次真实对账：
+夜间巡检是唯一能接触 cron 平台的时机，必须导出最新快照覆盖旧快照：
 
-```bash
-# 导出平台真实任务快照（用 list_cron_jobs enable=true 和 enable=false 各一次，合并为 JSON）
-# 保存到 docs/协作机制/明旭的记忆/平台快照_latest.json
-```
-
-然后跑：
-```bash
-python3 scripts/network_reconcile.py --only registry --cron-snapshot docs/协作机制/明旭的记忆/平台快照_latest.json
-```
+1. 用 `list_cron_jobs`（enable=true/false 各一次）取平台真实 10 个任务
+2. 直接覆盖写入 `docs/协作机制/明旭的记忆/平台快照_latest.json`（这是库内定时任务状态的唯一权威，注册表 v3.0 不再存 cron_jobs/stopped_jobs 副本）
+3. 跑校验：
+   ```bash
+   python3 scripts/network_reconcile.py --only registry
+   ```
+4. 如果新导出的快照与旧快照有差异（任务增删/状态变更），在巡检报告里记录差异
 
 发现漂移（幽灵 ID/状态不符/漏登）时：
-- 以平台为唯一权威，回写 `定时任务网络配置.json`
+- 以平台为唯一权威，快照即真相，无需再回写注册表
 - 记录到 `docs/协作机制/教训库.md`（如果是新类型的漂移）
 
 ## 4. 共享文档同步（只增不删不改）

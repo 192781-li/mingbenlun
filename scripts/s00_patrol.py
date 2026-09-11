@@ -136,47 +136,44 @@ def check_crystals():
 
 
 def check_registry():
+    """定时任务对账。cron状态唯一权威=平台快照，注册表只存分站映射和任务队列。"""
     conf = json.load(open(os.path.join(REPO, NETCONF), encoding='utf-8'))
-    jobs = conf.get('cron_jobs', [])
     stations = conf.get('stations', {})
-    info = {'version': conf.get('version'), 'jobs': len(jobs),
-            'active': sum(1 for j in jobs if j.get('status') == 'active'),
-            'stopped': sum(1 for j in jobs if j.get('status') == 'stopped'),
+    # 从平台快照读 cron 状态（唯一权威）
+    snap_ref = conf.get('cron_snapshot_ref', SNAPSHOT_FILE)
+    snap_path = os.path.join(REPO, snap_ref)
+    if not os.path.exists(snap_path):
+        err('registry', f'平台快照不存在: {snap_ref}')
+        return {'version': conf.get('version'), 'jobs': 0, 'active': 0, 'stopped': 0, 'stations': len(stations), 'snapshot': '缺失'}
+    snap = json.load(open(snap_path, encoding='utf-8'))
+    jobs = snap.get('active', []) + snap.get('stopped', [])
+    info = {'version': conf.get('version'), 'snapshot_version': snap.get('version'),
+            'exported_at': snap.get('exported_at'), 'jobs': len(jobs),
+            'active': len(snap.get('active', [])),
+            'stopped': len(snap.get('stopped', [])),
             'stations': len(stations)}
     # ID唯一
     ids = [j.get('id') for j in jobs]
     for i in set(ids):
         if ids.count(i) > 1:
-            err('registry', f'cron_jobs ID {i} 重复')
+            err('registry', f'快照中 ID {i} 重复')
     # station合法
     for j in jobs:
         if j.get('station') not in stations:
             err('registry', f'任务 {j.get("id")} 的 station={j.get("station")} 不在 stations')
-    # active与stopped不矛盾
-    stopped = {s.get('id') for s in conf.get('stopped_jobs', [])}
-    for j in jobs:
-        if j.get('status') == 'active' and j.get('id') in stopped:
-            err('registry', f'{j.get("id")} 既 active 又在 stopped_jobs')
-    # stations.cron_job_id在cron_jobs里
+    # active与stopped不重叠
+    active_ids = {j.get('id') for j in snap.get('active', [])}
+    stopped_ids = {j.get('id') for j in snap.get('stopped', [])}
+    overlap = active_ids & stopped_ids
+    if overlap:
+        err('registry', f'ID 同时在 active 和 stopped: {overlap}')
+    # stations.cron_job_id在快照里
     job_ids = {j.get('id') for j in jobs}
     for st, info_ in stations.items():
         cid = info_.get('cron_job_id')
         if cid and cid not in job_ids:
-            err('registry', f'stations.{st}.cron_job_id={cid} 不在 cron_jobs（幽灵）')
-    # 平台快照对账
-    snap_path = os.path.join(REPO, SNAPSHOT_FILE)
-    if os.path.exists(snap_path):
-        snap = json.load(open(snap_path, encoding='utf-8'))
-        plat = {str(x['id']): x for x in snap}
-        for pid, x in plat.items():
-            if pid not in {str(j['id']) for j in jobs}:
-                err('registry', f'平台有任务 {pid} 但注册表漏登')
-        for j in jobs:
-            if str(j['id']) not in plat:
-                err('registry', f'注册表 {j["id"]} 平台不存在（幽灵）')
-        info['snapshot'] = f'已对账（平台{len(plat)}个）'
-    else:
-        info['snapshot'] = '未提供平台快照（夜间巡检应先 list_cron_jobs 导出）'
+            err('registry', f'stations.{st}.cron_job_id={cid} 不在平台快照（幽灵）')
+    info['snapshot'] = f'已加载（{snap.get("exported_at","?")}导出，{len(jobs)}任务）'
     return info
 
 
