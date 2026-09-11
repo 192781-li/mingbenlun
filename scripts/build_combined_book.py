@@ -7,7 +7,7 @@ import os, re, sys
 from pathlib import Path
 from datetime import datetime
 
-REPO = Path("/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun")
+REPO = Path(__file__).resolve().parent.parent  # 脚本位于 仓库/scripts/ 下，动态定位仓库根，避免硬编码机器路径
 BOOK_DIR = REPO / "生命论_模块化"
 OUT = REPO / "build_output"
 OUT.mkdir(exist_ok=True)
@@ -16,6 +16,7 @@ VOLUMES = [
     "00_卷首_命经", "01_卷一_存在论", "02_卷二_操作论", "03_卷三_认识论",
     "04_卷四_实践论", "05_卷五_群己论", "06_卷六_异化论", "07_卷七_解放论",
     "08_卷八_格物论", "09_卷九_人文论", "10_卷十_传统论", "11_卷十一_践演论", "12_附录",
+    "13_副卷_语义论",
 ]
 FRONT_MATTER = ["00_全书导言.md", "00_体系总纲.md", "00_推导链总览.md"]
 TAIL_MATTER = ["00_尾声.md"]
@@ -24,6 +25,14 @@ CN = {"零":0,"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"�
 def chapter_sort_key(f):
     """排序键：优先按数字前缀（新命名），兼容旧中文篇号（吸附功能）"""
     name = f.stem
+    # 卷标题/附录标题/副卷标题恒居本卷最前
+    if name.startswith(("00_卷标题", "00_附录标题", "00_副卷标题")):
+        return (-1, 0, 0, name)
+    # 分卷扉页·上篇（如卷六 00_上篇_政治经济学批判）：卷标题之后、本组首篇之前
+    if "上篇" in name:
+        m0 = re.match(r"(\d{2})", name)
+        return (0, int(m0.group(1)) if m0 else 0, -1, name)
+    # 分卷扉页·下篇用 NNx_下篇_ 命名（如 03z），sub=字母序号天然落在该组末尾、下一组之前，走常规分支
     # 新命名：00_卷标题 / 01_篇一 / 01a_篇一之二（a=子篇1, b=子篇2...）
     m = re.match(r"(\d{2})([a-z])?[_]", name)
     if m:
@@ -150,9 +159,9 @@ def build():
 生成时间：{date_str}
 作者：北原慢热
 来源：https://github.com/192781-li/mingbenlun
-12卷+卷首+尾声，按卷→篇→子篇顺序合并。
+11正卷+卷首+尾声+附录+语义论副卷，按卷→篇→子篇顺序合并。
 已过滤研究笔记状态标注，输出干净全本。
-标题层级：卷=H1，篇=H2，章=H3。
+标题层级：卷/副卷=H1，篇/分卷（上下篇）=H2，章=H3。
 
 ---
 
@@ -176,7 +185,7 @@ def build():
         for f in files:
             content = clean_control_chars(f.read_text(encoding="utf-8"))
             content = strip_meta_notes(content)
-            is_vol_title = f.name in ("00_卷标题.md", "00_附录标题.md")
+            is_vol_title = f.name in ("00_卷标题.md", "00_附录标题.md", "00_副卷标题.md")
             if is_vol_title:
                 content = process_vol_title(content)
                 content = normalize_headings(content, target_level=1)
@@ -208,17 +217,17 @@ def build():
     else: print("  ✅ 无控制字符")
 
     expected_vols = ["卷首 命经","第一卷","第二卷","第三卷","第四卷","第五卷",
-                     "第六卷","第七卷","第八卷","第九卷","第十卷","第十一卷","附录"]
+                     "第六卷","第七卷","第八卷","第九卷","第十卷","第十一卷","附录","副卷 语义论"]
     missing = [v for v in expected_vols if f"# {v}" not in combined]
     if missing: errors.append(f"缺少卷: {missing}")
-    else: print("  ✅ 13卷齐全")
+    else: print("  ✅ 14卷部齐全（11正卷+卷首+附录+语义论副卷）")
 
     if "待入全本" in combined: errors.append(f"存在{combined.count('待入全本')}处'待入全本'")
     else: print("  ✅ 无'待入全本'标注")
 
     h1_count = len(re.findall(r'^# ', combined, re.MULTILINE))
-    if h1_count != 14: errors.append(f"H1数量={h1_count}, expected 14")
-    else: print("  ✅ H1数量=14")
+    if h1_count != 15: errors.append(f"H1数量={h1_count}, expected 15")
+    else: print("  ✅ H1数量=15（合订本抬头1+11正卷+卷首+附录+语义论副卷）")
 
     # 检查"篇目"是否还存在
     if re.search(r'^## 篇目', combined, re.MULTILINE):
@@ -239,13 +248,28 @@ def build():
             errors.append("卷六缺少'篇二之二'标题")
         if not any(e.startswith("卷六") for e in errors):
             print("  ✅ 卷六子篇标题正确")
+        # 上下篇扉页顺序：上篇扉页 < 篇零首篇 < 下篇扉页 < 第四篇（均按 H2 标题行定位，避开导言文字）
+        i_up, i_p0 = vol6.find("## 上篇"), vol6.find("## 篇零")
+        i_down, i_p4 = vol6.find("## 下篇"), vol6.find("## 第四篇")
+        if not (0 <= i_up < i_p0 < i_down < i_p4):
+            errors.append(f"卷六上下篇顺序错误: 上篇{i_up}/篇零{i_p0}/下篇{i_down}/第四篇{i_p4}")
+        else:
+            print("  ✅ 卷六上下篇扉页顺序正确")
+    # 语义论副卷两篇齐全
+    sv = combined.find("# 副卷 语义论")
+    if sv > 0:
+        tail = combined[sv:]
+        if "第一篇 语义论总纲" in tail and "第二篇 偶然成序" in tail:
+            print("  ✅ 语义论副卷两篇齐全")
+        else:
+            errors.append("语义论副卷缺篇（应为篇一总纲+篇二存在论奠基）")
 
     # 检查附录顺序
     app_start = combined.find("# 附录")
     if app_start > 0:
         app = combined[app_start:]
         app_h2s = re.findall(r'^## (附录[一二三四五六七八九十]+)', app, re.MULTILINE)
-        expected_app = ["附录一","附录二","附录三","附录四","附录五","附录六","附录七"]
+        expected_app = ["附录一","附录二","附录三","附录四","附录五","附录六","附录七","附录八"]
         if app_h2s != expected_app[:len(app_h2s)]:
             errors.append(f"附录顺序错误: {app_h2s}")
         else:

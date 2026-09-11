@@ -136,47 +136,44 @@ def check_crystals():
 
 
 def check_registry():
+    """定时任务对账。cron状态唯一权威=平台快照，注册表只存分站映射和任务队列。"""
     conf = json.load(open(os.path.join(REPO, NETCONF), encoding='utf-8'))
-    jobs = conf.get('cron_jobs', [])
     stations = conf.get('stations', {})
-    info = {'version': conf.get('version'), 'jobs': len(jobs),
-            'active': sum(1 for j in jobs if j.get('status') == 'active'),
-            'stopped': sum(1 for j in jobs if j.get('status') == 'stopped'),
+    # 从平台快照读 cron 状态（唯一权威）
+    snap_ref = conf.get('cron_snapshot_ref', SNAPSHOT_FILE)
+    snap_path = os.path.join(REPO, snap_ref)
+    if not os.path.exists(snap_path):
+        err('registry', f'平台快照不存在: {snap_ref}')
+        return {'version': conf.get('version'), 'jobs': 0, 'active': 0, 'stopped': 0, 'stations': len(stations), 'snapshot': '缺失'}
+    snap = json.load(open(snap_path, encoding='utf-8'))
+    jobs = snap.get('active', []) + snap.get('stopped', [])
+    info = {'version': conf.get('version'), 'snapshot_version': snap.get('version'),
+            'exported_at': snap.get('exported_at'), 'jobs': len(jobs),
+            'active': len(snap.get('active', [])),
+            'stopped': len(snap.get('stopped', [])),
             'stations': len(stations)}
     # ID唯一
     ids = [j.get('id') for j in jobs]
     for i in set(ids):
         if ids.count(i) > 1:
-            err('registry', f'cron_jobs ID {i} 重复')
+            err('registry', f'快照中 ID {i} 重复')
     # station合法
     for j in jobs:
         if j.get('station') not in stations:
             err('registry', f'任务 {j.get("id")} 的 station={j.get("station")} 不在 stations')
-    # active与stopped不矛盾
-    stopped = {s.get('id') for s in conf.get('stopped_jobs', [])}
-    for j in jobs:
-        if j.get('status') == 'active' and j.get('id') in stopped:
-            err('registry', f'{j.get("id")} 既 active 又在 stopped_jobs')
-    # stations.cron_job_id在cron_jobs里
+    # active与stopped不重叠
+    active_ids = {j.get('id') for j in snap.get('active', [])}
+    stopped_ids = {j.get('id') for j in snap.get('stopped', [])}
+    overlap = active_ids & stopped_ids
+    if overlap:
+        err('registry', f'ID 同时在 active 和 stopped: {overlap}')
+    # stations.cron_job_id在快照里
     job_ids = {j.get('id') for j in jobs}
     for st, info_ in stations.items():
         cid = info_.get('cron_job_id')
         if cid and cid not in job_ids:
-            err('registry', f'stations.{st}.cron_job_id={cid} 不在 cron_jobs（幽灵）')
-    # 平台快照对账
-    snap_path = os.path.join(REPO, SNAPSHOT_FILE)
-    if os.path.exists(snap_path):
-        snap = json.load(open(snap_path, encoding='utf-8'))
-        plat = {str(x['id']): x for x in snap}
-        for pid, x in plat.items():
-            if pid not in {str(j['id']) for j in jobs}:
-                err('registry', f'平台有任务 {pid} 但注册表漏登')
-        for j in jobs:
-            if str(j['id']) not in plat:
-                err('registry', f'注册表 {j["id"]} 平台不存在（幽灵）')
-        info['snapshot'] = f'已对账（平台{len(plat)}个）'
-    else:
-        info['snapshot'] = '未提供平台快照（夜间巡检应先 list_cron_jobs 导出）'
+            err('registry', f'stations.{st}.cron_job_id={cid} 不在平台快照（幽灵）')
+    info['snapshot'] = f'已加载（{snap.get("exported_at","?")}导出，{len(jobs)}任务）'
     return info
 
 
@@ -231,6 +228,62 @@ def check_dirs():
     return out
 
 
+def check_cultural_archive():
+    """文化内容归位检查（结晶025、教训L038）"""
+    result = {
+        'archive_exists': False,
+        'large_files_total': 0,
+        'large_files_indexed': 0,
+        'large_files_missing': [],
+        'dirs_checked': 0,
+        'dirs_missing': [],
+    }
+    archive_path = os.path.join(REPO, 'docs/notes/文化/文化品味总档案.md')
+    if not os.path.exists(archive_path):
+        err('cultural', '文化品味总档案不存在')
+        return result
+    result['archive_exists'] = True
+    with open(archive_path, 'r', encoding='utf-8') as f:
+        archive_text = f.read()
+
+    # 检查>20KB的md文件是否在总档案中被引用
+    for root, dirs, files in os.walk(os.path.join(REPO, 'docs')):
+        for fn in files:
+            if not fn.endswith('.md'):
+                continue
+            fp = os.path.join(root, fn)
+            size = os.path.getsize(fp)
+            if size > 20 * 1024:
+                rel = os.path.relpath(fp, REPO)
+                result['large_files_total'] += 1
+                basename = os.path.basename(rel).replace('.md', '')
+                key = basename[:10]
+                if key and key in archive_text:
+                    result['large_files_indexed'] += 1
+                else:
+                    result['large_files_missing'].append((rel, size))
+
+    # 检查22个必查目录
+    must_dirs = [
+        'docs/notes/音乐', 'docs/notes/文化', 'docs/notes/哲学研究',
+        'docs/notes/历史政治', 'docs/notes/理论研究', 'docs/notes/讨论记录',
+        'docs/notes/资料提取', 'docs/notes/工具自动化', 'docs/体系研究',
+        'docs/术数研究', 'docs/语义论', 'docs/对话与闪光', 'docs/学习训练',
+        'docs/阅读笔记', 'docs/reference_materials/北原慢热实录',
+        'docs/reference_materials/北原慢热原创', 'docs/reference_materials/思想史',
+        'docs/reference_materials/杂项', 'docs/reference_materials/视频资料',
+        'docs/reference_materials/万宜电台', 'docs/visualizations',
+    ]
+    for d in must_dirs:
+        result['dirs_checked'] += 1
+        if not os.path.isdir(os.path.join(REPO, d)):
+            result['dirs_missing'].append(d)
+
+    if result['large_files_missing']:
+        warn('cultural', f'{len(result["large_files_missing"])}个>20KB文件可能未在文化品味总档案中登记')
+    return result
+
+
 # ===================== 报告生成 =====================
 
 def generate_report(now):
@@ -241,6 +294,7 @@ def generate_report(now):
     prci = check_pr_ci()
     ws = check_workspace()
     dirs = check_dirs()
+    cultural = check_cultural_archive()
 
     ne = sum(1 for l, _, _ in issues if l == 'ERROR')
     nw = sum(1 for l, _, _ in issues if l == 'WARN')
@@ -308,6 +362,21 @@ def generate_report(now):
     lines.append('## 七、关键目录文件数')
     for d, n in dirs.items():
         lines.append(f'- {d}/：{n} 个文件')
+    lines.append('')
+
+    lines.append('## 八、文化内容归位巡检')
+    lines.append(f'- 文化品味总档案：{"存在" if cultural["archive_exists"] else "不存在"}')
+    lines.append(f'- >20KB文件：{cultural["large_files_total"]}个，已登记{cultural["large_files_indexed"]}个')
+    if cultural['large_files_missing']:
+        lines.append(f'- 可能未登记：{len(cultural["large_files_missing"])}个')
+        for rel, size in cultural['large_files_missing'][:10]:
+            lines.append(f'  - {rel}（{size//1024}KB）')
+    else:
+        lines.append('- 可能未登记：无')
+    lines.append(f'- 必查目录：{cultural["dirs_checked"]}个，缺失{len(cultural["dirs_missing"])}个')
+    if cultural['dirs_missing']:
+        for d in cultural['dirs_missing'][:5]:
+            lines.append(f'  - 缺失：{d}')
     lines.append('')
 
     if ws:

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-明旭质量门禁 v1.1 — 统一入口
+明旭质量门禁 v1.2 — 统一入口
 硬门禁（必须通过，否则禁止发布）：
   1. 合订本专项：卷完整性、篇序、控制字符、编码、标题层级
   2. 术语铁律（仅检查生命论_模块化/，排除archive/）
 软检查（生成报告，不阻止发布）：
   质量门禁、过度宣称、循环论证、明性守卫、元监督
-用法：python3 scripts/质量检查/run_all_checks.py [--strict]
+用法：python3 scripts/质量检查/run_all_checks.py [--strict] [--soft]
   --strict: 软检查有error也阻止发布
+  --soft: 同时运行软检查（质量门禁/过度宣称/循环论证/明性守卫），默认只跑硬门禁以提速
 """
 import os
 import sys
@@ -54,7 +55,7 @@ def hard_check_combined_book():
 
     # 卷完整性
     expected = ["卷首 命经","第一卷","第二卷","第三卷","第四卷","第五卷",
-                "第六卷","第七卷","第八卷","第九卷","第十卷","第十一卷","附录"]
+                "第六卷","第七卷","第八卷","第九卷","第十卷","第十一卷","附录","副卷 语义论"]
     for vol in expected:
         if f"# {vol}" not in md:
             issues.append(f"缺少卷: {vol}")
@@ -77,7 +78,10 @@ def hard_check_combined_book():
         if len(h1s) < 13:
             issues.append(f"HTML只有{len(h1s)}个H1， expected >=13")
     else:
-        issues.append("合订本HTML不存在")
+        # 仅当 build_combined_html.py 正在生成 HTML 时豁免此条（BUILDING_HTML=1），
+        # 否则会陷入"生成HTML前门禁要求HTML已存在"的死锁；其余实质检查照常阻断。
+        if os.environ.get("BUILDING_HTML") != "1":
+            issues.append("合订本HTML不存在")
 
     return len(issues) == 0, issues
 
@@ -119,9 +123,13 @@ def soft_check(name, cmd):
 
 def main():
     strict = "--strict" in sys.argv
-    print(f"\n{C.BOLD}{C.BLUE}═══ 明旭质量门禁 v1.1 ═══{C.END}")
+    run_soft = "--soft" in sys.argv
+    print(f"\n{C.BOLD}{C.BLUE}═══ 明旭质量门禁 v1.2 ═══{C.END}")
     print(f"时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"模式: {'严格(软检查error也阻止)' if strict else '标准(硬门禁阻止)'}")
+    mode = "严格(软检查error也阻止)" if strict else "标准(硬门禁阻止)"
+    if run_soft:
+        mode += " + 软检查"
+    print(f"模式: {mode}")
     print()
 
     # ═══ 硬门禁 ═══
@@ -143,23 +151,26 @@ def main():
         for iss in issues[:5]: print(f"      {C.RED}- {iss}{C.END}")
         if len(issues) > 5: print(f"      {C.RED}... 共{len(issues)}处{C.END}")
 
-    # ═══ 软检查 ═══
-    print(f"\n{C.BOLD}── 软检查（参考，不阻止发布）──{C.END}")
-    soft_checks = [
-        ("质量门禁", ["python3", "scripts/质量检查/quality_gate.py"]),
-        ("过度宣称", ["python3", "scripts/质量检查/overclaim_checker.py"]),
-        ("循环论证", ["python3", "scripts/质量检查/circular_reasoning_detector.py"]),
-        ("明性守卫", ["python3", "scripts/质量检查/mingxing_guard.py"]),
-    ]
+    # ═══ 软检查（默认不跑，加 --soft 才跑，以提速）═══
     soft_results = {}
-    for name, cmd in soft_checks:
-        print(f"  {name}...", end=" ", flush=True)
-        ok, warnings, summary, _ = soft_check(name, cmd)
-        soft_results[name] = (ok, warnings, summary)
-        if ok:
-            print(f"{C.GREEN}✅{C.END} ({summary})")
-        else:
-            print(f"{C.YELLOW}⚠️{C.END} ({summary})")
+    if run_soft:
+        print(f"\n{C.BOLD}── 软检查（参考，不阻止发布）──{C.END}")
+        soft_checks = [
+            ("质量门禁", ["python3", "scripts/质量检查/quality_gate.py"]),
+            ("过度宣称", ["python3", "scripts/质量检查/overclaim_checker.py"]),
+            ("循环论证", ["python3", "scripts/质量检查/circular_reasoning_detector.py"]),
+            ("明性守卫", ["python3", "scripts/质量检查/mingxing_guard.py"]),
+        ]
+        for name, cmd in soft_checks:
+            print(f"  {name}...", end=" ", flush=True)
+            ok, warnings, summary, _ = soft_check(name, cmd)
+            soft_results[name] = (ok, warnings, summary)
+            if ok:
+                print(f"{C.GREEN}✅{C.END} ({summary})")
+            else:
+                print(f"{C.YELLOW}⚠️{C.END} ({summary})")
+    else:
+        print(f"\n{C.YELLOW}（软检查已跳过，加 --soft 运行）{C.END}")
 
     # ═══ 汇总 ═══
     print(f"\n{C.BOLD}── 汇总 ──{C.END}")

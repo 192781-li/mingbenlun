@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 """合订本转HTML v2 — 用pandoc转换，精美排版，带目录锚点，单文件
 生成前自动跑硬门禁，不通过则中止。"""
+import os
 import subprocess
 import sys
 from pathlib import Path
+from datetime import date
 
-REPO = Path("/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun")
+REPO = Path(__file__).resolve().parent.parent  # 动态定位仓库根，避免硬编码机器路径
 MD = REPO / "build_output/生命论_合订本.md"
 OUT = REPO / "build_output/生命论_合订本.html"
 
 # 生成前硬门禁：不通过则中止
 print("🔍 运行硬门禁检查...")
+gate_env = {**os.environ, "BUILDING_HTML": "1"}  # 豁免"HTML不存在"，打破生成前死锁；其余硬检查照常
 gate = subprocess.run(
     [sys.executable, str(REPO / "scripts/质量检查/run_all_checks.py")],
-    capture_output=True, text=True, cwd=str(REPO)
+    capture_output=True, text=True, cwd=str(REPO), env=gate_env
 )
 print(gate.stdout[-500:] if gate.stdout else "")
 if gate.returncode != 0:
@@ -65,6 +68,9 @@ result = subprocess.run(
 )
 full_html = result.stdout
 import re
+_md_text = MD.read_text(encoding="utf-8")
+_n_pian = len(re.findall(r'^## ', _md_text, re.M))
+_wan = max(1, len(_md_text) // 10000)
 m = re.search(r"<body>(.*)</body>", full_html, re.DOTALL)
 body = m.group(1) if m else full_html
 # 去掉pandoc自动生成的标题块（避免与封面重复）
@@ -85,9 +91,9 @@ html = f"""<!DOCTYPE html>
 <div class="sub">合订本 v1.1 · 干净全本</div>
 <div class="meta">
 作者：北原慢热<br>
-生成时间：2026-09-10<br>
+生成时间：{date.today().isoformat()}<br>
 来源：<a href="https://github.com/192781-li/mingbenlun">github.com/192781-li/mingbenlun</a><br>
-12卷+卷首+尾声，119篇，约60万字
+11正卷+卷首+尾声+附录+语义论副卷，{_n_pian}篇，约{_wan}万字
 </div>
 </div>
 {body}
