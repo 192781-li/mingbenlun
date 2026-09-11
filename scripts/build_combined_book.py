@@ -7,7 +7,7 @@ import os, re, sys
 from pathlib import Path
 from datetime import datetime
 
-REPO = Path("/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun")
+REPO = Path(__file__).resolve().parent.parent  # 脚本位于 仓库/scripts/ 下，动态定位仓库根，避免硬编码机器路径
 BOOK_DIR = REPO / "生命论_模块化"
 OUT = REPO / "build_output"
 OUT.mkdir(exist_ok=True)
@@ -269,7 +269,7 @@ def build():
     if app_start > 0:
         app = combined[app_start:]
         app_h2s = re.findall(r'^## (附录[一二三四五六七八九十]+)', app, re.MULTILINE)
-        expected_app = ["附录一","附录二","附录三","附录四","附录五","附录六","附录七"]
+        expected_app = ["附录一","附录二","附录三","附录四","附录五","附录六","附录七","附录八"]
         if app_h2s != expected_app[:len(app_h2s)]:
             errors.append(f"附录顺序错误: {app_h2s}")
         else:
