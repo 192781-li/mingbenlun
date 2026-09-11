@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-T值硬判断计算器 v2.1
-v2.1（默认）：五行力量占比 + 刑冲合害修正层（不连乘，取最大修正）
+T值硬判断计算器 v2.2
+v2.2（默认）：五行力量占比 + 刑冲合害修正 + 六冲力量对比
+v2.1：五行力量占比 + 刑冲合害修正（六冲双方均×0.7）
 v2.0：五行力量占比（无修正）
 v1.0：绝对值累加法（对比用）
-用法：python3 t_value_calculator.py <年柱> <月柱> <日柱> <时柱> [--method v1|v2|v21]
+用法：python3 t_value_calculator.py <年柱> <月柱> <日柱> <时柱> [--method v1|v2|v21|v22]
 """
 
 import sys
@@ -24,7 +25,6 @@ BRANCH_HIDDEN = {
     '申':[('庚',0.6),('壬',0.3),('戊',0.1)], '酉':[('辛',1.0)],
     '戌':[('戊',0.6),('辛',0.3),('丁',0.1)], '亥':[('壬',0.7),('甲',0.3)]
 }
-
 LIU_CHONG = {'子':'午','午':'子','丑':'未','未':'丑','寅':'申','申':'寅','卯':'酉','酉':'卯','辰':'戌','戌':'辰','巳':'亥','亥':'巳'}
 LIU_HE = {'子':'丑','丑':'子','寅':'亥','亥':'寅','卯':'戌','戌':'卯','辰':'酉','酉':'辰','巳':'申','申':'巳','午':'未','未':'午'}
 LIU_HAI = {'子':'未','未':'子','丑':'午','午':'丑','寅':'巳','巳':'寅','卯':'辰','辰':'卯','申':'亥','亥':'申','酉':'戌','戌':'酉'}
@@ -48,29 +48,60 @@ def get_print_element(day_elem):
         if GENERATES[e] == day_elem: return e
     return None
 
-def get_branch_modifier(branches):
-    """刑冲合害修正系数（取最严重的，不连乘）"""
+def get_branch_raw_power(branch, month_branch):
+    """地支原始力量（用于六冲力量对比）"""
+    total = 0
+    for j, (h, ratio) in enumerate(BRANCH_HIDDEN[branch]):
+        if j == 0: base = 12 + (15 if branch == month_branch else 0)
+        elif j == 1: base = 4
+        else: base = 2
+        total += base
+    return total
+
+def get_branch_modifier(branches, month_branch, method='v22'):
+    """刑冲合害修正系数（不连乘，取最大修正）"""
     modifiers = {b: 1.0 for b in branches}
     effects = []
     blist = list(branches)
+    raw_powers = {b: get_branch_raw_power(b, month_branch) for b in set(branches)}
+
     for i, b1 in enumerate(blist):
         for b2 in blist[i+1:]:
             if LIU_CHONG.get(b1) == b2:
-                modifiers[b1] = min(modifiers[b1], 0.7)
-                modifiers[b2] = min(modifiers[b2], 0.7)
-                effects.append(f"{b1}{b2}冲")
+                if method == 'v22':
+                    p1, p2 = raw_powers[b1], raw_powers[b2]
+                    if p1 > p2 * 1.3:
+                        modifiers[b1] = min(modifiers[b1], 0.8)
+                        modifiers[b2] = min(modifiers[b2], 0.5)
+                        effects.append(f"{b1}强冲{b2}弱(×0.8/×0.5)")
+                    elif p2 > p1 * 1.3:
+                        modifiers[b1] = min(modifiers[b1], 0.5)
+                        modifiers[b2] = min(modifiers[b2], 0.8)
+                        effects.append(f"{b2}强冲{b1}弱(×0.8/×0.5)")
+                    else:
+                        modifiers[b1] = min(modifiers[b1], 0.7)
+                        modifiers[b2] = min(modifiers[b2], 0.7)
+                        effects.append(f"{b1}{b2}冲(均×0.7)")
+                else:
+                    modifiers[b1] = min(modifiers[b1], 0.7)
+                    modifiers[b2] = min(modifiers[b2], 0.7)
+                    effects.append(f"{b1}{b2}冲")
             elif b2 in SAN_XING.get(b1, set()):
                 modifiers[b1] = min(modifiers[b1], 0.8)
                 modifiers[b2] = min(modifiers[b2], 0.8)
                 effects.append(f"{b1}{b2}刑")
             elif LIU_HE.get(b1) == b2:
-                modifiers[b1] = min(modifiers[b1], 0.9)
-                modifiers[b2] = min(modifiers[b2], 0.9)
-                effects.append(f"{b1}{b2}合")
+                if method == 'v22':
+                    effects.append(f"{b1}{b2}合(仅记录)")
+                else:
+                    modifiers[b1] = min(modifiers[b1], 0.9)
+                    modifiers[b2] = min(modifiers[b2], 0.9)
+                    effects.append(f"{b1}{b2}合")
             elif LIU_HAI.get(b1) == b2:
                 modifiers[b1] = min(modifiers[b1], 0.95)
                 modifiers[b2] = min(modifiers[b2], 0.95)
                 effects.append(f"{b1}{b2}害")
+
     counts = Counter(branches)
     for b, cnt in counts.items():
         if b in ZI_XING and cnt >= 2:
@@ -78,31 +109,27 @@ def get_branch_modifier(branches):
             effects.append(f"{b}{b}自刑")
     return modifiers, effects
 
-def calc_wuxing_power(four_pillars, month_branch, use_correction=True):
-    """计算五行力量（可选刑冲合害修正）"""
+def calc_wuxing_power(four_pillars, month_branch, method='v22'):
     branches = [p[1] for p in four_pillars]
-    modifiers, effects = (get_branch_modifier(branches) if use_correction else ({b:1.0 for b in branches}, []))
+    use_corr = method in ('v21', 'v22')
+    modifiers, effects = (get_branch_modifier(branches, month_branch, method) if use_corr else ({b:1.0 for b in branches}, []))
     power = {'木':0,'火':0,'土':0,'金':0,'水':0}
     for stem, branch in four_pillars:
-        power[STEM_ELEMENT[stem]] += 10  # 天干不受修正
+        power[STEM_ELEMENT[stem]] += 10
         mod = modifiers[branch]
         for j, (h, ratio) in enumerate(BRANCH_HIDDEN[branch]):
             if j == 0: base = 12 + (15 if branch == month_branch else 0)
             elif j == 1: base = 4
             else: base = 2
             power[STEM_ELEMENT[h]] += int(base * mod)
-    return power, effects, modifiers
+    return power, effects
 
-def calc_T(day_stem, month_branch, four_pillars, method='v21'):
-    """统一T值计算入口"""
+def calc_T(day_stem, month_branch, four_pillars, method='v22'):
     day_elem = STEM_ELEMENT[day_stem]
     print_elem = get_print_element(day_elem)
-    
     if method == 'v1':
         return calc_T_v1(day_stem, month_branch, four_pillars)
-    
-    use_corr = (method == 'v21')
-    power, effects, _ = calc_wuxing_power(four_pillars, month_branch, use_corr)
+    power, effects = calc_wuxing_power(four_pillars, month_branch, method)
     total = sum(power.values())
     support = power[day_elem] + power[print_elem]
     T = round(support / total * 100 - 50, 1)
@@ -114,7 +141,6 @@ def calc_T(day_stem, month_branch, four_pillars, method='v21'):
     return T, rating, power, support, total, effects
 
 def calc_T_v1(day_stem, month_branch, four_pillars):
-    """v1.0：绝对值累加法"""
     day_elem = STEM_ELEMENT[day_stem]
     month_elem = BRANCH_ELEMENT[month_branch]
     T = 0
@@ -156,11 +182,10 @@ def calc_T_v1(day_stem, month_branch, four_pillars):
     return T, rating, None, None, None, []
 
 def main():
-    parser = argparse.ArgumentParser(description='T值硬判断计算器 v2.1')
+    parser = argparse.ArgumentParser(description='T值硬判断计算器 v2.2')
     parser.add_argument('pillars', nargs=4, help='年柱 月柱 日柱 时柱')
-    parser.add_argument('--method', choices=['v1','v2','v21'], default='v21', help='计算方法（默认v21）')
+    parser.add_argument('--method', choices=['v1','v2','v21','v22'], default='v22', help='计算方法（默认v22）')
     args = parser.parse_args()
-
     pillars = [(p[0], p[1]) for p in args.pillars]
     day_stem = args.pillars[2][0]
     month_branch = args.pillars[1][1]
@@ -173,10 +198,8 @@ def main():
     print(f"  八字：{' '.join(args.pillars)}")
     print(f"  日主：{day_stem}（{day_elem}）  印星：{print_elem}")
     print("-" * 60)
-
     result = calc_T(day_stem, month_branch, pillars, args.method)
     T, rating = result[0], result[1]
-    
     if args.method == 'v1':
         print(f"  T值 = {T}")
         print(f"  总评 = {rating}")
@@ -187,7 +210,7 @@ def main():
         print(f"  帮身（{day_elem}+{print_elem}）：{support}（{round(support/total*100,1)}%）")
         print(f"  克泄耗：{total-support}（{round((total-support)/total*100,1)}%）")
         if effects:
-            print(f"  刑冲合害：{', '.join(effects)}")
+            print(f"  冲刑合害：{', '.join(effects)}")
         print("-" * 60)
         print(f"  T值 = {T}")
         print(f"  总评 = {rating}")
