@@ -367,6 +367,25 @@ def analyze_wangshuai(day_stem, month_branch, four_pillars, wuxing_count):
             result["v33_总力量"] = total
             result["v33_组合效应"] = effects
             result["v33_五行力量"] = power
+            # 从格检测
+            day_elem = STEM_ELEMENT[day_stem]
+            print_elem_v = [e for e in ['木','火','土','金','水'] if GENERATES[e] == day_elem][0]
+            support_pct = round(support/total*100, 1) if total > 0 else 0
+            day_root = any(STEM_ELEMENT[h] == day_elem for _, b in four_pillars for h in BRANCH_HIDDEN_STEMS[b])
+            print_root = any(STEM_ELEMENT[h] == print_elem_v for _, b in four_pillars for h in BRANCH_HIDDEN_STEMS[b])
+            is_cong = (support_pct < 25) and (not day_root) and (not print_root)
+            result["从格"] = is_cong
+            if is_cong:
+                consume = {}
+                for e in ['木','火','土','金','水']:
+                    if e == day_elem or e == print_elem_v: continue
+                    if OVERCOMES[day_elem] == e: t = '财星'
+                    elif OVERCOMES[e] == day_elem: t = '官杀'
+                    else: t = '食伤'
+                    consume[t] = consume.get(t, 0) + power[e]
+                cong_type = max(consume, key=consume.get) if consume else '从势'
+                result["从格类型"] = f"从{cong_type}格"
+                result["v33_总评"] = f"从{cong_type}格"
         except Exception as e:
             result["v33_错误"] = str(e)
 
@@ -600,11 +619,34 @@ def get_wuxing_wangshuai(wuxing):
 
 
 def get_yong_shen(day_stem, wangshuai, wuxing, month_branch):
-    """用神建议（简化版）"""
+    """用神建议（优先使用v3.3 T值总评，从格用从格用神）"""
     day_elem = STEM_ELEMENT[day_stem]
     result = {"喜用": [], "忌神": [], "说明": ""}
 
-    if wangshuai["总评"] in ["身强", "偏强"]:
+    # 优先使用v3.3总评，不可用时用传统总评
+    v33_rating = wangshuai.get("v33_总评", wangshuai.get("总评", "中和"))
+    is_cong = wangshuai.get("从格", False)
+
+    if is_cong:
+        # 从格：忌帮身，顺势而为，用神是从的那个五行
+        cong_type = wangshuai.get("从格类型", "从势格")
+        if "官杀" in cong_type:
+            yong_elem = OVERCOMES[day_elem]
+            result["喜用"].append(f"{yong_elem}（官杀，从杀格用神）")
+            result["忌神"].append(f"{day_elem}（比劫，帮身破格）")
+            result["忌神"].append(f"{[e for e in GENERATES if GENERATES[e]==day_elem][0]}（印星，生身破格）")
+        elif "财星" in cong_type:
+            yong_elem = [e for e in OVERCOMES if OVERCOMES[e]==day_elem][0]
+            result["喜用"].append(f"{yong_elem}（财星，从财格用神）")
+            result["忌神"].append(f"{day_elem}（比劫，帮身破格）")
+        elif "食伤" in cong_type:
+            yong_elem = GENERATES[day_elem]
+            result["喜用"].append(f"{yong_elem}（食伤，从儿格用神）")
+            result["忌神"].append(f"{[e for e in GENERATES if GENERATES[e]==day_elem][0]}（印星，克食伤破格）")
+        else:
+            result["喜用"].append("需结合具体格局判断")
+        result["说明"] = f"{cong_type}：忌帮身，顺势而为。大运流年遇帮身则破格，遇从神则发。"
+    elif v33_rating in ["身强", "偏强"]:
         # 身强喜克泄耗：官杀（克我）、食伤（我生）、财星（我克）
         result["喜用"].append(f"{OVERCOMES[day_elem]}（官杀，克身）")
         result["喜用"].append(f"{GENERATES[day_elem]}（食伤，泄身）")
@@ -612,14 +654,14 @@ def get_yong_shen(day_stem, wangshuai, wuxing, month_branch):
         result["忌神"].append(f"{day_elem}（比劫，帮身）")
         result["忌神"].append(f"{[e for e in GENERATES if GENERATES[e]==day_elem][0]}（印星，生身）")
         result["说明"] = "身强喜克泄耗，忌生扶。用神在官杀、食伤、财星。"
-    elif wangshuai["总评"] in ["身弱", "偏弱"]:
+    elif v33_rating in ["身弱", "偏弱"]:
         # 身弱喜生扶：印星（生我）、比劫（同我）
         result["喜用"].append(f"{[e for e in GENERATES if GENERATES[e]==day_elem][0]}（印星，生身）")
         result["喜用"].append(f"{day_elem}（比劫，帮身）")
         result["忌神"].append(f"{OVERCOMES[day_elem]}（官杀，克身）")
         result["忌神"].append(f"{GENERATES[day_elem]}（食伤，泄身）")
         result["忌神"].append(f"{[e for e in OVERCOMES if OVERCOMES[e]==day_elem][0]}（财星，耗身）")
-        result["说明"] = "身弱喜生扶，忌克泄耗。用神在印星、比劫。但身弱不等于命不好，是能量承载力需要后天加厚（T值提升）。"
+        result["说明"] = "身弱喜生扶，忌克泄耗。用神在印星、比劫。身弱不等于命不好，是能量承载力需要后天加厚（T值提升）。"
     else:
         result["喜用"].append("需结合具体格局判断")
         result["说明"] = "中和之命，用神需结合具体格局和大运流年动态调整。"
@@ -778,6 +820,8 @@ def print_paipan(result):
         print(f"  T值：{ws['v33_T值']}")
         print(f"  总评：{ws['v33_总评']}")
         print(f"  帮身/总力量：{ws['v33_帮身力量']}/{ws['v33_总力量']}")
+        if ws.get("从格"):
+            print(f"  ⚠ 从格：{ws.get('从格类型', '从势格')}（忌帮身，顺势而为）")
         if ws.get("v33_组合效应"):
             print(f"  组合效应：{', '.join(ws['v33_组合效应'])}")
         if "v33_错误" in ws:
