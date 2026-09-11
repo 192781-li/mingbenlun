@@ -222,6 +222,73 @@ def create_pr(title, body):
     return r.stdout.strip(), branch_name
 
 
+def merge_with_retry(branch_name, max_retries=5, max_rebase=2):
+    """等CI通过后合并PR，处理时序问题和分支落后问题。
+    - CI通过后等5秒再merge（GitHub状态检查同步延迟）
+    - 报"status check expected"时等5秒重试，最多max_retries次
+    - 报"head branch not up to date"时自动merge origin/main追平，强推，重新等CI，最多max_rebase次
+    返回 True/False
+    """
+    import time
+    rebase_count = 0
+
+    while rebase_count <= max_rebase:
+        # 等CI
+        ci_passed = False
+        for i in range(30):
+            time.sleep(8)
+            r = subprocess.run(['gh', 'pr', 'checks', branch_name],
+                               capture_output=True, text=True, cwd=REPO)
+            out = r.stdout
+            if 'pending' not in out and 'fail' not in out and out.strip():
+                ci_passed = True
+                info(f"CI全过（第{i+1}次检查），等5秒同步状态检查")
+                time.sleep(5)
+                break
+            info(f"  等CI... 第{i+1}次")
+
+        if not ci_passed:
+            warn("CI超时未通过，放弃自动合并")
+            return False
+
+        # 尝试merge，带重试
+        for attempt in range(max_retries):
+            r = subprocess.run(
+                ['gh', 'pr', 'merge', branch_name, '--merge', '--delete-branch'],
+                capture_output=True, text=True, cwd=REPO
+            )
+            if r.returncode == 0:
+                info("合并成功！")
+                return True
+
+            err = r.stderr.strip()
+            # 状态检查同步延迟：重试
+            if 'status check' in err.lower() and 'expected' in err.lower():
+                info(f"  状态检查同步中，等5秒重试（第{attempt+1}/{max_retries}次）")
+                time.sleep(5)
+                continue
+            # 分支落后：追平后重新等CI
+            if 'not up to date' in err.lower() or 'head branch' in err.lower():
+                if rebase_count >= max_rebase:
+                    warn(f"分支落后且已追平{max_rebase}次，放弃自动合并，请手动处理")
+                    return False
+                info(f"  分支落后于main，自动追平（第{rebase_count+1}次）...")
+                git('checkout', branch_name)
+                git('merge', 'origin/main', '--no-edit')
+                git('push', '--force-with-lease', 'origin', branch_name)
+                rebase_count += 1
+                break  # 跳出merge重试循环，重新等CI
+            # 其他错误
+            warn(f"合并失败: {err[:150]}")
+            return False
+        else:
+            # merge重试耗尽
+            warn(f"合并重试{max_retries}次仍失败，放弃自动合并")
+            return False
+
+    return False
+
+
 def main():
     ap = argparse.ArgumentParser(description='分站分支积压自动检测与同步工具')
     ap.add_argument('--apply', action='store_true', help='实际同步并开PR（默认只检测）')
@@ -327,25 +394,10 @@ def main():
     print(f"分支: {branch_name}")
 
     if a.auto_merge:
-        info("调用 pr_workflow.py 自动合并...")
-        # pr_workflow.py 需要在有未提交改动时使用，但这里已经commit并开PR了
-        # 所以直接等CI然后merge
-        import time
-        for i in range(30):
-            time.sleep(8)
-            r = subprocess.run(['gh', 'pr', 'checks', branch_name], capture_output=True, text=True, cwd=REPO)
-            out = r.stdout
-            if 'pending' not in out and 'fail' not in out and out.strip():
-                info("CI全过，等3秒同步后合并")
-                time.sleep(3)
-                r = subprocess.run(['gh', 'pr', 'merge', branch_name, '--merge', '--delete-branch'],
-                                   capture_output=True, text=True, cwd=REPO)
-                if r.returncode == 0:
-                    info("合并成功！")
-                else:
-                    warn(f"合并失败: {r.stderr.strip()[:100]}")
-                break
-            info(f"  第{i+1}次检查CI...")
+        info("自动合并（带时序重试和分支追平）...")
+        success = merge_with_retry(branch_name)
+        if not success:
+            warn("自动合并未完成，请手动合并上述PR")
         # 切回main
         git('checkout', 'main')
         git('fetch', 'origin', '-q')
