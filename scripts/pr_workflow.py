@@ -125,18 +125,39 @@ def wait_for_ci(pr_number, timeout_sec=480, interval=8):
 
 
 def try_merge(pr_number):
-    """尝试merge，返回True成功，False被挡（分支不是最新）"""
+    """尝试merge，返回 (status, msg)
+    status: 'merged' 成功, 'blocked' 分支不是最新需rebase, 'retryable' 时序错误等几秒重试
+    """
     r = subprocess.run(
         ['gh', 'pr', 'merge', str(pr_number), '--merge', '--delete-branch'],
         capture_output=True, text=True, cwd=REPO
     )
     if r.returncode == 0:
-        return True, r.stdout.strip()
+        return 'merged', r.stdout.strip()
     stderr = r.stderr.strip()
     if 'not up to date' in stderr or 'not mergeable' in stderr:
-        return False, stderr
+        return 'blocked', stderr
+    if 'Required status check' in stderr and 'is expected' in stderr:
+        return 'retryable', stderr
     # 其他错误
     raise RuntimeError(f"merge 失败: {stderr[:300]}")
+
+
+def merge_with_retry(pr_number, max_timing_retry=5):
+    """CI通过后调用：等3秒同步状态，然后merge，时序错误时等5秒重试。
+    返回 (status, msg)，status: 'merged'/'blocked'/'failed'
+    """
+    time.sleep(3)  # 给GitHub状态检查同步时间
+    for i in range(max_timing_retry):
+        status, msg = try_merge(pr_number)
+        if status == 'merged':
+            return 'merged', msg
+        if status == 'blocked':
+            return 'blocked', msg
+        # retryable
+        warn(f"merge 时序错误（第{i+1}次），等5秒重试：{msg[:80]}")
+        time.sleep(5)
+    return 'failed', f"时序重试{max_timing_retry}次后仍失败"
 
 
 def rebase_to_latest(branch, base):
@@ -230,12 +251,12 @@ def main():
             print(f"\nPR URL: {pr_url}")
             sys.exit(1)
 
-        # 尝试 merge
-        merged, msg = try_merge(pr_number)
-        if merged:
+        # 尝试 merge（带时序重试）
+        status, msg = merge_with_retry(pr_number)
+        if status == 'merged':
             info("合并成功！")
             break
-        else:
+        elif status == 'blocked':
             warn(f"merge 被挡（分支不是最新）。{msg[:100]}")
             if attempt < a.retry:
                 if not rebase_to_latest(branch, a.base):
@@ -248,6 +269,10 @@ def main():
                 err(f"重试 {a.retry} 次后仍被挡，停止。请人工处理。")
                 print(f"\nPR URL: {pr_url}")
                 sys.exit(1)
+        else:  # failed
+            err(f"merge 失败：{msg[:100]}")
+            print(f"\nPR URL: {pr_url}")
+            sys.exit(1)
     else:
         err("未成功合并。")
         sys.exit(1)
