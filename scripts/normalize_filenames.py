@@ -15,8 +15,8 @@ APPLY = "--apply" in sys.argv
 
 def compute_new_name(stem):
     """计算规范文件名，返回(new_stem, label)或None"""
-    # 已经规范
-    if re.match(r'^\d{2}(-\d)?[_]', stem) or stem.startswith("00_"):
+    # 已经规范（01_篇一 / 01a_篇一之二 / 00_卷标题）
+    if re.match(r'^\d{2}[a-z]?[_]', stem) or stem.startswith("00_"):
         return None
     # 篇X之Y
     m = re.match(r"篇([零一二三四五六七八九十]+)(?:之([零一二三四五六七八九十]+))?_(.+)", stem)
@@ -25,7 +25,8 @@ def compute_new_name(stem):
         sub = CN.get(m.group(2)) if m.group(2) else None
         rest = m.group(3)
         if sub is not None:
-            ns = f"{main:02d}-{sub}_篇{m.group(1)}之{m.group(2)}_{rest}"
+            sub_letter = chr(ord('a') + sub - 1)
+            ns = f"{main:02d}{sub_letter}_篇{m.group(1)}之{m.group(2)}_{rest}"
             label = (f"第{m.group(1)}篇之{m.group(2)}" if m.group(1) != "零" else f"篇零之{m.group(2)}")
         else:
             ns = f"{main:02d}_篇{m.group(1)}_{rest}"
