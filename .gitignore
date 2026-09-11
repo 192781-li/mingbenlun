@@ -76,3 +76,4 @@ scripts/s04_deepseek/*.log
 
 # 合订本构建产物（不入库，通过GitHub Releases发布）
 build_output/
+*.md.report

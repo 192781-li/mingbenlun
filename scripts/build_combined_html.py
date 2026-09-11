@@ -81,7 +81,7 @@ html = f"""<!DOCTYPE html>
 </head>
 <body>
 <div class="cover">
-<h1>生命论（明本论）</h1>
+<div class="cover-title">生命论（明本论）</div>
 <div class="sub">合订本 v1.1 · 干净全本</div>
 <div class="meta">
 作者：北原慢热<br>
