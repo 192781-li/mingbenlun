@@ -45,8 +45,8 @@ th{background:#f0e8d8;color:var(--gold)}
 """
 
 result = subprocess.run(
-    ["pandoc", str(MD), "-f", "markdown-yaml_metadata_block", "-t", "html",
-     "--standalone", "--toc", "--toc-depth=2"],
+    ["pandoc", str(MD), "-f", "markdown-yaml_metadata_block-tex_math_dollars-tex_math_single_backslash", "-t", "html",
+     "--standalone", "--toc", "--toc-depth=2", "--wrap=none"],
     capture_output=True, text=True
 )
 full_html = result.stdout
