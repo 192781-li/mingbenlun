@@ -3,8 +3,9 @@
 配套理论文档：`docs/体系研究/生命论概念协奏坐标系_七维定位法_20260911.md`
 
 ## 文件
-- `concept_coords.json`：概念坐标库（种子 v0.1，39 条）。每入库一个重要概念，追加一条记录。
+- `concept_coords.json`：概念坐标库（v0.2-expanded，57 条）。每入库一个重要概念，追加一条记录。
 - `resonance_search.py`：检索脚本，纯标准库，Python 3.8+。
+- `validate_coords.py`：坐标库自检/质量门脚本。每次扩库或修改坐标后必跑。
 
 ## 三种用法
 
@@ -27,6 +28,16 @@ python3 scripts/concept_resonance/resonance_search.py -r R6 --dir neg
 python3 scripts/concept_resonance/resonance_search.py --list
 python3 scripts/concept_resonance/resonance_search.py --concept 不忍 --json
 ```
+
+### 4. 坐标库自检（每次扩库后必跑）
+```bash
+python3 scripts/concept_resonance/validate_coords.py
+python3 scripts/concept_resonance/validate_coords.py --json   # 机器可读
+```
+检查项：
+- **E 错误**（必须修）：JSON 解析失败、缺 name/loc、概念重名、轴代码非法、dir 非法、结构轴全空
+- **W 警告**（建议修）：K形式 但尺度不含 LF、R6 方向轴但 dir=neu、坐标过稀、loc 过短
+- **覆盖度报告**：各轴各取值的概念数，零覆盖取值会标⚠️，提示扩库优先方向
 
 ## 轴代码速查
 | 轴 | 取值 |
@@ -51,5 +62,6 @@ python3 scripts/concept_resonance/resonance_search.py --concept 不忍 --json
 ## 维护规则
 1. 新增概念：往 `concept_coords.json` 的 `concepts` 数组追加一条，坐标必须能在 `axes` 里找到合法值。
 2. 坐标拿不准就留空数组 `[]`，不要硬填。
-3. 每次追加后跑一遍 `--list` 确认 JSON 合法、条目数正确。
+3. **每次追加/修改后必跑 `validate_coords.py`**，确认 0 错误；警告尽量修。
 4. 坐标是 S00 依据已读卷册的初标，重要概念由 S01 复核。
+5. 扩库优先级：先补自检报告中零覆盖的轴取值，再补新讨论中出现的高频概念。
