@@ -11,6 +11,15 @@ from datetime import datetime, timedelta
 import math
 import json
 import sys
+import os
+
+# 导入T值计算器（v3.3）
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:
+    from t_value_calculator import calc_T as calc_T_v33
+    T_CALC_AVAILABLE = True
+except ImportError:
+    T_CALC_AVAILABLE = False
 
 # ==================== 基础数据 ====================
 
@@ -347,6 +356,19 @@ def analyze_wangshuai(day_stem, month_branch, four_pillars, wuxing_count):
         result["总评"] = "偏弱"
     else:
         result["总评"] = "身弱"
+
+    # v3.3 T值硬判断（集成t_value_calculator）
+    if T_CALC_AVAILABLE:
+        try:
+            T, rating, power, support, total, effects = calc_T_v33(day_stem, month_branch, four_pillars, method='v33')
+            result["v33_T值"] = T
+            result["v33_总评"] = rating
+            result["v33_帮身力量"] = support
+            result["v33_总力量"] = total
+            result["v33_组合效应"] = effects
+            result["v33_五行力量"] = power
+        except Exception as e:
+            result["v33_错误"] = str(e)
 
     return result
 
@@ -749,7 +771,17 @@ def print_paipan(result):
     print(f"  得地（根气）：{ws['得地']}")
     print(f"  得势（帮扶）：{ws['得势']}")
     print(f"  综合评分：{ws['分数']}")
-    print(f"  总评：{ws['总评']}")
+    print(f"  传统总评：{ws['总评']}")
+    # v3.3 T值硬判断
+    if "v33_T值" in ws:
+        print(f"\n  ── T值硬判断 v3.3 ──")
+        print(f"  T值：{ws['v33_T值']}")
+        print(f"  总评：{ws['v33_总评']}")
+        print(f"  帮身/总力量：{ws['v33_帮身力量']}/{ws['v33_总力量']}")
+        if ws.get("v33_组合效应"):
+            print(f"  组合效应：{', '.join(ws['v33_组合效应'])}")
+        if "v33_错误" in ws:
+            print(f"  错误：{ws['v33_错误']}")
 
     # 用神建议
     ys = result["用神建议"]
