@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-T值硬判断计算器 v3.0
-v3.0（默认）：五行力量占比 + 六冲力量对比 + 十神组合效应（杀印相生/食神制杀）
+T值硬判断计算器 v3.1
+v3.1（默认）：五行力量占比 + 六冲力量对比 + 四种十神组合（杀印相生/食神制杀/伤官佩印/财滋弱杀）
+v3.0：五行力量占比 + 六冲力量对比 + 两种十神组合（杀印相生/食神制杀）
 v2.2：五行力量占比 + 六冲力量对比
 v2.1：五行力量占比 + 刑冲合害修正（六冲双方均×0.7）
 v2.0：五行力量占比（无修正）
 v1.0：绝对值累加法（对比用）
-用法：python3 t_value_calculator.py <年柱> <月柱> <日柱> <时柱> [--method v1|v2|v21|v22|v30]
+用法：python3 t_value_calculator.py <年柱> <月柱> <日柱> <时柱> [--method v1|v2|v21|v22|v30|v31]
 """
 
 import sys
@@ -160,17 +161,34 @@ def apply_shishen_combo(day_stem, month_branch, four_pillars, power):
         zhu_amount = int(shishen_power['官杀'] * zhu_ratio)
         power[guansha_elem] -= zhu_amount
         effects.append(f"食神制杀：官杀-{zhu_amount}")
+        shishen_power['官杀'] -= zhu_amount
+    # 伤官佩印：食伤当令或>30 + 食伤>印星 + 印透干有根，制住上限40%
+    shishang_dangling = (month_elem == shishang_elem)
+    if (shishang_dangling or shishen_power['食伤'] > 30) and shishen_power['食伤'] > shishen_power['印星'] and yin_tougan and yin_root:
+        zhu_ratio = min(shishen_power['印星'] / max(shishen_power['食伤'],1), 0.4)
+        zhu_amount = int(shishen_power['食伤'] * zhu_ratio)
+        power[shishang_elem] -= zhu_amount
+        effects.append(f"伤官佩印：食伤-{zhu_amount}")
+    # 财滋弱杀：财当令或>20 + 0<官杀<15 + 官杀有根，滋生上限40%
+    cai_elem = next(e for e in ['木','火','土','金','水'] if OVERCOMES[day_elem] == e)
+    cai_dangling = (month_elem == cai_elem)
+    guansha_root = any(STEM_ELEMENT[h] == guansha_elem and r >= 0.3 for _, b in four_pillars for h, r in BRANCH_HIDDEN[b])
+    if (cai_dangling or shishen_power['财星'] > 20) and 0 < shishen_power['官杀'] < 15 and guansha_root:
+        sheng_ratio = min(shishen_power['财星'] / max(shishen_power['官杀'],1), 0.4)
+        sheng_amount = int(shishen_power['官杀'] * sheng_ratio)
+        power[guansha_elem] += sheng_amount
+        effects.append(f"财滋弱杀：官杀+{sheng_amount}")
     return power, effects
 
-def calc_T(day_stem, month_branch, four_pillars, method='v30'):
+def calc_T(day_stem, month_branch, four_pillars, method='v31'):
     day_elem = STEM_ELEMENT[day_stem]
     print_elem = get_print_element(day_elem)
     if method == 'v1':
         return calc_T_v1(day_stem, month_branch, four_pillars)
-    # v30用v22的修正，再加十神组合
-    calc_method = 'v22' if method == 'v30' else method
+    # v30/v31用v22的修正，再加十神组合
+    calc_method = 'v22' if method in ('v30','v31') else method
     power, effects = calc_wuxing_power(four_pillars, month_branch, calc_method)
-    if method == 'v30':
+    if method in ('v30','v31'):
         power, combo_effects = apply_shishen_combo(day_stem, month_branch, four_pillars, power)
         effects = effects + combo_effects
     total = sum(power.values())
@@ -227,7 +245,7 @@ def calc_T_v1(day_stem, month_branch, four_pillars):
 def main():
     parser = argparse.ArgumentParser(description='T值硬判断计算器 v2.2')
     parser.add_argument('pillars', nargs=4, help='年柱 月柱 日柱 时柱')
-    parser.add_argument('--method', choices=['v1','v2','v21','v22','v30'], default='v30', help='计算方法（默认v30）')
+    parser.add_argument('--method', choices=['v1','v2','v21','v22','v30','v31'], default='v31', help='计算方法（默认v31）')
     args = parser.parse_args()
     pillars = [(p[0], p[1]) for p in args.pillars]
     day_stem = args.pillars[2][0]
