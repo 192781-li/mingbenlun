@@ -24,11 +24,11 @@ CN = {"零":0,"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"�
 def chapter_sort_key(f):
     """排序键：优先按数字前缀（新命名），兼容旧中文篇号（吸附功能）"""
     name = f.stem
-    # 新命名：00_卷标题 / 01_篇一 / 01-2_篇一之二
-    m = re.match(r"(\d{2})(?:-(\d))?[_]", name)
+    # 新命名：00_卷标题 / 01_篇一 / 01a_篇一之二（a=子篇1, b=子篇2...）
+    m = re.match(r"(\d{2})([a-z])?[_]", name)
     if m:
         main = int(m.group(1))
-        sub = int(m.group(2)) if m.group(2) else 0
+        sub = ord(m.group(2)) - ord('a') + 1 if m.group(2) else 0
         return (0, main, sub, name)
     # 旧命名兼容：00_开头
     if name.startswith("00_"): return (0, 0, 0, name)
