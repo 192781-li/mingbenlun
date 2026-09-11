@@ -87,7 +87,7 @@ html = f"""<!DOCTYPE html>
 作者：北原慢热<br>
 生成时间：2026-09-10<br>
 来源：<a href="https://github.com/192781-li/mingbenlun">github.com/192781-li/mingbenlun</a><br>
-12卷+卷首+尾声，119篇，约60万字
+11正卷+卷首+尾声+附录+语义论副卷，124篇，约66万字
 </div>
 </div>
 {body}

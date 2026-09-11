@@ -54,7 +54,7 @@ def hard_check_combined_book():
 
     # 卷完整性
     expected = ["卷首 命经","第一卷","第二卷","第三卷","第四卷","第五卷",
-                "第六卷","第七卷","第八卷","第九卷","第十卷","第十一卷","附录"]
+                "第六卷","第七卷","第八卷","第九卷","第十卷","第十一卷","附录","副卷 语义论"]
     for vol in expected:
         if f"# {vol}" not in md:
             issues.append(f"缺少卷: {vol}")
