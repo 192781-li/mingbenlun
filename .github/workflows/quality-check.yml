@@ -67,3 +67,9 @@ jobs:
           else
             echo "无真实冲突标记: OK（文档中的冲突说明文字已忽略）"
           fi
+
+      - name: 统一质量门禁（硬门禁）
+        run: |
+          echo "=== 明旭统一质量门禁 ==="
+          python3 scripts/质量检查/run_all_checks.py
+          echo "门禁退出码: $?"
