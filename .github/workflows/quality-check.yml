@@ -77,7 +77,6 @@ jobs:
       - name: 文件名规范检查
         run: |
           echo "=== 篇文件名数字前缀检查 ==="
-          # 检查生命论_模块化下是否有不带数字前缀的篇文件（排除00_卷标题和项目文档）
           BAD=$(find 生命论_模块化 -name "篇*.md" -not -path "*/项目文档/*" | grep -vE '^\S+/\d{2}(-\d)?_' | wc -l)
           BAD_APP=$(find 生命论_模块化/12_附录 -name "附录*.md" 2>/dev/null | grep -vE '^\S+/\d{2}_' | wc -l)
           TOTAL=$((BAD + BAD_APP))
