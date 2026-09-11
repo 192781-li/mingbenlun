@@ -55,10 +55,10 @@ a:hover{text-decoration:underline}
 <div class="topbar"><span class="title">生命论（明本论）</span><a href="../index.html">目录</a></div>
 <div class="container">
 <h2 id="ptl">第五篇 PTL践演迹语言</h2>
-<h3 id="_1">第一章 为什么需要新语言</h3>
+<h3 id="11">1.1 为什么需要新语言</h3>
 <p>现有的编程语言（Python、Java、C++、Rust）把所有东西都当成!-模态的——什么都能复制、都能丢弃。这在处理"死数据"（数字、字符串、配置）时没问题，但在处理"活资源"（文件句柄、锁、网络连接、并发状态、AI系统）时就出bug——因为活资源本质上是线性的，你却用!-模态的规则操作它。</p>
 <p>Rust已经部分做到了这件事——它的所有权系统（ownership）就是线性类型的一个受限版本。Rust之所以能做到"内存安全且不需要垃圾回收"，就是因为编译器在类型层面强制了资源的线性使用。但Rust只做了内存安全，没有做νF₂（成长过程）和GoI迹（生产性反馈）——那是PTL践演迹语言要做的事。</p>
-<h3 id="ptl_1">第二章 PTL的设计原则</h3>
+<h3 id="12-ptl">1.2 PTL的设计原则</h3>
 <p>PTL（Performance Trace Language，践演迹语言）的核心设计原则：</p>
 <ol>
 <li><strong>线性类型系统</strong>：资源敏感，不能隐式复制或丢弃。整个一类bug（资源泄漏、double-free、数据竞争）在类型层面被消灭。</li>
@@ -67,9 +67,9 @@ a:hover{text-decoration:underline}
 <li><strong>f³反射机制</strong>：<code>明(A)=TReflected(A)</code>类型，支持位置转换——能看见模型是模型。</li>
 <li><strong>践演位置（公理0）</strong>：每个态射发生在位置p，位置不可物化。</li>
 </ol>
-<h3 id="ptl_2">第三章 PTL的语法</h3>
+<h3 id="13-ptl">1.3 PTL的语法</h3>
 <p>PTL使用S表达式（Lisp风格）语法，注释用<code>;</code>。</p>
-<h3 id="7">类型系统（7类类型）</h3>
+<h4 id="7">类型系统（7类类型）</h4>
 <table>
 <thead>
 <tr>
@@ -116,7 +116,7 @@ a:hover{text-decoration:underline}
 </tr>
 </tbody>
 </table>
-<h3 id="15">项（15类项）</h3>
+<h4 id="15">项（15类项）</h4>
 <table>
 <thead>
 <tr>
@@ -203,7 +203,7 @@ a:hover{text-decoration:underline}
 </tr>
 </tbody>
 </table>
-<h3 id="15_1">第四章 类型规则（15类判断）</h3>
+<h3 id="14-15">1.4 类型规则（15类判断）</h3>
 <p>PTL的类型规则基于线性逻辑，核心判断形式：</p>
 <p>$$\Gamma \vdash e : A$$</p>
 <p>其中$\Gamma$是线性上下文（每个变量用恰好一次）。</p>
@@ -229,9 +229,9 @@ a:hover{text-decoration:underline}
 <p><strong>还原</strong>：$\Gamma \vdash e:明(A) \Rightarrow \Gamma \vdash (reify e):A$</p>
 </li>
 </ul>
-<h3 id="_2">第五章 操作语义</h3>
+<h3 id="15_1">1.5 操作语义</h3>
 <p>PTL的操作语义基于GoI（Geometry of Interaction）：执行就是让信号在反馈回路中跑。</p>
-<h3 id="_3">求值规则</h3>
+<h4 id="_1">求值规则</h4>
 <ul>
 <li><strong>函数应用</strong>：$((\lambda(x)e) v) \to e[v/x]$</li>
 <li>
@@ -253,20 +253,20 @@ a:hover{text-decoration:underline}
 <p><strong>还原</strong>：$(reify \langle v \rangle) \to v$（取消标记）</p>
 </li>
 </ul>
-<h3 id="_4">生产性（守护递归）</h3>
+<h4 id="_2">生产性（守护递归）</h4>
 <p>νF₂的求值必须满足生产性：每一步都必须有产出，不能无限递归而不产出。这由公理5（守护递归▷）保证——每个ν-消除必须先产出一个元素，再递归。</p>
-<h3 id="_5">第六章 类型可靠性证明</h3>
+<h3 id="16">1.6 类型可靠性证明</h3>
 <p>PTL的类型可靠性由两个定理保证：</p>
-<h3 id="progress15">Progress定理（15种情况）</h3>
+<h4 id="progress15">Progress定理（15种情况）</h4>
 <p><strong>定理</strong>：如果$\vdash e:A$且$e$不是值，则存在$e'$使得$e \to e'$。</p>
 <p>证明：对$e$的结构归纳，15种情况（变量、函数、应用、张量、!-模态、反射、还原、μ、ν等），每种情况都有对应的求值规则。</p>
-<h3 id="preservation13">Preservation定理（13条规则）</h3>
+<h4 id="preservation13">Preservation定理（13条规则）</h4>
 <p><strong>定理</strong>：如果$\Gamma \vdash e:A$且$e \to e'$，则$\Gamma \vdash e':A$。</p>
 <p>证明：对求值规则归纳，13条规则（函数应用、张量分解、!-消除、μ-消除、ν-消除、反射、还原等），每条规则都保持类型。</p>
-<h3 id="_6">可靠性的哲学含义</h3>
+<h4 id="_3">可靠性的哲学含义</h4>
 <p>Progress+Preservation意味着：<strong>类型良好的PTL程序不会出错。</strong> 不会有资源泄漏、不会有double-free、不会有数据竞争、不会有类型错误。</p>
 <p>这和生命论的核心洞见一致：<strong>在正确的结构中（阳主阴从），操作自然顺畅；在错误的结构中（阴主阳从），操作必然出问题。</strong> PTL的类型系统就是在类型层面强制"阳主阴从"——线性资源（阳）不能被!-模态（阴）随意支配。</p>
-<h3 id="ptl8">第七章 PTL的8个示例</h3>
+<h3 id="17-ptl8">1.7 PTL的8个示例</h3>
 <p>PTL解释器实现了8个示例，全部通过：</p>
 <ol>
 <li><strong>线性变量使用</strong>：线性变量用两次→被拒绝</li>
@@ -278,7 +278,7 @@ a:hover{text-decoration:underline}
 <li><strong>f³自历史</strong>：<code>self-history</code>查看自己的历史→通过</li>
 <li><strong>f³还原</strong>：<code>reify</code>把明(A)还原为A→通过</li>
 </ol>
-<h3 id="ptl_3">第八章 PTL能做什么（旧语言做不到的）</h3>
+<h3 id="18-ptl">1.8 PTL能做什么（旧语言做不到的）</h3>
 <table>
 <thead>
 <tr>
