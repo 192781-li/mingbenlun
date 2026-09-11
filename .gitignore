@@ -32,7 +32,6 @@ Thumbs.db
 生命论_模块化/output/
 # 自动生成的输出（每次跑脚本重新生成）
 
-# ========== 新增：大文件和安全规则 ==========
 # 压缩包和备份（不入库，用外部存储）
 *.zip
 *.tar.gz
@@ -62,12 +61,10 @@ deepseek_check_logs/
 *_check_logs/
 *_temp_docs/
 
-# ========== S04 DeepSeek V4 工具链：密钥与运行产物不入库 ==========
 .deepseek_key
 ds_v4_traces/
 *.bak_r*
 
-# ========== S04 机制加固（2026-09-04）：临时/探针/自检产物一律不入库 ==========
 _guard_*.v
 _guard_challenge_*
 _tmp_*.py
@@ -77,3 +74,4 @@ scripts/s04_deepseek/*.log
 # 合订本构建产物（不入库，通过GitHub Releases发布）
 build_output/
 *.md.report
+site/
