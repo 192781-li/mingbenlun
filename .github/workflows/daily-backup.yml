@@ -9,7 +9,7 @@ jobs:
   backup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: 检查核心文件完整性
         run: |
           echo "=== 核心文件检查 ==="
