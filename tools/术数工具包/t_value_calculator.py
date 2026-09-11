@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-T值硬判断计算器 v3.1
-v3.1（默认）：五行力量占比 + 六冲力量对比 + 四种十神组合（杀印相生/食神制杀/伤官佩印/财滋弱杀）
-v3.0：五行力量占比 + 六冲力量对比 + 两种十神组合（杀印相生/食神制杀）
+T值硬判断计算器 v3.2
+v3.2（默认）：五行力量占比 + 六冲力量对比 + 五种十神组合（含互斥逻辑+比劫帮身）
+v3.1：五行力量占比 + 六冲力量对比 + 四种十神组合
+v3.0：五行力量占比 + 六冲力量对比 + 两种十神组合
 v2.2：五行力量占比 + 六冲力量对比
-v2.1：五行力量占比 + 刑冲合害修正（六冲双方均×0.7）
+v2.1：五行力量占比 + 刑冲合害修正
 v2.0：五行力量占比（无修正）
 v1.0：绝对值累加法（对比用）
-用法：python3 t_value_calculator.py <年柱> <月柱> <日柱> <时柱> [--method v1|v2|v21|v22|v30|v31]
+用法：python3 t_value_calculator.py <年柱> <月柱> <日柱> <时柱> [--method v1|v2|v21|v22|v30|v31|v32]
 """
 
 import sys
@@ -127,7 +128,7 @@ def calc_wuxing_power(four_pillars, month_branch, method='v22'):
     return power, effects
 
 def apply_shishen_combo(day_stem, month_branch, four_pillars, power):
-    """v3.0十神组合效应修正：杀印相生、食神制杀"""
+    """v3.2十神组合效应：杀印相生/食神制杀（互斥）/比劫帮身/伤官佩印/财滋弱杀"""
     day_elem = STEM_ELEMENT[day_stem]
     print_elem = get_print_element(day_elem)
     stems = [p[0] for p in four_pillars]
@@ -144,33 +145,44 @@ def apply_shishen_combo(day_stem, month_branch, four_pillars, power):
     guansha_elem = next(e for e in ['木','火','土','金','水'] if OVERCOMES[e] == day_elem)
     yin_elem = print_elem
     shishang_elem = next(e for e in ['木','火','土','金','水'] if GENERATES[day_elem] == e)
-    # 杀印相生：官杀当令或>20 + 印透干有根，转化上限40%
+    cai_elem = next(e for e in ['木','火','土','金','水'] if OVERCOMES[day_elem] == e)
+    bijie_elem = day_elem
     guansha_dangling = (month_elem == guansha_elem)
     yin_tougan = any(STEM_ELEMENT[s] == yin_elem for s in stems)
     yin_root = any(STEM_ELEMENT[h] == yin_elem and r >= 0.3 for _, b in four_pillars for h, r in BRANCH_HIDDEN[b])
+    shishang_tougan = any(STEM_ELEMENT[s] == shishang_elem for s in stems)
+    shishang_dangling = (month_elem == shishang_elem)
+    bijie_tougan = any(STEM_ELEMENT[s] == bijie_elem for s in stems)
+    bijie_root = any(STEM_ELEMENT[h] == bijie_elem and r >= 0.3 for _, b in four_pillars for h, r in BRANCH_HIDDEN[b])
+    shayin_triggered = False
+    # 1. 杀印相生（最高优先级）
     if (guansha_dangling or shishen_power['官杀'] > 20) and yin_tougan and yin_root:
         convert_ratio = min(shishen_power['印星'] / max(shishen_power['官杀'],1), 0.4)
         converted = int(shishen_power['官杀'] * convert_ratio)
-        power[guansha_elem] -= converted
-        power[yin_elem] += converted
+        power[guansha_elem] -= converted; power[yin_elem] += converted
         effects.append(f"杀印相生：官杀-{converted}，印+{converted}")
-    # 食神制杀：官杀当令或>20 + 食伤透干>10，制住上限40%
-    shishang_tougan = any(STEM_ELEMENT[s] == shishang_elem for s in stems)
-    if (guansha_dangling or shishen_power['官杀'] > 20) and shishen_power['食伤'] > 10 and shishang_tougan:
+        shishen_power['官杀'] -= converted; shishen_power['印星'] += converted
+        shayin_triggered = True
+    # 2. 食神制杀（杀印未触发时才考虑，互斥）
+    if not shayin_triggered and (guansha_dangling or shishen_power['官杀'] > 20) and shishen_power['食伤'] > 10 and shishang_tougan:
         zhu_ratio = min(shishen_power['食伤'] / max(shishen_power['官杀'],1), 0.4)
         zhu_amount = int(shishen_power['官杀'] * zhu_ratio)
         power[guansha_elem] -= zhu_amount
         effects.append(f"食神制杀：官杀-{zhu_amount}")
         shishen_power['官杀'] -= zhu_amount
-    # 伤官佩印：食伤当令或>30 + 食伤>印星 + 印透干有根，制住上限40%
-    shishang_dangling = (month_elem == shishang_elem)
+    # 3. 比劫帮身：比劫>15 + 官杀>15 + 比劫透干或有根，分担上限30%
+    if shishen_power['比劫'] > 15 and shishen_power['官杀'] > 15 and (bijie_tougan or bijie_root):
+        fendan_ratio = min(shishen_power['比劫'] / max(shishen_power['官杀'],1), 0.3)
+        fendan_amount = int(shishen_power['官杀'] * fendan_ratio)
+        power[guansha_elem] -= fendan_amount
+        effects.append(f"比劫帮身：官杀-{fendan_amount}")
+    # 4. 伤官佩印
     if (shishang_dangling or shishen_power['食伤'] > 30) and shishen_power['食伤'] > shishen_power['印星'] and yin_tougan and yin_root:
         zhu_ratio = min(shishen_power['印星'] / max(shishen_power['食伤'],1), 0.4)
         zhu_amount = int(shishen_power['食伤'] * zhu_ratio)
         power[shishang_elem] -= zhu_amount
         effects.append(f"伤官佩印：食伤-{zhu_amount}")
-    # 财滋弱杀：财当令或>20 + 0<官杀<15 + 官杀有根，滋生上限40%
-    cai_elem = next(e for e in ['木','火','土','金','水'] if OVERCOMES[day_elem] == e)
+    # 5. 财滋弱杀
     cai_dangling = (month_elem == cai_elem)
     guansha_root = any(STEM_ELEMENT[h] == guansha_elem and r >= 0.3 for _, b in four_pillars for h, r in BRANCH_HIDDEN[b])
     if (cai_dangling or shishen_power['财星'] > 20) and 0 < shishen_power['官杀'] < 15 and guansha_root:
@@ -180,15 +192,15 @@ def apply_shishen_combo(day_stem, month_branch, four_pillars, power):
         effects.append(f"财滋弱杀：官杀+{sheng_amount}")
     return power, effects
 
-def calc_T(day_stem, month_branch, four_pillars, method='v31'):
+def calc_T(day_stem, month_branch, four_pillars, method='v32'):
     day_elem = STEM_ELEMENT[day_stem]
     print_elem = get_print_element(day_elem)
     if method == 'v1':
         return calc_T_v1(day_stem, month_branch, four_pillars)
-    # v30/v31用v22的修正，再加十神组合
-    calc_method = 'v22' if method in ('v30','v31') else method
+    # v30/v31/v32用v22的修正，再加十神组合
+    calc_method = 'v22' if method in ('v30','v31','v32') else method
     power, effects = calc_wuxing_power(four_pillars, month_branch, calc_method)
-    if method in ('v30','v31'):
+    if method in ('v30','v31','v32'):
         power, combo_effects = apply_shishen_combo(day_stem, month_branch, four_pillars, power)
         effects = effects + combo_effects
     total = sum(power.values())
@@ -245,7 +257,7 @@ def calc_T_v1(day_stem, month_branch, four_pillars):
 def main():
     parser = argparse.ArgumentParser(description='T值硬判断计算器 v2.2')
     parser.add_argument('pillars', nargs=4, help='年柱 月柱 日柱 时柱')
-    parser.add_argument('--method', choices=['v1','v2','v21','v22','v30','v31'], default='v31', help='计算方法（默认v31）')
+    parser.add_argument('--method', choices=['v1','v2','v21','v22','v30','v31','v32'], default='v32', help='计算方法（默认v32）')
     args = parser.parse_args()
     pillars = [(p[0], p[1]) for p in args.pillars]
     day_stem = args.pillars[2][0]
