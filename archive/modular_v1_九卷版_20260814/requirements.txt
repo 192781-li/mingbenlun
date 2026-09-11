@@ -1,0 +1,10 @@
+# 明本论（操作存在论）模块化全本 · 依赖说明
+#
+# core/ 高级代码包仅使用 Python 标准库（dataclasses / typing / enum / doctest），
+# 无需第三方依赖，开箱即跑：
+#     python core/run_all.py
+#
+# 如需将正文中的代码渲染为交互页面，可选安装：
+#     numpy>=1.24      # 数值演示
+#     matplotlib>=3.7   # 可视化（如 S=f(S) 收敛轨迹、M 值木桶图）
+# 均为可选，不影响核心逻辑与测试。

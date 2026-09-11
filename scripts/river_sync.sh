@@ -10,6 +10,9 @@ set -e
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 RIVER_DIR="docs/协作机制/智慧河流"
 RIVER_FILES=("河流主干.md" "河流状态.md" "智慧结晶库.md" "DeepSeek干渠.md")
+# 全部分站分支：main(S00) 是集成主干，pull 时要从所有分站汇合，
+# 不能再把 main 排除在同步环外（否则结晶/河流会长期压在分支、main 停更）。
+ALL_STATION_BRANCHES=()
 
 # 颜色输出
 RED='\033[0;31m'
@@ -34,20 +37,24 @@ detect_station() {
             MY_STATION="S01"
             MY_BRANCH="s01-philosophy"
             OTHER_BRANCH="s04-coq"
+            ALL_STATION_BRANCHES=()
             ;;
         s04-coq)
             MY_STATION="S04"
             MY_BRANCH="s04-coq"
             OTHER_BRANCH="s01-philosophy"
+            ALL_STATION_BRANCHES=()
             ;;
         main)
             MY_STATION="S00"
             MY_BRANCH="main"
             OTHER_BRANCH=""
+            # S00 在 main 上从所有分站分支汇合河流（多分支集成）
+            ALL_STATION_BRANCHES=(s01-philosophy s02-gaokao-arts s03-divination s04-coq s05-info s06-math)
             ;;
         *)
             err "当前分支 $branch 不是明旭分站分支"
-            err "请先 git checkout s01-philosophy 或 s04-coq"
+            err "请先 git checkout s01-philosophy / s04-coq / main"
             exit 1
             ;;
     esac
@@ -73,97 +80,152 @@ check_river_exists() {
 }
 
 # ============================================================
-# 从对方分支拉取河流文件并智能合并
+# 结晶库同号异义检测：输出冲突编号串（空=无冲突）
+# 根治旧版"整行去重"会把两个 ## 结晶NNN 都保留、造成重复编号却不报警的缺口
 # ============================================================
-pull_river() {
-    detect_station
-    check_river_exists
+crystal_clash() {
+    python3 - "$1" "$2" <<'PY' 2>/dev/null
+import sys,re
+def load(p):
+    d={}
+    try:
+        for line in open(p,encoding='utf-8'):
+            x=re.match(r'^## 结晶(\d{3})[：:](.+)$',line)
+            if x: d[x.group(1)]=x.group(2).strip()
+    except FileNotFoundError:
+        pass
+    return d
+a,b=load(sys.argv[1]),load(sys.argv[2])
+print(' '.join(n for n in sorted(b) if n in a and a[n][:12]!=b[n][:12]))
+PY
+}
 
-    if [ -z "$OTHER_BRANCH" ]; then
-        warn "在main分支，不需要pull"
+# ============================================================
+# 从单个对方分支拉取河流文件并智能合并（结果累加到 TOTAL_*）
+# ============================================================
+merge_from_branch() {
+    local other="$1"
+    log "从 origin/$other 拉取最新河流..."
+    git -C "$REPO_DIR" fetch origin "$other" 2>/dev/null || {
+        warn "fetch origin/$other 失败，跳过该分支"
         return 0
-    fi
-
-    log "从 origin/$OTHER_BRANCH 拉取最新河流..."
-    git -C "$REPO_DIR" fetch origin "$OTHER_BRANCH" 2>/dev/null || {
-        err "fetch origin/$OTHER_BRANCH 失败"
-        return 1
     }
 
     local tmpdir
     tmpdir=$(mktemp -d)
-    trap "rm -rf $tmpdir" EXIT
-
-    local merged=0
-    local created=0
 
     for f in "${RIVER_FILES[@]}"; do
         local remote_content
-        remote_content=$(git -C "$REPO_DIR" show "origin/$OTHER_BRANCH:$RIVER_DIR/$f" 2>/dev/null || echo "")
-
+        remote_content=$(git -C "$REPO_DIR" show "origin/$other:$RIVER_DIR/$f" 2>/dev/null || echo "")
         if [ -z "$remote_content" ]; then
-            warn "对方分支没有 $f，跳过"
             continue
         fi
 
         local local_file="$REPO_DIR/$RIVER_DIR/$f"
+        local remote_tmp="$tmpdir/$f"
+        mkdir -p "$(dirname "$remote_tmp")"
+        echo "$remote_content" > "$remote_tmp"
 
         if [ ! -f "$local_file" ]; then
-            # 本地没有，直接复制
             echo "$remote_content" > "$local_file"
-            log "创建本地文件：$f"
-            created=$((created + 1))
+            log "[$other] 创建本地文件：$f"
+            TOTAL_CREATED=$((TOTAL_CREATED + 1))
         else
-            # 智能合并：append-only文件取并集，状态文件取最新
             case "$f" in
-                "河流主干.md"|"智慧结晶库.md"|"DeepSeek干渠.md")
-                    # append-only：把对方独有的记录追加到本地
-                    # 方法：把两个文件拼起来，去重（按行），保持顺序
+                "智慧结晶库.md")
+                    # 先做编号冲突检测：同号异义绝不自动合并，交 S00 裁决
+                    local clash
+                    clash=$(crystal_clash "$local_file" "$remote_tmp")
+                    if [ -n "$clash" ]; then
+                        err "[$other] 结晶库同号异义冲突，编号：$clash"
+                        err "  已跳过自动合并（避免重复编号污染）。分支应改用临时号，合 main 时由 S00 分配正式号。"
+                        CRYSTAL_CLASH=1
+                        continue
+                    fi
                     local combined
-                    combined=$(cat "$local_file" <(echo "$remote_content") | awk '!seen[$0]++')
+                    combined=$(cat "$local_file" "$remote_tmp" | awk '!seen[$0]++')
                     echo "$combined" > "$local_file"
-                    log "合并（append-only）：$f"
-                    merged=$((merged + 1))
+                    log "[$other] 合并（append-only，已过编号冲突检测）：$f"
+                    TOTAL_MERGED=$((TOTAL_MERGED + 1))
+                    ;;
+                "河流主干.md"|"DeepSeek干渠.md")
+                    local combined
+                    combined=$(cat "$local_file" "$remote_tmp" | awk '!seen[$0]++')
+                    echo "$combined" > "$local_file"
+                    log "[$other] 合并（append-only）：$f"
+                    TOTAL_MERGED=$((TOTAL_MERGED + 1))
                     ;;
                 "河流状态.md")
-                    # 状态文件：比较最后更新时间，取最新的
                     local local_time remote_time
                     local_time=$(grep -oP '最后更新：\K[0-9:-]+' "$local_file" 2>/dev/null || echo "0")
-                    remote_time=$(echo "$remote_content" | grep -oP '最后更新：\K[0-9:-]+' 2>/dev/null || echo "0")
+                    remote_time=$(grep -oP '最后更新：\K[0-9:-]+' "$remote_tmp" 2>/dev/null || echo "0")
                     if [[ "$remote_time" > "$local_time" ]]; then
                         echo "$remote_content" > "$local_file"
-                        log "对方状态更新（$remote_time > $local_time），采用对方版本：$f"
-                        merged=$((merged + 1))
-                    else
-                        log "本地状态更新或相同（$local_time >= $remote_time），保留本地：$f"
+                        log "[$other] 对方状态更新（$remote_time > $local_time），采用：$f"
+                        TOTAL_MERGED=$((TOTAL_MERGED + 1))
                     fi
                     ;;
             esac
         fi
     done
 
-    ok "拉取完成：创建 $created 个，合并 $merged 个"
+    rm -rf "$tmpdir"
+}
 
-    # 验证合并后的完整性
+# ============================================================
+# 拉取河流：分站只对对方分支；main(S00) 从所有分站分支汇合
+# ============================================================
+pull_river() {
+    detect_station
+    check_river_exists
+
+    TOTAL_MERGED=0
+    TOTAL_CREATED=0
+    CRYSTAL_CLASH=0
+
+    local targets=()
+    if [ -n "$OTHER_BRANCH" ]; then
+        targets=("$OTHER_BRANCH")
+    fi
+    if [ "$MY_STATION" = "S00" ]; then
+        targets=("${ALL_STATION_BRANCHES[@]}")
+    fi
+    if [ ${#targets[@]} -eq 0 ]; then
+        warn "当前没有可汇合的对方分支"
+        return 0
+    fi
+    log "本轮汇合目标分支：${targets[*]}"
+
+    local br
+    for br in "${targets[@]}"; do
+        merge_from_branch "$br"
+    done
+
+    ok "拉取完成：创建 $TOTAL_CREATED 个，合并 $TOTAL_MERGED 个"
+
     verify_river_integrity
 
-    # 自动commit拉取的合并
-    if [ $merged -gt 0 ] || [ $created -gt 0 ]; then
+    if [ $TOTAL_MERGED -gt 0 ] || [ $TOTAL_CREATED -gt 0 ]; then
         log "自动commit河流合并..."
         git -C "$REPO_DIR" add "$RIVER_DIR/" 2>/dev/null || true
-        git -C "$REPO_DIR" commit -m "$MY_STATION: 河流汇合器自动pull——从$OTHER_BRANCH合并最新河流文件
+        git -C "$REPO_DIR" commit -m "$MY_STATION: 河流汇合器自动pull——从${targets[*]}合并河流文件
 
 河流汇合器river_sync.sh pull自动执行：
-- 从origin/$OTHER_BRANCH拉取4个河流文件
+- 汇合分支：${targets[*]}（main=S00从所有分站多分支汇合）
 - append-only文件智能合并（河流主干/结晶库/DeepSeek干渠）
-- 状态文件取最新版本
-- 完整性验证通过" 2>/dev/null || warn "没有新内容需要commit"
+- 结晶库合并前做同号异义冲突检测，冲突不自动合并、交S00裁决
+- 状态文件取最新版本" 2>/dev/null || warn "没有新内容需要commit"
+    fi
+
+    if [ $CRYSTAL_CLASH -eq 1 ]; then
+        err "存在结晶编号同号异义冲突未自动合并，须 S00 大总站裁决后再汇合"
+        return 2
     fi
 
     echo ""
     log "=== 河流汇合报告 ==="
-    log "本站：$MY_STATION，对方：$OTHER_BRANCH"
-    log "创建文件：$created，合并文件：$merged"
+    log "本站：$MY_STATION，汇合：${targets[*]}"
+    log "创建文件：$TOTAL_CREATED，合并文件：$TOTAL_MERGED"
     log "河流主干最后5条记录："
     tail -5 "$REPO_DIR/$RIVER_DIR/河流主干.md" 2>/dev/null | head -5
     log "===================="

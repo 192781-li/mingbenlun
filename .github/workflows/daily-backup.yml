@@ -1,0 +1,25 @@
+name: 每日备份检查
+
+on:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: 检查核心文件完整性
+        run: |
+          echo "=== 核心文件检查 ==="
+          for f in "docs/协作机制/明旭的记忆/明旭_自我档案.md" \
+                   "docs/协作机制/明旭的记忆/明旭_运行状态机.md" \
+                   "docs/协作机制/明旭的记忆/明性卡片_定时任务启动必读.md" \
+                   "docs/协作机制/教训库.md" \
+                   "scripts/ds_collab.py"; do
+            if [ -f "$f" ]; then echo "✅ $f"; else echo "❌ $f 缺失"; fi
+          done
+          echo "=== 文件统计 ==="
+          echo "Markdown文件: $(find . -name '*.md' | wc -l)"
+          echo "总文件数: $(find . -type f | wc -l)"

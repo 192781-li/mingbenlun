@@ -1,0 +1,89 @@
+name: 明旭库质量检查
+
+on:
+  push:
+    branches: [main, s05-info]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: 设置Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: 术语铁律校验
+        run: |
+          echo "=== 术语铁律检查 ==="
+          python3 scripts/verify_iron_rule.py 生命论_模块化/ || echo "铁律校验完成（有违例会列出）"
+
+      - name: 核心概念包测试
+        run: |
+          echo "=== core包doctest ==="
+          cd tools/核心概念工具包 && python3 core/run_all.py
+
+      - name: 大文件检查
+        run: |
+          echo "=== >5M文件检查 ==="
+          BIG=$(find . -type f -not -path './.git/*' -size +5M | wc -l)
+          echo "发现 $BIG 个>5M文件"
+          if [ "$BIG" -gt 0 ]; then
+            find . -type f -not -path './.git/*' -size +5M -exec ls -lh {} \;
+            echo "::warning::发现>5M文件，建议迁移到档案库"
+          fi
+
+      - name: JSON配置验证
+        run: |
+          echo "=== JSON格式验证 ==="
+          python3 -c "import json; json.load(open('docs/协作机制/明旭的记忆/定时任务网络配置.json')); print('定时任务配置JSON: OK')"
+
+      - name: Token泄露检查
+        run: |
+          echo "=== Token泄露检查 ==="
+          # 只匹配真实token格式：ghp_ + 36位字母数字，排除全x占位符和说明文字
+          LEAKS=$(grep -rEn "ghp_[A-Za-z0-9]{36}" --include="*.md" --include="*.json" --include="*.py" --include="*.sh" . 2>/dev/null | grep -v ".git/" | grep -v "ghp_[xX]\{36\}" | grep -v "ghp_\*" | wc -l)
+          if [ "$LEAKS" -gt 0 ]; then
+            echo "::error::发现 $LEAKS 处疑似真实token泄露！"
+            grep -rEn "ghp_[A-Za-z0-9]{36}" --include="*.md" --include="*.json" --include="*.py" --include="*.sh" . 2>/dev/null | grep -v ".git/" | grep -v "ghp_[xX]\{36\}" | head -5
+            exit 1
+          else
+            echo "无真实token泄露: OK（文档中的ghp_xxxx占位符已忽略）"
+          fi
+
+      - name: 冲突标记检查
+        run: |
+          echo "=== Git冲突标记检查 ==="
+          # 只匹配真正的git冲突：<<<<<<< 后面跟分支名(HEAD/main/master/s0X-origin)，>>>>>>> 后面跟分支名
+          CONFLICTS=$(grep -rEn '^(<<<<<<< (HEAD|main|master|s0[0-9]|origin/)|>>>>>>> (HEAD|main|master|s0[0-9]|origin/))' docs/ 2>/dev/null | wc -l)
+          if [ "$CONFLICTS" -gt 0 ]; then
+            echo "::error::发现未解决的Git冲突标记！"
+            grep -rEn '^(<<<<<<< (HEAD|main|master|s0[0-9]|origin/)|>>>>>>> (HEAD|main|master|s0[0-9]|origin/))' docs/ | head -5
+            exit 1
+          else
+            echo "无真实冲突标记: OK（文档中的冲突说明文字已忽略）"
+          fi
+
+      - name: 统一质量门禁（硬门禁）
+        run: |
+          echo "=== 明旭统一质量门禁 ==="
+          python3 scripts/质量检查/run_all_checks.py
+          echo "门禁退出码: $?"
+
+      - name: 文件名规范检查
+        run: |
+          echo "=== 篇文件名数字前缀检查 ==="
+          BAD=$(find 生命论_模块化 -name "篇*.md" -not -path "*/项目文档/*" | grep -vE '^\S+/\d{2}[a-z]?_' | wc -l)
+          BAD_APP=$(find 生命论_模块化/12_附录 -name "附录*.md" 2>/dev/null | grep -vE '^\S+/\d{2}_' | wc -l)
+          TOTAL=$((BAD + BAD_APP))
+          if [ "$TOTAL" -gt 0 ]; then
+            echo "::error::发现 $TOTAL 个不规范文件名，请运行 python3 scripts/normalize_filenames.py --apply 修复"
+            find 生命论_模块化 -name "篇*.md" -not -path "*/项目文档/*" | grep -vE '^\S+/\d{2}[a-z]?_' || true
+            exit 1
+          else
+            echo "文件名规范: OK"
+          fi

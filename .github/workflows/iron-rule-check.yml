@@ -1,0 +1,16 @@
+name: 术语铁律检查
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: 运行术语铁律检查器
+        run: python3 scripts/verify_iron_rule.py 生命论_模块化/
+        continue-on-error: true
