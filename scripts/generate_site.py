@@ -3,7 +3,7 @@
 import os, re, markdown
 from pathlib import Path
 
-REPO = Path("/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun")
+REPO = Path(__file__).resolve().parent.parent
 SRC = REPO / "生命论_模块化"
 OUT = REPO / "site"
 
