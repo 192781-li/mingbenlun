@@ -228,6 +228,62 @@ def check_dirs():
     return out
 
 
+def check_cultural_archive():
+    """文化内容归位检查（结晶025、教训L038）"""
+    result = {
+        'archive_exists': False,
+        'large_files_total': 0,
+        'large_files_indexed': 0,
+        'large_files_missing': [],
+        'dirs_checked': 0,
+        'dirs_missing': [],
+    }
+    archive_path = os.path.join(REPO, 'docs/notes/文化/文化品味总档案.md')
+    if not os.path.exists(archive_path):
+        err('cultural', '文化品味总档案不存在')
+        return result
+    result['archive_exists'] = True
+    with open(archive_path, 'r', encoding='utf-8') as f:
+        archive_text = f.read()
+
+    # 检查>20KB的md文件是否在总档案中被引用
+    for root, dirs, files in os.walk(os.path.join(REPO, 'docs')):
+        for fn in files:
+            if not fn.endswith('.md'):
+                continue
+            fp = os.path.join(root, fn)
+            size = os.path.getsize(fp)
+            if size > 20 * 1024:
+                rel = os.path.relpath(fp, REPO)
+                result['large_files_total'] += 1
+                basename = os.path.basename(rel).replace('.md', '')
+                key = basename[:10]
+                if key and key in archive_text:
+                    result['large_files_indexed'] += 1
+                else:
+                    result['large_files_missing'].append((rel, size))
+
+    # 检查22个必查目录
+    must_dirs = [
+        'docs/notes/音乐', 'docs/notes/文化', 'docs/notes/哲学研究',
+        'docs/notes/历史政治', 'docs/notes/理论研究', 'docs/notes/讨论记录',
+        'docs/notes/资料提取', 'docs/notes/工具自动化', 'docs/体系研究',
+        'docs/术数研究', 'docs/语义论', 'docs/对话与闪光', 'docs/学习训练',
+        'docs/阅读笔记', 'docs/reference_materials/北原慢热实录',
+        'docs/reference_materials/北原慢热原创', 'docs/reference_materials/思想史',
+        'docs/reference_materials/杂项', 'docs/reference_materials/视频资料',
+        'docs/reference_materials/万宜电台', 'docs/visualizations',
+    ]
+    for d in must_dirs:
+        result['dirs_checked'] += 1
+        if not os.path.isdir(os.path.join(REPO, d)):
+            result['dirs_missing'].append(d)
+
+    if result['large_files_missing']:
+        warn('cultural', f'{len(result["large_files_missing"])}个>20KB文件可能未在文化品味总档案中登记')
+    return result
+
+
 # ===================== 报告生成 =====================
 
 def generate_report(now):
@@ -238,6 +294,7 @@ def generate_report(now):
     prci = check_pr_ci()
     ws = check_workspace()
     dirs = check_dirs()
+    cultural = check_cultural_archive()
 
     ne = sum(1 for l, _, _ in issues if l == 'ERROR')
     nw = sum(1 for l, _, _ in issues if l == 'WARN')
@@ -305,6 +362,21 @@ def generate_report(now):
     lines.append('## 七、关键目录文件数')
     for d, n in dirs.items():
         lines.append(f'- {d}/：{n} 个文件')
+    lines.append('')
+
+    lines.append('## 八、文化内容归位巡检')
+    lines.append(f'- 文化品味总档案：{"存在" if cultural["archive_exists"] else "不存在"}')
+    lines.append(f'- >20KB文件：{cultural["large_files_total"]}个，已登记{cultural["large_files_indexed"]}个')
+    if cultural['large_files_missing']:
+        lines.append(f'- 可能未登记：{len(cultural["large_files_missing"])}个')
+        for rel, size in cultural['large_files_missing'][:10]:
+            lines.append(f'  - {rel}（{size//1024}KB）')
+    else:
+        lines.append('- 可能未登记：无')
+    lines.append(f'- 必查目录：{cultural["dirs_checked"]}个，缺失{len(cultural["dirs_missing"])}个')
+    if cultural['dirs_missing']:
+        for d in cultural['dirs_missing'][:5]:
+            lines.append(f'  - 缺失：{d}')
     lines.append('')
 
     if ws:

@@ -78,7 +78,10 @@ def hard_check_combined_book():
         if len(h1s) < 13:
             issues.append(f"HTML只有{len(h1s)}个H1， expected >=13")
     else:
-        issues.append("合订本HTML不存在")
+        # 仅当 build_combined_html.py 正在生成 HTML 时豁免此条（BUILDING_HTML=1），
+        # 否则会陷入"生成HTML前门禁要求HTML已存在"的死锁；其余实质检查照常阻断。
+        if os.environ.get("BUILDING_HTML") != "1":
+            issues.append("合订本HTML不存在")
 
     return len(issues) == 0, issues
 
