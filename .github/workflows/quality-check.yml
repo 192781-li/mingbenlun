@@ -108,3 +108,11 @@ jobs:
           else
             echo "文件名规范: OK"
           fi
+
+  # 汇总job：等三个并行job全过才过，保持分支保护的"quality-check"required check不变
+  quality-check:
+    needs: [code-check, security-check, content-check]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 全部检查通过
+        run: echo "✅ 所有质量检查已通过（code-check + security-check + content-check）"
