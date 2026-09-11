@@ -18,7 +18,6 @@ jobs:
         with:
           python-version: '3.12'
           cache: 'pip'
-          cache: 'pip'
 
       - name: 术语铁律校验
         run: |
