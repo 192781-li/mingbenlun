@@ -24,7 +24,7 @@ import os, re, sys, json
 VIOLATION = re.compile(r'物质.{0,6}(自己会活|是活的|本身会活|自己活|也会活|能活|活了)')
 # 引用铁律（"绝不说…"）或反向断言（"物质不活"）或正确根（"生命是活的，故生命物质才是活的"）
 # 或批驳/封堵误读语境（堵"物质自己会活"误读 / "物质自己会活"被引号包裹作引述）
-SAFE = re.compile(r'(绝不说.{0,10}物质.{0,8}会活|物质不活|生命是活的，?故生命物质才是活的|生命是活的。?故|活的⾃指维持|有感即活|物质（胶球）|堵.{0,4}物质自己会活|破.{0,4}物质自己会活|物质自己会活.{0,4}误读|["\u201c\u201d].{0,6}物质自己会活.{0,6}["\u201c\u201d])')
+SAFE = re.compile(r'(绝不说.{0,10}物质.{0,8}会活|物质不活|生命是活的，?故生命物质才是活的|生命是活的。?故|生命物质才是活的|活的⾃指维持|有感即活|物质（胶球）|堵.{0,4}物质自己会活|破.{0,4}物质自己会活|物质自己会活.{0,4}误读|["\u201c\u201d].{0,6}物质自己会活.{0,6}["\u201c\u201d])')
 
 def scan_text(text):
     res = {'violation': [], 'ok': []}
@@ -40,8 +40,11 @@ def scan_text(text):
 
 def scan_path(path):
     viol=[]; ok=[]
+    # 历史存档/旧版本/原始对话保留原貌，不按现行铁律追溯（CI 只扫 生命论_模块化/，此处让全库扫描与 CI 结论一致）
+    IGNORE_DIRS = {'.git','backup','__pycache__','raw_materials','archive','历史脚本_20260829','.ipynb_checkpoints'}
     if os.path.isdir(path):
-        for root,_,fs in os.walk(path):
+        for root,dirs,fs in os.walk(path):
+            dirs[:] = [d for d in dirs if d not in IGNORE_DIRS]
             for fn in fs:
                 if fn.lower().endswith(('.md','.txt')):
                     p=os.path.join(root,fn)

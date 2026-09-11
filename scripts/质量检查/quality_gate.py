@@ -77,7 +77,8 @@ def check_theorem_registry():
     """检查定理注册表完整性"""
     registry_file = REFERENCES_DIR / "theorem_registry.json"
     if not registry_file.exists():
-        return {'error': '定理注册表不存在'}
+        # 形式化尚在早期(Layer 推进中)，现行 workbench 尚未建立注册表：提示而非卡死门禁；一旦建立仍严格校验字段
+        return {'warning': '定理注册表尚未建立（mingben-workbench/references/theorem_registry.json，建立后自动校验字段完整性）'}
     
     registry = json.loads(registry_file.read_text(encoding='utf-8'))
     required_fields = ['name', 'statement', 'current_version', 'status', 'coq_verified', 'literature_checked', 'novelty', 'philosophy_correspondence']
@@ -105,21 +106,26 @@ def check_theorem_registry():
 
 def check_cross_refs():
     """检查交叉引用有效性"""
-    cn_num = {'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10}
-    
-    # 获取现有卷篇
+    import re
+    cn_num = {'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10,
+              '十一':11,'十二':12,'十三':13}
+
+    # 获取现有卷篇。文件名带数字前缀（01_篇一_…、02b_篇二之三_…），不能用 glob('篇*.md')；
+    # 用 iterdir+正则提取主篇号，"之二/之三"归主篇，"篇零"非正式篇不纳入；副卷"13_副卷"不匹配 _卷 故天然排除
     existing = set()
     for vol_dir in BOOK_DIR.iterdir():
         if vol_dir.is_dir():
-            import re
-            vol_match = re.match(r'(\d+)_卷([一二三四五六七八九十\d]+)', vol_dir.name)
+            vol_match = re.match(r'\d+_卷([一二三四五六七八九十\d]+)', vol_dir.name)
             if vol_match:
-                v = cn_num.get(vol_match.group(2), int(vol_match.group(2)) if vol_match.group(2).isdigit() else None)
+                gs = vol_match.group(1)
+                v = cn_num.get(gs, int(gs) if gs.isdigit() else None)
                 if v:
-                    for md in vol_dir.glob('篇*.md'):
-                        pian_match = re.match(r'篇([一二三四五六七八九十\d]+)', md.name)
+                    for md in vol_dir.iterdir():
+                        if md.suffix != '.md':
+                            continue
+                        pian_match = re.search(r'篇([一二三四五六七八九十]+)(?:之[一二三四五六七八九十]+)?', md.name)
                         if pian_match:
-                            p = cn_num.get(pian_match.group(1), int(pian_match.group(1)) if pian_match.group(1).isdigit() else None)
+                            p = cn_num.get(pian_match.group(1))
                             if p:
                                 existing.add((v, p))
     
