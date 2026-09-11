@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: '3.12'
+          cache: 'pip'
 
       - name: 术语铁律校验
         run: |
@@ -38,6 +39,7 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: '3.12'
+          cache: 'pip'
 
       - name: 大文件检查
         run: |
@@ -88,6 +90,7 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: '3.12'
+          cache: 'pip'
 
       - name: 统一质量门禁（硬门禁）
         run: |
@@ -108,6 +111,11 @@ jobs:
           else
             echo "文件名规范: OK"
           fi
+
+      - name: 标题层级硬检查
+        run: |
+          echo "=== 卷篇章标题层级检查（H1卷/H2篇/H3章X.Y）==="
+          python3 scripts/check_headings.py --quiet
 
   # 汇总job：等三个并行job全过才过，保持分支保护的"quality-check"required check不变
   quality-check:

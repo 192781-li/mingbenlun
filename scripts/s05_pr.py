@@ -115,7 +115,10 @@ def wait_for_ci(pr_number, timeout_sec=480, interval=8):
     while time.time() - start < timeout_sec:
         all_pass, has_fail, pending, details = get_ci_status(pr_number)
         if has_fail:
-            err(f"CI 失败！详情：{'; '.join(details)}")
+            failed = [d for d in details if 'fail' in d.lower() or 'cancel' in d.lower()]
+            err(f"CI 失败！失败项：{'; '.join(failed)}")
+            info(f"查看详细日志：gh pr checks {pr_number} --watch")
+            info(f"或访问：https://github.com/192781-li/mingbenlun/pull/{pr_number}/checks")
             return False
         if all_pass:
             info(f"CI 全过！立即合并。详情：{'; '.join(details)}")
@@ -124,12 +127,13 @@ def wait_for_ci(pr_number, timeout_sec=480, interval=8):
         info(f"  CI 运行中（{elapsed}s，pending={pending}）...")
         time.sleep(interval)
     err(f"CI 等待超时（{timeout_sec}s）")
+    info(f"查看CI状态：https://github.com/192781-li/mingbenlun/pull/{pr_number}/checks")
     return False
 
 
 def try_merge(pr_number):
     r = subprocess.run(
-        ['gh', 'pr', 'merge', str(pr_number), '--squash', '--delete-branch'],
+        ['gh', 'pr', 'merge', str(pr_number), '--squash'],
         capture_output=True, text=True, cwd=REPO
     )
     if r.returncode == 0:
@@ -177,6 +181,7 @@ def main():
     ap.add_argument('--body', help='PR正文')
     ap.add_argument('--no-merge', action='store_true', help='只开PR不自动合并')
     ap.add_argument('--retry', type=int, default=3, help='merge被挡时自动rebase重试次数（默认3）')
+    ap.add_argument('--precheck', action='store_true', help='发PR前先跑本地标题检查+质量门禁，有问题则中止')
     ap.add_argument('--dry-run', action='store_true', help='只打印计划不执行')
     a = ap.parse_args()
 
@@ -201,6 +206,17 @@ def main():
     if a.dry_run:
         info("dry-run，不执行。以上是计划。")
         sys.exit(0)
+
+    # 0. 本地预检（标题检查+质量门禁）
+    if a.precheck:
+        info("运行本地预检（标题层级检查）...")
+        r = subprocess.run(['python3', 'scripts/check_headings.py', '--quiet'],
+                          capture_output=True, text=True, cwd=REPO)
+        if r.returncode != 0:
+            err("本地标题检查未通过！请修复后再发PR。")
+            print(r.stdout[-500:])
+            sys.exit(1)
+        info("本地预检通过。")
 
     # 1. 有未提交改动则 commit
     if uncommitted:
