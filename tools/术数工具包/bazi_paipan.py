@@ -568,6 +568,9 @@ def paipan(year, month, day, hour, gender="男", name=""):
     dayun = get_dayun(day_stem, year_pillar[0], birth_dt, gender)
     result["大运"] = dayun
 
+    # 大运T值趋势
+    result["大运T值趋势"] = calc_dayun_T_trend(day_stem, four_pillars, dayun["大运列表"])
+
     # 流年（从今年开始10年）
     current_year = datetime.now().year
     result["流年"] = get_liunian(day_stem, year, current_year, 10)
@@ -721,20 +724,30 @@ def check_special_patterns(day_stem, four_pillars, wuxing):
 
 
 def get_mingbenlun_interpretation(day_stem, wangshuai, four_pillars):
-    """生命论视角解读"""
+    """生命论视角解读（优先使用v3.3 T值）"""
     day_elem = STEM_ELEMENT[day_stem]
     interpretation = []
 
     # α（生命层级/格局）
     interpretation.append("【α·格局】八字是初始能量结构S₀，决定你的基本操作倾向，不是命运判决书。格局高低看五行流通和用神有力程度。")
 
-    # T（稳态基准/身强身弱）
-    if wangshuai["总评"] in ["身强", "偏强"]:
-        interpretation.append("【T·稳态】身强=能量承载力较强，油箱厚，能担财官。但身强也容易刚愎自用，需要食伤泄秀或官杀约束。")
-    elif wangshuai["总评"] in ["身弱", "偏弱"]:
-        interpretation.append("【T·稳态】身弱=能量承载力偏弱，油箱薄，担不动太多东西。不是命不好，是需要后天加厚T值——睡眠、运动、规律作息、印星（学习、吸收）补身。身弱的人往往感知力强、敏感度高，α值可能不低。")
+    # T（稳态基准/身强身弱）——优先使用v3.3
+    v33_rating = wangshuai.get("v33_总评", wangshuai.get("总评", "中和"))
+    v33_T = wangshuai.get("v33_T值", None)
+    is_cong = wangshuai.get("从格", False)
+
+    if is_cong:
+        cong_type = wangshuai.get("从格类型", "从势格")
+        interpretation.append(f"【T·稳态】{cong_type}：能量极弱从势，T值不适用普通判断。从格的关键是'顺势'——大运流年遇从神则发，遇帮身则破格。从格不是命不好，是操作方式必须顺势而为，不能硬扛。")
+    elif v33_rating in ["身强", "偏强"]:
+        t_str = f"T={v33_T}" if v33_T is not None else ""
+        interpretation.append(f"【T·稳态】身强{t_str}：能量承载力较强，油箱厚，能担财官。但身强也容易刚愎自用，需要食伤泄秀或官杀约束。")
+    elif v33_rating in ["身弱", "偏弱"]:
+        t_str = f"T={v33_T}" if v33_T is not None else ""
+        interpretation.append(f"【T·稳态】身弱{t_str}：能量承载力偏弱，油箱薄，担不动太多东西。不是命不好，是需要后天加厚T值——睡眠、运动、规律作息、印星（学习、吸收）补身。身弱的人往往感知力强、敏感度高，α值可能不低。")
     else:
-        interpretation.append("【T·稳态】中和=能量平衡，承载力适中，适应性强。")
+        t_str = f"T={v33_T}" if v33_T is not None else ""
+        interpretation.append(f"【T·稳态】中和{t_str}：能量平衡，承载力适中，适应性强。中和之命的关键是动态调整——大运流年帮身多时用克泄耗，克泄耗多时用生扶。")
 
     # N（负熵比率/大运流年）
     interpretation.append("【N·操作】大运流年是时间维度的能量场，决定你在什么环境里操作。N无天花板——好的大运能让M翻倍，差的大运也能通过操作（N>1）逆转。阳主阴从：你的操作（N）主导，结构（α+T）从属。")
@@ -743,6 +756,41 @@ def get_mingbenlun_interpretation(day_stem, wangshuai, four_pillars):
     interpretation.append("【M·成果】M=α×T×N。八字给的是α+T的初始值，N是你每一步的操作，M是操作的总和。命好不如运好，运好不如操作好——这就是生命论的术数观。")
 
     return interpretation
+
+
+def calc_dayun_T_trend(day_stem, four_pillars, dayun_list):
+    """大运T值趋势分析（简化版：基于大运干支五行对帮身/克泄耗的影响）"""
+    day_elem = STEM_ELEMENT[day_stem]
+    print_elem = [e for e in ['木','火','土','金','水'] if GENERATES[e] == day_elem][0]
+    trends = []
+    for dy in dayun_list:
+        dayun_str = dy['大运']
+        gan = dayun_str[0]
+        zhi = dayun_str[1]
+        gan_elem = STEM_ELEMENT[gan]
+        zhi_elem = BRANCH_ELEMENT[zhi]
+        # 判断大运干支对日主的影响
+        bangshen = 0
+        kexiehao = 0
+        for elem in [gan_elem, zhi_elem]:
+            if elem == day_elem or elem == print_elem:
+                bangshen += 1
+            else:
+                kexiehao += 1
+        if bangshen > kexiehao:
+            trend = "T↑（帮身运）"
+        elif kexiehao > bangshen:
+            trend = "T↓（克泄耗运）"
+        else:
+            trend = "T→（平衡运）"
+        trends.append({
+            '大运': dayun_str,
+            '年龄段': dy.get('起运年龄', ''),
+            '趋势': trend,
+            '帮身': bangshen,
+            '克泄耗': kexiehao
+        })
+    return trends
 
 
 # ==================== 格式化输出 ====================
@@ -846,9 +894,9 @@ def print_paipan(result):
 
     # 大运
     print(f"\n【大运】（{result['大运']['顺逆']}，起运{result['大运']['起运年龄']}，距{result['大运']['最近节气']}{result['大运']['起运天数']}）")
-    print(f"  {'序号':<6}{'大运':<10}{'十神':<8}{'起运年龄':<10}{'起运年份':<10}{'纳音':<10}")
-    for i, dy in enumerate(result["大运"]["大运列表"]):
-        print(f"  {i+1:<6}{dy['大运']:<10}{dy['十神']:<8}{dy['起运年龄']:<10}{dy['起运年份']:<10}{dy['纳音']:<10}")
+    print(f"  {'序号':<6}{'大运':<10}{'十神':<8}{'起运年龄':<10}{'起运年份':<10}{'T值趋势':<20}")
+    for i, (dy, trend) in enumerate(zip(result["大运"]["大运列表"], result["大运T值趋势"])):
+        print(f"  {i+1:<6}{dy['大运']:<10}{dy['十神']:<8}{dy['起运年龄']:<10}{dy['起运年份']:<10}{trend['趋势']:<20}")
 
     # 流年
     print(f"\n【近10年流年】")
