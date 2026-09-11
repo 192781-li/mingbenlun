@@ -207,13 +207,30 @@ def main():
         power, support, total, effects = result[2], result[3], result[4], result[5]
         print(f"  五行力量：木{power['木']} 火{power['火']} 土{power['土']} 金{power['金']} 水{power['水']}")
         print(f"  总力量：{total}")
-        print(f"  帮身（{day_elem}+{print_elem}）：{support}（{round(support/total*100,1)}%）")
+        support_pct = round(support/total*100,1)
+        print(f"  帮身（{day_elem}+{print_elem}）：{support}（{support_pct}%）")
         print(f"  克泄耗：{total-support}（{round((total-support)/total*100,1)}%）")
         if effects:
             print(f"  冲刑合害：{', '.join(effects)}")
+        # 从格判断
+        day_root = any(STEM_ELEMENT[h] == day_elem and r >= 0.3 for _, b in pillars for h, r in BRANCH_HIDDEN[b])
+        print_root = any(STEM_ELEMENT[h] == print_elem and r >= 0.3 for _, b in pillars for h, r in BRANCH_HIDDEN[b])
+        is_cong = (support_pct < 25) and (not day_root) and (not print_root)
+        if is_cong:
+            consume = {}
+            for e in ['木','火','土','金','水']:
+                if e == day_elem or e == print_elem: continue
+                if OVERCOMES[day_elem] == e: t = '财星'
+                elif OVERCOMES[e] == day_elem: t = '官杀'
+                else: t = '食伤'
+                consume[t] = consume.get(t, 0) + power[e]
+            cong_type = max(consume, key=consume.get) if consume else '从势'
+            print("-" * 60)
+            print(f"  ⚠ 从格判断：帮身{support_pct}%<25% + 日主无根 + 印星无根")
+            print(f"  从格类型：从{cong_type}格（忌帮身，顺势而为）")
         print("-" * 60)
         print(f"  T值 = {T}")
-        print(f"  总评 = {rating}")
+        print(f"  总评 = {rating}" + ("（非从格，按T值判断）" if not is_cong else ""))
     print("=" * 60)
 
 if __name__ == '__main__':
