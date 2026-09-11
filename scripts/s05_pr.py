@@ -133,7 +133,7 @@ def wait_for_ci(pr_number, timeout_sec=480, interval=8):
 
 def try_merge(pr_number):
     r = subprocess.run(
-        ['gh', 'pr', 'merge', str(pr_number), '--squash', '--delete-branch'],
+        ['gh', 'pr', 'merge', str(pr_number), '--squash'],
         capture_output=True, text=True, cwd=REPO
     )
     if r.returncode == 0:
