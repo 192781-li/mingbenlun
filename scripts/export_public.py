@@ -8,10 +8,9 @@ export_public.py —— 双库分层·公开成果库白名单导出器（S00）
 - --dry-run（默认）：只算清单、体积、敏感扫描，不写盘。
 - --to DIR：把白名单文件镜像同步到 DIR；只清理“上一次由本脚本导出、本次已不在清单”的文件，
   绝不触碰 DIR 里其他东西；并写 EXPORT_INFO.txt 记录母本 sha 与时间，便于溯源。
-- 敏感扫描两级：
-  BLOCK（手机/身份证/邮箱/密钥，命中默认拒绝导出）；
-  REVIEW（内部代号/协作词，列出供人工确认，不硬拦）。
-本脚本不做任何内容改写；需脱敏的内容回母本修改后重导（单一事实源）。
+- BLOCK（手机/身份证/邮箱/密钥）命中直接拦下、不自动救；内部协作词先做“导出时净化”：
+  只剥离文首生产过程元信息头、统一作者署名，正文一字不动、母本原文件不改；净化后正文
+  仍含内部词的（协作过程织入正文）继续拦下转人工。单一事实源始终是母本，公开库只是投影。
 """
 import argparse
 import glob
@@ -161,6 +160,66 @@ def select_files():
     return final, missing
 
 
+# ---------- 导出时净化（只擦“文首元信息头”，绝不改写正文论证；母本原文件一字不动）----------
+# 作者类元信息行统一替换为笔名（只保留一次）
+AUTHOR_LINE = re.compile(r'^\s*(?:>)?[-*|\s]*(?:作者|著者|思考者)\s*[:：].*$')
+# 标题里的内部分站前缀，如 “# S01 哲学研判：xxx” -> “# xxx”
+TITLE_PREFIX = re.compile(r'^(\s*#{1,4}\s*)(?:S0\d|大总站|明旭)[^：:\n]{0,14}[：:]\s*')
+# 元信息行形态：> 引用行、**标签**：行
+META_QUOTE = re.compile(r'^\s*>')
+META_LABEL = re.compile(r'^\s*[-*|\s]*\*\*[^*\n*]{1,14}\*\*\s*[:：]')
+# 文首元信息行命中以下“内部生产痕迹”即整行剥离（仅作用于正文开始之前的头部区）
+HEAD_DROP = re.compile(
+    r'S0[0-6]|分站|明旭|大总站|定时任务|cron|DeepSeek|deepseek|workbuddy|doubao|豆包|doubaocdn|'
+    r'核验|巡检|激活|指令包|本主对话|长谈|对话产出|答题训练|AGENTS|协作机制|mingbenlun|'
+    r'PR#|三遍法|用户原话|飞书|worktree|编制|记录人|记录者|执行者|研判分站|研究分站|'
+    r'审查分站|收件|发件|验收|归档|整理者')
+
+
+def _head_end(lines, cap=25):
+    """正文起点：前 cap 行内第一个分隔线 --- 或二级标题 ##。"""
+    for i in range(min(cap, len(lines))):
+        s = lines[i].strip()
+        if s == '---' or s.startswith('## '):
+            return i
+    return min(cap, len(lines))
+
+
+def sanitize_text(txt):
+    """只净化文首元信息头（去内部分站前缀、统一作者署名、剥离生产过程元信息行）。
+    正文（head_end 之后）一字不动。返回 (净化后文本, 是否改动)。"""
+    lines = txt.split('\n')
+    he = _head_end(lines)
+    out, changed, author_done = [], False, False
+    for i, line in enumerate(lines):
+        if i < he:
+            mt = TITLE_PREFIX.match(line)
+            if mt:  # 标题去内部分站前缀
+                line = TITLE_PREFIX.sub(mt.group(1), line, count=1)
+                changed = True
+            if AUTHOR_LINE.match(line):  # 作者行统一为笔名，只留一次
+                if not author_done:
+                    out.append('> 作者：' + SIGNATURE_TERM)
+                    author_done = True
+                changed = True
+                continue
+            is_meta = bool(META_QUOTE.match(line) or META_LABEL.match(line))
+            if is_meta and HEAD_DROP.search(line):
+                changed = True
+                continue  # 含内部生产痕迹的元信息行整行剥离
+        out.append(line)
+    res, blank = [], 0  # 3+ 连续空行压成 2
+    for ln in out:
+        if ln.strip() == '':
+            blank += 1
+            if blank <= 2:
+                res.append(ln)
+        else:
+            blank = 0
+            res.append(ln)
+    return '\n'.join(res), changed
+
+
 def mask(line, m):
     return line[max(0, m.start() - 8):m.start()] + '【命中】' + line[m.end():m.end() + 8]
 
@@ -187,35 +246,46 @@ def scan(files):
 
 
 def partition(files, block_hits):
-    """第二层洁净门：白名单候选再按内容过滤。
-    返回 (可导出 clean, 拦下 held=[(rel,reasons)], 含作者署名的文件数 sig)。"""
+    """第二层洁净门：白名单候选先做文首元信息净化（母本不动），再按净化后内容过滤。
+    硬敏感（手机/证/邮箱/密钥）不自动救，直接拦下；内部协作词在净化后文本上复检，
+    正文仍残留的（协作过程织入正文）继续拦下转人工。
+    返回 (clean, held=[(rel,reasons)], 含署名文件数 sig, {rel: 净化后文本})。"""
     block_by = {}
     for rel, ln, name, frag in block_hits:
         block_by.setdefault(rel, []).append(f'{name}:{ln}')
-    clean, held, sig = [], [], 0
+    clean, held, sig, san_map = [], [], 0, {}
     for rel in files:
-        reasons = set(block_by.get(rel, []))
-        has_sig = False
-        if os.path.splitext(rel)[1].lower() in TEXT_EXT:
-            try:
-                txt = open(os.path.join(REPO, rel), encoding='utf-8', errors='ignore').read()
-            except OSError:
-                txt = ''
+        block = set(block_by.get(rel, []))
+        ext = os.path.splitext(rel)[1].lower()
+        if ext not in TEXT_EXT:
+            if block:
+                held.append((rel, sorted(block)))
+            else:
+                clean.append(rel)
+            continue
+        try:
+            txt = open(os.path.join(REPO, rel), encoding='utf-8', errors='ignore').read()
+        except OSError:
+            txt = ''
+        san, changed = sanitize_text(txt)
+        reasons = set(block)  # 硬敏感不自动救
+        if not block:
             for t in INTERNAL_TERMS:
-                if t in txt:
+                if t in san:
                     reasons.add(t)
             for rx in INTERNAL_REGEX:
-                if rx.search(txt):
+                if rx.search(san):
                     reasons.add('原始对话记录')
                     break
-            has_sig = SIGNATURE_TERM in txt
         if reasons:
             held.append((rel, sorted(reasons)))
         else:
             clean.append(rel)
-            if has_sig:
+            if changed:
+                san_map[rel] = san
+            if SIGNATURE_TERM in san:
                 sig += 1
-    return clean, held, sig
+    return clean, held, sig, san_map
 
 
 def human(n):
@@ -225,11 +295,15 @@ def human(n):
         n /= 1024
 
 
-def group_stats(files):
+def group_stats(files, san_map=None):
+    san_map = san_map or {}
     groups = {}
     size = 0
     for rel in files:
-        size += os.path.getsize(os.path.join(REPO, rel))
+        if rel in san_map:
+            size += len(san_map[rel].encode('utf-8'))
+        else:
+            size += os.path.getsize(os.path.join(REPO, rel))
         key = '/'.join(rel.split('/')[:2]) if rel.startswith('docs/') else rel.split('/')[0]
         groups[key] = groups.get(key, 0) + 1
     return size, sorted(groups.items(), key=lambda x: -x[1])
@@ -252,12 +326,13 @@ def main():
 
     files, missing = select_files()
     block_hits, _review = scan(files)
-    export_files, held, sig = partition(files, block_hits)
-    size, groups = group_stats(export_files)
+    export_files, held, sig, san_map = partition(files, block_hits)
+    size, groups = group_stats(export_files, san_map)
 
     print(f'母本 main @ {head}')
     print(f'白名单候选 {len(files)} 个 → 洁净门放行 {len(export_files)} 个（{human(size)}）；'
-          f'拦下待清洗 {len(held)} 个；放行集中含署名“{SIGNATURE_TERM}”的文件 {sig} 个')
+          f'拦下待清洗 {len(held)} 个；其中导出时自动净化文首元信息头 {len(san_map)} 篇（母本不动）；'
+          f'放行集中含署名“{SIGNATURE_TERM}”的文件 {sig} 个')
     for k, n in groups:
         print(f'  放行 {n:4d}  {k}')
     if missing:
@@ -300,7 +375,11 @@ def main():
     for rel in export_files:
         s, d = os.path.join(REPO, rel), os.path.join(dst, rel)
         os.makedirs(os.path.dirname(d), exist_ok=True)
-        shutil.copy2(s, d)
+        if rel in san_map:  # 文本文件写“净化后”版本，母本原文件不动
+            with open(d, 'w', encoding='utf-8') as f:
+                f.write(san_map[rel])
+        else:
+            shutil.copy2(s, d)
         copied += 1
     # 清理导出后遗留的空目录
     for root, dirs, fs in os.walk(dst, topdown=False):
