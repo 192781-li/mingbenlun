@@ -14,7 +14,7 @@
 ## 1. 记忆恢复
 
 ```bash
-cd /home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun
+cd /home/user/mingbenlun
 git checkout main
 git pull origin main
 ```
@@ -39,6 +39,7 @@ python3 scripts/s00_patrol.py all
   - 未合并 PR / 最近 CI 运行
   - 工作区未提交改动
   - 关键目录文件数
+  - 分站独立 worktree 隔离一致性（L041/PR#100：主仓库固定 main、S01–S06 各绑长期分支；worktree 缺失/目录丢失/绑他站分支=ERROR，停本站临时分支/主仓库未固定 main/期望表外登记=WARN）
 - **sync**：列出各分支 main 缺失的共享文档（白名单：智慧河流/分站通道/S01给S04/哲学研究/高考数学）
 
 ## 3. 定时任务平台对账（防 L037 复发——快照是唯一权威）
@@ -139,6 +140,7 @@ python3 scripts/network_reconcile.py --fetch
 - [ ] 平台对账已做（如有漂移已回写注册表）
 - [ ] 共享文档缺失已同步（或确认无缺失）
 - [ ] 分站分支积压已自动同步（或确认无积压）
+- [ ] worktree 隔离一致性已由 `s00_patrol.py` 自动核验（S01–S06 各绑长期分支、主仓库回 main；ERROR 已处理）
 - [ ] 任务队列已清理
 - [ ] 改动已 commit 并走 PR（或确认无改动）
 - [ ] 未碰 Coq `.v`、未碰哲学研判正文

@@ -107,7 +107,7 @@ main() {
     print_separator
     
     # 尝试常见位置
-    for dir in ~/Desktop/mingbenlun ~/mingbenlun ./mingbenlun /home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun; do
+    for dir in /home/user/mingbenlun ~/Desktop/mingbenlun ~/mingbenlun ./mingbenlun /home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun; do
         if [ -d "$dir/.git" ]; then
             REPO_DIR="$dir"
             break
