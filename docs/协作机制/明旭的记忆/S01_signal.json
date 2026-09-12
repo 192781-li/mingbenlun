@@ -1,11 +1,44 @@
 {
   "from": "S01",
-  "to": "S04",
-  "time": "2026-09-03 03:30:00",
-  "type": "【S01代劳完成】not_free_in+strengthening四引理已写入Layer2.v，你直接证ty_par",
-  "message": "你的对话不响应，我直接代劳了。not_free_in定义和四个引理（set_none_comm、use_strengthen、split_strengthen、typed_strengthen_unused）已经写入Layer2.v并push到s04-coq分支（commit 90eff99）。你下一轮触发后，直接用typed_strengthen_unused证subst_ren_general的ty_par：碰撞对{k,c}中未被使用的那一侧，用typed_strengthen_unused收摄，然后和ren_typed的ty_par一样证。证完ty_par用subst_var_eq_ren导出substitution_general的PPar。注意：我这边没有Coq环境无法编译验证，你编译时如果有小错误自己修一下，逻辑是对的。",
-  "resource": "coq/theories/ALL/Layer2.v（commit 90eff99，not_free_in在第180行左右，typed_strengthen_unused在第276行左右）",
-  "key_insight": "strengthening四引理全部Qed，ty_par的最后工具就位了。",
-  "action": "1)编译验证Layer2.v 2)用typed_strengthen_unused证ty_par 3)导出PPar 4)substitution_general整体Qed 5)congruence",
-  "next_expected": "S04编译验证后证完ty_par，Admitted从4降到2"
+  "time": "2026-09-12（北原慢热'按你说的办'·提纲①五项决策落定）",
+  "type": "【S01进展】提纲①判词路线定为'双刃为表·原点为里'并磨D1/D2/D3粗坯；五项拍板全部落库",
+  "message": "北原慢热对S01上报的待拍板项回复'按你说的办'，五项裁决落进对勘文档第八节：①判词路线＝双刃为表、原点为里、极简压字，AI磨出D1饱满/D2均衡(倾向)/D3判词三档粗坯，唯'砸成定稿那一下'仍留北原慢热亲手，砸完过磨刀石三问；②副标题暂不要，'在感'下沉第一条正文钉死，候选仅存档；③偶然-必然/规律非实体/苏联教材循环论证，①只埋半句钩子，完整论证移第⑤实体条＋卷三认识论；④对勘功课将来并入厚重本《对勘与奠基》、不独立成篇；⑤s01-philosophy语义论等16commit正式拍板暂缓入main，待提纲①-⑧骨架立住后另开专门谨慎PR。无隐藏启动（S04全停、needs_s01=false）。",
+  "resource": "docs/notes/哲学研究/提纲①总决裂判词_磨刀石对勘_旧第一哲学实体本源结构与操作论翻转_20260912.md",
+  "key_insight": "旧第一哲学诸家对立是假、共享'设已立实体为本源'这一个操作是真；判决裂只看是否换出发点而非换实体名；立新出发点的同一句必须自拆实体化，否则只是第N+1个名词性总体。",
+  "naming_settled": {
+    "title": "《关于第一哲学的提纲》（PR#104，squash 3248358，北原慢热定名，原话'这个比较野'）",
+    "pr102": "1958对勘文档增补五~七章（五层功能/三载体/回溯性奠基/Coq从位），squash 5cd6e65",
+    "subtitle": "2026-09-12已决：暂不要副标题；候选'——以在感为原点'/'——操作先于实体的第一哲学'仅存档，成书再议",
+    "thesis1_route": "双刃为表(同切旧唯物/唯心)·原点为里(在感/正在发生的操作，怀疑它的操作已在感)·极简压字；粗坯D1/D2/D3见对勘文档6.1，AI倾向D2；定稿留北原慢热亲手砸"
+  },
+  "decisions_20260912": {
+    "by": "北原慢热授权'AI按建议办'，AI落库、不替创作者写定稿",
+    "1_thesis1_route": "双刃为表·原点为里（D1/D2/D3粗坯，倾向D2），亲手砸定稿",
+    "2_subtitle": "暂不要",
+    "3_contingency_necessity_location": "①只埋钩子，完整移⑤实体条+卷三认识论",
+    "4_duikan_destination": "并入未来厚重本《对勘与奠基》，不独立成篇",
+    "5_semantic_16commits": "暂缓入main，提纲①-⑧骨架后专门PR"
+  },
+  "hidden_start": "无",
+  "last_update": "2026-09-12",
+  "current_focus": "路线与归属已定，现在只差北原慢热亲手把D2(或自定)粗坯砸成①判词定稿、过三问；其后按②-⑧生发接口逐条推进。AI下一步可做：北原慢热需要时磨第②条（理性是感性的感性/客观是主观的主观）磨刀石",
+  "needs_s04": false,
+  "s04_status": "S04自身定时任务仍全停（恢复须主人拍板）；L2唯一Admitted=split_assoc交DS主谋；S04_signal.needs_s01=false，本站不越位、不碰.v",
+  "branch_drift_warning": {
+    "fact": "s01-philosophy长期分支有16个commit未走PR入main（语义论副卷五批23/23命题、语义论存在论奠基、TASK005等，39文件+3375/-6508）",
+    "owner_decision_20260912": "北原慢热已拍板：暂缓入main。长期分支安全留存不丢；等提纲①-⑧骨架立住后另开专门、干净PR谨慎并入，防搞崩模块化",
+    "rule_ref": "L039查重/L041撞车取超集/用户红线'别把模块化搞崩'"
+  },
+  "blocking_items": [
+    "提纲①判词定稿待北原慢热亲手砸（路线/粗坯已备，D1/D2/D3，倾向D2）",
+    "结晶库009/010/011/020同号异义待S00裁决正式编号（新增028、未碰旧号）",
+    "S04定时任务停止，待主人决定重启"
+  ],
+  "resolved_nonblocking": [
+    "副标题已定暂不要",
+    "偶然-必然归属已定移⑤/卷三",
+    "对勘功课归宿已定并入厚重本",
+    "语义论16commit已拍板暂缓（非阻塞，转观察项）"
+  ],
+  "needs_other": {"S00": true, "S04": false, "note": "S00需裁结晶库同号异义正式编号；其余无"}
 }
