@@ -12,6 +12,9 @@ RIVER_DIR="docs/协作机制/智慧河流"
 RIVER_FILES=("河流主干.md" "河流状态.md" "智慧结晶库.md" "DeepSeek干渠.md")
 # 全部分站分支：main(S00) 是集成主干，pull 时要从所有分站汇合，
 # 不能再把 main 排除在同步环外（否则结晶/河流会长期压在分支、main 停更）。
+# 【提交纪律·L040/2026-09-12】本脚本在 main 上 pull 会产生一次"自动commit河流合并"，
+# 该 commit 只是本地落盘，绝不能据此直推 main：S00 须先把它转入 s00-主题-日期 临时分支
+# 走 PR 合入，再让本地 main 对齐 origin/main；分站在各自长期分支同理，main 永远只走 PR。
 ALL_STATION_BRANCHES=()
 
 # 颜色输出
@@ -206,6 +209,7 @@ pull_river() {
     verify_river_integrity
 
     if [ $TOTAL_MERGED -gt 0 ] || [ $TOTAL_CREATED -gt 0 ]; then
+        # 此自动commit仅本地落盘，禁止据此直推main（main只走PR）；S00转临时分支走PR，见文件头纪律。
         log "自动commit河流合并..."
         git -C "$REPO_DIR" add "$RIVER_DIR/" 2>/dev/null || true
         git -C "$REPO_DIR" commit -m "$MY_STATION: 河流汇合器自动pull——从${targets[*]}合并河流文件
