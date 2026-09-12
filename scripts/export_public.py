@@ -44,13 +44,16 @@ REVIEW_TERMS = ['定时任务', 'cron', '分站', 'S00', 'S01', 'S02', 'S03', 'S
 RE_REVIEW = re.compile('|'.join(re.escape(t) for t in REVIEW_TERMS))
 
 # 第二层“洁净门”：白名单候选文件若含以下内部协作/原始过程痕迹，默认拦下不导出（清洗后才放）
-INTERNAL_TERMS = ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', '分站', '明旭',
+INTERNAL_TERMS = ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', '分站', '明旭', '大总站',
                   '定时任务', 'cron', 'worktree', 'open_id', 'chat_id', '飞书',
                   'Doubao/chats', '192781-li', '大乱炖', '<thinking>',
-                  '用户原话', 'PR#', '三遍法']
+                  '用户原话', 'PR#', '三遍法', 'workbuddy', 'doubaocdn', '李松翰']
 RE_INTERNAL = re.compile('|'.join(re.escape(t) for t in INTERNAL_TERMS))
 # “多智能体系统”是正常学术词，不拦；只拦原始对话记录里的“（智能体 2026/06/14 …）”时间戳痕迹
-INTERNAL_REGEX = [re.compile(r'智能体\s*\d{4}[/年-]'), re.compile(r'[（(]\s*智能体')]
+# 投稿模板残留字段（外部作者通信/收稿/作者简介）是强过程特征，拦
+INTERNAL_REGEX = [re.compile(r'智能体\s*\d{4}[/年-]'), re.compile(r'[（(]\s*智能体'),
+                  re.compile(r'通信邮箱|作者单位|收稿日期|作者简介')]
+# 注：deepseek/豆包/doubao 是正文合法讨论对象（如“DeepSeek 干渠”），故意不硬拦
 SIGNATURE_TERM = '北原慢热'  # 作者笔名，允许公开，仅计数告知
 
 TEXT_EXT = {'.md', '.txt', '.json', '.html', '.csv', '.py', '.yml', '.yaml',
