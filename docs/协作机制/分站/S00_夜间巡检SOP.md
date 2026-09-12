@@ -14,7 +14,7 @@
 ## 1. 记忆恢复
 
 ```bash
-cd /home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun
+cd /home/user/mingbenlun
 git checkout main
 git pull origin main
 ```

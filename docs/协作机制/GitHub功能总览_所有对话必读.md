@@ -12,7 +12,9 @@
 | **mingbenlun-archive** | 私有 | ~77MB | 档案库：大文件、原始对话记录、历史版本 |
 | **192781-li** | 公开 | ~1.5MB | Profile README：个人主页展示 |
 
-主库本地路径：`/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun`
+本地工作区布局（hpvs_fs 快盘；旧 virtiofs 慢盘已弃用、日常禁用）：
+- 协调中心 S00 主仓库（固定 main）：`/home/user/mingbenlun`
+- 分站独立工作区：`/home/user/mingxu-worktrees/s01…s06`，各绑长期分支（s01-philosophy / s02-gaokao-arts / s03-divination / s04-coq / s05-info / s06-math），详见《分站独立工作区Worktree使用规范_20260912》
 
 ---
 
