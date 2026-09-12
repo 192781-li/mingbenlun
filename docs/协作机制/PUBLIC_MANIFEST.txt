@@ -45,9 +45,8 @@ docs/阅读笔记/
 # —— 知识库成果（html + 索引 json）——
 docs/reference_materials/知识库/
 
-# —— 正文配图（概念意境图可公开；rick_avatar 为第三方版权动画玩梗图，排除）——
+# —— 正文配图（意境概念图与头像，主人确认全部保留，含 rick_avatar）——
 docs/assets/images/
-!docs/assets/images/rick_avatar.png
 
 # —— 智慧结晶（C 档：公开；内部协作结晶清洗后才放行，首版先由洁净门拦下）——
 docs/协作机制/智慧河流/智慧结晶库.md
