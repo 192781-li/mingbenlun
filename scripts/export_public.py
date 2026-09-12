@@ -273,8 +273,10 @@ def main():
         print('\n[dry-run] 未写盘。确认后用 --to <目录> 实际导出（只导放行集）。')
         return 0
 
-    dst = os.path.abspath(a.to)
-    if os.path.abspath(dst).startswith(REPO):
+    repo_real = os.path.realpath(REPO)
+    dst = os.path.realpath(os.path.abspath(a.to))
+    # 按路径段判断，避免 mingbenlun-open 因字符串前缀 mingbenlun 被误判为仓库内部
+    if dst == repo_real or dst.startswith(repo_real + os.sep):
         print('[拒绝] 导出目标不能在母本仓库内部。')
         return 1
     os.makedirs(dst, exist_ok=True)
