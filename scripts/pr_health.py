@@ -40,11 +40,13 @@ def list_open_prs():
 
 
 def behind_ahead(head, base='main'):
-    """返回 (behind, ahead)：PR 落后 base 数 / PR 独有提交数。取不到返回 (None,None)。"""
+    """返回 (behind, ahead)：PR 落后 base 数 / PR 独有提交数。取不到返回 (None,None)。
+    本仓库 remote.origin.fetch 只跟踪 main，其他分支不建 origin/<head>，故 head 用 FETCH_HEAD。"""
     try:
-        run(['git', 'fetch', 'origin', head], check=False)
+        run(['git', 'fetch', 'origin'], check=False)          # 更新 origin/<base>（只抓 main）
+        run(['git', 'fetch', 'origin', head], check=False)    # 远程 head 落到 FETCH_HEAD
         line = run(['git', 'rev-list', '--left-right', '--count',
-                    f'origin/{base}...origin/{head}'])
+                    f'origin/{base}...FETCH_HEAD'])
         b, a = line.split()
         return int(b), int(a)
     except Exception:

@@ -215,9 +215,11 @@ def integrate_existing(pr_number, base='main', max_retry=3):
 
     for attempt in range(1, max_retry + 1):
         info(f"-- 第 {attempt}/{max_retry} 轮：fetch 最新，取 {head} 到 {tmp}，rebase origin/{base}")
-        # 必须全量 fetch：`git fetch origin <单分支>` 只更新 FETCH_HEAD、不产生 origin/<head> 跟踪引用
-        git('fetch', 'origin')
-        git('checkout', '-q', '-B', tmp, f'origin/{head}')
+        # 本仓库 remote.origin.fetch 只跟踪 main（性能定制），其他分支不建 origin/<head>：
+        # 故 base 用 fetch 更新的 origin/<base>，head 用 `git fetch origin <head>` 后的 FETCH_HEAD。
+        git('fetch', 'origin')                  # 更新 origin/<base>（refspec 只抓 main）
+        git('fetch', 'origin', head)            # 远程 head 落到 FETCH_HEAD
+        git('checkout', '-q', '-B', tmp, 'FETCH_HEAD')
         rr = subprocess.run(
             ['git', '-C', REPO, '-c', 'core.quotepath=false', 'rebase', f'origin/{base}'],
             capture_output=True, text=True)
