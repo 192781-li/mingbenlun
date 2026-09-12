@@ -807,35 +807,110 @@ def setup_twelve_generals(day_stem, hour, heaven_plate, first_transmission):
     return generals, noble_branch, ("阳贵" if 5 <= hour <= 19 else "阴贵"), ("顺行" if is_shun else "逆行")
 
 
-def judge_keti(four_lessons, three_transmissions, method, month_general, hour_branch):
-    """判断课体"""
-    keti = []
+# 四孟（长生/四生）、四仲（四正/桃花）、四季（四库）
+SI_MENG = ("寅", "申", "巳", "亥")
+SI_ZHONG = ("子", "午", "卯", "酉")
+# 三传三合局 → (五行, 课名)
+SANHE_JU = {
+    frozenset(("申", "子", "辰")): ("水", "润下课"),
+    frozenset(("亥", "卯", "未")): ("木", "曲直课"),
+    frozenset(("寅", "午", "戌")): ("火", "炎上课"),
+    frozenset(("巳", "酉", "丑")): ("金", "从革课"),
+}
 
-    # 课体名称
+
+def judge_keti(four_lessons, three_transmissions, method, month_general, hour_branch,
+               day_stem=None, horse=None):
+    """判断课体（硬运算：全部由四课/三传/起法的形式规则推出，不做象义联想）
+
+    两层：
+    A. 九宗门对应的标准课名：元首/重审/知一/见机/察微/缀瑕/蒿矢/弹射/伏吟/反吟/八专/别责/昴星
+    B. 复合课体（规则无争议子集）：斩关(发用魁罡)、三传三合局(润下/曲直/炎上/从革)、稼穑(三传皆土)
+    注：游子课规则存在流派分歧（天马+关梁顺布的判定不一），本轮不硬编码，标为待人工辨。
+    """
+    keti = []
+    first, second, third = three_transmissions
+
+    # 统计四课克关系：下克上=地盘克天盘；上克下=天盘克地盘
+    xia_ke_shang = []  # 下克上
+    shang_ke_xia = []  # 上克下
+    for _name, earth, heaven in four_lessons:
+        e_el = BRANCH_ELEMENT[earth]
+        h_el = BRANCH_ELEMENT[heaven]
+        if ELEMENT_KE[e_el] == h_el:
+            xia_ke_shang.append((earth, heaven))
+        if ELEMENT_KE[h_el] == e_el:
+            shang_ke_xia.append((earth, heaven))
+
+    # ---- A. 课经标准课名（以四课真实克关系为准，method 仅定结构课）----
+    # 说明：现有 get_three_transmissions 把"无下克上、有上克下"也命名为"遥克法"，
+    # 且四课上下全无克时直接走昴星、未实现真正的蒿矢/弹射遥克——这两处是三传层的
+    # 简化/命名缺陷（列入遗留）。课体层不依赖该 method 名，直接由四课克关系与日干遥克
+    # 关系重判，保证课名符合课经：先贼（下克上）后克（上克下），四课全无克才论遥克。
+    n_xia = len(xia_ke_shang)   # 下克上数量
+    n_shang = len(shang_ke_xia)  # 上克下数量
+
     if method == "伏吟法":
         keti.append("伏吟课")
-    elif method == "反吟法(有克)" or method == "反吟法(无克取马)":
+    elif method.startswith("反吟法"):
         keti.append("反吟课")
     elif method == "八专法":
         keti.append("八专课")
     elif method == "别责法":
         keti.append("别责课")
-    elif method == "昴星法":
-        keti.append("昴星课")
-    elif method == "遥克法(蒿矢/弹射)":
-        keti.append("遥克课")
-    elif method.startswith("涉害法"):
-        keti.append("涉害课")
-    elif method == "比用法":
-        keti.append("比用课")
-    elif method == "贼克法":
-        keti.append("贼克课")
+    elif n_xia == 1:
+        # 唯一"下克上"为重审（先贼后克，不要求无上克下）
+        keti.append("重审课(唯一下克上为用)")
+    elif n_xia > 1:
+        # 多个下克上：比和唯一=知一；涉害按初传孟/仲/季分见机/察微/缀瑕
+        if method == "比用法":
+            keti.append("知一课(多贼取比)")
+        elif method.startswith("涉害法"):
+            if first in SI_MENG:
+                keti.append("见机课(涉害取孟)")
+            elif first in SI_ZHONG:
+                keti.append("察微课(涉害取仲)")
+            else:
+                keti.append("缀瑕课(涉害取季/复等)")
+        else:
+            keti.append("知一/涉害课(多贼,待辨)")
+    elif n_xia == 0 and n_shang == 1:
+        # 无下克上、唯一上克下=元首
+        keti.append("元首课(唯一上克下为用)")
+    elif n_xia == 0 and n_shang > 1:
+        # 无下克上、多个上克下，亦当比用/涉害（现有三传简化取首者，标注）
+        if first in SI_MENG:
+            keti.append("见机课(多上克下涉害取孟)")
+        elif first in SI_ZHONG:
+            keti.append("察微课(多上克下涉害取仲)")
+        else:
+            keti.append("缀瑕/涉害课(多上克下,三传取法待精化)")
+    else:
+        # 四课上下全无克：论日干与四课上神的遥克（真蒿矢/弹射）
+        yaoke = False
+        if day_stem:
+            ds_el = STEM_ELEMENT[day_stem]
+            shang_shen = [h for _n, _e, h in four_lessons]
+            if any(ELEMENT_KE[BRANCH_ELEMENT[h]] == ds_el for h in shang_shen):
+                keti.append("蒿矢课(上神遥克日)"); yaoke = True
+            if any(ELEMENT_KE[ds_el] == BRANCH_ELEMENT[h] for h in shang_shen):
+                keti.append("弹射课(日遥克上神)"); yaoke = True
+        if not yaoke:
+            # 上下无克、亦无遥克=昴星（别责/八专已在前面结构分支拦）
+            keti.append("昴星课(无克无遥)")
 
-    # 重审课：初传下克上
-    first, second, third = three_transmissions
-    # 知一课：多个下克上取比用
-    if method == "比用法":
-        keti.append("知一课")
+    # ---- B. 复合课体（硬运算）----
+    # 斩关课：发用（初传）为辰、戌魁罡，主冲破关梁、主动
+    if first in ("辰", "戌"):
+        keti.append("斩关课(发用魁罡)")
+    # 三传三合局
+    ju_set = {first, second, third}
+    for ju, (el, name) in SANHE_JU.items():
+        if ju_set == ju:
+            keti.append(f"{name}(三传会{el}局)")
+    # 稼穑课：三传皆土（辰戌丑未）
+    if all(BRANCH_ELEMENT[b] == "土" for b in (first, second, third)):
+        keti.append("稼穑课(三传皆土)")
 
     return keti
 
@@ -961,7 +1036,8 @@ def paipan(year, month, day, hour, question="", birth_year=None, gender="男"):
     result["三传"]["末传天将"] = generals.get(third, "")
 
     # 10. 课体判断
-    keti = judge_keti(four_lessons, (first, second, third), method, mg, hour_branch)
+    keti = judge_keti(four_lessons, (first, second, third), method, mg, hour_branch,
+                      day_stem=day_stem, horse=horse)
     result["课体"] = keti
 
     # 11. 空亡判断（三传、四课是否逢空）
