@@ -142,13 +142,13 @@
     },
     "S06": {
       "name": "高考数学分对话",
-      "status": "stopped",
+      "status": "active",
       "cron_expression": "0 9 * * *",
       "cron_job_id": "11591577993218",
       "extra_cron": {
         "weekly_review": "11547202077954"
       },
-      "note": "2026-09-10新建分站，两个定时任务当前均停止；GitHub token待配置"
+      "note": "2026-09-10新建分站，GitHub token已配置，已完成5个知识点文档（函数概念/基本初等函数/图像变换/三角恒等变换/三角题型模板），worktree隔离已建立（/home/user/mingxu-worktrees/s06）"
     }
   },
   "task_queue": [
