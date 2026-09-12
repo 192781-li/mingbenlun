@@ -192,6 +192,7 @@ def partition(files, block_hits):
     clean, held, sig = [], [], 0
     for rel in files:
         reasons = set(block_by.get(rel, []))
+        has_sig = False
         if os.path.splitext(rel)[1].lower() in TEXT_EXT:
             try:
                 txt = open(os.path.join(REPO, rel), encoding='utf-8', errors='ignore').read()
@@ -204,12 +205,13 @@ def partition(files, block_hits):
                 if rx.search(txt):
                     reasons.add('原始对话记录')
                     break
-            if SIGNATURE_TERM in txt:
-                sig += 1
+            has_sig = SIGNATURE_TERM in txt
         if reasons:
             held.append((rel, sorted(reasons)))
         else:
             clean.append(rel)
+            if has_sig:
+                sig += 1
     return clean, held, sig
 
 
