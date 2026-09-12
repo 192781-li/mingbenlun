@@ -108,6 +108,35 @@ git diff origin/main..main               # 逐字比对内容差异
 - 若本地独有提交的内容已被远程 PR 等价覆盖（diff 为空）：`git checkout main && git reset --hard origin/main` 对齐权威，零损失。
 - 若本地确有远程没有的增量：把增量在**新分支**上重提为 PR，不在 main 上硬合。拿不准就停下报告，不强行 push、不覆盖别人内容。
 
+### 多分站并发：worktree 隔离、错位识别、临时索引旁路提交（L041）
+
+**常态——各分站用自己的独立 worktree（PR#100 起物理隔离 HEAD，不再互踩）：**
+
+| 单元 | 工作目录 | 固定长期分支 |
+|---|---|---|
+| S01–S06 | `/home/user/mingxu-worktrees/s01`…`s06` | s01-philosophy / s02-gaokao-arts / s03-divination / s04-coq / s05-info / s06-math |
+| 协调中心 S00 | `/home/user/mingbenlun` | 固定 main |
+
+分站日常先 `cd` 进自己的 worktree 再走第三节流程，干完回长期分支；完整规则见《分站独立工作区Worktree使用规范_20260912.md》。夜间巡检 `s00_patrol.py` 自动核验这套绑定（worktree 缺失/目录丢失/绑他站分支报 ERROR，停本站临时分支/主仓库未固定 main 报 WARN）。
+
+**识别"并发错位"（不是真删文件，严禁误操作）：** `git status` 突然刷出成百上千条 `D` 同时根目录同批 `??`，或瞬时 `not a git repository`、`unknown error reading configuration files`——这是别的进程正在 checkout 的中间态、或共享 config 被并行写，数秒自愈。**此刻严禁 `add -A`/`commit`/`reset --hard`/再 `checkout`**（错位态 `add -A` 会把全库当删除提交，等于毁库）；只先只读 `git rev-parse --short HEAD`、`git branch --show-current`，等占用方落定再复查。
+
+**应急——隔离没到位、又必须在被并发占用的仓库提交时，用临时索引旁路，全程不切 HEAD、不碰主 index：**
+```bash
+git fetch origin
+export GIT_INDEX_FILE=/tmp/i
+git read-tree origin/main                       # 以最新主干为基底初始化临时索引
+BLOB=$(git hash-object -w 成果文件)             # 成果写成 blob，不依赖工作区当前状态
+git update-index --add --cacheinfo 100644,$BLOB,仓库内相对路径
+TREE=$(git write-tree); unset GIT_INDEX_FILE
+NEW=$(git commit-tree $TREE -p origin/main -m "SXX: 谁+做了什么+为什么")
+git update-ref refs/heads/<分支> $NEW
+git push origin <分支>:<分支>                    # 显式 refspec，不依赖当前被切到哪个分支
+gh pr create --repo 192781-li/mingbenlun --base main --head <分支> --title ... --body ...
+```
+
+**`--force-with-lease` 报 stale info**：多是并发 fetch 弄丢了本地远程跟踪引用。先 `git ls-remote origin <分支>` 取服务器真实 SHA，改用显式期望值 `git push --force-with-lease=<分支>:<服务器真实SHA> origin <分支>`——既完成强推，又保留"服务器已被他人改动即拒绝"的保护。
+
 ---
 
 ## 六、撞车归一（发现并行重复怎么办）

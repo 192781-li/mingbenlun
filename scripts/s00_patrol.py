@@ -20,6 +20,7 @@ s00_patrol.py —— S00 大总站巡检工作台
   5. 未合并 PR / 最近 CI 运行（gh 可用时）
   6. 工作区未提交改动
   7. 关键目录文件数
+  8. 分站独立 worktree 隔离一致性（L041：主仓库固定 main、S01-S06 各绑长期分支）
 
 共享文档白名单（sync 只处理这些，且只添加 main 没有的文件）：
   - docs/协作机制/智慧河流/        （append-only，合并仍走 river_sync.sh pull）
@@ -42,6 +43,8 @@ NETCONF = 'docs/协作机制/明旭的记忆/定时任务网络配置.json'
 PROFILE_DIR = 'docs/协作机制/分站'
 REPORT_DIR = 'docs/协作机制/巡检报告'
 SNAPSHOT_FILE = 'docs/协作机制/明旭的记忆/平台快照_latest.json'
+# 分站独立 worktree 根目录（《分站独立工作区Worktree使用规范_20260912》固定路径，教训 L041/PR#100）
+WORKTREE_BASE = '/home/user/mingxu-worktrees'
 
 # 共享文档白名单：sync 只添加这些路径下 main 没有的文件
 SHARED_WHITELIST = [
@@ -228,6 +231,96 @@ def check_dirs():
     return out
 
 
+def parse_worktrees():
+    """解析 `git worktree list --porcelain`，返回 [{path,head,branch,detached}]。"""
+    out = git('worktree', 'list', '--porcelain')
+    wts, cur = [], {}
+    for line in out.splitlines():
+        if not line.strip():
+            if cur:
+                wts.append(cur)
+                cur = {}
+            continue
+        if line.startswith('worktree '):
+            cur['path'] = line[9:].strip()
+        elif line.startswith('HEAD '):
+            cur['head'] = line[5:].strip()
+        elif line.startswith('branch '):
+            ref = line[7:].strip()
+            cur['branch'] = ref[11:] if ref.startswith('refs/heads/') else ref
+        elif line.startswith('detached'):
+            cur['detached'] = True
+    if cur:
+        wts.append(cur)
+    return wts
+
+
+def check_worktrees():
+    """分站独立 worktree 隔离一致性（教训 L041、PR#100、Worktree 使用规范）。
+
+    期望态：主仓库（协调中心，REPO）固定 main；S01–S06 各有
+    WORKTREE_BASE/sXX 且绑定各自长期分支。
+    定级：分站 worktree 缺失/目录丢失/绑错分支 = ERROR（隔离失效会回到 HEAD 互踩，
+    report 的硬错误退出码 1 可在夜间巡检拦截）；主仓库未固定 main、期望表外的额外或
+    失效登记 = WARN（不阻断，提示 prune/回归 main）。
+    """
+    rows = []
+    expected = [('协调中心', REPO, 'main')]
+    for st, br in STATIONS.items():
+        expected.append((st, os.path.join(WORKTREE_BASE, st.lower()), br))
+
+    raw = git('worktree', 'list', '--porcelain')
+    if not raw:
+        err('worktrees', 'git worktree list 无输出，无法核验 worktree 隔离状态')
+        return rows
+    by_path = {w.get('path'): w for w in parse_worktrees()}
+
+    seen = set()
+    for name, path, want_br in expected:
+        w = by_path.get(path)
+        if w is None:
+            if name == '协调中心':
+                continue  # 脚本就运行在主仓库内，主仓库不可能不在列
+            err('worktrees', f'{name} 独立 worktree 缺失：{path} 未登记（隔离失效，见 L041/Worktree规范）')
+            rows.append((name, path, '—', want_br, '❌ 缺失'))
+            continue
+        seen.add(path)
+        actual = 'detached' if w.get('detached') else w.get('branch', '?')
+        alive = os.path.isdir(path)
+        if name == '协调中心':
+            if not alive:
+                warn('worktrees', f'主仓库目录不可达：{path}')
+                state = '⚠️ 目录不可达'
+            elif actual != 'main':
+                warn('worktrees', f'主仓库(协调中心)未固定 main，当前 {actual}，应 git checkout main')
+                state = '⚠️ 未固定main'
+            else:
+                state = '✅ main'
+        else:
+            if not alive:
+                err('worktrees', f'{name} worktree 有登记但目录已丢失：{path}')
+                state = '❌ 目录丢失'
+            elif actual == want_br:
+                state = '✅ 隔离'
+            elif actual.startswith(name.lower() + '-') or actual.startswith(name.lower() + '_'):
+                # 在自己 worktree 内切了本站临时分支：不破坏隔离，只提示干完回归长期分支
+                warn('worktrees', f'{name} worktree 停在本站临时分支 {actual}，干完回长期分支 {want_br}')
+                state = '⚠️ 临时分支'
+            else:
+                # 绑了他站长期分支/无关分支=串台，隔离真失效
+                err('worktrees', f'{name} worktree 绑错/串台：应 {want_br}，实 {actual}')
+                state = '❌ 绑错'
+        rows.append((name, path, actual, want_br, state))
+
+    # 反向核查：期望表之外的额外 worktree（可能是残留/失效登记）
+    for p, w in by_path.items():
+        if p in seen or p == REPO:
+            continue
+        tag = 'detached' if w.get('detached') else w.get('branch', '?')
+        warn('worktrees', f'存在期望表外的 worktree：{p}（{tag}），确认是否残留，必要时 git worktree prune')
+    return rows
+
+
 def check_cultural_archive():
     """文化内容归位检查（结晶025、教训L038）"""
     result = {
@@ -295,6 +388,7 @@ def generate_report(now):
     ws = check_workspace()
     dirs = check_dirs()
     cultural = check_cultural_archive()
+    worktrees = check_worktrees()
 
     ne = sum(1 for l, _, _ in issues if l == 'ERROR')
     nw = sum(1 for l, _, _ in issues if l == 'WARN')
@@ -379,6 +473,13 @@ def generate_report(now):
             lines.append(f'  - 缺失：{d}')
     lines.append('')
 
+    lines.append('## 九、分站 worktree 隔离一致性（L041）')
+    lines.append('| 单元 | 工作区路径 | 当前分支 | 应绑分支 | 状态 |')
+    lines.append('|---|---|---|---|---|')
+    for name, path, actual, want, state in worktrees:
+        lines.append(f'| {name} | {path} | {actual} | {want} | {state} |')
+    lines.append('')
+
     if ws:
         lines.append('## 八、工作区未提交改动')
         for w in ws:
@@ -386,7 +487,7 @@ def generate_report(now):
         lines.append('')
 
     if issues:
-        lines.append('## 九、问题清单（需处理）')
+        lines.append('## 十、问题清单（需处理）')
         for lvl, chk, msg in issues:
             mark = '❌' if lvl == 'ERROR' else '⚠️ '
             lines.append(f'- {mark} [{chk}] {msg}')
