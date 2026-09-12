@@ -96,6 +96,7 @@ find_repo() {
     local dirs=(
         "$(pwd)"
         "$(pwd)/mingbenlun"
+        "/home/user/mingbenlun"
         "$HOME/Desktop/mingbenlun"
         "$HOME/mingbenlun"
         "/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun"
