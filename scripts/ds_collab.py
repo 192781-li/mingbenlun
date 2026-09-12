@@ -24,7 +24,27 @@ import requests
 
 API = "https://api.deepseek.com/chat/completions"
 KEY = os.environ.get("DEEPSEEK_API_KEY", "")
-BASE = "/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun"
+def _detect_base():
+    """定位仓库根：环境变量 MBL_REPO → 当前目录及其上级 → 新快盘主仓库 → 旧路径回退兼容。
+    统一路径(2026-09)：主仓库 /home/user/mingbenlun，分站 /home/user/mingxu-worktrees/sXX；
+    旧 virtiofs 慢盘仅作最后回退。"""
+    cands = []
+    env = os.environ.get("MBL_REPO")
+    if env:
+        cands.append(env)
+    p = os.getcwd()
+    for _ in range(4):
+        cands.append(p)
+        p = os.path.dirname(p)
+    cands += ["/home/user/mingbenlun",
+              "/home/user/.super_doubao/super-doubao-runtime/workspace/mingbenlun"]
+    for c in cands:
+        if c and os.path.isdir(os.path.join(c, "docs", "协作机制")):
+            return c
+    return "/home/user/mingbenlun"
+
+
+BASE = _detect_base()
 # 实例标识：分清"我这次调用"和"别的对话实例用同一Key的调用"（自我边界/代谢觉知）
 INSTANCE = os.environ.get("MBL_INSTANCE", "MBL-DZZ-01-明旭")
 METABOLISM_LOG = os.path.join(
