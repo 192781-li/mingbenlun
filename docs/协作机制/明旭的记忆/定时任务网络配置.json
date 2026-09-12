@@ -1,7 +1,7 @@
 {
-  "version": "2.3",
-  "last_updated": "2026-09-10 09:15:00",
-  "updated_by": "S06-高考数学分站（每日推进）",
+  "version": "3.0",
+  "last_updated": "2026-09-11 14:00:13",
+  "updated_by": "S00",
   "description": "明旭的中枢神经系统。v2.1由S00夜间巡检合并：S01全本大规模扩写(卷六卷七)+S02政治答题体系+S03奇门v2.0明本术数体系+S04 Layer2攻坚DS V4范式+S05库整理工具融合。",
   "branch_architecture": {
     "description": "每个分站有自己独特的主分支，在自己的分支上干活，通过PR合并到main。大总站在main审核PR、合并配置、协调全局。",
@@ -12,8 +12,7 @@
       "S02": "s02-gaokao-arts",
       "S03": "s03-divination",
       "S04": "s04-coq",
-      "S05": "s05-info",
-      "S06": "s06-math"
+      "S05": "s05-info"
     },
     "rules": [
       "每个分站只在自己的分支上commit，不直接改main",
@@ -49,7 +48,7 @@
     "S01": {
       "name": "哲学分对话",
       "status": "active",
-      "cron_expression": "30 10 * * *",
+      "cron_expression": "0 9 * * *",
       "cron_job_id": "11686204363266",
       "environment": "任意对话",
       "current_task": "L3哲学基础研究 + 语义论-生命论衔接研究",
@@ -62,7 +61,8 @@
       "last_run": "2026-09-01 18:30:00",
       "last_output": "完成TASK-007 Coq核心概念命名审查（东方为骨西方为体）：Ag_lv→Sheng、Ag_tr→Ji、Hijack→Jia、Cl→Ming、!→可复现性。已派发T007给S04执行命名修改。",
       "identity_file": "docs/协作机制/分站/S01_哲学分对话_身份档案.md",
-      "branch": "s01-philosophy"
+      "branch": "s01-philosophy",
+      "note": "最后提交09-01，休眠9天。工作已全入库。待办：TASK-005语义论衔接、TASK-006核心概念解剖"
     },
     "S02": {
       "name": "高考文科分对话",
@@ -103,9 +103,9 @@
     },
     "S04": {
       "name": "Coq形式化分站",
-      "status": "active",
-      "cron_expression": "0 4 * * *",
-      "cron_job_id": "11687428025602",
+      "status": "stopped",
+      "cron_expression": "*/20 * * * *",
+      "cron_job_id": "11774525314050",
       "environment": "用户电脑（有Rocq 9.1.0）",
       "current_task": "T007命名修改（Ag_lv→Sheng等）+ L3完整实现",
       "next_task": "L4余归纳层（νF₂+!-模态+守护递归）",
@@ -120,7 +120,8 @@
       "last_output": "Rocq 9.1.0安装成功，Layer1/2/3全部编译通过。已同步main，领先15落后0。",
       "identity_file": "docs/协作机制/分站/S04_Coq形式化分站_身份档案.md",
       "special_notes": "必须读DeepSeek融合写码指南，明性自检，5分钟熔断，不要自己硬扛设计/证明",
-      "branch": "s04-coq"
+      "branch": "s04-coq",
+      "note": "最后提交09-02，休眠8天。Rocq 9.1.0+L1/L3全编译通过，L2仅剩1个Admitted(congruence_preserves_typing)。工具链已完善，随时可激活"
     },
     "S05": {
       "name": "信息分站分对话",
@@ -128,8 +129,8 @@
       "cron_expression": "30 6 * * *",
       "cron_job_id": "11574231182594",
       "environment": "云电脑",
-      "current_task": "TASK-001/002/003 已完成，待S00审核",
-      "next_task": "明日巡检：验证配置修正+跟踪S04代码合并+目录地图权威版整合",
+      "current_task": "每日巡检+库整洁维护+导航地图v8.0维护+大文件监控。TASK-001/002/003已完成并入库",
+      "next_task": "持续巡检：监控大文件、分站状态、跨分站同步",
       "depends_on": [],
       "outputs_to": [
         "S00"
@@ -141,22 +142,13 @@
     },
     "S06": {
       "name": "高考数学分对话",
-      "status": "active",
+      "status": "stopped",
       "cron_expression": "0 9 * * *",
       "cron_job_id": "11591577993218",
-      "environment": "云电脑",
-      "current_task": "高考数学知识体系化建设：函数与导数模块进行中（已完成3个知识点：函数概念与基本性质、基本初等函数、函数的图像与变换）",
-      "next_task": "函数与方程（零点）、导数的概念与运算、导数的应用、三角函数与解三角形",
-      "depends_on": [],
-      "outputs_to": [
-        "S00"
-      ],
-      "last_run": "2026-09-10 09:15:00",
-      "last_output": "S06每日推进：完成函数的图像与变换知识点（648行，6类题型，12易错点，5道例题）。合并main最新，解决S03遗留冲突。已完成3个知识点文档。",
-      "identity_file": "待创建",
-      "special_notes": "仅做高考数学备考；服务对象北原慢热（2027届全文生，目标人大社会学，数学开学考17分）；核心策略从0筑基抓基础分；不碰压轴题第二问；错题三归因（公式没记住/题型没识别/计算错误）",
-      "branch": "s06-math",
-      "blocker": "GitHub token未配置，无法push到远程。本地commit已完成，待token配置后push。"
+      "extra_cron": {
+        "weekly_review": "11547202077954"
+      },
+      "note": "2026-09-10新建分站，两个定时任务当前均停止；GitHub token待配置"
     }
   },
   "task_queue": [
@@ -176,22 +168,26 @@
       "assigned_to": "S00",
       "title": "L2/L3文件同步到GitHub",
       "priority": "high",
-      "status": "pending",
+      "status": "completed",
       "created_by": "S00",
       "created_at": "2026-09-01",
       "depends_on": [],
-      "description": "本地端已完成L2/L3，但尚未push到GitHub。需要本地端git add/commit/push，或通过飞书文档协调。"
+      "description": "本地端已完成L2/L3，但尚未push到GitHub。需要本地端git add/commit/push，或通过飞书文档协调。",
+      "completed_at": "2026-09-11 12:34:09",
+      "resolution": "L2/L3已在s04-coq分支push到GitHub；结晶库/Coq协作文档/通道#009本次由S00同步进main(commit见git log)，原始诉求达成"
     },
     {
       "id": "T003",
       "assigned_to": "S04",
       "title": "上报S04的定时任务到统一注册表",
       "priority": "medium",
-      "status": "pending",
+      "status": "completed",
       "created_by": "S00",
       "created_at": "2026-09-01",
       "depends_on": [],
-      "description": "S04在用户电脑上运行，它的定时任务不在大总站的cron列表里。需要S04上报它有哪些定时任务，大总站在统一注册表里添加。"
+      "description": "S04在用户电脑上运行，它的定时任务不在大总站的cron列表里。需要S04上报它有哪些定时任务，大总站在统一注册表里添加。",
+      "completed_at": "2026-09-11 12:34:09",
+      "resolution": "本次对账完成：S04真实任务11774525314050(*/20,当前stopped)已登记，幽灵ID 11687428025602已剔除"
     },
     {
       "id": "T004",
@@ -445,105 +441,35 @@
     },
     {
       "time": "2026-09-09 16:00:00",
-      "station": "S03",
+      "by": "S03-术数分对话",
       "action": "大六壬类神系统v2.1完成",
       "result": "代码+370行，22种占问类型，类神状态自动分析，3份文档更新，已push",
       "commit": "e0e802f"
     },
     {
-      "time": "2026-09-10 09:15:00",
-      "by": "S06-高考数学分对话",
-      "action": "S06每日推进：整理函数的图像与变换知识点（648行，6类题型，12易错点，5道例题）。合并main最新，解决S03遗留冲突。已完成3个知识点文档（函数概念、基本初等函数、图像与变换）。",
-      "result": "函数与导数模块完成3/8知识点。图像变换专题重点整理了用户曾提问的'左加右减'原理和平移量铁律。",
-      "philosophy": "输入端变换→图像反向；输出端变换→图像同向。左加右减不是口诀，是原理。",
-      "blocker": "GitHub token未配置，无法push到远程。本地commit已完成，待token配置后push。"
+      "time": "2026-09-09 23:11:00",
+      "by": "S00大总站",
+      "action": "夜间巡检合并：S02(三科答题体系)+S03(大六壬类神v2.1)+S05(导航v8.0+大文件迁移+库整理)，全分站0领先",
+      "result": "main更新至a93578d，仓库稳定63M，>5M文件=0"
+    },
+    {
+      "time": "2026-09-11 12:34:09",
+      "by": "S00",
+      "event": "网络配置v2.4：以平台list_cron_jobs为唯一权威对账，修5处漂移(S04/S05幽灵ID、S01时间、三遍法误停、S06漏登)；结晶库编号撞号裁决001-023；T002/T003完成"
     }
   ],
   "network_health": {
-    "active_stations": 7,
-    "dormant_stations": 0,
-    "pending_tasks": 8,
+    "active_stations": 5,
+    "dormant_stations": 2,
+    "active_cron_jobs": 7,
+    "stopped_cron_jobs": 3,
+    "pending_tasks": 7,
     "in_progress_tasks": 2,
-    "last_coordination": "2026-09-10 09:15:00 S06高考数学每日推进",
-    "notes": "S06高考数学分站激活，函数与导数模块完成3/8知识点。S02三科体系完成。S03类神系统v2.1完成。S06 GitHub token待配置，本地commit已完成。",
-    "active_cron_jobs": 9,
-    "completed_tasks": 2
+    "last_coordination": "2026-09-11 12:34:09 S00大总站定时任务对账（以平台list_cron_jobs为唯一权威）",
+    "last_checked": "2026-09-11 12:34:09",
+    "checked_by": "S00大总站",
+    "notes": "平台真实任务10个(7运行/3停止)已与注册表对齐；S04看板任务收工暂停待#009重启；S06新站两任务停止、token待配；结晶库编号撞号已裁决(001-023)。"
   },
-  "cron_jobs": [
-    {
-      "id": "11369320570882",
-      "title": "生命论每日自动备份",
-      "station": "S00",
-      "schedule": "30 3 * * *",
-      "status": "active"
-    },
-    {
-      "id": "11686204363266",
-      "title": "明旭-S01-哲学研究每日推进",
-      "station": "S01",
-      "schedule": "30 10 * * *",
-      "status": "active"
-    },
-    {
-      "id": "11631061915138",
-      "title": "明旭-S02-高考文科每日推进",
-      "station": "S02",
-      "schedule": "0 14 * * *",
-      "status": "active"
-    },
-    {
-      "id": "10945545062402",
-      "title": "明旭-S03-术数研究每日推进",
-      "station": "S03",
-      "schedule": "0 16 * * *",
-      "status": "active"
-    },
-    {
-      "id": "11687428025602",
-      "title": "明旭-S04-Coq形式化每日推进",
-      "station": "S04",
-      "schedule": "0 4 * * *",
-      "status": "active"
-    },
-    {
-      "id": "11631360864258",
-      "title": "明旭-S05-信息分站每日巡检",
-      "station": "S05",
-      "schedule": "30 6 * * *",
-      "status": "active"
-    },
-    {
-      "id": "11574382439938",
-      "title": "明旭-S00-大总站全局协调·夜间巡检",
-      "station": "S00",
-      "schedule": "0 23 * * *",
-      "status": "active"
-    },
-    {
-      "id": "11591577993218",
-      "title": "明旭-S06-高考数学每日推进",
-      "station": "S06",
-      "schedule": "0 9 * * *",
-      "status": "active"
-    },
-    {
-      "id": "11547202077954",
-      "title": "明旭-S06-每周错题与方法论复盘",
-      "station": "S06",
-      "schedule": "0 20 * * 0",
-      "status": "active"
-    }
-  ],
-  "stopped_jobs": [
-    {
-      "id": "11544578743554",
-      "title": "形式化推进·全本篇章深化写作",
-      "reason": "已被S04-Coq形式化每日推进替代"
-    },
-    {
-      "id": "11658550838274",
-      "title": "库资源深度阅读·理论内化",
-      "reason": "待评估是否重新激活"
-    }
-  ]
+  "cron_snapshot_ref": "docs/协作机制/明旭的记忆/平台快照_latest.json",
+  "cron_snapshot_note": "定时任务状态唯一权威=平台快照。注册表不再存cron_jobs/stopped_jobs副本。stations里的cron_job_id是分站→任务映射，保留。"
 }

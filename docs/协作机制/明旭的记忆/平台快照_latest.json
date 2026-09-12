@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "exported_at": "2026-09-11 23:10:43",
+  "exported_by": "S00",
+  "source": "list_cron_jobs (platform) — 唯一权威",
+  "description": "定时任务平台快照。这是库内定时任务状态的唯一权威数据源。注册表不再重复存cron_jobs/stopped_jobs，改为引用本文件。每次夜间巡检由S00用list_cron_jobs重新导出覆盖。",
+  "total": 10,
+  "active_count": 7,
+  "stopped_count": 3,
+  "active": [
+    {
+      "id": "10945545062402",
+      "title": "明旭-S03-术数研究每日推进",
+      "schedule": "0 16 * * *",
+      "status": "active",
+      "last_run": "2026-09-11 15:39:30",
+      "env": "云电脑",
+      "station": "S03"
+    },
+    {
+      "id": "11369320570882",
+      "title": "生命论每日自动备份（含完整性校验）",
+      "schedule": "30 3 * * *",
+      "status": "active",
+      "last_run": "2026-09-11 03:34:47",
+      "env": "云电脑",
+      "station": "S00"
+    },
+    {
+      "id": "11574231182594",
+      "title": "明旭-S05-信息分站每日巡检",
+      "schedule": "30 6 * * *",
+      "status": "active",
+      "last_run": "2026-09-11 06:34:34",
+      "env": "云电脑",
+      "station": "S05"
+    },
+    {
+      "id": "11574382439938",
+      "title": "明旭-S00-大总站全局协调·夜间巡检（SOP从GitHub读取）",
+      "schedule": "0 23 * * *",
+      "status": "active",
+      "last_run": "2026-09-11 23:09:25",
+      "env": "云电脑",
+      "station": "S00"
+    },
+    {
+      "id": "11631061915138",
+      "title": "明旭-S02-高考文科每日推进",
+      "schedule": "0 14 * * *",
+      "status": "active",
+      "last_run": "2026-09-11 14:01:59",
+      "env": "云电脑",
+      "station": "S02"
+    },
+    {
+      "id": "11658550838274",
+      "title": "明旭-S00-库资源深度阅读·三遍法",
+      "schedule": "0 10 * * *",
+      "status": "active",
+      "last_run": "2026-09-11 10:07:40",
+      "env": "云电脑",
+      "station": "S00"
+    },
+    {
+      "id": "11686204363266",
+      "title": "明旭-S01-哲学研究（SOP从GitHub读取）",
+      "schedule": "0 9 * * *",
+      "status": "active",
+      "last_run": "2026-09-11 09:08:26",
+      "env": "云电脑",
+      "station": "S01"
+    }
+  ],
+  "stopped": [
+    {
+      "id": "11547202077954",
+      "title": "明旭-S06-每周错题与方法论复盘",
+      "schedule": "0 20 * * 0",
+      "status": "stopped",
+      "last_run": "未运行",
+      "env": "云电脑",
+      "station": "S06"
+    },
+    {
+      "id": "11591577993218",
+      "title": "明旭-S06-高考数学每日推进",
+      "schedule": "0 9 * * *",
+      "status": "stopped",
+      "last_run": "2026-09-10 09:23:12",
+      "env": "云电脑",
+      "station": "S06"
+    },
+    {
+      "id": "11774525314050",
+      "title": "明旭-S04-Coq形式化（看板驱动）",
+      "schedule": "*/20 * * * *",
+      "status": "stopped",
+      "last_run": "2026-09-11 00:24:05",
+      "env": "本地电脑",
+      "station": "S04"
+    }
+  ]
+}

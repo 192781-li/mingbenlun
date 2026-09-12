@@ -1,0 +1,19 @@
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.ipynb_checkpoints/
+
+# 系统/临时
+.DS_Store
+*.tmp
+Thumbs.db
+
+# 不纳入版本控制的残留
+**/_backup_*/
+**/~*/
+
+# 本地环境
+.venv/
+venv/
