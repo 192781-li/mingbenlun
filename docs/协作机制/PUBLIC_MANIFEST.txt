@@ -15,9 +15,10 @@
 !生命论_模块化/manifest.json
 !生命论_模块化/manifest.txt
 
-# —— 研究成稿（编年史原始消息 json 是过程数据，排除）——
+# —— 研究成稿（编年史/地毯分析是逐块原始过程稿，整目录排除）——
 docs/notes/理论研究/
-!docs/notes/理论研究/编年史_史官/timeline_messages.json
+!docs/notes/理论研究/编年史_史官/**
+!docs/notes/理论研究/地毯分析_史官/**
 docs/notes/哲学研究/
 docs/notes/方法论/
 docs/notes/历史政治/
@@ -44,8 +45,9 @@ docs/阅读笔记/
 # —— 知识库成果（html + 索引 json）——
 docs/reference_materials/知识库/
 
-# —— 正文配图 ——
+# —— 正文配图（概念意境图可公开；rick_avatar 为第三方版权动画玩梗图，排除）——
 docs/assets/images/
+!docs/assets/images/rick_avatar.png
 
 # —— 智慧结晶（C 档：公开；内部协作结晶清洗后才放行，首版先由洁净门拦下）——
 docs/协作机制/智慧河流/智慧结晶库.md
