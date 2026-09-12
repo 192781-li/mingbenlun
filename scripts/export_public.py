@@ -173,27 +173,65 @@ META_LABEL = re.compile(r'^\s*[-*|\s]*\*\*[^*\n*]{1,14}\*\*\s*[:：]')
 # 文首元信息行命中以下“内部生产痕迹”即整行剥离（仅作用于正文开始之前的头部区）
 HEAD_DROP = re.compile(
     r'S0[0-6]|分站|明旭|大总站|定时任务|cron|DeepSeek|deepseek|workbuddy|doubao|豆包|doubaocdn|'
-    r'核验|巡检|激活|指令包|本主对话|长谈|对话产出|答题训练|AGENTS|协作机制|mingbenlun|'
+    r'核验|巡检|激活|触发|指令包|本主对话|长谈|对话产出|答题训练|AGENTS|协作机制|mingbenlun|'
     r'PR#|三遍法|用户原话|飞书|worktree|编制|记录人|记录者|执行者|研判分站|研究分站|'
-    r'审查分站|收件|发件|验收|归档|整理者')
+    r'审查分站|收件|发件|验收|归档')
+# 注：“整理者/作者裁定”等词不入 DROP——文首可能用它们定义正文沿用的【原】【显】图例，删了读者看不懂
 
 
-def _head_end(lines, cap=25):
-    """正文起点：前 cap 行内第一个分隔线 --- 或二级标题 ##。"""
-    for i in range(min(cap, len(lines))):
+def _head_end(lines, cap=40):
+    """正文起点：从首行起连续的“头部元信息形态”结束处。头部形态含标题(#)、空行、
+    > 引用、**标签**：行、---、以及 <!-- ... --> HTML 注释元数据块（可跨行）。
+    不按“第一个 ##”判定（有文件直接用 ## 当大标题）；首行即普通正文则 he=0。"""
+    i, in_comment = 0, False
+    while i < min(cap, len(lines)):
         s = lines[i].strip()
-        if s == '---' or s.startswith('## '):
-            return i
-    return min(cap, len(lines))
+        if in_comment:
+            if '-->' in s:
+                in_comment = False
+            i += 1
+            continue
+        if s.startswith('<!--'):
+            if '-->' not in s:
+                in_comment = True
+            i += 1
+            continue
+        if not s or s.startswith('#') or s.startswith('>') or s == '---' or META_LABEL.match(lines[i]):
+            i += 1
+            continue
+        break
+    return i
 
 
 def sanitize_text(txt):
-    """只净化文首元信息头（去内部分站前缀、统一作者署名、剥离生产过程元信息行）。
-    正文（head_end 之后）一字不动。返回 (净化后文本, 是否改动)。"""
+    """只净化文首元信息头：①整块剥离 <!-- --> 内部元数据并补一行中性署名；
+    ②标题去内部分站前缀；③作者行统一笔名（只一次）；④剥离含生产痕迹的 > / **标签** 行。
+    正文（head_end 之后）一字不动。返回 (净化文本, 是否改动)。"""
     lines = txt.split('\n')
     he = _head_end(lines)
     out, changed, author_done = [], False, False
-    for i, line in enumerate(lines):
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if i < he and line.strip().startswith('<!--'):  # HTML注释元数据块整块剥离
+            j, blob, closed = i, [], False
+            limit = min(len(lines), he + 40)
+            while j < limit:
+                blob.append(lines[j])
+                if '-->' in lines[j]:
+                    j += 1
+                    closed = True
+                    break
+                j += 1
+            if not closed:  # 未闭合注释：安全降级，保留原文交内容门判定
+                out.append(line)
+                i += 1
+                continue
+            if not author_done and any(('作者' in b or '著者' in b) for b in blob):
+                out.append('> 作者：' + SIGNATURE_TERM)
+                author_done = True
+            changed, i = True, j
+            continue
         if i < he:
             mt = TITLE_PREFIX.match(line)
             if mt:  # 标题去内部分站前缀
@@ -204,12 +242,15 @@ def sanitize_text(txt):
                     out.append('> 作者：' + SIGNATURE_TERM)
                     author_done = True
                 changed = True
+                i += 1
                 continue
             is_meta = bool(META_QUOTE.match(line) or META_LABEL.match(line))
             if is_meta and HEAD_DROP.search(line):
                 changed = True
+                i += 1
                 continue  # 含内部生产痕迹的元信息行整行剥离
         out.append(line)
+        i += 1
     res, blank = [], 0  # 3+ 连续空行压成 2
     for ln in out:
         if ln.strip() == '':
