@@ -213,10 +213,10 @@ def integrate_existing(pr_number, base='main', max_retry=3):
         git('checkout', '-q', orig, check=False)
         git('branch', '-D', tmp, check=False)
 
-    git('fetch', 'origin', base)
-    git('fetch', 'origin', head)
     for attempt in range(1, max_retry + 1):
-        info(f"-- 第 {attempt}/{max_retry} 轮：取 {head} 到 {tmp}，rebase origin/{base}")
+        info(f"-- 第 {attempt}/{max_retry} 轮：fetch 最新，取 {head} 到 {tmp}，rebase origin/{base}")
+        # 必须全量 fetch：`git fetch origin <单分支>` 只更新 FETCH_HEAD、不产生 origin/<head> 跟踪引用
+        git('fetch', 'origin')
         git('checkout', '-q', '-B', tmp, f'origin/{head}')
         rr = subprocess.run(
             ['git', '-C', REPO, '-c', 'core.quotepath=false', 'rebase', f'origin/{base}'],
