@@ -1,13 +1,13 @@
 {
   "version": "1.0",
-  "exported_at": "2026-09-12 17:45:31",
+  "exported_at": "2026-09-12 23:30:15",
   "exported_by": "S00",
   "source": "list_cron_jobs (platform) — 唯一权威",
   "description": "定时任务平台快照。这是库内定时任务状态的唯一权威数据源。注册表不再重复存cron_jobs/stopped_jobs，改为引用本文件。每次夜间巡检/全局协调由S00用list_cron_jobs(enable=true/false)重新导出覆盖。",
   "total": 10,
   "active_count": 7,
   "stopped_count": 3,
-  "reconcile_note": "2026-09-12 17:45 S00全局协调对账：平台10任务与注册表v3.0完全一致、零漂移，仅刷新最近运行时间。",
+  "reconcile_note": "2026-09-12 23:30 S00夜间巡检对账：平台10任务与注册表v3.0一致、零漂移（无幽灵ID/无状态不符/无漏登），仅刷新最近运行时间。",
   "active": [
     {
       "id": "10945545062402",
@@ -41,10 +41,9 @@
       "title": "明旭-S00-大总站全局协调·夜间巡检（SOP从GitHub读取）",
       "schedule": "0 23 * * *",
       "status": "active",
-      "last_run": "2026-09-11 23:09:25",
+      "last_run": "2026-09-12 23:28:55",
       "env": "云电脑",
-      "station": "S00",
-      "manual_note": "2026-09-12 17:45 由用户手动触发一次全局协调（非23点自动）"
+      "station": "S00"
     },
     {
       "id": "11631061915138",
