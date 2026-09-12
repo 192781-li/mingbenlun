@@ -53,6 +53,8 @@ RE_INTERNAL = re.compile('|'.join(re.escape(t) for t in INTERNAL_TERMS))
 INTERNAL_REGEX = [re.compile(r'智能体\s*\d{4}[/年-]'), re.compile(r'[（(]\s*智能体'),
                   re.compile(r'通信邮箱|作者单位|收稿日期|作者简介')]
 # 注：deepseek/豆包/doubao 是正文合法讨论对象（如“DeepSeek 干渠”），故意不硬拦
+# 文件名/路径层面的内部代号：内容净化管不到文件名，路径命中一律拦下（改名后才放）
+PATH_INTERNAL = re.compile(r'S0[0-6]|分站|明旭|大总站|大乱炖|定时任务|worktree')
 SIGNATURE_TERM = '北原慢热'  # 作者笔名，允许公开，仅计数告知
 
 TEXT_EXT = {'.md', '.txt', '.json', '.html', '.csv', '.py', '.yml', '.yaml',
@@ -256,6 +258,8 @@ def partition(files, block_hits):
     clean, held, sig, san_map = [], [], 0, {}
     for rel in files:
         block = set(block_by.get(rel, []))
+        if PATH_INTERNAL.search(rel):  # 文件名/路径含内部代号，拦下转人工改名
+            block.add('文件名含内部代号')
         ext = os.path.splitext(rel)[1].lower()
         if ext not in TEXT_EXT:
             if block:
