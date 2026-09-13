@@ -83,6 +83,11 @@ CONFIG_DIRS = [
     'scripts/',
 ]
 
+# 大小门（第五层过滤）：超过此大小的文件不自动同步到main。
+# 依据《仓库优化方案与大文件管理规范》：>5M 归私有档案库 mingbenlun-archive，
+# 防止超长一手对话记录经自动同步回流母本（2026-09-13 夜间巡检查出此缺口）。
+MAX_SYNC_BYTES = 5 * 1024 * 1024
+
 
 def git(*args, check=True):
     """运行git命令，返回stdout。"""
@@ -118,6 +123,14 @@ def get_unique_files(branch):
     out = git('diff', '--name-only', '--diff-filter=A', 'origin/main', f'origin/{branch}')
     files = [f for f in out.split('\n') if f.strip()]
     return files
+
+
+def get_blob_size(branch, filepath):
+    """获取 origin/branch 上某文件 blob 的字节数（不检出工作区）。查不到返回0。"""
+    try:
+        return int(git('cat-file', '-s', f'origin/{branch}:{filepath}'))
+    except Exception:
+        return 0
 
 
 def should_sync(filepath):
@@ -165,6 +178,12 @@ def analyze_station(station, branch):
     for f in unique_files:
         sync, reason = should_sync(f)
         if sync:
+            # 第五层：大小门，>5M 不回流母本（归私有档案库）
+            size = get_blob_size(branch, f)
+            if size > MAX_SYNC_BYTES:
+                mb = size // (1024 * 1024) + 1
+                skipped.append((f, f"大文件约{mb}M>5M，归私有档案库不同步"))
+                continue
             to_sync.append(f)
         else:
             skipped.append((f, reason))
