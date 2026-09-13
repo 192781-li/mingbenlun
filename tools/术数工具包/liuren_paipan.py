@@ -744,18 +744,66 @@ def get_three_transmissions(four_lessons, day_stem, day_branch, heaven_plate, mo
             return (first, second, third, f"涉害法(深度{best_depth})")
 
     elif len(xia_ke_shang) == 0 and len(shang_ke_xia) > 0:
-        # 遥克法：无下克上，有上克下
-        # 蒿矢法：神克日（天盘克日干）
-        # 弹射法：日克神（日干克天盘）
-        # 简化：取第一个上克下的天盘为初传
-        first = shang_ke_xia[0][2]
+        # 课内上克下（无下贼）：唯一=元首；多个亦当比用/涉害（与多贼同法）。
+        # 注意这是"四课内"上克下，不是遥克——遥克是四课上下全无克、日干与上神隔空相克。
+        if len(shang_ke_xia) == 1:
+            first = shang_ke_xia[0][2]
+            second = heaven_plate[first]
+            third = heaven_plate[second]
+            return (first, second, third, "元首法(唯一上克下)")
+        # 多个上克下：先取与日干比和者，再按涉害深浅（与下克上的比/涉完全同构）
+        day_element = STEM_ELEMENT[day_stem]
+        bihe_list = [(n, e, h) for n, e, h in shang_ke_xia
+                     if BRANCH_ELEMENT[h] == day_element]
+        if len(bihe_list) == 1:
+            pick = bihe_list[0]; tag = "比用法"
+        else:
+            cand = bihe_list if bihe_list else shang_ke_xia
+            best = None; best_depth = -1
+            for n, e, h in cand:
+                depth = calc_shehai_depth(day_stem, h, e)
+                if depth > best_depth:
+                    best_depth = depth; best = (n, e, h)
+            pick = best; tag = f"涉害法(深度{best_depth})"
+        first = pick[2]
         second = heaven_plate[first]
         third = heaven_plate[second]
-        return (first, second, third, "遥克法(蒿矢/弹射)")
+        return (first, second, third, tag)
 
     else:
-        # 昴星法：四课无克
-        # 阳日取酉上神为初传，阴日取酉下神为初传
+        # 四课上下全无克：先论日干与四课上神的遥克（蒿矢/弹射），无遥才论昴星。
+        ds_el = STEM_ELEMENT[day_stem]
+        haoshi = []  # 上神遥克日（神克日）
+        tanshe = []  # 日遥克上神（日克神）
+        for name, earth, heaven in four_lessons:
+            h_el = BRANCH_ELEMENT[heaven]
+            if ELEMENT_KE[h_el] == ds_el:    # 上神五行克日干五行
+                haoshi.append((name, earth, heaven))
+            elif ELEMENT_KE[ds_el] == h_el:  # 日干五行克上神五行
+                tanshe.append((name, earth, heaven))
+        if haoshi or tanshe:
+            # 课经次序：先蒿矢（神克日）后弹射（日克神）。
+            # 唯一=直取该上神；多现=取涉害最深者为初传。
+            # 硬逻辑：遥克候选（克日/被日克）的五行必异于日干，否则不构成克，
+            # 故课内多克的"比用"分支在遥克层逻辑不可达，多现直接按涉害取。
+            if haoshi:
+                cand = haoshi; base_kind = "蒿矢法(上神遥克日)"
+            else:
+                cand = tanshe; base_kind = "弹射法(日遥克上神)"
+            if len(cand) == 1:
+                pick = cand[0]; tag = base_kind
+            else:
+                best = None; best_depth = -1
+                for n, e, h in cand:
+                    depth = calc_shehai_depth(day_stem, h, e)
+                    if depth > best_depth:
+                        best_depth = depth; best = (n, e, h)
+                pick = best; tag = base_kind + f"·涉害(深度{best_depth})"
+            first = pick[2]
+            second = heaven_plate[first]
+            third = heaven_plate[second]
+            return (first, second, third, tag)
+        # 无克、亦无遥克：昴星法（阳日取酉上神，阴日取酉下神）
         day_stem_idx = STEMS.index(day_stem)
         is_yang_day = (day_stem_idx % 2 == 0)  # 甲丙戊庚壬为阳
         if is_yang_day:
@@ -878,13 +926,18 @@ def judge_keti(four_lessons, three_transmissions, method, month_general, hour_br
         # 无下克上、唯一上克下=元首
         keti.append("元首课(唯一上克下为用)")
     elif n_xia == 0 and n_shang > 1:
-        # 无下克上、多个上克下，亦当比用/涉害（现有三传简化取首者，标注）
-        if first in SI_MENG:
-            keti.append("见机课(多上克下涉害取孟)")
-        elif first in SI_ZHONG:
-            keti.append("察微课(多上克下涉害取仲)")
+        # 无下克上、多个上克下，与多贼同走比用/涉害
+        if method == "比用法":
+            keti.append("知一课(多上克下取比)")
+        elif method.startswith("涉害法"):
+            if first in SI_MENG:
+                keti.append("见机课(多上克下涉害取孟)")
+            elif first in SI_ZHONG:
+                keti.append("察微课(多上克下涉害取仲)")
+            else:
+                keti.append("缀瑕课(多上克下涉害取季/复等)")
         else:
-            keti.append("缀瑕/涉害课(多上克下,三传取法待精化)")
+            keti.append("涉害课(多上克下,待辨)")
     else:
         # 四课上下全无克：论日干与四课上神的遥克（真蒿矢/弹射）
         yaoke = False
