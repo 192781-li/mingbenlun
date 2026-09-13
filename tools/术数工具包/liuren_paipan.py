@@ -782,13 +782,27 @@ def get_three_transmissions(four_lessons, day_stem, day_branch, heaven_plate, mo
             elif ELEMENT_KE[ds_el] == h_el:  # 日干五行克上神五行
                 tanshe.append((name, earth, heaven))
         if haoshi or tanshe:
-            # 课经次序：先蒿矢（神克日）后弹射（日克神）；多个当比和/涉害，简化取首者。
-            pick = haoshi[0] if haoshi else tanshe[0]
-            kind = "蒿矢法(上神遥克日)" if haoshi else "弹射法(日遥克上神)"
+            # 课经次序：先蒿矢（神克日）后弹射（日克神）。
+            # 唯一=直取该上神；多现=取涉害最深者为初传。
+            # 硬逻辑：遥克候选（克日/被日克）的五行必异于日干，否则不构成克，
+            # 故课内多克的"比用"分支在遥克层逻辑不可达，多现直接按涉害取。
+            if haoshi:
+                cand = haoshi; base_kind = "蒿矢法(上神遥克日)"
+            else:
+                cand = tanshe; base_kind = "弹射法(日遥克上神)"
+            if len(cand) == 1:
+                pick = cand[0]; tag = base_kind
+            else:
+                best = None; best_depth = -1
+                for n, e, h in cand:
+                    depth = calc_shehai_depth(day_stem, h, e)
+                    if depth > best_depth:
+                        best_depth = depth; best = (n, e, h)
+                pick = best; tag = base_kind + f"·涉害(深度{best_depth})"
             first = pick[2]
             second = heaven_plate[first]
             third = heaven_plate[second]
-            return (first, second, third, kind)
+            return (first, second, third, tag)
         # 无克、亦无遥克：昴星法（阳日取酉上神，阴日取酉下神）
         day_stem_idx = STEMS.index(day_stem)
         is_yang_day = (day_stem_idx % 2 == 0)  # 甲丙戊庚壬为阳
