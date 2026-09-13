@@ -321,13 +321,43 @@ def check_worktrees():
     return rows
 
 
+# 文化品味总档案只收"精神食谱"（音乐/影视/书/诗歌/学者/博主/人物等文化养料）。
+# 旧口径"整个docs扫>20KB、文件名前10字搜不到就算未登记"会把工程文档、原始素材、学习
+# 材料、生命论自身研究产出一并误报（125条里真精神食谱只有约23条）。2026-09-12 改为按前缀
+# 分三桶：exempt 工程/原料/学习（不计）、research 生命论自身研究产出（单列、不WARN）、
+# 其余才是精神食谱候选（真WARN）。白名单由 S00 维护、S05 可按导出清单调整。
+CULTURE_EXEMPT_PREFIXES = (
+    'docs/协作机制', 'docs/raw_materials', 'docs/高考数学', 'docs/文科学习',
+    'docs/visualizations', 'docs/notes/术数研究', 'docs/notes/工具自动化',
+    'docs/notes/信息分站', 'docs/notes/全本结构', 'docs/notes/时间线',
+)
+CULTURE_RESEARCH_PREFIXES = (
+    'docs/notes/理论研究', 'docs/notes/哲学研究', 'docs/notes/方法论',
+    'docs/notes/讨论记录', 'docs/notes/历史政治', 'docs/notes/毛泽东研究',
+)
+
+
+def _culture_bucket(rel):
+    """返回 exempt(非文化档案)/research(生命论自身研究)/culture(精神食谱候选)。"""
+    if rel.startswith(CULTURE_EXEMPT_PREFIXES):
+        return 'exempt'
+    if rel.startswith(CULTURE_RESEARCH_PREFIXES):
+        return 'research'
+    # 对话与闪光目录下的"NN_卷N_..."是生命论各卷正文成稿，属自身产出而非精神食谱
+    if re.search(r'/对话与闪光/\d+_卷', rel):
+        return 'research'
+    return 'culture'
+
+
 def check_cultural_archive():
-    """文化内容归位检查（结晶025、教训L038）"""
+    """文化内容归位检查（结晶025、教训L038；2026-09-12 分桶消误报）"""
     result = {
         'archive_exists': False,
         'large_files_total': 0,
         'large_files_indexed': 0,
-        'large_files_missing': [],
+        'large_files_missing': [],      # 精神食谱候选、真未登记（WARN）
+        'large_files_exempted': [],     # 工程/原料/学习材料，不计文化登记
+        'large_files_research': [],     # 生命论自身研究产出，单列、不WARN
         'dirs_checked': 0,
         'dirs_missing': [],
     }
@@ -339,7 +369,7 @@ def check_cultural_archive():
     with open(archive_path, 'r', encoding='utf-8') as f:
         archive_text = f.read()
 
-    # 检查>20KB的md文件是否在总档案中被引用
+    # 检查>20KB的md文件是否在总档案中被引用（文件全名或前10字符命中皆算已登记）
     for root, dirs, files in os.walk(os.path.join(REPO, 'docs')):
         for fn in files:
             if not fn.endswith('.md'):
@@ -349,10 +379,13 @@ def check_cultural_archive():
             if size > 20 * 1024:
                 rel = os.path.relpath(fp, REPO)
                 result['large_files_total'] += 1
-                basename = os.path.basename(rel).replace('.md', '')
-                key = basename[:10]
-                if key and key in archive_text:
+                stem = os.path.basename(rel)[:-3]
+                if (stem and stem in archive_text) or (stem[:10] and stem[:10] in archive_text):
                     result['large_files_indexed'] += 1
+                elif _culture_bucket(rel) == 'exempt':
+                    result['large_files_exempted'].append((rel, size))
+                elif _culture_bucket(rel) == 'research':
+                    result['large_files_research'].append((rel, size))
                 else:
                     result['large_files_missing'].append((rel, size))
 
@@ -373,7 +406,10 @@ def check_cultural_archive():
             result['dirs_missing'].append(d)
 
     if result['large_files_missing']:
-        warn('cultural', f'{len(result["large_files_missing"])}个>20KB文件可能未在文化品味总档案中登记')
+        warn('cultural',
+             f'精神食谱候选未登记{len(result["large_files_missing"])}个'
+             f'（另：工程/原料/学习豁免{len(result["large_files_exempted"])}、'
+             f'生命论研究单列{len(result["large_files_research"])}）')
     return result
 
 
@@ -460,13 +496,16 @@ def generate_report(now):
 
     lines.append('## 八、文化内容归位巡检')
     lines.append(f'- 文化品味总档案：{"存在" if cultural["archive_exists"] else "不存在"}')
-    lines.append(f'- >20KB文件：{cultural["large_files_total"]}个，已登记{cultural["large_files_indexed"]}个')
+    lines.append(
+        f'- >20KB文件：共{cultural["large_files_total"]}个，已登记{cultural["large_files_indexed"]}个；'
+        f'工程/原料/学习豁免{len(cultural["large_files_exempted"])}个，'
+        f'生命论研究产出单列{len(cultural["large_files_research"])}个')
     if cultural['large_files_missing']:
-        lines.append(f'- 可能未登记：{len(cultural["large_files_missing"])}个')
+        lines.append(f'- 精神食谱候选未登记（WARN，交S05登记）：{len(cultural["large_files_missing"])}个')
         for rel, size in cultural['large_files_missing'][:10]:
             lines.append(f'  - {rel}（{size//1024}KB）')
     else:
-        lines.append('- 可能未登记：无')
+        lines.append('- 精神食谱候选未登记：无')
     lines.append(f'- 必查目录：{cultural["dirs_checked"]}个，缺失{len(cultural["dirs_missing"])}个')
     if cultural['dirs_missing']:
         for d in cultural['dirs_missing'][:5]:

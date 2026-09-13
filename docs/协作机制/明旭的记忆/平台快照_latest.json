@@ -1,19 +1,20 @@
 {
   "version": "1.0",
-  "exported_at": "2026-09-11 23:10:43",
+  "exported_at": "2026-09-12 23:30:15",
   "exported_by": "S00",
   "source": "list_cron_jobs (platform) — 唯一权威",
-  "description": "定时任务平台快照。这是库内定时任务状态的唯一权威数据源。注册表不再重复存cron_jobs/stopped_jobs，改为引用本文件。每次夜间巡检由S00用list_cron_jobs重新导出覆盖。",
+  "description": "定时任务平台快照。这是库内定时任务状态的唯一权威数据源。注册表不再重复存cron_jobs/stopped_jobs，改为引用本文件。每次夜间巡检/全局协调由S00用list_cron_jobs(enable=true/false)重新导出覆盖。",
   "total": 10,
   "active_count": 7,
   "stopped_count": 3,
+  "reconcile_note": "2026-09-12 23:30 S00夜间巡检对账：平台10任务与注册表v3.0一致、零漂移（无幽灵ID/无状态不符/无漏登），仅刷新最近运行时间。",
   "active": [
     {
       "id": "10945545062402",
       "title": "明旭-S03-术数研究每日推进",
       "schedule": "0 16 * * *",
       "status": "active",
-      "last_run": "2026-09-11 15:39:30",
+      "last_run": "2026-09-12 15:46:29",
       "env": "云电脑",
       "station": "S03"
     },
@@ -22,7 +23,7 @@
       "title": "生命论每日自动备份（含完整性校验）",
       "schedule": "30 3 * * *",
       "status": "active",
-      "last_run": "2026-09-11 03:34:47",
+      "last_run": "2026-09-12 03:30:25",
       "env": "云电脑",
       "station": "S00"
     },
@@ -31,7 +32,7 @@
       "title": "明旭-S05-信息分站每日巡检",
       "schedule": "30 6 * * *",
       "status": "active",
-      "last_run": "2026-09-11 06:34:34",
+      "last_run": "2026-09-12 06:30:30",
       "env": "云电脑",
       "station": "S05"
     },
@@ -40,7 +41,7 @@
       "title": "明旭-S00-大总站全局协调·夜间巡检（SOP从GitHub读取）",
       "schedule": "0 23 * * *",
       "status": "active",
-      "last_run": "2026-09-11 23:09:25",
+      "last_run": "2026-09-12 23:28:55",
       "env": "云电脑",
       "station": "S00"
     },
@@ -49,7 +50,7 @@
       "title": "明旭-S02-高考文科每日推进",
       "schedule": "0 14 * * *",
       "status": "active",
-      "last_run": "2026-09-11 14:01:59",
+      "last_run": "2026-09-12 14:01:00",
       "env": "云电脑",
       "station": "S02"
     },
@@ -58,7 +59,7 @@
       "title": "明旭-S00-库资源深度阅读·三遍法",
       "schedule": "0 10 * * *",
       "status": "active",
-      "last_run": "2026-09-11 10:07:40",
+      "last_run": "2026-09-12 10:01:47",
       "env": "云电脑",
       "station": "S00"
     },
@@ -67,7 +68,7 @@
       "title": "明旭-S01-哲学研究（SOP从GitHub读取）",
       "schedule": "0 9 * * *",
       "status": "active",
-      "last_run": "2026-09-11 09:08:26",
+      "last_run": "2026-09-12 09:03:45",
       "env": "云电脑",
       "station": "S01"
     }
@@ -89,7 +90,8 @@
       "status": "stopped",
       "last_run": "2026-09-10 09:23:12",
       "env": "云电脑",
-      "station": "S06"
+      "station": "S06",
+      "note": "GitHub token 待配置后恢复"
     },
     {
       "id": "11774525314050",
@@ -98,7 +100,8 @@
       "status": "stopped",
       "last_run": "2026-09-11 00:24:05",
       "env": "本地电脑",
-      "station": "S04"
+      "station": "S04",
+      "note": "本地电脑运行，路径体系不同，不套云电脑worktree包；恢复须主人拍板"
     }
   ]
 }

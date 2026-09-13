@@ -2,34 +2,25 @@
   "station": "S05",
   "name": "信息分站（明旭神经系统）",
   "branch": "s05-info",
-  "last_update": "2026-09-12T17:40 每日巡检：本地s05-info rebase对齐main（10个旧提交全部识别为已在upstream而drop，线性无merge）；产出进度报告v10+目录地图v11",
-  "current_task": "本次巡检产出走s05_pr.py一键PR；远程s05-info待force-with-lease对齐main",
-  "status": "active_巡检正常_线性历史已修复",
+  "last_update": "2026-09-12T19:55 大文件保密迁移：6个>5M文件从公开主库移除（5对话逐字节核对档案库已存、overclaim更新为最新版），.gitignore防回流，档案库新增总INDEX(ef4aedf)",
+  "current_task": "本次迁移走PR；历史提交中的私人内容需git filter-repo才能彻底清除，待用户确认",
+  "status": "active_大文件归零_保密迁移完成",
   "baseline": {
-    "main_head": "c8b7a76",
-    "total_files": 1600,
-    "files_change": "1628→1600（site/产物不再入库）"
-  },
-  "station_snapshot": {
-    "S00": "active 0领先（保障开工包#110/备份#109）",
-    "S01": "领先15落后23，建议合并",
-    "S02": "领先8落后21，建议合并",
-    "S03": "领先23落后132，建议合并+需深度同步",
-    "S04": "休眠 领先41落后489，.v不碰",
-    "S06": "领先8落后273，建议合并+需深度同步"
+    "files_over_5M": 0,
+    "note": "6→0，主库减约71M"
   },
   "key_achievements": [
-    "本地s05-info用rebase -X ours一次性对齐main，10个旧提交全部识别为patch already upstream，消除历史merge commit噪音、保线性",
-    "生成各分站进度报告v10（含领先/落后、建议合并、需同步、配置一致性、模式合规度）",
-    "生成全库目录地图v11（1600文件，顶层+docs二级精确占比，卷名以源文件实际为准）"
+    "逐字节比对确认5个对话档案库副本与主库一致，主库安全移除",
+    "overclaim_report最新完整版(27.7M)更新到档案库auto_reports",
+    ".gitignore加入6文件防回流规则，根治旧分支重新引入",
+    "档案库新增总INDEX导航(ef4aedf)"
   ],
   "blockers": [
-    ">5M文件6个（5个对话记录+overclaim_report 27M），不擅自删，迁移/保留待用户定夺",
-    "S03/S04/S06落后main均超130，再激活成本高，需各站先rebase",
-    "S04 split_assoc技术难点，属Coq范畴S05不介入"
+    "git公开历史中仍留有这些文件，删除当前版本不能抹除历史；彻底保密需filter-repo重写历史(改hash/分站重新克隆)，待用户拍板",
+    "S03/S04/S06落后main超130需先rebase"
   ],
-  "next_action": "s05_pr.py一键提交本次两份产出→force对齐远程s05-info→更新运行状态机",
-  "progress_score": 82,
-  "heading_check": "0错误（15警告为历史遗留）",
+  "next_action": "本次迁移commit走PR→对齐s05-info=main",
+  "progress_score": 85,
+  "heading_check": "0错误",
   "json_valid": true
 }

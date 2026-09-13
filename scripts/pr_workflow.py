@@ -19,6 +19,11 @@ pr_workflow.py —— PR 半自动化工作流
   # 当前已经在特性分支上且已commit，直接开PR+等CI+合并
   python3 scripts/pr_workflow.py --title "标题"
 
+  # S00 合门人：集成一个【别人已开好】的 PR——追平其head→带实时SHA安全强推→等CI→squash合入
+  # 工作区必须干净；rebase 冲突不自动解（.v 绝不代解）；重复 PR(ahead=0) 不推不合、只提示关闭
+  python3 scripts/pr_workflow.py --integrate 75
+  # 集成前先体检哪些 PR 重复/过期/可合：python3 scripts/pr_health.py
+
 流程：
   1. 检查 gh 可用、在 git 仓库
   2. 有未提交改动则自动 commit（用 --title 作为 commit message）
@@ -176,9 +181,100 @@ def rebase_to_latest(branch, base):
     return True
 
 
+def integrate_existing(pr_number, base='main', max_retry=3):
+    """集成一个【已存在】的 PR（固化 #75 手工流程）：
+    取其 head 分支 → rebase 最新 base → 带"实时 SHA"安全强推 → 等 CI → squash 合入。
+    - 专治高并发下 not up to date，以及普通 --force-with-lease 的 stale info；
+    - rebase 冲突不自动解（.v 冲突绝不代解），立即 abort、回原分支、报错；
+    - rebase 后若 ahead=0（内容已在 base，#86 重复型）则不推不合、提示关闭。
+    返回 True 已合入，False 未合入（已安全回退、不残留现场）。
+    """
+    import json
+    info(f"=== 集成已存在 PR #{pr_number} ===")
+    if has_uncommitted():
+        err("工作区有未提交改动；为避免卷入在途内容，集成前请先落定或 stash。已停止。")
+        return False
+    orig = get_current_branch()
+    raw = gh('pr', 'view', str(pr_number), '--json',
+             'headRefName,baseRefName,title,state,url', check=False)
+    if not raw:
+        err(f"读不到 PR #{pr_number}（不存在或无权限），停止。")
+        return False
+    meta = json.loads(raw)
+    if meta.get('state') != 'OPEN':
+        err(f"PR #{pr_number} 状态为 {meta.get('state')}，非 OPEN，停止。")
+        return False
+    head = meta['headRefName']
+    base = meta.get('baseRefName') or base
+    tmp = f'_int-{pr_number}'
+    info(f"标题：{meta.get('title','')[:60]}；{head} → {base}")
+
+    def cleanup():
+        git('checkout', '-q', orig, check=False)
+        git('branch', '-D', tmp, check=False)
+
+    for attempt in range(1, max_retry + 1):
+        info(f"-- 第 {attempt}/{max_retry} 轮：fetch 最新，取 {head} 到 {tmp}，rebase origin/{base}")
+        # 本仓库 remote.origin.fetch 只跟踪 main（性能定制），其他分支不建 origin/<head>：
+        # 故 base 用 fetch 更新的 origin/<base>，head 用 `git fetch origin <head>` 后的 FETCH_HEAD。
+        git('fetch', 'origin')                  # 更新 origin/<base>（refspec 只抓 main）
+        git('fetch', 'origin', head)            # 远程 head 落到 FETCH_HEAD
+        git('checkout', '-q', '-B', tmp, 'FETCH_HEAD')
+        rr = subprocess.run(
+            ['git', '-C', REPO, '-c', 'core.quotepath=false', 'rebase', f'origin/{base}'],
+            capture_output=True, text=True)
+        if rr.returncode != 0:
+            err(f"rebase 冲突/失败，不自动解决（.v 冲突绝不代解）：{rr.stderr.strip()[:200]}")
+            git('rebase', '--abort', check=False)
+            cleanup()
+            return False
+        behind_ahead = git('rev-list', '--left-right', '--count', f'origin/{base}...HEAD')
+        behind, ahead = behind_ahead.split()
+        if int(ahead) == 0:
+            warn(f"rebase 后 ahead=0：{head} 内容已全部在 {base}（重复 PR），不推不合，"
+                 f"建议直接关闭 PR #{pr_number}。")
+            cleanup()
+            return False
+        # 带实时 SHA 的安全强推：先取远程当前指纹，普通 --force-with-lease 在高并发会 stale info
+        remote_sha = git('ls-remote', 'origin', head).split()[0]
+        pushed = subprocess.run(
+            ['git', '-C', REPO, 'push', f'--force-with-lease={head}:{remote_sha}',
+             'origin', f'HEAD:{head}'], capture_output=True, text=True)
+        if pushed.returncode != 0:
+            warn(f"强推被拒（远程又变动）：{pushed.stderr.strip()[:120]}，重取重试。")
+            continue
+        if not wait_for_ci(pr_number):
+            err("CI 未通过，停止（不合并）。")
+            cleanup()
+            return False
+        mr = subprocess.run(['gh', 'pr', 'merge', str(pr_number), '--squash', '--delete-branch'],
+                            capture_output=True, text=True)
+        if mr.returncode == 0:
+            info(f"PR #{pr_number} 已 squash 合入 {base}。")
+            break
+        if 'not up to date' in mr.stderr or 'not mergeable' in mr.stderr:
+            warn("合并被挡（base 又被并行推进），重新追平后再试。")
+            continue
+        err(f"合并失败：{mr.stderr.strip()[:200]}")
+        cleanup()
+        return False
+    else:
+        err(f"重试 {max_retry} 轮仍未合入，停止；本地保留 {tmp} 供排查，未强推坏状态。")
+        return False
+
+    git('checkout', '-q', base)
+    git('fetch', 'origin')
+    git('reset', '--hard', f'origin/{base}')
+    git('branch', '-D', tmp, check=False)
+    info(f"=== 完成：#{pr_number} 已合，当前 {base} @ {git('rev-parse', '--short', 'HEAD')} ===")
+    return True
+
+
 def main():
     ap = argparse.ArgumentParser(description='PR 半自动化工作流')
-    ap.add_argument('--title', required=True, help='PR 标题（同时用作 commit message）')
+    ap.add_argument('--title', help='PR 标题（同时用作 commit message；--integrate 模式不需要）')
+    ap.add_argument('--integrate', type=int, default=None,
+                    help='集成已存在 PR 号：追平其 head→带实时SHA安全强推→等CI→squash合入（#75 流程固化）')
     ap.add_argument('--branch', help='PR 分支名（默认自动生成 s00-pr-YYYYMMDD-HHMM）')
     ap.add_argument('--body', help='PR 正文（默认从 commit message 生成）')
     ap.add_argument('--base', default='main', help='基础分支（默认 main）')
@@ -191,6 +287,14 @@ def main():
     if subprocess.run(['which', 'gh'], capture_output=True).returncode != 0:
         err("gh CLI 不可用，请先安装并登录 gh")
         sys.exit(1)
+
+    # 集成已存在 PR 的模式：不需要本地改动/--title，走追平→安全强推→等CI→squash
+    if a.integrate is not None:
+        ok = integrate_existing(a.integrate, a.base)
+        sys.exit(0 if ok else 1)
+
+    if not a.title:
+        ap.error('常规模式需要 --title；若要集成已存在的 PR，请用 --integrate <PR号>')
 
     current = get_current_branch()
     uncommitted = has_uncommitted()

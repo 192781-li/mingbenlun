@@ -139,6 +139,31 @@ gh pr create --repo 192781-li/mingbenlun --base main --head <分支> --title ...
 
 ---
 
+## 五点五、并发集成 SOP（唯一合门人 + 脚本追平，根治"又乱又慢"）
+
+**根因**：多个并行对话/定时任务同时往 main 推，会互相顶（PR 报 not up to date）、并发写同一个 `.git/config`（报 unknown error reading config）。这不是 git 坏、也不是分支保护慢，而是"多人同时进门"。
+
+**规则 1 · 唯一合门人**：S01–S06 只往各自长期分支 / 自己的 PR 推，**谁都不直接碰 main**；只有 S00 在主仓库（固定 main）把 PR 合入。main 永远线性、只走 PR。
+
+**规则 2 · 分站发 PR、S00 脚本化合门**，不手工敲一串追平命令：
+
+```bash
+# ① 体检（只读）：哪些 PR 重复(内容已在main)/过期(落后main)/可合/CI失败
+python3 scripts/pr_health.py
+# ② 一键集成某 PR：取其head→rebase最新main→带实时SHA安全强推→等CI→squash合入
+python3 scripts/pr_workflow.py --integrate <PR号>
+```
+
+- 被并行顶上去时 `--integrate` 自动重取追平、重试（默认 3 轮）；普通 `--force-with-lease` 的 stale info 坑，由"先 `ls-remote` 取实时 SHA、再带租约强推"解决（同第五节）。
+- **重复 PR（ahead=0，#86 型）不推不合**，脚本只提示关闭；**rebase 冲突立即停**、不自动解（Coq `.v` 绝不代解），交回责任站。
+- 前提：工作区必须干净，否则安全门直接拦下以保护在途改动。
+
+**规则 3 · config 瞬时锁只等不硬来（L041）**：遇到 `unknown error ... reading the configuration files` / lock 报错，**停手、只读、等 5–10 秒复查**，恢复后再继续；此时禁止 add/commit/checkout/reset。worktree 已让六站各用独立工作区、主仓库只剩 S00 一个写者，锁冲突已大幅减少。
+
+**节奏**：分站只写自己分支并发 PR → S00 跑 `pr_health` 看清单 → 对可合的逐个 `--integrate`。S00 **不主动 rebase 各站"正在写"的长期分支**（那会重新制造变乱变慢），只集成"已开好等审"的 PR。
+
+---
+
 ## 六、撞车归一（发现并行重复怎么办）
 
 以"**先合入 main 且更完整**"者为唯一权威：把你这版独有的增量并进它 → 删除你新建的重复件 → 同一个 PR 完成"并增量+去重" → 按《教训库》L039 格式记一条（若属新教训）。**绝不让两份近义文件长期共存，也不许静默删改他人内容。**
