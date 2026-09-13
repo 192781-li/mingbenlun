@@ -2,25 +2,27 @@
   "station": "S05",
   "name": "信息分站（明旭神经系统）",
   "branch": "s05-info",
-  "last_update": "2026-09-12T19:55 大文件保密迁移：6个>5M文件从公开主库移除（5对话逐字节核对档案库已存、overclaim更新为最新版），.gitignore防回流，档案库新增总INDEX(ef4aedf)",
-  "current_task": "本次迁移走PR；历史提交中的私人内容需git filter-repo才能彻底清除，待用户确认",
-  "status": "active_大文件归零_保密迁移完成",
+  "last_update": "2026-09-13T06:45 每日巡检：PR#152合并（进度报告v11+目录地图v12+保密回流修复）；PR#151已开（S02/S03 signal同步，code-check排队中待S00合并）；5个私人对话被S00同步d05cbb3重新引入main后再次移出（档案库逐字节一致）",
+  "current_task": "持续巡检：监控大文件回流、分站状态、跨分站同步；提醒S00核查s00_sync_branches.py绕过.gitignore强制添加敏感文件",
+  "status": "active_大文件归零_语义论副卷合入",
   "baseline": {
     "files_over_5M": 0,
-    "note": "6→0，主库减约71M"
+    "total_files": 1623,
+    "note": "v12.0地图：语义论副卷合入1600→1623；5个回流敏感文件再次移出"
   },
   "key_achievements": [
-    "逐字节比对确认5个对话档案库副本与主库一致，主库安全移除",
-    "overclaim_report最新完整版(27.7M)更新到档案库auto_reports",
-    ".gitignore加入6文件防回流规则，根治旧分支重新引入",
-    "档案库新增总INDEX导航(ef4aedf)"
+    "PR#152合并：目录地图v12.0（语义论副卷+文件分布）+进度报告v11.0（S01领先31/落后1待集成、S03双向分叉、S04落后527）",
+    "保密回流修复：S00同步d05cbb3在PR#118后把5个私人对话记录重新引入main，本次md5比对档案库一致后再次移出，主库>5M归零",
+    "PR#151：S02/S03 signal文件同步（CI 3/4过，code-check排队，留S00合并）",
+    "标题检查：0错误/15警告通过"
   ],
   "blockers": [
-    "git公开历史中仍留有这些文件，删除当前版本不能抹除历史；彻底保密需filter-repo重写历史(改hash/分站重新克隆)，待用户拍板",
-    "S03/S04/S06落后main超130需先rebase"
+    "git公开历史仍留有私人内容，彻底清除需filter-repo重写历史，待用户拍板",
+    "s00_sync_branches.py疑似绕过.gitignore强制添加敏感文件（本次回流根因），建议S00核查白名单与add方式",
+    "S04落后main 527（休眠）、S03领先35/落后34（需先rebase）"
   ],
-  "next_action": "本次迁移commit走PR→对齐s05-info=main",
-  "progress_score": 85,
+  "next_action": "跟踪PR#151合并；下次巡检重点：大文件是否再次回流、S01语义论集成进度",
+  "progress_score": 88,
   "heading_check": "0错误",
   "json_valid": true
 }
