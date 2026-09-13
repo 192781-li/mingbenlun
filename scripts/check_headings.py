@@ -80,6 +80,12 @@ def check_file(filepath, errors, warnings):
     if basename in SPECIAL_FILES:
         return
 
+    # 篇号：只有标准篇文件（NN_篇一/篇零/附录/命经 命名）才套用"篇结构"硬检查。
+    # README、纲要、总纲、索引、清单、专题解剖等文件名无篇号、本不是"篇"，
+    # 不按"首行H2/仅一个H2/H3从1.1起"约束（副卷_语义论专题汇编即属此类）。
+    pian_type, pian_num = extract_pian_from_filename(filepath)
+    is_pian = pian_type is not None
+
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -101,7 +107,7 @@ def check_file(filepath, errors, warnings):
         # H1
         if re.match(r'^# ', line):
             h1_count += 1
-            if basename not in VOL_TITLE_FILES and '封面' not in basename:
+            if is_pian and basename not in VOL_TITLE_FILES and '封面' not in basename:
                 errors.append(f"{rel}:{i}: 篇文件中出现H1（# ），应为H2（## ）。内容: {line[:50]}")
 
         # H2
@@ -125,47 +131,47 @@ def check_file(filepath, errors, warnings):
             errors.append(f"{rel}: 卷标题文件应有1个H1，实际{h1_count}个")
         return
 
-    pian_type, pian_num = extract_pian_from_filename(filepath)
+    # —— 以下"篇结构"硬规则只对标准篇文件生效；非篇文档（README/纲要/总纲/索引/专题）不约束 ——
+    if is_pian:
+        # H2数量检查
+        if h2_count == 0:
+            errors.append(f"{rel}: 缺少H2（## ）篇标题")
+        elif h2_count > 1:
+            errors.append(f"{rel}: 有 {h2_count} 个H2，应有且仅有1个")
 
-    # H2数量检查
-    if h2_count == 0:
-        errors.append(f"{rel}: 缺少H2（## ）篇标题")
-    elif h2_count > 1:
-        errors.append(f"{rel}: 有 {h2_count} 个H2，应有且仅有1个")
+        # H2篇号匹配检查
+        if h2_count == 1 and pian_num and pian_num != '命经':
+            if not h2_text.startswith(pian_num):
+                errors.append(f"{rel}: H2标题'{h2_text[:40]}' 与文件名篇号'{pian_num}'不匹配")
 
-    # H2篇号匹配检查
-    if h2_count == 1 and pian_num and pian_num != '命经':
-        if not h2_text.startswith(pian_num):
-            errors.append(f"{rel}: H2标题'{h2_text[:40]}' 与文件名篇号'{pian_num}'不匹配")
+        # H3编号检查
+        if h3_list:
+            numbered = []
+            for lineno, text in h3_list:
+                # 检查是否是X.Y格式
+                m = re.match(r'^(\d+)\.(\d+)\s', text)
+                if m:
+                    numbered.append((lineno, int(m.group(1)), int(m.group(2)), text))
+                elif text.split()[0] if text.split() else "" in UNNUMBERED_H3:
+                    pass  # 无编号特殊章，允许
+                else:
+                    # 检查是否是"第X章"旧格式
+                    if re.match(r'^第[一二三四五六七八九十]+章', text):
+                        errors.append(f"{rel}:{lineno}: H3使用旧格式'第X章'，应改为X.Y数字编号。内容: {text[:40]}")
+                    elif not text.startswith(('引言', '导言', '小结', '总结', '余论', '结语')):
+                        warnings.append(f"{rel}:{lineno}: H3无编号且非特殊章，建议补X.Y编号。内容: {text[:40]}")
 
-    # H3编号检查
-    if h3_list:
-        numbered = []
-        for lineno, text in h3_list:
-            # 检查是否是X.Y格式
-            m = re.match(r'^(\d+)\.(\d+)\s', text)
-            if m:
-                numbered.append((lineno, int(m.group(1)), int(m.group(2)), text))
-            elif text.split()[0] if text.split() else "" in UNNUMBERED_H3:
-                pass  # 无编号特殊章，允许
-            else:
-                # 检查是否是"第X章"旧格式
-                if re.match(r'^第[一二三四五六七八九十]+章', text):
-                    errors.append(f"{rel}:{lineno}: H3使用旧格式'第X章'，应改为X.Y数字编号。内容: {text[:40]}")
-                elif not text.startswith(('引言', '导言', '小结', '总结', '余论', '结语')):
-                    warnings.append(f"{rel}:{lineno}: H3无编号且非特殊章，建议补X.Y编号。内容: {text[:40]}")
-
-        # 检查编号从1.1开始
-        if numbered:
-            first = numbered[0]
-            if first[1] != 1 or first[2] != 1:
-                # 允许前面有无编号的引言
-                has_intro_before = any(
-                    h3_list[j][1].split()[0] in UNNUMBERED_H3
-                    for j in range(h3_list.index((first[0], first[3])) if (first[0], first[3]) in h3_list else 0)
-                )
-                if not has_intro_before and first[1] != 1:
-                    errors.append(f"{rel}:{first[0]}: H3编号从{first[1]}.{first[2]}开始，应从1.1开始（子篇独立编号）")
+            # 检查编号从1.1开始
+            if numbered:
+                first = numbered[0]
+                if first[1] != 1 or first[2] != 1:
+                    # 允许前面有无编号的引言
+                    has_intro_before = any(
+                        h3_list[j][1].split()[0] in UNNUMBERED_H3
+                        for j in range(h3_list.index((first[0], first[3])) if (first[0], first[3]) in h3_list else 0)
+                    )
+                    if not has_intro_before and first[1] != 1:
+                        errors.append(f"{rel}:{first[0]}: H3编号从{first[1]}.{first[2]}开始，应从1.1开始（子篇独立编号）")
 
 
 def main():
