@@ -14,9 +14,9 @@ from typing import Dict, List
 
 
 class Universe:
-    """灰色宇宙：仅他指因果，只有"必"模态，无觉知、无多元可能。"""
+    """灰色宇宙：仅它指因果，只有"必"模态，无觉知、无多元可能。"""
 
-    mode = "他指因果"
+    mode = "它指因果"
 
     def capacities(self) -> List[str]:
         return ["被动流转", "无觉知", "无选择"]
