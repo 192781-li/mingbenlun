@@ -12581,3 +12581,59 @@ Lemma typed_res_par_r : forall Gamma P Q, ~ fv_at Q 0 ->
 我们需要检查 typed_res_par_l 的证明思路能否复用。在 typed_res_par_l 中，我们从 typed Gamma (PRes (PPar P Q)) 反演得到 typed (Some T :: Gamma) (PPar P Q) 即 split (Some T::Gamma) G1 G2，然后利用 Q 不引用0来消除头部。反向则是从 typed Gamma (PPar (PRes P) Q) 开始，需要构造 typed (Some T :: Gamma) (PPar P Q) 并证明。即需要找到合适的 split 和类型。
 
 关键是：
+
+
+## 2026-09-14 21:52:39 [proof_loop] typed_res_par_r · round2 · DS输出
+
+**根因**：`split_cons_l_set_none_r` 本身为假——`set_none Gamma2 0` 不增加长度，在原始 split 左右交替持有资源时新 split 必然失败。正确构造是把右侧整体加一个越界空位 `None :: Gamma2`：头部加 `None` 后长度对齐，`S n` 位正好落回原始 `n` 位，原 split 信息逐位平移即成立。
+
+```coq
+(* INSERT-BEFORE: Lemma typed_res_par_r *)
+
+(* 辅助：右侧整体加一个空位 None，保持 split。
+   存在论：在并行右侧前缀一个寂然空位，整体与左侧同步前插 Some T，
+   操作权逐位后移一位，资源归属不变。 *)
+Lemma split_cons_l_cons_none_r : forall Gamma Gamma1 Gamma2 T,
+  split Gamma Gamma1 Gamma2 ->
+  split (Some T :: Gamma) (Some T :: Gamma1) (None :: Gamma2).
+Proof.
+  intros Gamma Gamma1 Gamma2 T H. unfold split. intros n.
+  destruct n.
+  - simpl. left. split; [reflexivity | right; reflexivity].
+  - simpl. specialize (H n).
+    destruct H as [[H1 H2] | [H1 H2]].
+    + left. split; [exact H1 | exact H2].
+    + right. split; [exact H1 | exact H2].
+Qed.
+
+(* 辅助：typed Gamma P -> typed (None :: Gamma) P。
+   通过 ren_typed 配移位重命名 S 实现，不需要对 typed 归纳。 *)
+Lemma typed_weaken_none_cons : forall Gamma P,
+  typed Gamma P -> typed (None :: Gamma) P.
+Proof.
+  intros Gamma P H.
+  apply (ren_typed Gamma P H S (None :: Gamma)).
+  - intros n m _ _ E. injection E as E'. exact E'.
+  - intros n T' Hget. simpl. exact Hget.
+Qed.
+
+(* REPLACE: Lemma typed_res_par_r ... Admitted. *)
+Lemma typed_res_par_r : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PPar (PRes P) Q) -> typed Gamma (PRes (PPar P Q)).
+Proof.
+  intros Gamma P Q Hclosed Hty.
+  inversion Hty as [ | | | | | Ga P0 Q0 G1 G2 Hs HP HQ | | ]; subst.
+  destruct (res_elim G1 P HP) as [T HPbody].
+  assert (HQweaken : typed (None :: G2) Q).
+  { apply typed_weaken_none_cons. exact HQ. }
+  assert (Hs' : split (Some T :: Gamma) (Some T :: G1) (None :: G2)).
+  { apply split_cons_l_cons_none_r. exact Hs. }
+  apply (ty_res Gamma (PPar P Q) T).
+  apply (ty_par (Some T :: Gamma) P Q (Some T :: G1) (None :: G2)).
+  - exact Hs'.
+  - exact HPbody.
+  - exact HQweaken.
+Qed.
+```
+[reasoning摘要]
+我们需要定位错误。错误在辅助引理 split_cons_l_set_none_r 的 n=S n 分支，destruct H2 后，H2 是 get Gamma2 n = None，但目标期望 get Gamma2 (S n) = None。问题：在 n = S n 分支，我们 specialize (H n) 得到 split 在原 Gamma 第 n 位，然后 simpl 后目标上下文头部被消费，右侧 set_none Gamma2 0 的第 S n 位等于 get (set_none Gamma2 0) (S n)。但 destruct H 左支时，H1 : get Gamma1 n = get Gamma n，H2 : get Gamma2 n = None 或 Some None。目标是 left, split: get (Some T :: Gamma1) (S n) = get (Some T :: Gamma) (S n) 即 get Gamma1 n = get Gamma n，直接 H1；另一方 get (set_none Gamma2 0) (S n) = None \/ = Some None，应该 rewrite set_none_neq Gamma2 0 (S n) 得到 get Gamma2 n，然后应用 H2 分支。但当前证明中在我简化后，destruct H2 后没有先 rewrite set_none_neq。错误行 2847 是 left. rewrite (set_none_neq Gamma2 0 (S n) ltac:(lia)). exact H2. 但错误说 H2 type get Gamma2 n = None expected get Gamma2 (S n) = None。可能是 rewrite 没有生效？可能因为目标中还没有 simpl 到 get Gamma2 (S n) 而是 get (set_none Gamma2 0) (S n) 被 rewrite 后变成 get Gamma2 (S n) 而不是 get Gamma2 n？等等 set_none_neq: forall Gamma k n, n <> k -> get (set_none Gamma k) n = get Gamma n. 对 Gamma2 0 (S n)，n 参数为 S n，k=0，条件 S n <> 0，rewrite 后 get Gamma2 (S n)。但我们需要 get Gamma2 n。这里问题：在 n=S n 分支，原 split H n 中 H2 是 get Gamma2 n = None，但目标需要的 get (set_none Gamma2 0) (S n) = None 经过 set_none_neq 变成 get Gamma2 (S n) = None。这两个不同，需要将 H2 的 n 转换为 S n？不对，我们错误地使用了错误的索引偏移。实际上，原 split H n 是第 n 位（在 Gamma 里），而目标第 S n 位在头部插入后应该对应原第 n 位？是的 Gamma 头部插入 Some T 后，位置 S n 对应原位置 n。因此目标右侧 get (set_none Gamma2 0) (S n) 应该等于 get Gamma2 n 或类似？但 set_none Gamma2 0 是对 Gamma2 头部置空，位置 S n 对应原 Gamma2 位置 n？不对 set_none 只改
