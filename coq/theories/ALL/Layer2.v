@@ -2830,9 +2830,202 @@ Proof.
 Qed.
 (* END REPLACE *)
 (* REPLACE: Lemma typed_res_par_r ... Admitted. *)
+(* 辅助：右侧整体加一个空位 None，保持 split。
+   存在论：在并行右侧前缀一个寂然空位，整体与左侧同步前插 Some T，
+   操作权逐位后移一位，资源归属不变。 *)
+Lemma split_cons_l_cons_none_r : forall Gamma Gamma1 Gamma2 T,
+  split Gamma Gamma1 Gamma2 ->
+  split (Some T :: Gamma) (Some T :: Gamma1) (None :: Gamma2).
+Proof.
+  intros Gamma Gamma1 Gamma2 T Hsplit.
+  unfold split.
+  intros [|n].
+  - left. split; [reflexivity | right; reflexivity].
+  - simpl.
+    unfold split in Hsplit.
+    specialize (Hsplit n).
+    destruct Hsplit as [[H1 H2] | [H1 H2]].
+    + left. split; [exact H1 | exact H2].
+    + right. split; [exact H1 | exact H2].
+Qed.
+
+(* 辅助：闭进程在任意可类型化上下文中，可把整个上下文收摄删除到空。
+   步骤：头位资源 set_none 为空 -> 用 substitution_none_strengthen 削掉
+   头部 None -> 闭性让 subst_var 恒等 -> 递归处理尾巴。 *)
+Lemma typed_closed_to_empty : forall G Q,
+  ~ fv_at Q 0 -> typed G Q -> typed [] Q.
+Proof.
+  intros G. induction G as [|g G' IHG]; intros Q Hcl Hty.
+  - exact Hty.
+  - assert (Hnf : not_free_in Q 0 = true).
+    { apply not_free_in_fv. exact Hcl. }
+    assert (Hty' : typed (None :: G') Q).
+    { exact (typed_strengthen_unused (g :: G') Q 0 Hty Hnf). }
+    assert (Hlen : 0 <= length G') by lia.
+    pose proof (substitution_none_strengthen G' 0 0 Q Hlen Hty') as Hsub.
+    rewrite (subst_var_id_fv_closed 0 0 Q Hcl) in Hsub.
+    apply (IHG Q Hcl Hsub).
+Qed.
+
+(* REPLACE: Lemma typed_res_par_r ... Admitted. *)
+(* =====================================================================
+   typed_res_par_r（限制-并行交换的逆向方向）
+   ===================================================================== *)
+
+(* 在位置 k 处插入一个空槽：k 之前的名字不变，k 及之后的名字整体后移一位。
+   存在论：进入绑定器后，所有自由名字坐标上抬；没有自由穿越 k 的引用时，
+   这个移位对进程是恒等。 *)
+
+
+(* 若进程在 k 及其以上没有自由变量，则 shift_at k 的重命名不改变进程。
+   存在论：操作权不流经的坐标，整体穿入一个空槽位，进程纹丝不动。 *)
+
+(* 闭进程 Q 的类型化可以在头部添加一个死槽 None。
+   存在论：Q 没有任何自由操作权穿越 0 位，故在 0 位加一个空无不改变其类型结构。 *)
+
+(* 若 split Gamma D1 D2，则在头部加资源 T 给 D1、给 D2 加空槽后仍 split。 *)
+
+(* REPLACE: Lemma typed_res_par_r ... Admitted. *)
+(* REPLACE: Lemma ren_shift_at_fv_id ... Qed. *)
+
+(* END REPLACE *)
+
+(* REPLACE: from "Definition shift_at" down to "Qed." of typed_res_par_r *)
+Definition shift_at (k n : nat) : nat :=
+  if n <? k then n else S n.
+
+Lemma upren_shift_at : forall k n,
+  upren (shift_at k) n = shift_at (S k) n.
+Proof.
+  intros k n. unfold upren, shift_at.
+  destruct n as [|n'].
+  - destruct (0 <? S k) eqn:E; [reflexivity |].
+    apply Nat.ltb_ge in E. lia.
+  - simpl.
+    destruct (n' <? k) eqn:E.
+    + assert (F : S n' <? S k = true).
+      { apply Nat.ltb_lt. apply Nat.ltb_lt in E. lia. }
+      rewrite F. reflexivity.
+    + assert (F : S n' <? S k = false).
+      { apply Nat.ltb_ge. apply Nat.ltb_ge in E. lia. }
+      rewrite F. reflexivity.
+Qed.
+
+Lemma shift_at_0_S : forall n, shift_at 0 n = S n.
+Proof.
+  intros n. unfold shift_at.
+  destruct (n <? 0) eqn:E.
+  - apply Nat.ltb_lt in E. lia.
+  - reflexivity.
+Qed.
+
+Lemma ren_shift_at_fv_id : forall P k, ~ fv_at P k -> ren (shift_at k) P = P.
+Proof.
+  induction P as [n | | P IHP | x y P IHP | x P IHP | P IHP Q IHQ | P IHP | P IHP];
+    intros k H.
+  - (* PVar n *)
+    simpl. unfold shift_at.
+    destruct (n <? k) eqn:E.
+    + reflexivity.
+    + apply Nat.ltb_ge in E. exfalso. apply H. simpl. exact E.
+  - (* PZero *)
+    simpl. reflexivity.
+  - (* PTau *)
+    simpl. f_equal. apply IHP. intro F. apply H. simpl. exact F.
+  - (* POut x y P *)
+    simpl.
+    assert (Hx : x < k). {
+      destruct (x <? k) eqn:E.
+      - apply Nat.ltb_lt; exact E.
+      - apply Nat.ltb_ge in E. exfalso. apply H. left. exact E.
+    }
+    assert (Hy : y < k). {
+      destruct (y <? k) eqn:E.
+      - apply Nat.ltb_lt; exact E.
+      - apply Nat.ltb_ge in E. exfalso. apply H. right. left. exact E.
+    }
+    f_equal.
+    + unfold shift_at. destruct (x <? k) eqn:E; [reflexivity | apply Nat.ltb_ge in E; lia].
+    + unfold shift_at. destruct (y <? k) eqn:E; [reflexivity | apply Nat.ltb_ge in E; lia].
+    + apply IHP. intro F. apply H. right. right. exact F.
+  - (* PIn x P *)
+    simpl.
+    assert (Hx : x < k). {
+      destruct (x <? k) eqn:E.
+      - apply Nat.ltb_lt; exact E.
+      - apply Nat.ltb_ge in E. exfalso. apply H. left. exact E.
+    }
+    f_equal.
+    + unfold shift_at. destruct (x <? k) eqn:E; [reflexivity | apply Nat.ltb_ge in E; lia].
+    + assert (HPbody : ~ fv_at P (S k)).
+      { intro F. apply H. right. exact F. }
+      assert (Hstep : ren (upren (shift_at k)) P = ren (shift_at (S k)) P).
+      { apply ren_ext. intros q. apply upren_shift_at. }
+      rewrite Hstep.
+      apply IHP. exact HPbody.
+  - (* PPar P Q *)
+    simpl. f_equal.
+    + apply IHP. intro F. apply H. left. exact F.
+    + apply IHQ. intro F. apply H. right. exact F.
+  - (* PRes P *)
+    simpl. f_equal.
+    assert (HPbody : ~ fv_at P (S k)).
+    { intro F. apply H. simpl. exact F. }
+    assert (Hstep : ren (upren (shift_at k)) P = ren (shift_at (S k)) P).
+    { apply ren_ext. intros q. apply upren_shift_at. }
+    rewrite Hstep.
+    apply IHP. exact HPbody.
+  - (* PRep P *)
+    simpl. f_equal. apply IHP. intro F. apply H. simpl. exact F.
+Qed.
+
+Lemma typed_closed_shift_none : forall D Q,
+  ~ fv_at Q 0 -> typed D Q -> typed (None :: D) Q.
+Proof.
+  intros D Q Hcl Hty.
+  assert (Hren : ren (shift_at 0) Q = Q)
+    by (apply ren_shift_at_fv_id; exact Hcl).
+  assert (Hinj : forall n m, has D n -> has D m ->
+           shift_at 0 n = shift_at 0 m -> n = m).
+  { intros n m Hn Hm E.
+    rewrite shift_at_0_S in E.
+    injection E as E.
+    exact E. }
+  assert (Hpts : forall n T', get D n = Some (Some T') ->
+           get (None :: D) (shift_at 0 n) = Some (Some T')).
+  { intros n T' Hget. rewrite shift_at_0_S. simpl. exact Hget. }
+  pose proof (ren_typed D Q Hty (shift_at 0) (None :: D) Hinj Hpts) as Hr.
+  rewrite Hren in Hr.
+  exact Hr.
+Qed.
+
+Lemma split_cons_none : forall Gamma D1 D2 T,
+  split Gamma D1 D2 -> split (Some T :: Gamma) (Some T :: D1) (None :: D2).
+Proof.
+  intros Gamma D1 D2 T Hs.
+  unfold split. intros [|n].
+  - left. split; [reflexivity | right; reflexivity].
+  - unfold split in Hs. specialize (Hs n).
+    destruct Hs as [[H1 H2] | [H1 H2]].
+    + left. split; [simpl; exact H1 | simpl; exact H2].
+    + right. split; [simpl; exact H1 | simpl; exact H2].
+Qed.
+
 Lemma typed_res_par_r : forall Gamma P Q, ~ fv_at Q 0 ->
   typed Gamma (PPar (PRes P) Q) -> typed Gamma (PRes (PPar P Q)).
 Proof.
-  (* DS证明依赖假引理split_cons_l_set_none_r，已删除，恢复Admitted，重新证明 *)
-Admitted.
+  intros Gamma P Q Hclosed Hty.
+  destruct (par_elim Gamma (PRes P) Q Hty) as [D1 [D2 [Hs [HPres HQ]]]].
+  destruct (res_elim D1 P HPres) as [T HP].
+  assert (Hs' : split (Some T :: Gamma) (Some T :: D1) (None :: D2))
+    by (apply split_cons_none; exact Hs).
+  assert (HQ' : typed (None :: D2) Q)
+    by (apply typed_closed_shift_none; assumption).
+  apply (ty_res Gamma (PPar P Q) T).
+  eapply ty_par with (Gamma1 := Some T :: D1) (Gamma2 := None :: D2).
+  - exact Hs'.
+  - exact HP.
+  - exact HQ'.
+Qed.
+(* END REPLACE *)
 (* === END === *)
