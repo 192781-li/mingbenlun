@@ -12499,3 +12499,85 @@ Proof.
 我们要先仔细分析材料 A 中已有的引理，特别是 typed_res_par_l 当前在材料中有一版证明，但用户要求完整证明，且上一版错误是 "Tactic failure: Cannot find witness." 我们需要确定是哪一行？材料 A 末尾的 typed_res_par_l 已经是 Qed 的（在材料中显示 Lemma typed_res_par_l ... Proof ... Qed.）。但用户说当前为 Admitted/admit？可能材料 A 中给出的 typed_res_par_l 是已 Qed 版本，但运行报错，因为它在应用时发生错误？用户要求替换这个 lemma？实际上材料 A 中 typed_res_par_l 已经是完整证明，但上一版尝试应用该证明时，在 line 2709 出现 Tactic failure: Cannot find witness. 材料 A 中 typed_res_par_l 证明的行很长，可能 line 2709 对应的就是其中某一步。我们需要重新审视该证明，找到哪一步产生 "Cannot find witness"，可能是在 `apply (ty_par ... Hs' HPres HQ')` 或 `eapply ty_par`？"Cannot find witness" 通常发生在使用 `eexists` 或 `eapply` 存在量词时无法推断 witness。用户说上一版错误是 Tactic failure: Cannot find witness at line 2709 chars 22-25.
 
 材料 A 中 typed_res_par_l 的最后一行是 `apply (ty_par Gamma (PRes P) Q (remove_at 0 G1) (remove_at 0 G2) Hs' HPres HQ').` 这应该可以找到 witness，因为它直接 apply。但之前的一个版本可能用了 `eapply ty_par ...` 或者 `apply par_elim in Hpar` 导致。用户历史显示多次尝试，最后版本材料 A 中已经是直接 apply ty_par。但用户说上一版错误 line 2709, chars 22-25 是 "Tactic failure: Cannot find witness." 这可能是来自材料 A 证明中的某行 `apply (ty_par Gamma (PRes P) Q (remove_at 0 G1) (remove_at 0 G2) Hs' HPres HQ').`？如果该行报 Cannot find witness，可能是 `ty_par` 构造函数中某些隐式参数是存在量词？ty_par 的定义：`| ty_par : forall Gamma P Q Gamma1 Gamma2, split Gamma Gamma1 Gamma2 -> typed Gamma1 P -> typed Gamma2 Q -> typed Gamma (PPar P Q).` 没有存在量词，所以 apply 应该没问
+
+
+## 2026-09-14 21:41:46 [proof_loop] typed_res_par_r · round1 · DS输出
+
+**操作权流动**：从 `typed Gamma (PPar (PRes P) Q)` 反演出并行两侧：左侧 `PRes P` 持有类型 `T` 的约束头，右侧 `Q` 在 `Gamma2` 中且不用 0 号位。由于 `Q` 不用 0 号位，可把 `Gamma2` 头部收紧为空（`set_none Gamma2 0`），再把这颗 `Some T` 插入整体头部，形成 `Some T :: Gamma` 上的有效 split，从而重建 `PRes (PPar P Q)`。
+
+辅助引理 `split_cons_l_set_none_r`：若 `split Gamma Gamma1 Gamma2`，则在头部左侧插入 `Some T`、右侧头部置空后，可得到 `split (Some T :: Gamma) (Some T :: Gamma1) (set_none Gamma2 0)`。逐位拆 n=0 与 n=S n 即证；`get_set_none_null` 处理头部空位，`set_none_neq` 处理尾部平移。
+
+```coq
+(* INSERT-BEFORE: Lemma typed_res_par_r
+   辅助引理：头部左侧插资源、右侧头部收紧为空后 split 保持 *)
+Lemma split_cons_l_set_none_r : forall Gamma Gamma1 Gamma2 T,
+  split Gamma Gamma1 Gamma2 ->
+  split (Some T :: Gamma) (Some T :: Gamma1) (set_none Gamma2 0).
+Proof.
+  intros Gamma Gamma1 Gamma2 T H.
+  unfold split. intros n.
+  destruct n.
+  - simpl. left. split. reflexivity. exact (get_set_none_null Gamma2 0).
+  - simpl. specialize (H n).
+    destruct H as [[H1 H2] | [H1 H2]].
+    + left. split.
+      * exact H1.
+      * destruct H2 as [H2 | H2].
+        -- left. rewrite (set_none_neq Gamma2 0 (S n) ltac:(lia)). exact H2.
+        -- right. rewrite (set_none_neq Gamma2 0 (S n) ltac:(lia)). exact H2.
+    + right. split.
+      * rewrite (set_none_neq Gamma2 0 (S n) ltac:(lia)). exact H1.
+      * destruct H2 as [H2 | H2].
+        -- left. exact H2.
+        -- right. exact H2.
+Qed.
+
+(* REPLACE: Lemma typed_res_par_r ... Admitted. *)
+Lemma typed_res_par_r : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PPar (PRes P) Q) -> typed Gamma (PRes (PPar P Q)).
+Proof.
+  intros Gamma P Q Hclosed Hty.
+  inversion Hty as [ | | | | | Ga P0 Q0 G1 G2 Hs HP HQ | | ]; subst.
+  destruct (res_elim G1 P HP) as [T HPbody].
+  assert (Hnf : not_free_in Q 0 = true) by (apply not_free_in_fv; exact Hclosed).
+  assert (HQ' : typed (set_none G2 0) Q).
+  { eapply typed_strengthen_unused; [exact HQ | exact Hnf]. }
+  assert (Hs' : split (Some T :: Gamma) (Some T :: G1) (set_none G2 0)).
+  { apply split_cons_l_set_none_r; exact Hs. }
+  apply (ty_res Gamma (PPar
+[reasoning摘要]
+我们被要求证明 typed_res_par_r。看材料A，在 Layer2.v 末尾附近已有：
+
+```
+Lemma typed_res_par_r : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PPar (PRes P) Q) -> typed Gamma (PRes (PPar P Q)).
+Proof.
+  (* S01直接证明有语法错误，重置为Admitted，后续交DS主谋重新证明。 *)
+Admitted.
+```
+
+需要完整证明。
+
+同时已有 typed_res_par_l 已经 Qed 了，用了 split_remove_at_both 等引理。我们可以考虑对称但注意 typed_res_par_l 的表达式：
+
+```
+Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
+```
+
+而 typed_res_par_r 是：
+
+```
+Lemma typed_res_par_r : forall Gamma P Q, ~ fv_at Q 0 ->
+  typed Gamma (PPar (PRes P) Q) -> typed Gamma (PRes (PPar P Q)).
+```
+
+这是反向。直接从 typed (PPar (PRes P) Q) 推出 typed (PRes (PPar P Q))。
+
+需要巧妙利用已有引理。typed_res_par_l 已证，它的方向是 PRes(PPar P Q) -> PPar(PRes P) Q。我们可以考虑是否 typed_res_par_l 的逆可用于 typed_res_par_r？但 typed_res_par_l 的前提是 typed Gamma (PRes (PPar P Q))，结论是 typed Gamma (PPar (PRes P) Q)。反向需要从 typed Gamma (PPar (PRes P) Q) 推出 typed Gamma (PRes (PPar P Q))。不能直接使用 typed_res_par_l，因为它是单向的，但可以尝试证明 typed_res_par_l 的对偶或者用 strengthen/weaken 等。
+
+然而也许 typed_res_par_r 实际上可以从 typed_res_par_l 加上某种对称性推导？ 注意 typed_res_par_l 中前提 PRes(PPar P Q)，Q 不引用 0。我们想证的反向是 PPar(PRes P) Q 类型化，那么 PRes(PPar P Q) 也类型化。这里可能有某种“剩余”操作。
+
+我们需要检查 typed_res_par_l 的证明思路能否复用。在 typed_res_par_l 中，我们从 typed Gamma (PRes (PPar P Q)) 反演得到 typed (Some T :: Gamma) (PPar P Q) 即 split (Some T::Gamma) G1 G2，然后利用 Q 不引用0来消除头部。反向则是从 typed Gamma (PPar (PRes P) Q) 开始，需要构造 typed (Some T :: Gamma) (PPar P Q) 并证明。即需要找到合适的 split 和类型。
+
+关键是：

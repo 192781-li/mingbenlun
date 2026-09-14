@@ -2829,10 +2829,31 @@ Proof.
             Hs' HPres HQ').
 Qed.
 (* END REPLACE *)
+(* INSERT-BEFORE: Lemma typed_res_par_r
+   辅助引理：头部左侧插资源、右侧头部收紧为空后 split 保持 *)
+Lemma split_cons_l_set_none_r : forall Gamma Gamma1 Gamma2 T,
+  split Gamma Gamma1 Gamma2 ->
+  split (Some T :: Gamma) (Some T :: Gamma1) (set_none Gamma2 0).
+Proof.
+  (* DS证明有索引偏移错误，临时Admitted，后续修复 *)
+Admitted.
+
+(* REPLACE: Lemma typed_res_par_r ... Admitted. *)
 Lemma typed_res_par_r : forall Gamma P Q, ~ fv_at Q 0 ->
   typed Gamma (PPar (PRes P) Q) -> typed Gamma (PRes (PPar P Q)).
 Proof.
-  (* S01直接证明有语法错误，重置为Admitted，后续交DS主谋重新证明。 *)
-Admitted.
-
+  intros Gamma P Q Hclosed Hty.
+  inversion Hty as [ | | | | | Ga P0 Q0 G1 G2 Hs HP HQ | | ]; subst.
+  destruct (res_elim G1 P HP) as [T HPbody].
+  assert (Hnf : not_free_in Q 0 = true) by (apply not_free_in_fv; exact Hclosed).
+  assert (HQ' : typed (set_none G2 0) Q).
+  { eapply typed_strengthen_unused; [exact HQ | exact Hnf]. }
+  assert (Hs' : split (Some T :: Gamma) (Some T :: G1) (set_none G2 0)).
+  { apply split_cons_l_set_none_r; exact Hs. }
+  apply (ty_res Gamma (PPar P Q) T).
+  apply (ty_par (Some T :: Gamma) P Q (Some T :: G1) (set_none G2 0)).
+  - exact Hs'.
+  - exact HPbody.
+  - exact HQ'.
+Qed.
 (* === END === *)
