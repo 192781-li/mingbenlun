@@ -89,13 +89,23 @@ def tian_ma(year_zhi):
 
 
 def ziwei_relative(day, ju):
-    """紫微相对寅宫的偏移(寅=0)，标准定位算法"""
+    """紫微相对寅宫的偏移(寅=0)，标准定位算法
+
+    正确公式（文墨天机/中州派一致）：
+      q, r = divmod(day, ju)
+      若 r==0：整除，紫微在第 q 宫（寅起），偏移 = q-1
+      若 r!=0：补数 b = ju-r，基准宫偏移 = q（第 q+1 宫）
+        b 为偶数 → 从基准宫前进 b 位：偏移 = (q + b) % 12
+        b 为奇数 → 从基准宫后退 b 位：偏移 = (q - b) % 12
+    注意：进退由【补数 b】的奇偶决定，不是商 q 的奇偶。
+    验证：土五局廿六日 q=5 r=1 b=4(偶) → (5+4)%12=9=亥，与文墨天机一致。
+    """
     q, r = divmod(day, ju)
     if r == 0:
         return (q-1) % 12
     b = ju - r
     base = q
-    return (base-b) % 12 if q % 2 == 1 else (base+b) % 12
+    return (base+b) % 12 if b % 2 == 0 else (base-b) % 12
 
 
 def hour_branch_index(hour):
@@ -282,24 +292,33 @@ def self_verify():
     c1=BR[r['命宫']]=="巳"; c2=r['五行局']=="木3局"; c3=zw==r['命宫']
     print(f"   命宫巳[{'PASS' if c1 else 'FAIL'}] 木三局[{'PASS' if c2 else 'FAIL'}] 紫微坐命[{'PASS' if c3 else 'FAIL'}]")
 
-    print("── 回归2：本人盘 公历2008-09-25 辰时(7点) 男（代码硬证：天相坐命巳；迁移武曲破军；身宫/财帛天府；夫妻紫微贪狼+右弼化科+地劫+红鸾）")
+    print("── 回归2：本人盘 公历2008-09-25 辰时(7点) 男（文墨天机专业版终验：天府坐命巳；迁移紫微七杀；夫妻廉贞破军+右弼化科+地劫+红鸾；福德武曲贪狼+贪狼化禄；父母天同太阴+太阴化权；官禄天相；身宫财帛丑空宫）")
     b = paipan_ziwei(2008,9,25,7,"男")
     ming_stars = b['主星'].get(b['命宫'],[])
-    # 命宫天相
-    c4 = ming_stars==["天相"]
+    # 命宫天府
+    c4 = ming_stars==["天府"]
     fidx=(b['命宫']-2)%12  # 夫妻宫=命宫逆2
     fstars,ftags = stars_at(b,fidx)
-    # 夫妻：紫微贪狼主星 + 右弼化科/地劫/红鸾
-    c5 = {"紫微","贪狼","右弼","地劫","红鸾"}.issubset(set(fstars)) and "右弼化科" in ftags and "贪狼化禄" in ftags
-    # 迁移(对宫)武曲破军；身宫落财帛且天府
+    # 夫妻：廉贞破军主星 + 右弼化科/地劫/红鸾
+    c5 = {"廉贞","破军","右弼","地劫","红鸾"}.issubset(set(fstars)) and "右弼化科" in ftags
+    # 迁移(对宫)紫微七杀；身宫落财帛丑且空宫(无主星)
     qidx=(b['命宫']+6)%12; qstars,_=stars_at(b,qidx)
-    c6 = {"武曲","破军"}.issubset(set(qstars))
-    c7 = b['身宫']==(b['命宫']-4)%12 and "天府" in b['主星'].get(b['身宫'],[])
+    c6 = {"紫微","七杀"}.issubset(set(qstars))
+    c7 = b['身宫']==(b['命宫']-4)%12 and b['主星'].get(b['身宫'],[])==[]
+    # 福德：武曲贪狼+贪狼化禄
+    fuidx=(b['命宫']+2)%12; fustars,futags = stars_at(b,fuidx)
+    c8 = {"武曲","贪狼"}.issubset(set(fustars)) and "贪狼化禄" in futags
+    # 父母：天同太阴+太阴化权
+    pidx=(b['命宫']+1)%12; pstars,ptags = stars_at(b,pidx)
+    c9 = {"天同","太阴"}.issubset(set(pstars)) and "太阴化权" in ptags
+    # 官禄：天相
+    oidx=(b['命宫']+4)%12; ostars=b['主星'].get(oidx,[])
+    c10 = ostars==["天相"]
     print(f"   农历{b['农历']} 命宫{BR[b['命宫']]}({b['命宫干支']}) {b['五行局']} 命主{b['命主']}/身主{b['身主']}")
-    print(f"   天相坐命[{'PASS' if c4 else 'FAIL'}] 迁移武曲破军[{'PASS' if c6 else 'FAIL'}] 身宫财帛天府[{'PASS' if c7 else 'FAIL'}]")
-    print(f"   夫妻宫({BR[fidx]}) 诸星{'、'.join(fstars)} 四化{' '.join(ftags)}")
-    print(f"   夫妻紫微贪狼+右弼化科+地劫+红鸾+贪狼化禄[{'PASS' if c5 else 'FAIL'}]")
-    ok = all([c1,c2,c3,c4,c5,c6,c7])
+    print(f"   天府坐命[{'PASS' if c4 else 'FAIL'}] 迁移紫微七杀[{'PASS' if c6 else 'FAIL'}] 身宫财帛空宫[{'PASS' if c7 else 'FAIL'}]")
+    print(f"   夫妻廉贞破军+右弼化科+地劫+红鸾[{'PASS' if c5 else 'FAIL'}]")
+    print(f"   福德武曲贪狼+贪狼化禄[{'PASS' if c8 else 'FAIL'}] 父母天同太阴+太阴化权[{'PASS' if c9 else 'FAIL'}] 官禄天相[{'PASS' if c10 else 'FAIL'}]")
+    ok = all([c1,c2,c3,c4,c5,c6,c7,c8,c9,c10])
     print("=> "+("双盘回归全部通过 ✅" if ok else "存在 FAIL，需修正 ❌"))
     return ok
 

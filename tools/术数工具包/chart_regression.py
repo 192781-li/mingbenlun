@@ -83,28 +83,50 @@ def reg_father_bazi():
 
 
 # ----------------------------------------------------------------------
-# B. 本人紫微：土五局、命宫巳=天相、迁移武曲破军、身宫财帛天府、夫妻紫微贪狼
+# B. 本人紫微：土五局、命宫巳=天府、迁移紫微七杀、身宫财帛丑空宫、
+#    夫妻廉贞破军+右弼化科+地劫+红鸾、福德武曲贪狼+贪狼化禄、
+#    父母天同太阴+太阴化权、官禄天相（文墨天机专业版终验 2026-09-10）
 # ----------------------------------------------------------------------
 def reg_user_ziwei():
-    print("── B1 本人紫微 2008-09-25 辰时男（土5局/命宫巳天相）")
+    print("── B1 本人紫微 2008-09-25 辰时男（土5局/命宫巳天府，文墨天机终验）")
     b = Z.paipan_ziwei(2008, 9, 25, 7, "男")
     ming = b["命宫"]
     check("命宫在巳(index5)", Z.BR[ming] == "巳" and ming == 5, str(ming))
     check("五行局=土5局", b["五行局"] == "土5局", b["五行局"])
-    check("命宫主星唯天相", b["主星"].get(ming, []) == ["天相"],
+    check("命宫主星唯天府", b["主星"].get(ming, []) == ["天府"],
           str(b["主星"].get(ming)))
+    # 迁移(对宫亥)=紫微七杀
     qidx = (ming + 6) % 12
-    qstars, _ = Z.stars_at(b, qidx)
-    check("迁移(对宫亥)武曲破军", {"武曲", "破军"}.issubset(set(qstars)), str(qstars))
-    check("身宫=财帛(丑,index1)且天府",
-          b["身宫"] == (ming - 4) % 12 and "天府" in b["主星"].get(b["身宫"], []),
-          f"身宫{Z.BR[b['身宫']]}")
+    check("迁移(对宫亥)紫微七杀",
+          {"紫微", "七杀"}.issubset(set(b["主星"].get(qidx, []))),
+          str(b["主星"].get(qidx)))
+    # 身宫=财帛丑且空宫(无主星)
+    check("身宫=财帛(丑,index1)且空宫无主星",
+          b["身宫"] == (ming - 4) % 12 and b["主星"].get(b["身宫"], []) == [],
+          f"身宫{Z.BR[b['身宫']]}主星{b['主星'].get(b['身宫'])}")
+    # 夫妻卯=廉贞破军+右弼化科+地劫+红鸾
     fidx = (ming - 2) % 12
     fstars, ftags = Z.stars_at(b, fidx)
-    check("夫妻(卯)紫微贪狼+右弼+地劫+红鸾,右弼化科/贪狼化禄",
-          {"紫微", "贪狼", "右弼", "地劫", "红鸾"}.issubset(set(fstars))
-          and "右弼化科" in ftags and "贪狼化禄" in ftags,
+    check("夫妻(卯)廉贞破军+右弼+地劫+红鸾,右弼化科",
+          {"廉贞", "破军", "右弼", "地劫", "红鸾"}.issubset(set(fstars))
+          and "右弼化科" in ftags,
           f"{fstars}|{ftags}")
+    # 福德未=武曲贪狼+贪狼化禄
+    fuidx = (ming + 2) % 12
+    fustars, futags = Z.stars_at(b, fuidx)
+    check("福德(未)武曲贪狼+贪狼化禄",
+          {"武曲", "贪狼"}.issubset(set(fustars)) and "贪狼化禄" in futags,
+          f"{fustars}|{futags}")
+    # 父母午=天同太阴+太阴化权
+    pidx = (ming + 1) % 12
+    pstars, ptags = Z.stars_at(b, pidx)
+    check("父母(午)天同太阴+太阴化权",
+          {"天同", "太阴"}.issubset(set(pstars)) and "太阴化权" in ptags,
+          f"{pstars}|{ptags}")
+    # 官禄酉=天相
+    oidx = (ming + 4) % 12
+    check("官禄(酉)天相", b["主星"].get(oidx, []) == ["天相"],
+          str(b["主星"].get(oidx)))
     return b
 
 
