@@ -2695,12 +2695,140 @@ Proof.
   exact Hr.
 Qed.
 
+(* =====================================================================
+   typed_res_par_l：限制-并行交换下 typed 保持
+   ===================================================================== *)
+
+(* 辅助引理：~fv_at P u 蕴含 not_free_in P u = true。
+   操作论：进程在位置 u 没有自由引用，u 位可收摄。 *)
+Lemma not_free_in_fv : forall P u, ~ fv_at P u -> not_free_in P u = true.
+Proof.
+  induction P as [n| | P IH | x y P IH | x P IH | P IHP Q IHQ | P IH | P IH];
+    intros u H; simpl.
+  - apply Bool.negb_true_iff. apply Nat.eqb_neq. intro E.
+    apply H. subst n. simpl; apply Nat.le_refl.
+  - reflexivity.
+  - apply IH. intro F. apply H. exact F.
+  - apply Bool.andb_true_iff. split.
+    + apply Bool.andb_true_iff. split.
+      * apply Bool.negb_true_iff. apply Nat.eqb_neq. intro E.
+        apply H. left. subst x. simpl; apply Nat.le_refl.
+      * apply Bool.negb_true_iff. apply Nat.eqb_neq. intro E.
+        apply H. right. left. subst y. simpl; apply Nat.le_refl.
+    + apply IH. intro F. apply H. right. right. exact F.
+  - apply Bool.andb_true_iff. split.
+    + apply Bool.negb_true_iff. apply Nat.eqb_neq. intro E.
+      apply H. left. subst x. simpl; apply Nat.le_refl.
+    + apply IH. intro F. apply H. right. exact F.
+  - apply Bool.andb_true_iff. split.
+    + apply IHP. intro F. apply H. left. exact F.
+    + apply IHQ. intro F. apply H. right. exact F.
+  - apply IH. intro F. apply H. exact F.
+  - apply IH. intro F. apply H. exact F.
+Qed.
+
+(* 辅助引理：~fv_at P k 时，subst_var m k P = P。
+   拓扑论：没有自由穿越 k 位的引用，代换不改变进程。 *)
+Lemma subst_var_id_fv_closed : forall m k P, ~ fv_at P k -> subst_var m k P = P.
+Proof.
+  intros m k P; revert m k.
+  induction P as [n| | P IH | x y P IH | x P IH | P IHP Q IHQ | P IH | P IH];
+    intros m k H; simpl.
+  - assert (Hlt : n < k).
+    { destruct (Nat.ltb n k) eqn:E.
+      - apply Nat.ltb_lt; exact E.
+      - apply Nat.ltb_ge in E. exfalso. apply H. exact E. }
+    rewrite (subst_name_lt m k n Hlt). reflexivity.
+  - reflexivity.
+  - f_equal. apply IH. intro F. apply H. exact F.
+  - assert (Hx : x < k).
+    { destruct (Nat.ltb x k) eqn:E.
+      - apply Nat.ltb_lt; exact E.
+      - apply Nat.ltb_ge in E. exfalso. apply H. left. exact E. }
+    assert (Hy : y < k).
+    { destruct (Nat.ltb y k) eqn:E.
+      - apply Nat.ltb_lt; exact E.
+      - apply Nat.ltb_ge in E. exfalso. apply H. right. left. exact E. }
+    f_equal.
+    + rewrite (subst_name_lt m k x Hx); reflexivity.
+    + rewrite (subst_name_lt m k y Hy); reflexivity.
+    + apply IH. intro F. apply H. right. right. exact F.
+  - assert (Hx : x < k).
+    { destruct (Nat.ltb x k) eqn:E.
+      - apply Nat.ltb_lt; exact E.
+      - apply Nat.ltb_ge in E. exfalso. apply H. left. exact E. }
+    f_equal.
+    + rewrite (subst_name_lt m k x Hx); reflexivity.
+    + apply (IH (S m) (S k)). intro F. apply H. right. exact F.
+  - f_equal.
+    + apply IHP. intro F. apply H. left. exact F.
+    + apply IHQ. intro F. apply H. right. exact F.
+  - f_equal. apply (IH (S m) (S k)). intro F. apply H. exact F.
+  - f_equal. apply IH. intro F. apply H. exact F.
+Qed.
+
+(* REPLACE: Lemma typed_res_par_l ... Admitted. *)
 Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
   typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
 Proof.
-  (* S01直接证明有语法错误，重置为Admitted，后续交DS主谋重新证明。 *)
-Admitted.
+  intros Gamma P Q Hclosed Hty.
+  (* PRes：反转取得内部 PPar 的类型化前提 *)
+  inversion Hty as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|
+                    ? ? ? ? ? ? ? ? ? ?|? ? ? ? ? ? ? ?|? ? T Hpar|? ? ?]; subst.
+  (* PPar：反转取得 split 与两侧类型化；直接构造子反演，不经过 exists 的 par_elim *)
+  inversion Hpar as [?|? ? ? ?|? ? ?|? ? ? ? ? ? ? ? ? ? ? ? ?|
+                     ? ? ? ? ? ? ? ? ? ?|G0 P0 Q0 G1 G2 Hs HP HQ|? ?|? ? ?]; subst.
 
+  assert (Hs' : split Gamma (remove_at 0 G1) (remove_at 0 G2)).
+  {
+    apply (split_remove_at_both Gamma T 0 G1 G2).
+    - lia.
+    - exact Hs.
+  }
+
+  assert (HPres : typed (remove_at 0 G1) (PRes P)).
+  {
+    destruct G1 as [|g1 G1tail].
+    - (* G1 为空：P 可在空上下文类型化；加回一个悬空头 *)
+      apply (ty_res [] P TUnit).
+      apply (weaken_nil P TUnit). exact HP.
+    - destruct g1 as [Tg|].
+      + (* 头位置原本持 Tg：PRes P 继续借用 Tg *)
+        apply (ty_res G1tail P Tg). exact HP.
+      + (* 头位置原本为在位空：可任意填类型，这里填 TUnit *)
+        apply (ty_res G1tail P TUnit).
+        apply (weaken_none_head G1tail P TUnit). exact HP.
+  }
+
+  assert (HQ' : typed (remove_at 0 G2) Q).
+  {
+    destruct G2 as [|g2 G2tail].
+    - (* G2 为空：Q 原本就在空上下文类型化，remove_at 0 [] = [] *)
+      exact HQ.
+    - destruct g2 as [Tg|].
+      + (* 头位置持 Tg：由于 Q 不引用位置 0，可先收摄该头，再撤除 *)
+        assert (Hnf : not_free_in Q 0 = true) by
+          (apply (not_free_in_fv Q 0); exact Hclosed).
+        pose proof (typed_strengthen_unused (Some Tg :: G2tail) Q 0 HQ Hnf) as HQs.
+        assert (Hin : typed (insert_none_at 0 G2tail) Q) by
+          (simpl in HQs; exact HQs).
+        assert (HLen : 0 <= length G2tail) by lia.
+        pose proof (substitution_none_strengthen G2tail 0 0 Q HLen Hin) as Hsub.
+        rewrite (subst_var_id_fv_closed 0 0 Q Hclosed) in Hsub.
+        exact Hsub.
+      + (* 头位置原来就是在位空：直接撤除 *)
+        assert (Hin : typed (insert_none_at 0 G2tail) Q) by
+          (simpl; exact HQ).
+        assert (HLen : 0 <= length G2tail) by lia.
+        pose proof (substitution_none_strengthen G2tail 0 0 Q HLen Hin) as Hsub.
+        rewrite (subst_var_id_fv_closed 0 0 Q Hclosed) in Hsub.
+        exact Hsub.
+  }
+
+  apply (ty_par Gamma (PRes P) Q (remove_at 0 G1) (remove_at 0 G2)
+            Hs' HPres HQ').
+Qed.
+(* END REPLACE *)
 Lemma typed_res_par_r : forall Gamma P Q, ~ fv_at Q 0 ->
   typed Gamma (PPar (PRes P) Q) -> typed Gamma (PRes (PPar P Q)).
 Proof.
