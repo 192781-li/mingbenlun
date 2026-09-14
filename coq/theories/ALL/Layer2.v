@@ -2677,13 +2677,23 @@ Proof.
   rewrite ren_id in Hr.
   exact Hr.
 Qed.
-(* typed_any_ctx：完全无变量的进程(~fv_at P 0)可在任意上下文中类型化。
-   ~fv_at P 0意味着P不含PVar/POut/PIn（所有nat index>=0），
-   仅由PZero/PTau/PPar/PRes/PRep构成，不消耗上下文资源。 *)
-Lemma typed_any_ctx : forall P Gamma, ~ fv_at P 0 -> typed Gamma P.
+(* typed_any_ctx：空上下文可类型化的进程可在任意上下文中类型化。
+   原陈述~fv_at P 0 -> typed Gamma P为假（OB-017反例PRes(POut 0 0 PZero)），
+   修正为typed [] P -> typed Gamma P（同时要求闭合+内部线性良序）。
+   证明照抄weaken_nil，用ren_typed把空上下文重命名到任意Gamma。 *)
+Lemma typed_any_ctx : forall P Gamma, typed [] P -> typed Gamma P.
 Proof.
-  (* S01直接证明有语法错误，重置为Admitted，后续交DS主谋重新证明。 *)
-Admitted.
+  intros P Gamma H.
+  assert (Hinj : forall n m, has [] n -> has [] m ->
+    (fun n : nat => n) n = (fun n : nat => n) m -> n = m).
+  { intros n m Hn Hm E. destruct Hn as [T' Hget]. simpl in Hget. discriminate. }
+  assert (Hpts : forall n T', get [] n = Some (Some T') ->
+    get Gamma ((fun n : nat => n) n) = Some (Some T')).
+  { intros n T' Hn. simpl in Hn. discriminate. }
+  pose proof (ren_typed [] P H (fun n : nat => n) Gamma Hinj Hpts) as Hr.
+  rewrite ren_id in Hr.
+  exact Hr.
+Qed.
 
 Lemma typed_res_par_l : forall Gamma P Q, ~ fv_at Q 0 ->
   typed Gamma (PRes (PPar P Q)) -> typed Gamma (PPar (PRes P) Q).
