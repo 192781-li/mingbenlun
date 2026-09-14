@@ -13014,3 +13014,90 @@ Proof.
 但在用户要求的“本轮任务”只要求证 typed_res_par_r。如果当前 Layer2.v 已有 typed_res_par_r 的 Admitted 或错误定义位置混乱，我们需要给出“从声明行到 Qed”的完整新版本，包括它依赖的辅助引理都当轮交齐。我们需输出可以整体替换的块，从 shift_at 定义一直到 typed_res_par_r Qed，确保依赖顺序正确。
 
 但还可能有其他编译错误隐藏在材料中未显示？上一版错误只显示 ren_shift_at_fv_id not found。很可能修复顺序即可。我们需要确保所有辅助引理 Qed 且名称不与已有冲突。材料A中 Layer2 后半段已经存在这些定义（typed_closed_shift_none, split_cons_none, ren_shift_at_fv_id, typed_res_par_r）？但当前文件中这些可能是旧的或顺序错误。用户要求
+
+
+## 2026-09-14 23:38:48 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+(* ============ 补全 split_assoc（当前 Admitted） ============ *)
+
+(* 逐位单元命题：与 split 的逐位展开一致 *)
+Definition cell_split (g a b : option (option ty)) : Prop :=
+  (a = g /\ (b = None \/ b = Some None))
+  \/ (b = g /\ (a = None \/ a = Some None)).
+
+(* 中间层候选：G2 优先、G3 兜底。返回 get 层值。 *)
+Definition mid_val (g2 g3 : option (option ty)) : option (option ty) :=
+  match g2 with
+  | Some (Some a) => Some (Some a)
+  | _ => match g3 with
+          | Some v => Some v
+          | None => Some None
+          end
+  end.
+
+(* 逐位见证：若 Some 优先可行则取 mid_val；否则取 None（越界）。
+   注意：在 cell_split 前提不满足时 mid_val 可能不是合法见证，
+   所以这里需要一个可判定的合法性检查。
+   下面用 ClassicalEpsilon 的排中律安全选择。 *)
+Definition pick_23 (g g12 g3 g1 g2 : option (option ty)) : option (option ty) :=
+  if excluded_middle_informative
+       (cell_split g g1 (mid_val g2 g3) /\ cell_split (mid_val g2 g3) g2 g3)
+  then mid_val g2 g3
+  else None.
+
+(* 逐位正确性：在 split 前提成立时，mid_val 就是合法见证。
+   这是整个 split_assoc 的核心逐位引理。 *)
+Lemma mid_val_correct :
+  forall g g12 g3 g1 g2,
+    cell_split g g12 g3 ->
+    cell_split g12 g1 g2 ->
+    cell_split g g1 (mid_val g2 g3) /\
+    cell_split (mid_val g2 g3) g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 H13 H12.
+  unfold cell_split in *.
+  unfold mid_val.
+  destruct H13 as [[H12g H3empty] | [H3g H12empty]];
+  destruct H12 as [[H1g H2empty] | [H2g H1empty]];
+  subst; simpl; auto.
+  all:
+    (* 四个分支一律暴力枚举 g2/g3 的三态 *)
+    destruct g2 as [[a|]|]; destruct g3 as [[b|]|];
+    simpl in *; try tauto; try discriminate.
+Qed.
+
+(* pick_23 在上述前提下实际等于 mid_val，因此也是合法见证。 *)
+Lemma pick_23_eq_mid :
+  forall g g12 g3 g1 g2,
+    cell_split g g12 g3 ->
+    cell_split g12 g1 g2 ->
+    pick_23 g g12 g3 g1 g2 = mid_val g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 H13 H12.
+  unfold pick_23.
+  pose proof (mid_val_correct g g12 g3 g1 g2 H13 H12) as Hc.
+  destruct (excluded_middle_informative _) as [Hyes | Hno]; [reflexivity |].
+  exfalso. apply Hno. exact Hc.
+Qed.
+
+(* 后缀关键引理：
+   若来自 split 的逐位 pick_23 为 None，则下一位置仍为 None。
+   None 有两种来源：(1) mid_val 本应为 None 但
+[reasoning摘要]
+We need answer in Chinese. Need produce complete Coq proof for split_assoc. Need be careful, no Admitted. We need reason deeply. We have full Layer2 material A. Need prove split_assoc currently Admitted. Need deliver complete Lemma ... Proof ... Qed. Since can only send code? User says produce complete compilable Coq, give reasoning. We can include explanation. Need ensure proof compiles with Rocq 9.1. We have stdlib, no ssr. Context has many lemmas. We need derive split_assoc. Let's analyze.
+
+Definitions:
+
+ctx := list (option ty).
+get : ctx -> nat -> option (option ty): None if index out of bounds, Some t for element t:option ty.
+
+split Gamma Gamma1 Gamma2 : Prop := forall n,
+  (get Gamma1 n = get Gamma n /\ (get Gamma2 n = None \/ get Gamma2 n = Some None))
+  \/ (get Gamma2 n = get Gamma n /\ (get Gamma1 n = None \/ get Gamma1 n = Some None)).
+
+Goal: forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+We need prove. This is associativity of affine/resource splitting with context lists allowing None (empty) and Some T resources. Need construct G23.
+
+Need theorem true. We need develop proof from existing lemmas. We can use H23_val? It is Qed? In Layer2, after split_assoc, there is H23_val defined and Qed before split_assoc? Actually in material, H23_val is Qed before split_assoc comment. It says split_assoc Admitted. H23_val exists and Qed. We can use it? Material says use已Qed. H23_val is Qed immediately before split_ass
