@@ -1,15 +1,15 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
-S04 agentic 证明闭环 —— DS 是主证明者，本模块只做本地执行与回喂（S04 只有 coqc 执行权）。
-循环：build_messages -> DS(思考,给足token) -> 抽coq -> 来源标签分流/编造校验/卫生检查
-      -> 备份 -> 整段替换/去重插入 -> coqc -> 绿且【目标段+本轮新引理】无 admit/Abort 则收敛；
-      否则完整错误原样回喂进入下一轮。
-v2(2026-09-04) 依《外部引理与知识来源登记规范》升级：
-  - known_src 每轮刷新（修“上一轮证入、下一轮被误判编造”）
-  - @stdlib 标签豁免并交 coqc 终裁；@prove/@cite 必须当轮带完整 Qed；无标签未定义名拦截
-  - 拦截 Abort 废块、块内/与文件同名重复定义；INSERT 已存在引理自动去重
-  - 收敛判据覆盖本轮 INSERT 的全部辅助引理（不许辅助引理留 admit）
-安全：每轮改文件前整文件备份(.bak_rN)。路径走 _paths.py。
+S04 agentic 璇佹槑闂幆 鈥斺€?DS 鏄富璇佹槑鑰咃紝鏈ā鍧楀彧鍋氭湰鍦版墽琛屼笌鍥炲杺锛圫04 鍙湁 coqc 鎵ц鏉冿級銆?
+寰幆锛歜uild_messages -> DS(鎬濊€?缁欒冻token) -> 鎶絚oq -> 鏉ユ簮鏍囩鍒嗘祦/缂栭€犳牎楠?鍗敓妫€鏌?
+      -> 澶囦唤 -> 鏁存鏇挎崲/鍘婚噸鎻掑叆 -> coqc -> 缁夸笖銆愮洰鏍囨+鏈疆鏂板紩鐞嗐€戞棤 admit/Abort 鍒欐敹鏁涳紱
+      鍚﹀垯瀹屾暣閿欒鍘熸牱鍥炲杺杩涘叆涓嬩竴杞€?
+v2(2026-09-04) 渚濄€婂閮ㄥ紩鐞嗕笌鐭ヨ瘑鏉ユ簮鐧昏瑙勮寖銆嬪崌绾э細
+  - known_src 姣忚疆鍒锋柊锛堜慨鈥滀笂涓€杞瘉鍏ャ€佷笅涓€杞璇垽缂栭€犫€濓級
+  - @stdlib 鏍囩璞佸厤骞朵氦 coqc 缁堣锛汙prove/@cite 蹇呴』褰撹疆甯﹀畬鏁?Qed锛涙棤鏍囩鏈畾涔夊悕鎷︽埅
+  - 鎷︽埅 Abort 搴熷潡銆佸潡鍐?涓庢枃浠跺悓鍚嶉噸澶嶅畾涔夛紱INSERT 宸插瓨鍦ㄥ紩鐞嗚嚜鍔ㄥ幓閲?
+  - 鏀舵暃鍒ゆ嵁瑕嗙洊鏈疆 INSERT 鐨勫叏閮ㄨ緟鍔╁紩鐞嗭紙涓嶈杈呭姪寮曠悊鐣?admit锛?
+瀹夊叏锛氭瘡杞敼鏂囦欢鍓嶆暣鏂囦欢澶囦唤(.bak_rN)銆傝矾寰勮蛋 _paths.py銆?
 """
 import os, re, shutil, subprocess, datetime
 from ds_v4 import chat
@@ -23,8 +23,8 @@ def extract_coq_blocks(content):
 _TOP = r"(?:Lemma|Theorem|Fact|Corollary|Definition|Fixpoint|Let)"
 
 def lemma_span(src, name):
-    """从 Lemma/Theorem <name> 起，到第一个行尾结束标记 Qed./Admitted./Defined./Abort. 止（含）。
-    结束标记允许列0单独成行，也允许跟在 'Proof. ' 同行（如 'Proof. Admitted.'）。找不到 None。"""
+    """浠?Lemma/Theorem <name> 璧凤紝鍒扮涓€涓灏剧粨鏉熸爣璁?Qed./Admitted./Defined./Abort. 姝紙鍚級銆?
+    缁撴潫鏍囪鍏佽鍒?鍗曠嫭鎴愯锛屼篃鍏佽璺熷湪 'Proof. ' 鍚岃锛堝 'Proof. Admitted.'锛夈€傛壘涓嶅埌 None銆?""
     m = re.search(r"(?m)^(?:Lemma|Theorem|Fact|Corollary)\s+"+re.escape(name)+r"\b", src)
     if not m: return None
     tail = re.search(r"(?m)(Qed\.|Admitted\.|Defined\.|Abort\.)\s*$", src[m.end():])
@@ -32,9 +32,9 @@ def lemma_span(src, name):
     return m.start(), m.end()+tail.end()
 
 def def_span(src, name):
-    """单行占位 Definition/Fixpoint/Let 的切除区间（从 ^Definition name 非贪婪到第一个行尾句点）。
-    仅用于切除 S04 预立的【单行占位实现】，好让 DS 交来的同名正式 Definition 不产生重复定义；
-    DS 自己交的多行成品 Definition 走插入、不经过这里切除。找不到 None。"""
+    """鍗曡鍗犱綅 Definition/Fixpoint/Let 鐨勫垏闄ゅ尯闂达紙浠?^Definition name 闈炶椽濠埌绗竴涓灏惧彞鐐癸級銆?
+    浠呯敤浜庡垏闄?S04 棰勭珛鐨勩€愬崟琛屽崰浣嶅疄鐜般€戯紝濂借 DS 浜ゆ潵鐨勫悓鍚嶆寮?Definition 涓嶄骇鐢熼噸澶嶅畾涔夛紱
+    DS 鑷繁浜ょ殑澶氳鎴愬搧 Definition 璧版彃鍏ャ€佷笉缁忚繃杩欓噷鍒囬櫎銆傛壘涓嶅埌 None銆?""
     m = re.search(r"(?ms)^(?:Definition|Fixpoint|Let)\s+"+re.escape(name)+r"\b.*?\.\s*$", src)
     return (m.start(), m.end()) if m else None
 
@@ -42,29 +42,29 @@ def _top_defined_names(text):
     return set(re.findall(r"(?m)^\s*"+_TOP+r"\s+([\w']+)", text))
 
 def apply_patch(file_path, target_lemma, blocks):
-    """按协议应用 DS 代码块，返回 (ok, msg, new_src, inserted, mode)。
-    mode: "replace"=本轮交了目标lemma并替换；"insert_only"=本轮只交辅助引理，先插到目标前沉淀；"none"=无可应用。
-    辅助引理允许分步交（insert_only 逐轮沉淀）；若 DS 重发【同名】辅助引理，视为修正版：切除文件中旧同名段、
-    以新版替换（这样已沉淀但有编译错的辅助引理修得动，不会被"去重"跳过锁死）；纯噪声块（markdown 残留）丢弃。"""
+    """鎸夊崗璁簲鐢?DS 浠ｇ爜鍧楋紝杩斿洖 (ok, msg, new_src, inserted, mode)銆?
+    mode: "replace"=鏈疆浜や簡鐩爣lemma骞舵浛鎹紱"insert_only"=鏈疆鍙氦杈呭姪寮曠悊锛屽厛鎻掑埌鐩爣鍓嶆矇娣€锛?none"=鏃犲彲搴旂敤銆?
+    杈呭姪寮曠悊鍏佽鍒嗘浜わ紙insert_only 閫愯疆娌夋穩锛夛紱鑻?DS 閲嶅彂銆愬悓鍚嶃€戣緟鍔╁紩鐞嗭紝瑙嗕负淇鐗堬細鍒囬櫎鏂囦欢涓棫鍚屽悕娈点€?
+    浠ユ柊鐗堟浛鎹紙杩欐牱宸叉矇娣€浣嗘湁缂栬瘧閿欑殑杈呭姪寮曠悊淇緱鍔紝涓嶄細琚?鍘婚噸"璺宠繃閿佹锛夛紱绾櫔澹板潡锛坢arkdown 娈嬬暀锛変涪寮冦€?""
     src = open(file_path, encoding="utf-8").read()
-    work = src                       # 动态工作串：同名旧段在此切除
+    work = src                       # 鍔ㄦ€佸伐浣滀覆锛氬悓鍚嶆棫娈靛湪姝ゅ垏闄?
     insert_before, new_lemma, skipped = [], None, []
     for b in blocks:
         body = re.sub(r"(?m)^\s*\(\*\s*INSERT-BEFORE:.*?\*\)\s*\n","",b).strip()
         if re.search(r"(?m)^(?:Lemma|Theorem)\s+"+re.escape(target_lemma)+r"\b", body):
             if new_lemma is not None:
-                return False, "多个代码块都定义了目标lemma，拒绝盲改", src, [], "none"
+                return False, "澶氫釜浠ｇ爜鍧楅兘瀹氫箟浜嗙洰鏍噇emma锛屾嫆缁濈洸鏀?, src, [], "none"
             new_lemma = body
         elif body:
-            # 噪声块（markdown 标题/纯说明，不含任何 Coq 顶层定义）直接丢弃，不插入 .v
+            # 鍣０鍧楋紙markdown 鏍囬/绾鏄庯紝涓嶅惈浠讳綍 Coq 椤跺眰瀹氫箟锛夌洿鎺ヤ涪寮冿紝涓嶆彃鍏?.v
             if not re.search(r"(?m)^\s*(?:Lemma|Theorem|Fact|Corollary|Definition|Fixpoint|Inductive|Let)\b", body):
-                skipped.append(["<噪声块,非顶层定义,丢弃>"]); continue
+                skipped.append(["<鍣０鍧?闈為《灞傚畾涔?涓㈠純>"]); continue
             insert_before.append(body)
-    # 写入前统一清场：本轮任何块（含目标块内嵌的 Definition/Fixpoint）要引入的顶层名，
-    # 把 work 中其【所有】旧同名段循环全切（lemma_span/def_span 都试），杜绝 DS 分块方式
-    # 不同或历史残留多份导致的 "already exists"（2026-09-04 pick_prefix 三轮累积重复定义固化）。
+    # 鍐欏叆鍓嶇粺涓€娓呭満锛氭湰杞换浣曞潡锛堝惈鐩爣鍧楀唴宓岀殑 Definition/Fixpoint锛夎寮曞叆鐨勯《灞傚悕锛?
+    # 鎶?work 涓叾銆愭墍鏈夈€戞棫鍚屽悕娈靛惊鐜叏鍒囷紙lemma_span/def_span 閮借瘯锛夛紝鏉滅粷 DS 鍒嗗潡鏂瑰紡
+    # 涓嶅悓鎴栧巻鍙叉畫鐣欏浠藉鑷寸殑 "already exists"锛?026-09-04 pick_prefix 涓夎疆绱Н閲嶅瀹氫箟鍥哄寲锛夈€?
     incoming = _top_defined_names("\n".join(insert_before + ([new_lemma] if new_lemma else [])))
-    incoming.discard(target_lemma)   # 目标 lemma 由下方 span 整段替换，不在此切
+    incoming.discard(target_lemma)   # 鐩爣 lemma 鐢变笅鏂?span 鏁存鏇挎崲锛屼笉鍦ㄦ鍒?
     def _cut_all(text, name):
         cnt = 0
         while True:
@@ -74,23 +74,23 @@ def apply_patch(file_path, target_lemma, blocks):
         return text, cnt
     for nm in sorted(incoming):
         work, c = _cut_all(work, nm)
-        if c: skipped.append(["切除旧同名%d份:%s"%(c, nm)])
+        if c: skipped.append(["鍒囬櫎鏃у悓鍚?d浠?%s"%(c, nm)])
     span = lemma_span(work, target_lemma)
     if new_lemma is None:
         if not insert_before:
-            return False, "DS 输出中没有目标 lemma %s 的完整新版本，也没有任何新引理" % target_lemma, src, [], "none"
+            return False, "DS 杈撳嚭涓病鏈夌洰鏍?lemma %s 鐨勫畬鏁存柊鐗堟湰锛屼篃娌℃湁浠讳綍鏂板紩鐞? % target_lemma, src, [], "none"
         if not span:
-            return False, "源文件中定位不到 lemma %s 的起止" % target_lemma, src, [], "none"
+            return False, "婧愭枃浠朵腑瀹氫綅涓嶅埌 lemma %s 鐨勮捣姝? % target_lemma, src, [], "none"
         ins = "\n\n".join(insert_before)+"\n\n"
-        msg = "仅插入辅助引理%d段（本轮未交主引理，先沉淀，下一轮交主引理）"%len(insert_before)
-        if skipped: msg += "；处理:%s"%skipped
+        msg = "浠呮彃鍏ヨ緟鍔╁紩鐞?d娈碉紙鏈疆鏈氦涓诲紩鐞嗭紝鍏堟矇娣€锛屼笅涓€杞氦涓诲紩鐞嗭級"%len(insert_before)
+        if skipped: msg += "锛涘鐞?%s"%skipped
         return True, msg, work[:span[0]]+ins+work[span[0]:], insert_before, "insert_only"
     if not span:
-        return False, "源文件中定位不到 lemma %s 的起止" % target_lemma, src, [], "none"
+        return False, "婧愭枃浠朵腑瀹氫綅涓嶅埌 lemma %s 鐨勮捣姝? % target_lemma, src, [], "none"
     s,e = span
     ins = ("\n\n".join(insert_before)+"\n\n") if insert_before else ""
-    msg = "替换目标lemma并插入%d段新引理"%len(insert_before)
-    if skipped: msg += "；处理:%s"%skipped
+    msg = "鏇挎崲鐩爣lemma骞舵彃鍏?d娈垫柊寮曠悊"%len(insert_before)
+    if skipped: msg += "锛涘鐞?%s"%skipped
     return True, msg, work[:s]+ins+new_lemma+work[e:], insert_before, "replace"
 
 def run_coqc(theories_dir, fname):
@@ -104,7 +104,7 @@ def append_channel(target, rnd, tag, text):
         CHANNEL.parent.mkdir(parents=True, exist_ok=True)
         ts=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         with open(CHANNEL,"a",encoding="utf-8") as f:
-            f.write("\n\n## %s [proof_loop] %s · round%d · %s\n\n%s\n"%(ts,target,rnd,tag,text))
+            f.write("\n\n## %s [proof_loop] %s 路 round%d 路 %s\n\n%s\n"%(ts,target,rnd,tag,text))
     except Exception as e:
         print("[channel warn]",e)
 
@@ -129,44 +129,44 @@ def _local_names(blocks):
     local=set(); txt="\n".join(blocks)
     for m in re.finditer(r"intros\s+([^.]*)\.", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
     for m in re.finditer(r"(?:induction|destruct)\s+([A-Za-z_][\w']*)", txt): local.add(m.group(1))
-    # as 模式：把 as 后整段绑定模式（允许 [[..]|[..]] 嵌套、(|..&..)、| , 空格）吃到 . ; 换行，再提标识符
+    # as 妯″紡锛氭妸 as 鍚庢暣娈电粦瀹氭ā寮忥紙鍏佽 [[..]|[..]] 宓屽銆?|..&..)銆亅 , 绌烘牸锛夊悆鍒?. ; 鎹㈣锛屽啀鎻愭爣璇嗙
     for m in re.finditer(r"\bas\s+([\[\]\(\)\|\w'\s&,]+?)[.;\n]", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
-    for m in re.finditer(r"\bas\s+([A-Za-z_][\w']*)", txt): local.add(m.group(1))  # as name（不带括号）
+    for m in re.finditer(r"\bas\s+([A-Za-z_][\w']*)", txt): local.add(m.group(1))  # as name锛堜笉甯︽嫭鍙凤級
     for m in re.finditer(r"forall\s+([^,]+),", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
     for m in re.finditer(r"fun\s+([^=]+)=>", txt): local |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
     for m in re.finditer(r"(?:assert|set|remember|pose)\s*\(?\s*([A-Za-z_][\w']*)", txt): local.add(m.group(1))
     for m in re.finditer(r"specialize\s+([A-Za-z_][\w']*)", txt): local.add(m.group(1))
-    # eqn:NAME / eqn : NAME / eqn:(NAME)：destruct/inversion/case 用 eqn 绑定的等式假设名（如 destruct .. eqn:EG）
+    # eqn:NAME / eqn : NAME / eqn:(NAME)锛歞estruct/inversion/case 鐢?eqn 缁戝畾鐨勭瓑寮忓亣璁惧悕锛堝 destruct .. eqn:EG锛?
     for m in re.finditer(r"\beqn\s*:\s*\(?([A-Za-z_][\w']*)", txt): local.add(m.group(1))
     return local
 
 def parse_stdlib_names(content, blocks):
-    """提取 (* @stdlib names: a, b, c *) 中显式声明、交 coqc 终裁的库引理名。"""
+    """鎻愬彇 (* @stdlib names: a, b, c *) 涓樉寮忓０鏄庛€佷氦 coqc 缁堣鐨勫簱寮曠悊鍚嶃€?""
     names=set()
     for m in re.finditer(r"@stdlib[^\n*]*?names\s*:\s*([^*)]+)", content+"\n"+"\n".join(blocks)):
         names |= set(re.findall(r"[A-Za-z_][\w']*", m.group(1)))
     return names
 
 def check_hygiene(blocks):
-    """卫生检查：不许 Abort 废块；块内不许同名重复定义。返回问题列表。"""
+    """鍗敓妫€鏌ワ細涓嶈 Abort 搴熷潡锛涘潡鍐呬笉璁稿悓鍚嶉噸澶嶅畾涔夈€傝繑鍥為棶棰樺垪琛ㄣ€?""
     issues=[]
     for i,b in enumerate(blocks):
         if re.search(r"\bAbort\.", b):
-            issues.append("代码块%d 含 Abort. 废块（草稿不许入库，请只交 Qed 成品）"%(i+1))
+            issues.append("浠ｇ爜鍧?d 鍚?Abort. 搴熷潡锛堣崏绋夸笉璁稿叆搴擄紝璇峰彧浜?Qed 鎴愬搧锛?%(i+1))
     seen={}
     for b in blocks:
         for n in _top_defined_names(b):
             seen[n]=seen.get(n,0)+1
     dup=sorted(n for n,c in seen.items() if c>1)
-    if dup: issues.append("同名定义在本轮重复出现: %s（每个引理只给一份）"%dup)
+    if dup: issues.append("鍚屽悕瀹氫箟鍦ㄦ湰杞噸澶嶅嚭鐜? %s锛堟瘡涓紩鐞嗗彧缁欎竴浠斤級"%dup)
     return issues
 
 def check_referenced_lemmas(blocks, known_src, extra_known=None):
-    """抓 apply/rewrite/exact 引用、但材料/本块/局部/白名单/显式声明都没有的名字（防编造）。"""
+    """鎶?apply/rewrite/exact 寮曠敤銆佷絾鏉愭枡/鏈潡/灞€閮?鐧藉悕鍗?鏄惧紡澹版槑閮芥病鏈夌殑鍚嶅瓧锛堥槻缂栭€狅級銆?""
     known=set(re.findall(r"(?:Lemma|Theorem|Fact|Corollary|Definition|Fixpoint|Inductive|CoInductive|Let|Notation)\s+([\w']+)", known_src))
     for im in re.finditer(r"Inductive\s+[A-Za-z_][\w']*[^.]*?:=(.*?)\.", known_src, flags=re.S):
         known |= set(re.findall(r"[A-Za-z_][\w']*", im.group(1)))
-    known |= set(re.findall(r"[A-Za-z_][\w']*", known_src))   # 全文完整词兜底
+    known |= set(re.findall(r"[A-Za-z_][\w']*", known_src))   # 鍏ㄦ枃瀹屾暣璇嶅厹搴?
     known |= _defined_names(blocks); known |= _local_names(blocks); known |= _BUILTIN
     if extra_known: known |= extra_known
     missing={}
@@ -175,7 +175,7 @@ def check_referenced_lemmas(blocks, known_src, extra_known=None):
         for m in pat.finditer(b):
             ident=m.group(1)
             if ident in known: continue
-            if ident.startswith("IH"): continue   # induction 自动生成的归纳假设 IHtyped/IHtyped1..
+            if ident.startswith("IH"): continue   # induction 鑷姩鐢熸垚鐨勫綊绾冲亣璁?IHtyped/IHtyped1..
             missing.setdefault(ident,0); missing[ident]+=1
     return sorted(missing)
 
@@ -195,61 +195,61 @@ def proof_loop(task_brief, file_path, target_lemma, theories_dir=None, layer_fil
     fname = os.path.basename(file_path)
     history=[]; coqc_error=""; result={"rounds":[],"converged":False}
     for rnd in range(1,max_rounds+1):
-        known_src = _read_known(theories_dir, layer_files)   # v2: 每轮刷新，收录上一轮新证入的引理
+        known_src = _read_known(theories_dir, layer_files)   # v2: 姣忚疆鍒锋柊锛屾敹褰曚笂涓€杞柊璇佸叆鐨勫紩鐞?
         msgs = build_messages(task_brief, layer_files=layer_files, strategy_docs=strategy_docs,
                               philos_docs=philos_docs, coqc_error=coqc_error, history=history,
                               extra_notes=extra_notes)
-        log("[round %d] 上下文约 %d token，调用 %s ..."%(rnd, approx_tokens(msgs), model))
-        out = chat(msgs, model=model, thinking="enabled", max_tokens=32000,
+        log("[round %d] 涓婁笅鏂囩害 %d token锛岃皟鐢?%s ..."%(rnd, approx_tokens(msgs), model))
+        out = chat(msgs, model=model, thinking="enabled", max_tokens=64000,
                    task_name="proofloop_%s_r%d"%(target_lemma,rnd))
-        log("[round %d] status=%s finish=%s rounds=%d 输出%d字符 reasoning%d字符 费用%.4f元"
+        log("[round %d] status=%s finish=%s rounds=%d 杈撳嚭%d瀛楃 reasoning%d瀛楃 璐圭敤%.4f鍏?
             %(rnd,out["status"],out["finish"],out["rounds"],len(out["content"]),len(out["reasoning"]),out["cost_yuan"]))
-        append_channel(target_lemma,rnd,"DS输出",out["content"][:2000]+"\n[reasoning摘要]\n"+out["reasoning"][:1500])
+        append_channel(target_lemma,rnd,"DS杈撳嚭",out["content"][:2000]+"\n[reasoning鎽樿]\n"+out["reasoning"][:1500])
         needs = detect_need(out["content"])
         if needs:
-            log("[round %d] DS 声明缺材料：%s，回喂引导"%(rnd,needs))
+            log("[round %d] DS 澹版槑缂烘潗鏂欙細%s锛屽洖鍠傚紩瀵?%(rnd,needs))
             history += [("assistant",out["content"][:6000]),
-                        ("user","材料A已包含 %s 完整全文，请在其中检索；若确属外部缺失，按来源规范打 @stdlib/@cite 标签，不要用无名未定义名。"%("、".join(layer_files)))]
+                        ("user","鏉愭枡A宸插寘鍚?%s 瀹屾暣鍏ㄦ枃锛岃鍦ㄥ叾涓绱紱鑻ョ‘灞炲閮ㄧ己澶憋紝鎸夋潵婧愯鑼冩墦 @stdlib/@cite 鏍囩锛屼笉瑕佺敤鏃犲悕鏈畾涔夊悕銆?%("銆?.join(layer_files)))]
             result["rounds"].append({"r":rnd,"need":needs}); continue
         blocks = extract_coq_blocks(out["content"])
-        # 证伪守卫（最高优先，先于一切应用）：DS 若宣布目标命题为假/交 ~forall 反例，必须过双门，
-        # 禁止凭自然语言或一份没编译过的反例就盲信"命题为假"（2026-09-04 split_assoc 事故固化）。
+        # 璇佷吉瀹堝崼锛堟渶楂樹紭鍏堬紝鍏堜簬涓€鍒囧簲鐢級锛欴S 鑻ュ甯冪洰鏍囧懡棰樹负鍋?浜?~forall 鍙嶄緥锛屽繀椤昏繃鍙岄棬锛?
+        # 绂佹鍑嚜鐒惰瑷€鎴栦竴浠芥病缂栬瘧杩囩殑鍙嶄緥灏辩洸淇?鍛介涓哄亣"锛?026-09-04 split_assoc 浜嬫晠鍥哄寲锛夈€?
         verdict = falsify_adjudicate(out["content"], blocks, target_lemma,
                                      layer_files=layer_files, log=log)
         if verdict["verdict"] == "refuted_claim":
-            log("[round %d] 证伪守卫推翻 DS 的为假主张（gate1_rc=%s winner=%s），不改文件，回喂继续证真"
+            log("[round %d] 璇佷吉瀹堝崼鎺ㄧ炕 DS 鐨勪负鍋囦富寮狅紙gate1_rc=%s winner=%s锛夛紝涓嶆敼鏂囦欢锛屽洖鍠傜户缁瘉鐪?
                 % (rnd, verdict.get("gate1_rc"), verdict.get("gate2_winner")))
             history += [("assistant", out["content"][:6000]),
-                        ("user", "[证伪守卫·机械验证] " + verdict["feedback"])]
+                        ("user", "[璇佷吉瀹堝崼路鏈烘楠岃瘉] " + verdict["feedback"])]
             result["rounds"].append({"r": rnd, "guard": "refuted_claim",
                                      "gate1_rc": verdict.get("gate1_rc"),
                                      "gate2_winner": verdict.get("gate2_winner")})
             continue
         if verdict["verdict"] == "plausibly_false":
-            log("[round %d] 证伪守卫：反例独立编译通过且候选解均证不出，疑似为假，halt 冻结烧钱，交人工/S01/S00裁决（永不自动改判）" % rnd)
+            log("[round %d] 璇佷吉瀹堝崼锛氬弽渚嬬嫭绔嬬紪璇戦€氳繃涓斿€欓€夎В鍧囪瘉涓嶅嚭锛岀枒浼间负鍋囷紝halt 鍐荤粨鐑ч挶锛屼氦浜哄伐/S01/S00瑁佸喅锛堟案涓嶈嚜鍔ㄦ敼鍒わ級" % rnd)
             result.update(converged=False, halted_falsification=verdict)
             break
         hyg = check_hygiene(blocks)
         if hyg:
-            log("[round %d] 卫生检查不过 %s，不改文件，回喂"%(rnd,hyg))
+            log("[round %d] 鍗敓妫€鏌ヤ笉杩?%s锛屼笉鏀规枃浠讹紝鍥炲杺"%(rnd,hyg))
             history += [("assistant",out["content"][:6000]),
-                        ("user","输出卫生问题：%s。请去掉 Abort 草稿、每个引理只保留一份成品（Lemma..Qed.），主定理用到的辅助引理当轮全部以 INSERT-BEFORE 成品块交齐，重给完整版本。"%hyg)]
+                        ("user","杈撳嚭鍗敓闂锛?s銆傝鍘绘帀 Abort 鑽夌銆佹瘡涓紩鐞嗗彧淇濈暀涓€浠芥垚鍝侊紙Lemma..Qed.锛夛紝涓诲畾鐞嗙敤鍒扮殑杈呭姪寮曠悊褰撹疆鍏ㄩ儴浠?INSERT-BEFORE 鎴愬搧鍧椾氦榻愶紝閲嶇粰瀹屾暣鐗堟湰銆?%hyg)]
             result["rounds"].append({"r":rnd,"hygiene":hyg}); continue
         stdlib = parse_stdlib_names(out["content"], blocks)
-        if stdlib: log("[round %d] @stdlib声明(交coqc终裁,记得登记台账): %s"%(rnd,sorted(stdlib)))
+        if stdlib: log("[round %d] @stdlib澹版槑(浜oqc缁堣,璁板緱鐧昏鍙拌处): %s"%(rnd,sorted(stdlib)))
         missing = check_referenced_lemmas(blocks, known_src, extra_known=stdlib)
         if missing:
-            log("[round %d] 未定义名 %s（无@prove完整证明/@stdlib声明），不改文件，回喂"%(rnd,missing))
+            log("[round %d] 鏈畾涔夊悕 %s锛堟棤@prove瀹屾暣璇佹槑/@stdlib澹版槑锛夛紝涓嶆敼鏂囦欢锛屽洖鍠?%(rnd,missing))
             history += [("assistant",out["content"][:6000]),
-                        ("user","你引用了 %s，但材料A、本轮代码块定义中都不存在。按来源规范处置：①自证辅助引理：当轮用 INSERT-BEFORE 块连完整 Qed 证明一起给；②确属Coq库已证引理：打 (* @stdlib names: .. *) 并确保已 Require Import；③文献结论：打 @cite 但仍须本库重证。禁止只留名字。重给完整版本。"%missing)]
+                        ("user","浣犲紩鐢ㄤ簡 %s锛屼絾鏉愭枡A銆佹湰杞唬鐮佸潡瀹氫箟涓兘涓嶅瓨鍦ㄣ€傛寜鏉ユ簮瑙勮寖澶勭疆锛氣憼鑷瘉杈呭姪寮曠悊锛氬綋杞敤 INSERT-BEFORE 鍧楄繛瀹屾暣 Qed 璇佹槑涓€璧风粰锛涒憽纭睘Coq搴撳凡璇佸紩鐞嗭細鎵?(* @stdlib names: .. *) 骞剁‘淇濆凡 Require Import锛涒憿鏂囩尞缁撹锛氭墦 @cite 浣嗕粛椤绘湰搴撻噸璇併€傜姝㈠彧鐣欏悕瀛椼€傞噸缁欏畬鏁寸増鏈€?%missing)]
             result["rounds"].append({"r":rnd,"missing":missing}); continue
         bak = file_path + (".bak_r%d"%rnd)
         shutil.copy2(file_path, bak)
         ok,msg,new_src,inserted,mode = apply_patch(file_path,target_lemma,blocks)
         if not ok:
-            log("[round %d] 未改文件：%s，回喂"%(rnd,msg))
+            log("[round %d] 鏈敼鏂囦欢锛?s锛屽洖鍠?%(rnd,msg))
             history += [("assistant",out["content"][:6000]),
-                        ("user","输出无法应用：%s。请严格按协议给目标 Lemma %s 从 Lemma 行到 Qed. 的完整新版本，新引理用 INSERT-BEFORE 标记。"%(msg,target_lemma))]
+                        ("user","杈撳嚭鏃犳硶搴旂敤锛?s銆傝涓ユ牸鎸夊崗璁粰鐩爣 Lemma %s 浠?Lemma 琛屽埌 Qed. 鐨勫畬鏁存柊鐗堟湰锛屾柊寮曠悊鐢?INSERT-BEFORE 鏍囪銆?%(msg,target_lemma))]
             result["rounds"].append({"r":rnd,"apply":msg}); continue
         open(file_path,"w",encoding="utf-8").write(new_src)
         rc,err = run_coqc(theories_dir,fname)
@@ -260,31 +260,31 @@ def proof_loop(task_brief, file_path, target_lemma, theories_dir=None, layer_fil
         bad = lambda t: ("admit" in t) or ("Abort." in t)
         tgt_bad, ins_bad = bad(seg), bad(ins_txt)
         if mode == "insert_only":
-            # 分步交：本轮只沉淀辅助引理。编译过且辅助无 admit 就算沉淀成功，不收敛，下轮交主引理。
-            log("[round %d] 辅助沉淀 coqc exit=%d 新引理admit/abort=%s"%(rnd,rc,ins_bad))
+            # 鍒嗘浜わ細鏈疆鍙矇娣€杈呭姪寮曠悊銆傜紪璇戣繃涓旇緟鍔╂棤 admit 灏辩畻娌夋穩鎴愬姛锛屼笉鏀舵暃锛屼笅杞氦涓诲紩鐞嗐€?
+            log("[round %d] 杈呭姪娌夋穩 coqc exit=%d 鏂板紩鐞哸dmit/abort=%s"%(rnd,rc,ins_bad))
             result["rounds"].append({"r":rnd,"mode":"insert_only","apply":msg,"coqc_rc":rc,"err_head":err[:400]})
             if rc==0 and not ins_bad:
                 names=[n for b in inserted for n in _top_defined_names(b)]
                 history += [("assistant",out["content"][:6000]),
-                            ("user","辅助引理 %s 已收录进文件且 coqc 编译通过，无需重证，下一轮可直接引用。现在【只】需给出目标 Lemma %s 从 Lemma 行到 Qed. 的完整证明块（不要再只交辅助引理，也不要重复已收录的），并保证它引用的名字都已在材料A或已收录引理中。"%(names,target_lemma))]
+                            ("user","杈呭姪寮曠悊 %s 宸叉敹褰曡繘鏂囦欢涓?coqc 缂栬瘧閫氳繃锛屾棤闇€閲嶈瘉锛屼笅涓€杞彲鐩存帴寮曠敤銆傜幇鍦ㄣ€愬彧銆戦渶缁欏嚭鐩爣 Lemma %s 浠?Lemma 琛屽埌 Qed. 鐨勫畬鏁磋瘉鏄庡潡锛堜笉瑕佸啀鍙氦杈呭姪寮曠悊锛屼篃涓嶈閲嶅宸叉敹褰曠殑锛夛紝骞朵繚璇佸畠寮曠敤鐨勫悕瀛楅兘宸插湪鏉愭枡A鎴栧凡鏀跺綍寮曠悊涓€?%(names,target_lemma))]
             else:
-                coqc_error = err if err.strip() else ("exit=%d；新引理问题=%s"%(rc,ins_bad))
+                coqc_error = err if err.strip() else ("exit=%d锛涙柊寮曠悊闂=%s"%(rc,ins_bad))
                 history += [("assistant",out["content"][:6000]),
-                            ("user","刚插入的辅助引理编译未过（rc=%s，新引理admit/abort=%s）。错误见材料末尾，请修正这些辅助引理后重交，然后再给主引理 %s。"%(rc,ins_bad,target_lemma))]
+                            ("user","鍒氭彃鍏ョ殑杈呭姪寮曠悊缂栬瘧鏈繃锛坮c=%s锛屾柊寮曠悊admit/abort=%s锛夈€傞敊璇鏉愭枡鏈熬锛岃淇杩欎簺杈呭姪寮曠悊鍚庨噸浜わ紝鐒跺悗鍐嶇粰涓诲紩鐞?%s銆?%(rc,ins_bad,target_lemma))]
             continue
-        log("[round %d] coqc exit=%d 目标段admit=%s 新引理admit/abort=%s"%(rnd,rc,tgt_bad,ins_bad))
+        log("[round %d] coqc exit=%d 鐩爣娈礱dmit=%s 鏂板紩鐞哸dmit/abort=%s"%(rnd,rc,tgt_bad,ins_bad))
         if rc==0 and not tgt_bad and not ins_bad:
-            log("[round %d] ✅ 编译通过且目标+新引理均无admit，收敛"%rnd)
+            log("[round %d] 鉁?缂栬瘧閫氳繃涓旂洰鏍?鏂板紩鐞嗗潎鏃燼dmit锛屾敹鏁?%rnd)
             result.update(converged=True,final_round=rnd,backup=bak); break
-        coqc_error = err if err.strip() else ("exit=%d 但无错误文本；目标段admit=%s 新引理问题=%s"%(rc,tgt_bad,ins_bad))
+        coqc_error = err if err.strip() else ("exit=%d 浣嗘棤閿欒鏂囨湰锛涚洰鏍囨admit=%s 鏂板紩鐞嗛棶棰?%s"%(rc,tgt_bad,ins_bad))
         history += [("assistant",out["content"][:6000]),
-                    ("user","应用后未收敛（rc=%s，目标段admit=%s，新引理admit/abort=%s）。完整错误见材料末尾，定位根因并给完整修正版；主定理用到的全部辅助引理当轮交齐到 Qed，不许 Abort/Admitted。"%(rc,tgt_bad,ins_bad))]
+                    ("user","搴旂敤鍚庢湭鏀舵暃锛坮c=%s锛岀洰鏍囨admit=%s锛屾柊寮曠悊admit/abort=%s锛夈€傚畬鏁撮敊璇鏉愭枡鏈熬锛屽畾浣嶆牴鍥犲苟缁欏畬鏁翠慨姝ｇ増锛涗富瀹氱悊鐢ㄥ埌鐨勫叏閮ㄨ緟鍔╁紩鐞嗗綋杞氦榻愬埌 Qed锛屼笉璁?Abort/Admitted銆?%(rc,tgt_bad,ins_bad))]
         result["rounds"].append({"r":rnd,"apply":msg,"coqc_rc":rc,"err_head":err[:400]})
     return result
 
 if __name__ == "__main__":
     import tempfile
-    sample='''说明。
+    sample='''璇存槑銆?
 ```coq
 (* INSERT-BEFORE: foo *)
 Lemma helper : True. Proof. exact I. Qed.
@@ -299,19 +299,19 @@ Proof. exact I. Qed.
         f.write("Lemma foo : False.\nProof. admit.\nAdmitted.\n"); tmp=f.name
     ok,msg,new,ins,mode=apply_patch(tmp,"foo",blks)
     print("apply(replace):",ok,mode,msg); print(new)
-    print("编造检查(应为空):",check_referenced_lemmas(blks,"Lemma foo : False."))
-    print("卫生(应空):",check_hygiene(blks))
-    # insert_only：本轮只交辅助引理，应插到 foo 前且 mode=insert_only
+    print("缂栭€犳鏌?搴斾负绌?:",check_referenced_lemmas(blks,"Lemma foo : False."))
+    print("鍗敓(搴旂┖):",check_hygiene(blks))
+    # insert_only锛氭湰杞彧浜よ緟鍔╁紩鐞嗭紝搴旀彃鍒?foo 鍓嶄笖 mode=insert_only
     with tempfile.NamedTemporaryFile("w",suffix=".v",delete=False,encoding="utf-8") as f:
         f.write("Lemma foo : False.\nProof. admit.\nAdmitted.\n"); tmp2=f.name
     ok2,msg2,new2,ins2,mode2=apply_patch(tmp2,"foo",blks[:1])
-    print("apply(insert_only):",ok2,mode2,msg2,"| helper在foo前:", new2.index("helper")<new2.index("Lemma foo"), "| foo仍Admitted:", "Admitted." in new2)
-    # 同名替换：文件里已有错误版 helper(Admitted)，本轮给 Qed 新版，应切除旧版、只留一份新版
+    print("apply(insert_only):",ok2,mode2,msg2,"| helper鍦╢oo鍓?", new2.index("helper")<new2.index("Lemma foo"), "| foo浠岮dmitted:", "Admitted." in new2)
+    # 鍚屽悕鏇挎崲锛氭枃浠堕噷宸叉湁閿欒鐗?helper(Admitted)锛屾湰杞粰 Qed 鏂扮増锛屽簲鍒囬櫎鏃х増銆佸彧鐣欎竴浠芥柊鐗?
     with tempfile.NamedTemporaryFile("w",suffix=".v",delete=False,encoding="utf-8") as f:
         f.write("Lemma helper : True. Proof. Admitted.\n\nLemma foo : False.\nProof. admit.\nAdmitted.\n"); tmp3=f.name
     ok3,msg3,new3,ins3,mode3=apply_patch(tmp3,"foo",blks)
-    print("apply(同名替换):",ok3,mode3,msg3,"| helper只出现一次:", new3.count("Lemma helper")==1,
-          "| 旧Admitted版已切除:", "Proof. Admitted." not in new3)
+    print("apply(鍚屽悕鏇挎崲):",ok3,mode3,msg3,"| helper鍙嚭鐜颁竴娆?", new3.count("Lemma helper")==1,
+          "| 鏃dmitted鐗堝凡鍒囬櫎:", "Proof. Admitted." not in new3)
     abort=blks+["Lemma x:True. Proof. Abort."]
-    print("卫生(应抓到Abort):",check_hygiene(abort))
+    print("鍗敓(搴旀姄鍒癆bort):",check_hygiene(abort))
     import os as _os; _os.remove(tmp); _os.remove(tmp2); _os.remove(tmp3)

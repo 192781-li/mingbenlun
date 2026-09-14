@@ -1,14 +1,12 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-DeepSeek V4 客户端（S04 形式化专用）—— 2026-09-03 三轮原地打磨产物，工程化入库。
-基于实测（非记忆）：
-  - deepseek-chat/reasoner 旧名已路由到 deepseek-v4-flash；可直接点名 v4-flash/v4-pro
-  - V4: 上下文 1M, 最大输出 384K；thinking 显式开关；reasoning_content 单独返回且占 completion 额度
-  - 历史"空输出"真相：思考模式 max_tokens 给小，reasoning 吃光额度 -> content 空 / finish=length
-机制：thinking 开关 / 人民币定价 / reasoning 单独存档 / length 自动续跑去接缝 / JSON+CSV 留痕
-路径与 key 全部走 _paths.py（环境变量可覆盖），不写死机器目录。
-"""
+DeepSeek V4 瀹㈡埛绔紙S04 褰㈠紡鍖栦笓鐢級鈥斺€?2026-09-03 涓夎疆鍘熷湴鎵撶（浜х墿锛屽伐绋嬪寲鍏ュ簱銆?鍩轰簬瀹炴祴锛堥潪璁板繂锛夛細
+  - deepseek-chat/reasoner 鏃у悕宸茶矾鐢卞埌 deepseek-v4-flash锛涘彲鐩存帴鐐瑰悕 v4-flash/v4-pro
+  - V4: 涓婁笅鏂?1M, 鏈€澶ц緭鍑?384K锛泃hinking 鏄惧紡寮€鍏筹紱reasoning_content 鍗曠嫭杩斿洖涓斿崰 completion 棰濆害
+  - 鍘嗗彶"绌鸿緭鍑?鐪熺浉锛氭€濊€冩ā寮?max_tokens 缁欏皬锛宺easoning 鍚冨厜棰濆害 -> content 绌?/ finish=length
+鏈哄埗锛歵hinking 寮€鍏?/ 浜烘皯甯佸畾浠?/ reasoning 鍗曠嫭瀛樻。 / length 鑷姩缁窇鍘绘帴缂?/ JSON+CSV 鐣欑棔
+璺緞涓?key 鍏ㄩ儴璧?_paths.py锛堢幆澧冨彉閲忓彲瑕嗙洊锛夛紝涓嶅啓姝绘満鍣ㄧ洰褰曘€?"""
 import json, time, os, csv, socket, ssl, urllib.request
 from urllib.error import URLError, HTTPError
 from http.client import IncompleteRead, RemoteDisconnected
@@ -17,23 +15,22 @@ from _paths import read_api_key, TRACE_DIR, METABOLISM_CSV
 
 URL = "https://api.deepseek.com/chat/completions"
 
-# 可安全重试的网络/服务端瞬时异常（chat completion 无状态，同请求重发幂等）
+# 鍙畨鍏ㄩ噸璇曠殑缃戠粶/鏈嶅姟绔灛鏃跺紓甯革紙chat completion 鏃犵姸鎬侊紝鍚岃姹傞噸鍙戝箓绛夛級
 _NET_ERR = (ConnectionResetError, ConnectionAbortedError, BrokenPipeError,
             TimeoutError, socket.timeout, URLError, IncompleteRead,
             RemoteDisconnected, ssl.SSLError, OSError)
 _RETRY_HTTP = (429, 500, 502, 503, 504)
 _MAX_NET_RETRY = 5
 
-# V4 人民币定价（元/百万 token），官方 pricing 2026-09-03；若官方调价，改这里并注明日期
-PRICING = {
+# V4 浜烘皯甯佸畾浠凤紙鍏?鐧句竾 token锛夛紝瀹樻柟 pricing 2026-09-03锛涜嫢瀹樻柟璋冧环锛屾敼杩欓噷骞舵敞鏄庢棩鏈?PRICING = {
     "deepseek-v4-flash": {"hit": 0.02, "miss": 1.0, "out": 2.0},
     "deepseek-v4-pro":   {"hit": 0.025,"miss": 3.0, "out": 6.0},
-    "deepseek-chat":     {"hit": 0.02, "miss": 1.0, "out": 2.0},   # 旧别名→flash
+    "deepseek-chat":     {"hit": 0.02, "miss": 1.0, "out": 2.0},   # 鏃у埆鍚嶁啋flash
     "deepseek-reasoner": {"hit": 0.02, "miss": 1.0, "out": 2.0},
 }
 
 def _join_overlap(a, b, max_ol=24):
-    """拼接续写段：消除 a 尾部与 b 头部的最长重叠（治 '15,,16' 类接缝）。"""
+    """鎷兼帴缁啓娈碉細娑堥櫎 a 灏鹃儴涓?b 澶撮儴鐨勬渶闀块噸鍙狅紙娌?'15,,16' 绫绘帴缂濓級銆?""
     if not a: return b
     if not b: return a
     cap = min(max_ol, len(a), len(b))
@@ -55,22 +52,22 @@ def _one_request(model, messages, max_tokens, temperature, thinking, timeout, _a
         retryable = e.code in _RETRY_HTTP
         if retryable and _attempt < _MAX_NET_RETRY:
             wait = min(2 ** (_attempt + 1), 30)
-            print(f"[net] HTTP {e.code}，{wait}s 后第 {_attempt+2} 次重试", flush=True)
+            print(f"[net] HTTP {e.code}锛寋wait}s 鍚庣 {_attempt+2} 娆￠噸璇?, flush=True)
             time.sleep(wait)
             return _one_request(model, messages, max_tokens, temperature, thinking, timeout, _attempt+1)
         raise
     except _NET_ERR as e:
         if _attempt < _MAX_NET_RETRY:
             wait = min(2 ** (_attempt + 1), 30)
-            print(f"[net] 连接异常 {type(e).__name__}，{wait}s 后第 {_attempt+2} 次重试", flush=True)
+            print(f"[net] 杩炴帴寮傚父 {type(e).__name__}锛寋wait}s 鍚庣 {_attempt+2} 娆￠噸璇?, flush=True)
             time.sleep(wait)
             return _one_request(model, messages, max_tokens, temperature, thinking, timeout, _attempt+1)
         raise
 
 def chat(messages, model="deepseek-v4-flash", thinking="enabled",
          max_tokens=32000, temperature=0.1, task_name="task",
-         auto_continue=True, max_continues=6, timeout=600, save=True):
-    """返回 dict: content, reasoning, usage(累加), cost_yuan, status, rounds, finish, trace_file"""
+         auto_continue=True, max_continues=6, timeout=1800, save=True):
+    """杩斿洖 dict: content, reasoning, usage(绱姞), cost_yuan, status, rounds, finish, trace_file"""
     t0 = time.time(); convo = list(messages)
     content, reasoning, segs = "", "", []
     tot = {"prompt_tokens":0,"completion_tokens":0,"total_tokens":0,
@@ -94,7 +91,7 @@ def chat(messages, model="deepseek-v4-flash", thinking="enabled",
             break
         convo = convo + [
             {"role":"assistant","content":ct},
-            {"role":"user","content":"你上一段在 max_tokens 处被截断。请从断点直接继续输出，不要重复已有内容，不要寒暄，直接续写。"}]
+            {"role":"user","content":"浣犱笂涓€娈靛湪 max_tokens 澶勮鎴柇銆傝浠庢柇鐐圭洿鎺ョ户缁緭鍑猴紝涓嶈閲嶅宸叉湁鍐呭锛屼笉瑕佸瘨鏆勶紝鐩存帴缁啓銆?}]
     price = PRICING.get(model, PRICING["deepseek-v4-flash"])
     cost = (tot["prompt_cache_hit_tokens"]/1e6*price["hit"]
             + tot["prompt_cache_miss_tokens"]/1e6*price["miss"]
@@ -119,8 +116,8 @@ def _save(out, messages, segs):
     with open(METABOLISM_CSV,"a",newline="",encoding="utf-8-sig") as f:
         w=csv.writer(f)
         if not fe or METABOLISM_CSV.stat().st_size==0:
-            w.writerow(["时间","实例","模型","档位","对象","缓存命中输入","未命中输入","输出",
-                        "重试次数","状态","耗时秒","总费用","缓存命中率","finish_reason","任务名"])
+            w.writerow(["鏃堕棿","瀹炰緥","妯″瀷","妗ｄ綅","瀵硅薄","缂撳瓨鍛戒腑杈撳叆","鏈懡涓緭鍏?,"杈撳嚭",
+                        "閲嶈瘯娆℃暟","鐘舵€?,"鑰楁椂绉?,"鎬昏垂鐢?,"缂撳瓨鍛戒腑鐜?,"finish_reason","浠诲姟鍚?])
         u=out["usage"]; ti=u["prompt_cache_hit_tokens"]+u["prompt_cache_miss_tokens"]
         w.writerow([out["timestamp"],"S04",out["model"],
                     "A" if out["thinking"]=="enabled" else "B",out["task_name"],
@@ -132,11 +129,11 @@ def _save(out, messages, segs):
 if __name__ == "__main__":
     import sys
     if "--live" not in sys.argv:
-        print("离线模式：不发起付费调用。加 --live 做一次真实自测（flash非思考 + pro思考）。")
+        print("绂荤嚎妯″紡锛氫笉鍙戣捣浠樿垂璋冪敤銆傚姞 --live 鍋氫竴娆＄湡瀹炶嚜娴嬶紙flash闈炴€濊€?+ pro鎬濊€冿級銆?)
         sys.exit(0)
-    r=chat([{"role":"user","content":"只回答两个字：正常"}],model="deepseek-v4-flash",
+    r=chat([{"role":"user","content":"鍙洖绛斾袱涓瓧锛氭甯?}],model="deepseek-v4-flash",
            thinking="disabled",max_tokens=200,task_name="selftest_flash")
     print("flash:",r["status"],repr(r["content"][:40]),"cost",r["cost_yuan"])
-    r=chat([{"role":"user","content":"用一句话说明 Coq 里 revert 再 induction 的作用。"}],
+    r=chat([{"role":"user","content":"鐢ㄤ竴鍙ヨ瘽璇存槑 Coq 閲?revert 鍐?induction 鐨勪綔鐢ㄣ€?}],
            model="deepseek-v4-pro",thinking="enabled",max_tokens=2000,task_name="selftest_pro")
     print("pro:",r["status"],"reason?",bool(r["reasoning"]),repr(r["content"][:60]),"cost",r["cost_yuan"])
