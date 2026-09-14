@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "生命论概念协奏坐标库",
-    "version": "0.9-chongfu-tuomin",
+    "version": "v0.3-full-expand",
     "updated": "2026-09-11",
     "maintainer": "S00大总站",
     "doc": "docs/体系研究/生命论概念协奏坐标系_七维定位法_20260911.md",
@@ -2027,6 +2027,1875 @@
         "K机制"
       ],
       "dir": "neg"
+    },
+    {
+      "name": "在感/无需怀疑的起点",
+      "loc": "卷一篇一",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f1"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "怀疑的立足点(怀疑本身也是感)",
+      "loc": "卷一篇一",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f1"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "中"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neu"
+    },
+    {
+      "name": "一生道道养一",
+      "loc": "卷一篇一",
+      "person": [
+        "P1",
+        "P3"
+      ],
+      "flevel": [
+        "f1",
+        "f3"
+      ],
+      "relation": [
+        "R1",
+        "R3"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "操作之外无可说(践演矛盾)",
+      "loc": "卷一篇一",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R5"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "解"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "neu"
+    },
+    {
+      "name": "操作五环闭环",
+      "loc": "卷二篇二",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f1",
+        "f2"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "非自指操作(被支配)",
+      "loc": "卷二篇五",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L2"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "因果性在操作中(操作的可重复性)",
+      "loc": "卷三篇二",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "认识=操作的预期工具",
+      "loc": "卷三篇二",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "知行合一/知而不行只是未知",
+      "loc": "卷三篇二",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "王阳明良知≈缄默意识(划界)",
+      "loc": "卷三篇二",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f1"
+      ],
+      "relation": [
+        "R3"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Tt"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K谱系"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "明性修养(明性辩证法可操作)",
+      "loc": "卷四篇一",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K法门"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "小本质大本质递归大法",
+      "loc": "卷四篇八",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R4"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K法门"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "本质=状语修饰着的动词的总和",
+      "loc": "卷五篇一",
+      "person": [
+        "P1",
+        "P3"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R3"
+      ],
+      "scale": [
+        "L0",
+        "L2"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "生成模型vs恢复模型(不往回找是造出自己)",
+      "loc": "卷五篇一",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R4"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "假本质主义(沉淀冻成永恒)",
+      "loc": "卷五篇一",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R3"
+      ],
+      "scale": [
+        "L2"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "α常量谬误(种族主义五结构)",
+      "loc": "卷五篇一",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L2"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "人是日常/人民就是日常",
+      "loc": "卷七篇二",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f1"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0",
+        "L1"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "阶级=操作关系中的位置",
+      "loc": "卷五篇三",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L2"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neu"
+    },
+    {
+      "name": "社会健康六维框架",
+      "loc": "卷五篇四",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "被异化的良善(良善替系统完成压迫)",
+      "loc": "卷六篇十",
+      "person": [
+        "P1",
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L2"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "共情单向阀(只向外不向内)",
+      "loc": "卷六篇十",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f1",
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L0",
+        "L1"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "贫穷原罪论/道德债务",
+      "loc": "卷六篇十",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L2",
+        "L3"
+      ],
+      "time": [
+        "Tt"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "反自指展开的六个阶段",
+      "loc": "卷六篇四",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K谱系"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "收编(反自指消化反抗)",
+      "loc": "卷六篇五",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "解放=把操作权还给生命",
+      "loc": "卷七篇二",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R8"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "解"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "解放三层次(个人/阶级/人类)",
+      "loc": "卷七篇二",
+      "person": [
+        "P1",
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R8"
+      ],
+      "scale": [
+        "L0",
+        "L2",
+        "L4"
+      ],
+      "time": [
+        "Tt"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K谱系"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "站着活/跪着活(根本判据)",
+      "loc": "卷七篇二",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R8"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "自己解放自己(解放非恩赐)",
+      "loc": "卷七篇二",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R8"
+      ],
+      "scale": [
+        "L2"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "计划与市场(社会主义经济)",
+      "loc": "卷七篇五",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "公共权力异化与回归",
+      "loc": "卷七篇六",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2",
+        "R8"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "解"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "科学=预期工具的系统化",
+      "loc": "卷八篇二",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "实事求是(从操作中形成检验预期)",
+      "loc": "卷八篇二",
+      "person": [
+        "P1",
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "科学允许自己被证明错误",
+      "loc": "卷八篇二",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R5"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "解"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "迪昂-奎因问题(检验整个理论网络)",
+      "loc": "卷八篇二",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R3"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "中"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neu"
+    },
+    {
+      "name": "一阴一阳之谓道",
+      "loc": "卷十篇二",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0",
+        "L4"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "生生之谓易/既济未济",
+      "loc": "卷十篇二",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f1",
+        "f2"
+      ],
+      "relation": [
+        "R4"
+      ],
+      "scale": [
+        "L0",
+        "L4"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "艮止(边界/知止/时止时行)",
+      "loc": "卷十篇二",
+      "person": [
+        "P1",
+        "P3"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0",
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "中"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "边界自主权(止其所也)",
+      "loc": "卷十篇二",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R1",
+        "R8"
+      ],
+      "scale": [
+        "L0",
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "资本无限增长vs知止(生态根源)",
+      "loc": "卷十篇二",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L4"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "术数=去神秘化系统论工具",
+      "loc": "卷十篇六",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "中"
+      ],
+      "ctype": [
+        "K谱系"
+      ],
+      "dir": "neu"
+    },
+    {
+      "name": "历史观(人民是历史根本动力)",
+      "loc": "卷九篇二",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R4"
+      ],
+      "scale": [
+        "L3",
+        "L4"
+      ],
+      "time": [
+        "Tt"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "声与命(感在不同N值下的声学形态)",
+      "loc": "卷九篇六",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f1"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K现象"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "PTC公理系统(操作范畴论)",
+      "loc": "卷十一篇一",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K形式"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "核心定理链(生命不可复制→资本同构)",
+      "loc": "卷十一篇二",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R4"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K形式"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "量论数学基础(卷十一)",
+      "loc": "卷十一篇三",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K形式"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "PTL践演迹语言",
+      "loc": "卷十一篇五",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R4"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K形式"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "明性辩证法(可操作的阅读思考法)",
+      "loc": "卷四篇五",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K法门"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "市场拜物教的终审(客观规律的操作论批判)",
+      "loc": "卷六篇零",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "数字资本主义",
+      "loc": "卷六篇六",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "生态危机=资本与自然对立",
+      "loc": "卷六篇七",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L4"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "帝国主义与世界体系",
+      "loc": "卷六篇八",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L4"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "生命政治与反自指权力",
+      "loc": "卷六篇九",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "资本的辩经术(修正主义名实分析)",
+      "loc": "卷六篇十一",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R7"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "技术与生产力(格物论)",
+      "loc": "卷八篇三",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "儒家的扬气",
+      "loc": "卷十篇四",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0",
+        "L1"
+      ],
+      "time": [
+        "Tt"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K法门"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "意义的四层结构(感到明性)",
+      "loc": "副卷篇三",
+      "person": [
+        "P1",
+        "P3"
+      ],
+      "flevel": [
+        "f1",
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R3",
+        "R7"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K谱系"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "真理的标准=操作的成功",
+      "loc": "卷三篇三",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "理性与感性的颠倒",
+      "loc": "卷三篇四",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R7"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neg"
+    },
+    {
+      "name": "物自体的消解(践演基础)",
+      "loc": "卷三篇七",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R5"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Ts"
+      ],
+      "phase": [
+        "解"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "neu"
+    },
+    {
+      "name": "AI与明性(操作外化)",
+      "loc": "卷三篇八",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R4"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Tj"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "明本学术法(学术生产全流程)",
+      "loc": "卷四篇六",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R4"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K法门"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "国家=反自指或人民工具(法权)",
+      "loc": "卷五篇五",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f2"
+      ],
+      "relation": [
+        "R2",
+        "R8"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "蔽"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "neu"
+    },
+    {
+      "name": "主体间性(性别承认交往)",
+      "loc": "卷五篇八",
+      "person": [
+        "P2",
+        "P3"
+      ],
+      "flevel": [
+        "f2",
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L1"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "解放三阶路径",
+      "loc": "卷七篇三",
+      "person": [
+        "P1",
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R8"
+      ],
+      "scale": [
+        "L2",
+        "L3"
+      ],
+      "time": [
+        "Tt"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K谱系"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "自由人联合体",
+      "loc": "卷七篇七",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L4"
+      ],
+      "time": [
+        "Tt"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "革命的战略与策略",
+      "loc": "卷七篇八",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R4"
+      ],
+      "scale": [
+        "L3"
+      ],
+      "time": [
+        "Tj"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K法门"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "世界革命与人类解放",
+      "loc": "卷七篇九",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R8"
+      ],
+      "scale": [
+        "L4"
+      ],
+      "time": [
+        "Tt"
+      ],
+      "phase": [
+        "行"
+      ],
+      "ctype": [
+        "K判准"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "医学健康(自指系统边界维护)",
+      "loc": "卷八篇四",
+      "person": [
+        "P1"
+      ],
+      "flevel": [
+        "f1"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "心理学与教育(操作权养成)",
+      "loc": "卷八篇五",
+      "person": [
+        "P1",
+        "P2"
+      ],
+      "flevel": [
+        "f1",
+        "f2"
+      ],
+      "relation": [
+        "R1"
+      ],
+      "scale": [
+        "L0",
+        "L1"
+      ],
+      "time": [
+        "Tt"
+      ],
+      "phase": [
+        "生"
+      ],
+      "ctype": [
+        "K机制"
+      ],
+      "dir": "pos"
+    },
+    {
+      "name": "生命论在哲学坐标系的位置",
+      "loc": "卷九篇七",
+      "person": [
+        "P3"
+      ],
+      "flevel": [
+        "f3"
+      ],
+      "relation": [
+        "R5"
+      ],
+      "scale": [
+        "LF"
+      ],
+      "time": [
+        "Td"
+      ],
+      "phase": [
+        "解"
+      ],
+      "ctype": [
+        "K谱系"
+      ],
+      "dir": "pos"
     }
   ]
 }

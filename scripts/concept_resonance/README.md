@@ -3,7 +3,7 @@
 配套理论文档：`docs/体系研究/生命论概念协奏坐标系_七维定位法_20260911.md`
 
 ## 文件
-- `concept_coords.json`：概念坐标库（v0.2-expanded，57 条）。每入库一个重要概念，追加一条记录。
+- `concept_coords.json`：概念坐标库（v0.3-full-expand，141 条）。每入库一个重要概念，追加一条记录。
 - `resonance_search.py`：检索脚本，纯标准库，Python 3.8+。
 - `validate_coords.py`：坐标库自检/质量门脚本。每次扩库或修改坐标后必跑。
 
