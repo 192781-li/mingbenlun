@@ -37,7 +37,7 @@ STATIONS = {
     's03': 's03-divination',
     's04': 's04-coq',
     's05': 's05-info',
-    's06': 's06-gaokao-math',
+    's06': 's06-math',
 }
 
 # 白名单：这些目录下的独有文件自动同步
@@ -83,6 +83,11 @@ CONFIG_DIRS = [
     'scripts/',
 ]
 
+# 大小门（第五层过滤）：超过此大小的文件不自动同步到main。
+# 依据《仓库优化方案与大文件管理规范》：>5M 归私有档案库 mingbenlun-archive，
+# 防止超长一手对话记录经自动同步回流母本（2026-09-13 夜间巡检查出此缺口）。
+MAX_SYNC_BYTES = 5 * 1024 * 1024
+
 
 def git(*args, check=True):
     """运行git命令，返回stdout。"""
@@ -118,6 +123,14 @@ def get_unique_files(branch):
     out = git('diff', '--name-only', '--diff-filter=A', 'origin/main', f'origin/{branch}')
     files = [f for f in out.split('\n') if f.strip()]
     return files
+
+
+def get_blob_size(branch, filepath):
+    """获取 origin/branch 上某文件 blob 的字节数（不检出工作区）。查不到返回0。"""
+    try:
+        return int(git('cat-file', '-s', f'origin/{branch}:{filepath}'))
+    except Exception:
+        return 0
 
 
 def should_sync(filepath):
@@ -165,6 +178,12 @@ def analyze_station(station, branch):
     for f in unique_files:
         sync, reason = should_sync(f)
         if sync:
+            # 第五层：大小门，>5M 不回流母本（归私有档案库）
+            size = get_blob_size(branch, f)
+            if size > MAX_SYNC_BYTES:
+                mb = size // (1024 * 1024) + 1
+                skipped.append((f, f"大文件约{mb}M>5M，归私有档案库不同步"))
+                continue
             to_sync.append(f)
         else:
             skipped.append((f, reason))
@@ -202,14 +221,22 @@ def sync_files(station, branch, files):
     return synced
 
 
-def create_pr(title, body):
-    """创建PR。返回PR URL。"""
+def create_pr(title, body, existing_branch=None):
+    """创建PR。返回PR URL。
+
+    existing_branch：非 None 时复用该分支（worktree 兼容模式下已基于
+    origin/main 建好临时分支），不再新建。
+    """
     # 先commit
     git('add', '-A')
     git('commit', '-m', title)
-    # 建分支
-    branch_name = f"s00-sync-branches-{os.popen('date +%Y%m%d-%H%M').read().strip()}"
-    git('checkout', '-b', branch_name)
+    # 建分支（未指定时新建）
+    if existing_branch:
+        branch_name = existing_branch
+        git('checkout', branch_name)
+    else:
+        branch_name = f"s00-sync-branches-{os.popen('date +%Y%m%d-%H%M').read().strip()}"
+        git('checkout', '-b', branch_name)
     git('push', '-u', 'origin', branch_name)
     # 开PR
     r = subprocess.run(
@@ -359,9 +386,18 @@ def main():
     # 实际同步
     print()
     info("=== 执行同步 ===")
-    git('checkout', 'main')
     git('fetch', 'origin', '-q')
-    git('reset', '--hard', 'origin/main')
+    # worktree 兼容（L041：main 可能被主仓库占用，禁硬切/禁 reset --hard 主仓分支）：
+    # 当前不在 main 时，基于最新 origin/main 建独立临时分支做同步，收尾切回原分支。
+    orig_branch = git('branch', '--show-current', check=False) or ''
+    if orig_branch != 'main':
+        work_branch = f"s00-sync-worktree-{os.popen('date +%Y%m%d-%H%M%S').read().strip()}"
+        info(f"当前分支「{orig_branch or '(detached)'}」非 main，worktree 兼容模式：基于 origin/main 建 {work_branch}")
+        git('checkout', '-b', work_branch, 'origin/main')
+    else:
+        work_branch = 'main'
+        info("当前在 main，直接同步")
+        git('reset', '--hard', 'origin/main')
 
     total_synced = 0
     for station, files in all_to_sync.items():
@@ -388,7 +424,7 @@ def main():
     body += "由 scripts/s00_sync_branches.py --apply 自动生成。"
 
     info(f"开PR: {title}")
-    pr_url, branch_name = create_pr(title, body)
+    pr_url, branch_name = create_pr(title, body, existing_branch=work_branch if work_branch != 'main' else None)
     info(f"PR已创建: {pr_url}")
     print(f"\nPR URL: {pr_url}")
     print(f"分支: {branch_name}")
@@ -398,14 +434,20 @@ def main():
         success = merge_with_retry(branch_name)
         if not success:
             warn("自动合并未完成，请手动合并上述PR")
-        # 切回main
-        git('checkout', 'main')
-        git('fetch', 'origin', '-q')
-        git('reset', '--hard', 'origin/main')
+        # 切回 main（worktree 兼容：若原分支非 main，切回原分支，不碰主仓 main）
+        if orig_branch and orig_branch != 'main':
+            git('checkout', orig_branch)
+        else:
+            git('checkout', 'main')
+            git('fetch', 'origin', '-q')
+            git('reset', '--hard', 'origin/main')
 
     info("=== 完成 ===")
     info(f"同步了 {total_synced} 个文件，来自 {len(all_to_sync)} 个分站")
-    info(f"当前在 main，已同步到最新: {git('rev-parse', '--short', 'HEAD')}")
+    if orig_branch and orig_branch != 'main':
+        info(f"已切回原分支 {orig_branch}")
+    else:
+        info(f"当前在 main，已同步到最新: {git('rev-parse', '--short', 'HEAD')}")
 
 
 if __name__ == '__main__':
