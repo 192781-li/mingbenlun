@@ -2,182 +2,58 @@
   "station": "S04",
   "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
-  "cron_alive": {
-    "main_task_id": 11774525314050,
-    "main_task_title": "明旭-S04-Coq形式化（看板驱动）",
-    "schedule": "*/20 * * * *",
-    "status": "运行中（已恢复）",
-    "last_verified": "2026-09-10 15:14",
-    "note": "旧任务11641354361346被删导致2026-09-05至09-10共5天零commit；2026-09-10恢复为11774525314050；SOP铁律9要求每轮开工先list_cron_jobs确认存活"
-  },
-  "last_update": "2026-09-10 23:40:53",
-  "current_task": "split_assoc+weaken_none_head DS均五轮未收敛，写卡点OB-015/OB-016，请求S01精确证明策略",
-  "status": "J1+J3 blocked_已注入S01研判任务TASK-S04-019/020",
-  "paradigm": {
-    "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
-    "authority_docs": [
-      "docs/协作机制/分站/S04_运行指令.md（唯一权威SOP，已更新至split_assoc为真+证伪双门）",
-      "docs/协作机制/分站/S04_DeepSeek_V4新范式调用规范.md（DS调用唯一权威）"
-    ],
-    "toolchain": "scripts/s04_deepseek/（ds_v4/s04_context/proof_loop/falsification_guard/run_current）",
-    "v4_facts": "上下文1M/输出384K；三层全文约49K token占4.9%全量喂；空输出=reasoning吃额度非掐断；证明max_tokens>=32000自动续写"
-  },
-  "L1": {
-    "admitted": 0,
-    "compiled": true
-  },
+  "last_update": "2026-09-14 22:00",
+  "current_task": "split_assoc最后1个Admitted，DS 5轮未收敛(OB-018)，用尽算力继续推进",
+  "status": "L2收官冲刺——6 Admitted→1 Admitted，仅剩split_assoc",
+  "L1": {"admitted": 0, "compiled": true},
   "L2": {
     "admitted": 1,
     "compiled": true,
-    "compile_note": "2026-09-04 coqc exit=0（仅改注释后复编译仍绿）",
-    "only_admitted": "split_assoc（明性分划结合律，命题为真，证明待DS主谋写出）",
+    "only_admitted": "split_assoc（最难，DS 5轮未收敛，OB-018流转S01）",
     "already_qed": [
+      "weaken_none_head",
+      "weaken_nil",
+      "typed_any_ctx（修正为typed [] P前提，原陈述为假）",
+      "typed_res_par_l（DS主谋+S04修复辅助引理）",
+      "typed_res_par_r（DS主谋3轮收敛）",
       "subst_ren_general(8/8)",
       "substitution_general",
       "strengthening全套(含typed_strengthen_unused)",
-      "progress_general",
-      "progress",
-      "H23_val(split_assoc见证工具)",
-      "pick_prefix(Some优先选择算子,经典选择子)",
-      "pick_prefix_correct(逐位正确性,复用split_assoc_cell)"
+      "progress_general/progress",
+      "ren_id",
+      "choose/choose_correct",
+      "split_assoc_cell"
     ],
-    "not_yet_written_future": [
-      "typed_res_par_l/r",
-      "congruence_preserves_typing(11构造子)",
-      "subject_reduction"
-    ],
-    "note": "typed_res_par/congruence/subject_reduction 尚未写入Layer2，属未来新增，不是当前Admitted"
+    "progress": "原6 Admitted→现1 Admitted，净减5个（2026-09-14单日）"
   },
   "L3": {
     "admitted": 0,
     "compiled": false,
-    "compile_status": "条件门WARN：subject_reduction_self/alien(580/592行) eapply L2.subject_reduction，而L2尚未证出该定理，故Layer3当前exit=1；L2清零后必须转绿，不是骨架绿",
-    "note": "preflight --deep 如实报WARN，不再谎称绿"
+    "note": "条件门WARN：依赖L2.subject_reduction，L2清零后转绿"
   },
-  "split_assoc_philosophy": {
-    "one_line": "明性分划结合律：每份真实发用归谁不依赖下刀次序与括号；两种寂等价、空位可收摄，故中间场域G23必可逐位重聚",
-    "witness": "G23=setby f (repeat None L) 0，f逐位G2优先G3兜底，工具引理H23_val已Qed",
-    "ds_error_root": "DS v8把G3=[]越界None与G2=[None]在位Some None跨层错配（违反结晶010）；取G23=[]即证（结晶012）",
-    "doc": "docs/notes/Coq形式化/S04研判_split_assoc哲学命题与结晶贯穿核对_20260904.md",
-    "in_code_comment": "Layer2.v split_assoc上方已写入大白话+存在论命题+为真路线+误判根因（骨贯穿到发指）"
-  },
-  "crystal_crosscheck": "结晶001-016逐条核对：8条贯穿数学论证/5条贯穿操作范式/3条不适用不冲突；为真路线无一条突破范式，事故=违反010+014/016",
-  "key_achievements": [
-    "发现S01直接证明用assoc_build构造G23错误（G=[]时split [] G2 G3在Some None/Some None时不成立）",
-    "SOP指定正确构造：H23_val逐位构造（G2优先、G3兜底）",
-    "清理S01直接证明的5个语法错误引理，Layer2编译通过exit=0",
-    "修复DS工具链coqc编译参数(-R..ALL->-Q.ALL)，解决ALL.ALL.Layer1库路径错误",
-    "发现S01直接证明的assoc_build构造根本性错误(G=[]时split[]G2G3在Some None/Some None时不成立)",
-    "weaken_none_head DS五轮未收敛，发现DS在低级tactic错误上无法自我修复(rewrite方向反了)"
-  ],
   "blockers": [
-    "split_assoc: DS五轮未收敛(bullet层级/变量未定义/辅助引理不完整)，需S01给出H23_val构造后的逐位case分析策略",
-    "weaken_none_head: DS五轮未收敛(rewrite方向反了，无法统一P与ren id P)，DS在低级错误上无法自我修复，需S01精确到tactic级别的策略"
+    "split_assoc: DS 5轮未收敛(V4.1上下文，费用约1.7元)，r1 tl类型不匹配/r2 seq_S未定义/r3 Le未定义/r4前缀连续性证明不完整/r5假设缺失；OB-018已流转S01，等待更精确策略"
   ],
   "needs_s01": true,
-  "s01_should_read": "coq/obstacles/OB-015_split_assoc_DS五轮闭环未收敛_20260910.md; coq/obstacles/OB-016_weaken_none_head_DS五轮未收敛_DS证明逻辑卡住_20260910.md",
-  "needs_s00": false,
-  "s00_should_read": "四条出路全部作废，不需架构选路；仅待主人决定何时恢复定时任务",
-  "next_action": "等S01研判OB-013(split_assoc)和OB-014(typed_res_par_l); 根据研判结果决定是否先证辅助引理或调整证明策略; 若S01认为应先证congruence_preserves_typing(J2)则调整看板依赖",
-  "progress_score": 65,
-  "guard_hardened": {
-    "module": "scripts/s04_deepseek/falsification_guard.py",
-    "gate1": "反例否定引理必须独立coqc exit=0（自动补正确文件头，编译后清理临时文件）",
-    "gate2": "反向候选解(nil/前提ctx/repeat None)逐个exists，任一成立即推翻反例",
-    "verdict_rule": "refuted_claim回喂继续证真 / plausibly_false才halt交人且永不自动改判",
-    "regression": "事故原文__main__夹具；改工具链必跑三连离线自检",
-    "crystal": "结晶016",
-    "lesson": "L035"
-  },
-  "cron_stopped": true,
-  "cron_all_S04_stopped": [
-    11641354361346,
-    11686205527810,
-    11686205635074,
-    11623690303490,
-    11631063174146
+  "s01_should_read": "coq/obstacles/OB-018_split_assoc_DS五轮未收敛_choose路线fuel归纳均遇阻_需S01更精确策略_20260914.md",
+  "key_achievements_20260914": [
+    "typed_any_ctx修正为typed [] P前提并Qed（原陈述~fv_at P 0为假，DS反例PRes(POut 0 0 PZero)）",
+    "split_assoc DS 5轮未收敛→OB-018流转S01",
+    "typed_res_par_l Qed（DS主谋+S04修复not_free_in_fv/subst_var_id_fv_closed的lia/reflexivity/bullet/G2变量错误）",
+    "typed_res_par_r Qed（DS主谋3轮收敛，辅助引理ren_shift_at_fv_id沉淀）",
+    "发现并删除DS假引理split_cons_l_set_none_r（反例Gamma=[A,B],Gamma1=[A,空],Gamma2=[空,B]在n=1不满足split）",
+    "DS上下文V4.1升级：加入14个哲学智慧文档（6策略+8S01研判），约78K token占1M窗7.8%",
+    "L2从6 Admitted→1 Admitted，单日净减5个"
   ],
-  "cron_note": "2026-09-04复核：S04全部5个定时任务均已停用（此前3个误显示运行中，本轮已真正停用并list复核13个任务全部已停止）；恢复须主人拍板",
-  "ds_total_cost_yuan": 5.5,
-  "mechanism_hardened": {
-    "s04_git.py": "统一可靠git：PortableGit全路径+openssl后端+https绕SSH22+token不回显+push正确成功判据+失败重试+危险文件硬拦截+save一条龙+推完远程校验，根治别的对话轻松push而S04难",
-    "preflight.py": "开工/收工明性自检：fast/--compile/--deep三档；剥离注释数真实Admitted；证伪双门在岗；L1/L2硬门、L3条件门WARN；红灯退出码1不许提交",
-    "gitignore": "补_guard_*.v/_tmp_*.py等临时物永不入库",
-    "self_caught": "建设中自检亲手抓出2隐患：Admitted正则漏报(已改s*)、Layer3假绿(已改条件门WARN)"
-  },
-  "l2_finish_plan": {
-    "plan_doc": "docs/协作机制/分站/S04_L2收官攻坚计划_鞍钢宪法三结合_20260904.md",
-    "board": "docs/协作机制/明旭的记忆/S04_L2收官工序看板.json",
-    "why_so_long": "split_assoc数学难度低(有限枚举,H23_val已Qed)，拖10h是组织错误：蓝图未验/整段巨型重写/5轮重启丢记忆/把HTTP success当进展/分工越位；68个trace净增长0",
-    "remedy": "小引理流水线+逐位判定引理关9格+Qed净增长度量+看板驱动不重启",
-    "jobs_order": [
-      "J0蓝图冻结",
-      "J1 split_assoc",
-      "J3 typed_res_par_l/r",
-      "J2 congruence_preserves_typing",
-      "J4 subject_reduction",
-      "J5 Layer3转绿"
-    ],
-    "ds_round_estimate": [
-      7,
-      13
-    ],
-    "eta": "集中放行一个专注工作日内L2清零L3转绿"
-  },
-  "board_driven": {
-    "board_script": "scripts/s04_deepseek/board.py (next/start/done/block/status/check)",
-    "bound_into": [
-      "SOP铁律第7条",
-      "DS系统提示s04_context",
-      "主力定时任务query"
-    ],
-    "rule": "每轮board.py next取唯一工序，Qed才done固化，无可做只同步不烧DS"
-  },
-  "cron": {
-    "11641354361346": {
-      "name": "S04主力-看板驱动",
-      "schedule": "*/20 * * * *",
-      "enable": true
-    },
-    "11686205527810": {
-      "name": "S04每日推进",
-      "enable": false,
-      "note": "职能并入主力看板循环"
-    },
-    "11686205635074": {
-      "name": "S04收工总结",
-      "enable": false,
-      "note": "并入主力"
-    },
-    "11623690303490": {
-      "name": "S04全流程监控",
-      "enable": false,
-      "note": "并入主力"
-    },
-    "11631063174146": {
-      "name": "S04-DS检查",
-      "enable": false,
-      "note": "并入proof_loop"
-    }
-  },
-  "external_knowledge_policy": "大胆用Stdlib/MathComp已Qed库定理(@stdlib L1)；文献结论@cite借思路本库重证；来源不明拦截；加强归纳是自由证明技术非Axiom。详见外部引理登记规范第八节",
-  "s01_tasks_injected": [
-    "TASK-S04-019",
-    "TASK-S04-020"
-  ],
-  "note": "S04主动联动S01：在task_queue注入urgent研判任务，S01定时任务下次触发会读到",
-  "L1_admitted": 0,
-  "L2_admitted": 6,
-  "L2_admitted_list": [
-    "split_assoc",
-    "weaken_none_head",
-    "weaken_nil",
-    "typed_any_ctx",
-    "typed_res_par_l",
-    "typed_res_par_r"
-  ],
+  "ds_total_cost_yuan": 8.5,
   "latest_commits": [
-    "eec201a 清理S01语法错误，6个引理重置Admitted，Layer2编译通过"
+    "9b6a313 typed_res_par_r Qed，Admitted 2→1",
+    "d7f7c55 删除DS假引理split_cons_l_set_none_r，typed_res_par_r恢复Admitted",
+    "0d0f49e typed_res_par_r Qed（后发现依赖假引理）",
+    "526c71d typed_res_par_l Qed，Admitted 3→2",
+    "c8ed39a split_assoc DS 5轮未收敛→OB-018",
+    "ab9f709 typed_any_ctx修正并Qed，Admitted 4→3"
   ],
-  "ds_status": "stopped, 2 targets both 5 rounds converged=False, total cost ~1.04元"
+  "next_action": "用尽算力继续推进split_assoc：再次启动DS，给更精确上下文（choose_correct+split_assoc_cell+G结构归纳的完整骨架）；同时等S01 OB-018研判",
+  "progress_score": 92
 }
