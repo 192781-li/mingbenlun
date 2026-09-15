@@ -3069,7 +3069,6 @@ Proof.
   - exact HQ'.
 Qed.
 (* END REPLACE *)
-(* ==== J1 congruence_preserves_typing（施工占位，待 DeepSeek 整段替换为 Qed）==== *)
 
 (* =====================================================================
    J1 · congruence_preserves_typing
@@ -3340,4 +3339,44 @@ Proof.
   destruct (congruence_preserves_typing_pair Gamma P P' H) as [Hf _].
   exact (Hf Hty).
 Qed.
+Theorem subject_reduction : forall Gamma P P',
+  typed Gamma P -> reduce P P' -> typed Gamma P'.
+Proof.
+  intros Gamma P P' Hty Hred.
+  revert Gamma Hty.
+  induction Hred as [P0
+                    | x y P0 Q0
+                    | P0 P0' Q0 Hred1 IH1
+                    | P0 Q0 Q0' Hred1 IH1
+                    | P0 P0' Hred1 IH1
+                    | P0 Q0 P0' Q0' Hc1 Hc2 Hred1 IH1];
+    intros Gamma Hty.
+  - (* red_tau *)
+    inversion Hty; subst; assumption.
+  - (* red_comm：线性系统里 ~ typed Gamma (PPar (POut x y P0) (PIn x Q0)) *)
+    exfalso.
+    apply (no_parallel_channel_sharing Gamma x y P0 Q0).
+    exact Hty.
+  - (* red_par_l *)
+    destruct (par_elim Gamma P0 Q0 Hty) as [G1 [G2 [Hs [HP HQ]]]].
+    apply (ty_par Gamma P0' Q0 G1 G2 Hs).
+    * exact (IH1 G1 HP).
+    * exact HQ.
+  - (* red_par_r *)
+    destruct (par_elim Gamma P0 Q0 Hty) as [G1 [G2 [Hs [HP HQ]]]].
+    apply (ty_par Gamma P0 Q0' G1 G2 Hs).
+    * exact HP.
+    * exact (IH1 G2 HQ).
+  - (* red_res *)
+    destruct (res_elim Gamma P0 Hty) as [T HP].
+    apply (ty_res Gamma P0' T).
+    exact (IH1 (Some T :: Gamma) HP).
+  - (* red_cong：正向到 P'，归约，再反向回到 Q *)
+    destruct (congruence_preserves_typing_pair Gamma P0 P0' Hc1) as [F1 _].
+    pose proof (F1 Hty) as Hty'.
+    pose proof (IH1 Gamma Hty') as Hty''.
+    destruct (congruence_preserves_typing_pair Gamma Q0 Q0' Hc2) as [_ B2].
+    exact (B2 Hty'').
+Qed.
+(* END REPLACE *)
 (* === END === *)

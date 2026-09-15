@@ -618,7 +618,7 @@ Qed.
    - [ ] jia_has_residue完整证明
    - [ ] T005_ming_preservation完整证明
    - [ ] T002完整陈述和证明（元理论层面表达"不存在闭项"）
-   - [ ] subject_reduction_self/alien完整证明
+   - [x] subject_reduction_self/alien完整证明（reduce_self/alien 是 reduce 子关系，直接 apply L2.subject_reduction，见575-593 已Qed）
    - [ ] 归约可延续性引理（count_sheng > 0 → exists Q', reduce_self Q Q'）
    - [ ] 明旭审阅哲学正确性（和S01联动）
 

@@ -296,3 +296,4 @@
 2026-09-15 23:48:47,S04,deepseek-v4-pro,A,proofloop_congruence_preserves_typing_r1,8576,70509,41952,0,success,483.89,0.46345,0.1084,stop,proofloop_congruence_preserves_typing_r1
 2026-09-15 23:50:51,S04,deepseek-v4-pro,A,proofloop_congruence_preserves_typing_r2,56192,28316,13111,0,success,121.2,0.16502,0.6649,stop,proofloop_congruence_preserves_typing_r2
 2026-09-15 23:52:21,S04,deepseek-v4-pro,A,proofloop_congruence_preserves_typing_r3,64256,22719,8260,0,success,87.64,0.11932,0.7388,stop,proofloop_congruence_preserves_typing_r3
+2026-09-16 00:00:26,S04,deepseek-v4-pro,A,proofloop_subject_reduction_r1,42752,39628,8928,0,success,103.73,0.17352,0.519,stop,proofloop_subject_reduction_r1

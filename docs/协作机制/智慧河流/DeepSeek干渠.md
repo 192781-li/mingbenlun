@@ -14126,3 +14126,67 @@ Proof.
 - cong_res_cong: 对 res_elim 拆出 T Hinner : typed (Some T :: Gamma) P/P'。我们应 destruct (IH0 (Some T :: Gamma))? 但res_elim在cong_res_cong分支：正向 intros Hty, destruct (res_elim Gamma P Hty) as [T Hinner]; apply ty_res Gamma P' T. apply IHf. exact Hinner. IHf来自 IH0 Gamma，但目标需要 typed (Some T :: Gamma) P'，而 IHf : typed Gamma P -> typed Gamma P'. 需要IH0 (Some T :: Gamma)。上一版在cong_res_cong分支使用了 `destruct (IH0 Gamma) as [IHf IHb].`，也是上下文错。需要修正：在分支内destruct (IH0 (Some T::Gamma))。
 
 - cong_tau_cong同理：inversion Hty 得到 typed 
+
+
+## 2026-09-16 00:00:26 [proof_loop] subject_reduction · round1 · DS输出
+
+操作权主线：`reduce` 的六个构造子中，`red_comm` 因线性分裂禁止同一通道同时供给输出与输入而空真；其余分支沿 `typed` 的消去引理拆开，`red_cong` 用已 Qed 的成对同余保持引理双向跨过同余边界。只替换 Layer2 末尾 `subject_reduction` 的 `Admitted.` 为完整 `Qed.`，无需新增辅助引理。
+
+```coq
+(* REPLACE: Theorem subject_reduction ... Admitted. *)
+Theorem subject_reduction : forall Gamma P P',
+  typed Gamma P -> reduce P P' -> typed Gamma P'.
+Proof.
+  intros Gamma P P' Hty Hred.
+  revert Gamma Hty.
+  induction Hred as [P0
+                    | x y P0 Q0
+                    | P0 P0' Q0 Hred1 IH1
+                    | P0 Q0 Q0' Hred1 IH1
+                    | P0 P0' Hred1 IH1
+                    | P0 Q0 P0' Q0' Hc1 Hc2 Hred1 IH1];
+    intros Gamma Hty.
+  - (* red_tau *)
+    inversion Hty; subst; assumption.
+  - (* red_comm：线性系统里 ~ typed Gamma (PPar (POut x y P0) (PIn x Q0)) *)
+    exfalso.
+    apply (no_parallel_channel_sharing Gamma x y P0 Q0).
+    exact Hty.
+  - (* red_par_l *)
+    destruct (par_elim Gamma P0 Q0 Hty) as [G1 [G2 [Hs [HP HQ]]]].
+    apply (ty_par Gamma P0' Q0 G1 G2 Hs).
+    * exact (IH1 G1 HP).
+    * exact HQ.
+  - (* red_par_r *)
+    destruct (par_elim Gamma P0 Q0 Hty) as [G1 [G2 [Hs [HP HQ]]]].
+    apply (ty_par Gamma P0 Q0' G1 G2 Hs).
+    * exact HP.
+    * exact (IH1 G2 HQ).
+  - (* red_res *)
+    destruct (res_elim Gamma P0 Hty) as [T HP].
+    apply (ty_res Gamma P0' T).
+    exact (IH1 (Some T :: Gamma) HP).
+  - (* red_cong：正向到 P'，归约，再反向回到 Q *)
+    destruct (congruence_preserves_typing_pair Gamma P0 P0' Hc1) as [F1 _].
+    pose proof (F1 Hty) as Hty'.
+    pose proof (IH1 Gamma Hty') as Hty''.
+    destruct (congruence_preserves_typing_pair Gamma Q0 Q0' Hc2) as [_ B2].
+    exact (B2 Hty'').
+Qed.
+(* END REPLACE *)
+```
+[reasoning摘要]
+We need answer with Coq proof code for tasks J1 -> J2 -> J3. We have full material A with Layer1/Layer2. Task asks: strict from current proof chain subject_reduction. J1 congruence_preserves_typing, J2 subject_reduction. Layer2 currently includes maybe already? Wait material A includes at end of Layer2:
+
+```
+(* ==== J1 congruence_preserves_typing（施工占位，待 DeepSeek 整段替换为 Qed）==== *)
+...
+Lemma congruence_preserves_typing_pair : ... Proof. ... Qed.
+Lemma congruence_preserves_typing : ... Proof. ... Qed.
+(* ==== J2 subject_reduction（施工占位，待 DeepSeek 整段替换为 Qed）==== *)
+Theorem subject_reduction : forall Gamma P P',
+  typed Gamma P -> reduce P P' -> typed Gamma P'.
+Proof. Admitted.
+```
+
+Interesting: Material A Layer2 full already includes congruence_preserves_typing_pair and congruence_preserves_typing Qed, but has subject_reduction Admitted. But current status says Layer2 0 Admitted? In material A subject_reduction is Admitted at very end, so not zero. However maybe this is current file with one remaining Admitted. The prompt says Layer1/2自有定理0 Admitted, but material A includes subject_reduction Admitted. Wait it says "现状：Layer1/2 自有定理 0 Admitted、整层 coqc exit=0；Layer2 目前没有 subject_reduction 本体". But material A has Theorem subject_reduction ... Admitted at end. Maybe contradiction? User says material A权威; maybe subject_reduction Admitted is not "own theorem"? But it is. Perhaps the source includes Admitted because J2 missing. The task: J1 already done? They ask "本轮任务 ... J1 先证 congruen
