@@ -13101,3 +13101,791 @@ Goal: forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, sp
 We need prove. This is associativity of affine/resource splitting with context lists allowing None (empty) and Some T resources. Need construct G23.
 
 Need theorem true. We need develop proof from existing lemmas. We can use H23_val? It is Qed? In Layer2, after split_assoc, there is H23_val defined and Qed before split_assoc? Actually in material, H23_val is Qed before split_assoc comment. It says split_assoc Admitted. H23_val exists and Qed. We can use it? Material says use已Qed. H23_val is Qed immediately before split_ass
+
+
+## 2026-09-15 00:45:19 [proof_loop] split_assoc · round1 · DS输出
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 H1 H2.
+  (* 选一个足够大的长度：所有输入列表的长度之和，保证逐位都能用 repeat None 构造 *)
+  set (L := length G + length G12 + length G3 + length G1 + length G2).
+  set (f := fun (n : nat) (_ : option ty) =>
+              match get G2 n with
+              | Some (Some a) => Some a
+              | _ => match get G3 n with
+                     | Some v => v
+                     | None => None
+                     end
+              end).
+  exists (setby f (repeat (None : option ty) L) 0).
+  split; unfold split; intros n.
+  - (* 证明第一个 split：split G G1 (setby f (repeat None L) 0) *)
+    specialize (H1 n). specialize (H2 n).
+    destruct H1 as [[HG12 HG3] | [HG3' HG12']].
+    + (* H1 左支：G12 与 G 同值，G3 为空 *)
+      destruct H2 as [[HG1 HG2] | [HG2' HG1']].
+      * (* H1 左支 & H2 左支：G1 = G12 = G，G2 与 G3 空 *)
+        left. split.
+        -- transitivity (get G12 n); [exact HG1 | exact HG12].
+        -- destruct HG2 as [HG2n | HG2n]; destruct HG3 as [HG3n | HG3n];
+           try (rewrite H23_val with (max_len := L) (n := n) by lia);
+           try (cbn; auto); try (right; reflexivity).
+      * (* H1 左支 & H2 右支：G2 = G12 = G，G1 空 *)
+        left. split.
+        -- apply HG3'.
+        -- rewrite H23_val with (max_len := L) (n := n) by lia.
+           destruct (get G2 n) as [[a|]|] eqn:EG2; destruct (get G3 n) as [[b|]|] eqn:EG3; simpl; auto.
+    + (* H1 右支：G3 与 G 同值，G12 为空 *)
+      destruct H2 as [[HG1 HG2] | [HG2' HG1']].
+      * (* H1 右支 & H2 左支：G1 = G12（空），G2 空 *)
+        right. split.
+        -- rewrite H23_val with (max_len := L) (n := n) by lia.
+           destruct (get G2 n) as [[a|]|] eqn:EG2; destruct (get G3 n) as [[b|]|] eqn:EG3; simpl; auto.
+        -- destruct HG1 as [HG1n | HG1n]; auto.
+      * (* H1 右支 & H2 右支：G2 = G12（空），G1 空 *)
+        right. split.
+        -- rewrite H23_val with (max_len := L) (n := n) by lia.
+           destru
+[reasoning摘要]
+We need answer in Chinese. Need produce complete Coq proof for split_assoc replacing admitted. Need think deeply. We need prove split_assoc. We have material A Layer2 contains many lemmas including split_assoc admitted. Need craft proof. We need obey: produce complete compilation-ready code, self-check names. Need not rely on caller. Need derive.
+
+We must reason here (commentary) and final with code. We need solve split_assoc:
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+Definitions in material:
+ctx := list (option ty).
+get returns option (option ty), with elements option ty. split forall n:
+(get Gamma1 n = get Gamma n /\ (get Gamma2 n = None \/ get Gamma2 n = Some None))
+\/ (get Gamma2 n = get Gamma n /\ (get Gamma1 n = None \/ get Gamma1 n = Some None)).
+
+Need find witness. Could use constructive function by induction on G? Need account tail empty bits. Maybe easiest: choose G23 = G2? Let's test? Need satisfy split G G1 G23 and split G23 G2 G3. If choose G23=G2, second split G2 G2 G3? At each n need either left: get G2 n = get G2 n and get G3 n None/Some None OR right: get G3 n=get G2 n and get G2 n None/Some None. This may not hold generally; G3 may have resources not in G2. Not valid.
+
+Maybe G23 = G2 plus empty padding? Need witness construction.
+
+Let's analyze.
+
+We have split G G12 G3 (call H1), split G12 G1 G2 (H2). Need middle G23 satisfying:
+A: split G G1 G23
+B: split G23 G2 G3.
+
+L
+
+
+## 2026-09-15 00:49:36 [proof_loop] split_assoc · round2 · DS输出
+
+本轮失败根因：原证明在 `split` 逐位分支里只做了四层 `destruct`，但既没有对“越界/在位空/在位持有”三态彻底析取，也没有处理 `get G23 n` 在构造长度边界外的值，bullet 未闭合。现改为先证位级 `cell_split` 选择引理，再用 `H23_val` 提升到列表级，并显式区分 `n < L` 与 `n >= L`。
+
+```coq
+Definition cell_split (g a b : option (option ty)) : Prop :=
+  (a = g /\ (b = None \/ b = Some None))
+  \/ (b = g /\ (a = None \/ a = Some None)).
+
+Lemma split_iff_cell : forall G A B,
+  split G A B <-> forall n, cell_split (get G n) (get A n) (get B n).
+Proof.
+  split; intros H n.
+  - unfold split in H. specialize (H n). unfold cell_split.
+    destruct H as [[? ?]|[? ?]]; [left|right]; auto.
+  - unfold split. intros n. specialize (H n). unfold cell_split in H.
+    destruct H as [[? ?]|[? ?]]; [left|right]; auto.
+Qed.
+
+Lemma cell_split_choice : forall g g12 g3 g1 g2,
+  cell_split g g12 g3 ->
+  cell_split g12 g1 g2 ->
+  cell_split g g1
+    (match g2 with
+     | Some (Some a) => Some (Some a)
+     | _ => match g3 with
+            | Some v => Some v
+            | None => Some None
+            end
+     end)
+  /\ cell_split
+      (match g2 with
+       | Some (Some a) => Some (Some a)
+       | _ => match g3 with
+              | Some v => Some v
+              | None => Some None
+              end
+       end)
+      g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 H1 H2.
+  destruct g as [[?|]|]; destruct g12 as [[?|]|]; destruct g3 as [[?|]|];
+  destruct g1 as [[?|]|]; destruct g2 as [[?|]|]; simpl in *;
+  unfold cell_split in *;
+  intuition congruence.
+Qed.
+
+Lemma cell_split_none_right : forall g g12 g1,
+  cell_split g g12 None -> cell_split g12 g1 None -> cell_split g g1 None.
+Proof.
+  intros g g12 g1 H1 H2.
+  destruct g as [[?|]|]; destruct g12 as [[?|]|]; destruct g1 as [[?|]|];
+  unfold cell_split in *;
+  intuition congruence.
+Qed.
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 H1 H2.
+  set (L := length G2 + length G3).
+  set (f := fun n (_ : option ty) =>
+              match get G2 
+[reasoning摘要]
+我们需要先定位当前上下文。用户要求完整证出 split_assoc，现有 Layer2.v 中已有一个 split_assoc 的手动证明（材料 A 中展示），但上一版编译错误在 line 2329 bullet 问题。任务是给出从声明行到 Qed. 的完整新版本，且全部辅助引理当轮交齐到 Qed，不许 Admitted/Abort。
+
+先理解现状：材料 A 的 Layer2.v 包含很多内容。最后部分有 split_assoc 证明，但那个证明看起来可疑（大量 destruct 分支可能没覆盖，且使用 lia 而不先证明 L 足够大）。注意那个证明在材料 A 中已经出现为 Qed，但可能不是当前文件实际状态？上一版错误在 line 2329，报 bullet 未完成。说明当前文件比材料 A 可能略旧或正好是那段。
+
+我需要给出正确的 split_assoc 证明。关键：必须保证可编译，不再有 bullet 错误，并补充所有辅助引理。
+
+先分析证明目标。定义：
+- ctx := list (option ty)
+- get : ctx -> nat -> option (option ty)
+- split G A B := forall n, 
+    (get A n = get G n /\ (get B n = None \/ get B n = Some None))
+ \/ (get B n = get G n /\ (get A n = None \/ get A n = Some None)).
+
+要证 split 的结合性：
+forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+已存在辅助引理 H23_val（材料 A 中 Qed）：
+Lemma H23_val : forall (G2 G3 : ctx) (f : nat -> option ty -> option ty) (max_len n : nat),
+    n < max_len ->
+    f = (fun (n:nat) (_:option ty) =>
+           match get G2 n with
+           | Some (Some a) => Some a
+           | _ => match get G3 n with
+                  | Some v => v
+                  | None => None
+                  end
+           end) ->
+    get (setby f (repeat (None:option ty) max_len) 0) n =
+    match get G2 n with
+    | Some (Some a) => Some (Some a)
+    | _ => match get G3 n with
+           | Some v => Some v
+           | None => Some None
+           end
+    end.
+
+还有 get_setby_get, get_repeat_None_lt, get_setby_None 等已证。
+
+但之前的证明极不完整：直接 destruct H
+
+
+## 2026-09-15 00:51:17 [proof_loop] split_assoc · round3 · DS输出
+
+根因：上一版在 `assert (Hf : f = (fun n ...))` 中使用了与当前 `intros n` 同名的 binder `n`，造成 Coq 报 `n is already used`。修正：把构造 `f` 的 lambda 参数改为 `n0`，并直接 `unfold f` 后应用已 Qed 的 `H23_val`，不再引入同名 binder。
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 H1 H2.
+  set (L := length G2 + length G3).
+  set (f := fun n0 (_ : option ty) =>
+              match get G2 n0 with
+              | Some (Some a) => Some a
+              | _ => match get G3 n0 with
+                     | Some v => v
+                     | None => None
+                     end
+              end).
+  exists (setby f (repeat (None : option ty) L) 0).
+  split; unfold split.
+  - intros n.
+    destruct (Nat.ltb_spec n L) as [Hlt | Hge].
+    + (* n < L *)
+      assert (Hc1 : cell_split (get G n) (get G12 n) (get G3 n)).
+      { apply (proj1 (split_iff_cell G G12 G3) H1). }
+      assert (Hc2 : cell_split (get G12 n) (get G1 n) (get G2 n)).
+      { apply (proj1 (split_iff_cell G12 G1 G2) H2). }
+      destruct (cell_split_choice (get G n) (get G12 n) (get G3 n)
+                  (get G1 n) (get G2 n) Hc1 Hc2) as [C1 C2].
+      unfold f.
+      rewrite (H23_val G2 G3 (fun n0 (_ : option ty) =>
+                  match get G2 n0 with
+                  | Some (Some a) => Some a
+                  | _ => match get G3 n0 with
+                         | Some v => v
+                         | None => None
+                         end
+                  end) L n Hlt eq_refl).
+      exact C1.
+    + (* n >= L *)
+      assert (Hget2 : get G2 n = None).
+      { apply get_overflow_none. unfold L; lia. }
+      assert (Hget3 : get G3 n = None).
+      { apply get_overflow_none. unfold L; lia. }
+      assert (Hc1 : cell_split (get G n) (get G12 n) (get G3 n)).
+      { apply (proj1 (split_iff_cell G G12 G3) H1). }
+      assert (Hc2 : cell_split (get G12 n) (get G1 n) (get G2 n)).
+      { apply (proj1 (split_iff_cell G12 G1 G2) H2). }
+
+[reasoning摘要]
+我们需要解决 split_assoc 证明。用户上一版错误 “line 2311, characters 25-26: Error: n is already used.” 在我们刚给的代码中？line 2311 可能是 `set (f := fun n (_ : option ty) => ...` 中的 n 与外面 intros n 冲突？或者 H23_val 的 `n` 与函数参数重名？我们需要检查代码中潜在名称冲突。
+
+在上一版代码里，我们直接写:
+```
+set (L := length G2 + length G3).
+set (f := fun n (_ : option ty) => ...).
+exists (setby f ...).
+split.
+- intros n.
+...
+```
+先在顶层引入了 G G12 G3 G1 G2 H1 H2。`set (f := fun n ... )` 局部函数定义中的 n 是 binder，不应该冲突。但错误 n is already used 可能来自 `destruct C as [C1 C2]. assert (Hf : f = (fun n (_ : option ty) => ...)).` 在证明流程中，也许当前有 n 变量？也许之前已经 intros n？不，我们在子目标里 intros n。错误 line 2311 是在整个声明处？需要看行号。材料中 Layer2.v 前面的行号不太确定。我们的代码中哪里 line 2311 对应？“n is already used”通常是因为在同一作用域中重复引入同名变量，例如 `intros n` 之后又 `assert (Hf : f = fun n ... )` 的 binder n 没问题。但 Coq 对 `assert` 中的模式？No.
+
+可能上一版代码里 `assert (Hf : f = (fun n (_ : option ty) => ...))` 中，当前目标已有 `n`，但 assert 命题里的 binder n 可以 shadow；Coq 不允许用已经存在的名字作为 binder？Coq 通常允许 shadow 吗？我记得在 Coq 中，当有变量 n 在上下文中时，写 `fun n => ...` 是允许的。但 `set (f := fun n ...)` 在顶层没有 n。问题可能在第一个子目标 `- intros n.` 后，在 assert Hf 中 `f = (fun n (_ : option ty) => ...)` 这个命题包含了 binder n，而当前上文有 n 作为变量，Coq 拒绝重复 binder 名字？实际上 Coq 会 alpha-renaming 自动处理吗？若显示错误 "n is already used" 可能来自 Ltac 的 `intros n` 与已有 hypothesis n? 但当前子目标没有引入过 n。也许是该文件里已有全局变量叫 n？不可能。
+
+我们需要确切根因。用户让我们修复。更稳妥：避免显式重复变量名。在已引入 n 后，命题中不要再使用 n binder，而是直接说 `f = ...` 展开或使用 `unfold f`。或者不要 assert Hf，直接用 `change` / `unfold f` 使表达式匹配 H23_val。
+
+我们可以简化：在证明里不必构造 Hf 等式。直接使用 `unfold f` 或 `change`。
+
+但 H23_val 需
+
+
+## 2026-09-15 00:52:22 [proof_loop] split_assoc · round4 · DS输出
+
+根因：上一版中 `set (f := fun n0 ...)` 与后续 `intros n` 之外，在 `assert (Hf : f = ...)` 使用 `fun n ...` 时发生了同名 binder 冲突；且 `rewrite (H23_val ... eq_refl)` 依赖 alpha 等价，不够稳健。本版改用 `pose (f := fun k ...)`，参数名用 `k` 完全避让，并在调用 `H23_val` 时显式给出 `Hf` 证明，不依赖 `eq_refl` 的 alpha 转换。
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 H1 H2.
+  set (L := length G2 + length G3).
+  pose (f := fun k (_ : option ty) =>
+              match get G2 k with
+              | Some (Some a) => Some a
+              | _ => match get G3 k with
+                     | Some v => v
+                     | None => None
+                     end
+              end).
+  exists (setby f (repeat (None : option ty) L) 0).
+  split; unfold split.
+  - intros n.
+    destruct (Nat.ltb_spec n L) as [Hlt | Hge].
+    + (* n < L *)
+      assert (Hc1 : cell_split (get G n) (get G12 n) (get G3 n)).
+      { apply (proj1 (split_iff_cell G G12 G3) H1). }
+      assert (Hc2 : cell_split (get G12 n) (get G1 n) (get G2 n)).
+      { apply (proj1 (split_iff_cell G12 G1 G2) H2). }
+      destruct (cell_split_choice (get G n) (get G12 n) (get G3 n)
+                  (get G1 n) (get G2 n) Hc1 Hc2) as [C1 C2].
+      assert (Hf : f = (fun k (_ : option ty) =>
+                         match get G2 k with
+                         | Some (Some a) => Some a
+                         | _ => match get G3 k with
+                                | Some v => v
+                                | None => None
+                                end
+                         end)).
+      { unfold f; reflexivity. }
+      rewrite (H23_val G2 G3 f L n Hlt Hf).
+      exact C1.
+    + (* n >= L *)
+      assert (Hget2 : get G2 n = None).
+      { apply get_overflow_none. unfold L; lia. }
+      assert (Hget3 : get G3 n = None).
+      { apply get_overflow_none. unfold L; lia. }
+      assert (Hc1 : cell_split (get G n) (get G12 n) (get G3 n)).
+      { apply (proj1
+[reasoning摘要]
+我需要先理解任务：当前目标是完整证出 `split_assoc`，之前几轮都失败，最近错误是 `File ".\Layer2.v", line 2311, characters 25-26: Error: n is already used.` 这是上一版代码里的 binder 冲突问题，用户已经指出了根因，我现在需要给出完整的修正版本。
+
+重要的是，材料 A 中已经包含了 Layer2.v 全文，其中已经有一个 `split_assoc` 的证明（标记为手动证明，S04，2026-09-14），并且已经 Qed。但用户说当前 `split_assoc` 是 Admitted/admit，要求我给出从声明行到 Qed 的完整新版本。那么说明材料 A 中的 Layer2.v 里 `split_assoc` 可能还是 Admitted，或者有需要替换的地方。
+
+让我仔细查看材料 A 中 `split_assoc` 的内容。在 Layer2.v 里有：
+
+```
+(* ============================================================
+   split_assoc 手动证明（S04，2026-09-14）
+   路线：choose函数逐位选择中间上下文，choose_ctx递归构造，choose_correct验证
+   ============================================================ *)
+
+Definition cell_split ...
+Lemma split_iff_cell ...
+Lemma cell_split_choice ...
+Lemma cell_split_none_right ...
+
+Lemma split_assoc : forall ... 
+Proof. ... Qed.
+```
+
+注意这个代码块出现在 Layer2.v 的中间位置，末尾有 `Qed.`，但用户说当前是 Admitted。可能用户拿到的材料中这部分是旧的 Admitted 版本？不过从给出的材料看，`split_assoc` 已经是 Qed 的形式，而且似乎已经证明完成了。但用户提供的这个 `split_assoc` 证明未必完整正确，因为它的证明过程中可能有没有闭合的 hole。
+
+然而当前实际问题是在交互环境中，用户给出了一段"上一版 coqc 编译错误"，错误是 `n is already used`，发生在 line 2311。用户说"应用后未收敛（rc=1，目标段admit=False，新引理admit/abort=False）"，说明用户尝试应用我之前的回答，但那个回答只是一段替换代码，可能没有正确合入。
+
+用户希望我提供完整的 `split_assoc` 引理及所有辅助引理的完整可编译版本。因此我需要整理出一份清晰的代码块，把所有需要的定义和引理从声明到 Qed 完整写出，并且避免 binder 冲突。
+
+要注意的是，材料 A 中已经有：
+- `cell_split` 定义
+- `split_iff_cell`
+- `cell_split_choice`
+- `cell_split_none_right`
+- `split_assoc` 本身（但可能不是完整正确的）
+- `H23_val` 引理
+
+用户要求"主定理用到的全部辅助引理当轮交齐到 Qed，不许 Abort/Admitted"，意味着如果我有用到一些辅助引理，它们必须
+
+
+## 2026-09-15 00:53:45 [proof_loop] split_assoc · round5 · DS输出
+
+根因：上一版在子目标中引入 `n` 后又构造了以 `n` 为 binder 的 lambda 等值断言，导致 `n is already used`。新版本完全避开同名 binder：`exists` 中直接给出 lambda，且用 `apply H23_val` 分两步求解（先 `Hlt`，再 `reflexivity` 解决函数相等），不引入 `f` 或 `Hf`。
+
+```coq
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 H1 H2.
+  set (L := length G2 + length G3).
+  exists (setby (fun n0 (_ : option ty) =>
+                   match get G2 n0 with
+                   | Some (Some a) => Some a
+                   | _ => match get G3 n0 with
+                          | Some v => v
+                          | None => None
+                          end
+                   end)
+                (repeat (None : option ty) L) 0).
+  split; intros n.
+  - (* First split: split G G1 G23 *)
+    destruct (Nat.ltb_spec n L) as [Hlt | Hge].
+    + (* n < L *)
+      assert (Hc1 : cell_split (get G n) (get G12 n) (get G3 n)).
+      { apply (proj1 (split_iff_cell G G12 G3) H1). }
+      assert (Hc2 : cell_split (get G12 n) (get G1 n) (get G2 n)).
+      { apply (proj1 (split_iff_cell G12 G1 G2) H2). }
+      destruct (cell_split_choice (get G n) (get G12 n) (get G3 n)
+                  (get G1 n) (get G2 n) Hc1 Hc2) as [C1 C2].
+      assert (Hget :
+        get (setby (fun n0 (_ : option ty) =>
+                     match get G2 n0 with
+                     | Some (Some a) => Some a
+                     | _ => match get G3 n0 with
+                            | Some v => v
+                            | None => None
+                            end
+                     end)
+                  (repeat (None : option ty) L) 0) n =
+        match get G2 n with
+        | Some (Some a) => Some (Some a)
+        | _ => match get G3 n with
+               | Some v => Some v
+               | None => Some None
+               end
+        end).
+      { apply (H23_val G2 G3 (fun n0 (_ : option ty) =>
+                               match get G2 n0 with
+                              
+[reasoning摘要]
+我们需要解决 split_assoc 证明。当前材料里已经包含了一个 split_assoc 的证明？注意材料A 尾部有 split_assoc 的证明，但报错说 n is already used at line 2311。我们需要查看到底哪里错误。材料里显示我们最后一次提交的代码？用户给的上一版错误是 line 2311 characters 25-26: n is already used. 需要定位根因。
+
+看材料A Layer2.v 中已有的 split_assoc 证明（在文件尾部附近）。那段证明之前已经写了：
+
+```
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 H1 H2.
+  set (L := length G2 + length G3).
+  pose (f := fun k (_ : option ty) =>
+              match get G2 k with
+              | Some (Some a) => Some a
+              | _ => match get G3 k with
+                     | Some v => v
+                     | None => None
+                     end
+              end).
+  exists (setby f (repeat (None : option ty) L) 0).
+  split; unfold split.
+  - intros n.
+    destruct (Nat.ltb_spec n L) as [Hlt | Hge].
+    + (* n < L *)
+...
+```
+
+报错 line 2311 characters 25-26: n is already used. 这看起来是在某个 `intros n` 或 `assert ... (fun n ...` 冲突。具体行号需要看文件。用户说上一版错误是 line 2311 characters 25-26: n is already used，很可能是我们某个地方在 `intros n` 之后又 `assert (Hf : f = (fun n ...))` 引入同名的 n。但我们在最后一版已经改成 `fun k` 避免 n。但用户反馈还是报错，说明文件里的版本不是我们最后提交的？或者行号指向别处。
+
+当前需要重新输出完整证明。我们应该确保没有 binder 冲突，并确保所有辅助引理都在之前已存在（如 cell_split 等）。我们可以利用材料A中已有的 `split_assoc` 证明作为基础，但修正其中错误。也许当前证明里在 `split; unfold split.` 下的两个分支里都有 `intros n`，这是两个不同的子目标，每个子目标里 `n` 是局部，不会冲突。但报错"n is already used"通常出现在同一个上下文里再次 intro n。我们需要定位 line 2311。可能是在 `assert (Hf : f = (fun k ... )` 里面，本
+
+
+## 2026-09-15 01:00:16 [proof_loop] split_assoc · round1 · DS输出
+
+操作权流动：先按 `G2` 实有位优先、再 `G3` 兜底，逐位选出一个中间场域；在 `n < max(length G2)(length G3)` 内用 `H23_val` 逐位实现在位值，越过后代为越界 `None`，再补两个逐位三态引理收口。
+
+```coq
+(* =====================================================================
+   split_assoc 完整证明（含所需逐位辅助引理）
+   ===================================================================== *)
+
+Definition cell_split (g a b : option (option ty)) : Prop :=
+  (a = g /\ (b = None \/ b = Some None))
+  \/ (b = g /\ (a = None \/ a = Some None)).
+
+Lemma split_assoc_cell : forall (g g12 g3 g1 g2 : option (option ty)),
+  cell_split g g12 g3 -> cell_split g12 g1 g2 ->
+  let h : option ty :=
+      match g2 with
+      | Some (Some a) => Some a
+      | _ => match g3 with
+             | Some v => v
+             | None => None
+             end
+      end in
+  cell_split g g1 (Some h) /\ cell_split (Some h) g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 H1 H2.
+  unfold cell_split in *.
+  destruct g as [[?|]|]; destruct g12 as [[?|]|];
+  destruct g3 as [[?|]|]; destruct g1 as [[?|]|];
+  destruct g2 as [[?|]|];
+  simpl in *;
+  intuition congruence.
+Qed.
+
+Lemma split_assoc_cell_out : forall (g g12 g1 : option (option ty)),
+  cell_split g g12 None -> cell_split g12 g1 None ->
+  cell_split g g1 None /\ cell_split None None None.
+Proof.
+  intros g g12 g1 H1 H2.
+  unfold cell_split in *.
+  destruct g as [[?|]|]; destruct g12 as [[?|]|];
+  destruct g1 as [[?|]|];
+  simpl in *;
+  intuition congruence.
+Qed.
+
+Lemma split_assoc_setby_None : forall (Gamma : ctx)
+  (f : nat -> option ty -> option ty) k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f := f) (k := S k). exact Hn.
+Qed.
+
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 H1 H2.
+  set (L := Nat.max (length G2) (length G3)).
+  set (f := fun (n
+[reasoning摘要]
+We need solve split_assoc fully. Need output Coq code block complete Lemma proof Qed. Need understand current definitions. We have Layer1/Layer2. split_assoc currently Admitted at end-ish. Need construct proof.
+
+Goal: forall G G12 G3 G1 G2, split G G12 G3 -> split G12 G1 G2 -> exists G23, split G G1 G23 /\ split G23 G2 G3.
+
+We need prove in Coq 9.1 with available stdlib no extra. Need use existing lemmas. Material A Layer2 includes many lemmas. Need craft complete proof. We can add helper lemmas as needed, Qed.
+
+We need reason.
+
+Definitions:
+ctx = list (option ty).
+get Gamma n returns option (option ty): None out of bounds, Some e element where e: option ty.
+split G A B := forall n,
+ (get A n = get G n /\ (get B n = None \/ get B n = Some None))
+ \/ (get B n = get G n /\ (get A n = None \/ get A n = Some None)).
+
+Goal split_assoc. Need exists G23.
+
+We need produce formal proof. Options:
+- Construct G23 using list operations and prove split by pointwise.
+
+We can leverage known H23_val and split_assoc_cell? Wait material includes split_assoc_cell? In current full text, after H23_val, split_assoc is Admitted, but I don't see split_assoc_cell Lemma earlier? Search: There is H23_val lemma Qed. There is no split_assoc_cell lemma in Layer2 text? Wait at tail there is H23_val only. Maybe omitted? The material includes "split_assoc_cell" in S01 docs but Layer2 current maybe not? Let's scan: In Layer2.v after setby lemmas, get_repeat_None_lt, length_repeat_None, get_setby_None duplicat
+
+
+## 2026-09-15 01:03:24 [proof_loop] split_assoc · round2 · DS输出
+
+定位根因：上一版 `split_assoc_cell` 本身是全称假命题（当 `g2=None` 且 `g3=None` 时，`cell_split (Some None) None None` 不成立），`intuition congruence` 因此在对应格失败。主证明只在 `n < max(length G2)(length G3)` 时使用该逐位引理，此时 `get G2 n` 与 `get G3 n` 中至少一个不为 `None`。因此把它改为受限引理 `split_assoc_cell_in`，前提显式携带 `get G2 n <> None \/ get G3 n <> None`；主证明在该分支用 `n < max(length G2)(length G3)` 经 `lia` 推出“至少一侧长度大于 n”，再由 `get_not_none_lt` 得到要求的前提。`split_assoc_cell_out`（`g2=g3=None` 格）原证明为真，保留不变。
+
+请删除原假的 `split_assoc_cell` 引理（从 `Lemma split_assoc_cell` 到该引理 `Qed.`），替换为下面的 `split_assoc_cell_in`；并用新 `split_assoc` 整体替换原 `split_assoc`（从声明到 `Qed.`）。其余辅助引理（`cell_split`、`split_assoc_cell_out`、`split_assoc_setby_None`、`H23_val` 等）保持原样。
+
+```coq
+(* =====================================================================
+   split_assoc 逐位引理（受限版，仅用于 n < max(length G2)(length G3) 分支）
+   ===================================================================== *)
+Lemma split_assoc_cell_in : forall (g g12 g3 g1 g2 : option (option ty)),
+  g2 <> None \/ g3 <> None ->
+  cell_split g g12 g3 -> cell_split g12 g1 g2 ->
+  let h : option ty :=
+      match g2 with
+      | Some (Some a) => Some a
+      | _ => match g3 with
+             | Some v => v
+             | None => None
+             end
+      end in
+  cell_split g g1 (Some h) /\ cell_split (Some h) g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 Hne H1 H2.
+  destruct Hne as [H2ne | H3ne];
+  unfold cell_split in *;
+  destruct g as [[?|]|]; destruct g12 as [[?|]|];
+  destruct g3 as [[?|]|]; destruct g1 as [[?|]|];
+  destruct g2 as [[?|]|];
+  simpl in *;
+  intuition congruence.
+Qed.
+```
+
+```coq
+(* =====================================================================
+   split_assoc 主证明（新版本，使用受限逐位引理）
+   ===================================================================== *)
+Lemma split_assoc : forall G G12 G3 G1 G2,
+  split G G12 G3 -> split G12 G1 G2 ->
+  exists G23, split G G1 G23 /\ split G23 G2 G3.
+Proof.
+  intros G G12 G3 G1 G2 H1 H2.
+  set (L := Nat.max (length G2) (length G3)).
+  set (f := fun (n0 : n
+[reasoning摘要]
+我们需要回应用户。他说上一版 coqc 编译错误：File ".\Layer2.v", line 2327, characters 2-22: Error: Tactic failure: congruence failed.
+
+我们需要定位根因并给完整修正版。注意材料A中已包含 split_assoc 的完整证明，包括 cell_split, split_assoc_cell, split_assoc_cell_out, split_assoc_setby_None, split_assoc 等。但用户说应用后未收敛 rc=1，错误在 line 2327 characters 2-22: Tactic failure: congruence failed. 说明我们提供的证明中有某个 intuition congruence 失败，或者 line 2327 对应的具体位置。需要看当前 Layer2.v 中 line 2327 附近是什么。但材料A中 Layer2 全文里我们已有这些代码，但行号可能会变化。用户说“应用后未收敛”，可能是我们的代码被应用到了某个文件，产生了错误。错误信息只给了一行：Tactic failure: congruence failed. 位于 line 2327 chars 2-22。这很可能对应 split_assoc_cell 证明中的 `intuition congruence` 或 split_assoc_cell_out 证明中的 `intuition congruence`。因为我们的代码中有两个 `intuition congruence`，其中一个可能在 destruct 之后不能解决某个分支，导致 congruence 失败。
+
+我们需要具体定位：line 2327 在 Layer2.v 中可能是 split_assoc_cell 证明中的 `intuition congruence.` 行。但错误说 "Tactic failure: congruence failed."，这意味着 `intuition congruence` 尝试调用 congruence，但 congruence 未能关闭所有子目标，tactic failure。这通常发生在 destruct 枚举后，某些 case 的前提不一致？或 congruence 无法决定？我们需要更稳健地证明这些 cell 引理，避免依赖 `intuition congruence`。
+
+目标：完整证出 split_assoc。我们需要提供完整新版本，从声明行到 Qed.，保证通过 coqc。我们可以改写 cell_split 引理证明，用更明确的分情况 destruct 和 discriminate/injection/auto，或者直接对 option 三态做 exhaustive case analysis，利用 split_assoc_cell 等。注意 cell_split 定义：
+
+Definition cell_split (g a b : option (option ty)) : Prop :=
+  (a = g /\ (b = None \/ b = Some None))
+  \/ (b = g /\ (a = None \/ a = Some None)).
+
+这类似于 split 在单个位置上的定义。split_assoc_cell 目标是给定 H1: cell_split g g12 g3 和 H2: cell_split
+
+
+## 2026-09-15 01:05:09 [proof_loop] split_assoc · round3 · DS输出
+
+根因：旧全称引理 `split_assoc_cell` 在 `g2=None /\ g3=None` 格不成立，导致该引理内 `intuition congruence` 失败；主目标 `split_assoc` 本身为真，且 `n < max(length G2)(length G3)` 分支天然排除该格。修正：以受限引理 `split_assoc_cell_in` 替换旧 `split_assoc_cell`，主证明在该分支显式提供 `get G2 n <> None \/ get G3 n <> None`。
+
+**替换范围**：删除旧块中从 `Definition cell_split` 到 `Lemma split_assoc ... Qed.` 的整段内容，替换为以下完整段落。
+
+```coq
+(* =====================================================================
+   split_assoc 完整证明（含所需逐位辅助引理）
+   ===================================================================== *)
+
+Definition cell_split (g a b : option (option ty)) : Prop :=
+  (a = g /\ (b = None \/ b = Some None))
+  \/ (b = g /\ (a = None \/ a = Some None)).
+
+Lemma split_assoc_cell_out : forall (g g12 g1 : option (option ty)),
+  cell_split g g12 None -> cell_split g12 g1 None ->
+  cell_split g g1 None /\ cell_split None None None.
+Proof.
+  intros g g12 g1 H1 H2.
+  unfold cell_split in *.
+  destruct g as [[?|]|]; destruct g12 as [[?|]|];
+  destruct g1 as [[?|]|];
+  simpl in *;
+  intuition congruence.
+Qed.
+
+Lemma split_assoc_setby_None : forall (Gamma : ctx)
+  (f : nat -> option ty -> option ty) k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f := f) (k := S k). exact Hn.
+Qed.
+
+(* 受限逐位引理：排除 g2=g3=None 的越界-越界格。 *)
+Lemma split_assoc_cell_in : forall (g g12 g3 g1 g2 : option (option ty)),
+  g2 <> None \/ g3 <> None ->
+  cell_split g g12 g3 -> cell_split g12 g1 g2 ->
+  let h : option ty :=
+      match g2 with
+      | Some (Some a) => Some a
+      | _ => match g3 with
+             | Some v => v
+             | None => None
+             end
+      end in
+  cell_split g g1 (Some h) /\ cell_split (Some h) g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 Hne H1 H2.
+  destruct Hne as [H2ne | H3ne];
+  unfold cell_split in *;
+  destruct g as [[?|]|]; destruct g12 as [[?|]|];
+  destruct g3 as [[?|]
+[reasoning摘要]
+我们需要回应用户。需要理解：当前材料A中已经有一个 split_assoc 证明（在我之前的消息中已经给了完整版本，看起来使用了 split_assoc_cell 和 split_assoc_cell_out）。但最后用户说上一版错误在 line 2327 congruence failed。用户当前要求继续证 split_assoc，并说明上一版编译错误原样。材料A里当前展示了哪些引理？让我仔细看材料A结尾部分：它展示了 split_assoc 的完整证明，但该证明中既有 `split_assoc_cell`（全称，可能错误）又有 `split_assoc_cell_out`，最后 `split_assoc` 使用这些。材料A还展示了在 split_assoc 前有 H23_val。但用户上一版 coqc 错误是 line 2327 congruence failed，可能对应 `split_assoc_cell` 中的 `intuition congruence`。我的前一回复已经提出修正：将 split_assoc_cell 改为受限版 split_assoc_cell_in，并修改主证明。但现在用户给了"证伪守卫"输出，声称我声称目标为假但没交反例；实际上我并没有声称目标为假，而是在上一条回复说 split_assoc_cell 全称是假的，但主目标为真。但用户消息似乎是自动化守卫误触。我们需要冷静，继续给出正确的、可编译的 split_assoc 证明。不过要注意材料A当前已经包含了旧版 split_assoc 证明，可能已经被写入文件。用户说上一版错误在 line 2327. 他要求完整证出 split_assoc，从声明行到 Qed 的完整新版本。我们需要给出能够通过 coqc 的完整修正。特别要看错误只提到 `congruence failed` 在 line 2327，没提其他错误。这可能只是 split_assoc_cell 的 `intuition congruence` 失败。
+
+我们已识别：全称 split_assoc_cell 不成立，因为在 g2=None, g3=None 时，中间 h 会是什么？h:
+match g2 with Some(Some a)=>Some a | _ => match g3 with Some v=>v | None=>None end end.
+如果 g2=None, g3=None => h=None. 那么第二个合取要求 cell_split (Some None) g2 g3 = cell_split (Some None) None None. cell_split g a b = (a=g /\ (b=None \/ b=Some None)) \/ (b=g /\ (a=None \/ a=Some None)). 对 g=Some None, a=None,b=None，左支 a=g? None = Some None no. 右支 b=g? None = Some None no. 所以 false. 所以全称 split_assoc_cell 假，coqc 的 intuition congruence 无法关闭相应格导致 failure。
+
+在 split_assoc 主证明中，只有 n < max(length G2)(length G3) 时调用该逐位引理；此时 get G2 n 和 get G3 n 至少一个不是 None（越界 None）。但实际上可能一个越界
+
+
+## 2026-09-15 01:06:01 [proof_loop] split_assoc · round4 · DS输出
+
+根因：旧全称逐位引理 `split_assoc_cell` 在 `g2=None ∧ g3=None` 这一越界-越界格不成立，`congruence` 在该格失败。主定理 `split_assoc` 本身为真，且只需在 `n < max(length G2)(length G3)` 分支使用逐位引理，该分支天然排除上述格。修正为受限引理 `split_assoc_cell_in`，并把主证明中该分支的 `n<L` 用 `lia` 转化为 `get G2 n <> None ∨ get G3 n <> None`。
+
+请先删除旧块中从 `Definition cell_split` 到 `Lemma split_assoc ... Qed.` 的整段内容，再粘贴以下完整段落。
+
+```coq
+(* =====================================================================
+   split_assoc 完整证明（含所需逐位辅助引理）
+   ===================================================================== *)
+
+Definition cell_split (g a b : option (option ty)) : Prop :=
+  (a = g /\ (b = None \/ b = Some None))
+  \/ (b = g /\ (a = None \/ a = Some None)).
+
+Lemma split_assoc_cell_out : forall (g g12 g1 : option (option ty)),
+  cell_split g g12 None -> cell_split g12 g1 None ->
+  cell_split g g1 None /\ cell_split None None None.
+Proof.
+  intros g g12 g1 H1 H2.
+  unfold cell_split in *.
+  destruct g as [[?|]|]; destruct g12 as [[?|]|];
+  destruct g1 as [[?|]|];
+  simpl in *;
+  intuition congruence.
+Qed.
+
+Lemma split_assoc_setby_None : forall (Gamma : ctx)
+  (f : nat -> option ty -> option ty) k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f := f) (k := S k). exact Hn.
+Qed.
+
+(* 受限逐位引理：排除 g2=g3=None 的越界-越界格。 *)
+Lemma split_assoc_cell_in : forall (g g12 g3 g1 g2 : option (option ty)),
+  g2 <> None \/ g3 <> None ->
+  cell_split g g12 g3 -> cell_split g12 g1 g2 ->
+  let h : option ty :=
+      match g2 with
+      | Some (Some a) => Some a
+      | _ => match g3 with
+             | Some v => v
+             | None => None
+             end
+      end in
+  cell_split g g1 (Some h) /\ cell_split (Some h) g2 g3.
+Proof.
+  intros g g12 g3 g1 g2 Hne H1 H2.
+  destruct Hne as [H2ne | H3ne];
+  unfold cell_split in *;
+  destruct g as [[?|]|]; destruct g12 as [[?|]|];
+  destruct g3 as [[?|]|]; des
+[reasoning摘要]
+我们需要修正 split_assoc。材料中当前已有 split_assoc 完整证明？用户给的材料 A 中 Layer2.v 已经包括一个 split_assoc Qed？看全文：在 Layer2.v 中，结尾附近有一段 split_assoc 完整证明，包括 cell_split, split_assoc_cell, split_assoc_cell_out, split_assoc_setby_None, split_assoc 已 Qed。但上一版编译错误在 line 2327 congruence failed，说明材料中的当前状态可能是旧的全称 split_assoc_cell 有缺陷，或目标段有 admit. 用户要求完整证出 split_assoc，给从声明行到 Qed.
+
+我们需要提供新的可编译证明。注意材料A已经包括了很多辅助引理，包括 get_not_none_lt, get_overflow_none, length_repeat_None, H23_val？是的材料A末尾已有 H23_val 并 Qed。还有 get_not_none_lt 和 get_overflow_none 都在材料A已 Qed。我们只需写 split_assoc_cell_in 和 split_assoc。
+
+但需要注意：材料 A 中已经存在 `Definition cell_split` 和 `Lemma split_assoc_cell`（全称假）可能导致冲突；如果我们提供替换版本，必须避免名字冲突。材料中已经有 `split_assoc_cell` 全称版？看 material A: 在 "split_assoc 完整证明（含所需逐位辅助引理）" 下确实有 Definition cell_split, Lemma split_assoc_cell (全称), Lemma split_assoc_cell_out, Lemma split_assoc_setby_None, Lemma H23_val?  H23_val 在 split_assoc 之前已存在？材料 A 里 H23_val 在更早的部分已被定义并 Qed。然后 split_assoc 已 Qed。但用户说当前 split_assoc Admitted，且编译错误在 line 2327 congruence failed，说明实际当前文件可能不包含成功的全称 cell 引理，而是旧版本尝试。
+
+我们需要直接给出一个完整可替换的“split_assoc 证明块”，它不依赖已有的全称 split_assoc_cell，而是用新名字，避免冲突。例如用 `split_assoc_cell_in`。同时主引理 `split_assoc` 需要替换已有声明。
+
+因此交付一段代码，包括：
+- 保留 cell_split 定义？需要避免重复定义。但如果我们说“替换旧块”，就重新定义也行？在 Coq 中定义不可重复，但如果是替换，旧块已被删除，新块定义同名 cell_split 没问题。用户的意思是可以替换整段。我们给完整段落，包含重新定义 cell_split、split_assoc_cell_out、split_assoc_setby_None、split_assoc_cell_in、split_assoc，并声明“替换旧块”。这不会冲突，因为旧块被用户删掉或用指示替换。
+
+但要确保没有重复定义 H23_val，因为 H23_val 已在材料A中定义过，如果我们不再定义它，也能用。我们要引用
+
+
+## 2026-09-15 01:06:45 [proof_loop] split_assoc · round5 · DS输出
+
+根因：旧的全称逐位引理 `split_assoc_cell` 在 `g2=None ∧ g3=None` 格导出了 `cell_split (Some None) None None`，这是假命题，因此该引理内部 `congruence` 失败。主定理 `split_assoc` 本身为真；`n < max(length G2)(length G3)` 分支天然排除该格。修正为受限引理 `split_assoc_cell_in`，主证明显式由 `lia` 推出 `get G2 n ≠ None ∨ get G3 n ≠ None`。
+
+**替换范围**：删除旧块中从 `Definition cell_split` 到 `Lemma split_assoc ... Qed.` 的整段内容（包含旧的 `split_assoc_cell`、`split_assoc_cell_out`、`split_assoc_setby_None`、`split_assoc`），替换为以下完整段落。`H23_val`、`get_repeat_None_lt`、`length_repeat_None`、`get_overflow_none`、`get_not_none_lt` 等材料中已有 Qed 引理保留不动。
+
+```coq
+(* =====================================================================
+   split_assoc 完整证明（含所需逐位辅助引理）
+   ===================================================================== *)
+
+Definition cell_split (g a b : option (option ty)) : Prop :=
+  (a = g /\ (b = None \/ b = Some None))
+  \/ (b = g /\ (a = None \/ a = Some None)).
+
+Lemma split_assoc_cell_out : forall (g g12 g1 : option (option ty)),
+  cell_split g g12 None -> cell_split g12 g1 None ->
+  cell_split g g1 None /\ cell_split None None None.
+Proof.
+  intros g g12 g1 H1 H2.
+  unfold cell_split in *.
+  destruct g as [[?|]|]; destruct g12 as [[?|]|];
+  destruct g1 as [[?|]|];
+  simpl in *;
+  intuition congruence.
+Qed.
+
+Lemma split_assoc_setby_None : forall (Gamma : ctx)
+  (f : nat -> option ty -> option ty) k n,
+  get Gamma n = None -> get (setby f Gamma k) n = None.
+Proof.
+  induction Gamma as [|u Gamma IH]; intros f k n Hn; simpl in *.
+  - reflexivity.
+  - destruct n as [|n].
+    + simpl in Hn. discriminate.
+    + apply IH with (f := f) (k := S k). exact Hn.
+Qed.
+
+(* 受限逐位引理：排除 g2=g3=None 的越界-越界格。
+   该格只出现在 n >= max(length G2)(length G3) 分支，由 cell_out 处理。 *)
+Lemma split_assoc_cell_in : forall (g g12 g3 g1 g2 : option (option ty)),
+  g2 <> None \/ g3 <> None ->
+  cell_split g g12 g3 -> cell_split g12 g1 g2 ->
+  let h : option ty :=
+      match g2 with
+      | Some (Some a) => Some a
+      | _ => match g3 with
+             | Some v => v
+             | None => No
+[reasoning摘要]
+我们需要给出完整修复。用户重复证伪守卫，但我们从未声称split_assoc为假，根因已被守卫误解？用户说我们声称目标引理 split_assoc 为假，但我们没有。但守卫自动。实际错误来自 coqc：line 2327 tactic failure congruence failed. 这位于旧的 `split_assoc_cell` 全称引理中。我们需要给完整新版本，确保编译通过。材料A中已有 split_assoc_cell（全称假？可是材料A中已有 split_assoc 完整证明 Qed？注意材料A Layer2.v 全文里末尾给出了 split_assoc_cell, split_assoc_cell_out, split_assoc_setby_None, split_assoc 完整证明，均 Qed。但用户目标说当前 split_assoc 为 Admitted/admit？材料A里显然已经 Qed？但任务上下文说应用后未收敛 rc=1。可能是实际文件里不是材料A那样；材料A是权威全文但包含我们上一轮输出？我们上一轮给的修改可能已被应用，但编译错误在 line 2327，位于 split_assoc_cell 内。材料A中 `split_assoc_cell` 是旧的未受限版本，其中错误很可能正是那全称假引理。实际上材料A中 split_assoc_cell 证明已经写了 `intuition congruence.`，应该能编译？但是这是假命题，coqc 可能在某格失败？我们需要看：旧 `split_assoc_cell` 命题：
+
+```
+Lemma split_assoc_cell : forall (g g12 g3 g1 g2 : option (option ty)),
+  cell_split g g12 g3 -> cell_split g12 g1 g2 ->
+  let h ... in
+  cell_split g g1 (Some h) /\ cell_split (Some h) g2 g3.
+```
+
+在 g2=None, g3=None 时 h = None. 结论第二支 `cell_split (Some None) None None` 需成立：`(left: None = Some None /\ ... )` or `(right: None = Some None /\ ...)` 都不成立。所以全称引理假，`intuition congruence` 在 destruct 枚举中该格报 tactic failure。因此必须受限。
+
+我们上一轮已经提出受限引理和主证明，但被截断导致未完整输出？最后被守卫中断。现在需要交出完整、可编译代码。根据用户要求：从声明行到 Qed 的完整新版本。需要包含所有辅助引理（当轮交齐）不用 Abort/Admitted。
+
+注意材料A中已经存在许多引理：`H23_val`? 在材料A的 Layer2.v 中，`H23_val` 定义在 split_assoc 之前，已 Qed。还有 `get_repeat_None_lt`, `length_repeat_None`, `get_setby_get`, `get_setby_None`? 材料A中有多个重复名：`get_setby_None`（在 Layer2 中有两个定义？）至少有一个 `get_setby_None` Qed。材料中 `get_setby_None_uncond` 也有。我们只使用 `sp
+
+
+---
+
+## 2026-09-15 split_assoc 收官轮：本轮未调用 DS（用户特许手动例外），记录 DS 九轮失败教训与下次喂法
+
+- **为什么这轮没派 DS**：split_assoc 上 DS 已连续 9+ 轮 exit=1 并一度误判定理为假；用户特许 S04 手动完成此唯一证明。S04 先用 Python 有限枚举立真（merge_cell/cell_step 32 组合、build_g23 2383 可达实例、长度/针对性交错反例搜索全 0 失败），再写 Coq，独立范本 TEST_split.v exit=0 后并入 Layer2（commit edc2333，整层零 Admitted）。
+- **DS 九轮为什么走偏（供下次 system prompt 规避）**：①在主证明里 `destruct (merge_cell..) eqn:Em`，该 destruct 会把目标里埋在 build_g23 递归体中的 merge_cell 同步替换成构造子，导致后续 rewrite Em 失配——DS 一直在调 cbn 顺序而没意识到项已被替换（结晶021）。②没识别出“区间外 n>=K 的结论本来就是 None 形式、不含 build 项”，多造了一整套 step_some+越界引理。③把 G3=[] 越界 None 与 G2=[None] 在位 Some None 错当同一层而误判假（结晶010/016）。
+- **下次派 DS 的确定好形式（DS 获取一切）**：连同目标一起喂——(a) 结晶021/022 全文；(b) 要求“凡依赖某等式化归的步骤，抽成带假设 H 的独立小引理，主上下文只 apply，禁止在 destruct eqn 后的大上下文里硬 rewrite”；(c) 要求“归纳分区间内/外，先 idtac 打印区间外目标真实形态再决定要不要引理”；(d) 派单前附 Python 枚举结果（0 反例）以锁定命题为真，禁止 DS 再走判假分支。
+- **结果**：命题为真被 coqc 终裁；DS 失败定位为工艺/路线问题而非真假问题，已沉淀为可代码/预检强制的 A 类经验（结晶018）。

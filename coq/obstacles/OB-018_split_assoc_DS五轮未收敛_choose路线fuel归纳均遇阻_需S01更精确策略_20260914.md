@@ -1,7 +1,15 @@
+> ✅✅ 已解决 RESOLVED 2026-09-15（commit edc2333，已 push s04-coq）
+> split_assoc 完整 Qed，Layer2 coqc exit=0、全层零 Admitted。
+> 收官路线：merge_cell 逐位四规则 -> build_g23 遇 None 截断构造中间块 G23 ->
+> build_correct 区间归纳 -> 主定理按 n<K/n>=K 分情况。独立范本 TEST_split.v
+> 先 exit=0 再并入。DS 九轮误判为假，被 Python 枚举(2383 实例 0 反例)+coqc 双推翻。
+> 方法论沉淀见智慧结晶库结晶021（destruct eqn 隐藏替换/抽小引理/idtac）、
+> 结晶022（中间块逐位聚拢/先有限枚举立真再证明）。
+
 # OB-018：split_assoc DS五轮未收敛——choose路线/fuel归纳均遇阻，需S01更精确策略
 
 > 日期：2026-09-14｜S04 Coq形式化分站｜对应：Layer2.v line 2503
-> 状态：blocked，DS 5轮未收敛，费用约1.7元，流转S01研判
+> 状态：resolved（2026-09-15 证出，详见顶部解决横幅；原 blocked 记录留档）
 > 触发：DS V4.1上下文（含S01 OB015 choose路线策略）证明split_assoc，5轮均失败
 
 ---
