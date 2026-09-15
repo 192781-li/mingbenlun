@@ -1,107 +1,77 @@
 {
-  "version": "1.0",
-  "exported_at": "2026-09-13 23:05:11",
-  "exported_by": "S00",
-  "source": "list_cron_jobs (platform) — 唯一权威",
-  "description": "定时任务平台快照。这是库内定时任务状态的唯一权威数据源。注册表不再重复存cron_jobs/stopped_jobs，改为引用本文件。每次夜间巡检/全局协调由S00用list_cron_jobs(enable=true/false)重新导出覆盖。",
-  "total": 10,
-  "active_count": 7,
-  "stopped_count": 3,
-  "reconcile_note": "2026-09-13 23:05 S00夜间巡检对账：平台10任务与注册表v3.0一致、零漂移（无幽灵ID/无状态不符/无漏登），仅刷新最近运行时间。",
+  "exported_at": "2026-09-15T23:03:00+08:00",
   "active": [
     {
       "id": "10945545062402",
+      "station": "S03",
       "title": "明旭-S03-术数研究每日推进",
       "schedule": "0 16 * * *",
-      "status": "active",
-      "last_run": "2026-09-13 16:16:59",
-      "env": "云电脑",
-      "station": "S03"
+      "last_run": "2026-09-15 16:08:39"
     },
     {
       "id": "11369320570882",
+      "station": "S00",
       "title": "生命论每日自动备份（含完整性校验）",
       "schedule": "30 3 * * *",
-      "status": "active",
-      "last_run": "2026-09-13 03:31:15",
-      "env": "云电脑",
-      "station": "S00"
+      "last_run": "2026-09-15 03:31:22"
     },
     {
       "id": "11574231182594",
+      "station": "S05",
       "title": "明旭-S05-信息分站每日巡检",
       "schedule": "30 6 * * *",
-      "status": "active",
-      "last_run": "2026-09-13 06:34:58",
-      "env": "云电脑",
-      "station": "S05"
+      "last_run": "2026-09-15 06:33:05"
     },
     {
       "id": "11574382439938",
-      "title": "明旭-S00-大总站全局协调·夜间巡检（SOP从GitHub读取）",
+      "station": "S00",
+      "title": "明旭-S00-大总站全局协调·夜间巡检",
       "schedule": "0 23 * * *",
-      "status": "active",
-      "last_run": "2026-09-13 23:04:50",
-      "env": "云电脑",
-      "station": "S00"
+      "last_run": "2026-09-15 23:01:31"
     },
     {
       "id": "11631061915138",
+      "station": "S02",
       "title": "明旭-S02-高考文科每日推进",
       "schedule": "0 14 * * *",
-      "status": "active",
-      "last_run": "2026-09-13 14:12:17",
-      "env": "云电脑",
-      "station": "S02"
+      "last_run": "2026-09-15 14:27:36"
     },
     {
       "id": "11658550838274",
+      "station": "S00",
       "title": "明旭-S00-库资源深度阅读·三遍法",
       "schedule": "0 10 * * *",
-      "status": "active",
-      "last_run": "2026-09-13 10:15:00",
-      "env": "云电脑",
-      "station": "S00"
+      "last_run": "2026-09-15 10:14:18"
     },
     {
       "id": "11686204363266",
-      "title": "明旭-S01-哲学研究（SOP从GitHub读取）",
+      "station": "S01",
+      "title": "明旭-S01-哲学研究",
       "schedule": "0 9 * * *",
-      "status": "active",
-      "last_run": "2026-09-13 09:03:24",
-      "env": "云电脑",
-      "station": "S01"
+      "last_run": "2026-09-15 09:07:48"
     }
   ],
   "stopped": [
     {
       "id": "11547202077954",
+      "station": "S06",
       "title": "明旭-S06-每周错题与方法论复盘",
       "schedule": "0 20 * * 0",
-      "status": "stopped",
-      "last_run": "未运行",
-      "env": "云电脑",
-      "station": "S06"
+      "last_run": "未运行"
     },
     {
       "id": "11591577993218",
+      "station": "S06",
       "title": "明旭-S06-高考数学每日推进",
       "schedule": "0 9 * * *",
-      "status": "stopped",
-      "last_run": "2026-09-10 09:23:12",
-      "env": "云电脑",
-      "station": "S06",
-      "note": "GitHub token 待配置后恢复"
+      "last_run": "2026-09-10 09:23:12"
     },
     {
       "id": "11774525314050",
+      "station": "S04",
       "title": "明旭-S04-Coq形式化（看板驱动）",
       "schedule": "*/20 * * * *",
-      "status": "stopped",
-      "last_run": "2026-09-11 00:24:05",
-      "env": "本地电脑",
-      "station": "S04",
-      "note": "本地电脑运行，路径体系不同，不套云电脑worktree包；恢复须主人拍板"
+      "last_run": "2026-09-11 00:24:05"
     }
   ]
 }
