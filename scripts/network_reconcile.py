@@ -168,7 +168,7 @@ def check_registry(snapshot=None):
     if overlap:
         err('registry', f'ID 同时出现在 active 和 stopped: {overlap}')
     # task_queue 状态合法（注册表里保留，非cron状态）
-    legal = {'pending', 'in_progress', 'completed', 'blocked', 'done'}
+    legal = {'pending', 'in_progress', 'completed', 'blocked', 'pending_blocked', 'done'}
     for t in conf.get('task_queue', []):
         if isinstance(t, dict) and str(t.get('status', '')).lower() not in legal:
             warn('registry', f'task_queue {t.get("id")} 状态非法：{t.get("status")}')
