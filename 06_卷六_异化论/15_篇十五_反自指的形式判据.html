@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十五篇 反自指的形式判据 · 生命论</title>
+<style>
+:root{--gold:#d4a574;--gold-dark:#8a6d2f;--bg:#faf8f5;--text:#2c2416;--muted:#6b5d4f;--border:#e0d5c5;--accent:#c44040}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Serif SC","Source Han Serif SC",Georgia,serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:17px}
+.topbar{position:sticky;top:0;background:rgba(250,248,245,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100;display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:var(--gold-dark);text-decoration:none;font-weight:600}
+.topbar .title{font-size:1.1em;color:var(--gold-dark)}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0;z-index:200;transition:width .1s}
+.container{max-width:800px;margin:0 auto;padding:40px 24px 80px}
+.index-container{max-width:900px}
+h1{font-size:2em;margin-bottom:.5em;color:var(--gold-dark);border-bottom:2px solid var(--gold);padding-bottom:.3em}
+h2{font-size:1.5em;margin:1.5em 0 .8em;color:var(--gold-dark)}
+h3{font-size:1.25em;margin:1.2em 0 .6em;color:var(--text)}
+h4{font-size:1.1em;margin:1em 0 .5em}
+p{margin:.8em 0}
+blockquote{border-left:4px solid var(--gold);padding:8px 20px;margin:1em 0;background:#f5f0e8;color:var(--muted);font-style:italic}
+code{background:#f0ebe0;padding:2px 6px;border-radius:3px;font-size:.9em}
+pre{background:#2c2416;color:#e0d5c5;padding:16px;border-radius:6px;overflow-x:auto;margin:1em 0}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;margin:1em 0}
+th,td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+th{background:#f5f0e8;color:var(--gold-dark)}
+ul,ol{margin:.8em 0;padding-left:2em}
+li{margin:.3em 0}
+hr{border:none;border-top:1px solid var(--border);margin:2em 0}
+a{color:var(--gold-dark);text-decoration:none}
+a:hover{text-decoration:underline}
+.toc-list{list-style:none;padding:0}
+.toc-list li{margin:.4em 0}
+.toc-list .volume{font-weight:600;color:var(--gold-dark);font-size:1.1em;margin-top:1em}
+.toc-list .chapter{padding-left:1.5em;font-size:.95em}
+.toc-list .chapter a{color:var(--text)}
+.nav-links{display:flex;justify-content:space-between;margin-top:3em;padding-top:1em;border-top:1px solid var(--border)}
+.nav-links a{color:var(--gold-dark);font-weight:600}
+.hero{text-align:center;padding:60px 20px 40px}
+.hero h1{border:none;font-size:2.5em;margin-bottom:.2em}
+.hero .subtitle{color:var(--muted);font-size:1.1em;font-style:italic}
+.hero .meta{margin-top:1em;color:var(--muted);font-size:.9em}
+.volume-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:2em 0}
+.volume-card{border:1px solid var(--border);border-radius:8px;padding:20px;background:#fff;transition:box-shadow .2s}
+.volume-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.volume-card h3{margin:0 0 .5em;color:var(--gold-dark)}
+.volume-card p{font-size:.9em;color:var(--muted);margin:0}
+@media(max-width:600px){body{font-size:16px}.container{padding:20px 16px 60px}.hero h1{font-size:1.8em}.volume-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress"></div>
+<div class="topbar"><span class="title">生命论（明本论）</span><a href="../index.html">目录</a></div>
+<div class="container">
+<h2 id="_1">第十五篇 反自指的形式判据</h2>
+<blockquote>
+<p>来源：GPT 讨论集·批次02-03 巩固升华稿一级缺口⑤（硬化稿103节，33–36节铺垫）。标注沿用 [M]/[L]/[D]/[U]。
+本篇把体系总纲的反自指<strong>哲学表述</strong>推进到<strong>接近可判定的三条件式</strong>——最可能第一个交 S04/Coq 形式化的命题。</p>
+</blockquote>
+<h3 id="1">1 从哲学表述到判定条件</h3>
+<p>体系总纲有反自指的一般定义（哲学语言）：<strong>结构 P 依赖系统 S 的操作能力，却使 (dV(S)/dt&lt;0)</strong>——自指的癌变。[L]</p>
+<p>但它难判定：什么算"依赖"？什么算"使之下降"？下降多少、多久算？GPT 硬化稿给出三条件合取式：[D]</p>
+<p>[
+\boxed{P = P(S)\ \land\ \frac{dV(S)}{dt} &lt; 0\ \land\ P\text{ 依赖 } V(S)&gt;0 \Rightarrow P\text{ 为反自指结构}}
+]</p>
+<p>三个条件，缺一不可：</p>
+<ol>
+<li><strong>(P = P(S))（依赖生命系统）</strong>：P 的存在以 S 的操作能力为输入。资本需要劳动、官僚系统需要民众服从、平台需要用户数据。</li>
+<li><strong>(\frac{dV(S)}{dt} &lt; 0)（负效应）</strong>：P 的运作使 S 的自指能力下降。不是"有点副作用"，是净效果为负。</li>
+<li><strong>P 依赖 (V(S)&gt;0)（存活依赖）</strong>：P 靠 S 的自指能力活着。<strong>这一条是最硬的加厚</strong>——它把"反自指"与"一般的坏"区分开：一个结构只是损害生命、但不靠生命活着（如一场地震），不是反自指；<strong>靠被它削弱的东西活着，才是反自指</strong>。</li>
+</ol>
+<p>第③条解决了一个关键的理论区分：<strong>普通的坏 ≠ 反自指</strong>。寄生虫与捕食者不同：捕食者杀死猎物后不依赖它；寄生虫削弱宿主、却靠宿主存活——只有后者是反自指。</p>
+<h3 id="2">2 反自指极限：内在矛盾</h3>
+<p>若 P 满足三条件且持续运作，极限处：[D]</p>
+<p>[
+V(S) \to 0 \implies C(S) \to\ ?
+]</p>
+<p>P 赖以存活的 (V(S)) 趋零，P 同时失去生产、消费、再生产、社会稳定的基础——<strong>反自指内含自我矛盾</strong>：它削弱自己赖以存活的东西，直到把自己也拖垮。这就是"资本积累的绝对界限"的生命论形式。</p>
+<h3 id="3">3 伪自指：资本"看似自己生长"的拆解</h3>
+<p>资本表面 (C = f(C))（钱生钱），实际链：[D]</p>
+<p>[
+C_t \to L_t \to P_t \to C_{t+1}
+]</p>
+<p>增殖依赖活的生产过程。资本的自增殖是<strong>借助生命自指完成的伪自指</strong>：</p>
+<p>[
+C \to S \to C'
+]</p>
+<p><strong>严格限制</strong>（硬化稿34节纪律）：不能说"资本是假的生命"、不能说"资本拥有意识"。伪自指<strong>只</strong>表示"一个外部结构表现出类似自我维持/增殖的循环，但该循环依赖其他生命系统的真实自指"。明确标 [D]，非 [M]。</p>
+<h3 id="4">4 与库内形式语言的接挂</h3>
+<p>本篇三条件判据与体系总纲的两条形式语言并列，构成"反自指"的三条等价表达之一：</p>
+<ol>
+<li><strong>哲学生成语</strong>：阳→阴本为阳用，阴夺阳位则异化；</li>
+<li><strong>形式语言</strong>：!-模态寄生 (\nu F_2)、定理28 病毒—资本同构；</li>
+<li><strong>判定条件式</strong>（本篇）：三条件合取。</li>
+</ol>
+<p>三语互译时任何一条对不上，就是理论裂缝。</p>
+<h3 id="5">5 库内接口与待审定</h3>
+<ul>
+<li>接茬：体系总纲反自指定义、!-模态寄生、定理28；卷六篇四（反自指展开的六个阶段）。</li>
+<li>标注：三条件为 [D]；"倾向"到"结构"的跃迁条件（何时只是倾向、何时成结构）挂 [U]。</li>
+<li>待作者审定：①三条件的充分性——是否过宽（把普通损害也算进）或过窄（漏掉某些反自指形态）；②负效应 (dV(S)/dt&lt;0) 的时间窗如何取（多长算"持续"）。</li>
+</ul>
+<div class="nav-links">
+<a href="../06_卷六_异化论/14_篇十四_操作剩余与反馈缺口.html">← 第十四篇 操作剩余与反馈缺口</a>
+<a href="../06_卷六_异化论/16_篇十六_名称不构成证明_资本市场国家社会主义都不是必然反自指.html">第十六篇 名称不构成证明：资本/市场/国家/社会主义都不是必然反自指 →</a>
+</div>
+</div>
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.querySelector('.progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>

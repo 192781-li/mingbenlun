@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十四篇 操作剩余与反馈缺口 · 生命论</title>
+<style>
+:root{--gold:#d4a574;--gold-dark:#8a6d2f;--bg:#faf8f5;--text:#2c2416;--muted:#6b5d4f;--border:#e0d5c5;--accent:#c44040}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Serif SC","Source Han Serif SC",Georgia,serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:17px}
+.topbar{position:sticky;top:0;background:rgba(250,248,245,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100;display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:var(--gold-dark);text-decoration:none;font-weight:600}
+.topbar .title{font-size:1.1em;color:var(--gold-dark)}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0;z-index:200;transition:width .1s}
+.container{max-width:800px;margin:0 auto;padding:40px 24px 80px}
+.index-container{max-width:900px}
+h1{font-size:2em;margin-bottom:.5em;color:var(--gold-dark);border-bottom:2px solid var(--gold);padding-bottom:.3em}
+h2{font-size:1.5em;margin:1.5em 0 .8em;color:var(--gold-dark)}
+h3{font-size:1.25em;margin:1.2em 0 .6em;color:var(--text)}
+h4{font-size:1.1em;margin:1em 0 .5em}
+p{margin:.8em 0}
+blockquote{border-left:4px solid var(--gold);padding:8px 20px;margin:1em 0;background:#f5f0e8;color:var(--muted);font-style:italic}
+code{background:#f0ebe0;padding:2px 6px;border-radius:3px;font-size:.9em}
+pre{background:#2c2416;color:#e0d5c5;padding:16px;border-radius:6px;overflow-x:auto;margin:1em 0}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%;margin:1em 0}
+th,td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+th{background:#f5f0e8;color:var(--gold-dark)}
+ul,ol{margin:.8em 0;padding-left:2em}
+li{margin:.3em 0}
+hr{border:none;border-top:1px solid var(--border);margin:2em 0}
+a{color:var(--gold-dark);text-decoration:none}
+a:hover{text-decoration:underline}
+.toc-list{list-style:none;padding:0}
+.toc-list li{margin:.4em 0}
+.toc-list .volume{font-weight:600;color:var(--gold-dark);font-size:1.1em;margin-top:1em}
+.toc-list .chapter{padding-left:1.5em;font-size:.95em}
+.toc-list .chapter a{color:var(--text)}
+.nav-links{display:flex;justify-content:space-between;margin-top:3em;padding-top:1em;border-top:1px solid var(--border)}
+.nav-links a{color:var(--gold-dark);font-weight:600}
+.hero{text-align:center;padding:60px 20px 40px}
+.hero h1{border:none;font-size:2.5em;margin-bottom:.2em}
+.hero .subtitle{color:var(--muted);font-size:1.1em;font-style:italic}
+.hero .meta{margin-top:1em;color:var(--muted);font-size:.9em}
+.volume-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:2em 0}
+.volume-card{border:1px solid var(--border);border-radius:8px;padding:20px;background:#fff;transition:box-shadow .2s}
+.volume-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.volume-card h3{margin:0 0 .5em;color:var(--gold-dark)}
+.volume-card p{font-size:.9em;color:var(--muted);margin:0}
+@media(max-width:600px){body{font-size:16px}.container{padding:20px 16px 60px}.hero h1{font-size:1.8em}.volume-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress"></div>
+<div class="topbar"><span class="title">生命论（明本论）</span><a href="../index.html">目录</a></div>
+<div class="container">
+<h2 id="_1">第十四篇 操作剩余与反馈缺口</h2>
+<blockquote>
+<p>来源：GPT 讨论集·批次02-03 巩固升华稿一级缺口②（硬化稿19–28节）。标注沿用 [M]/[L]/[D]/[U]。
+本篇把"剥削"从所有制层面推进到<strong>生命再生产层面</strong>——这是库内卷六篇二（剩余价值与剥削）之后的关键器件。</p>
+</blockquote>
+<h3 id="1">1 三层剩余：钱不是唯一的剩余</h3>
+<p>马克思讲剩余价值 (s)，其根基是剩余劳动 (T_s)。[M] 生命论在三层上重新区分剩余：[D]</p>
+<p>[
+\boxed{S_L \neq S_V \neq S_O}
+]</p>
+<table>
+<thead>
+<tr>
+<th>记号</th>
+<th>名</th>
+<th>定义</th>
+<th>性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(S_L)</td>
+<td>劳动剩余</td>
+<td>(T_s)：必要劳动之外的劳动时间</td>
+<td>[M]</td>
+</tr>
+<tr>
+<td>(S_V)</td>
+<td>价值剩余</td>
+<td>(s)：以价值形式表现的剩余劳动</td>
+<td>[M]，马克思核心概念</td>
+</tr>
+<tr>
+<td>(S_O)</td>
+<td><strong>操作剩余</strong></td>
+<td>(\boxed{S_O = O^{actual} - O^{returned}})</td>
+<td>[D]</td>
+</tr>
+</tbody>
+</table>
+<p>第三层的要害：(S_O) <strong>不是钱</strong>。它是生命<strong>实际贡献出去、却没获得相应操作反馈</strong>的剩余操作能力。关键是 (S_O \neq T_s)——因为人的生命操作远超雇佣劳动。</p>
+<h3 id="2-oreturned">2 反馈范畴：(O^{returned}) 不是工资</h3>
+<p>简单"投入 − 收入"仍是货币经济学。生命论关心的是<strong>投入 → 反馈</strong>。[D]</p>
+<p><strong>反馈七元组</strong>：{收入, 时间, 自主权, 知识, 安全, 社会承认, 规则改变权}。</p>
+<p>[
+O^{returned} = f(\text{收入},\ \text{时间},\ \text{自主权},\ \text{知识},\ \text{安全},\ \text{社会承认},\ \text{规则改变权})
+]</p>
+<p><strong>故 (O^{returned}) 不是工资。</strong> 一个人可以工资不低，但时间被吞、自主权为零、知识被锁、安全悬空、社会不承认、规则无权改——他的 (O^{returned}) 依然很低。(S_O&gt;0) 即：生命投入超过它得到的主体性反馈。</p>
+<p><strong>家务劳动样例</strong>：家务 (S_V=0)（不直接形成商品交换价值），但 (S_O&gt;0)（实际维持劳动力再生产乃至社会生命再生产）——<strong>价值剩余 ≠ 全部生命剩余</strong>。无偿照护、情感劳动、数字劳动（用户生产数据但无反馈）一次性纳入本篇。</p>
+<h3 id="3">3 剥削两层</h3>
+<ul>
+<li><strong>第一层（传统经济剥削）</strong>：(S_V&gt;0)——被占有的剩余价值。[M]</li>
+<li><strong>第二层（生命论扩展）</strong>：(S_O&gt;0)——实际贡献与主体性反馈的结构性缺口。[D]</li>
+</ul>
+<p>关系：</p>
+<p>[
+S_V \subseteq?\ S_O
+]</p>
+<p><strong>自标 [U]，不得宣称已证。</strong> 价值剩余是否真包含于操作剩余——这是开放命题，未到定理级。</p>
+<h3 id="4">4 为什么这是关键器件</h3>
+<p>库内"操作权不对称"讲了<strong>权力配置</strong>（谁说了算），本篇补上<strong>流量缺口</strong>（贡献出去的生命操作 vs 回到生命身上的主体性反馈）：</p>
+<ol>
+<li><strong>与 (O_c)（纠错权）首尾呼应</strong>：反馈七元组的最后一元是"规则改变权"——没有它，前六元的反馈都可能被收回。(S_O) 的根治在 (O_c)。</li>
+<li><strong>数字劳动的直接武器</strong>：平台用户生产数据、内容、行为轨迹，(O^{actual}) 巨大而 (O^{returned}\approx0)——数字资本主义篇（卷六篇六）可直接用 (S_O) 重写。</li>
+<li><strong>把"剥削"从所有制推进到生命再生产</strong>：一个人被剥削，不只是"剩余价值被拿走"，更是"生命操作被投入却得不到主体性回流"——后者是前者在生命层的根。</li>
+</ol>
+<h3 id="5">5 库内接口与待审定</h3>
+<ul>
+<li>接茬：卷六篇二（剩余价值与剥削）之后；卷六篇六（数字资本主义）可直接引用 (S_O)；与总包"剥削六条件判定"并列（本篇是流量侧，六条件是结构侧）。</li>
+<li>标注：(S_O) 定义与反馈七元组为 [D]；(S_V\subseteq?S_O) 为 [U]。</li>
+<li>待作者审定：①反馈七元组的元数是否增减（如加"尊严"或"意义"维）；②七元组内部冲突如何排序（收入↑但自主权↓时 (O^{returned}) 如何合成）——此条已挂 35 问新增问。</li>
+</ul>
+<div class="nav-links">
+<a href="../06_卷六_异化论/13_篇十三_价值双轴与四种经济状态.html">← 第十三篇 价值双轴与四种经济状态</a>
+<a href="../06_卷六_异化论/15_篇十五_反自指的形式判据.html">第十五篇 反自指的形式判据 →</a>
+</div>
+</div>
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.querySelector('.progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>
