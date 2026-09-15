@@ -294,18 +294,26 @@ def analyze_wangshuai(day_stem, month_branch, four_pillars, wuxing_count):
     # 1. 得令：日主五行在月令是否旺相
     # 月令五行
     month_elem = BRANCH_ELEMENT[month_branch]
-    # 旺相休囚死：同我者旺，我生者相，生我者休，克我者囚，我克者死
-    if month_elem == day_elem:
+    # 旺相休囚死（正确方向）：同我者旺、生我者相为【得令】；我生者休(泄)、我克者囚、克我者死为【失令】
+    if month_elem == day_elem:  # 同我=旺
         result["得令"] = True
+        result["月令状态"] = "旺"
         result["分数"] += 30
-    elif GENERATES[day_elem] == month_elem:  # 我生月令（月令是我生的）=相
+    elif GENERATES[month_elem] == day_elem:  # 月令生我=相（得令）
+        result["得令"] = True
+        result["月令状态"] = "相"
         result["分数"] += 15
-    elif GENERATES[month_elem] == day_elem:  # 月令生我=休
-        result["分数"] += 10
-    elif OVERCOMES[month_elem] == day_elem:  # 月令克我=囚
+    elif GENERATES[day_elem] == month_elem:  # 我生月令=休（被泄，失令）
+        result["月令状态"] = "休"
         result["分数"] -= 10
-    elif OVERCOMES[day_elem] == month_elem:  # 我克月令=死
-        result["分数"] -= 5
+    elif OVERCOMES[day_elem] == month_elem:  # 我克月令=囚（耗，失令）
+        result["月令状态"] = "囚"
+        result["分数"] -= 8
+    elif OVERCOMES[month_elem] == day_elem:  # 月令克我=死（失令）
+        result["月令状态"] = "死"
+        result["分数"] -= 15
+    else:
+        result["月令状态"] = "平"
 
     # 2. 得地：日主在其他地支中是否有根（禄、刃、库、余气）
     lu_branch = STEM_LU[day_stem]
@@ -389,6 +397,25 @@ def analyze_wangshuai(day_stem, month_branch, four_pillars, wuxing_count):
         except Exception as e:
             result["v33_错误"] = str(e)
 
+    # 最终裁决：T值v3.3数学定义不动（已过大样本验证），只在临界"中和"处叠加月令第一权重校正
+    # 月令是旺衰第一权重：临界中和时，失令+帮身不过半→偏弱；得令+帮身过半→偏强
+    base = result.get("v33_总评") or result.get("总评", "中和")
+    final, reason = base, ""
+    if base == "中和" and T_CALC_AVAILABLE:
+        sup = result.get("v33_帮身力量", 0) or 0
+        tot = result.get("v33_总力量", 0) or 0
+        spct = (sup / tot * 100) if tot else 50.0
+        mstate = result.get("月令状态", "平")
+        if (not result["得令"]) and spct < 50:
+            final = "偏弱"
+            reason = f"T值临界中和({result.get('v33_T值')})，但月令{mstate}失令、帮身仅{spct:.1f}%<50%，月令为第一权重，下调偏弱"
+        elif result["得令"] and spct > 50:
+            final = "偏强"
+            reason = f"T值临界中和({result.get('v33_T值')})，但月令{mstate}得令、帮身{spct:.1f}%>50%，上调偏强"
+    result["最终"] = final
+    result["最终依据"] = reason
+    result["传统分量"] = result.get("总评", "")  # 保留月令加权传统分，供展示对照
+    result["总评"] = final  # 下游统一取唯一结论
     return result
 
 
@@ -622,48 +649,57 @@ def get_wuxing_wangshuai(wuxing):
 
 
 def get_yong_shen(day_stem, wangshuai, wuxing, month_branch):
-    """用神建议（优先使用v3.3 T值总评，从格用从格用神）"""
+    """用神建议（优先最终裁决→v3.3 T值总评，从格用从格用神）
+    十神五行方向一次性钉死（对任意日主X）：
+      印=生我者(反向GENERATES) 比=同我(X) 食伤=我生(GENERATES[X])
+      财=我克(OVERCOMES[X])     官杀=克我者(反向OVERCOMES)
+    """
     day_elem = STEM_ELEMENT[day_stem]
     result = {"喜用": [], "忌神": [], "说明": ""}
 
-    # 优先使用v3.3总评，不可用时用传统总评
-    v33_rating = wangshuai.get("v33_总评", wangshuai.get("总评", "中和"))
+    # —— 五个方向变量，全函数唯一来源，杜绝官杀↔财对调 ——
+    e_yin  = [e for e in GENERATES if GENERATES[e] == day_elem][0]  # 印·生我
+    e_bi   = day_elem                                               # 比劫·同我
+    e_shi  = GENERATES[day_elem]                                    # 食伤·我生
+    e_cai  = OVERCOMES[day_elem]                                    # 财·我克
+    e_guan = [e for e in OVERCOMES if OVERCOMES[e] == day_elem][0]  # 官杀·克我
+
+    # 优先最终裁决，其次v3.3，再次传统总评
+    v33_rating = wangshuai.get("最终") or wangshuai.get("v33_总评", wangshuai.get("总评", "中和"))
     is_cong = wangshuai.get("从格", False)
 
     if is_cong:
         # 从格：忌帮身，顺势而为，用神是从的那个五行
         cong_type = wangshuai.get("从格类型", "从势格")
-        if "官杀" in cong_type:
-            yong_elem = OVERCOMES[day_elem]
-            result["喜用"].append(f"{yong_elem}（官杀，从杀格用神）")
-            result["忌神"].append(f"{day_elem}（比劫，帮身破格）")
-            result["忌神"].append(f"{[e for e in GENERATES if GENERATES[e]==day_elem][0]}（印星，生身破格）")
-        elif "财星" in cong_type:
-            yong_elem = [e for e in OVERCOMES if OVERCOMES[e]==day_elem][0]
-            result["喜用"].append(f"{yong_elem}（财星，从财格用神）")
-            result["忌神"].append(f"{day_elem}（比劫，帮身破格）")
-        elif "食伤" in cong_type:
-            yong_elem = GENERATES[day_elem]
-            result["喜用"].append(f"{yong_elem}（食伤，从儿格用神）")
-            result["忌神"].append(f"{[e for e in GENERATES if GENERATES[e]==day_elem][0]}（印星，克食伤破格）")
+        if "官杀" in cong_type:  # 从杀：从克我者
+            result["喜用"].append(f"{e_guan}（官杀，从杀格用神）")
+            result["忌神"].append(f"{e_bi}（比劫，帮身破格）")
+            result["忌神"].append(f"{e_yin}（印星，生身破格）")
+        elif "财星" in cong_type:  # 从财：从我克者
+            result["喜用"].append(f"{e_cai}（财星，从财格用神）")
+            result["忌神"].append(f"{e_bi}（比劫，帮身破格）")
+            result["忌神"].append(f"{e_yin}（印星，生身破格）")
+        elif "食伤" in cong_type:  # 从儿：从我生者
+            result["喜用"].append(f"{e_shi}（食伤，从儿格用神）")
+            result["忌神"].append(f"{e_yin}（印星，克食伤破格）")
         else:
             result["喜用"].append("需结合具体格局判断")
         result["说明"] = f"{cong_type}：忌帮身，顺势而为。大运流年遇帮身则破格，遇从神则发。"
     elif v33_rating in ["身强", "偏强"]:
         # 身强喜克泄耗：官杀（克我）、食伤（我生）、财星（我克）
-        result["喜用"].append(f"{OVERCOMES[day_elem]}（官杀，克身）")
-        result["喜用"].append(f"{GENERATES[day_elem]}（食伤，泄身）")
-        result["喜用"].append(f"{[e for e in OVERCOMES if OVERCOMES[e]==day_elem][0]}（财星，耗身）")
-        result["忌神"].append(f"{day_elem}（比劫，帮身）")
-        result["忌神"].append(f"{[e for e in GENERATES if GENERATES[e]==day_elem][0]}（印星，生身）")
+        result["喜用"].append(f"{e_guan}（官杀，克身）")
+        result["喜用"].append(f"{e_shi}（食伤，泄身）")
+        result["喜用"].append(f"{e_cai}（财星，耗身）")
+        result["忌神"].append(f"{e_bi}（比劫，帮身）")
+        result["忌神"].append(f"{e_yin}（印星，生身）")
         result["说明"] = "身强喜克泄耗，忌生扶。用神在官杀、食伤、财星。"
     elif v33_rating in ["身弱", "偏弱"]:
         # 身弱喜生扶：印星（生我）、比劫（同我）
-        result["喜用"].append(f"{[e for e in GENERATES if GENERATES[e]==day_elem][0]}（印星，生身）")
-        result["喜用"].append(f"{day_elem}（比劫，帮身）")
-        result["忌神"].append(f"{OVERCOMES[day_elem]}（官杀，克身）")
-        result["忌神"].append(f"{GENERATES[day_elem]}（食伤，泄身）")
-        result["忌神"].append(f"{[e for e in OVERCOMES if OVERCOMES[e]==day_elem][0]}（财星，耗身）")
+        result["喜用"].append(f"{e_yin}（印星，生身）")
+        result["喜用"].append(f"{e_bi}（比劫，帮身）")
+        result["忌神"].append(f"{e_guan}（官杀，克身）")
+        result["忌神"].append(f"{e_shi}（食伤，泄身）")
+        result["忌神"].append(f"{e_cai}（财星，耗身）")
         result["说明"] = "身弱喜生扶，忌克泄耗。用神在印星、比劫。身弱不等于命不好，是能量承载力需要后天加厚（T值提升）。"
     else:
         result["喜用"].append("需结合具体格局判断")
@@ -731,8 +767,8 @@ def get_mingbenlun_interpretation(day_stem, wangshuai, four_pillars):
     # α（生命层级/格局）
     interpretation.append("【α·格局】八字是初始能量结构S₀，决定你的基本操作倾向，不是命运判决书。格局高低看五行流通和用神有力程度。")
 
-    # T（稳态基准/身强身弱）——优先使用v3.3
-    v33_rating = wangshuai.get("v33_总评", wangshuai.get("总评", "中和"))
+    # T（稳态基准/身强身弱）——优先最终裁决，其次v3.3
+    v33_rating = wangshuai.get("最终") or wangshuai.get("v33_总评", wangshuai.get("总评", "中和"))
     v33_T = wangshuai.get("v33_T值", None)
     is_cong = wangshuai.get("从格", False)
 
@@ -861,12 +897,12 @@ def print_paipan(result):
     print(f"  得地（根气）：{ws['得地']}")
     print(f"  得势（帮扶）：{ws['得势']}")
     print(f"  综合评分：{ws['分数']}")
-    print(f"  传统总评：{ws['总评']}")
+    print(f"  传统分量（月令加权）：{ws.get('传统分量', ws.get('总评',''))}")
     # v3.3 T值硬判断
     if "v33_T值" in ws:
         print(f"\n  ── T值硬判断 v3.3 ──")
         print(f"  T值：{ws['v33_T值']}")
-        print(f"  总评：{ws['v33_总评']}")
+        print(f"  T值分量：{ws['v33_总评']}")
         print(f"  帮身/总力量：{ws['v33_帮身力量']}/{ws['v33_总力量']}")
         if ws.get("从格"):
             print(f"  ⚠ 从格：{ws.get('从格类型', '从势格')}（忌帮身，顺势而为）")
@@ -874,6 +910,8 @@ def print_paipan(result):
             print(f"  组合效应：{', '.join(ws['v33_组合效应'])}")
         if "v33_错误" in ws:
             print(f"  错误：{ws['v33_错误']}")
+    # 唯一最终裁决（月令第一权重校正后的结论）
+    print(f"\n  ★最终裁决：{ws.get('最终', ws.get('总评',''))}" + (f"（{ws['最终依据']}）" if ws.get('最终依据') else ""))
 
     # 用神建议
     ys = result["用神建议"]
