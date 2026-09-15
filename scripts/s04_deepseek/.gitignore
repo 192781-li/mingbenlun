@@ -1,0 +1,12 @@
+# S04 工具链临时件约定（2026-09-15 固化）
+# 下划线前缀 = 一次性临时脚本/片段：必须留在原地运行（脚本靠 __file__ 同目录定位，移走会断），但不入库、不污染 git status。
+/_*.py
+/_*.v
+/_*.txt
+/_*.md
+# DeepSeek 运行痕迹 / Python 与轮次备份产物
+ds_v4_traces/
+__pycache__/
+*.pyc
+*.bak_r[0-9]
+# 约定：archive/ 是历史派单入口存档，必须入库；run_current.py 是唯一现役派 DS 入口。

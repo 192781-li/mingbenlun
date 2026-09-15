@@ -14,6 +14,7 @@
   python s04_git.py status                      # 工作区+分支关系
   python s04_git.py sync [branch]               # checkout + https fetch + 报告 ahead/behind（只 ff）
   python s04_git.py save -m "说明" [新文件...]   # 【主力】add -u +显式新文件 -> 安全闸 -> commit -> 重试push -> 校验远程
+  python s04_git.py save -m "说明" --only f1 f2  # 只暂存点名文件(新增/修改皆可)，不 add -u，不连带自动日志
   python s04_git.py push [branch]               # 仅 push（带重试与正确成功判据）
   python s04_git.py log [N]
 """
@@ -128,19 +129,28 @@ def cmd_push(a):
 def cmd_save(a):
     msg = None
     newfiles = []
+    only = False
     i = 0
     while i < len(a):
         if a[i] == "-m":
             msg = a[i + 1]; i += 2; continue
+        if a[i] == "--only":
+            only = True; i += 1; continue
         newfiles.append(a[i]); i += 1
     if not msg:
         print("!! save 需要 -m \"提交说明\""); return 2
 
-    # 1) 默认只更新已跟踪文件（不盲目 add -A）；新文件显式点名
-    print(git(["add", "-u"])[1], end="")
+    # 1) 两种暂存口径：默认 add -u（全部已跟踪改动）+显式新文件；
+    #    --only 只暂存显式点名文件（新增/修改皆可），绝不连带自动日志等其他已跟踪改动。
+    if only:
+        if not newfiles:
+            print("!! --only 模式必须显式列出要提交的文件"); return 2
+        print("[only] 仅暂存显式点名的 %d 个文件（不 add -u）" % len(newfiles))
+    else:
+        print(git(["add", "-u"])[1], end="")
     for f in newfiles:
         if not (REPO / f).exists():
-            print("!! 新文件不存在，拒绝：%s" % f); return 2
+            print("!! 文件不存在，拒绝：%s" % f); return 2
         git(["add", "--", f])
 
     # 2) 危险文件硬拦截（明性安全闸）

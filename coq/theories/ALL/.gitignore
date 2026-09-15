@@ -1,0 +1,17 @@
+# S04 coqc 工作目录临时件约定（2026-09-15 固化）
+# 下划线前缀 = 一次性测试/补丁/抓取片段：原地使用、不入库。
+# 正式独立范本用 TEST_ 前缀并显式 git add 入库（如 TEST_split.v，已跟踪，不受本规则影响）。
+/_*.v
+/_*.py
+/_*.txt
+/_*.md
+/*.bak_*
+/TEST_cell.v
+# Rocq/Coq 编译产物
+*.vo
+*.vok
+*.vos
+*.vio
+*.glob
+*.aux
+*.cache
