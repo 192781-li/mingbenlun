@@ -9,7 +9,7 @@ import sys
 from _paths import THEORIES, DOCS, NOTES
 from proof_loop import proof_loop
 
-TARGET = sys.argv[1] if len(sys.argv) > 1 else "subst_ren_general"
+TARGET = sys.argv[1] if len(sys.argv) > 1 else "subject_reduction"
 FILE = str(THEORIES / "Layer2.v")
 
 BRIEF = {
@@ -18,6 +18,10 @@ BRIEF = {
    "其余 7 个 case 已 Qed）。代换=非单射重命名 subst_var=ren(subst_name m k)；碰撞对靠已 Qed 的 "
    "typed_strengthen_unused / typed_strengthen_collisions 紧缩冗余位后，仿 Layer1.ren_typed 的 ty_par。"
    "请给出该 Lemma 从 Lemma 行到 Qed. 的完整新版本；若需辅助引理，用 INSERT-BEFORE 标记并完整证明。",
+"subject_reduction":
+   "证出 subject_reduction（主题归约保持类型：typed Gamma P / reduce Gamma P Q -> typed Gamma Q），"
+   "Layer3 line580 的 subject_reduction_self/alien 依赖它。先按结晶022 对最小进程枚举/预检锁定为真，"
+   "按结晶021 把每步化归切成带假设小引理；给从声明行到 Qed. 的完整新版本，辅助引理用 INSERT-BEFORE 完整证明。",
 }.get(TARGET, f"请完整证出 {TARGET}（当前为 Admitted/admit），给从声明行到 Qed. 的完整新版本。")
 
 # ========== 材料B：策略/状态文档（相对于 docs/协作机制/）==========
@@ -29,6 +33,7 @@ STRATEGY = (
     r"智慧河流\河流主干.md",                               # S01研判时间线
     r"智慧河流\河流状态.md",                               # 当前卡点+case进度
     r"智慧河流\S04启动必读_一页纸摘要.md",                 # 启动必读
+    r"智慧河流\智慧结晶库.md",                             # 全部结晶（含021/022），证明前必读
 )
 
 # ========== 材料C：生命论哲学智慧（相对于 docs/notes/）==========
@@ -47,7 +52,14 @@ PHILOS = (
 
 EXTRA = ("已知勘误：S00 策略中'm≥k 时 rho 单射'不成立，碰撞统一按 collision_other / rho_inj_except_m 处理；"
          "对 typed 归纳走不通（IH 源被构造子 index 锁死），当前采用对进程 Q 归纳。"
-         "材料B/C中的策略与哲学智慧是方向参考，数学对错以材料A(Layer全文)和coqc编译为准。")
+         "材料B/C中的策略与哲学智慧是方向参考，数学对错以材料A(Layer全文)和coqc编译为准。"
+         "【结晶021·强制】destruct (f ..) eqn:E 会把目标里藏在未展开定义体中的同名 f 一并替换成构造子，"
+         "导致之后 rewrite E 失配；凡依赖某等式化归的步骤，必须抽成带假设 H、不 destruct 的独立小引理，"
+         "主上下文只 apply，禁止在 destruct eqn 后的大上下文里硬 rewrite；反复失配先插 idtac 打印真实目标，"
+         "rewrite 常数等式前先 Opaque，递增下标归纳先 revert k，合取用 destruct as 不用 .1/.2。"
+         "【结晶022·强制】若你开始怀疑命题为假或三轮不收敛，先不要判假：存在性中间块通常不是现成实体、"
+         "而是按归属规则逐位重新聚拢（遇空位截断）构造；派单前 S04 已/应做有限枚举，0 反例即命题为真，"
+         "问题在证明路线与引理强度，不在真假。")
 
 if __name__ == "__main__":
     import os
