@@ -2171,8 +2171,6 @@ Proof.
 Qed.
 
 
-
-
 Lemma get_repeat_None_lt : forall len n,
   n < len -> get (repeat (None : option ty) len) n = Some None.
 Proof.
@@ -2626,7 +2624,6 @@ Qed.
    ===================================================================== *)
 
 
-
 (* =====================================================================
    J3: typed_res_par_l/r —— 限制-并行交换下 typed 保持
    对应 cong_res_par: ~ fv_at Q 0 -> congruence (PRes (PPar P Q)) (PPar (PRes P) Q)
@@ -3072,4 +3069,275 @@ Proof.
   - exact HQ'.
 Qed.
 (* END REPLACE *)
+(* ==== J1 congruence_preserves_typing（施工占位，待 DeepSeek 整段替换为 Qed）==== *)
+
+(* =====================================================================
+   J1 · congruence_preserves_typing
+   新增辅助：并行的左合并升降（typed_split_weaken_l）与单侧 set_none 分裂保持
+   ===================================================================== *)
+
+
+
+(* =====================================================================
+   J1 · congruence_preserves_typing
+   新增辅助：并行的左合并升降（typed_split_weaken_l）与单侧 set_none 分裂保持
+   ===================================================================== *)
+
+Lemma split_self_nil : forall Gamma, split Gamma Gamma [].
+Proof.
+  intros Gamma n. left. split.
+  - reflexivity.
+  - left. reflexivity.
+Qed.
+
+Lemma split_set_none_l_some : forall G G1 G2 x T,
+  split G G1 G2 -> get G1 x = Some (Some T) ->
+  split (set_none G x) (set_none G1 x) G2.
+Proof.
+  intros G G1 G2 x T Hs Hx.
+  unfold split. intros n.
+  unfold split in Hs.
+  destruct (Nat.eq_dec n x) as [EQ | NEQ].
+  - subst n.
+    specialize (Hs x).
+    destruct Hs as [[Hg Hempty] | [Hg2 H1empty]].
+    + left. split.
+      * apply (set_none_eq_at_self G1 G x Hg).
+      * exact Hempty.
+    + exfalso.
+      destruct H1empty as [Hnone | Hsome];
+        [rewrite Hnone in Hx; discriminate | rewrite Hsome in Hx; discriminate].
+  - rewrite (set_none_neq G x n NEQ).
+    rewrite (set_none_neq G1 x n NEQ).
+    exact (Hs n).
+Qed.
+
+Lemma typed_split_weaken_l : forall G1 P,
+  typed G1 P -> forall G G2, split G G1 G2 -> typed G P.
+Proof.
+  intros G1 P Hty.
+  induction Hty as [
+    Gamma
+  | Gamma x T Hget
+  | Gamma P0 Ht IH
+  | Gamma x y P0 i o T G1a G1b Huse1 Ho Huse2 Hbody IHbody
+  | Gamma x P0 i o T G1a Huse Hi Hbody IHbody
+  | Gamma P0 Q0 G1a G1b Hs HP IHP HQ IHQ
+  | Gamma P0 T Hbody IHbody
+  | Gamma P0 Hempty
+  ];
+  intros G G2 Hsp.
+  - (* ty_zero *)
+    apply ty_zero.
+  - (* ty_var *)
+    apply ty_var with (T := T).
+    eapply split_get_l; [exact Hsp | exact Hget].
+  - (* ty_tau *)
+    apply ty_tau.
+    apply (IH G G2 Hsp).
+  - (* ty_out *)
+    assert (Hxy : x <> y) by (eapply use_neq; eassumption).
+    assert (Hyx : y <> x) by (intro E; apply Hxy; symmetry; exact E).
+    unfold use in Huse1, Huse2.
+    destruct Huse1 as [Hg1x HA].
+    destruct Huse2 as [HgAy HB].
+    subst G1a. subst G1b.
+    assert (Hgx : get G x = Some (Some (TChan i o T))).
+    { eapply split_get_l; [exact Hsp | exact Hg1x]. }
+    assert (Hs1 : split (set_none G x) (set_none Gamma x) G2).
+    { apply (split_set_none_l_some G Gamma G2 x (TChan i o T) Hsp Hg1x). }
+    assert (HgyG : get G y = Some (Some T)).
+    { rewrite (set_none_neq Gamma x y Hyx) in HgAy.
+      eapply split_get_l; [exact Hsp | exact HgAy]. }
+    assert (Hgy : get (set_none G x) y = Some (Some T)).
+    { rewrite (set_none_neq G x y Hyx). exact HgyG. }
+    assert (Hs2 : split (set_none (set_none G x) y)
+                        (set_none (set_none Gamma x) y) G2).
+    { apply (split_set_none_l_some (set_none G x) (set_none Gamma x) G2 y T Hs1 HgAy). }
+    eapply ty_out with (Gamma1 := set_none G x)
+                       (Gamma2 := set_none (set_none G x) y).
+    + unfold use. split; [exact Hgx | reflexivity].
+    + exact Ho.
+    + unfold use. split; [exact Hgy | reflexivity].
+    + exact (IHbody (set_none (set_none G x) y) G2 Hs2).
+  - (* ty_in *)
+    unfold use in Huse. destruct Huse as [Hgx HA]. subst G1a.
+    assert (HgG : get G x = Some (Some (TChan i o T))).
+    { eapply split_get_l; [exact Hsp | exact Hgx]. }
+    assert (Hs1 : split (set_none G x) (set_none Gamma x) G2).
+    { apply (split_set_none_l_some G Gamma G2 x (TChan i o T) Hsp Hgx). }
+    assert (Hcons : split (Some T :: set_none G x)
+                          (Some T :: set_none Gamma x) (None :: G2)).
+    { apply (split_cons_none (set_none G x) (set_none Gamma x) G2 T Hs1). }
+    eapply ty_in with (Gamma1 := set_none G x).
+    + unfold use. split; [exact HgG | reflexivity].
+    + exact Hi.
+    + exact (IHbody (Some T :: set_none G x) (None :: G2) Hcons).
+  - (* ty_par *)
+    destruct (split_assoc G Gamma G2 G1a G1b Hsp Hs) as [X [HX1 HX2]].
+    eapply ty_par with (Gamma1 := G1a) (Gamma2 := X).
+    + exact HX1.
+    + exact HP.
+    + apply (IHQ X G2 HX2).
+  - (* ty_res *)
+    assert (Hcons : split (Some T :: G) (Some T :: Gamma) (None :: G2)).
+    { apply (split_cons_none G Gamma G2 T Hsp). }
+    apply (ty_res G P0 T).
+    exact (IHbody (Some T :: G) (None :: G2) Hcons).
+  - (* ty_rep *)
+    apply (ty_rep G P0 Hempty).
+Qed.
+
+(* =====================================================================
+   成对加强归纳：congruence 正反两方向同时保持 typed
+   ===================================================================== *)
+Lemma congruence_preserves_typing_pair : forall Gamma P P',
+  congruence P P' ->
+  (typed Gamma P -> typed Gamma P') /\ (typed Gamma P' -> typed Gamma P).
+Proof.
+  intros Gamma P P' H.
+  revert Gamma.
+  induction H as
+    [ P
+    | P Q H0 IH0
+    | P Q R H0 IH0 H1 IH1
+    | P Q
+    | P Q R
+    | P
+    | P Q Hnf
+    | P
+    | P P' Q Q' H0 IH0 H1 IH1
+    | P P' H0 IH0
+    | P P' H0 IH0 ];
+  intros Gamma.
+  - (* cong_refl *)
+    split; intros Hty; exact Hty.
+  - (* cong_sym *)
+    destruct (IH0 Gamma) as [IHf IHb].
+    split; [exact IHb | exact IHf].
+  - (* cong_trans *)
+    destruct (IH0 Gamma) as [IHf0 IHb0].
+    destruct (IH1 Gamma) as [IHf1 IHb1].
+    split.
+    + intros HP_. apply IHf1. apply IHf0. exact HP_.
+    + intros HR_. apply IHb0. apply IHb1. exact HR_.
+  - (* cong_par_comm *)
+    split.
+    + intros Hty.
+      destruct (par_elim Gamma P Q Hty) as [G1 [G2 [Hs [HP HQ]]]].
+      eapply ty_par with (Gamma1 := G2) (Gamma2 := G1).
+      * apply split_sym. exact Hs.
+      * exact HQ.
+      * exact HP.
+    + intros Hty.
+      destruct (par_elim Gamma Q P Hty) as [G1 [G2 [Hs [HQ HP]]]].
+      eapply ty_par with (Gamma1 := G2) (Gamma2 := G1).
+      * apply split_sym. exact Hs.
+      * exact HP.
+      * exact HQ.
+  - (* cong_par_assoc *)
+    split.
+    + intros Hty.
+      destruct (par_elim Gamma (PPar P Q) R Hty) as [G12 [G3 [Hs13 [HPQ HR]]]].
+      destruct (par_elim G12 P Q HPQ) as [G1 [G2 [Hs12 [HP HQ]]]].
+      destruct (split_assoc Gamma G12 G3 G1 G2 Hs13 Hs12) as [G23 [HsL HsR]].
+      eapply ty_par with (Gamma1 := G1) (Gamma2 := G23).
+      * exact HsL.
+      * exact HP.
+      * eapply ty_par with (Gamma1 := G2) (Gamma2 := G3).
+        -- exact HsR.
+        -- exact HQ.
+        -- exact HR.
+    + intros Hty.
+      destruct (par_elim Gamma P (PPar Q R) Hty) as [G1 [G23 [HsL [HP HQR]]]].
+      destruct (par_elim G23 Q R HQR) as [G2 [G3 [HsR [HQ HR]]]].
+      pose proof (split_sym Gamma G1 G23 HsL) as HsL_sym.
+      pose proof (split_sym G23 G2 G3 HsR) as HsR_sym.
+      destruct (split_assoc Gamma G23 G1 G3 G2 HsL_sym HsR_sym) as [G12 [Ha Hb]].
+      assert (Hb_sym : split G12 G1 G2) by (apply split_sym; exact Hb).
+      assert (Ha_sym : split Gamma G12 G3) by (apply split_sym; exact Ha).
+      eapply ty_par with (Gamma1 := G12) (Gamma2 := G3).
+      * exact Ha_sym.
+      * apply (ty_par G12 P Q G1 G2 Hb_sym HP HQ).
+      * exact HR.
+  - (* cong_par_zero *)
+    split.
+    + intros Hty.
+      destruct (par_elim Gamma P PZero Hty) as [G1 [G2 [Hs [HP _]]]].
+      exact (typed_split_weaken_l G1 P HP Gamma G2 Hs).
+    + intros Hty.
+      assert (Hs : split Gamma Gamma []) by (apply split_self_nil).
+      eapply ty_par with (Gamma1 := Gamma) (Gamma2 := []).
+      * exact Hs.
+      * exact Hty.
+      * apply ty_zero.
+  - (* cong_res_par *)
+    split; intros Hty.
+    + exact (typed_res_par_l Gamma P Q Hnf Hty).
+    + exact (typed_res_par_r Gamma P Q Hnf Hty).
+  - (* cong_rep_unfold *)
+    split.
+    + intros Hty.
+      assert (Hempty : typed [] P).
+      { inversion Hty; subst. eassumption. }
+      assert (Hs : split Gamma Gamma []) by (apply split_self_nil).
+      eapply ty_par with (Gamma1 := Gamma) (Gamma2 := []).
+      * exact Hs.
+      * apply (typed_any_ctx P Gamma Hempty).
+      * apply (ty_rep [] P Hempty).
+    + intros Hty.
+      destruct (par_elim Gamma P (PRep P) Hty) as [G1 [G2 [Hs [HP HQ]]]].
+      assert (Hempty : typed [] P).
+      { inversion HQ; subst. eassumption. }
+      apply (ty_rep Gamma P Hempty).
+  - (* cong_par_cong *)
+    split.
+    + intros Hty.
+      destruct (par_elim Gamma P Q Hty) as [G1 [G2 [Hs [HP HQ]]]].
+      destruct (IH0 G1) as [IH0fG1 _].
+      destruct (IH1 G2) as [IH1fG2 _].
+      eapply ty_par with (Gamma1 := G1) (Gamma2 := G2).
+      * exact Hs.
+      * apply IH0fG1. exact HP.
+      * apply IH1fG2. exact HQ.
+    + intros Hty.
+      destruct (par_elim Gamma P' Q' Hty) as [G1 [G2 [Hs [HP' HQ']]]].
+      destruct (IH0 G1) as [_ IH0bG1].
+      destruct (IH1 G2) as [_ IH1bG2].
+      eapply ty_par with (Gamma1 := G1) (Gamma2 := G2).
+      * exact Hs.
+      * apply IH0bG1. exact HP'.
+      * apply IH1bG2. exact HQ'.
+  - (* cong_res_cong *)
+    split.
+    + intros Hty.
+      destruct (res_elim Gamma P Hty) as [T Hinner].
+      destruct (IH0 (Some T :: Gamma)) as [IHf _].
+      apply (ty_res Gamma P' T).
+      apply IHf. exact Hinner.
+    + intros Hty.
+      destruct (res_elim Gamma P' Hty) as [T Hinner].
+      destruct (IH0 (Some T :: Gamma)) as [_ IHb].
+      apply (ty_res Gamma P T).
+      apply IHb. exact Hinner.
+  - (* cong_tau_cong *)
+    destruct (IH0 Gamma) as [IHf IHb].
+    split.
+    + intros Hty.
+      assert (Hinner : typed Gamma P).
+      { inversion Hty; subst. eassumption. }
+      apply ty_tau. apply IHf. exact Hinner.
+    + intros Hty.
+      assert (Hinner : typed Gamma P').
+      { inversion Hty; subst. eassumption. }
+      apply ty_tau. apply IHb. exact Hinner.
+Qed.
+
+Lemma congruence_preserves_typing : forall Gamma P P',
+  congruence P P' -> typed Gamma P -> typed Gamma P'.
+Proof.
+  intros Gamma P P' H Hty.
+  destruct (congruence_preserves_typing_pair Gamma P P' H) as [Hf _].
+  exact (Hf Hty).
+Qed.
 (* === END === *)

@@ -34,6 +34,15 @@ BRIEF = {
    "no_parallel_channel_sharing，不要做任何 comm 代换；red_par_l/r 用 par_elim+ty_par+IH，red_cong 用 J1；"
    "旧六分支骨架见 coq/theories/ALL/backup_9.0.1/Layer2.v 218-251，其所需零件当前全部已 Qed）。"
    "每个引理给从声明行到 Qed. 的完整新版本，辅助引理用 INSERT-BEFORE 完整证明到 Qed，不留名字。",
+ "congruence_preserves_typing":
+   "先读材料B《当前证明链_subject_reduction》第2节J1施工表，本轮【只做J1】，不要证 subject_reduction(那是J2)。"
+   "目标 congruence_preserves_typing : forall Gamma P P', congruence P P' -> typed Gamma P -> typed Gamma P'。"
+   "congruence 共11构造子(Layer2 line180-193)，唯一硬点 cong_sym 方向反转，用方案A成对加强归纳：文件已立Admitted占位的辅助引理"
+   "congruence_preserves_typing_pair(正反两方向合取)，请用 INSERT-BEFORE 给它从声明到Qed的完整版本替换占位，再给目标Qed版(取pair的proj1)。"
+   "逐构造子直接apply已Qed零件、禁止重证：cong_par_comm/assoc/zero/par_cong 用 par_elim(436)拆+ty_par重组，分划对调用split_sym(418)、重合用split_assoc(2531)；"
+   "cong_res_par 正向用 typed_res_par_l(2815)、反向用 typed_res_par_r(3058)(前提~fv_at Q 0由构造子自带)；cong_res_cong用res_elim(457)+ty_res；"
+   "cong_tau_cong 先 inversion typed 取内部typed再IH后ty_tau装回；cong_rep_unfold用ty_rep与(ty_par+ty_rep)互推，所需最小拆装引理当轮@prove交齐Qed。"
+   "每个引理从声明行到Qed.完整，不留Admitted/Abort/无名引理。",
 }.get(TARGET, f"请完整证出 {TARGET}（当前为 Admitted/admit），给从声明行到 Qed. 的完整新版本。")
 
 # ========== 材料B：当前证明链 + 条件反射工艺 + 状态（相对于 docs/协作机制/）==========

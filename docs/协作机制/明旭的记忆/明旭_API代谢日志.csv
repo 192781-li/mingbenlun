@@ -283,3 +283,16 @@
 2026-09-14 22:02:09,S04,deepseek-v4-pro,A,proofloop_typed_res_par_r_r2,58112,47924,5958,0,success,78.72,0.18097,0.548,stop,proofloop_typed_res_par_r_r2
 2026-09-14 22:03:26,S04,deepseek-v4-pro,A,proofloop_typed_res_par_r_r3,58240,48808,6491,0,success,73.82,0.18683,0.5441,stop,proofloop_typed_res_par_r_r3
 2026-09-14 23:38:48,S04,deepseek-v4-pro,A,proofloop_split_assoc_r1,143744,58338,57238,1,success,772.35,0.52204,0.7113,stop,proofloop_split_assoc_r1
+2026-09-15 00:45:19,S04,deepseek-v4-pro,A,proofloop_split_assoc_r1,201984,98,78456,1,success,886.76,0.47608,0.9995,stop,proofloop_split_assoc_r1
+2026-09-15 00:49:36,S04,deepseek-v4-pro,A,proofloop_split_assoc_r2,50816,53040,26558,0,success,255.52,0.31974,0.4893,stop,proofloop_split_assoc_r2
+2026-09-15 00:51:17,S04,deepseek-v4-pro,A,proofloop_split_assoc_r3,50816,55467,10224,0,success,98.56,0.22902,0.4781,stop,proofloop_split_assoc_r3
+2026-09-15 00:52:22,S04,deepseek-v4-pro,A,proofloop_split_assoc_r4,50816,56881,7498,0,success,63.03,0.2169,0.4718,stop,proofloop_split_assoc_r4
+2026-09-15 00:53:45,S04,deepseek-v4-pro,A,proofloop_split_assoc_r5,51456,57750,8427,0,success,81.37,0.2251,0.4712,stop,proofloop_split_assoc_r5
+2026-09-15 01:00:16,S04,deepseek-v4-pro,A,proofloop_split_assoc_r1,100992,30,30753,0,success,316.04,0.18713,0.9997,stop,proofloop_split_assoc_r1
+2026-09-15 01:03:24,S04,deepseek-v4-pro,A,proofloop_split_assoc_r2,50816,53723,18111,0,success,182.3,0.27111,0.4861,stop,proofloop_split_assoc_r2
+2026-09-15 01:05:09,S04,deepseek-v4-pro,A,proofloop_split_assoc_r3,98304,8244,11214,0,success,104.84,0.09447,0.9226,stop,proofloop_split_assoc_r3
+2026-09-15 01:06:01,S04,deepseek-v4-pro,A,proofloop_split_assoc_r4,104320,4234,5614,0,success,51.25,0.04899,0.961,stop,proofloop_split_assoc_r4
+2026-09-15 01:06:45,S04,deepseek-v4-pro,A,proofloop_split_assoc_r5,106240,4346,5126,0,success,44.18,0.04645,0.9607,stop,proofloop_split_assoc_r5
+2026-09-15 23:48:47,S04,deepseek-v4-pro,A,proofloop_congruence_preserves_typing_r1,8576,70509,41952,0,success,483.89,0.46345,0.1084,stop,proofloop_congruence_preserves_typing_r1
+2026-09-15 23:50:51,S04,deepseek-v4-pro,A,proofloop_congruence_preserves_typing_r2,56192,28316,13111,0,success,121.2,0.16502,0.6649,stop,proofloop_congruence_preserves_typing_r2
+2026-09-15 23:52:21,S04,deepseek-v4-pro,A,proofloop_congruence_preserves_typing_r3,64256,22719,8260,0,success,87.64,0.11932,0.7388,stop,proofloop_congruence_preserves_typing_r3
