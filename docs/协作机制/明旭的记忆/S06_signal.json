@@ -1,0 +1,47 @@
+{
+  "station": "S06",
+  "name": "高考数学分站（明旭数学教练）",
+  "branch": "s06-math",
+  "worktree": "/home/user/mingxu-worktrees/s06",
+  "last_update": "2026-09-15 10:45 S00网络健康度修复：从信息黑洞补建signal，此前无signal文件",
+  "current_task": "休眠中——两个定时任务均已停止，待主人决定是否重启",
+  "status": "dormant_定时任务全停_分支落后13_待主人决定方向",
+  "dormancy": {
+    "since": "2026-09-10左右",
+    "reason": "主人停止S06定时任务，可能因高考数学训练优先级调整",
+    "stopped_cron_jobs": [
+      {
+        "id": "11591577993218",
+        "name": "明旭-S06-高考数学每日推进",
+        "schedule": "0 9 * * *"
+      },
+      {
+        "id": "11547202077954",
+        "name": "明旭-S06-每周错题与方法论复盘",
+        "schedule": "0 20 * * 0"
+      }
+    ],
+    "branch_status": "s06-math领先main 1/落后13，重启后需rebase",
+    "resume_conditions": [
+      "主人决定重启S06",
+      "s06-math分支rebase到最新main",
+      "确认训练方向（高考数学/其他）"
+    ]
+  },
+  "key_achievements": [
+    "三角函数题型整理（s06-三角函数题型-20260912分支）",
+    "分站状态激活（s06-status-active-20260913分支）",
+    "残留评估（s06-residual-eval-20260914分支）"
+  ],
+  "blockers": [
+    "无signal文件（本次已补建）",
+    "两个定时任务全部停止",
+    "分支落后main 13个commit",
+    "训练方向待主人确认"
+  ],
+  "next_action": "等主人决定是否重启；如重启，先rebase分支再恢复每日推进任务",
+  "progress_score": 40,
+  "json_valid": true,
+  "signal_created_by": "S00大总站网络健康度修复轮 2026-09-15",
+  "note": "本signal为补建，历史状态可能不完整；S06此前产出散落在各临时分支中"
+}
