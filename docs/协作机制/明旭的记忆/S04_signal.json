@@ -2,9 +2,9 @@
   "station": "S04",
   "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
-  "last_update": "2026-09-05T J1g选择层(A)pick_prefix+(B)pick_prefix_correct Qed落袋，coqc exit0，L2仅剩split_assoc；机制根治def_span+同名循环全切+结晶018派活前预检",
+  "last_update": "2026-09-15 10:45 S00网络健康度修复：补休眠说明，任务状态改blocked，非故障是主动暂停",
   "current_task": "J1 split_assoc收官：选择层A/B已Qed，下一步(C)pick_prefix_none_suffix(None位向后闭)→固定长度G23逐位读出→主定理拼装Qed",
-  "status": "J1攻坚中_选择层落袋_机制两修_看板驱动正常运行",
+  "status": "dormant_定时任务全停_分支落后582_待主人拍板重启",
   "paradigm": {
     "principle": "DeepSeek是写代码主行动者，S04只有coqc执行/git权+哲学桥梁，不自己写tactic、不手改证明碰运气",
     "authority_docs": [
@@ -150,5 +150,28 @@
       "note": "并入proof_loop"
     }
   },
-  "external_knowledge_policy": "大胆用Stdlib/MathComp已Qed库定理(@stdlib L1)；文献结论@cite借思路本库重证；来源不明拦截；加强归纳是自由证明技术非Axiom。详见外部引理登记规范第八节"
+  "external_knowledge_policy": "大胆用Stdlib/MathComp已Qed库定理(@stdlib L1)；文献结论@cite借思路本库重证；来源不明拦截；加强归纳是自由证明技术非Axiom。详见外部引理登记规范第八节",
+  "dormancy": {
+    "since": "2026-09-04",
+    "reason": "主人主动停止全部5个S04定时任务，Coq环境在本地电脑非云环境，无法在云端继续",
+    "stopped_cron_jobs": [
+      "11641354361346",
+      "11686205527810",
+      "11686205635074",
+      "11623690303490",
+      "11631063174146"
+    ],
+    "remaining_work": {
+      "L2": "split_assoc主引理未Qed（唯一Admitted），选择层A/B已落袋，剩(C)None位后缀引理+固定长度G23逐位读出+主定理拼装",
+      "L3": "完整实现暂停（T001 blocked），命名修改待执行（T007 pending_blocked）",
+      "branch": "s04-coq领先main 52/落后582，重启后需先rebase"
+    },
+    "resume_conditions": [
+      "主人拍板重启S04",
+      "Coq环境就绪（本地或云端安装coqc）",
+      "s04-coq分支rebase到最新main",
+      "DeepSeek API额度确认"
+    ],
+    "not_dead": "Coq证明代码和全部上下文完整保留在s04-coq分支，不是放弃是暂停"
+  }
 }
