@@ -2,9 +2,9 @@
   "station": "S04",
   "name": "Coq形式化分站（明序）",
   "branch": "s04-coq",
-  "last_update": "2026-09-15 22:16 DS一体化机制升级",
-  "current_task": "DS一体化改造完成：当前证明链卡+行为手册v2.0+run_current V4.2；下一数学目标 L2.subject_reduction（J1 congruence_preserves_typing 先行）",
-  "status": "L1/L2 全部 Qed、零 Admitted、coqc exit=0；L3 待 subject_reduction",
+  "last_update": "2026-09-16 00:05 J1/J2 Qed，L2 清零+封板，L1-L3 顺序整层编译全绿",
+  "current_task": "Layer2 封板完成（J1 congruence_preserves_typing、J2 subject_reduction 均 Qed）；下一阶段为 Layer3 第四阶段哲学定理（jia_has_residue/T005/T002/归约可延续），需先与 S01 对齐命题陈述",
+  "status": "L1/L2/L3 清空.vo后按依赖顺序整层 coqc 全 exit=0、三层真实 Admitted=0；L2 清零+封板双达成，L3 转绿",
   "L1": {
     "admitted": 0,
     "compiled": true
@@ -13,19 +13,19 @@
     "admitted": 0,
     "compiled": true,
     "coqc_exit": 0,
-    "milestone": "split_assoc 2026-09-15 Qed（commit edc2333），Layer2 零 Admitted",
+    "milestone": "2026-09-16 J1 congruence_preserves_typing(1b6d766)+J2 subject_reduction(9babd81) 均 Qed，清零+封板双达成",
     "split_assoc_route": "merge_cell 逐位四规则 -> build_g23 遇 None 截断构造中间块 G23 -> build_correct 区间归纳（区间内步长引理化归 S k 层、区间外结论本就是 None）-> 主定理按 n<K/n>=K 分情况；独立范本 TEST_split.v 先 exit=0 再并入",
     "note": "DS 曾九轮误判 split_assoc 为假，被 Python 有限枚举（merge_cell 32 组合、build 2383 可达实例均 0 反例）+ coqc 完整证明双重推翻"
   },
   "L3": {
     "admitted": 0,
-    "compiled": false,
-    "blocker": "line580 引用 L2.subject_reduction 未找到——这是下一个要在 Layer2 证的主题归约保持类型引理，与 split_assoc 无关",
-    "note": "L2 已清零，subject_reduction 证出后 L3 重编转绿"
+    "compiled": true,
+    "coqc_exit": 0,
+    "note": "L2.subject_reduction 证出后，subject_reduction_self/alien 以 reduce_self/alien 子关系继承 eapply 直接 Qed（575-593），整层转绿；第四阶段哲学定理（jia_has_residue/T005/T002）仍待立项，不阻塞封板"
   },
   "blockers": [],
   "needs_s01": false,
-  "s01_should_read": "无待研判；split_assoc 已证出，OB-018 关闭。可选：为结晶021/022（destruct eqn 隐藏替换须抽小引理 / 中间块逐位聚拢、先有限枚举立真）做哲学背书",
+  "s01_should_read": "J1/J2 已封板（无需解卡）。可选背书：J1成对加强归纳处理cong_sym方向反转、J2 red_comm靠no_parallel_channel_sharing空真、red_cong双同余复用pair。后续Layer3第四阶段哲学定理立项时需S01研判命题陈述",
   "key_achievements_20260915": [
     "split_assoc 完整 Qed 并并入 Layer2.v，整层 coqc exit=0、L1/L2/L3 真正 Admitted tactic 总数为 0",
     "Python 有限枚举立真（merge_cell/cell_step 32 组合、build_g23 2383 可达实例、交错反例搜索均 0 失败），避免在 DS 误判的假方向继续空转",
@@ -34,16 +34,20 @@
     "OB-018 关闭（resolved，commit edc2333）"
   ],
   "latest_commits": [
-    "本次 S04: DS一体化——当前证明链卡+行为手册v2.0+run_current V4.2",
-    "edc2333 S04: split_assoc Qed——Layer2零Admitted收官(coqc exit=0)"
+    "9babd81 S04: J2 subject_reduction Qed，L3 self/alien点亮，三层顺序编译全exit=0零Admitted，L2清零+封板",
+    "1b6d766 S04: J1 congruence_preserves_typing Qed 成对加强归纳11构造子"
   ],
-  "next_action": "按证明链卡J1派DS证congruence_preserves_typing（cong_sym用成对加强归纳，cong_res_par用typed_res_par_l/r），独立TEST_cpt.v先exit=0再并入；J2 subject_reduction点亮Layer3",
-  "progress_score": 96,
+  "next_action": "Layer2已封板。下一步Layer3第四阶段（jia_has_residue/T005_ming_preservation/T002/归约可延续引理）属哲学层，先与S01对齐陈述再派DS；当前可按主人节奏回到哲学讨论（四规定性分层位置等）",
+  "progress_score": 98,
   "ds_integration_v2": {
     "proof_chain": "docs/协作机制/分站/当前证明链_subject_reduction.md（DS每轮先读的最简施工链）",
     "template": "docs/协作机制/分站/_模板_当前证明链.md",
     "handbook": "行为手册精炼为v2.0（255->约120行），新增DS一体化章节",
     "run_current": "V4.2：材料B 7->3、材料C 8->2，移除已收官旧战场，结晶库只由system提供一次",
     "key_fact": "Layer2无subject_reduction本体（旧SUMMARY注释不实）；唯一缺口congruence_preserves_typing；red_comm靠no_parallel_channel_sharing空真；旧骨架backup_9.0.1/Layer2.v 218-251"
-  }
+  },
+  "key_achievements_20260916_J1J2": [
+    "J2 subject_reduction Qed：red_comm走exfalso+no_parallel_channel_sharing空真，red_cong复用J1的pair做P→P'正向、归约、Q'→Q反向，DS 1轮0.17元；L3随即转绿",
+    "J1 congruence_preserves_typing Qed：成对加强归纳一次证正反两方向，cong_sym交换合取项化解方向反转，cong_par_cong把IH作用在分划局部上下文，DS v4-pro 3轮0.75元"
+  ]
 }
