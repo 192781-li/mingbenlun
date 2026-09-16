@@ -94,26 +94,35 @@ if os.path.exists(manifest_path):
             line = line.strip()
             if line and not line.startswith('#'):
                 manifest_files.add(line)
-    # 扫描子目录中所有md文件（根目录的00_修订记/00_总序/00_推导链是固定文件，不在manifest中）
+    # 扫描子目录中所有md文件（排除工作文档目录与工作文件，不要求入manifest）
     skip_files = {'AGENTS.md', 'README.md'}
     actual_files = set()
     for root, dirs, files in os.walk(moddir):
         for fn in files:
             if fn.endswith('.md') and fn not in skip_files:
                 rel = os.path.relpath(os.path.join(root, fn), moddir)
-                # 根目录的三个固定文件不在manifest中
+                # 根目录的 00_ 卷前文件在manifest中，由manifest驱动排序，此处不重复扫描
                 if '/' not in rel and rel.startswith('00_'):
+                    continue
+                # 项目文档目录 = 工作文档，不入合订本
+                if rel.startswith('项目文档/'):
                     continue
                 # 答题训练文件不入manifest
                 if fn.startswith('训练') and '_' in fn:
                     continue
+                # 副卷_语义论 下只收正式篇文件（篇/00_开头），工作文档不入manifest
+                if rel.startswith('副卷_语义论/'):
+                    base = os.path.basename(rel)
+                    if not (base.startswith('篇') or base.startswith('00_')):
+                        continue
                 actual_files.add(rel)
     missing = actual_files - manifest_files
     for m in sorted(missing):
         errors.append(f"文件未加入manifest.txt：{m}")
-    ghost = manifest_files - actual_files
-    for g in sorted(ghost):
-        errors.append(f"manifest中文件不存在：{g}")
+    # ghost：manifest中列出但磁盘上确实不存在的文件（直接查磁盘，避免根00_文件的扫描跳过造成误报）
+    for g in sorted(manifest_files):
+        if not os.path.exists(os.path.join(moddir, g)):
+            errors.append(f"manifest中文件不存在：{g}")
 
 # 6. 字数统计
 char_count = len(text)
@@ -156,28 +165,13 @@ echo "[0/4] 清理旧文件..."
 rm -f "$OUTPUT_MD" "$OUTPUT_HTML" "$OUTPUT_PDF" /tmp/html_full.md /tmp/pdf_full.md
 
 # 1. 用Python合并模块（比cat更可靠，避免编码和稀疏文件问题）
+#    排序唯一权威 = manifest.txt（含根目录文件：导言/体系总纲/推导链总览在前，尾声在正文后）
 echo "[1/4] 合并模块..."
 python3 - "$MODDIR" "$OUTPUT_MD" << 'PYEOF'
 import sys, os
 moddir, output = sys.argv[1], sys.argv[2]
 with open(output, 'w', encoding='utf-8') as out:
-    # 体系总纲（最新规范性奠基）
-    with open(os.path.join(moddir, '00_体系总纲.md'), 'r', encoding='utf-8') as f:
-        out.write(f.read())
-    out.write('\n\n---\n\n')
-    # 修订记与体系总纲
-    with open(os.path.join(moddir, '00_修订记与体系总纲.md'), 'r', encoding='utf-8') as f:
-        out.write(f.read())
-    out.write('\n\n---\n\n')
-    # 总序
-    with open(os.path.join(moddir, '00_总序与导论.md'), 'r', encoding='utf-8') as f:
-        out.write(f.read())
-    out.write('\n\n---\n\n')
-    # 推导链总览
-    with open(os.path.join(moddir, '00_推导链总览.md'), 'r', encoding='utf-8') as f:
-        out.write(f.read())
-    out.write('\n\n---\n\n')
-    # manifest中的文件
+    # manifest中的文件（唯一排序权威）
     with open(os.path.join(moddir, 'manifest.txt'), 'r', encoding='utf-8') as f:
         for line in f:
             fpath = line.strip()
@@ -214,7 +208,7 @@ COVER
     pandoc /tmp/html_full.md \
         -f markdown-yaml_metadata_block -t html5 -s \
         --toc --toc-depth=3 \
-        --include-in-header=html_header.html \
+        --include-in-header="$WORKSPACE/archive/html_exports/html_header.html" \
         --metadata title="生命论（明本论）" \
         -o "$OUTPUT_HTML"
     echo "  HTML完成：$OUTPUT_HTML ($(du -h "$OUTPUT_HTML" | cut -f1))"
@@ -254,7 +248,7 @@ COVER
         -f markdown-yaml_metadata_block \
         -o "$OUTPUT_PDF" \
         --pdf-engine=xelatex \
-        --include-in-header=publish_style.tex \
+        --include-in-header="$WORKSPACE/docs/raw_materials/publish_style.tex" \
         -V documentclass=book \
         -V classoption=oneside,11pt \
         -V CJKmainfont="Noto Serif CJK SC"
@@ -265,11 +259,17 @@ fi
 rm -f /tmp/html_cover.md /tmp/html_full.md /tmp/pdf_cover.md /tmp/pdf_full.md
 
 # 元监督自筛（不阻断构建，但有问题必须喊出来）
+# 用项目侧副本（技能目录会被外部同步恢复，项目侧版本持久可控）
 echo "[元监督] 自筛检查..."
-python3 "$WORKSPACE/mingben-workbench/scripts/self_audit.py" --quiet || {
-    echo ""
-    echo "⚠️  自筛发现问题！用 'python3 mingben-workbench/scripts/self_audit.py' 查看详情"
-    echo ""
-}
+SELF_AUDIT="$WORKSPACE/scripts/self_audit.py"
+if [ -f "$SELF_AUDIT" ]; then
+    MINGBEN_WORKSPACE="$WORKSPACE" python3 "$SELF_AUDIT" --quiet || {
+        echo ""
+        echo "⚠️  自筛发现问题！用 'MINGBEN_WORKSPACE=$WORKSPACE python3 $SELF_AUDIT' 查看详情"
+        echo ""
+    }
+else
+    echo "  （跳过：self_audit.py 未找到）"
+fi
 
 echo "[4/4] 构建完成。"
